@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use PSI in research, please cite the relevant Zenodo record when available and this repository for the evolving public source."
+title: "PSI: Identifiability under constrained observation"
+type: software
+authors:
+  - family-names: "Smoczynski"
+    given-names: "Bartek"
+repository-code: "https://github.com/smoczynski-b/PSI"
+url: "https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/"
+license: MIT
+abstract: >-
+  PSI is a formal research framework for justified inference under constrained
+  observation. It studies compatible fibers, task-relative identifiability,
+  separating tests, representation sufficiency, provenance and controlled
+  decision procedures for human and AI reasoning.
+keywords:
+  - identifiability
+  - inference
+  - artificial intelligence
+  - uncertainty
+  - observation
+  - verification
