@@ -45,6 +45,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Core mathematical skeleton](docs/core.md)
 - [Method and working discipline](docs/method.md)
 - [Minimal separating-test example](examples/separating-test.md)
+- [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
 ## What PSI is for
@@ -67,7 +68,14 @@ The mathematical core is under active consolidation. Later public releases will 
 
 ## Publications / Zenodo
 
-Some project materials are archived on Zenodo. Canonical DOI links will be added here as the public release index is consolidated.
+Archived project materials are available on Zenodo:
+
+- DOI: [10.5281/zenodo.18893354](https://doi.org/10.5281/zenodo.18893354)
+- DOI: [10.5281/zenodo.18644750](https://doi.org/10.5281/zenodo.18644750)
+- DOI: [10.5281/zenodo.18498472](https://doi.org/10.5281/zenodo.18498472)
+- DOI: [10.5281/zenodo.18498440](https://doi.org/10.5281/zenodo.18498440)
+
+See [docs/publications.md](docs/publications.md) for the release index.
 
 When a Zenodo record and a repository version refer to the same work, cite the Zenodo record as the archival publication and this repository as the evolving public source.
 
