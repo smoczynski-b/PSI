@@ -14,7 +14,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.7.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.8.
 
 Każda jednostka V2 ma mieć:
 
@@ -176,14 +176,37 @@ Equivalently the history task quotient factors uniquely through `rho_t` on `im r
 ### II.8 — C44 Coarsest exact history quotient
 
 \[
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}.
 \]
 
-and every exact sufficient `rho_t` factors uniquely to it on `im rho_t`.
+Every exact memory
 
-**STATUS:** `NEXT / READY`.  
+\[
+\rho_t:\mathcal H_t\to Z_t
+\]
+
+with
+
+\[
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
+\]
+
+factors uniquely on its image:
+
+\[
+\boxed{
+q_{\mathcal T,t}=f_t\circ\rho_t,
+\qquad
+f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t}.
+}
+\]
+
+For quotient representations `q_Q`, exactness is equivalent to `Q⊆equiv_T,t`; hence `equiv_T,t` is the maximum admissible equivalence relation and `M_T,t` the coarsest exact quotient in quotient order.
+
+**STATUS:** `PASS`.  
 **DEPENDS ON:** II.2, II.7.  
-**BOUNDARY:** coarsest exact quotient in quotient order; not minimum bits/dimension/storage/compute.
+**BOUNDARIES:** quotient-order coarseness is not bit/dimension/storage/compute minimality; F60 applies to `im rho_t`, not unused codomain points.  
+**REGRESSION:** R02/LAZARUS as scope witnesses only.
 
 ### II.9 — C45 Recursive quotient update
 
@@ -197,7 +220,7 @@ U_{\mathcal T,t}([H_t],\varepsilon_t,y_{t+1})
 
 is well-defined.
 
-**STATUS:** `READY WITH EXPLICIT DOMAIN TYPING`.  
+**STATUS:** `NEXT / READY WITH EXPLICIT DOMAIN TYPING`.  
 **BOUNDARY:** mathematical recurrence does not imply finite memory, computability or efficiency.  
 **REGRESSION:** R02 / F43.
 
@@ -242,9 +265,7 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 
 \[
 \boxed{
-\mathrm{II.1:II.7\ PASS}
-\to
-\mathrm{II.8\ HISTORY\ QUOTIENT}
+\mathrm{II.1:II.8\ PASS}
 \to
 \mathrm{II.9\ HISTORY\ UPDATE}
 \to
