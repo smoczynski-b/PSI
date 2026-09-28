@@ -190,5 +190,6 @@ The first post-R4 hardening triad is complete:
 \to
 \mathrm{REGRESSION\ BANK\ 01}.
 }
+\]
 
-Next work moves to explicit regression-bank assembly and Principia V1/V2 migration/freeze.
+`REGRESSION-BANK-01` is assembled. Current work moves to **Principia V1/V2 unit construction, source/proof/regression binding, and first V1/V2 freeze**.
