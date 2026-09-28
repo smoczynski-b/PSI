@@ -1,169 +1,140 @@
 # PRINCIPIA — CAT / ADEQ / FACT MIGRATION 01
 
-**Status:** `ALIGNMENT / REVIEW — NOT CANON-03 FREEZE`  
+**Status:** `PHYSICAL CANON BOUND / CURRENT ROLE MIGRATION PASS`  
 **Date:** 2026-09-28  
-**Target:** current public CANON-03 derivative (`docs/core.md`) + Claim Registry v11  
-**Source family:** `PSI_KANON_MATEMATYCZNY_STRICT_2026-07-16`, `PSI_KANON_NADRZEDNY_TRANS_vNEXT_2026-07-19`, `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A`.
+**Physical target:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
+**Pinned source:** `smoczynski-b/psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`  
+**Path:** `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`
 
-## 0. Scope and source warning
+## 0. Migration rule
 
-This file performs a role-preserving migration comparison between strong older typed CAT/FACT sources and the current **public derivative** of CANON-03.
+Physical CANON-03 has priority over older CAT/FACT sources.
 
-The physical authoritative CANON-03 artifact is not presently bound in this repository audit. Therefore this document may establish:
-
-- compatibility with the current public core roles;
-- definitions suitable for provisional V1/V2 units;
-- conflicts that must not be reintroduced;
-
-but it does **not** claim line-by-line identity with the missing physical CANON-03 source.
+Therefore this migration distinguishes:
 
 \[
 \boxed{
-\text{older source}\to\text{public-core alignment}
-\neq
-\text{canonical migration freeze}.
+\text{CURRENT CANONICAL DEFINITION}
+\mid
+\text{COMPATIBLE DERIVED EXTENSION}
+\mid
+\text{HISTORICAL/DOMAIN POLICY}.
 }
 \]
+
+Older typed detail is retained only where it does not overwrite the current physical canon.
 
 ---
 
 # 1. Catalog adequacy
 
-Older sources define a protocol-relative manifested behavior family
+## Current canonical content
 
-\[
-\widetilde{\mathcal B}^{\mathcal P}_Q
-\]
-
-and a deterministic catalog defect in one of two equivalent notational forms when the same data pseudometric/topology is used:
-
-\[
-D_{\rm ADEQ}^{\rm beh}(\mathcal B;\mathcal P,Y)
-=
-\inf_{b\in\mathcal B}d_{\mathcal Y}(\operatorname{Obs}_{\mathcal P}(b),Y),
-\]
-
-\[
-D_{\rm ADEQ}^{\rm cat}(Q;\mathcal P,Y)
-=
-D_{\rm ADEQ}^{\rm beh}(\widetilde{\mathcal B}^{\mathcal P}_Q;\mathcal P,Y),
-\]
-
-or
-
-\[
-D_{\rm ADEQ}(Q;\mathcal P,Y)
-=
-\operatorname{dist}
-\left(Y,\overline{\widetilde{\mathcal B}^{\mathcal P}_Q}\right).
-\]
-
-A tolerance-relative adequacy predicate is
+Physical CANON-03 freezes the logical order
 
 \[
 \boxed{
-\operatorname{ADEQ}_{\rm cat}(Q;\mathcal P,Y,\varepsilon)=1
-\iff
-D_{\rm ADEQ}^{\rm cat}(Q;\mathcal P,Y)\le\varepsilon.
+\text{ADEQUACY OF CATALOG}
+\to
+\text{FIBRE}
+\to
+\text{LOCAL IDENTIFIABILITY}
+\to
+\text{GLOBAL IDENTIFIABILITY}
+\to
+\text{PROTOCOL DESIGN}.
 }
 \]
 
-### Role alignment
+It does not make one particular scalar metric `D_ADEQ^cat` a CORE primitive.
 
-This object is **not** a sixth CORE5 role. It is a derived test on a proposed candidate catalog under an observation protocol.
+## Older derived adapter
 
-The current public core already requires the logical order
+Older sources define, when a data pseudometric/loss and manifested behavior family are part of the contract,
 
 \[
-\text{catalog adequacy}\to\text{fibre}\to\text{identifiability}.
+D_{\rm ADEQ}^{\rm beh}(\mathcal B;P,Y)
+=
+\inf_{b\in\mathcal B}d_{\mathcal Y}(\operatorname{Obs}_{P}(b),Y),
 \]
 
-Therefore the older definition is role-compatible with current architecture, provided:
+\[
+D_{\rm ADEQ}^{\rm cat}(Q;P,Y)
+=
+D_{\rm ADEQ}^{\rm beh}(\widetilde{\mathcal B}^{P}_{Q};P,Y),
+\]
 
-1. the data space / pseudometric is typed;
-2. `Obs_P` is explicit;
-3. nuisance closure is explicit if used;
-4. `epsilon` is part of the contract;
-5. the definition is not confused with task identification inside an already adequate catalog.
+or an equivalent distance-to-closure form under the same topology.
+
+These remain valid **contract-specific adequacy adapters** when their metric/loss assumptions are declared.
+
+They are not a universal foundational definition required by V1.
 
 ### Migration verdict
 
 \[
 \boxed{
-\mathrm{ADEQ}_{cat}=\mathrm{ROLE\ COMPATIBLE / PROVISIONAL\ MIGRATION}.
+D_{ADEQ}^{cat}=\mathrm{DERIVED\ ADAPTER},
+\quad
+\text{not universal CORE definition}.
 }
 \]
 
-Canonical freeze remains pending physical CANON-03 source binding.
+This resolves the former `V1-GAP-01` by scope correction.
 
 ---
 
-# 2. CAT — what survives
+# 2. PSI-CAT
 
-The older typed CAT calculus separates:
+## Current canonical definition
 
-\[
-\mathsf{ISO}_{\rm CAT}
-=
-\{\text{realization/port gauge}\},
-\]
+Physical CANON-03 states:
 
-\[
-\mathsf{HOR}_{\rm CAT}
-=
-\{\mathrm{recode}\},
-\]
+- `PSI-ID` studies identifiability inside a fixed catalog;
+- `PSI-CAT` studies whether data/protocol justify a catalog change and, if so, which class of changes is justified;
+- `PSI-CAT^D` adds domain-admissibility conditions `ADM_D`;
+- domain constraints may eliminate illegal hypotheses but are not new empirical observations.
+
+It freezes
 
 \[
-\mathsf{REF}_{\rm CAT}
-=
-\{\mathrm{refine},\mathrm{split}_{\oplus},\mathrm{split}_{K},\mathrm{birth}\},
+\boxed{\mathrm{PSI-ID}\neq\mathrm{PSI-CAT}.}
 \]
+
+This is the current canonical CAT definition for V1/V2.
+
+## Compatible older derived calculus
+
+The older taxonomy
 
 \[
-\mathsf{CRS}_{\rm CAT}
-=
-\{\mathrm{merge}_{\oplus},\mathrm{merge}_{K},\mathrm{death}\}.
+\mathsf{ISO}_{CAT},\quad
+\mathsf{HOR}_{CAT},\quad
+\mathsf{REF}_{CAT},\quad
+\mathsf{CRS}_{CAT}
 \]
 
-The crucial semantic statement is:
+with gauge/recode/refine-split-birth/merge-death distinctions is compatible as a **derived typed calculus**.
+
+Likewise
 
 \[
-\boxed{
-\text{gauge is an isomorphism relation, not a catalog-changing morphism}.}
+\mathrm{GEN}\neq\mathrm{TEST}\neq\mathrm{SELECT}
 \]
 
-The source also separates
+is a useful derived workflow discipline.
 
-\[
-\boxed{\mathrm{GEN}\neq\mathrm{TEST}\neq\mathrm{SELECT}.}
-\]
+Neither taxonomy is promoted as an exhaustive theorem that all possible catalog changes must belong to exactly those named classes.
 
-### Role alignment
-
-Under the current public core, CAT is a **meta-level candidate/catalog problem**. One chooses an appropriate candidate class of catalogs/realizations and applies the same observation/compatibility/task discipline at that level.
-
-Therefore the CAT calculus can migrate as a **derived typed module**, not as an enlargement of CORE5.
-
-### What does not migrate automatically
-
-The older promotion predicate containing fixed collections of novelty, persistence, LOGOS, feedback and risk conditions is not promoted wholesale. Such criteria remain protocol/domain policy until independently justified.
-
-Likewise the historical hysteresis choice
-
-\[
-\tau_{birth}>\tau_{death}
-\]
-
-is a useful update policy, not a universal PSI theorem.
+Older promotion thresholds, persistence/feedback criteria and birth/death hysteresis remain domain/protocol policy unless separately justified.
 
 ### Migration verdict
 
 \[
 \boxed{
-\mathrm{CAT\ ROLES}=\mathrm{COMPATIBLE};
+\mathrm{PSI-CAT\ CURRENT}=\mathrm{PHYSICAL\ CANON\ DEFINITION};
 \quad
-\mathrm{PROMOTION\ POLICY}=\mathrm{CONTRACT/DOMAIN\ SPECIFIC}.
+\mathrm{OLDER\ CALCULUS}=\mathrm{DERIVED}.
 }
 \]
 
@@ -171,168 +142,178 @@ is a useful update policy, not a universal PSI theorem.
 
 # 3. Observation and gauge descent
 
-The TRANS source gives the correct prerequisite for quotient observation.
+A separate older TRANS source states the correct descent condition: if a group acts on realizations, quotient observation requires invariance/equivariance of the observation contract.
 
-If `G` acts on candidates and
+This is consistent with physical CANON-03, which defines `Omega_c` only after a **legal** realization quotient when the contract requires it, and defines PSI-FACT gauge only when the contract establishes it.
 
-\[
-\operatorname{OBS}_{\mathcal P}(g\cdot T)
-=
-\operatorname{OBS}_{\mathcal P}(T),
-\]
-
-then observation descends to the quotient:
-
-\[
-\overline{\operatorname{OBS}}_{\mathcal P}:
-\mathscr X_{\mathcal P}/G
-\to
-\mathscr Y_{\mathcal P}.
-\]
-
-This is exactly the contract condition exposed by `MINI-GAUGE-OBS-01`.
-
-### Migration verdict
+Therefore:
 
 \[
 \boxed{
-\text{gauge descent requires observation compatibility/equivariance}.}
+\text{geometric symmetry}
+\not\Rightarrow
+\text{automatic gauge of a fixed observation fibre}.
+}
 \]
 
-This is aligned with C60/C61 and current `core.md`.
+The corrected MINI C19-v2 is the permanent witness.
 
 ---
 
-# 4. FACT — general object
+# 4. PSI-FACT
 
-The older source states
+## Current canonical definition
 
-\[
-\boxed{
-\mathrm{PSI\!-FACT}
-=
-\left.\mathrm{PSI\!-CAT}\right|_{\mathsf{FactMorph}}.
-}
-\]
-
-PSI-FACT studies identifiability of **factorizations compatible with observation**, without assuming the full realization is known in advance.
-
-A domain semantics is typed by
-
-\[
-\mathsf{Wire}_{\mathfrak D}
-\xrightarrow{\operatorname{Sem}_{\mathfrak D}}
-\mathsf{Sys}_{\mathfrak D}
-\xrightarrow{\operatorname{Obs}_{\mathcal P}}
-\mathsf{Beh}_{\mathcal P}.
-\]
-
-The realization-level object is a groupoid
-
-\[
-\mathsf{Fact}^{\simeq}_{\mathfrak D}
-\]
-
-whose objects are legal factorizations and whose morphisms are structural isomorphisms of factors, ports and diagrams. Stabilizers are retained as
-
-\[
-\operatorname{Aut}(F).
-\]
-
-The source then forms the compatibility object
+For domain `D`, protocol `P`, tolerance `epsilon` and data `Y`, physical CANON-03 defines
 
 \[
 \boxed{
-\mathfrak F^{\varepsilon}_{\mathfrak D,\mathcal P}(Y)
-=
-\mathsf{Fact}^{\simeq}_{\mathfrak D}
-\times^{h}_{\mathsf{Beh}_{\mathcal P}}
-\mathsf{Adeq}^{\varepsilon}_{\mathcal P}(Y),
+\operatorname{Fact}^{\varepsilon}_{D,P}(Y)
 }
 \]
 
-with fixed external-interface condition.
+as the fibre of factorizations compatible with observation and protocol.
 
-### Role alignment
+Objects must satisfy:
 
-This is compatible with current PSI only if the structured/higher object is treated as the **representation of the candidate/compatibility problem**, not as a new semantic primitive.
+- `ADM_D`;
+- the fixed external interface;
+- the declared data-compatibility criterion.
 
-The HIGHER-FIBRE regression additionally forbids replacing this object by a coarse component/orbit set whenever witness multiplicity or stabilizers remain task-relevant.
+Realization equivalence/gauge is quotiented **if the contract establishes it**.
+
+The canon also freezes
+
+\[
+\boxed{
+\text{realization equivalence}
+\neq
+\text{behavioural recoding}.
+}
+\]
+
+A one-way recoding need not be an equivalence.
+
+This is the current canonical FACT definition for V2.
+
+## Older structured extension
+
+Older typed sources introduce:
+
+- a factorization groupoid with structural isomorphisms/stabilizers;
+- a weak/homotopy ADEQ compatibility fibre preserving witness multiplicity.
+
+These are compatible **derived extensions** when the contract/task needs stabilizers, compatibility witnesses or higher/groupoid structure.
+
+They are not the minimal physical CANON-03 definition and must not be inserted into V2 as if the canon universally required a homotopy fibre.
+
+The HIGHER-FIBRE regression supplies the boundary:
+
+\[
+\boxed{
+\text{coarse truncation is illegal when discarded higher data are task-relevant}.}
+\]
 
 ### Relation to MINI
 
-`CAT–FACT–NORM–MINI-01` uses restricted finite `{F,B}` set-level objects. They are legitimate when the contract makes all omitted higher data task-irrelevant, but they are not the general FACT definition.
+The corrected Frenet/Bishop MINI uses a restricted finite set-level grammar fibre. It is legal precisely because, under its frozen contract, the omitted structured data are not needed for the tested task.
 
 ### Migration verdict
 
 \[
 \boxed{
-\mathrm{FACT\ GROUPOID/FIBRE}=\mathrm{ROLE\ COMPATIBLE / PROVISIONAL\ MIGRATION}.
+\mathrm{PSI-FACT\ CURRENT}=\mathrm{PHYSICAL\ CANON\ DEFINITION};
+\quad
+\mathrm{GROUPOID/HOMOTOPY\ FACT}=\mathrm{DERIVED\ EXTENSION}.
 }
 \]
-
-Canonical freeze remains pending physical CANON-03 binding.
 
 ---
 
 # 5. Birth versus recode
 
-The older typed calculus and the corrected MINI support the stable distinction:
+The current canon explicitly separates realization equivalence from behavioural recoding. Older CAT material and MINI further supply a useful derived distinction between recode and catalog birth.
 
-- gauge: invertible realization/presentation equivalence;
-- recode: external behavior preserved under a change of representation/realization not necessarily identical as implementation;
-- refine/split/merge: factorization/catalog transformations;
-- birth: a new semantic sector only when no legal fold/recode into the old catalog preserves the declared external behavior/interface.
-
-Therefore a local representation singularity alone does not license `birth`.
-
-This is exactly the status of the Frenet-to-Bishop repair at zero curvature under the MINI contract.
-
----
-
-# 6. What remains blocked
-
-The following are **not** resolved by this alignment file:
-
-1. line-by-line comparison with a physical `PSI-R3-CONSOLIDATED-CANON-03` source artifact;
-2. a universal theorem that the listed CAT morphism taxonomy is complete;
-3. universal promotion thresholds for birth/death;
-4. a theorem that every useful FACT problem requires the full homotopy-fibre type;
-5. arbitrary higher-categorical dynamics beyond the tested groupoid-level witnesses.
-
----
-
-# 7. Proposed V1/V2 placement
-
-### V1
-
-- catalog adequacy as a prerequisite and typed definition;
-- gauge isomorphism versus catalog change;
-- observation-compatible gauge descent principle;
-- statement that representation is not the represented object.
-
-### V2
-
-- general FACT groupoid/compatibility object as a derived structured realization;
-- exact factorization-identifiability questions;
-- MINI as a proved finite benchmark;
-- higher-fibre witness as a boundary on coarse truncation.
-
-### V3
-
-- domain-specific CAT promotion policies;
-- detailed factorization grammars and laboratories.
-
----
-
-# 8. Current verdict
-
-Relative to the current public CANON-03 derivative:
+The safe V1/V2 statement is:
 
 \[
 \boxed{
-\mathrm{ADEQ/CAT/FACT\ ALIGNMENT=PASS\ WITH\ PROVENANCE\ HOLD}.
+\text{failure of one representation}
+\not\Rightarrow
+\text{necessity of catalog birth}.
 }
 \]
 
-The mathematical/semantic roles align; the remaining blocker is canonical source binding, not a newly discovered role conflict.
+A birth claim requires the CAT contract to establish that no legal existing representation/recode preserves the relevant external/task semantics.
+
+Frenet failure at zero curvature remains the fixed MINI boundary witness.
+
+---
+
+# 6. Placement in Principia
+
+## V1
+
+Canonical:
+- PSI-ID versus PSI-CAT;
+- catalog adequacy as a prior gate, without imposing one universal metric;
+- domain admissibility is not new observation;
+- legal gauge requires the contract to establish the equivalence.
+
+Derived/boundary boxes:
+- older scalar `D_ADEQ` adapter;
+- observation/gauge descent example.
+
+## V2
+
+Canonical:
+- `Fact^epsilon_{D,P}(Y)` definition;
+- realization-equivalence versus recoding distinction;
+- corrected MINI exact theorem.
+
+Derived extensions:
+- CAT `ISO/HOR/REF/CRS` calculus;
+- factorization groupoid/homotopy compatibility object;
+- HIGHER-FIBRE boundary on coarse truncation.
+
+## V3
+
+- domain-specific promotion policies;
+- detailed factorization grammars;
+- CAT/FACT laboratories.
+
+---
+
+# 7. What remains noncanonical
+
+Do not promote as universal current canon without a new explicit theorem:
+
+1. completeness of the older CAT morphism taxonomy;
+2. universal `D_ADEQ` metric independent of protocol topology/loss;
+3. universal birth/death thresholds or hysteresis;
+4. universal necessity of homotopy/groupoid FACT;
+5. arbitrary higher-categorical dynamics.
+
+---
+
+# 8. Final migration verdict
+
+The physical source bind removes the previous provenance hold.
+
+\[
+\boxed{
+\mathrm{CAT/ADEQ/FACT\ MIGRATION\ 01}=\mathrm{PASS}
+}
+\]
+
+with the status split:
+
+\[
+\boxed{
+\text{physical CANON-03 minimal definitions}
+\;>\;
+\text{compatible older derived machinery}.
+}
+\]
+
+No CORE5 change is required.
