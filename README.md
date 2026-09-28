@@ -42,6 +42,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.3 — Global observer sufficiency](docs/principia-v2-03-global-observer-sufficiency.md)
 - [Principia V2.4 — Representation adequacy](docs/principia-v2-04-representation-adequacy.md)
 - [Principia V2.5 — Task-information legality of reduction/quotient](docs/principia-v2-05-task-information-legality-of-reduction.md)
+- [Principia V2.6 — Deterministic quotient dynamics](docs/principia-v2-06-deterministic-quotient-dynamics.md)
 - [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
@@ -150,7 +151,7 @@ F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c}.
 }
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+**Status:** `PASS`.
 
 ### V2.2 — kernel factorization criterion
 
@@ -164,9 +165,7 @@ R=g\circ\rho.
 }
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
-
-Uniqueness holds only on `im rho`.
+**Status:** `PASS`. Uniqueness holds only on `im rho`.
 
 ### V2.3 — global observer sufficiency
 
@@ -180,9 +179,7 @@ q_{\mathcal T,c}=f\circ\Psi_c.
 }
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
-
-`Global` means sufficiency of the observer over the whole candidate space, not resolution of every individual record. The term is factorization-based and not statistical sufficiency.
+**Status:** `PASS`. `Global` means a property of the observer on the whole candidate space, not per-record decidability or statistical sufficiency.
 
 ### V2.4 — representation adequacy
 
@@ -196,17 +193,11 @@ q_{\mathcal T,c}=g\circ\rho.
 }
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
-
-Task-information adequacy remains distinct from full contract legality. HCube/Go are direct application regressions only at their declared task scopes; FS-STAT is a scope-boundary regression.
+**Status:** `PASS`. Task-information adequacy remains distinct from full contract legality.
 
 ### V2.5 — task-information legality of reduction / quotient
 
-For a proposed reduction
-
-\[
-q:\Omega_c\to Z,
-\]
+For a proposed reduction `q:Omega_c->Z`:
 
 \[
 \boxed{
@@ -218,36 +209,63 @@ q_{\mathcal T,c}=h\circ q.
 }
 \]
 
+**Status:** `PASS`. F57 and F55 remain mandatory boundaries.
+
+### V2.6 — deterministic quotient dynamics
+
+For deterministic
+
+\[
+\delta:\Omega\to\Omega
+\]
+
+and equivalence `E`, a unique quotient dynamics
+
+\[
+\bar\delta:\Omega/E\to\Omega/E,
+\qquad
+\bar\delta\circ q_E=q_E\circ\delta
+\]
+
+exists iff
+
+\[
+\boxed{xEy\Longrightarrow\delta(x)E\delta(y).}
+\]
+
 **Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
 
-This is a scope corollary of V2.4. It licenses only exact task-information preservation. F57 remains mandatory: this does not imply full contract legality. F55 separately requires observation compatibility for declared gauge actions.
+Static task adequacy does not imply dynamic descent. Conversely, if the task closure is stable under
+
+\[
+R\mapsto R\circ\delta_c,
+\]
+
+then the canonical task equivalence is automatically a congruence for `delta_c`. The theorem is deterministic and must not be conflated with stochastic lumpability.
 
 ### Current verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.5}=\mathrm{PASS}.
+\mathrm{V2.1:V2.6}=\mathrm{PASS}.
 }
 \]
-
-`V2 SPINE CROSS-CHECK 01` found no mathematical contradiction, no proof circularity and no Freeze 01 erratum in V2.1–V2.4. V2.5 then passed its local proof/scope cross-check. Theorem Map 02 is the current control map; Map 01 is genealogy only.
 
 Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.6\ —\ deterministic\ quotient\ dynamics}.
+\mathrm{V2.7\ —\ exact\ history\!-memory\ adequacy}.
 }
 \]
 
-The new gate is dynamic, not merely informational:
+The next layer specializes representation adequacy to histories and future-task equivalence:
 
 \[
 \boxed{
-xEy\Longrightarrow\delta(x)E\delta(y).}
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
+}
 \]
-
-Static task adequacy alone does not prove that the declared dynamics descends to the quotient.
 
 ## Hardening bank
 
@@ -273,15 +291,15 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.5\ PASS}
+\mathrm{V2.1:V2.6\ PASS}
 \to
-\mathrm{V2.6\ DYNAMICS}
+\mathrm{V2.7:V2.9\ HISTORY}
 \to
-\mathrm{V2.7:V2.9\ HISTORY}.
+\mathrm{CLASSICAL\ BRIDGES}.
 }
 \]
 
-Classical bridges follow the own quotient/history layer. Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
+Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
 
 ## Publications / Zenodo
 
