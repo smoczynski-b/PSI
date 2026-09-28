@@ -44,6 +44,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 
 - [Core mathematical skeleton](docs/core.md)
 - [Method and working discipline](docs/method.md)
+- [Model-to-model handoff discipline](docs/llm-handoff.md)
 - [Minimal separating-test example](examples/separating-test.md)
 - [Experimental PSI–Jev adapter](docs/jev-adapter.md)
 - [Controlled experiments and falsification runs](experiments/README.md)
@@ -83,7 +84,9 @@ When a Zenodo record and a repository version refer to the same work, cite the Z
 
 ## Language
 
-The internal mathematical development is primarily in Polish. Public repository material is published in English first, with Polish versions added where useful.
+The internal theoretical development is primarily in Polish. Public interoperability, software-facing material and international documentation are written in English. The two language layers carry the same formal content but are not required to be literal translations.
+
+Important material intended for reuse between models follows the [model-to-model handoff discipline](docs/llm-handoff.md): facts, claims, inferences, uncertainty and next actions should retain their status when transferred to another model.
 
 ## License
 
