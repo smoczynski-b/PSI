@@ -1,0 +1,43 @@
+{
+  "run_id": "PSI-JEV-RUN-01",
+  "fixture_version": "1.0",
+  "status": "pre-registered",
+  "candidate_states": ["a", "b", "c", "d"],
+  "initial_observation": "Y0",
+  "initial_fiber": ["a", "b", "c", "d"],
+  "task_classes": {
+    "a": 0,
+    "b": 0,
+    "c": 1,
+    "d": 1
+  },
+  "tests": {
+    "T1": {"a": 0, "b": 0, "c": 1, "d": 1},
+    "T2": {"a": 0, "b": 1, "c": 0, "d": 1},
+    "T3": {"a": 0, "b": 0, "c": 0, "d": 0}
+  },
+  "typed_question": {
+    "type": "choice",
+    "choices": ["T1", "T2", "T3"],
+    "criterion": "Choose the test that guarantees a unique task-level conclusion after one test result, regardless of which result occurs."
+  },
+  "psi_oracle": {
+    "choice": "T1",
+    "reason": "Both possible T1 outcomes leave a non-empty fiber contained in exactly one task-equivalence class."
+  },
+  "hard_constraints": [
+    "The model may choose only T1, T2, or T3.",
+    "Model confidence does not modify PSI identifiability.",
+    "The task partition is fixed before the model call.",
+    "A test is credited as separating only by the explicit state-to-result mapping."
+  ],
+  "result": {
+    "jev_model_version": null,
+    "jev_choice": null,
+    "jev_scores": null,
+    "jev_confidence": null,
+    "raw_typed_output": null,
+    "action_selection_result": null,
+    "constraint_violations": null
+  }
+}
