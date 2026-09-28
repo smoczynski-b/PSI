@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.1. Dokładna rozstrzygalność zadaniowa
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C06 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-01.md`, T2.1  
@@ -460,7 +460,29 @@ Każde z tych pytań wymaga dodatkowych założeń lub osobnego twierdzenia.
 
 ---
 
-## 11. Przejście do II.2
+## 11. Cross-check twierdzenia
+
+Sprawdzono:
+
+1. **typy:** \(E\) jest relacją równoważności na \(\Omega\), \(q\) jest projekcją ilorazową, \(F\subseteq\Omega\);
+2. **hipotezy:** dowód nie używa skończoności, topologii, metryki, dynamiki, probabilistyki ani obliczalności;
+3. **puste włókno:** składnik \(F\neq\varnothing\) jest konieczny i zachowany;
+4. **zakres:** twierdzenie dotyczy jednej klasy zadaniowej, nie jednego reprezentanta;
+5. **status:** sam fakt ilorazowy pozostaje klasyczny; PSI nie przypisuje sobie jego autorstwa;
+6. **V1/V2 boundary:** V1 podał sens i zapowiedź, V2 zawiera pełny dowód;
+7. **regresje:** R01–R03 nie są przedstawiane jako dowód tego twierdzenia.
+
+Nie wykryto potrzeby erraty Freeze 01 ani zmiany Claim Registry.
+
+\[
+\boxed{
+\mathrm{II.1}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-\!CHECK\ PASS}.
+}
+\]
+
+---
+
+## 12. Przejście do II.2
 
 Twierdzenie II.1 mówi, kiedy **dany zbiór kandydatów** mieści się w jednej klasie zadaniowej.
 
