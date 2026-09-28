@@ -43,6 +43,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.4 — Representation adequacy](docs/principia-v2-04-representation-adequacy.md)
 - [Principia V2.5 — Task-information legality of reduction/quotient](docs/principia-v2-05-task-information-legality-of-reduction.md)
 - [Principia V2.6 — Deterministic quotient dynamics](docs/principia-v2-06-deterministic-quotient-dynamics.md)
+- [Principia V2.7 — Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
 - [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
@@ -213,13 +214,7 @@ q_{\mathcal T,c}=h\circ q.
 
 ### V2.6 — deterministic quotient dynamics
 
-For deterministic
-
-\[
-\delta:\Omega\to\Omega
-\]
-
-and equivalence `E`, a unique quotient dynamics
+For deterministic \(\delta:\Omega\to\Omega\) and equivalence `E`, a unique quotient dynamics
 
 \[
 \bar\delta:\Omega/E\to\Omega/E,
@@ -233,9 +228,9 @@ exists iff
 \boxed{xEy\Longrightarrow\delta(x)E\delta(y).}
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+**Status:** `PASS`.
 
-Static task adequacy does not imply dynamic descent. Conversely, if the task closure is stable under
+Static task adequacy does not imply dynamic descent. If the task closure is stable under
 
 \[
 R\mapsto R\circ\delta_c,
@@ -243,11 +238,45 @@ R\mapsto R\circ\delta_c,
 
 then the canonical task equivalence is automatically a congruence for `delta_c`. The theorem is deterministic and must not be conflated with stochastic lumpability.
 
+### V2.7 — exact history-memory adequacy
+
+Future-task equivalence is
+
+\[
+H\equiv_{\mathcal T,t}H'
+\iff
+\operatorname{Beh}_{\mathcal T}(H)
+\cong
+\operatorname{Beh}_{\mathcal T}(H'),
+\]
+
+with root, node labels, edge labels and parent-child structure preserved. It is an equivalence relation by C58.
+
+For
+
+\[
+\rho_t:\mathcal H_t\to Z_t,
+\]
+
+\[
+\boxed{
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
+\iff
+\exists!\,f_t:\operatorname{im}\rho_t\to M_{\mathcal T,t},
+\quad
+q_{\mathcal T,t}=f_t\circ\rho_t.
+}
+\]
+
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+This does not require storing the full history and does not imply bit-, state-, dimension-, storage- or computation-minimality. Go and LAZARUS remain scoped regression witnesses.
+
 ### Current verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.6}=\mathrm{PASS}.
+\mathrm{V2.1:V2.7}=\mathrm{PASS}.
 }
 \]
 
@@ -255,15 +284,17 @@ Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.7\ —\ exact\ history\!-memory\ adequacy}.
+\mathrm{V2.8\ —\ coarsest\ exact\ history\ quotient}.
 }
 \]
 
-The next layer specializes representation adequacy to histories and future-task equivalence:
+The next boundary is quotient-order minimality:
 
 \[
 \boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
+\text{coarsest exact quotient}
+\not\Rightarrow
+\text{minimum bits/dimension/storage/compute}.
 }
 \]
 
@@ -291,9 +322,11 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.6\ PASS}
+\mathrm{V2.1:V2.7\ PASS}
 \to
-\mathrm{V2.7:V2.9\ HISTORY}
+\mathrm{V2.8\ HISTORY\ QUOTIENT}
+\to
+\mathrm{V2.9\ HISTORY\ UPDATE}
 \to
 \mathrm{CLASSICAL\ BRIDGES}.
 }
