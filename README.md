@@ -45,6 +45,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.6 — Deterministic quotient dynamics](docs/principia-v2-06-deterministic-quotient-dynamics.md)
 - [Principia V2.7 — Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
 - [Principia V2.8 — Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
+- [Principia V2.9 — Recursive history quotient update](docs/principia-v2-09-recursive-history-quotient-update.md)
 - [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
@@ -139,103 +140,13 @@ It freezes definitions, theorem statements/hypotheses, source status, dependenci
 
 No Freeze 01 erratum was required.
 
-## Volume II theorem-spine status
+## Volume II own theorem layer
 
-### V2.1 — exact task-level decidability
+### V2.1–V2.6
 
-\[
-\boxed{
-|q_{\mathcal T,c}(F_c(Y))|=1
-\iff
-F_c(Y)\neq\varnothing
-\land
-F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c}.
-}
-\]
-
-**Status:** `PASS`.
-
-### V2.2 — kernel factorization criterion
-
-\[
-\boxed{
-\ker_{eq}\rho\subseteq\ker_{eq}R
-\iff
-\exists!\,g:\operatorname{im}\rho\to W,
-\quad
-R=g\circ\rho.
-}
-\]
-
-**Status:** `PASS`. Uniqueness holds only on `im rho`.
-
-### V2.3 — global observer sufficiency
-
-\[
-\boxed{
-E_{\Psi,c}\subseteq E_{\mathcal T,c}
-\iff
-\exists!\,f:\operatorname{im}\Psi_c\to M_{\mathcal T,c},
-\quad
-q_{\mathcal T,c}=f\circ\Psi_c.
-}
-\]
-
-**Status:** `PASS`. `Global` means a property of the observer on the whole candidate space, not per-record decidability or statistical sufficiency.
-
-### V2.4 — representation adequacy
-
-\[
-\boxed{
-\ker_{eq}\rho\subseteq E_{\mathcal T,c}
-\iff
-\exists!\,g:\operatorname{im}\rho\to M_{\mathcal T,c},
-\quad
-q_{\mathcal T,c}=g\circ\rho.
-}
-\]
-
-**Status:** `PASS`. Task-information adequacy remains distinct from full contract legality.
-
-### V2.5 — task-information legality of reduction / quotient
-
-For a proposed reduction `q:Omega_c->Z`:
-
-\[
-\boxed{
-\ker_{eq}q\subseteq E_{\mathcal T,c}
-\iff
-\exists!\,h:\operatorname{im}q\to M_{\mathcal T,c},
-\quad
-q_{\mathcal T,c}=h\circ q.
-}
-\]
-
-**Status:** `PASS`. F57 and F55 remain mandatory boundaries.
-
-### V2.6 — deterministic quotient dynamics
-
-For deterministic \(\delta:\Omega\to\Omega\) and equivalence `E`, a unique quotient dynamics
-
-\[
-\bar\delta:\Omega/E\to\Omega/E,
-\qquad
-\bar\delta\circ q_E=q_E\circ\delta
-\]
-
-exists iff
-
-\[
-\boxed{xEy\Longrightarrow\delta(x)E\delta(y).}
-\]
-
-**Status:** `PASS`.
-
-Static task adequacy does not imply dynamic descent. If the task closure is stable under \(R\mapsto R\circ\delta_c\), then the canonical task equivalence is automatically a congruence for `delta_c`. The theorem is deterministic and must not be conflated with stochastic lumpability.
+The exact quotient/representation/dynamics spine is frozen in prose with PASS status, including exact task-level decidability, factorization, observer sufficiency, representation adequacy, task-information legality of reductions and deterministic quotient dynamics.
 
 ### V2.7 — exact history-memory adequacy
-
-Future-task equivalence is
 
 \[
 H\equiv_{\mathcal T,t}H'
@@ -245,27 +156,17 @@ H\equiv_{\mathcal T,t}H'
 \operatorname{Beh}_{\mathcal T}(H'),
 \]
 
-with root, node labels, edge labels and parent-child structure preserved. It is an equivalence relation by C58.
-
-For
-
-\[
-\rho_t:\mathcal H_t\to Z_t,
-\]
+and for \(\rho_t:\mathcal H_t\to Z_t\),
 
 \[
 \boxed{
 \ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
 \iff
-\exists!\,f_t:\operatorname{im}\rho_t\to M_{\mathcal T,t},
-\quad
-q_{\mathcal T,t}=f_t\circ\rho_t.
+q_{\mathcal T,t}\text{ factors uniquely through }\rho_t\text{ on }\operatorname{im}\rho_t.
 }
 \]
 
 **Status:** `PASS`.
-
-This does not require storing the full history and does not imply bit-, state-, dimension-, storage- or computation-minimality. Go and LAZARUS remain scoped regression witnesses.
 
 ### V2.8 — coarsest exact history quotient
 
@@ -285,43 +186,51 @@ f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t}.
 }
 \]
 
-For quotient representations `q_Q`, exactness is equivalent to
+Thus \(M_{\mathcal T,t}\) is the coarsest exact history quotient in quotient order, not automatically a minimum-bit or minimum-cost implementation.
+
+**Status:** `PASS`.
+
+### V2.9 — recursive history quotient update
+
+Let
 
 \[
-Q\subseteq\equiv_{\mathcal T,t}.
+D_t\subseteq\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1},
+\qquad
+\delta_t:D_t\to\mathcal H_{t+1}
 \]
 
-Hence \(\equiv_{\mathcal T,t}\) is the largest admissible exact equivalence relation and \(M_{\mathcal T,t}\) the coarsest exact history quotient in quotient order.
+be the legal partial history update. Under C59, both legality of the same literal label and the future-task class of the successor are invariant under \(\equiv_{\mathcal T,t}\). Therefore the quotient domain \(\overline D_t\) is well-defined and
+
+\[
+\boxed{
+U_{\mathcal T,t}:\overline D_t\to M_{\mathcal T,t+1}
+}
+\]
+
+exists uniquely with
+
+\[
+\boxed{
+U_{\mathcal T,t}([H],\varepsilon,y)
+=
+[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
+}
+\]
 
 **Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
 
-The claim is about quotient/information order. It does not imply minimum bits, dimension, storage, update cost or computation. F60 continues to restrict factorization/minimality claims to `im rho_t`, not unused codomain points.
+This is abstract representative-independent well-definedness. It does not imply an algorithm that computes the quotient update without a representative, nor finite memory, decidable equivalence, computability or efficiency.
 
 ### Current verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.8}=\mathrm{PASS}.
+\mathrm{V2.1:V2.9}=\mathrm{PASS}.
 }
 \]
 
-Next theorem:
-
-\[
-\boxed{
-\mathrm{V2.9\ —\ recursive\ quotient\ update}.
-}
-\]
-
-The next boundary is dynamic/algorithmic:
-
-\[
-\boxed{
-\text{well-defined mathematical recurrence}
-\not\Rightarrow
-\text{finite memory / computability / efficiency}.
-}
-\]
+The own quotient/history layer is now complete. The next phase is the classical bridge layer, beginning with strong lumpability. Deterministic congruence must not be transferred unchanged to stochastic kernels.
 
 ## Hardening bank
 
@@ -347,11 +256,13 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.8\ PASS}
+\mathrm{V2.1:V2.9\ PASS}
 \to
-\mathrm{V2.9\ HISTORY\ UPDATE}
+\mathrm{CLASSICAL\ BRIDGES}
 \to
-\mathrm{CLASSICAL\ BRIDGES}.
+\mathrm{CAT/FACT/FRAME/HIGHER}
+\to
+\mathrm{V2\ WHOLE\ CROSSCHECK}.
 }
 \]
 
