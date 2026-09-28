@@ -25,11 +25,8 @@ Done:
 - V1 I.1–I.6 first prose pass — local cross-check PASS;
 - WHOLE-V1 CROSS-CHECK 01 — PASS WITH REQUIRED NONSEMANTIC NORMALIZATION;
 - V1 NORMALIZATION 01 — PASS;
-- I.2 normalized: `P0 -> diagnosis -> P1` protocol redesign semantics;
-- I.4 normalized: contract-index suppression declared, memory codomain `Z_t`, Go/LAZARUS symbols locally typed;
-- I.5 normalized: inference gates `G_EX/G_ST/G_PR` instead of collision with `E_T`;
-- I.6 normalized: no chained untyped `!=`; pressure-court genealogy removed from foundation prose;
-- V2.1 `Dokładna rozstrzygalność zadaniowa` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
+- V2.1 `Dokładna rozstrzygalność zadaniowa` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS;
+- V2.2 `Kryterium faktoryzacji przez reprezentację` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
 
 ### Current Volume-I verdict
 
@@ -47,25 +44,39 @@ No Freeze 01 erratum was required.
 
 \[
 \boxed{
-\mathrm{II.1\ EXACT\ TASK\ DECIDABILITY}=\mathrm{PASS}.
+\mathrm{II.1\ EXACT\ TASK\ DECIDABILITY}=\mathrm{PASS},
+\qquad
+\mathrm{II.2\ KERNEL\ FACTORIZATION}=\mathrm{PASS}.
 }
 \]
 
-II.1 is explicitly typed as a classical elementary quotient fact adapted as a central PSI criterion. The proof preserves the empty-fibre condition
+II.1 preserves the empty-fibre condition
 
 \[
-F(Y)\neq\varnothing
+F(Y)\neq\varnothing.
 \]
 
-and does not import stability, probability or computability assumptions.
+II.2 proves
+
+\[
+\boxed{
+\ker_{eq}\rho\subseteq\ker_{eq}R
+\iff
+\exists!\,g:\operatorname{im}\rho\to W,
+\quad
+R=g\circ\rho,
+}
+\]
+
+with uniqueness only on `im rho` as required by F60. No surjectivity, topology, probability, stability or computability is silently assumed.
 
 ### Next
 
-1. write **V2.2 — Kernel factorization criterion**;
-2. type `rho:Omega->Z`, `R:Omega->W` and prove factorization through `im rho`;
-3. preserve uniqueness only on `im rho` (F60);
-4. then V2.3 global sufficiency;
-5. V2.4 representation adequacy;
+1. write **V2.3 — Global task sufficiency of the observer**;
+2. specialize II.2 with `rho=Psi_c` and `R=q_{T,c}`;
+3. preserve uniqueness only on `im Psi_c`;
+4. separate exact observation sufficiency from approximate/stochastic sufficiency;
+5. then V2.4 representation adequacy;
 6. cross-check the V2 theorem spine before classical bridges and laboratories.
 
 STOP condition: V2 prose may expose proofs already frozen, but must not silently strengthen theorem scope or promote benchmark/classical comparison into PSI novelty.
@@ -124,8 +135,12 @@ Mandatory boundaries:
 - F60 factorization uniqueness only on `im rho`.
 
 Local II.1 theorem regression:
-- empty fibre must give `|q(F)|=0`, never exact resolution;
+- empty fibre gives `|q(F)|=0`, never exact resolution;
 - a single task-inequivalent pair inside `F` falsifies exact task decidability.
+
+Local II.2 theorem regression:
+- if `rho` is not surjective, factorization does not imply a unique extension `g:Z->W`;
+- F60 fixed witness must remain valid.
 
 ---
 
@@ -201,7 +216,9 @@ Current physical source:
 \to
 \mathrm{V2.1\ PASS}
 \to
-\mathrm{V2.2\ NEXT}.
+\mathrm{V2.2\ PASS}
+\to
+\mathrm{V2.3\ NEXT}.
 }
 \]
 
