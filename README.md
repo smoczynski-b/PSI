@@ -45,6 +45,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Current falsifier registry v09](docs/falsifier-registry-09.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
+- [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
@@ -145,15 +146,13 @@ satisfies
 
 As `ε→0`, the curves converge in `C^3` to a line and `κ→0`, while `τ→ω`. Thus Frenet torsion has no continuous extension through the zero-curvature straight-line stratum and cannot be uniformly stably recovered across that boundary.
 
-The permanent inference distinction is
+The permanent inference discipline is
 
 \[
 \boxed{
-\mathrm{ID}_{exact}
-\mid
-\mathrm{ID}_{stable}
-\mid
-\mathrm{CONF}_{1-\alpha}.
+\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
 }
 \]
 
@@ -181,6 +180,28 @@ Their common invariant is:
 \]
 
 The bank is mandatory regression material for later theorem promotion, redaction and model handoff.
+
+## Principia redaction
+
+`V1-UNIT-MAP-01` is complete. It separates `DEFINITION`, `THEOREM/LEMMA`, `BRIDGE`, `POLICY`, `BOUNDARY`, `BENCHMARK`, `OPEN` and `SOURCE-ONLY` material, and records both `DEPENDS ON` and `USED BY` directions.
+
+The V1 scan found one current migration gap: the older formal catalog-adequacy definition has a recoverable source but is not yet a dedicated current claim. It must be audited against CANON-03 rather than silently promoted.
+
+Current execution order:
+
+\[
+\boxed{
+\mathrm{V1\ UNIT\ MAP\ DONE}
+\to
+\mathrm{V2\ THEOREM\ MAP}
+\to
+\mathrm{PROOF/SOURCE/REGRESSION\ AUDIT}
+\to
+\mathrm{FIRST\ V1/V2\ FREEZE}
+\to
+\mathrm{PROSE}.
+}
+\]
 
 ## PSI Agent Architecture v02
 
@@ -212,33 +233,15 @@ The current agent operates through
 }
 \]
 
-The pressure phase, R4 court and first hardening cycle did not reveal a missing control primitive.
+The pressure phase, R4 court, first hardening cycle and first V1 dependency scan did not reveal a missing control primitive.
 
-Decision and epistemic phase changes are now recorded in `docs/psi-ledger-01.md`; ordinary derivations are intentionally not logged.
+Decision and epistemic phase changes are recorded in `docs/psi-ledger-01.md`; ordinary derivations are intentionally not logged.
 
 No Agent v03 is justified by the current evidence.
 
 ## Status
 
 **Research / work in progress.**
-
-The primitive-pressure phase and first hardening cycle are closed.
-
-Current primary work is now:
-
-\[
-\boxed{
-\mathrm{Claim\ Registry\ v10}
-+
-\mathrm{Regression\ Bank\ 01}
-\to
-\mathrm{Principia\ V1/V2\ unit\ maps}
-\to
-\mathrm{source/proof/regression\ audit}
-\to
-\mathrm{first\ V1/V2\ freeze}.
-}
-\]
 
 Primitive growth remains stopped until a new counterexample forces a genuinely new semantic role.
 
