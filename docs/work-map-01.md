@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 QUOTIENT-REPRESENTATION LAYER IN PROGRESS`.
+**State:** `V1 NORMALIZED PASS / V2 DYNAMIC-HISTORY LAYER IN PROGRESS`.
 
 Done:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -15,7 +15,7 @@ Done:
 - Regression Bank 01;
 - V1 Unit Map 01;
 - V2 Theorem Map 01 retained as genealogy;
-- V2 Theorem Map 02 current after spine cross-check;
+- V2 Theorem Map 02 current;
 - Proof/Source/Migration Audit 01;
 - CANON03 Source Bind 01;
 - CAT/ADEQ/FACT Migration 01;
@@ -31,7 +31,8 @@ Done:
 - V2.3 `Globalna wystarczalność obserwatora` — PASS;
 - V2.4 `Adekwatność reprezentacji względem zadania` — PASS;
 - V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA;
-- V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS.
+- V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS;
+- V2.6 `Deterministyczna dynamika ilorazowa` — PASS.
 
 ### Current Volume-I verdict
 
@@ -45,15 +46,15 @@ Done:
 
 No Freeze 01 erratum was required.
 
-### Current V2 quotient/representation verdict
+### Current V2 quotient/dynamics verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.5}=\mathrm{PASS}.
+\mathrm{V2.1:V2.6}=\mathrm{PASS}.
 }
 \]
 
-Core exact results now exposed in theorem prose:
+Core exact results now exposed in theorem prose include:
 
 \[
 |q_{\mathcal T,c}(F_c(Y))|=1
@@ -67,14 +68,7 @@ F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c},
 \ker_{eq}\rho\subseteq\ker_{eq}R
 \iff
 \exists!\,g:\operatorname{im}\rho\to W,
-\quad
-R=g\circ\rho,
-\]
-
-\[
-\ker_{eq}\Psi_c\subseteq E_{\mathcal T,c}
-\iff
-q_{\mathcal T,c}\text{ factors through }\Psi_c,
+\quad R=g\circ\rho,
 \]
 
 \[
@@ -83,15 +77,18 @@ q_{\mathcal T,c}\text{ factors through }\Psi_c,
 q_{\mathcal T,c}\text{ factors through }\rho,
 \]
 
-and for any proposed reduction `q`:
+\[
+\ker_{eq}q\subseteq E_{\mathcal T,c}
+\]
+
+for exact task-information legality of a reduction, and
 
 \[
 \boxed{
-\ker_{eq}q\subseteq E_{\mathcal T,c}
-}
+xEy\Longrightarrow\delta(x)E\delta(y)}
 \]
 
-is the exact task-information preservation criterion.
+iff a unique deterministic quotient dynamics exists.
 
 Scope locks:
 - uniqueness only on representation image (F60);
@@ -99,22 +96,21 @@ Scope locks:
 - factorization sufficiency is not statistical sufficiency;
 - task-information adequacy is not full contract legality (F57);
 - geometric symmetry does not automatically establish observation-compatible gauge (F55);
-- HCube is a witness only for tasks containing the distinguishing resolvent quantity;
-- HIGHER-FIBRE and Go remain scoped regressions, not proofs of the general factorization results.
+- static task adequacy does not imply dynamic descent;
+- deterministic congruence is not stochastic lumpability;
+- if the task closure is stable under `R -> R∘delta_c`, then `E_T,c` is automatically a congruence for `delta_c`;
+- HCube/HIGHER-FIBRE/Go remain scoped regressions, not proofs of the general theorems.
 
 ### Next
 
-1. write **V2.6 — Deterministic quotient dynamics** (C10);
-2. prove the congruence criterion
-   \[
-   xEy\Rightarrow\delta(x)E\delta(y)
-   \]
-   iff a unique quotient dynamics exists;
-3. keep the theorem deterministic and do not import stochastic lumpability;
-4. then V2.7–V2.9 history/memory quotient layer C42/C44/C45;
-5. only afterward proceed to classical bridge layer.
+1. write **V2.7 — Exact history-memory adequacy** (C42 with C57/C58);
+2. use `rho_t:H_t->Z_t` and the future-task equivalence `equiv_{T,t}`;
+3. preserve the distinction current world fibre vs full future-task state;
+4. then V2.8 coarsest exact history quotient C44;
+5. then V2.9 recursive quotient update C45 with explicit domain typing;
+6. only afterward proceed to classical bridge layer.
 
-STOP condition: do not infer dynamic descent merely from static task adequacy; the quotient relation must also be a congruence for the declared dynamics.
+STOP condition: do not claim that full history is the unique or bit-minimal memory; sufficiency is always relative to the declared future-task equivalence.
 
 ---
 
@@ -191,6 +187,10 @@ Local II.5 regression:
 - F57 blocks promotion from task-information legality to full contract legality;
 - F55 blocks promotion from geometric symmetry to observation-compatible gauge.
 
+Local II.6 regression:
+- the fixed three-state witness `{a,b}|{c}` with `delta(a)=a`, `delta(b)=c`, `delta(c)=c` shows that static quotient adequacy does not imply dynamic projectability;
+- stochastic lumpability remains outside the deterministic theorem.
+
 ---
 
 ## S3 — PSI AGENT
@@ -263,9 +263,9 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.5\ PASS}
+\mathrm{V2.1:V2.6\ PASS}
 \to
-\mathrm{V2.6\ NEXT}.
+\mathrm{V2.7\ NEXT}.
 }
 \]
 
@@ -273,8 +273,6 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{II.6\ DYNAMICS}
-\to
 \mathrm{II.7:II.9\ HISTORY}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
