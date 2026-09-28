@@ -1,9 +1,11 @@
 # PRINCIPIA — four-volume skeleton 02
 
-**Status:** CURRENT EDITORIAL SKELETON  
-**Canonical source:** `PSI-R3-CONSOLIDATED-CANON-03`  
-**Current claim source:** `docs/claim-registry-10.md`  
+**Status:** CURRENT EDITORIAL SKELETON / V1-V2 FIRST FREEZE BOUND  
+**Canonical source:** physical `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
+**Current claim source:** `docs/claim-registry-12.md`  
+**Current falsifier source:** `docs/falsifier-registry-10.md`  
 **Current regression source:** `docs/regression-bank-01.md`  
+**Freeze source:** `docs/principia-v1-v2-freeze-01.md`  
 **Migration source:** `docs/principia-migration-01.md`
 
 This supersedes `principia-volume-skeleton-01.md` operationally. The earlier skeleton remains historical evidence.
@@ -12,11 +14,11 @@ The redaction rule is:
 
 \[
 \boxed{
-\text{CANON-03}
+\text{PHYSICAL CANON-03}
 \to
 \text{Claim Registry}
 \to
-\text{Regression / source binding}
+\text{proof/source/regression freeze}
 \to
 \text{Volume unit}
 \to
@@ -24,7 +26,7 @@ The redaction rule is:
 }
 \]
 
-A polished chapter is the **last** step, not the source of theorem structure.
+The first V1/V2 mathematical-source freeze has passed. Polished prose is now legal **only inside the frozen semantic boundaries**.
 
 ---
 
@@ -39,26 +41,23 @@ Purpose: define the PSI problem, its types, inference discipline and epistemic b
 - typed compatibility `K_c`;
 - task observables `O_{T,c}`;
 - admissible dynamics / transports `δ_c`;
-- contract-relative gauge and reduction legality.
+- contract-relative gauge.
 
-Required claims: `C01–C05`, `C32`, `C35`, `C37`.
+Required current claims: `C01–C05`, `C35`, `C60`, `C61`.
 
-Permanent rule:
-
-\[
-\boxed{\ker q\subseteq E_{\mathcal T}}
-\]
-
-for every proposed task-level quotient/truncation/gauge reduction.
+Do **not** state `ker q⊆E_T` as the whole legality contract. It is the exact task-information adequacy gate; full legality can additionally require typing, admissible action/gauge, observation compatibility/equivariance and domain constraints.
 
 ### I.2 Observation, fibre and catalog adequacy
 
 - observation is not the hidden object;
 - compatible fibre `F(Y)`;
 - catalog adequacy precedes identification;
-- class before representative.
+- class before representative;
+- no universal scalar `D_ADEQ^cat` is part of CORE5.
 
-Required claims: `C02`, `C11`, `C12`.
+Required current claims: `C02`, `C11`, `C62`, `C64`.
+
+Older metric/loss forms of `D_ADEQ` are typed adapters and may appear as examples, not as the universal foundation.
 
 ### I.3 Task-relative distinction
 
@@ -66,32 +65,32 @@ Required claims: `C02`, `C11`, `C12`.
 - exact kernels;
 - task equivalence;
 - task quotient;
-- representation adequacy.
+- representation adequacy;
+- task-adequate reduction versus fully contract-legal reduction.
 
-Required claims: `C03–C05`, `C09`.
+Required claims: `C03–C05`, `C09`, `C32`, `C37`, `C60`.
 
 ### I.4 History and memory
 
 - history space `H_t`;
-- future-task equivalence `≡_{T,t}`;
-- exact memory sufficiency `ker ρ_t⊆≡_{T,t}`;
+- future task tree `Beh_T(H)`;
+- future-task equivalence `≡_{T,t}` — `C57`;
+- exact memory sufficiency `ker ρ_t⊆≡_{T,t}` — `C42`;
 - distinction between current world fibre and full task state.
 
-Required claims: `C25–C27`, `C42`, `C46`.
+Boundary claims/examples: `C25–C27`.
 
 Regression binding: `R02`.
 
 ### I.5 Exactness, stability and statistical licensing
 
-Maintain the three levels:
+Permanent discipline:
 
 \[
 \boxed{
-\mathrm{ID}_{exact}
-\mid
-\mathrm{ID}_{stable}
-\mid
-\mathrm{CONF}_{1-\alpha}.
+\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
 }
 \]
 
@@ -100,20 +99,27 @@ Maintain the three levels:
 - confidence only under a probability contract;
 - `UNRESOLVED` as a legal output.
 
-Required claims: `C48–C56` as boundary/policy material, not all as foundational theorems.
+Foundation claims: `C51`, `C52`, `C56` as discipline/boundary.
+
+Technical claims `C48–C50`, `C53–C55` belong to V2/V3 technical development, not the foundational spine.
 
 Regression binding: `R03`.
 
 ### I.6 Methodological boundaries
 
-- representation ≠ represented object;
-- source/provenance requirements;
-- status ≠ role;
-- dual-use publication gate;
-- primitive-growth freeze;
-- candidate stuffing is not a legal sufficiency proof.
+Freeze:
 
-Required claims: `C12`, `C34–C36` plus Source Governance.
+- `REPRESENTATION != WORLD`;
+- `UNOBSERVED != ZERO`;
+- `PSI-ID != PSI-CAT`;
+- realization equivalence != behavioural recoding;
+- source/provenance requirements;
+- status != role;
+- primitive-growth freeze;
+- candidate stuffing is not a legal sufficiency proof;
+- geometric symmetry is not automatically a gauge of a fixed observed fibre.
+
+Required claims: `C12`, `C34–C36`, `C61–C65` as provenance/scope controls.
 
 ---
 
@@ -123,7 +129,7 @@ Purpose: collect typed propositions with hypotheses, proofs, provenance and appl
 
 Every theorem unit must contain:
 
-`ID | statement | type/domain | hypotheses | status | classical source | proof/derivation | falsifier/boundary | regression IDs | dependencies`.
+`ID | statement | type/domain | hypotheses | status | source | proof/derivation | falsifier/boundary | regression IDs | dependencies | used-by`.
 
 ### II.1 Elementary quotient/factorization layer
 
@@ -131,40 +137,56 @@ Every theorem unit must contain:
 - factorization criterion — `C07`;
 - global task sufficiency — `C08`;
 - representation adequacy — `C09`;
-- legal quotient/gauge reduction — `C32`, `C37`.
+- task-information legality of quotient/gauge — `C32`, `C37`;
+- scope correction to full contract legality — `C60`.
 
 ### II.2 Dynamic and history quotients
 
 - deterministic quotient dynamics — `C10`;
+- future-task equivalence definition/theorem — `C57`, `C58`;
 - memory/history adequacy — `C42`;
 - coarsest exact history quotient — `C44`;
-- mathematical recursive update — `C45`;
+- congruence/recursive update — `C59`, `C45`;
 - explicit limits: no bit/compute minimality without separate proof.
 
 Regression binding: `R02`.
 
 ### II.3 Classical comparison
 
+Freeze only the comparisons needed by current theorem architecture:
+
 - deterministic congruence;
 - Nerode exact realization — `C18`;
 - Markov lumpability bridge — `C13`;
-- probabilistic bisimulation comparison;
 - Paige–Tarjan benchmark — `C14`.
+
+Probabilistic bisimulation remains explanatory comparison-only; it has no current C-ID because no frozen theorem depends on it.
 
 No originality claim for classical theorems.
 
 ### II.4 CAT / FACT / NORM
 
-- catalog-change identifiability;
-- factorization fibre;
-- raw realizations versus realization-gauge quotient;
-- CAT–FACT–NORM–MINI — `C19–C20`;
-- conditional normal-class language, never unproved canonical representative language.
+Current canonical definitions:
+
+- PSI-CAT — `C62`;
+- PSI-FACT — `C63`;
+- realization-equivalence versus behavioural recoding — `C63`;
+- corrected CAT–FACT–NORM–MINI — `C19-v2`, `C20`.
+
+Derived, not universal:
+
+- older `ISO/HOR/REF/CRS` CAT calculus;
+- `GEN/TEST/SELECT` workflow;
+- factorization groupoid / homotopy compatibility fibre — `C66`;
+- scalar catalog-adequacy metrics — `C64` adapter status.
+
+Never replace C19-v2 by the pre-audit mixed `Y=gamma(t)` + `SE(3)` quotient formulation.
 
 ### II.5 FRAME / transport
 
-- frame change as typed transport/recode;
+- frame change as typed contract/transport;
 - closed-frame holonomy — `C22–C24`;
+- return holonomy is primary; total torsion is a coordinate only under stronger Frenet-valid hypotheses;
 - local trivialization does not imply global periodic representative.
 
 ### II.6 Structured / higher compatibility
@@ -173,6 +195,8 @@ No originality claim for classical theorems.
 - truncation-order failure — `C30`;
 - stabilizer sensitivity — `C31`;
 - richer representation does not imply new semantic primitive — `C33`.
+
+Do not state that all PSI-FACT fibres are homotopy fibres.
 
 ### II.7 Representation insufficiency theorem patterns
 
@@ -193,10 +217,10 @@ Purpose: concrete contracts and reproducible demonstrations. Laboratory PASS doe
 3. LAZARUS — task state, execution and representation adequacy;
 4. Go — `R02`, memory/history regression;
 5. FS/Bishop and FS-STAT — `R03`;
-6. Agents — Agent SPEC ≠ LIVE state, handoff, regression preservation;
+6. Agents — Agent SPEC != LIVE state, handoff, regression preservation;
 7. PSI-FORUM;
 8. cultural laboratories;
-9. SOP / genomic `Λ`;
+9. SOP / genomic `Lambda`;
 10. OPEN-PSI / public experiment.
 
 For OPEN-PSI use the measured quantity names exactly:
@@ -214,9 +238,9 @@ not `confirmed transitions` or destination arrivals unless separately instrument
 Purpose: preserve intellectual and project history without contaminating current theorem status.
 
 1. mathematical lineage;
-2. Analiza semantyczna dialektyczna / Model ψ;
-3. multimodal ψ;
-4. TAO/SMOK and STPψ/GTPψ;
+2. Analiza semantyczna dialektyczna / Model psi;
+3. multimodal psi;
+4. TAO/SMOK and STPpsi/GTPpsi;
 5. LOGOS / Integrata / Universalia;
 6. superseded claims with reasons and counterexamples;
 7. experimental genealogy;
@@ -230,39 +254,50 @@ Rule:
 
 ---
 
-## Redaction gates
+## Redaction gates after first freeze
 
-Before a unit enters V1/V2 require:
+Before prose for any V1/V2 unit require:
 
-1. `CLAIM ID` — current registry ID;
+1. current `CLAIM ID` or explicit definition label;
 2. `TYPE` — object/domain/codomain/contract;
 3. `STATUS` — classical/bridge/new/policy/open;
-4. `SOURCE` — recoverable provenance;
+4. `SOURCE` — physical canon, classical source or declared derivation;
 5. `PROOF/DERIVATION` — appropriate to claim class;
 6. `BOUNDARY/FALSIFIER` — explicit;
-7. `REGRESSION` — applicable `Rxx` or explicit `NONE`;
-8. `DEPENDENCIES` — upstream claim IDs;
+7. `REGRESSION` — applicable `Rxx/Fxx` or explicit `NONE`;
+8. `DEPENDENCIES` and `USED BY`;
 9. `NO-GO` — rejected nearby formulations when relevant;
-10. `DESTINATION` — V1/V2/V3/V4.
-
-Only then may prose be polished.
+10. no semantic deviation from `principia-v1-v2-freeze-01.md` without an erratum/impact audit.
 
 ---
 
 ## Current execution order
 
+The structural freeze stage is complete:
+
 \[
 \boxed{
-\text{V1 UNIT MAP}
+\text{V1 MAP}
++\text{V2 MAP}
++\text{AUDIT}
++\text{CANON-03 SOURCE BIND}
 \to
-\text{V2 THEOREM MAP}
-\to
-\text{proof/source/regression audit}
-\to
-\text{first V1/V2 freeze}
-\to
-\text{chapter prose}.
+\text{FIRST V1/V2 FREEZE}=\mathrm{PASS}.
 }
 \]
 
-PHISICA/LOGOS migration resumes after the first V1/V2 freeze unless a missing source blocks a theorem unit.
+Current legal phase:
+
+\[
+\boxed{
+\text{FROZEN UNIT}
+\to
+\text{CHAPTER PROSE}
+\to
+\text{REDUCTION / CROSS-CHECK}
+}
+\]
+
+without reopening primitive discovery.
+
+PHISICA/LOGOS migration resumes after the first V1/V2 prose pass unless a frozen theorem unit requires a precise source bridge sooner.
