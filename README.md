@@ -36,7 +36,8 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Corrected CAT–FACT–NORM–MINI 02](docs/cat-fact-norm-mini-02.md)
 - [V2 FRAME — II.15](docs/principia-v2-15-closed-frame-holonomy.md)
 - [V2 HIGHER — II.16](docs/principia-v2-16-higher-compatibility-truncation.md)
-- [Decision / Epistemic Ledger](docs/psi-ledger-01.md)
+- [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
+- [Decision / Epistemic Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 
