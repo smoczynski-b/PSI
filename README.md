@@ -43,6 +43,8 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
+- [Initial claim registry](docs/claim-registry-01.md)
+- [Principia migration registry](docs/principia-migration-01.md)
 - [Mathematical lineage — people, problems, ideas](docs/lineage.md)
 - [Method and working discipline](docs/method.md)
 - [Model-to-model handoff discipline](docs/llm-handoff.md)
@@ -108,6 +110,8 @@ The framework is developed through mathematics, counterexamples and stress tests
 **Research / work in progress.**
 
 The mathematical core is under active consolidation. In particular, classical imports, adaptations, open problems and PSI-specific claims are being separated more explicitly. Public statements should not imply novelty merely because a classical construction has been placed inside PSI notation.
+
+Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text. The [migration registry](docs/principia-migration-01.md) records `KEEP | REFORMULATE | SUPERSEDE | GENEALOGY`; the [claim registry](docs/claim-registry-01.md) records the current public theorem/policy/open-bridge layer.
 
 ## Publications / Zenodo
 
