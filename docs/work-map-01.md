@@ -16,6 +16,7 @@ Done:
 - source governance;
 - Decision / Epistemic Ledger 01;
 - Principia four-volume skeleton v02;
+- `V1-UNIT-MAP-01` with dependency / used-by / regression binding;
 - CAT/FACT MINI claims migrated;
 - CLOSED-FRAME claims migrated;
 - LAZARUS agency claims normalized;
@@ -25,23 +26,29 @@ Done:
 - Go memory/history quotient normalized as representation-adequacy LAB/BENCHMARK;
 - FS-STAT exact/stable/confidence boundary normalized.
 
+V1 scan result:
+- six structural units mapped;
+- technical FS-STAT claims kept out of foundational prose except as boundaries/cross-references;
+- C09/C42 are stated in V1 but proof placement belongs to V2;
+- `V1-GAP-01`: formal catalog-adequacy definition found in the 2026-07-26A source but not yet migrated to a current claim ID;
+- `V1-GAP-02`: exact classical source binding still required before freeze;
+- `V1-GAP-03`: proof-placement boundary must be preserved during V2 mapping.
+
 Next:
-1. build `V1 UNIT MAP 01` from claim-registry v10 + skeleton v02;
-2. build `V2 THEOREM MAP 01` with explicit hypotheses, provenance, dependencies and regression IDs;
-3. run proof/source/regression audit on those units;
+1. build `V2-THEOREM-MAP-01` with exact hypotheses, status, provenance, dependencies, used-by and regression IDs;
+2. audit `V1-GAP-01` against CANON-03 during source/proof pass — do not auto-promote the older definition;
+3. run proof/source/regression audit on V1+V2 units;
 4. perform first V1/V2 freeze;
 5. only then begin polished chapter prose;
 6. resume PHISICA/LOGOS claim-by-claim migration after the first V1/V2 freeze.
 
-STOP condition: no polished chapter without claim IDs, source status, dependencies and applicable regression IDs.
+STOP condition: no polished chapter without claim IDs, source status, dependencies, blast radius and applicable regression IDs.
 
 ---
 
 ## S1 — MATHEMATICAL CORE
 
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW COUNTEREXAMPLE`.
-
-The first hardening triad does not reopen R4.
 
 Current freeze:
 
@@ -67,15 +74,13 @@ and, for histories,
 }
 \]
 
-The hardening phase adds the separate inference-quality distinction
+Inference-quality discipline is now written as non-implications:
 
 \[
 \boxed{
-\mathrm{ID}_{exact}
-\mid
-\mathrm{ID}_{stable}
-\mid
-\mathrm{CONF}_{1-\alpha}.
+\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
 }
 \]
 
@@ -115,8 +120,14 @@ Primitive-growth rule:
 - pointwise torsion inference does not imply global planarity;
 - quotient-level confidence remains open.
 
+V1 binding:
+- I.3 task distinction/reduction → R01/R02;
+- I.4 history/memory → R02;
+- I.5 exact/stable/confidence → R03;
+- explicit `NONE` retained for units without a fixed Regression Bank witness.
+
 Next:
-1. bind `R01/R02/R03` to explicit V1/V2 units;
+1. bind regressions to V2 theorem units;
 2. add further bank entries only when a new fixed witness is actually needed.
 
 ---
@@ -125,15 +136,15 @@ Next:
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-The first hardening triad and `REGRESSION-BANK-01` are complete.
-
-Process audit correction:
-- Agent v02 already required Decision and Epistemic Ledgers for material transitions;
-- those transitions were occurring but were not durably collected in one artifact;
-- `psi-ledger-01.md` now implements the existing requirement without adding a new governance primitive.
+V1 map run confirmed:
+- classifying all registry items as `claim` is too coarse for redaction;
+- V1 now separates `DEFINITION | THEOREM/LEMMA | BRIDGE | POLICY | BOUNDARY | BENCHMARK | OPEN | SOURCE-ONLY`;
+- `DEPENDS ON` and `USED BY` are both required so blast radius is visible;
+- source gaps remain gaps rather than being silently filled from older canon;
+- no new agent-control primitive was required.
 
 Next:
-1. use v02 directly for V1/V2 unit construction;
+1. use v02 for `V2-THEOREM-MAP-01`;
 2. run model-handoff regression only when an actual handoff occurs;
 3. preserve WORKING/FRONTIER/WAIT, ledger state and regression IDs across that handoff.
 
@@ -143,7 +154,7 @@ Next:
 
 ## S4 — REALIZATIONS / LABORATORIES
 
-**State:** FIRST HARDENING TRIAD COMPLETE.
+**State:** FIRST HARDENING TRIAD COMPLETE / NOT A CURRENT BLOCKER.
 
 Done:
 1. `HCUBE-REGRESSION-01` — operator representation inadequacy;
@@ -155,7 +166,7 @@ Next later audit order:
 2. SOP-11b;
 3. cultural laboratories.
 
-These are no longer blockers for the first Principia V1/V2 freeze.
+These remain deferred until after first V1/V2 freeze unless needed as a theorem/source witness.
 
 ---
 
@@ -193,19 +204,21 @@ No global redesign before measurement or an isolated non-contaminating implement
 
 ## S8 — SOURCES / GENEALOGY
 
-**State:** ACTIVE.
+**State:** ACTIVE / SOURCE-BINDING NOW MATERIAL TO FREEZE.
 
 Current source status:
 - HCube classical/operator provenance separated from PSI benchmark role;
 - Go RED-1 history quotient recovered; G1 remains a provenance gap;
 - FS/Bishop classical geometry separated from PSI statistical/contract packaging;
 - local polynomial derivative estimation explicitly classified as imported classical statistical machinery;
-- quotient-level PSI-STAT coverage remains OPEN rather than silently inferred.
+- quotient-level PSI-STAT coverage remains OPEN rather than silently inferred;
+- formal `D_ADEQ^cat` catalog-adequacy definition recovered from `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A`, but current CANON-03 migration/status remains to be audited.
 
 Next:
-1. source-bind V1/V2 units during redaction;
-2. continue PHISICA/LOGOS migration after first V1/V2 freeze;
-3. recover missing G1 only if an actual source becomes available.
+1. source-bind V2 theorem units;
+2. audit `V1-GAP-01` against CANON-03;
+3. continue PHISICA/LOGOS migration after first V1/V2 freeze;
+4. recover missing G1 only if an actual source becomes available.
 
 ---
 
@@ -235,17 +248,15 @@ Current primary phase:
 
 \[
 \boxed{
-\mathrm{Claim\ Registry\ v10}
-+
-\mathrm{Regression\ Bank\ 01}
-+
-\mathrm{Principia\ Skeleton\ v02}
+\mathrm{V1\ UNIT\ MAP\ DONE}
 \to
-\mathrm{V1/V2\ UNIT\ MAPS}
+\mathrm{V2\ THEOREM\ MAP}
 \to
-\mathrm{AUDIT}
+\mathrm{PROOF/SOURCE/REGRESSION\ AUDIT}
 \to
-\mathrm{FIRST\ FREEZE}.
+\mathrm{FIRST\ V1/V2\ FREEZE}
+\to
+\mathrm{PROSE}.
 }
 \]
 
