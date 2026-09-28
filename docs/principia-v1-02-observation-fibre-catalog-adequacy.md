@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.2. Obserwacja, włókno zgodności i adekwatność katalogu
 
-**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
+**Status:** `NORMALIZED PASS 01 / WHOLE-V1 N1 APPLIED`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`  
 **Zakres:** C02, C11, C64; bez twierdzenia o rozstrzygalności zadaniowej z Tomu II.
@@ -34,35 +34,21 @@ Dane
 Y\in\mathcal Y_c
 \]
 
-nie są elementem przestrzeni kandydatów. Nie są też z definicji wartością ukrytego stanu. Są rekordem, wobec którego sprawdzamy zgodność przewidywanego wyniku obserwatora.
-
-Pierwszym krokiem po otrzymaniu danych nie jest więc wybór jednego \(x\in\Omega_c\), lecz wyznaczenie **wszystkich** kandydatów, których kontrakt nie wyklucza.
-
-To odwraca częsty, lecz nielegalny schemat:
-
-\[
-Y
-\longrightarrow
-\widehat x
-\]
-
-na schemat
+nie są elementem przestrzeni kandydatów ani z definicji wartością ukrytego stanu. Są rekordem, wobec którego sprawdzamy zgodność wyniku obserwatora. Pierwszym krokiem nie jest więc wybór jednego \(x\in\Omega_c\), lecz wyznaczenie wszystkich kandydatów, których kontrakt nie wyklucza.
 
 \[
 \boxed{
-Y
-\longrightarrow
-\text{zbiór kandydatów zgodnych z }Y.
+Y\longrightarrow\text{zbiór kandydatów zgodnych z }Y.
 }
 \]
 
-Dopiero później wolno pytać, czy zadanie pozwala ten zbiór zredukować do jednej klasy istotnej dla celu wnioskowania.
+Dopiero później wolno pytać, czy zadanie redukuje ten zbiór do jednej klasy zadaniowej.
 
 ---
 
 ## 2. Przekrój relacji zgodności
 
-Dla ustalonych danych \(Y\) definiujemy przekrój relacji zgodności
+Dla ustalonych danych \(Y\) definiujemy
 
 \[
 \boxed{
@@ -72,35 +58,21 @@ Dla ustalonych danych \(Y\) definiujemy przekrój relacji zgodności
 }
 \]
 
-Jest to zbiór wyników obserwatora uznanych przez kontrakt za zgodne z rekordem \(Y\).
-
-W najprostszym modelu dokładnym relacja może być diagonalą:
+W modelu dokładnym może zachodzić
 
 \[
-(b,Y)\in\mathcal K_c
-\iff
-b=Y.
+(b,Y)\in\mathcal K_c\iff b=Y,
 \]
 
-Wtedy
-
-\[
-\mathcal K_c^Y=\{Y\}.
-\]
-
-Nie jest to jednak definicja ogólna. Kontrakt może dopuszczać tolerancję, przedział niepewności, wielowartościowy zapis danych, cenzurowanie, agregację albo inną jawnie otypowaną regułę zgodności. Wtedy \(\mathcal K_c^Y\) może zawierać więcej niż jeden element przestrzeni obserwacyjnej.
+ale nie jest to definicja ogólna. Kontrakt może dopuszczać tolerancję, cenzurowanie, agregację, wielowartościowy zapis danych albo inną jawnie otypowaną regułę zgodności.
 
 Rozdzielenie
 
 \[
-\Psi_c
-\quad\text{oraz}\quad
-\mathcal K_c
+\Psi_c\quad\text{oraz}\quad\mathcal K_c
 \]
 
-ma więc znaczenie zasadnicze. Pierwszy obiekt mówi, **co model wystawia na kanał obserwacyjny**. Drugi mówi, **co kontrakt uznaje za zgodne z faktycznymi danymi**.
-
-Zmiana \(\mathcal K_c\) bez zmiany \(\Psi_c\) nadal jest zmianą problemu wnioskowania.
+jest zasadnicze: \(\Psi_c\) określa, co model wystawia na kanał obserwacyjny, a \(\mathcal K_c\) — co kontrakt uznaje za zgodne z faktycznymi danymi.
 
 ---
 
@@ -108,35 +80,23 @@ Zmiana \(\mathcal K_c\) bez zmiany \(\Psi_c\) nadal jest zmianą problemu wniosk
 
 ### Definicja I.2.1 — włókno zgodności
 
-Dla danych \(Y\in\mathcal Y_c\) definiujemy
-
 \[
 \boxed{
-F_c(Y)
-=
-\Psi_c^{-1}(\mathcal K_c^Y).
+F_c(Y)=\Psi_c^{-1}(\mathcal K_c^Y)
 }
 \]
 
-Równoważnie,
+czyli
 
 \[
-F_c(Y)
-=
-\{x\in\Omega_c:\Psi_c(x)\in\mathcal K_c^Y\}.
+F_c(Y)=\{x\in\Omega_c:\Psi_c(x)\in\mathcal K_c^Y\}.
 \]
 
-Włókno \(F_c(Y)\) jest pełnym zbiorem kandydatów dopuszczonych przez kontrakt, których obserwacja jest zgodna z danymi.
-
-Nie jest to estymator punktowy. Nie jest to wybrany model. Nie jest to „najbardziej prawdopodobny” stan, dopóki kontrakt nie zawiera struktury probabilistycznej i reguły takiego wyboru.
-
-Włókno jest tym, co pozostaje po zastosowaniu **wyłącznie informacji zawartej w kontrakcie obserwacyjnym i danych**.
+Włókno \(F_c(Y)\) jest pełnym zbiorem kandydatów dopuszczonych przez kontrakt i zgodnych z danymi. Nie jest estymatorem punktowym, wybranym modelem ani „najbardziej prawdopodobnym” stanem, dopóki kontrakt nie zawiera probabilistycznej reguły takiego wyboru.
 
 ---
 
 ## 4. Trzy elementarne sytuacje
-
-Już na poziomie włókna pojawiają się trzy logicznie odmienne przypadki.
 
 ### 4.1. Włókno puste
 
@@ -144,20 +104,13 @@ Już na poziomie włókna pojawiają się trzy logicznie odmienne przypadki.
 F_c(Y)=\varnothing.
 \]
 
-Oznacza to, że żaden kandydat dopuszczony przez bieżący kontrakt nie jest zgodny z danymi.
-
-Nie wolno z tego automatycznie wnosić, że dane są „błędne”, ani że istnieje określony brakujący mechanizm. Puste włókno mówi jedynie, że bieżąca kombinacja
+Oznacza to, że bieżąca kombinacja
 
 \[
-\Omega_c,
-\Psi_c,
-\mathcal K_c,
-Y
+(\Omega_c,\Psi_c,\mathcal K_c,Y)
 \]
 
-nie posiada zgodnego kandydata.
-
-Przyczyna może leżeć w katalogu, w modelu obserwacji, w kryterium zgodności, w danych albo w ich wzajemnym niedopasowaniu. Rozstrzygnięcie przyczyny wymaga dodatkowego testu.
+nie posiada zgodnego kandydata. Nie lokalizuje to jeszcze przyczyny. Defekt może leżeć w katalogu, obserwacji, relacji zgodności, danych albo w ich wzajemnym niedopasowaniu.
 
 ### 4.2. Włókno jednoelementowe
 
@@ -165,9 +118,7 @@ Przyczyna może leżeć w katalogu, w modelu obserwacji, w kryterium zgodności,
 F_c(Y)=\{x\}.
 \]
 
-Wtedy dane i kontrakt rozstrzygają kandydata na poziomie przestrzeni \(\Omega_c\).
-
-Jest to przypadek silny. PSI nie przyjmuje go jako domyślnego celu, ponieważ dla wielu zadań nie trzeba identyfikować całego kandydata. Wystarczy ustalić te jego własności, które mają znaczenie dla zadania. Formalizacja tej słabszej, zadaniowej jednoznaczności pojawi się po zdefiniowaniu równoważności zadaniowej.
+Wtedy dane i kontrakt rozstrzygają kandydata na poziomie \(\Omega_c\). Jest to przypadek silniejszy niż zwykle potrzebuje zadanie.
 
 ### 4.3. Włókno wieloelementowe
 
@@ -175,49 +126,21 @@ Jest to przypadek silny. PSI nie przyjmuje go jako domyślnego celu, ponieważ d
 |F_c(Y)|>1.
 \]
 
-Jest to zwykły przypadek ograniczonej obserwacji. Sam fakt istnienia wielu kandydatów nie oznacza jeszcze porażki wnioskowania.
-
-Możliwe są dwie sytuacje:
-
-1. kandydaci różnią się tylko w cechach nieistotnych dla zadania;
-2. co najmniej dwaj kandydaci różnią się w wyniku potrzebnym do wykonania zadania.
-
-Dopiero rozróżnienie tych przypadków prowadzi do właściwego pojęcia identyfikowalności zadaniowej. Nie wolno więc przechodzić od
-
-\[
-|F_c(Y)|>1
-\]
-
-do zdania „problem jest nierozstrzygalny” bez określenia zadania.
+Sam ten fakt nie oznacza nierozstrzygalności zadania. Kandydaci mogą różnić się tylko w cechach nieistotnych dla \(\mathcal T\). Dopiero I.3 wprowadzi relację zadaniową, która rozstrzyga, czy różnice pozostałe we włóknie mają znaczenie.
 
 ---
 
 ## 5. Klasa przed reprezentantem
 
-Włókno należy traktować jako obiekt pierwszoplanowy. Wybór jednego elementu
+Wybór
 
 \[
 \widehat x\in F_c(Y)
 \]
 
-jest dodatkową operacją.
+jest dodatkową operacją. Może wymagać dodatkowego pomiaru, priora, funkcji kosztu, regularizacji, reguły optymalizacyjnej, konwencji reprezentacyjnej albo nowego twierdzenia.
 
-Może wynikać z:
-
-- dodatkowego pomiaru;
-- priora;
-- funkcji kosztu;
-- regularizacji;
-- reguły optymalizacyjnej;
-- konwencji reprezentacyjnej;
-- interwencji eksperymentalnej;
-- dodatkowego twierdzenia o równoważności kandydatów dla zadania.
-
-Każdy taki mechanizm zmienia podstawę wniosku i powinien zostać jawnie nazwany.
-
-W szczególności regularizator może wskazać stabilnego reprezentanta, ale sam wybór regularizacyjny nie dowodzi, że dane rozróżniały go od innych elementów włókna.
-
-Dlatego obowiązuje dyscyplina:
+Dlatego:
 
 \[
 \boxed{
@@ -225,22 +148,20 @@ Dlatego obowiązuje dyscyplina:
 }
 \]
 
+Regularizator może wskazać reprezentanta, ale sam fakt jego użycia nie dowodzi, że dane odróżniały go od pozostałych elementów włókna.
+
 ---
 
 ## 6. Adekwatność katalogu poprzedza identyfikowalność
 
-Definicja włókna zakłada, że przestrzeń kandydatów \(\Omega_c\) jest katalogiem, względem którego pytanie w ogóle ma sens. To założenie nie może być ukryte.
+PSI rozdziela:
 
-PSI rozdziela dwa problemy:
-
-1. **adekwatność katalogu** — czy bieżący katalog zawiera realizacje zdolne wyjaśnić dane w ramach kontraktu;
-2. **identyfikowalność w katalogu** — które z dopuszczonych realizacji pozostają nierozróżnione po obserwacji i dla danego zadania.
+1. **adekwatność katalogu** — czy bieżąca klasa kandydatów jest zdolna zawierać realizacje zgodne z problemem;
+2. **identyfikowalność w katalogu** — które dopuszczone realizacje pozostają nierozróżnione dla danych i zadania.
 
 Nie wolno używać drugiego pytania do naprawiania pierwszego.
 
-Jeżeli katalog jest nieadekwatny, doskonalenie procedury wyboru wewnątrz tego katalogu nie odzyska brakującej klasy realizacji.
-
-Z tego powodu kolejność pracy jest zamrożona jako
+Kanoniczna kolejność pracy brzmi:
 
 \[
 \boxed{
@@ -252,222 +173,132 @@ Z tego powodu kolejność pracy jest zamrożona jako
 \to
 \text{IDENTYFIKOWALNOŚĆ GLOBALNA}
 \to
-\text{PROJEKTOWANIE PROTOKOŁU}.
+\text{PROJEKTOWANIE / REDESIGN PROTOKOŁU}.
 }
 \]
 
-Kolejność ta jest metodologicznym rygorem PSI. Nie jest twierdzeniem, że dla każdego problemu istnieje jeden uniwersalny test adekwatności katalogu.
+### Normalizacja N1 — protokół początkowy i protokół kolejny
+
+Powyższej sekwencji nie wolno czytać tak, jakby przed zbudowaniem włókna nie istniał żaden protokół. Włókno i obserwacja są już określone względem pewnego początkowego kontraktu/protokołu \(P_0\). Ostatnia strzałka oznacza projektowanie **kolejnej iteracji** protokołu na podstawie diagnozy uzyskanej dla \(P_0\):
+
+\[
+\boxed{
+P_0
+\to
+\text{adekwatność / włókno / diagnoza ID}
+\to
+P_1.
+}
+\]
+
+\(P_1\) może dodawać obserwację, interwencję, zmieniać tolerancję albo inaczej uszczegóławiać eksperyment. Jest to redesign lub refinacja protokołu, nie jego pierwsze pojawienie się.
 
 ---
 
 ## 7. Adekwatność katalogu nie jest jednym uniwersalnym skalarem
 
-Bieżący kanon wymaga, aby pytanie o adekwatność katalogu zostało postawione **przed** identyfikowalnością. Nie ustanawia jednak jednego uniwersalnego funkcjonału
+Bieżący kanon nie ustanawia jednego uniwersalnego
 
 \[
 D_{\rm ADEQ}^{cat}
 \]
 
-jako szóstego składnika rdzenia albo obowiązującej definicji dla wszystkich dziedzin.
+jako prymitywu CORE. Sposób badania adekwatności zależy od kontraktu.
 
-Sposób testowania adekwatności zależy od kontraktu.
+Puste włókno jest świadkiem niespójności całego pakietu, ale staje się testem samego katalogu dopiero wtedy, gdy protokół zamraża pozostałe składniki i jawnie ustanawia katalog jako testowany element.
 
-Puste włókno
-
-\[
-F_c(Y)=\varnothing
-\]
-
-jest jednoznacznym świadkiem, że **cały bieżący pakiet** katalog–obserwacja–zgodność–dane nie posiada rozwiązania. Nie lokalizuje jednak przyczyny w samym katalogu. Może pełnić rolę falsyfikatora katalogu dopiero w protokole, który zamraża pozostałe składniki i jawnie ustanawia katalog jako testowany element.
-
-W problemach przybliżonych kontrakt może posługiwać się metryką, pseudometryką, funkcją straty, testem zgodności albo inną dziedzinowo legalną procedurą.
-
-### Przykład adaptera metrycznego — nie definicja rdzenia
-
-Jeżeli protokół \(P\) wyznacza rodzinę zachowań manifestowanych przez katalog \(Q\), oznaczoną
-
-\[
-\widetilde{\mathcal B}^{P}_{Q},
-\]
-
-a przestrzeń danych posiada jawną metrykę lub pseudometrykę \(d_{\mathcal Y}\), można zdefiniować adapter
+W kontrakcie metrycznym można użyć adaptera, np.
 
 \[
 D_{\rm ADEQ}^{cat}(Q;P,Y)
 =
 \inf_{b\in\widetilde{\mathcal B}^{P}_{Q}}
- d_{\mathcal Y}(\operatorname{Obs}_{P}(b),Y).
+ d_{\mathcal Y}(\operatorname{Obs}_{P}(b),Y),
 \]
 
-Następnie, dla tolerancji \(\varepsilon\), można przyjąć kontraktowe kryterium
+z warunkiem
 
 \[
-D_{\rm ADEQ}^{cat}(Q;P,Y)\le\varepsilon.
+D_{\rm ADEQ}^{cat}(Q;P,Y)\le\varepsilon,
 \]
 
-Taki zapis jest legalny tylko po określeniu co najmniej:
-
-- dziedziny zachowań;
-- mapy \(\operatorname{Obs}_P\);
-- metryki lub straty;
-- tolerancji \(\varepsilon\);
-- sposobu traktowania zmiennych uciążliwych i domknięć, jeśli występują.
-
-Adapter ten jest przykładem realizacji pytania o adekwatność katalogu. Nie jest uniwersalną definicją PSI.
+ale dopiero po jawnej specyfikacji przestrzeni zachowań, mapy obserwacji, metryki/straty i tolerancji. To adapter protokołu, nie definicja rdzenia PSI.
 
 ---
 
-## 8. Nieadekwatność katalogu nie mówi jeszcze, jak katalog zmienić
+## 8. Nieadekwatność katalogu nie identyfikuje jego poprawki
 
-Stwierdzenie, że bieżący katalog jest niewystarczający, nie wyznacza automatycznie nowego katalogu.
-
-Należy rozdzielić:
+Należy rozdzielić
 
 \[
-\boxed{
-\text{„bieżący katalog nie wystarcza”}
-}
+\boxed{\text{„bieżący katalog nie wystarcza”}}
 \]
 
 od
 
 \[
-\boxed{
-\text{„wiemy, jaka zmiana katalogu jest uzasadniona”}.
-}
+\boxed{\text{„wiemy, jaka zmiana katalogu jest uzasadniona”}}.
 \]
 
-Pierwsze może wynikać z odpowiedniego testu niezgodności bieżącego katalogu przy zamrożonych pozostałych składnikach kontraktu. Drugie jest osobnym problemem identyfikacji zmiany katalogu, rozwijanym później jako PSI-CAT.
-
-Warunki dziedzinowe mogą eliminować część propozycji zmiany katalogu, lecz nie stają się przez to nową obserwacją empiryczną.
-
-Dlatego przy pustym włóknie lub przy osobno wykazanej nieadekwatności katalogu obowiązuje rygiel:
-
-\[
-\boxed{
-\text{brak zgodnego kandydata}
-\not\Rightarrow
-\text{jednoznacznie zidentyfikowana nowa realizacja}.
-}
-\]
+Drugie pytanie należy do PSI-CAT. Warunki dziedzinowe mogą eliminować niedopuszczalne propozycje zmiany katalogu, lecz nie stają się przez to nową obserwacją empiryczną.
 
 ---
 
-## 9. Lokalna i globalna identyfikowalność — tylko zapowiedź
+## 9. Lokalna i globalna identyfikowalność — zapowiedź
 
-Po ustaleniu katalogu i włókna można pytać o identyfikowalność.
-
-Na poziomie lokalnym badanie może dotyczyć ograniczonego podzbioru
+Badanie lokalne może dotyczyć podzbioru
 
 \[
 U\subseteq\Omega_c
 \]
 
-i włókna
+i włókna \(F_c(Y)\cap U\), natomiast badanie globalne — całego \(F_c(Y)\). Lokalnego kryterium rangi, Hessianu, informacji Fishera ani innego testu nie wolno przenosić na globalną jednoznaczność bez dodatkowego twierdzenia.
+
+W I.3 dopiero skonstruujemy
 
 \[
-F_c(Y)\cap U.
+\mathscr R_{\mathcal T,c},
+\qquad
+E_{\mathcal T,c},
+\qquad
+M_{\mathcal T,c},
 \]
 
-Na poziomie globalnym rozpatruje się całe \(F_c(Y)\).
-
-Nie wolno przenosić lokalnego kryterium rangi, Hessianu, informacji Fishera ani innego lokalnego testu na globalną jednoznaczność bez dodatkowego twierdzenia.
-
-W Tomie I nie definiujemy jeszcze pełnego kryterium identyfikowalności zadaniowej. Najpierw w I.3 skonstruujemy rodzinę domkniętych wielkości zadaniowych, równoważność \(E_{\mathcal T,c}\) oraz iloraz \(M_{\mathcal T,c}\). Dopiero wtedy pytanie
-
-\[
-\text{„czy dane wystarczają?”}
-\]
-
-otrzyma dokładny sens względem zadania.
+co nada dokładny sens pytaniu o rozstrzygalność względem zadania.
 
 ---
 
 ## 10. Konsekwencje metodologiczne
 
-Z definicji włókna i pierwszeństwa adekwatności katalogu wynikają następujące zasady pracy.
-
-### 10.1. Dane nie są kandydatem
-
-\[
-Y\notin\Omega_c
-\]
-
-w ogólności. Dane i kandydaci należą do odrębnych typów.
-
-### 10.2. Obserwacja nie jest odwrotnością
-
-Nie zakładamy istnienia mapy
-
-\[
-\Psi_c^{-1}:\mathcal B_c\to\Omega_c
-\]
-
-jako funkcji. Zapis
-
-\[
-\Psi_c^{-1}(A)
-\]
-
-oznacza przeciwobraz zbioru \(A\subseteq\mathcal B_c\), nie funkcjonalne odwrócenie obserwatora.
-
-### 10.3. Puste włókno nie identyfikuje przyczyny błędu
-
-\[
-F_c(Y)=\varnothing
-\]
-
-jest świadkiem braku zgodności w bieżącym kontrakcie, lecz nie diagnozą źródła niezgodności.
-
-### 10.4. Wieloelementowe włókno nie przesądza nierozstrzygalności zadania
-
-\[
-|F_c(Y)|>1
-\]
-
-nie wystarcza do wniosku o braku rozstrzygnięcia zadaniowego.
-
-### 10.5. Reprezentant wymaga prawa wyboru
-
-Każde przejście
-
-\[
-F_c(Y)
-\longrightarrow
-\widehat x
-\]
-
-musi wskazać dodatkową regułę, informację albo twierdzenie, które je licencjonuje.
+- Dane i kandydaci są różnymi typami.
+- \(\Psi_c^{-1}(A)\) oznacza przeciwobraz zbioru, nie funkcjonalną odwrotność obserwatora.
+- \(F_c(Y)=\varnothing\) nie lokalizuje przyczyny defektu.
+- \(|F_c(Y)|>1\) nie przesądza nierozstrzygalności zadania.
+- Przejście \(F_c(Y)\to\widehat x\) wymaga osobnej licencji.
 
 ---
 
-## 11. Punkt wyjścia do równoważności zadaniowej
+## 11. Przejście do I.3
 
-Po I.1 i I.2 znamy już:
-
-1. typowaną przestrzeń kandydatów \(\Omega_c\);
-2. kanał obserwacji \(\Psi_c\);
-3. relację zgodności \(\mathcal K_c\);
-4. dane \(Y\);
-5. pełne włókno kandydatów zgodnych z danymi \(F_c(Y)\).
-
-Nie wiemy jeszcze, które różnice pomiędzy elementami włókna naprawdę mają znaczenie dla zadania.
-
-To jest następne pytanie PSI.
-
-Nie brzmi ono:
-
-\[
-\text{„czy w }F_c(Y)\text{ pozostał dokładnie jeden obiekt?”}
-\]
-
-lecz:
+Po I.1 i I.2 znamy typowaną przestrzeń kandydatów, obserwację, zgodność, dane i pełne włókno. Następne pytanie brzmi:
 
 \[
 \boxed{
-\text{„czy wszystkie obiekty pozostające w }F_c(Y)
-\text{ dają ten sam wynik dla zadania?”}
+\text{czy wszystkie elementy }F_c(Y)
+\text{ dają ten sam wynik dla zadania?}
 }
 \]
 
-Aby odpowiedzieć, potrzebujemy formalnej relacji równoważności zadaniowej. Jej konstrukcja jest przedmiotem I.3.
+Odpowiedź wymaga relacji równoważności zadaniowej i jest przedmiotem I.3.
+
+---
+
+## Status redakcyjny I.2
+
+Normalizacja `WHOLE-V1 N1` doprecyzowała relację pomiędzy protokołem początkowym i późniejszym redesignem. Nie zmieniła C11/C64 ani Freeze 01.
+
+\[
+\boxed{
+\mathrm{I.2}=\mathrm{NORMALIZED\ PASS\ 01}.
+}
+\]
