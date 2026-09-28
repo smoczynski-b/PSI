@@ -43,9 +43,10 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v03](docs/claim-registry-03.md)
-- [Current falsifier registry v02](docs/falsifier-registry-02.md)
+- [Current claim registry v04](docs/claim-registry-04.md)
+- [Current falsifier registry v03](docs/falsifier-registry-03.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
+- [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Historical dual-operator discipline v01](docs/agent-psi-dual-operator-01.md)
 - [Sector work map](docs/work-map-01.md)
@@ -63,7 +64,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 - Public lineage page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/?view=lineage
 
-Historical registries and agent specs remain in the repository for provenance. Current control pointers are claim-registry v03, falsifier-registry v02 and Agent Architecture v02.
+Historical registries and agent specs remain in the repository for provenance. Current control pointers are claim-registry v04, falsifier-registry v03 and Agent Architecture v02.
 
 ## Mathematical lineage
 
@@ -103,11 +104,41 @@ so the realization gauge is not applied twice.
 
 Within that contract, loss of the Frenet frame at zero curvature is a representation/domain event rather than evidence for catalog `birth`.
 
-The result is deliberately narrow: closed-loop holonomy, reparameterization gauge and sampled/noisy stability remain open gates.
+## First Agent-v02 pressure run: CLOSED-FRAME
+
+`CLOSED-FRAME-01` tests the interval result against a genuinely global obstruction.
+
+For a closed curve, normal parallel transport produces a return map
+
+\[
+H_\gamma\in SO(2).
+\]
+
+A periodic Bishop / rotation-minimizing frame exists iff
+
+\[
+H_\gamma=I.
+\]
+
+On the positive-curvature periodic-Frenet domain this return rotation is the classical total-torsion angle modulo `2π` (up to sign convention).
+
+The PSI pressure result is negative for R4: the holonomy is representable as a transport-derived task observable, and periodicity is a typed compatibility/task condition. Thus
+
+\[
+\boxed{\mathrm{CLOSED\!-\!FRAME\!-01}\text{ does not trigger a new CORE primitive}.}
+\]
+
+The important distinction is
+
+\[
+\boxed{\text{local frame trivialization}\neq\text{global periodic trivialization}.}
+\]
+
+This result does not prejudge higher-fibre or Lazarus-agency pressure tests.
 
 ## PSI Agent Architecture v02
 
-The first full run showed that `EXPLORE → AUDIT → FALSIFY → FREEZE` was useful but too coarse. The current agent therefore operates through
+The current agent operates through
 
 \[
 \boxed{
@@ -141,7 +172,7 @@ State is separated into
 \mathrm{CANON}\mid\mathrm{SPEC}\mid\mathrm{WORKING}\mid\mathrm{LIVE}\mid\mathrm{FRONTIER}\mid\mathrm{HISTORY}.
 \]
 
-This is intended to preserve aggressive exploration without allowing source drift, level drift, silent contract changes or unchecked public/canonical promotion.
+The architecture has now survived two mathematical runs without requiring a new governance primitive: CAT–FACT–NORM–MINI and CLOSED-FRAME.
 
 ## What PSI is for
 
@@ -163,17 +194,17 @@ The mathematical core is under active consolidation. Classical imports, adaptati
 
 Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text.
 
-The next core-pressure packet is parallel rather than linear:
+The remaining independent core-pressure branches before the explicit R4 court are
 
 \[
-\mathrm{CLOSED\!-\!FRAME/FRAME}
-\parallel
+\boxed{
 \mathrm{HIGHER\ FIBRE}
 \parallel
-\mathrm{LAZARUS\ AGENCY},
+\mathrm{LAZARUS\ AGENCY}.
+}
 \]
 
-followed by an explicit R4 pressure test.
+`CLOSED-FRAME` is now a frozen bridge/benchmark regression, not an open branch.
 
 ## Publications / Zenodo
 
