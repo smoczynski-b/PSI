@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.1. Kontrakt i role semantyczne
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`  
 **Zakres:** C01, C60–C61 jako granice i odsyłacze; bez dowodów z Tomu II.
@@ -63,7 +63,7 @@ Jest to pięcioelementowy układ **ról semantycznych**. Znaczenie zapisu nie po
 
 jest zbiorem realizacji lub kandydatów dopuszczonych przez kontrakt \(c\).
 
-Jeżeli kontrakt ustanawia legalną równoważność realizacyjną, \(\Omega_c\) może być już przestrzenią po odpowiednim ilorazie. Nie oznacza to jednak, że każdy zauważony układ symetrii wolno automatycznie potraktować jako gauge. Legalność takiej redukcji jest osobnym problemem i zostanie rozstrzygnięta dopiero po zdefiniowaniu równoważności zadaniowej.
+Jeżeli kontrakt ustanawia równoważność realizacyjną, \(\Omega_c\) może być już przestrzenią po odpowiednim ilorazie. Nie oznacza to jednak, że każdy zauważony układ symetrii wolno automatycznie potraktować jako gauge. Zadaniowa adekwatność takiej redukcji jest osobnym problemem i zostanie rozstrzygnięta dopiero po zdefiniowaniu równoważności zadaniowej; pełna legalność kontraktowa może wymagać dodatkowych warunków.
 
 Przestrzeń kandydatów nie jest zbiorem wszystkiego, co potrafimy nazwać. Jej elementy muszą spełniać warunki dopuszczalności kontraktu. Niedopuszczalne jest rozszerzanie \(\Omega_c\) ad hoc wyłącznie po to, aby uratować żądany wniosek.
 
@@ -199,7 +199,7 @@ oraz
 }
 \]
 
-Pierwsze jest deklaracją struktury. Drugie jest twierdzeniem o zachowaniu informacji wymaganej przez kontrakt i zadanie.
+Pierwsze jest deklaracją struktury. Drugie wymaga sprawdzenia, czy redukcja zachowuje informacje wymagane przez zadanie oraz pozostałe warunki kontraktu.
 
 Już na poziomie obserwacji obowiązuje podstawowa kontrola typu: przekształcenie geometryczne kandydata nie staje się automatycznie gauge danego włókna danych. Dla obserwacji niezmienniczej można mieć
 
@@ -209,7 +209,9 @@ Już na poziomie obserwacji obowiązuje podstawowa kontrola typu: przekształcen
 
 lecz w innym kontrakcie działanie \(g\) może zmieniać obserwację. Wtedy dwa geometrycznie równoważne obiekty nie należą automatycznie do tego samego problemu zgodności z ustalonym \(Y\).
 
-Pełne kryterium zadaniowej legalności redukcji pojawi się dopiero po konstrukcji \(E_{\mathcal T,c}\) w I.3. W tym miejscu zamrażamy jedynie zasadę:
+Dokładne kryterium zachowania informacji zadaniowej przez redukcję pojawi się dopiero po konstrukcji \(E_{\mathcal T,c}\) w I.3. Nie będzie ono samo w sobie wyczerpywało pełnej legalności kontraktowej: kontrakt może ponadto wymagać poprawnych typów i dziedzin, dopuszczalności działania gauge, zgodności obserwacji lub innych jawnych warunków protokołu.
+
+W tym miejscu zamrażamy jedynie zasadę:
 
 \[
 \boxed{
@@ -334,10 +336,12 @@ Odpowiedzią będzie włókno zgodności. Jego konstrukcja jest przedmiotem I.2.
 
 ## Status redakcyjny I.1
 
+Cross-check względem `V1/V2 FREEZE 01`, C01 i C60–C61 wykrył i usunął jedno pierwotne przeszacowanie: kryterium zadaniowej adekwatności redukcji nie zostało utożsamione z pełną legalnością kontraktową.
+
 \[
 \boxed{
-\mathrm{I.1}=\mathrm{PROSE\ PASS\ 01 / READY\ FOR\ CROSS\!-
-CHECK}.
+\mathrm{I.1}=\mathrm{PROSE\ PASS\ 01 / CROSS\!-
+CHECK\ PASS}.
 }
 \]
 
