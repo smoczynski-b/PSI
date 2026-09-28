@@ -16,15 +16,7 @@ Audyt sprawdza pierwsze cztery jednostki Tomu II jako jeden system:
 3. `II.3` — globalna wystarczalność obserwatora;
 4. `II.4` — adekwatność reprezentacji względem zadania.
 
-Sprawdzane są:
-
-- typy i dziedziny;
-- zależności dowodowe;
-- unikalność map faktoryzujących;
-- zakres pojęć `global`, `adequate`, `sufficient`;
-- status źródłowy i brak inflacji nowości;
-- wiązanie z falsyfikatorami i Regression Bank 01;
-- zgodność z Freeze 01 oraz z normalizacją Tomu I.
+Sprawdzane są typy i dziedziny, zależności dowodowe, unikalność map faktoryzujących, zakres pojęć `global/adequate/sufficient`, status źródłowy, regresje oraz zgodność z Freeze 01.
 
 Wynik: **nie znaleziono sprzeczności matematycznej ani potrzeby erraty Freeze 01**. Znaleziono jeden problem sterujący: `principia-v2-theorem-map-01.md` pozostał na Claim Registry v10 i zawiera historyczne luki już zamknięte przez późniejszy audyt. Wymaga zastąpienia bieżącą mapą v02.
 
@@ -32,7 +24,7 @@ Wynik: **nie znaleziono sprzeczności matematycznej ani potrzeby erraty Freeze 0
 
 ## 1. Łańcuch dowodowy
 
-Kręgosłup ma postać:
+Kręgosłup ma postać
 
 \[
 \boxed{
@@ -44,11 +36,7 @@ Kręgosłup ma postać:
 
 przy czym `II.1` jest niezależnym elementarnym faktem o obrazie pod projekcją ilorazową.
 
-Dokładniej:
-
 ### II.1
-
-Dla relacji równoważności `E`, projekcji `q:Omega->Omega/E` i `F⊆Omega`:
 
 \[
 |q(F)|=1
@@ -60,8 +48,6 @@ F\times F\subseteq E.
 
 ### II.2
 
-Dla map `rho:Omega->Z` i `R:Omega->W`:
-
 \[
 \ker_{eq}\rho\subseteq\ker_{eq}R
 \iff
@@ -72,7 +58,7 @@ R=g\circ\rho.
 
 ### II.3
 
-Specjalizacja II.2 przez
+Dla
 
 \[
 \rho=\Psi_c,
@@ -80,19 +66,11 @@ Specjalizacja II.2 przez
 R=q_{\mathcal T,c}
 \]
 
-daje
-
-\[
-\ker_{eq}\Psi_c\subseteq E_{\mathcal T,c}
-\iff
-q_{\mathcal T,c}=f\circ\Psi_c
-\]
-
-na `im Psi_c`.
+otrzymujemy globalną wystarczalność obserwatora.
 
 ### II.4
 
-Specjalizacja II.2 dla dowolnej reprezentacji
+Dla dowolnej reprezentacji
 
 \[
 \rho:\Omega_c\to Z,
@@ -100,17 +78,9 @@ Specjalizacja II.2 dla dowolnej reprezentacji
 R=q_{\mathcal T,c}
 \]
 
-daje
+otrzymujemy ogólną adekwatność reprezentacji.
 
-\[
-\ker_{eq}\rho\subseteq E_{\mathcal T,c}
-\iff
-q_{\mathcal T,c}=g\circ\rho
-\]
-
-na `im rho`.
-
-`II.3` jest więc szczególnym przypadkiem `II.4`, ale **nie zależy dowodowo od II.4**; oba wynikają bezpośrednio z II.2. Nie ma cyrkularności.
+`II.3` jest szczególnym przypadkiem `II.4`, ale nie zależy dowodowo od II.4; oba wynikają bezpośrednio z II.2. Nie ma cyrkularności.
 
 **RESULT:** `PASS`.
 
@@ -151,16 +121,6 @@ II.2–II.4 konsekwentnie zachowują rygiel F60:
 }
 \]
 
-Odpowiednio:
-
-\[
-g:\operatorname{im}\rho\to W,
-\]
-
-\[
-f:\operatorname{im}\Psi_c\to M_{\mathcal T,c}.
-\]
-
 Nigdzie nie jest deklarowana unikalność rozszerzenia na całe `Z` lub `B_c` bez surjektywności albo dodatkowego prawa rozszerzenia.
 
 **RESULT:** `PASS`.
@@ -171,23 +131,19 @@ Nigdzie nie jest deklarowana unikalność rozszerzenia na całe `Z` lub `B_c` be
 
 II.1 i II.3 odpowiadają na różne pytania.
 
-### II.1
-
-Dla konkretnego rekordu `Y`:
+Dla konkretnego rekordu `Y` II.1 pyta o
 
 \[
-|q_{\mathcal T,c}(F_c(Y))|=1?
+|q_{\mathcal T,c}(F_c(Y))|=1.
 \]
 
-### II.3
-
-Dla całej mapy obserwacji:
+II.3 pyta o własność całej mapy obserwacji:
 
 \[
-\ker_{eq}\Psi_c\subseteq E_{\mathcal T,c}?
+\ker_{eq}\Psi_c\subseteq E_{\mathcal T,c}.
 \]
 
-Globalna niewystarczalność obserwatora nie implikuje nierozstrzygalności każdego rekordu `Y`. Wystarczy, że istnieje gdzieś w `Omega_c` para sklejona przez `Psi_c`, a rozróżniana przez zadanie.
+Globalna niewystarczalność obserwatora nie implikuje nierozstrzygalności każdego rekordu `Y`.
 
 **RESULT:** `PASS`.
 
@@ -220,21 +176,7 @@ Statusy są spójne:
 - `II.3` — `PSI STRUCTURAL BRIDGE / DIRECT COROLLARY OF CLASSICAL FACTORIZATION`;
 - `II.4` — `PSI CENTRAL STRUCTURAL BRIDGE / DIRECT FACTORIZATION COROLLARY`.
 
-PSI nie przypisuje sobie autorstwa elementarnej teorii ilorazów ani faktoryzacji map. Własna treść architektury leży w otypowaniu:
-
-\[
-F_c(Y),
-\quad
-E_{\mathcal T,c},
-\quad
-M_{\mathcal T,c},
-\quad
-\Psi_c,
-\quad
-\rho
-\]
-
-i w interpretacji praw do wniosku względem zadania.
+PSI nie przypisuje sobie autorstwa elementarnej teorii ilorazów ani faktoryzacji map. Własna treść architektury leży w otypowaniu obiektów i interpretacji praw do wniosku względem zadania.
 
 **RESULT:** `PASS`.
 
@@ -249,11 +191,7 @@ Przypisanie jest niesprzeczne:
 - `II.3`: para `Psi_c(x)=Psi_c(y)` przy `x not E_T y`;
 - `II.4`: R01 HCube i R02 Go jako bezpośrednie świadki nieadekwatnej reprezentacji; R03 FS-STAT jako granica `exact ↛ stable/statistical`.
 
-### Korekta zakresu R01
-
-HCube jest świadkiem II.4 tylko względem zadania, którego domknięcie zawiera rozróżniającą wielkość rezolwentową, np. `R_{1/2}`. Nie jest kontrprzykładem do adekwatności `rho_0` względem dowolnego zadania.
-
-Korekta została naniesiona w II.4.
+HCube jest świadkiem II.4 tylko względem zadania, którego domknięcie zawiera rozróżniającą wielkość rezolwentową, np. `R_{1/2}`. Korekta została naniesiona w II.4.
 
 **RESULT:** `PASS AFTER SCOPE CLARIFICATION`.
 
@@ -283,10 +221,8 @@ Nie wynika z tego minimalność kodowa ani obliczeniowa.
 
 1. wskazuje `claim-registry-10.md`, podczas gdy bieżący rejestr to v12;
 2. zachowuje `V2-GAP-01` dotyczący definicji historii, zamknięty przez C57–C59;
-3. zachowuje stare braki CAT/FACT i source-binding, które zostały rozstrzygnięte przez `PROOF-SOURCE-MIGRATION-AUDIT-01`, `CANON03-SOURCE-BIND-01` i C62–C66;
+3. zachowuje stare braki CAT/FACT i source-binding, rozstrzygnięte przez późniejsze audyty i C62–C66;
 4. nie odnotowuje wykonanych PASS II.1–II.4.
-
-Nie jest to błąd matematyczny. Jest to dryf dokumentu sterującego.
 
 **REPAIR:** utworzyć `principia-v2-theorem-map-02.md` jako bieżącą mapę po Spine Cross-Check 01. Mapę 01 zachować dla genealogii.
 
@@ -304,22 +240,41 @@ Nie jest to błąd matematyczny. Jest to dryf dokumentu sterującego.
 }
 \]
 
-Nie znaleziono:
-
-- sprzeczności pomiędzy twierdzeniami;
-- cyrkularności dowodowej;
-- niejawnej hipotezy skończoności, topologii lub probabilistyki;
-- inflacji klasycznych faktów do rangi nowości PSI;
-- naruszenia F57 lub F60;
-- potrzeby erraty Freeze 01.
+Nie znaleziono sprzeczności, cyrkularności dowodowej, ukrytej hipotezy skończoności/topologii/probabilistyki, inflacji klasycznych faktów do rangi nowości PSI, naruszenia F57/F60 ani potrzeby erraty Freeze 01.
 
 Jedyną obowiązkową korektą systemową jest normalizacja mapy sterującej V2.
 
 ---
 
-## 11. Następna faza
+## 11. Następna faza — zachowanie C32/C37
 
-Po utworzeniu mapy v02 legalny front przechodzi z elementarnego kręgosłupa do kolejnej warstwy:
+Stara mapa poprawnie zawierała jeszcze bezpośrednie corollarium C32/C37. Nie wolno go zgubić przy zmianie mapy.
+
+Dlatego po utworzeniu mapy v02 następny legalny krok to:
+
+\[
+\boxed{
+\mathrm{II.5\ —\ exact\ task\-information\ legality\ of\ reduction/quotient}.
+}
+\]
+
+Ma ono wyprowadzić z II.4 warunek
+
+\[
+\ker_{eq}q\subseteq E_{\mathcal T,c}
+\]
+
+jako kryterium zachowania informacji zadaniowej przez proponowaną redukcję, z jawnym F57:
+
+\[
+\text{task-information legal}
+\neq
+\text{fully contract-legal}
+\]
+
+w ogólności.
+
+Dopiero potem front przechodzi do
 
 \[
 \boxed{
@@ -327,6 +282,6 @@ Po utworzeniu mapy v02 legalny front przechodzi z elementarnego kręgosłupa do 
 }
 \]
 
-zaczynając od deterministycznej dynamiki ilorazowej C10, a następnie przechodząc do C42/C44/C45.
+zaczynając od deterministycznej dynamiki ilorazowej C10, a następnie C42/C44/C45.
 
-Klasyczne mosty (lumpowalność, Myhill–Nerode, Paige–Tarjan itd.) pozostają za tą warstwą i nie powinny wyprzedzać własnych twierdzeń ilorazowych PSI.
+Klasyczne mosty pozostają za tą warstwą.
