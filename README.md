@@ -29,6 +29,8 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Current claim registry v12](docs/claim-registry-12.md)
 - [Current falsifier registry v10](docs/falsifier-registry-10.md)
 - [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
+- [Principia V1 I.1 — Contract and semantic roles](docs/principia-v1-01-contract-semantic-roles.md)
+- [Principia V1 I.2 — Observation, compatible fibre and catalog adequacy](docs/principia-v1-02-observation-fibre-catalog-adequacy.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -141,7 +143,26 @@ It freezes:
 
 It does **not** freeze final prose or typography and does not assert universal completeness of CORE5.
 
-The next legal phase is chapter prose **from frozen units**, with semantic changes requiring an explicit erratum and impact audit.
+## Principia V1 prose status
+
+The first prose pass now contains:
+
+- `I.1 — Kontrakt i role semantyczne` — `CROSS-CHECK PASS`;
+- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu` — `CROSS-CHECK PASS`.
+
+The I.2 cross-check preserved an important distinction:
+
+\[
+F_c(Y)=\varnothing
+\]
+
+shows inconsistency of the current catalog–observation–compatibility–data package, but does not by itself identify the catalog as the cause. Catalog inadequacy is localized only under a protocol that freezes the other components and explicitly tests the catalog.
+
+Next prose unit:
+
+\[
+\boxed{\mathrm{I.3\ —\ task\ distinction\ and\ legal\ reduction}.}
+\]
 
 ## Hardening bank
 
@@ -165,19 +186,23 @@ Permanent statistical discipline:
 
 The Agent-v02 procedure found and corrected the MINI contract error, recovered the physical canon instead of filling the gap from memory, and downgraded older rich machinery where the physical canon was narrower.
 
+During the prose phase it is used as a semantic cross-check: exposition may be improved, frozen semantics may not drift silently.
+
 No Agent v03 is justified by current evidence.
 
 ## Current phase
 
 \[
 \boxed{
-\mathrm{V1\ PROSE}
+\mathrm{I.1\ PASS}
 \to
-\mathrm{V1\ CROSS\!-\!CHECK}
+\mathrm{I.2\ PASS}
 \to
-\mathrm{V2\ PROSE}
+\mathrm{I.3\ NEXT}
 \to
-\mathrm{V2\ CROSS\!-\!CHECK}.
+\mathrm{I.4\!\! -\! I.6}
+\to
+\mathrm{V2\ PROSE}.
 }
 \]
 
