@@ -41,13 +41,14 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v07](docs/claim-registry-07.md)
-- [Current falsifier registry v06](docs/falsifier-registry-06.md)
+- [Current claim registry v08](docs/claim-registry-08.md)
+- [Current falsifier registry v07](docs/falsifier-registry-07.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
 - [HIGHER-FIBRE 01](docs/higher-fibre-01.md)
 - [R4 PRESSURE COURT 01](docs/r4-pressure-court-01.md)
+- [HCUBE REGRESSION 01](docs/hcube-regression-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
@@ -62,9 +63,9 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries/specs remain for provenance. Current control pointers are claim-registry v07, falsifier-registry v06 and Agent Architecture v02.
+Historical registries/specs remain for provenance. Current control pointers are claim-registry v08, falsifier-registry v07 and Agent Architecture v02.
 
-## Pressure sequence
+## Pressure phase
 
 ### CAT–FACT–NORM–MINI
 
@@ -102,7 +103,7 @@ For
 
 the coarse strict object-set pullback is one point, while the weak/2-pullback retains two compatibility witnesses. Therefore truncating before fibre construction can lose task-relevant data.
 
-The PSI consequence is not a sixth primitive. It is a legality condition on representation/gauge reduction:
+The PSI consequence is a legality condition on representation/gauge reduction:
 
 \[
 \boxed{\ker_{eq}q\subseteq E_{\mathcal T}.}
@@ -112,20 +113,9 @@ If stabilizers or compatibility witnesses matter for the task, the contract must
 
 ## R4 PRESSURE COURT
 
-The four accepted pressure branches were compared under a non-vacuity rule: CORE5 may not be “saved” by stuffing observed answers, task verdicts or oracle information into the candidate object.
+The accepted pressure branches were compared under a non-vacuity rule: CORE5 may not be “saved” by stuffing observed answers, task verdicts or oracle information into the candidate object.
 
-A legal reduction must preserve the semantic roles of:
-
-\[
-\Omega,
-\Psi,
-\mathcal K,
-\mathscr O_{\mathcal T},
-\delta,
-\text{contract}.
-\]
-
-No current witness exhibits an unavoidable task-relevant distinction outside those roles. Therefore
+No current witness exhibits an unavoidable task-relevant distinction outside the current semantic roles. Therefore
 
 \[
 \boxed{
@@ -142,6 +132,58 @@ and
 \]
 
 This is **not** a universal completeness theorem. R4 may reopen only after a genuinely new typed counterexample survives the role-preservation and minimality gates.
+
+## Hardening phase — HCube regression
+
+The first post-R4 hardening benchmark uses
+
+\[
+A=\operatorname{diag}(2,1,0),
+\qquad
+B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}.
+\]
+
+They have the same characteristic polynomial and the same Euclidean operator norm:
+
+\[
+\chi_A=\chi_B,
+\qquad
+\|A\|_2=\|B\|_2=2.
+\]
+
+But at `z=1/2`:
+
+\[
+\left\|\left(\tfrac12I-A\right)^{-1}\right\|_2=2,
+\]
+
+while
+
+\[
+\left\|\left(\tfrac12I-B\right)^{-1}\right\|_2=2(1+\sqrt2).
+\]
+
+Therefore the coarse representation
+
+\[
+\rho_0(X)=(\chi_X,\|X\|_2)
+\]
+
+fails the PSI adequacy condition for this resolvent-sensitive task:
+
+\[
+\boxed{
+\ker\rho_0\not\subseteq\ker R_{1/2}.
+}
+\]
+
+The HCube bridge also separates the pair through
+
+\[
+\|e^{t\operatorname{ad}_X}\|_{HS}=\kappa_2(e^{tX}),
+\]
+
+but this does not promote HCube to a necessary/minimal/universal representation. HCube remains a derived diagnostic and benchmark.
 
 ## PSI Agent Architecture v02
 
@@ -173,13 +215,7 @@ The current agent operates through
 }
 \]
 
-The architecture has survived four branch runs plus the cross-branch R4 court without requiring a new governance primitive.
-
-Permanent new regression:
-
-\[
-\boxed{\text{candidate stuffing is not a legal proof of CORE sufficiency}.}
-\]
+The architecture survived the pressure sequence, the R4 court and the first hardening regression without requiring a new governance primitive.
 
 No Agent v03 is justified by the current evidence.
 
@@ -187,11 +223,15 @@ No Agent v03 is justified by the current evidence.
 
 **Research / work in progress.**
 
-The primitive-pressure phase is closed. Current work moves to regression strengthening and Principia redaction:
+The primitive-pressure phase is closed. Current work is regression strengthening and Principia redaction:
 
 \[
 \boxed{
-\mathrm{HCube}+\mathrm{Go}+\mathrm{FS\!-\!STAT}
+\mathrm{HCube\ DONE}
+\to
+\mathrm{Go}
+\to
+\mathrm{FS\!-\!STAT}
 \to
 \text{regression bank}
 \to
