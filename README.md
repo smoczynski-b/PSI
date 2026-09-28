@@ -39,6 +39,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [V1 Normalization 01](docs/principia-v1-normalization-01.md)
 - [Principia V2.1 — Exact task-level decidability](docs/principia-v2-01-exact-task-decidability.md)
 - [Principia V2.2 — Kernel factorization criterion](docs/principia-v2-02-kernel-factorization.md)
+- [Principia V2.3 — Global observer sufficiency](docs/principia-v2-03-global-observer-sufficiency.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -109,42 +110,6 @@ Inference discipline:
 }
 \]
 
-## Corrected MINI contract
-
-The proof/source audit repaired a genuine observation/gauge mismatch in the earlier Frenet/Bishop MINI theorem.
-
-The corrected result distinguishes
-
-\[
-P_0^{abs}:Y=\gamma(t),
-\]
-
-with only constant Bishop-normal `SO(2)` presentation quotient in the same observed fibre, from
-
-\[
-P_0^{shape}:Y=[\gamma]_{SE(3)},
-\]
-
-where external `SE(3)` gauge is legal.
-
-C19-v2 records the repaired result.
-
-## Current CAT / FACT status
-
-Physical CANON-03 defines:
-
-- `PSI-CAT`: whether data/protocol justify a catalog change and which class of change is justified;
-- `PSI-CAT^D`: the same problem with domain admissibility `ADM_D`;
-- `PSI-FACT`: the contract-relative fibre
-  \[
-  \operatorname{Fact}^{\varepsilon}_{D,P}(Y)
-  \]
-  of legal factorizations compatible with observation, external interface and domain constraints.
-
-Gauge is quotiented only when the contract establishes it.
-
-Older richer CAT taxonomies and FACT groupoid/homotopy constructions are derived extensions, not replacements for the current physical definitions. A universal scalar `D_ADEQ^cat` is not a CORE primitive; metric/loss catalog adequacy is a protocol-specific adapter.
-
 ## Principia V1/V2 freeze
 
 \[
@@ -153,11 +118,7 @@ Older richer CAT taxonomies and FACT groupoid/homotopy constructions are derived
 }
 \]
 
-It freezes definitions, theorem statements/hypotheses, source status, dependencies, principal boundaries and regression obligations. It does not freeze final wording or typography.
-
 ## Volume I status
-
-The six foundation units passed local cross-check, Whole-V1 Cross-Check 01 and V1 Normalization 01.
 
 \[
 \boxed{
@@ -183,15 +144,7 @@ F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c}.
 }
 \]
 
-Status:
-
-\[
-\boxed{
-\mathrm{V2.1}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-\!CHECK\ PASS}.
-}
-\]
-
-This is explicitly a **classical elementary quotient fact / PSI-adapted central criterion**.
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
 
 ### V2.2 — kernel factorization criterion
 
@@ -205,21 +158,31 @@ R=g\circ\rho.
 }
 \]
 
-Status:
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+Uniqueness holds only on `im rho`.
+
+### V2.3 — global observer sufficiency
 
 \[
 \boxed{
-\mathrm{V2.2}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-\!CHECK\ PASS}.
+E_{\Psi,c}\subseteq E_{\mathcal T,c}
+\iff
+\exists!\,f:\operatorname{im}\Psi_c\to M_{\mathcal T,c},
+\quad
+q_{\mathcal T,c}=f\circ\Psi_c.
 }
 \]
 
-This is explicitly a **classical elementary factorization lemma / PSI-adapted tool**. F60 remains mandatory: uniqueness holds only on `im rho`; extension beyond the image requires additional structure and need not be unique.
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+`Global` means sufficiency of the observer over the whole candidate space, not resolution of every individual record. The term is factorization-based and must not be conflated with statistical sufficiency.
 
 Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.3\ —\ global\ task\ sufficiency\ of\ the\ observer}.
+\mathrm{V2.4\ —\ representation\ adequacy}.
 }
 \]
 
@@ -251,7 +214,7 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{V2.2\ PASS}
 \to
-\mathrm{V2.3\ GLOBAL\ SUFFICIENCY}
+\mathrm{V2.3\ PASS}
 \to
 \mathrm{V2.4\ REPRESENTATION\ ADEQUACY}
 \to
