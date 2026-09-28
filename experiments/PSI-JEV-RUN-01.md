@@ -3,13 +3,15 @@
 **Status:** PRE-REGISTERED / Jev output pending  
 **Module:** PSI–Jev experimental adapter  
 **Core status:** not part of the PSI core  
-**Purpose:** controlled falsification run
+**Purpose:** closed-fixture conformance / smoke test
 
 This run tests one narrow question:
 
 > Can a fast typed decision model select the unique one-step test that guarantees task-level identifiability, without replacing PSI identifiability with model confidence?
 
 No empirical claim about Jev is made before an actual Jev output is recorded.
+
+**Scope correction.** RUN-01 does not falsify PSI. The PSI oracle is constructed analytically before the Jev call, so the run can only test whether the experimental adapter conforms to a known closed fixture. A failure is a Jev/adapter failure on this task, not a failure of the PSI core.
 
 ---
 
@@ -205,7 +207,7 @@ Formally:
 
 ### RUN-01 PASS
 
-The run passes the narrow action-selection test iff
+The adapter passes this narrow conformance check iff
 
 \[
 \mathcal J(S,Q,A)=T_1.
@@ -213,7 +215,9 @@ The run passes the narrow action-selection test iff
 
 ### RUN-01 FAIL
 
-The run fails the narrow action-selection test if Jev chooses \(T_2\) or \(T_3\).
+The adapter fails this narrow conformance check if Jev chooses \(T_2\) or \(T_3\).
+
+This `PASS/FAIL` concerns the Jev adapter on the frozen fixture. It is not a truth value for PSI.
 
 ### Adapter-level warning
 
@@ -240,17 +244,17 @@ To be filled only after a real Jev execution.
 | Jev score vector | PENDING |
 | Jev confidence | PENDING |
 | PSI oracle | T1 |
-| action-selection result | PENDING |
+| adapter conformance result | PENDING |
 | constraint violations | PENDING |
 | notes | PENDING |
 
 ---
 
-## 8. Why this test matters
+## 8. Why keep this test
 
-This fixture is intentionally trivial for deep reasoning. That is a feature, not a weakness.
+This fixture is intentionally trivial for deep reasoning.
 
-The purpose is not to test mathematical sophistication. It is to isolate three distinctions:
+Its value is limited but legitimate: it is a unit-level integration check that isolates three quantities
 
 \[
 \text{choice quality},
@@ -262,13 +266,15 @@ The purpose is not to test mathematical sophistication. It is to isolate three d
 
 A successful Jev integration must preserve all three as different quantities.
 
-The first run therefore asks for the smallest falsifiable claim:
+RUN-01 therefore asks only:
 
 \[
-\boxed{\text{Can Jev select the unique legal separating test in a closed typed state?}}
+\boxed{\text{Can Jev select the known separating test in a closed typed state?}}
 \]
 
-Only after this passes should the benchmark move to noisy observations, partial compatibility, unequal test costs, or open-world state descriptions.
+It does not test whether the PSI framework is mathematically correct, novel, or empirically superior.
+
+A genuine PSI falsification attempt must instead put a PSI-specific claim at risk. For a mathematical statement this means, for example, finding a counterexample that satisfies the stated hypotheses and violates the claimed conclusion.
 
 ---
 
@@ -276,9 +282,9 @@ Only after this passes should the benchmark move to noisy observations, partial 
 
 Do **not** promote the adapter or generalize from RUN-01 alone.
 
-Proceed to RUN-02 only after recording the actual Jev output and checking the ledger above.
+Proceed to a harder run only after recording the actual Jev output and checking the ledger above.
 
-A natural RUN-02 will deliberately separate model confidence from PSI identifiability by constructing cases in which:
+A later benchmark may deliberately separate model confidence from PSI identifiability by constructing cases in which
 
 \[
 \text{high confidence} + \text{low identifiability}
@@ -291,3 +297,5 @@ and
 \]
 
 are both possible.
+
+Such a benchmark would still test the adapter unless a PSI-specific formal or empirical claim is explicitly placed at risk.
