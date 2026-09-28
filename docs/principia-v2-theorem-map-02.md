@@ -1,6 +1,6 @@
 # PRINCIPIA SEMANTICA — V2 THEOREM MAP 02
 
-**Status:** `CURRENT / POST-HISTORY-LAYER CONTROL MAP`  
+**Status:** `CURRENT / POST-OWN-LAYER-HANDOFF-AUDIT CONTROL MAP`  
 **Date:** 2026-09-28  
 **Supersedes for control:** `principia-v2-theorem-map-01.md`  
 **Canonical source:** physical `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
@@ -8,17 +8,24 @@
 **Falsifier source:** `falsifier-registry-10.md`  
 **Regression source:** `regression-bank-01.md`  
 **Freeze:** `principia-v1-v2-freeze-01.md`  
-**Spine audit:** `principia-v2-spine-crosscheck-01.md`
+**Early spine audit:** `principia-v2-spine-crosscheck-01.md` (`II.1–II.4`)  
+**Current whole-own-layer audit:** `principia-v2-own-layer-crosscheck-02.md` (`II.1–II.9`)
 
 ---
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.9.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i niezależnym handoff-cross-checku II.1–II.9.
 
 Każda jednostka V2 ma mieć:
 
 `TYPE | HYPOTHESES | STATEMENT | PROOF/SOURCE | SCOPE | FALSIFIER/REGRESSION | STATUS`.
+
+Obowiązuje rozdział:
+
+`PROOF DEPENDENCY | STRUCTURAL ANALOGY | DOWNSTREAM USE`.
+
+Nie wolno wpisywać wszystkich trzech relacji jako `DEPENDS ON`, ponieważ sztucznie zwiększa to blast radius.
 
 ---
 
@@ -62,6 +69,7 @@ F_c(Y)^2\subseteq E_{\mathcal T,c}.
 
 **STATUS:** `PASS`  
 **CLASS:** PSI structural bridge / direct factorization corollary.  
+**PROOF DEPENDENCY:** II.2.  
 **BOUNDARY:** global map property, not per-record decidability; not statistical sufficiency.
 
 ### II.4 — C09 Representation adequacy
@@ -75,6 +83,7 @@ F_c(Y)^2\subseteq E_{\mathcal T,c}.
 
 **STATUS:** `PASS`  
 **CLASS:** PSI central structural bridge.  
+**PROOF DEPENDENCY:** II.2.  
 **BOUNDARY:** F57 — task-information adequacy is not full contract legality.  
 **REGRESSION:** R01/R02 direct; R03 scope boundary.
 
@@ -105,13 +114,13 @@ exact preservation of task information is equivalent to
 Equivalently the task quotient factors uniquely through `q` on `im q`.
 
 **STATUS:** `PASS`.  
-**DEPENDS ON:** II.4.  
+**PROOF DEPENDENCY:** II.4.  
 **MANDATORY BOUNDARIES:** F57 and F55.  
 **REGRESSION:** HIGHER-FIBRE and R02 direct; corrected MINI gauge-observation case as scope warning.
 
 ---
 
-## 3. Dynamic / history quotient layer — wykonany
+## 3. Dynamic / history quotient layer — wykonany i globalnie sprawdzony
 
 ### II.6 — C10 Deterministic quotient dynamics
 
@@ -169,7 +178,8 @@ exact history-memory adequacy is
 Equivalently the history task quotient factors uniquely through `rho_t` on `im rho_t`.
 
 **STATUS:** `PASS`.  
-**DEPENDS ON:** II.4 + C57/C58.  
+**CLASS:** exact adequacy criterion / II.4 specialization + factorization corollary.  
+**PROOF DEPENDENCY:** II.4 + C57/C58.  
 **REGRESSION:** R02 Go; LAZARUS current-fibre insufficiency witness.  
 **BOUNDARY:** full history is not asserted to be bit-, state-, dimension-, storage- or computation-minimal.
 
@@ -198,7 +208,7 @@ f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t}.
 For quotient representations `q_Q`, exactness is equivalent to `Q⊆equiv_T,t`; hence `equiv_T,t` is the maximum admissible equivalence relation and `M_T,t` the coarsest exact quotient in quotient order.
 
 **STATUS:** `PASS`.  
-**DEPENDS ON:** II.2, II.7.  
+**PROOF DEPENDENCY:** II.7; the factorization statement uses II.2/II.7.  
 **BOUNDARIES:** quotient-order coarseness is not bit/dimension/storage/compute minimality; F60 applies to `im rho_t`, not unused codomain points.  
 **REGRESSION:** R02/LAZARUS as scope witnesses only.
 
@@ -241,27 +251,34 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 \]
 
 **STATUS:** `PASS`.  
-**DEPENDS ON:** II.6–II.8 + C59.  
+**STRICT PROOF DEPENDENCY:** II.7 + C59.  
+**STRUCTURAL ANALOGY:** II.6 (general deterministic quotient descent).  
+**NOT A PROOF PREREQUISITE:** II.8 (coarsest/minimal quotient result).  
 **BOUNDARIES:** domain invariance and successor-class invariance are both required; mathematical recurrence does not imply finite memory, computability, representative-free algorithmics or efficiency.  
 **REGRESSION:** R02 / F43.
 
-### History-layer verdict
+### Own-layer verdict
+
+After `principia-v2-own-layer-crosscheck-02.md`:
 
 \[
 \boxed{
-\mathrm{II.7:II.9}=\mathrm{PASS}.
+\mathrm{II.1:II.9\ OWN\ LAYER}
+=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
 }
 \]
 
+No Freeze 01 erratum was required.
+
 ---
 
-## 4. Classical bridge layer — next
+## 4. Classical bridge layer — released after own-layer handoff audit
 
 ### Lumpability — C13
 
 Strong lumpability remains a classical theorem plus conditional PSI bridge. Task equivalence alone does not imply stochastic lumpability.
 
-**STATUS:** `NEXT / SOURCE-BOUND`.
+**STATUS:** `NEXT / SOURCE-BOUND / RELEASED`.
 
 ### Myhill–Nerode — C18
 
@@ -276,6 +293,8 @@ Classical algorithmic benchmark only, not PSI theorem.
 ### Probabilistic bisimulation
 
 Remains explanatory comparison without C-ID because no frozen theorem depends on it.
+
+**STATUS:** `COMPARISON-ONLY / NO CURRENT C-ID REQUIRED`.
 
 ---
 
@@ -294,7 +313,7 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 
 \[
 \boxed{
-\mathrm{II.1:II.9\ PASS}
+\mathrm{II.1:II.9\ GLOBAL\ PASS}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
