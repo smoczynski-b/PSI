@@ -34,6 +34,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V1 I.3 — Task-relative distinction and legal reduction](docs/principia-v1-03-task-distinction-legal-reduction.md)
 - [Principia V1 I.4 — History, memory and future-task semantics](docs/principia-v1-04-history-memory-future-semantics.md)
 - [Principia V1 I.5 — Exact identification, stability and statistical licensing](docs/principia-v1-05-exact-stable-statistical-licensing.md)
+- [Principia V1 I.6 — Methodological boundaries and primitive discipline](docs/principia-v1-06-methodological-boundaries.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -146,29 +147,31 @@ It freezes definitions, theorem statements and hypotheses, source/classical stat
 
 ## Principia V1 prose status
 
-The first prose pass now contains:
+The first prose pass now contains six units, each with local cross-check PASS:
 
-- `I.1 — Kontrakt i role semantyczne` — `CROSS-CHECK PASS`;
-- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu` — `CROSS-CHECK PASS`;
-- `I.3 — Rozróżnienie zadaniowe i legalna redukcja` — `CROSS-CHECK PASS`;
-- `I.4 — Historia, pamięć i przyszła semantyka zadania` — `CROSS-CHECK PASS`;
-- `I.5 — Dokładna identyfikowalność, stabilność i licencja statystyczna` — `CROSS-CHECK PASS`.
+- `I.1 — Kontrakt i role semantyczne`;
+- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu`;
+- `I.3 — Rozróżnienie zadaniowe i legalna redukcja`;
+- `I.4 — Historia, pamięć i przyszła semantyka zadania`;
+- `I.5 — Dokładna identyfikowalność, stabilność i licencja statystyczna`;
+- `I.6 — Granice metodologiczne i dyscyplina prymitywów`.
 
-Cross-check corrections have removed five recurrent scope inflations:
+Local cross-checks removed six recurrent scope inflations:
 
 1. task-information adequacy is not full contract legality;
 2. an empty fibre does not by itself localize the defect to the catalog;
 3. a quotient can preserve task information without being otherwise contract-legal;
 4. the reference history space need only contain enough structure to define legal future semantics and is not assumed memory-minimal;
-5. V1 statistical foundations retain only `exact ↛ stable ↛ confidence`, `UNRESOLVED` and probability-contract discipline; technical FS-STAT witnesses and numerical constants remain in V2/V3.
+5. V1 statistical foundations retain only `exact ↛ stable ↛ confidence`, `UNRESOLVED` and probability-contract discipline; technical FS-STAT machinery remains in V2/V3;
+6. the canonical identification pipeline is distinct from the orthogonal `exact/stable/confidence` quality ladder, and the R4 stop remains project policy rather than a completeness theorem.
 
-Next prose unit:
+The next gate is not V2 yet:
 
 \[
-\boxed{\mathrm{I.6\ —\ methodological\ boundaries}.}
+\boxed{\mathrm{WHOLE\!-\!V1\ CROSS\!-\!CHECK\ 01}.}
 \]
 
-After I.6, the first whole-Volume-I cross-check becomes the next gate before V2 prose.
+It must test I.1–I.6 as one system for notation, typing, logical order, theorem/policy boundaries, V2 handoffs and laboratory inflation.
 
 ## Hardening bank
 
@@ -200,21 +203,13 @@ No Agent v03 is justified by current evidence.
 
 \[
 \boxed{
-\mathrm{I.1\ PASS}
+\mathrm{I.1\!\!-\!I.6\ LOCAL\ PASS}
 \to
-\mathrm{I.2\ PASS}
+\mathrm{WHOLE\!-\!V1\ CROSS\!-\!CHECK}
 \to
-\mathrm{I.3\ PASS}
+\mathrm{V2\ PROSE}
 \to
-\mathrm{I.4\ PASS}
-\to
-\mathrm{I.5\ PASS}
-\to
-\mathrm{I.6\ NEXT}
-\to
-\mathrm{V1\ CROSS\!-\!CHECK}
-\to
-\mathrm{V2\ PROSE}.
+\mathrm{V2\ CROSS\!-\!CHECK}.
 }
 \]
 
