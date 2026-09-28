@@ -67,7 +67,38 @@ For an AI agent, distinguish at least:
 
 A later answer should not overwrite the conditions under which an earlier answer was justified.
 
-## 5. Use counterexamples before adding concepts
+## 5. Name the lineage before claiming novelty
+
+A mathematical object does not become new because it receives PSI notation.
+
+Before a substantial construction enters the stable layer, ask:
+
+\[
+\boxed{
+\text{Who?}
+\to
+\text{Which problem?}
+\to
+\text{What exactly was contributed?}
+\to
+\text{What changes here?}
+}
+\]
+
+Classify the result explicitly as one of:
+
+- `CLASSICAL`;
+- `ADAPTED`;
+- `BRIDGE`;
+- `PSI-NEW`;
+- `POLICY`;
+- `OPEN`.
+
+If a classical theorem, operator, geometry or algorithm already performs the mathematical work, cite it and use its established name. A new PSI name is justified only when a new semantic or formal role must be distinguished.
+
+See [Mathematical lineage](lineage.md).
+
+## 6. Use counterexamples before adding concepts
 
 PSI grows conservatively.
 
@@ -87,7 +118,7 @@ The preferred sequence is:
 \text{freeze}.
 \]
 
-## 6. The Bronsztejn filter
+## 7. The Bronsztejn filter
 
 Before accepting a mathematical statement into the stable layer, identify:
 
@@ -107,7 +138,7 @@ Before accepting a mathematical statement into the stable layer, identify:
 
 If one of these is missing, the statement may still be useful as intuition, but it does not yet have the right to canonical status.
 
-## 7. Boundary of knowledge
+## 8. Boundary of knowledge
 
 A mature model should not only answer questions. It should expose the boundary of its own distinguishability.
 
