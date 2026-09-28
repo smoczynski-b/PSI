@@ -131,6 +131,33 @@ Older typed sources were compared to the public core derivative. Semantic alignm
 - **Meaning:** definitions, theorem statements, source roles, status classes, dependencies and principal boundaries are fixed for the first prose pass.
 - **Not implied:** final prose, typography, universal CORE5 completeness.
 
+## E020 — V1 whole-volume normalization
+
+- **Prior status:** I.1–I.6 each had local PASS.
+- **New basis:** whole-volume semantic/notation cross-check exposed inter-section symbol collisions, protocol-redesign ambiguity and genealogy inflation.
+- **Result:** N1–N7 applied; `PRINCIPIA V1 FIRST PROSE PASS = NORMALIZED PASS`.
+- **Freeze impact:** none.
+- **Permanent lesson:** local section correctness does not by itself certify whole-volume coherence.
+
+## E021 — V2 own quotient/history layer
+
+- **Object:** II.1–II.9.
+- **Prior status:** individual theorem/local cross-check PASSes; earlier spine cross-check covered only II.1–II.4.
+- **New basis:** `principia-v2-own-layer-crosscheck-02.md` independent handoff audit.
+- **Result:** mathematics PASS; no Freeze 01 erratum; three control corrections required and applied: II.9 dependency graph, classical-comparison status drift, ledger/handoff completion.
+- **Corrected dependency:** strict proof dependency for II.9 is `II.7 + C59`; II.6 is structural analogy; II.8 is not a proof prerequisite.
+- **Permanent lesson:**
+  \[
+  \boxed{\text{sequence of local PASSes}\not\Rightarrow\text{whole-layer PASS}.}
+  \]
+
+## E022 — classical comparison status normalization
+
+- **Prior status:** `classical-compare-01.md` still pointed to Claim Registry v11 and labelled probabilistic-bisimulation registry migration `PENDING`.
+- **New basis:** Claim Registry v12 deliberate editorial decision.
+- **Result:** comparison map now points to v12; probabilistic bisimulation remains source-bound comparison-only with no current C-ID required.
+- **Mathematical impact:** none.
+
 ---
 
 # B. Decision Ledger
@@ -163,7 +190,29 @@ Proof audit found a real C19 mixed-contract error and finite migration/source ga
 - **Alternatives:** continue adding theory / begin prose from frozen units.
 - **Action:** open first V1/V2 prose pass; do not reopen primitive/theorem discovery absent a new contradiction.
 - **Gate:** `principia-v1-v2-freeze-01.md`.
-- **Result:** next legal work begins with V1 prose unit I.1 and cross-checks every section against the freeze package.
+- **Result:** V1 prose completed and normalized; V2 own theorem layer subsequently developed through II.9.
+
+## D008 — require whole-V1 gate before V2
+
+- **Observation:** all six V1 units had local PASS but whole-volume scan exposed nonsemantic collisions.
+- **Action:** stop V2 prose until `V1-NORMALIZATION-01` completed.
+- **Gate:** `principia-v1-whole-crosscheck-01.md`.
+- **Result:** `V1 NORMALIZED PASS`; V2 released.
+
+## D009 — pause classical bridges for independent V2 handoff audit
+
+- **Observation:** II.1–II.9 each had local PASS, but the only prior whole-spine audit covered II.1–II.4.
+- **Alternatives:** enter lumpability immediately / audit the completed own layer first.
+- **Action:** hold classical bridges; run `principia-v2-own-layer-crosscheck-02.md`.
+- **Gate:** Agent v02 `IMPACT → REGRESSION → HANDOFF` discipline.
+- **Result:** global own-layer PASS after control corrections; no Freeze 01 erratum.
+
+## D010 — release classical bridges after Six handoff corrections
+
+- **Observation:** own-layer mathematics passes globally; dependency/status/ledger drift corrected.
+- **Action:** release classical bridge layer beginning with strong lumpability C13.
+- **Gate:** `principia-v2-own-layer-crosscheck-02.md` plus corrected Theorem Map 02 and classical comparison map.
+- **Result:** classical bridge phase is legal; CORE5 and Agent v02 unchanged.
 
 ---
 
