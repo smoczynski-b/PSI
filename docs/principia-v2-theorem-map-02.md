@@ -22,7 +22,7 @@ Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po:
 - migracji CAT/FACT C62–C66;
 - Proof/Source/Migration Audit 01;
 - V1 Normalized Pass;
-- wykonaniu i cross-checku V2.1–V2.4.
+- wykonaniu i cross-checku V2.1–V2.5.
 
 Każda jednostka V2 ma mieć:
 
@@ -98,7 +98,7 @@ No Freeze 01 erratum required.
 
 ---
 
-## 2. Następne corollarium — obowiązkowe przed dynamiką
+## 2. Wniosek redukcyjny — wykonany przed dynamiką
 
 ### II.5 — C32/C37 Task-information legality of reduction / quotient
 
@@ -108,7 +108,7 @@ For proposed reduction
 q:\Omega_c\to Z,
 \]
 
-exact preservation of task information requires
+exact preservation of task information is equivalent to
 
 \[
 \boxed{
@@ -116,13 +116,13 @@ exact preservation of task information requires
 }
 \]
 
-Equivalently the task quotient factors through `q` on `im q`.
+Equivalently the task quotient factors uniquely through `q` on `im q`.
 
 **DEPENDS ON:** II.4.  
-**STATUS:** `NEXT / READY`.  
-**MANDATORY BOUNDARY:** F57.  
+**STATUS:** `PASS`.  
+**MANDATORY BOUNDARIES:** F57 and F55.  
 **INTERPRETATION:** `task-information legal`, not automatically `fully contract-legal`.  
-**REGRESSION:** HIGHER-FIBRE; R02; corrected MINI gauge-observation case as scope warning.
+**REGRESSION:** HIGHER-FIBRE and R02 direct; corrected MINI gauge-observation case is a contract-scope warning.
 
 ---
 
@@ -134,8 +134,7 @@ For `delta:Omega->Omega`, equivalence `E`, quotient map `q`, a unique
 
 \[
 \bar\delta:\Omega/E\to\Omega/E,
-\qquad
-\bar\delta\circ q=q\circ\delta
+\qquad \bar\delta\circ q=q\circ\delta
 \]
 
 exists iff
@@ -144,7 +143,7 @@ exists iff
 xEy\Rightarrow\delta(x)E\delta(y).
 \]
 
-**STATUS:** `READY AFTER II.5`.  
+**STATUS:** `NEXT / READY`.  
 **CLASS:** classical congruence criterion / PSI-adapted dynamic quotient.  
 **BOUNDARY:** deterministic theorem; stochastic kernels require separate lumpability conditions.
 
@@ -235,9 +234,7 @@ These units come after the elementary and dynamic/history quotient spine.
 
 \[
 \boxed{
-\mathrm{II.1:II.4\ PASS}
-\to
-\mathrm{II.5\ REDUCTION/QUOTIENT}
+\mathrm{II.1:II.5\ PASS}
 \to
 \mathrm{II.6\ DYNAMICS}
 \to
