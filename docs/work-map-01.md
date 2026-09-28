@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL CROSSCHECK PASS / II.10–II.11 CLASSICAL BRIDGES PASS / PAIGE–TARJAN NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL PASS / CLASSICAL BRIDGES GLOBAL PASS / CAT-FACT-NORM NEXT`.
 
 Current control stack:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -15,181 +15,84 @@ Current control stack:
 - Regression Bank 01;
 - V1/V2 First Freeze 01 — PASS;
 - V1 I.1–I.6 — `NORMALIZED PASS`;
-- V2 Theorem Map 02 — current;
-- V2.1–V2.9 — own layer `GLOBAL CROSSCHECK PASS`;
-- V2.10 `Silna lumpowalność jako stochastyczne zejście dynamiki na iloraz` — PASS;
-- V2.11 `Równoważność Myhilla–Nerode’a jako dokładny iloraz przyszłych testów` — PASS;
-- `principia-v2-own-layer-crosscheck-02.md` — independent handoff/global own-layer PASS;
+- V2.1–V2.9 — `GLOBAL CROSSCHECK PASS`;
+- V2.10 strong lumpability — PASS;
+- V2.11 Myhill–Nerode — PASS;
+- V2.12 Paige–Tarjan — PASS after complexity-scope normalization;
+- `principia-v2-classical-bridges-crosscheck-01.md` — `GLOBAL CROSSCHECK PASS`;
 - Agent PSI Architecture v02 — current.
 
-### Current Volume-I verdict
+### V2 own-layer lock
 
 \[
 \boxed{
-\mathrm{PRINCIPIA\ V1\ FIRST\ PROSE\ PASS}
-=
-\mathrm{NORMALIZED\ PASS}.
+\mathrm{II.1:II.9}=\mathrm{GLOBAL\ PASS}.
 }
 \]
 
-No Freeze 01 erratum was required.
-
-### Current V2 own-layer verdict
+II.9 dependency classification after Errata 01:
 
 \[
 \boxed{
-\mathrm{V2.1:V2.9\ OWN\ LAYER}
-=
-\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
+\text{SOURCE/RESULT IDS}=C45+C59,
 }
 \]
-
-Core exact results exposed in theorem prose include:
-
-\[
-|q_{\mathcal T,c}(F_c(Y))|=1
-\iff
-F_c(Y)\neq\varnothing
-\land
-F_c(Y)^2\subseteq E_{\mathcal T,c},
-\]
-
-\[
-\ker_{eq}\rho\subseteq\ker_{eq}R
-\iff
-\exists!\,g:\operatorname{im}\rho\to W,
-\quad R=g\circ\rho,
-\]
-
-\[
-\ker_{eq}\rho\subseteq E_{\mathcal T,c},
-\qquad
-\ker_{eq}q\subseteq E_{\mathcal T,c},
-\]
-
-\[
-xEy\Longrightarrow\delta(x)E\delta(y),
-\]
-
-\[
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t},
-\qquad
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
-\]
-
-and, on the typed legal quotient domain,
-
-\[
-U_{\mathcal T,t}([H],\varepsilon,y)
-=
-[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
-\]
-
-### Classical bridge II.10 — strong lumpability
-
-For finite homogeneous Markov chains, strong/Kemeny–Snell lumpability of a partition `E` is exactly the block-transition stability condition
 
 \[
 \boxed{
-xEy
-\Longrightarrow
-P(x,C)=P(y,C)
-\quad\forall C\in S/E.
+\text{STRICT PROOF DEPENDENCY}=II.7\;(C57/C58)
++\text{typed extension definitions},
 }
 \]
 
-When it holds, the quotient transition law
+with II.6 as structural analogy and II.8 not a proof prerequisite.
 
-\[
-\bar P([x],C)=P(x,C)
-\]
-
-is representative-independent and the block process is Markov for every initial distribution.
-
-PSI scope lock:
+### Classical bridge lock
 
 \[
 \boxed{
-\text{task quotient}
-\not\Rightarrow
-\text{Markov lumpability}.
+\mathrm{II.10:II.12}
+=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
 }
 \]
 
-F61 permanently records the three-state witness separating static task adequacy from stochastic projectability.
+The three bridges remain type-distinct:
 
-### Classical bridge II.11 — Myhill–Nerode
+1. II.10 — Markov block masses;
+2. II.11 — all right-continuation acceptance tests;
+3. II.12 — relational stable partition + algorithm.
 
-For the exact language contract
-
-\[
-\Omega=\Sigma^*,
-\qquad
-R_w(u)=\mathbf 1_L(uw),
-\quad w\in\Sigma^*,
-\]
-
-we obtain
+No chain
 
 \[
-\boxed{
-E_{\mathcal T,L}
-=
-\bigcap_{w\in\Sigma^*}\ker_{eq}R_w
-=
-\equiv_L.
-}
+\text{Nerode}\Rightarrow\text{Paige–Tarjan}\Rightarrow\text{lumpability}
 \]
 
-The identity is exact under the full right-continuation test family. The finite-index/minimal-DFA theorem remains classical.
+is licensed without separate reduction theorems.
 
-Permanent scope lock:
+### Permanent scope locks
 
-\[
-\boxed{
-\text{arbitrary task equivalence}
-\neq
-\text{Nerode equivalence}
-}
-\]
-
-without the continuation-test contract.
-
-### Handoff corrections frozen at control level
-
-1. local theorem PASSes do not substitute for a whole-layer cross-check;
-2. strict proof dependency of II.9 is `II.7 + C59`; II.6 is structural analogy and II.8 is not a proof prerequisite;
-3. `classical-compare-01.md` is bound to Claim Registry v12; probabilistic bisimulation remains comparison-only with no current C-ID required;
-4. Decision/Epistemic Ledger records V1 normalization, V2 own-layer completion and the independent handoff audit;
-5. no CORE, Freeze 01 or Agent v02 erratum was required.
-
-### Scope locks
-
-- uniqueness/factorization only on representation images (F60);
-- global observer sufficiency is not per-record decidability;
-- factorization sufficiency is not statistical sufficiency;
-- task-information adequacy is not full contract legality (F57);
-- geometric symmetry does not automatically establish observation-compatible gauge (F55);
-- static task adequacy does not imply deterministic dynamic descent;
-- task quotient does not imply Markov lumpability (F61);
-- deterministic congruence is not stochastic lumpability;
-- arbitrary task equivalence is not Nerode equivalence without full continuation closure;
-- quotient-order coarseness is not bit/dimension/storage/compute minimality;
-- minimal DFA state count is not universal coding/compute minimality;
-- well-defined mathematical recurrence does not imply representative-free algorithmics, computability or efficiency (F43);
-- Go/LAZARUS/HCube/FS-STAT remain scoped regressions, not theorem substitutes.
+- F57: task-information adequacy != full contract legality;
+- F55: geometric symmetry != automatically legal observation gauge;
+- F60: factorization uniqueness only on representation image;
+- F61: task quotient != automatically Markov lumpability;
+- arbitrary task equivalence != Nerode equivalence without full continuation closure;
+- finite PSI instance != Paige–Tarjan applicability without PT1–PT4;
+- deterministic congruence != stochastic lumpability;
+- quotient-order/DFA-state minimality != universal coding/compute minimality;
+- mathematical recurrence != finite/efficient implementation (F43).
 
 ### Next
 
-1. build **II.12 — Paige–Tarjan C14** strictly as an algorithmic benchmark;
-2. type the finite transition/relational structure and initial partition;
-3. distinguish the mathematical target partition from the refinement algorithm computing it;
-4. state complexity only at the classical-source scope actually justified;
-5. prohibit `Paige–Tarjan = PSI` and `algorithm computes every PSI quotient` inflation;
-6. then CAT/FACT/FRAME/HIGHER;
-7. only after these imported/derived layers run a final whole-V2 cross-check.
+1. construct **CAT / FACT / NORM V2 prose layer** from C62/C63/C19-v2/C20/C66;
+2. preserve current canonical minimal CAT/FACT definitions;
+3. keep older ISO/HOR/REF/CRS calculus and factorization groupoid/homotopy layer as derived extensions unless explicitly needed;
+4. rerun MINI gauge-observation and F58/F59 regressions;
+5. then FRAME C22–C24;
+6. then HIGHER C29–C33;
+7. then whole-V2 cross-check.
 
-STOP condition: do not turn an algorithm for a specific finite stable partition problem into a universal PSI quotient procedure.
+STOP: no old-source automatic promotion and no universal homotopy-fibre interpretation of PSI-FACT.
 
 ---
 
@@ -198,34 +101,8 @@ STOP condition: do not turn an algorithm for a specific finite stable partition 
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW TYPED COUNTEREXAMPLE`.
 
 \[
-\boxed{
-\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).
-}
+\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
 \]
-
-Exact task-information adequacy:
-
-\[
-\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
-\]
-
-History specialization:
-
-\[
-\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
-\]
-
-Inference discipline:
-
-\[
-\boxed{
-\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
-\qquad
-\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
-}
-\]
-
-Task adequacy and full contract legality remain distinct.
 
 ---
 
@@ -233,53 +110,40 @@ Task adequacy and full contract legality remain distinct.
 
 **State:** `falsifier-registry-11 ACTIVE / REGRESSION-BANK-01 ACTIVE`.
 
-Mandatory boundaries:
-- R01 HCube — coarse representation;
-- R02 Go — history/memory compression and quotient update;
-- R03 FS-STAT — exact→stable/confidence;
-- F43 mathematical recurrence vs finite/efficient memory;
+Current high-value regressions:
+- R01 HCube;
+- R02 Go;
+- R03 FS-STAT;
+- F43 recurrence vs finite/efficient memory;
 - F55 gauge/observation mismatch;
-- F56 quotient rewrite well-definedness before confluence;
-- F57 task adequacy vs full contract legality;
-- F58 old-source auto-promotion;
-- F59 MINI vs general FACT;
-- F60 factorization uniqueness only on `im rho`;
-- F61 task quotient vs Markov lumpability conflation.
+- F56 quotient rewrite well-definedness;
+- F57 task adequacy/full legality;
+- F58 old-source promotion;
+- F59 MINI/general FACT conflation;
+- F60 uniqueness beyond `im rho`;
+- F61 task quotient/Markov lumpability conflation.
 
-Agent-process regression learned in handoff audit:
+Agent-process regression:
 
 \[
 \boxed{
-\text{local PASS sequence}
-\not\Rightarrow
-\text{whole-layer PASS}.
+\text{local PASS sequence}\not\Rightarrow\text{whole-layer PASS}.
 }
 \]
-
-This is a use of the existing IMPACT/HANDOFF gate, not a new Agent primitive.
 
 ---
 
 ## S3 — PSI AGENT
 
-**State:** `AGENT-PSI-ARCHITECTURE-02 CURRENT / HANDOFF AUDIT PASS WITH CONTROL CORRECTIONS`.
+**State:** `AGENT-PSI-ARCHITECTURE-02 CURRENT`.
 
-Current role:
-- semantic fidelity to freeze;
-- type/scope cross-check of theorem prose;
-- source/classical-status control;
-- impact/blast-radius audit;
-- regression binding;
-- explicit handoff at phase boundaries;
-- no Agent v03 without a missing-control witness.
+No missing-control witness; no v03.
 
 ---
 
 ## S4 — REALIZATIONS / LABORATORIES
 
-**State:** `HARDENING TRIAD COMPLETE / DEFERRED DURING V2 CLASSICAL BRIDGES`.
-
-HCube, Go, FS-STAT, LAZARUS remain benchmark/boundary material, not theorem substitutes.
+**State:** `HARDENING TRIAD COMPLETE / DEFERRED DURING PRINCIPIA V2`.
 
 ---
 
@@ -287,8 +151,7 @@ HCube, Go, FS-STAT, LAZARUS remain benchmark/boundary material, not theorem subs
 
 **State:** `RUNNING / WAIT`.
 
-Measured: browser pageviews and aggregate outbound research clicks.  
-Unobserved unless separately instrumented: confirmed destination arrivals, unique users, raw server requests.
+Measured: browser pageviews and aggregate outbound research clicks. Confirmed destination arrivals remain unobserved unless separately instrumented.
 
 ---
 
@@ -308,19 +171,11 @@ Success event:
 
 **State:** `VISUAL GRAMMAR FROZEN`.
 
-No global redesign during V2 bridge prose.
-
 ---
 
 ## S8 — SOURCES / GENEALOGY
 
 **State:** `PHYSICAL CURRENT CANON BOUND / GENEALOGY OPEN`.
-
-Current physical source:
-- repo `smoczynski-b/psi-model`;
-- commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
-- path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
-- blob `72d711a40c65376ee932809802622f3985ecb02a`.
 
 ---
 
@@ -332,23 +187,15 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.9\ GLOBAL\ PASS}
+\mathrm{II.1:II.9\ GLOBAL\ PASS}
 \to
-\mathrm{II.10\ LUMPABILITY\ PASS}
+\mathrm{II.10:II.12\ CLASSICAL\ GLOBAL\ PASS}
 \to
-\mathrm{II.11\ MYHILL\!\!-\!NERODE\ PASS}
+\mathrm{CAT/FACT/NORM\ NEXT}
 \to
-\mathrm{II.12\ PAIGE\!\!-\!TARJAN\ NEXT}.
-}
-\]
-
-Current legal phase:
-
-\[
-\boxed{
-\mathrm{PAIGE\!\!-\!TARJAN}
+\mathrm{FRAME}
 \to
-\mathrm{CAT/FACT/FRAME/HIGHER}
+\mathrm{HIGHER}
 \to
 \mathrm{V2\ WHOLE\ CROSSCHECK}.
 }
