@@ -14,7 +14,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.6.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.7.
 
 Każda jednostka V2 ma mieć:
 
@@ -140,17 +140,38 @@ exists iff
 **BOUNDARIES:** static task adequacy does not imply dynamic descent; deterministic theorem is not stochastic lumpability.  
 **PSI NOTE:** if `R∈R_T,c => R∘delta_c∈R_T,c` for all task quantities, then `E_T,c` is automatically a congruence for `delta_c`.
 
-### II.7 — C42 Exact history-memory adequacy
+### II.7 — C42 + C57/C58 Exact history-memory adequacy
 
-With future-task equivalence C57/C58:
+Future-task equivalence is defined by
+
+\[
+H\equiv_{\mathcal T,t}H'
+\iff
+\operatorname{Beh}_{\mathcal T}(H)
+\cong
+\operatorname{Beh}_{\mathcal T}(H'),
+\]
+
+where the rooted-tree isomorphism preserves root, node labels, edge labels and parent-child structure. C58 establishes that this is an equivalence relation.
+
+For
+
+\[
+\rho_t:\mathcal H_t\to Z_t,
+\]
+
+exact history-memory adequacy is
 
 \[
 \boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
 \]
 
-**STATUS:** `NEXT / READY`; former V2-GAP-01 is closed by C57–C59.  
-**DEPENDS ON:** II.4 + registered history equivalence.  
-**REGRESSION:** R02.
+Equivalently the history task quotient factors uniquely through `rho_t` on `im rho_t`.
+
+**STATUS:** `PASS`.  
+**DEPENDS ON:** II.4 + C57/C58.  
+**REGRESSION:** R02 Go; LAZARUS current-fibre insufficiency witness.  
+**BOUNDARY:** full history is not asserted to be bit-, state-, dimension-, storage- or computation-minimal.
 
 ### II.8 — C44 Coarsest exact history quotient
 
@@ -160,7 +181,7 @@ M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
 
 and every exact sufficient `rho_t` factors uniquely to it on `im rho_t`.
 
-**STATUS:** `READY`.  
+**STATUS:** `NEXT / READY`.  
 **DEPENDS ON:** II.2, II.7.  
 **BOUNDARY:** coarsest exact quotient in quotient order; not minimum bits/dimension/storage/compute.
 
@@ -221,9 +242,11 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 
 \[
 \boxed{
-\mathrm{II.1:II.6\ PASS}
+\mathrm{II.1:II.7\ PASS}
 \to
-\mathrm{II.7:II.9\ HISTORY}
+\mathrm{II.8\ HISTORY\ QUOTIENT}
+\to
+\mathrm{II.9\ HISTORY\ UPDATE}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
