@@ -16,33 +16,38 @@ Done:
 - source governance;
 - Decision / Epistemic Ledger 01;
 - Principia four-volume skeleton v02;
-- `V1-UNIT-MAP-01` with dependency / used-by / regression binding;
+- `V1-UNIT-MAP-01`;
+- `V2-THEOREM-MAP-01`;
 - CAT/FACT MINI claims migrated;
 - CLOSED-FRAME claims migrated;
 - LAZARUS agency claims normalized;
 - HIGHER-FIBRE claims migrated;
 - R4 pressure court recorded;
-- HCube normalized as representation-adequacy LAB/BENCHMARK;
-- Go memory/history quotient normalized as representation-adequacy LAB/BENCHMARK;
-- FS-STAT exact/stable/confidence boundary normalized.
+- HCube / Go / FS-STAT hardening completed.
 
-V1 scan result:
-- six structural units mapped;
-- technical FS-STAT claims kept out of foundational prose except as boundaries/cross-references;
-- C09/C42 are stated in V1 but proof placement belongs to V2;
-- `V1-GAP-01`: formal catalog-adequacy definition found in the 2026-07-26A source but not yet migrated to a current claim ID;
-- `V1-GAP-02`: exact classical source binding still required before freeze;
-- `V1-GAP-03`: proof-placement boundary must be preserved during V2 mapping.
+### V1 gaps
+
+- `V1-GAP-01`: formal catalog-adequacy definition found in 2026-07-26A source but not yet migrated to a current claim ID;
+- `V1-GAP-02`: exact classical source binding required before freeze;
+- `V1-GAP-03`: C09/C42 may be stated in V1, but theorem proofs belong in V2.
+
+### V2 gaps
+
+- `V2-GAP-01`: future-task history equivalence lacks a dedicated current registered definition;
+- `V2-GAP-02`: probabilistic bisimulation comparison exists but lacks a current C-ID;
+- `V2-GAP-03`: general CAT/FACT definitions are not fully represented by dedicated current C-IDs; MINI is registered but not a substitute for general definitions;
+- `V2-GAP-04`: exact source/hypothesis binding required for lumpability, Nerode, probabilistic bisimulation if migrated, Newman lemma, closed-frame classical geometry and higher-groupoid terminology;
+- `V2-GAP-05`: MINI proof requires an explicit proof audit of quotient rewrite well-definedness, critical-pair completeness and Newman hypotheses.
 
 Next:
-1. build `V2-THEOREM-MAP-01` with exact hypotheses, status, provenance, dependencies, used-by and regression IDs;
-2. audit `V1-GAP-01` against CANON-03 during source/proof pass — do not auto-promote the older definition;
-3. run proof/source/regression audit on V1+V2 units;
+1. run `PROOF-SOURCE-MIGRATION-AUDIT-01` across V1/V2;
+2. resolve V1-GAP-01 and V2-GAP-01…05 without narrative filling;
+3. issue current claim-registry update only for audited migrations/status changes;
 4. perform first V1/V2 freeze;
 5. only then begin polished chapter prose;
-6. resume PHISICA/LOGOS claim-by-claim migration after the first V1/V2 freeze.
+6. resume PHISICA/LOGOS claim-by-claim migration after first V1/V2 freeze.
 
-STOP condition: no polished chapter without claim IDs, source status, dependencies, blast radius and applicable regression IDs.
+STOP condition: no polished chapter without current claim IDs, source status, proof state, dependencies, blast radius and applicable regression IDs.
 
 ---
 
@@ -53,28 +58,22 @@ STOP condition: no polished chapter without claim IDs, source status, dependenci
 Current freeze:
 
 \[
-\boxed{
-\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c)
-}
+\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c)}
 \]
 
 with exact representation/reduction adequacy
 
 \[
-\boxed{
-\ker_{eq}\rho\subseteq E_{\mathcal T}
-}
+\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}}
 \]
 
-and, for histories,
+and history-memory specialization
 
 \[
-\boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
-}
+\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}}.
 \]
 
-Inference-quality discipline is now written as non-implications:
+Inference-quality discipline:
 
 \[
 \boxed{
@@ -84,13 +83,13 @@ Inference-quality discipline is now written as non-implications:
 }
 \]
 
-This is not a sixth semantic role in CORE5.
-
 Primitive-growth rule:
 
 \[
 \boxed{\mathrm{NO\ R4\ WITHOUT\ NEW\ TYPED\ COUNTEREXAMPLE}.}
 \]
+
+V1/V2 mapping does not alter CORE5.
 
 ---
 
@@ -99,36 +98,22 @@ Primitive-growth rule:
 **State:** `falsifier-registry-09` ACTIVE / `REGRESSION-BANK-01` ACTIVE.
 
 ### R01 — HCube
-- equal characteristic polynomial + equal operator norm can lose resolvent distinctions;
-- HCube separator does not imply HCube necessity/universality;
-- P9 and HCube remain distinct tasks;
-- metric/norm alignment required.
+Binds primarily to V2 representation adequacy T2.4.
 
 ### R02 — Go memory
-- task-relative memory sufficiency is `ker rho_t ⊆ ≡_T,t`;
-- no-ko/simple-ko/PSK/SSK form a representation regression ladder;
-- quotient minimality is not bit/dimension/computational minimality;
-- mathematical recurrency is not finite-memory/computability;
-- recovered source contains G0/G2/G3/G4 but no separate G1 statement.
+Binds to T2.7–T2.9 and V1 history/memory principles.
 
 ### R03 — FS-STAT
-- exact identifiability does not imply stable identifiability;
-- raw derivative noise amplification grows with derivative order;
-- Frenet torsion is non-uniformly unstable as curvature approaches zero;
-- Frenet/Bishop switching must be uncertainty/task driven, not based on a universal curvature constant;
-- confidence requires a probability model;
-- pointwise torsion inference does not imply global planarity;
-- quotient-level confidence remains open.
+Binds to the boundary after exact representation adequacy; it does not modify the exact set-level theorem.
 
-V1 binding:
-- I.3 task distinction/reduction → R01/R02;
-- I.4 history/memory → R02;
-- I.5 exact/stable/confidence → R03;
-- explicit `NONE` retained for units without a fixed Regression Bank witness.
+V2 mapping rule:
 
-Next:
-1. bind regressions to V2 theorem units;
-2. add further bank entries only when a new fixed witness is actually needed.
+\[
+\boxed{\text{theorem}\to\text{regression witness},\quad
+\text{not regression witness}\to\text{theorem status}.}
+\]
+
+Next: resolve theorem-level source/proof gaps before adding new bank entries.
 
 ---
 
@@ -136,17 +121,17 @@ Next:
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-V1 map run confirmed:
-- classifying all registry items as `claim` is too coarse for redaction;
-- V1 now separates `DEFINITION | THEOREM/LEMMA | BRIDGE | POLICY | BOUNDARY | BENCHMARK | OPEN | SOURCE-ONLY`;
-- `DEPENDS ON` and `USED BY` are both required so blast radius is visible;
-- source gaps remain gaps rather than being silently filled from older canon;
+V2 map run confirmed:
+- theorem map must distinguish self-contained PSI/quotient proofs, classical bridges and benchmarks;
+- missing C-ID is a migration problem, not permission to infer from memory;
+- `DEPENDS ON` and `USED BY` expose blast radius;
+- classical source precision is a freeze gate;
 - no new agent-control primitive was required.
 
 Next:
-1. use v02 for `V2-THEOREM-MAP-01`;
-2. run model-handoff regression only when an actual handoff occurs;
-3. preserve WORKING/FRONTIER/WAIT, ledger state and regression IDs across that handoff.
+1. use v02 for `PROOF-SOURCE-MIGRATION-AUDIT-01`;
+2. run model-handoff regression only on an actual handoff;
+3. preserve WORKING/FRONTIER/WAIT, ledger state and regression IDs.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -156,17 +141,9 @@ Next:
 
 **State:** FIRST HARDENING TRIAD COMPLETE / NOT A CURRENT BLOCKER.
 
-Done:
-1. `HCUBE-REGRESSION-01` — operator representation inadequacy;
-2. `GO-MEMORY-REGRESSION-01` — history/memory sufficiency;
-3. `FS-STAT-01` — sampled/noisy differential conditioning and inference boundary.
+HCube, Go and FS-STAT now serve as regression/examples attached to V2/V3. They do not replace theorem proofs.
 
-Next later audit order:
-1. PHISICA / operator reductions;
-2. SOP-11b;
-3. cultural laboratories.
-
-These remain deferred until after first V1/V2 freeze unless needed as a theorem/source witness.
+PHISICA / SOP / cultural laboratories remain deferred until after first V1/V2 freeze unless needed as a precise theorem/source witness.
 
 ---
 
@@ -174,9 +151,8 @@ These remain deferred until after first V1/V2 freeze unless needed as a theorem/
 
 **State:** RUNNING / WAIT.
 
-Verified semantic boundary:
-- browser pageviews and aggregate outbound research clicks are measured;
-- confirmed destination arrivals / unique users / raw server requests remain separate unobserved layers unless independently instrumented.
+Measured: browser pageviews and aggregate outbound research clicks.  
+Unobserved unless separately instrumented: confirmed destination arrivals, unique users, raw server requests.
 
 No optimization before baseline/sample.
 
@@ -204,55 +180,26 @@ No global redesign before measurement or an isolated non-contaminating implement
 
 ## S8 — SOURCES / GENEALOGY
 
-**State:** ACTIVE / SOURCE-BINDING NOW MATERIAL TO FREEZE.
+**State:** ACTIVE / SOURCE-BINDING IS NOW THE MAIN FREEZE GATE.
 
-Current source status:
-- HCube classical/operator provenance separated from PSI benchmark role;
-- Go RED-1 history quotient recovered; G1 remains a provenance gap;
-- FS/Bishop classical geometry separated from PSI statistical/contract packaging;
-- local polynomial derivative estimation explicitly classified as imported classical statistical machinery;
-- quotient-level PSI-STAT coverage remains OPEN rather than silently inferred;
-- formal `D_ADEQ^cat` catalog-adequacy definition recovered from `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A`, but current CANON-03 migration/status remains to be audited.
-
-Next:
-1. source-bind V2 theorem units;
-2. audit `V1-GAP-01` against CANON-03;
-3. continue PHISICA/LOGOS migration after first V1/V2 freeze;
-4. recover missing G1 only if an actual source becomes available.
+Priority source tasks:
+1. audit `D_ADEQ^cat` from 2026-07-26A against CANON-03;
+2. recover/register the future-task history equivalence definition;
+3. audit general CAT/FACT definitions against later typed canon;
+4. bind exact classical statements for Kemeny–Snell lumpability, Myhill–Nerode, Larsen–Skou if retained, Newman lemma, Bishop/RMF closed-frame results and weak-pullback terminology;
+5. continue PHISICA/LOGOS only after first V1/V2 freeze.
 
 ---
 
 # Current execution graph
 
-Primitive-pressure phase:
-
-\[
-\boxed{\mathrm{CLOSED}.}
-\]
-
-First hardening cycle:
-
-\[
-\boxed{
-\mathrm{HCube\ DONE}
-+
-\mathrm{Go\ DONE}
-+
-\mathrm{FS\!-\!STAT\ DONE}
-\to
-\mathrm{REGRESSION\ BANK\ 01\ DONE}.
-}
-\]
-
-Current primary phase:
-
 \[
 \boxed{
 \mathrm{V1\ UNIT\ MAP\ DONE}
++
+\mathrm{V2\ THEOREM\ MAP\ DONE}
 \to
-\mathrm{V2\ THEOREM\ MAP}
-\to
-\mathrm{PROOF/SOURCE/REGRESSION\ AUDIT}
+\mathrm{PROOF/SOURCE/MIGRATION\ AUDIT}
 \to
 \mathrm{FIRST\ V1/V2\ FREEZE}
 \to
