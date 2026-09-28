@@ -101,8 +101,11 @@ Format:
 - **New basis:** explicit derivative-error scaling and low-curvature torsion counterexample.
 - **Result:**
   \[
-  \mathrm{ID}_{exact}\neq\mathrm{ID}_{stable}\neq\mathrm{CONF}_{1-\alpha}.
+  \mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+  \qquad
+  \mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
   \]
+- **Correction:** use non-implication, not literal inequality between differently typed notions.
 - **Open:** global planarity inference and quotient-level confidence coverage.
 
 ## E011 — hardening cycle
@@ -112,6 +115,15 @@ Format:
 - **New basis:** all three completed with fixed witnesses/oracles.
 - **Result:** `REGRESSION-BANK-01` frozen as first hardening bank.
 - **Next status:** Principia V1/V2 redaction becomes primary.
+
+## E012 — Volume I unit/dependency scan
+
+- **Object:** Principia Volume I structure.
+- **Prior status:** Skeleton v02 listed thematic units and claim ranges but not a full dependency/blast-radius map.
+- **New basis:** `V1-UNIT-MAP-01` classification of C01–C56 by statement class, dependency, downstream use and regression binding.
+- **Result:** six V1 units are structurally usable, but `V1 FREEZE = NOT YET`.
+- **New gap:** formal catalog-adequacy definition exists in the 2026-07-26A source but is not a dedicated current C-ID; status `SOURCE FOUND → MIGRATION/AUDIT REQUIRED` (`V1-GAP-01`).
+- **Redaction correction:** C48–C50 and C53–C55 remain technical/laboratory material rather than being promoted into V1 foundations; C09/C42 may be stated in V1 but proved in V2.
 
 ---
 
@@ -158,7 +170,7 @@ Format:
 - **Alternatives:** add more laboratories / begin V1/V2 unit construction.
 - **Action:** begin V1/V2 unit map and theorem/source/regression audit.
 - **Gate:** current work map + skeleton v02.
-- **Expected result:** first CANON-03-consistent V1/V2 freeze before further PHISICA/LOGOS expansion.
+- **Result so far:** `V1-UNIT-MAP-01` completed; next step `V2-THEOREM-MAP-01`.
 
 ---
 
