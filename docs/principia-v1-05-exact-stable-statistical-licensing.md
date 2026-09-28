@@ -1,10 +1,10 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.5. Dokładna identyfikowalność, stabilność i licencja statystyczna
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md` z zachowanymi C48–C56  
-**Zakres:** C51–C52 jako zasady fundamentalne; C48–C50, C53–C55 jako granice i odsyłacze do warstwy technicznej FS-STAT. Bez ogólnej teorii statystycznej PSI.
+**Zakres:** C51–C52 jako zamrożone zasady fundamentalne; FS-STAT/R03 wyłącznie jako świadek graniczny. Szczegółowe rachunki kondycji, torsji, estymacji i testów pozostają w V2/V3.
 
 ---
 
@@ -12,12 +12,12 @@
 
 W I.2 i I.3 rozdzieliliśmy kandydatów zgodnych z danymi od klas zadaniowych. Na poziomie dokładnym można więc pytać, czy dane wyznaczają jedną klasę w ilorazie zadaniowym.
 
-To pytanie jest logiczne i zbiorowe. Dotyczy tego, czy przy **dokładnie ustalonym kontrakcie i dokładnie podanych danych** pozostaje więcej niż jedna możliwość istotna dla zadania.
+To pytanie jest logiczne i zbiorowe. Dotyczy tego, czy przy **ustalonym kontrakcie i ustalonych danych** pozostaje więcej niż jedna możliwość istotna dla zadania.
 
-Nie odpowiada jednak na dwa dalsze pytania:
+Nie odpowiada jednak automatycznie na dwa dalsze pytania:
 
 1. co stanie się z wynikiem, gdy dane zostaną nieznacznie zaburzone;
-2. z jakim prawdopodobieństwem procedura pokrywa prawdziwą wielkość lub klasę, gdy obserwacja jest losowa.
+2. czy istnieje probabilistyczna podstawa dla deklarowanego przedziału ufności, testu albo ryzyka.
 
 Są to trzy różne poziomy wnioskowania.
 
@@ -35,15 +35,15 @@ Dlatego obowiązuje rygiel:
 }
 \]
 
-Nie jest to zapis nierówności między trzema wielkościami. Jest to zapis **braku automatycznych implikacji** pomiędzy trzema odmiennymi rodzajami twierdzeń.
+Nie jest to nierówność pomiędzy trzema wielkościami. Jest to zapis **braku automatycznych implikacji** pomiędzy trzema odmiennymi klasami twierdzeń.
 
 ---
 
 ## 2. Poziom pierwszy — identyfikowalność dokładna
 
-Przez identyfikowalność dokładną rozumiemy w tym miejscu rozstrzygalność przy ustalonych danych i bez perturbacji wymagającej osobnego modelu błędu.
+Przez identyfikowalność dokładną rozumiemy tu rozstrzygalność przy ustalonych danych, zanim wprowadzimy osobny problem perturbacji albo model losowy.
 
-Na poziomie zadaniowym jej naturalnym obiektem jest obraz włókna zgodności w ilorazie zadaniowym:
+Na poziomie zadaniowym naturalnym obiektem jest obraz włókna zgodności w ilorazie zadaniowym:
 
 \[
 q_{\mathcal T,c}(F_c(Y)).
@@ -58,152 +58,63 @@ Pytanie dokładne brzmi:
 }
 \]
 
-Twierdzenie o dokładnej rozstrzygalności zostanie podane i udowodnione w Tomie II. Dla obecnego rozdziału istotne jest tylko to, że taki wynik jest twierdzeniem o **strukturze włókna i ilorazu**, nie o odporności na zaburzenia danych.
+Twierdzenie o dokładnej rozstrzygalności zostanie podane i udowodnione w Tomie II. Dla obecnego rozdziału istotne jest tylko to, że wynik dokładny jest twierdzeniem o **strukturze włókna i ilorazu**, a nie jeszcze o odporności na zmianę danych.
 
-Możliwe jest zatem, że dla każdego ustalonego \(Y\) odpowiedź jest jednoznaczna, lecz mapa
+Możliwe jest zatem, że dla danego \(Y\) wynik jest jednoznaczny, lecz mała perturbacja danych prowadzi do dużej zmiany wyniku albo do utraty jednoznaczności.
 
-\[
-Y\longmapsto q_{\mathcal T,c}(F_c(Y))
-\]
-
-jest bardzo czuła na małe zmiany \(Y\).
-
-Wtedy identyfikowalność dokładna zachodzi, ale problem jest źle uwarunkowany albo niestabilny.
+Wtedy dokładna identyfikowalność nie wystarcza do twierdzenia stabilności.
 
 ---
 
-## 3. Poziom drugi — stabilność wymaga geometrii perturbacji
+## 3. Poziom drugi — stabilność wymaga jawnej struktury perturbacji
 
-Słowo „stabilny” nie ma samodzielnego znaczenia matematycznego bez wskazania:
+Słowo „stabilny” nie ma dostatecznie określonego sensu matematycznego bez wskazania:
 
 - co jest perturbowane;
 - w jakiej przestrzeni;
-- względem jakiej topologii, metryki lub normy;
-- jaka wielkość wyjściowa jest kontrolowana;
+- względem jakiej topologii, metryki, normy albo innej struktury kontroli;
+- jaka wielkość wyjściowa jest śledzona;
 - jaka tolerancja jest wymagana przez zadanie.
 
-Dlatego twierdzenie stabilności musi mieć co najmniej postać schematu
+Dlatego twierdzenie stabilności ma inny typ niż twierdzenie dokładnej identyfikowalności. Schematycznie wymaga ono relacji postaci
 
 \[
 \boxed{
-\text{perturbacja wejścia}
+\text{mała legalna perturbacja wejścia}
 \to
-\text{kontrola zmiany wyniku zadaniowego}.
+\text{kontrolowana zmiana wyniku zadaniowego}.
 }
 \]
 
-Jeżeli dane należą do przestrzeni metrycznej \((\mathcal Y,d_Y)\), a wynik do przestrzeni z odległością zadaniową \(d_{\mathcal T}\), stabilność może być wyrażona warunkowo przez oszacowanie typu
-
-\[
-d_{\mathcal T}(S(Y),S(Y'))
-\le
-\omega(d_Y(Y,Y')),
-\]
-
-gdzie \(S\) jest odpowiednio otypowanym operatorem rozwiązania lub reprezentacją wyniku, a \(\omega(r)\to0\) dla \(r\to0\).
-
-Ten schemat nie jest nowym twierdzeniem PSI. Pokazuje jedynie, że **stabilność wymaga dodatkowej struktury**, której nie ma w samym stwierdzeniu dokładnej identyfikowalności.
-
-W szczególności z
+Sama równość
 
 \[
 |q_{\mathcal T,c}(F_c(Y))|=1
 \]
 
-nie wynika żadna granica błędu dla danych \(Y'\) bliskich \(Y\), dopóki kontrakt nie określi sensu „bliskości” oraz mapy, której ciągłość lub uwarunkowanie badamy.
+nie zawiera jeszcze topologii perturbacji ani oszacowania ciągłości. Nie daje więc automatycznie granicy błędu dla danych bliskich \(Y\).
+
+Stabilność jest dodatkowym wymaganiem kontraktu i musi być dowiedziona w geometrii właściwej dla danego problemu.
 
 ---
 
-## 4. Świadek graniczny: torsja przy zanikającej krzywiźnie
+## 4. FS-STAT jako świadek granicy, nie fundament statystyki PSI
 
-FS-STAT dostarcza konkretnego kontrprzykładu przeciwko utożsamieniu dokładnej definicji współrzędnej z jej stabilnym odzyskiwaniem.
+Regres FS-STAT dostarcza konkretnego przykładu, w którym wielkość poprawnie zdefiniowana w reżimie dokładnym staje się źle uwarunkowana przy zbliżaniu się do osobliwej warstwy geometrycznej.
 
-Dla rodziny
+Szczegóły rachunku — rodzina krzywych, dokładne wzory krzywizny i torsji, oszacowania błędów różnic skończonych oraz regularizacja pochodnych — należą do warstwy technicznej V2/V3.
 
-\[
-\gamma_{\varepsilon,\omega}(s)
-=
-\bigl(s,\varepsilon\cos(\omega s),
-\varepsilon\sin(\omega s)\bigr)
-\]
-
-mamy dokładnie
-
-\[
-\kappa_{\varepsilon,\omega}
-=
-\frac{\varepsilon\omega^2}
-{1+\varepsilon^2\omega^2},
-\]
-
-oraz
-
-\[
-\tau_{\varepsilon,\omega}
-=
-\frac{\omega}
-{1+\varepsilon^2\omega^2}.
-\]
-
-Dla ustalonego \(\omega\), gdy
-
-\[
-\varepsilon\to0,
-\]
-
-krzywa zbiega do prostej, krzywizna dąży do zera, ale torsja dąży do \(\omega\).
-
-Dla dwóch różnych \(\omega_1\neq\omega_2\) otrzymujemy więc dwie rodziny krzywych zbiegające do tej samej prostej, podczas gdy ich torsje pozostają rozdzielone.
-
-Stąd:
+W Tomie I zachowujemy tylko konsekwencję metodologiczną:
 
 \[
 \boxed{
-\text{klasyczna torsja Freneta nie ma ciągłego przedłużenia przez warstwę }\kappa=0.
+\text{dokładna definicja współrzędnej}
+\not\Rightarrow
+\text{jednolita stabilność jej odzyskiwania}.
 }
 \]
 
-Wniosek jest ograniczony. Nie mówi, że „torsja jest zła” ani że Frenet jest zawsze niestabilny. Mówi, że nie można żądać **jednolitej stabilności torsji Freneta na klasie dopuszczającej zbliżanie się do zerowej krzywizny**.
-
-To wystarcza, aby obalić automatyczną implikację
-
-\[
-\mathrm{ID}_{\rm exact}
-\Rightarrow
-\mathrm{ID}_{\rm stable}.
-\]
-
----
-
-## 5. `UNRESOLVED` jest legalnym wynikiem
-
-Jeżeli warunki potrzebne do stabilnego wniosku nie są certyfikowane, system nie powinien zastępować braku prawa do wniosku wygodną wartością liczbową.
-
-Legalny status może brzmieć:
-
-\[
-\boxed{\mathrm{UNRESOLVED}.}
-\]
-
-W przykładzie Frenet/Bishop, jeżeli nie można certyfikować mianownika torsji dostatecznie daleko od zera przy zadanej tolerancji, właściwy wynik ma postać
-
-\[
-\boxed{
-\mathrm{FRENET\ UNRESOLVED}
-\to
-\mathrm{BISHOP}.
-}
-\]
-
-Nie oznacza to
-
-\[
-\kappa=0.
-\]
-
-Oznacza jedynie, że bieżący protokół nie daje prawa do stabilnego użycia współrzędnych Freneta z wymaganą dokładnością.
-
-To rozdzielenie jest ogólne:
+oraz drugi rygiel:
 
 \[
 \boxed{
@@ -213,67 +124,41 @@ To rozdzielenie jest ogólne:
 }
 \]
 
----
-
-## 6. Próbkowanie i szum tworzą nowy kontrakt
-
-Twierdzenie dokładne, sformułowane dla pełnych danych \(Y\), nie może zostać automatycznie przeniesione na skończone, zaszumione próbki.
-
-Jeżeli obserwujemy
+Jeżeli protokół nie potrafi wykazać warunków potrzebnych do stabilnego użycia danej reprezentacji, legalnym wynikiem może być
 
 \[
-Y_j=\gamma(t_j)+\varepsilon_j,
+\boxed{\mathrm{UNRESOLVED}.}
 \]
 
-to zmienia się kontrakt obserwacyjny. Trzeba określić co najmniej:
-
-- schemat próbkowania;
-- model błędu albo deterministyczną granicę szumu;
-- sposób estymacji pochodnych lub innych wielkości pośrednich;
-- regularizację;
-- kryterium stabilności wymagane przez zadanie.
-
-FS-STAT pokazuje jawnie, że surowe różnicowanie numeryczne wzmacnia szum wraz z rzędem pochodnej. Dla jednego z badanych kontraktów otrzymano oszacowania
-
-\[
-\|\widehat d_1-\gamma'\|
-\le
-\frac{M_3}{6}h^2+\frac{\delta}{h},
-\]
-
-\[
-\|\widehat d_2-\gamma''\|
-\le
-\frac{M_4}{12}h^2+\frac{4\delta}{h^2},
-\]
-
-\[
-\|\widehat d_3-\gamma'''\|
-\le
-\frac{M_5}{4}h^2+\frac{3\delta}{h^3}.
-\]
-
-W Tomie I oszacowania te mają status **świadka kondycji**, nie uniwersalnego twierdzenia o wszystkich estimatorach i wszystkich modelach szumu.
-
-Ich funkcja jest metodologiczna: pokazują, że „więcej próbek” i „dokładna formuła różniczkowa” nie wystarczają jeszcze do stabilnej rekonstrukcji.
+Nie należy zastępować tej odpowiedzi arbitralną wartością tylko dlatego, że procedura obliczeniowa wymaga liczby.
 
 ---
 
-## 7. Poziom trzeci — ufność wymaga modelu probabilistycznego
+## 5. Próbkowanie, szum i regularizacja zmieniają problem
+
+Twierdzenie dokładne sformułowane dla pełnych danych nie może zostać automatycznie przeniesione na dane skończone, zaszumione albo pośrednio rekonstruowane.
+
+Wprowadzenie próbkowania i błędu wymaga jawnego określenia między innymi:
+
+- schematu próbkowania;
+- modelu błędu albo deterministycznej granicy zakłóceń;
+- sposobu rekonstrukcji wielkości pośrednich;
+- regularizacji, jeśli jest używana;
+- kryterium stabilności względem zadania.
+
+Są to dodatkowe elementy protokołu. Nie wolno przedstawiać ich jako konsekwencji samego twierdzenia dokładnego.
+
+Regularizacja może być potrzebna do uzyskania stabilnej procedury, lecz stanowi dodatkową regułę. Nie należy jej traktować jak informacji, którą zawierały same dane.
+
+---
+
+## 6. Poziom trzeci — ufność wymaga kontraktu probabilistycznego
 
 Stabilność deterministyczna nie jest tym samym co pokrycie probabilistyczne.
 
-Załóżmy, że potrafimy wykazać deterministycznie
+Nawet jeśli dla pewnego protokołu potrafimy podać deterministyczną granicę błędu, nie wynika z niej automatycznie stwierdzenie o prawdopodobieństwie \(1-\alpha\).
 
-\[
-\|\widehat\theta-	heta\|
-\le
-\eta.
-\]
-
-Taki wynik może być bardzo użyteczny, ale sam w sobie nie definiuje zdarzenia losowego o prawdopodobieństwie \(1-\alpha\).
-
-Aby sformułować częstotliwościowe stwierdzenie ufności, potrzebny jest model probabilistyczny, na przykład jawnie określony rozkład błędów, schemat losowania albo inna struktura pozwalająca zdefiniować prawdopodobieństwo procedury pokrycia.
+Aby sformułować częstotliwościowe stwierdzenie ufności, potrzebna jest jawna struktura probabilistyczna: model losowości, założenia dotyczące próbkowania lub zakłóceń oraz procedura, dla której definiuje się pokrycie.
 
 Dlatego:
 
@@ -281,7 +166,7 @@ Dlatego:
 \boxed{
 \text{ograniczony deterministycznie szum}
 \not\Rightarrow
-\text{przedział ufności}.
+\text{przedział ufności}
 }
 \]
 
@@ -295,56 +180,36 @@ oraz ogólniej:
 }
 \]
 
-Stwierdzenie ufności jest legalne dopiero po wskazaniu jawnego kontraktu probabilistycznego i założeń, na których opiera się pokrycie.
+Częstotliwościowa licencja statystyczna istnieje dopiero względem jawnie ustalonego modelu i jego założeń.
 
 ---
 
-## 8. Model probabilistyczny nie jest dekoracją
+## 7. Model probabilistyczny jest częścią kontraktu
 
-Jeżeli wprowadza się model, na przykład
+Jeżeli kontrakt wprowadza rozkład błędów, zależność czasową, schemat losowania albo inny mechanizm probabilistyczny, nie jest to dekoracja zapisu. Zmienia typ problemu wnioskowania.
 
-\[
-\varepsilon_j
-\stackrel{iid}{\sim}
-N(0,\sigma^2I),
-\]
+Zmiana modelu może zmienić poprawność przedziałów, testów, oszacowań ryzyka i asymptotyk. Dlatego twierdzenie probabilistyczne powinno zawsze wskazywać model, względem którego jest prawdziwe.
 
-to nie jest to neutralny sposób zapisania „małego szumu”. Jest to dodatkowa część kontraktu.
-
-Zmiana rozkładu, zależności czasowej, heteroskedastyczności, mechanizmu brakujących danych albo schematu próbkowania może zmienić poprawność przedziałów, testów i asymptotyk.
-
-Dlatego każde stwierdzenie typu
-
-\[
-\Pr(\theta\in C_{1-\alpha}(Y))\ge1-\alpha
-\]
-
-musi być czytane jako twierdzenie względem jawnie ustalonego modelu/procedury, a nie jako własność samej wielkości \(\theta\).
-
-PSI nie tworzy tu nowej semantyki prawdopodobieństwa. Wymaga jedynie, aby probabilistyczna licencja była jawna i nie była zastępowana językiem dokładnej identyfikowalności.
+PSI nie wprowadza tu własnej interpretacji prawdopodobieństwa. Wymaga tylko, aby przejście od danych do twierdzenia probabilistycznego miało jawną licencję, zamiast korzystać z języka dokładnej identyfikowalności jako substytutu.
 
 ---
 
-## 9. Estymator nie jest tym samym co identyfikowalność
+## 8. Estymator nie jest identyfikowalnością
 
-W praktyce można posiadać algorytm
+Można posiadać algorytm
 
 \[
 \widehat\theta=A(Y),
 \]
 
-który zawsze zwraca liczbę lub reprezentanta.
+który dla każdego wejścia zwraca liczbę, model albo reprezentanta.
 
-Sam fakt, że algorytm zwraca wynik, nie dowodzi:
+Sam fakt istnienia takiej procedury nie dowodzi:
 
-- że parametr jest dokładnie identyfikowalny;
-- że estimator jest stabilny;
-- że jest zgodny;
-- że ma małe ryzyko;
-- że jego przedział ma deklarowane pokrycie;
+- dokładnej identyfikowalności;
+- stabilności;
+- poprawnego pokrycia probabilistycznego;
 - że wybrany reprezentant jest jedynym kandydatem dopuszczonym przez dane.
-
-Regularizacja może być niezbędna do obliczeń i stabilności, ale wprowadza dodatkową regułę wyboru. Nie należy przedstawiać jej jako informacji, którą zawierały same dane.
 
 Dlatego należy rozdzielić:
 
@@ -362,72 +227,43 @@ od
 }
 \]
 
+Algorytm może rozstrzygać nawet wtedy, gdy matematyczna podstawa do tak silnego wniosku nie istnieje. Wtedy wynik algorytmu jest wynikiem procedury, a nie automatycznie identyfikacją właściwości świata.
+
 ---
 
-## 10. Punktowy test nie jest automatycznie twierdzeniem globalnym
+## 9. Lokalna licencja nie daje automatycznie globalnej
 
-FS-STAT daje jeszcze jedną użyteczną granicę.
+Także po wprowadzeniu warstwy statystycznej trzeba pilnować zakresu twierdzenia.
 
-Nawet jeśli w certyfikowanym sektorze można zbudować punktowy test
+Wynik punktowy, lokalny lub ważny na certyfikowanym podzbiorze dziedziny nie może być automatycznie rozszerzony na całą trajektorię, przedział, przestrzeń parametrów albo wszystkie klasy reprezentacji.
 
-\[
-H_{0,t}:\tau(t)=0,
-\]
+Pełne przejście od lokalnego testu do globalnego twierdzenia wymaga osobnego argumentu i pozostaje poza fundamentem tego rozdziału.
 
-nie wynika z tego automatycznie poprawny test twierdzenia
-
-\[
-H_0:\tau\equiv0
-\quad\text{na całym przedziale}.
-\]
-
-Przejście od punktowych decyzji do twierdzenia globalnego wymaga osobnego aparatu: na przykład jednoczesnego pasma, statystyki globalnej albo innej procedury kontrolującej błąd dla całego obiektu funkcyjnego.
-
-W obecnym stanie projektu globalny test płaskości pozostaje otwartym problemem warstwy FS-STAT.
-
-Zasada ogólna brzmi:
+Zatem:
 
 \[
 \boxed{
-\text{lokalna licencja statystyczna}
+\text{lokalna licencja}
 \not\Rightarrow
-\text{globalna licencja statystyczna}.
+\text{globalna licencja}.
 }
 \]
 
----
-
-## 11. Niepewność na współrzędnych i niepewność na ilorazie
-
-Jeżeli właściwym obiektem zadaniowym jest klasa równoważności, przedziały ufności dla poszczególnych współrzędnych reprezentanta nie muszą automatycznie definiować poprawnego zbioru ufności na ilorazie.
-
-Przykładowo dane Bishopa posiadają prezentacyjną swobodę
-
-\[
-SO(2),
-\]
-
-a więc naturalnym obiektem może być klasa modulo obrót płaszczyzny normalnej.
-
-Wtedy statystyczne pytanie powinno dotyczyć odpowiednio zdefiniowanego zbioru w przestrzeni klas, a nie przypadkowo wybranych współrzędnych jednego reprezentanta.
-
-Obecny projekt nie posiada zamrożonego ogólnego twierdzenia o pokryciu na takich ilorazach.
-
-Dlatego:
-
-\[
-\boxed{
-\text{coordinate confidence}
-\not\Rightarrow
-\text{quotient-level confidence}.
-}
-\]
-
-Jest to **otwarta granica**, nie nowy wynik statystyczny.
+Szczegółowy problem globalnego testu płaskości z FS-STAT pozostaje poza bieżącym freeze V1.
 
 ---
 
-## 12. Trzy niezależne bramki
+## 10. Niepewność na ilorazach pozostaje osobnym problemem
+
+Jeżeli właściwym obiektem zadaniowym jest klasa równoważności, zwykłe przedziały dla współrzędnych wybranego reprezentanta nie muszą automatycznie dostarczać poprawnej procedury pokrycia na przestrzeni klas.
+
+Obecny freeze V1/V2 nie zawiera ogólnego twierdzenia o statystycznym pokryciu na takich ilorazach.
+
+Dlatego temat ten pozostaje poza fundamentem I.5 jako **otwarta warstwa przyszłej PSI-STAT**, a nie jako brakujące twierdzenie CORE5.
+
+---
+
+## 11. Trzy niezależne bramki
 
 Cały rozdział można skondensować do trzech pytań.
 
@@ -443,7 +279,7 @@ Cały rozdział można skondensować do trzech pytań.
 
 \[
 \boxed{
-\text{czy małe legalne perturbacje danych powodują kontrolowaną zmianę wyniku?}
+\text{czy legalne perturbacje danych powodują kontrolowaną zmianę wyniku?}
 }
 \]
 
@@ -451,7 +287,7 @@ Cały rozdział można skondensować do trzech pytań.
 
 \[
 \boxed{
-\text{czy jawny model probabilistyczny uzasadnia deklarowane pokrycie/test/ryzyko?}
+\text{czy jawny model probabilistyczny uzasadnia deklarowane pokrycie, test lub ryzyko?}
 }
 \]
 
@@ -459,17 +295,13 @@ Przejście przez wcześniejszą bramkę nie zastępuje następnej:
 
 \[
 \boxed{
-E
-\not\Rightarrow
-S,
+E\not\Rightarrow S,
 \qquad
-S
-\not\Rightarrow
-P.
+S\not\Rightarrow P.
 }
 \]
 
-W szczególności legalny raport może mieć postać:
+Legalny raport może zatem mieć postać
 
 \[
 \boxed{
@@ -481,29 +313,28 @@ W szczególności legalny raport może mieć postać:
 }
 \]
 
-Nie jest to sprzeczność. Jest to poprawne rozdzielenie poziomów wiedzy.
+Nie jest to sprzeczność. Jest to jawne rozdzielenie poziomów wiedzy.
 
 ---
 
-## 13. Czego ten rozdział nie twierdzi
+## 12. Czego ten rozdział nie twierdzi
 
 I.5 nie ustanawia:
 
 - jednej uniwersalnej definicji stabilności dla wszystkich dziedzin;
 - jednego modelu szumu dla PSI;
-- nowego rachunku prawdopodobieństwa;
+- nowej teorii prawdopodobieństwa;
 - uniwersalnego estymatora;
-- automatycznej procedury wyboru regularizacji;
+- automatycznej procedury doboru regularizacji;
 - ogólnego testu globalnej płaskości;
-- gotowej teorii przedziałów ufności na przestrzeniach ilorazowych;
-- twierdzenia, że Bishop usuwa wszystkie problemy estymacyjne;
+- ogólnej teorii przedziałów ufności na przestrzeniach ilorazowych;
 - prawa do przenoszenia wyników dokładnych na dane próbkowane bez nowego kontraktu.
 
-FS-STAT pozostaje laboratorium/regresem stabilności i statystycznej licencji, nie fundamentem osobnej ontologii statystycznej PSI.
+Szczegóły FS-STAT pozostają laboratorium i regresem stabilności/statystycznej licencji. Nie stają się fundamentem osobnej ontologii statystycznej PSI.
 
 ---
 
-## 14. Przejście do I.6
+## 13. Przejście do I.6
 
 Po I.1–I.5 aparat ma już trzy rodzaje granic:
 
@@ -513,4 +344,4 @@ Po I.1–I.5 aparat ma już trzy rodzaje granic:
 
 Pozostaje zebrać zasady, które zapobiegają ich cichemu obchodzeniu podczas rozbudowy teorii.
 
-Następna jednostka będzie więc poświęcona metodologicznym granicom PSI: statusom twierdzeń, źródłom, zakazowi automatycznej promocji starszych aparatów, zasadzie `NO R4 WITHOUT COUNTEREXAMPLE` oraz rozdzieleniu reprezentacji od świata.
+Następna jednostka będzie więc poświęcona metodologicznym granicom PSI: statusom twierdzeń, źródłom, zasadzie pierwszeństwa późniejszego kanonu, zakazowi automatycznej promocji starszych aparatów, rygorowi kontrprzykładu oraz zamrożeniu rozrostu rdzenia.
