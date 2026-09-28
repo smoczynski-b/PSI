@@ -9,13 +9,14 @@
 **Regression source:** `regression-bank-01.md`  
 **Freeze:** `principia-v1-v2-freeze-01.md`  
 **Early spine audit:** `principia-v2-spine-crosscheck-01.md` (`II.1–II.4`)  
-**Current whole-own-layer audit:** `principia-v2-own-layer-crosscheck-02.md` (`II.1–II.9`)
+**Whole-own-layer audit:** `principia-v2-own-layer-crosscheck-02.md` (`II.1–II.9`)  
+**Handoff errata:** `principia-v2-own-layer-crosscheck-02-errata-01.md`
 
 ---
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass, niezależnym handoff-cross-checku II.1–II.9 oraz bieżącej klasycznej warstwie mostów.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass, niezależnym handoff-cross-checku II.1–II.9, jego erracie grafu zależności oraz bieżącej klasycznej warstwie mostów.
 
 Każda jednostka V2 ma mieć:
 
@@ -23,9 +24,9 @@ Każda jednostka V2 ma mieć:
 
 Obowiązuje rozdział:
 
-`PROOF DEPENDENCY | STRUCTURAL ANALOGY | DOWNSTREAM USE`.
+`PROOF DEPENDENCY | SOURCE/RESULT ID | STRUCTURAL ANALOGY | DOWNSTREAM USE`.
 
-Nie wolno wpisywać wszystkich trzech relacji jako `DEPENDS ON`, ponieważ sztucznie zwiększa to blast radius.
+Nie wolno wpisywać tych relacji zbiorczo jako `DEPENDS ON`, ponieważ sztucznie zwiększa to blast radius i może tworzyć pozorne samoodwołanie.
 
 ---
 
@@ -222,7 +223,7 @@ D_t\subseteq\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1},
 \delta_t:D_t\to\mathcal H_{t+1}
 \]
 
-be the typed legal extension map. Under C59, legality of a literal label and the future-task class of its successor are invariant under `equiv_T,t`.
+be the typed legal extension map. Literal-label-preserving future-tree equivalence from II.7 implies representative-invariant legality and successor class.
 
 Hence the quotient-domain
 
@@ -251,15 +252,17 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 \]
 
 **STATUS:** `PASS`.  
-**STRICT PROOF DEPENDENCY:** II.7 + C59.  
+**SOURCE / RESULT IDS:** C45 + C59.  
+**STRICT PROOF DEPENDENCY:** II.7, specifically C57/C58 plus the typed legal-extension definitions.  
 **STRUCTURAL ANALOGY:** II.6 (general deterministic quotient descent).  
 **NOT A PROOF PREREQUISITE:** II.8 (coarsest/minimal quotient result).  
 **BOUNDARIES:** domain invariance and successor-class invariance are both required; mathematical recurrence does not imply finite memory, computability, representative-free algorithmics or efficiency.  
-**REGRESSION:** R02 / F43.
+**REGRESSION:** R02 / F43.  
+**AUDIT NOTE:** `principia-v2-own-layer-crosscheck-02-errata-01.md` corrects the Six handoff dependency classification.
 
 ### Own-layer verdict
 
-After `principia-v2-own-layer-crosscheck-02.md`:
+After `principia-v2-own-layer-crosscheck-02.md` plus Errata 01:
 
 \[
 \boxed{
