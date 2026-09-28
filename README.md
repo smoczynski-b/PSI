@@ -44,6 +44,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.5 — Task-information legality of reduction/quotient](docs/principia-v2-05-task-information-legality-of-reduction.md)
 - [Principia V2.6 — Deterministic quotient dynamics](docs/principia-v2-06-deterministic-quotient-dynamics.md)
 - [Principia V2.7 — Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
+- [Principia V2.8 — Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
 - [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
@@ -230,13 +231,7 @@ exists iff
 
 **Status:** `PASS`.
 
-Static task adequacy does not imply dynamic descent. If the task closure is stable under
-
-\[
-R\mapsto R\circ\delta_c,
-\]
-
-then the canonical task equivalence is automatically a congruence for `delta_c`. The theorem is deterministic and must not be conflated with stochastic lumpability.
+Static task adequacy does not imply dynamic descent. If the task closure is stable under \(R\mapsto R\circ\delta_c\), then the canonical task equivalence is automatically a congruence for `delta_c`. The theorem is deterministic and must not be conflated with stochastic lumpability.
 
 ### V2.7 — exact history-memory adequacy
 
@@ -268,15 +263,45 @@ q_{\mathcal T,t}=f_t\circ\rho_t.
 }
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+**Status:** `PASS`.
 
 This does not require storing the full history and does not imply bit-, state-, dimension-, storage- or computation-minimality. Go and LAZARUS remain scoped regression witnesses.
+
+### V2.8 — coarsest exact history quotient
+
+\[
+\boxed{
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}.
+}
+\]
+
+For every exact memory \(\rho_t\),
+
+\[
+\boxed{
+q_{\mathcal T,t}=f_t\circ\rho_t,
+\qquad
+f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t}.
+}
+\]
+
+For quotient representations `q_Q`, exactness is equivalent to
+
+\[
+Q\subseteq\equiv_{\mathcal T,t}.
+\]
+
+Hence \(\equiv_{\mathcal T,t}\) is the largest admissible exact equivalence relation and \(M_{\mathcal T,t}\) the coarsest exact history quotient in quotient order.
+
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+The claim is about quotient/information order. It does not imply minimum bits, dimension, storage, update cost or computation. F60 continues to restrict factorization/minimality claims to `im rho_t`, not unused codomain points.
 
 ### Current verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.7}=\mathrm{PASS}.
+\mathrm{V2.1:V2.8}=\mathrm{PASS}.
 }
 \]
 
@@ -284,17 +309,17 @@ Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.8\ —\ coarsest\ exact\ history\ quotient}.
+\mathrm{V2.9\ —\ recursive\ quotient\ update}.
 }
 \]
 
-The next boundary is quotient-order minimality:
+The next boundary is dynamic/algorithmic:
 
 \[
 \boxed{
-\text{coarsest exact quotient}
+\text{well-defined mathematical recurrence}
 \not\Rightarrow
-\text{minimum bits/dimension/storage/compute}.
+\text{finite memory / computability / efficiency}.
 }
 \]
 
@@ -322,9 +347,7 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.7\ PASS}
-\to
-\mathrm{V2.8\ HISTORY\ QUOTIENT}
+\mathrm{V2.1:V2.8\ PASS}
 \to
 \mathrm{V2.9\ HISTORY\ UPDATE}
 \to
