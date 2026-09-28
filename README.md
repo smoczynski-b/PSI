@@ -31,6 +31,8 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Principia V1 I.1 — Contract and semantic roles](docs/principia-v1-01-contract-semantic-roles.md)
 - [Principia V1 I.2 — Observation, compatible fibre and catalog adequacy](docs/principia-v1-02-observation-fibre-catalog-adequacy.md)
+- [Principia V1 I.3 — Task-relative distinction and legal reduction](docs/principia-v1-03-task-distinction-legal-reduction.md)
+- [Principia V1 I.4 — History, memory and future-task semantics](docs/principia-v1-04-history-memory-future-semantics.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -73,7 +75,13 @@ Exact task-information adequacy is
 \boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
-The proof audit sharpened the scope:
+For history/memory representations:
+
+\[
+\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
+\]
+
+The proof audit and prose cross-checks preserve the scope distinction:
 
 \[
 \boxed{
@@ -133,35 +141,28 @@ The first mathematical/source freeze for Volumes I and II has passed:
 }
 \]
 
-It freezes:
-
-- definitions and semantic roles;
-- theorem statements and hypotheses;
-- source/classical status;
-- dependencies and principal boundaries;
-- regression obligations.
-
-It does **not** freeze final prose or typography and does not assert universal completeness of CORE5.
+It freezes definitions, theorem statements and hypotheses, source/classical status, dependencies, principal boundaries and regression obligations. It does **not** freeze final prose or typography and does not assert universal completeness of CORE5.
 
 ## Principia V1 prose status
 
 The first prose pass now contains:
 
 - `I.1 — Kontrakt i role semantyczne` — `CROSS-CHECK PASS`;
-- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu` — `CROSS-CHECK PASS`.
+- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu` — `CROSS-CHECK PASS`;
+- `I.3 — Rozróżnienie zadaniowe i legalna redukcja` — `CROSS-CHECK PASS`;
+- `I.4 — Historia, pamięć i przyszła semantyka zadania` — `CROSS-CHECK PASS`.
 
-The I.2 cross-check preserved an important distinction:
+Cross-check corrections have removed four recurrent scope inflations:
 
-\[
-F_c(Y)=\varnothing
-\]
-
-shows inconsistency of the current catalog–observation–compatibility–data package, but does not by itself identify the catalog as the cause. Catalog inadequacy is localized only under a protocol that freezes the other components and explicitly tests the catalog.
+1. task-information adequacy is not full contract legality;
+2. an empty fibre does not by itself localize the defect to the catalog;
+3. a quotient can preserve task information without being otherwise contract-legal;
+4. the reference history space need only contain enough structure to define legal future semantics and is not assumed memory-minimal.
 
 Next prose unit:
 
 \[
-\boxed{\mathrm{I.3\ —\ task\ distinction\ and\ legal\ reduction}.}
+\boxed{\mathrm{I.5\ —\ exact\ identification,\ stability\ and\ statistical\ licensing}.}
 \]
 
 ## Hardening bank
@@ -198,9 +199,15 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{I.2\ PASS}
 \to
-\mathrm{I.3\ NEXT}
+\mathrm{I.3\ PASS}
 \to
-\mathrm{I.4\!\! -\! I.6}
+\mathrm{I.4\ PASS}
+\to
+\mathrm{I.5\ NEXT}
+\to
+\mathrm{I.6}
+\to
+\mathrm{V1\ CROSS\!-\!CHECK}
 \to
 \mathrm{V2\ PROSE}.
 }
