@@ -35,18 +35,20 @@ Done:
 - Nerode exact realization under a stated contract;
 - bisimulation and Paige–Tarjan classified as conditional/benchmark relations;
 - `CAT–FACT–NORM–MINI-01` completed on exact regular interval curves;
+- raw compatible realizations separated from the gauge-quotiented factorization fibre;
+- external Euclidean gauge separated from internal Bishop normal-frame gauge;
 - Frenet→Bishop at `kappa=0` classified as recode/domain repair under the MINI contract, not `birth`.
 
-The first dual-operator mathematical cycle survived only after narrowing to:
+The first mathematical agent cycle survived only after narrowing to:
 
 \[
 C^3\text{ regular interval curve}
 +\text{fixed time}
 +\text{exact observation}
-+SE(3)\times SO(2)\text{ gauge}.
++\text{declared Euclidean/normal-frame gauges}.
 \]
 
-Next pressure branches are **parallel**, not one linear chain:
+Next pressure branches are parallel:
 
 1. `CLOSED-FRAME-01` / FRAME — holonomy, periodicity, frame versus catalogue change;
 2. higher-fibre — test whether stabilizers/homotopy data remain derived candidate structure;
@@ -79,30 +81,61 @@ Next:
 
 ## S3 — PSI AGENT
 
-**State:** DUAL-OPERATOR SPEC TESTED ON A LIVE MATHEMATICAL CLAIM.
+**State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT; first live mathematical regression incorporated.
 
-Completed first cycle:
+The original dual-operator cycle
 
 \[
 \mathsf E\to\mathsf A\to\mathsf E_{fals}\to\mathsf A_{freeze}
 \]
 
-on `CAT–FACT–NORM–MINI-01`.
+was useful but too coarse. The current control path is
 
-Observed correction pattern:
+\[
+\boxed{
+\mathrm{RESCAN}
+\to
+\mathrm{ROUTER}
+\to
+\mathrm{CONTRACT\ SNAPSHOT}
+\to
+\mathsf E
+\to
+\mathsf A_0
+\to
+\mathsf A_1
+\to
+\mathsf E_{fals}
+\to
+\mathrm{IMPACT}
+\to
+\mathrm{DECIDE}
+\to
+\mathrm{REGRESSION}
+\to
+\mathrm{HANDOFF}.
+}
+\]
 
-- `E`: proposed canonical decomposition;
-- `A`: reduced this to a normal **equivalence class** with typed hypotheses;
-- `E_fals`: found regularity, reparameterization, closed-loop and noise boundaries;
-- `A_freeze`: froze only the exact interval result.
+State is separated into
+
+\[
+\mathrm{CANON}\mid\mathrm{SPEC}\mid\mathrm{WORKING}\mid\mathrm{LIVE}\mid\mathrm{FRONTIER}\mid\mathrm{HISTORY}.
+\]
+
+First regression lessons from MINI:
+- normal equivalence class ≠ preferred representative;
+- raw factorization realizations ≠ already-quotiented `Fact`;
+- external and internal gauge must act on their proper objects;
+- exact interval identification ≠ closed/noisy/reparameterized identification.
 
 Next:
-1. run the same cycle independently on `CLOSED-FRAME-01` and the Lazarus agency witness;
-2. add model-handoff regression cases;
-3. instantiate a compact Decision Ledger for high-impact actions;
-4. verify that `WAIT` survives model handoff.
+1. run `CLOSED-FRAME-01` using Router + Contract Snapshot before exploration;
+2. run Lazarus agency witness through the same architecture;
+3. test model handoff with preserved `WORKING`, `FRONTIER`, regressions and WAIT;
+4. record high-impact actions in Decision Ledger and status changes in Epistemic Ledger.
 
-No further agent-governance module is added unless a concrete regression demands it.
+**Governance STOP:** no further agent-control primitive unless a concrete regression demonstrates a missing control function.
 
 ---
 
@@ -210,6 +243,8 @@ Completed:
 \mathrm{CAT\!-\!FACT\!-\!NORM\!-\!MINI}
 \to
 \mathrm{FREEZE}_{\rm MINI}
+\to
+\mathrm{REGRESSION}
 }
 \]
 
