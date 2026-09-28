@@ -12,7 +12,7 @@ Relative to a contract \(c\), the working core is
 
 Interpretation:
 
-- \(\Omega_c\) — candidate space after any **task-legal** realization/gauge reduction required by the contract;
+- \(\Omega_c\) — candidate space after any **contract-legal** realization/gauge reduction required by the contract;
 - \(\Psi_c:\Omega_c\to\mathcal B_c\) — observation map;
 - \(\mathcal K_c\subseteq\mathcal B_c\times\mathcal Y_c\) — typed compatibility relation;
 - \(\mathscr O_{\mathcal T,c}\) — task-relevant local observables, each with an explicit codomain;
@@ -20,7 +20,14 @@ Interpretation:
 
 The contract matters: identifiability is always relative to what counts as a candidate, an observation, a task, an admissible distinction and an admissible evolution.
 
-The phrase `after gauge reduction` does not mean that every symmetry object may automatically be replaced by its coarse orbit set. A proposed reduction must preserve all distinctions required by the task; the exact adequacy test is stated below.
+A declared geometric symmetry is not automatically a legal gauge of a fixed observation problem. In the simplest invariant case an action `G` descends through observation only when
+
+\[
+\Psi(g\cdot x)=\Psi(x)
+\qquad\forall g\in G,
+\]
+
+or when a correspondingly typed equivariant observation/compatibility contract is stated explicitly.
 
 ## 2. Observation and fiber
 
@@ -110,7 +117,13 @@ Observation \(Y\) exactly resolves task \(\mathcal T\) iff
 |q_{\mathcal T,c}(F_c(Y))|=1.
 \]
 
-Equivalently,
+Writing
+
+\[
+F_c(Y)^2:=F_c(Y)\times F_c(Y),
+\]
+
+this is equivalently
 
 \[
 \boxed{
@@ -140,6 +153,8 @@ For maps \(\rho:\Omega\to Z\) and \(R:\Omega\to W\),
 
 Interpretation: a representation \(\rho\) is sufficient for recovering \(R\) exactly when \(\rho\) never identifies two states that \(R\) still needs to distinguish.
 
+The uniqueness is on `im rho`; an extension to all of `Z` need not exist uniquely.
+
 This is classical elementary factorization through equivalence classes; PSI does not claim novelty for the lemma itself.
 
 ## 6. Global sufficiency
@@ -163,21 +178,21 @@ q_{\mathcal T}=f\circ\Psi.
 
 Thus a deterministic observation is globally sufficient for the task exactly when the task quotient factors through the observation.
 
-For a general representation \(\rho\), task adequacy is
+For a general representation \(\rho\), exact task-information adequacy is
 
 \[
 \boxed{\ker_{\rm eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
-### 6.1. Gauge / truncation legality
+### 6.1. Gauge / truncation task adequacy
 
-A proposed gauge, quotient or truncation map
+For a proposed gauge, quotient or truncation map
 
 \[
-q_G:\Omega\to Z
+q_G:\Omega\to Z,
 \]
 
-is legal for task \(\mathcal T\) only if it is itself a task-adequate representation:
+exact preservation of task information is equivalent to
 
 \[
 \boxed{
@@ -187,7 +202,29 @@ is legal for task \(\mathcal T\) only if it is itself a task-adequate representa
 
 Therefore a groupoid, symmetry object or witness-bearing compatibility structure must not be replaced by a coarse orbit/component set when stabilizers, compatibility witnesses or other discarded data remain task-relevant.
 
-Equivalently: quotienting is a conclusion licensed by the task contract, not a preprocessing right.
+### 6.2. Task adequacy is not the whole contract
+
+The kernel condition is the exact **task-information** gate. Full contract legality can additionally require:
+
+- correct domains/codomains;
+- a declared admissible gauge/action;
+- observation invariance/equivariance or a typed action on the observation side;
+- preservation of hard domain constraints;
+- other protocol-specific admissibility conditions.
+
+Hence
+
+\[
+\boxed{
+\text{task-adequate reduction}
+\neq
+\text{fully contract-legal reduction}
+}
+\]
+
+in general.
+
+Equivalently: quotienting is never an unconditional preprocessing right. Both task adequacy and the remaining contract gates must be checked.
 
 ## 7. Dynamics on the quotient
 
