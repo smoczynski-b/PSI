@@ -10,7 +10,7 @@
 
 Done:
 - migration registry;
-- claim registry v08;
+- claim registry v09;
 - four-volume skeleton;
 - source governance;
 - CAT/FACT MINI claims migrated;
@@ -18,11 +18,12 @@ Done:
 - LAZARUS agency claims normalized;
 - HIGHER-FIBRE claims migrated;
 - R4 pressure court recorded;
-- HCube normalized as representation-adequacy LAB/BENCHMARK rather than a core theory.
+- HCube normalized as representation-adequacy LAB/BENCHMARK;
+- Go memory/history quotient normalized as representation-adequacy LAB/BENCHMARK.
 
 Next:
-1. migrate exact CAT/FACT/FRAME/LAZARUS/HIGHER definitions needed by Volume I/II;
-2. integrate gauge/truncation legality and representation-adequacy regressions into Volume I;
+1. migrate exact CAT/FACT/FRAME/LAZARUS/HIGHER/Go definitions needed by Volume I/II;
+2. integrate gauge/truncation legality, memory adequacy and quotient minimality into Volume I/II;
 3. build Volume I/II chapter units only from registered claims;
 4. continue PHISICA/LOGOS claim-by-claim migration.
 
@@ -34,7 +35,7 @@ STOP condition: no polished chapter without claim IDs and migration status.
 
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW COUNTEREXAMPLE`.
 
-Pressure phase remains closed. `HCUBE-REGRESSION-01` does not reopen R4.
+HCube and Go hardening runs do not reopen R4.
 
 Current freeze:
 
@@ -54,6 +55,14 @@ with representation/reduction adequacy
 
 as the governing sufficiency test.
 
+For history-dependent tasks the same criterion is
+
+\[
+\boxed{
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
+}
+\]
+
 Primitive-growth rule:
 
 \[
@@ -64,54 +73,29 @@ Primitive-growth rule:
 
 ## S2 — FALSIFICATION / REGRESSION APPARATUS
 
-**State:** `falsifier-registry-07` ACTIVE.
+**State:** `falsifier-registry-08` ACTIVE.
 
-New HCube regression:
+Permanent hardening regressions now include:
 
-\[
-A=\operatorname{diag}(2,1,0),
-\qquad
-B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}.
-\]
+### HCube
+- equal characteristic polynomial + equal operator norm need not preserve resolvent behaviour;
+- HCube separator does not imply HCube necessity/universality;
+- P9 and HCube remain distinct tasks;
+- metric/norm alignment required.
 
-Although
-
-\[
-\chi_A=\chi_B,
-\qquad
-\|A\|_2=\|B\|_2=2,
-\]
-
-at `z=1/2`:
-
-\[
-\left\|\left(\tfrac12I-A\right)^{-1}\right\|_2=2,
-\]
-
-\[
-\left\|\left(\tfrac12I-B\right)^{-1}\right\|_2=2(1+\sqrt2).
-\]
-
-Thus
-
-\[
-\boxed{
-\ker\rho_0\not\subseteq\ker R_{1/2},
-\qquad
-\rho_0=(\chi,\|\cdot\|_2).
-}
-\]
-
-Permanent HCube controls now include:
-- spectrum+norm insufficiency for resolvent-sensitive tasks;
-- HCube inflation prohibition;
-- P9/HCube type separation;
-- metric/norm consistency.
+### Go memory
+- no-ko: `(B_t,σ_t)` sufficient;
+- simple ko: current situation insufficient; previous board repairs the frozen witness;
+- positional superko: one-step memory insufficient; visited-board set repairs it;
+- situational superko: visited-board history insufficient; visited-situation set repairs it;
+- quotient minimality is not bit/dimension/computational minimality;
+- mathematical recurrency is not finite-memory/computability;
+- recovered source contains G0/G2/G3/G4 but no separate G1 statement; do not fabricate G1.
 
 Next:
-1. normalize Go memory sufficiency;
-2. run `FS-STAT-01`;
-3. attach permanent regression IDs to Volume I/II claims where appropriate.
+1. run `FS-STAT-01`;
+2. assemble HCube + Go + FS-STAT into the first explicit regression bank;
+3. attach permanent regression IDs to Volume I/II claims.
 
 ---
 
@@ -119,15 +103,15 @@ Next:
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-HCube hardening run confirmed:
-- ROUTER correctly classified the object as LAB/BENCHMARK;
-- A0 prevented historical HCube centrality from becoming a current novelty claim;
-- A1 produced an exact matrix witness rather than narrative comparison;
-- E_fals blocked the inference `separator => necessary/universal representation`;
+Go hardening run confirmed:
+- ROUTER classified Go as LAB/BENCHMARK rather than game-theory expansion;
+- source audit blocked reconstruction of missing G1;
+- mathematical audit reduced G0/G2/G3/G4 to one kernel-inclusion scheme;
+- minimality and recurrency inflation were explicitly blocked;
 - no new agent-control primitive was required.
 
 Next:
-1. Go-memory regression;
+1. `FS-STAT-01`;
 2. model-handoff test with preserved WORKING/FRONTIER/regressions/WAIT;
 3. use v02 on Principia redaction without further governance growth.
 
@@ -140,14 +124,14 @@ Next:
 **State:** REGRESSION NORMALIZATION ACTIVE.
 
 Done:
-1. `HCUBE-REGRESSION-01` — exact paired representation witness.
+1. `HCUBE-REGRESSION-01` — exact paired operator-representation witness;
+2. `GO-MEMORY-REGRESSION-01` — exact task-relative history/memory sufficiency ladder.
 
 Next audit order:
-1. Go — memory sufficiency / history quotient;
-2. `FS-STAT-01` — sampled/noisy extension of exact Frenet/Bishop work;
-3. PHISICA / operator reductions;
-4. SOP-11b;
-5. cultural laboratories.
+1. `FS-STAT-01` — sampled/noisy extension of exact Frenet/Bishop work;
+2. PHISICA / operator reductions;
+3. SOP-11b;
+4. cultural laboratories.
 
 For each:
 
@@ -187,15 +171,15 @@ No global redesign before measurement or an isolated non-contaminating implement
 
 **State:** ACTIVE.
 
-HCube source status now fixed:
-- pseudospectral/nonnormal theory = classical;
-- `ad_A` / similarity-action bridge = classical lemma/bridge;
-- HCube = derived diagnostic/benchmark;
-- historical claims making HCube central to PSI remain genealogical only.
+Go source status:
+- RED-1 provides the common history quotient and factorization result;
+- recovered regression explicitly freezes G0/G2/G3/G4;
+- G1 remains a source gap in the presently recovered artifacts and is not reconstructed;
+- Go tests are laboratories for task-relative memory adequacy, not new primitives.
 
 Next:
 1. claim-by-claim PHISICA/LOGOS migration;
-2. fill missing classical references before novelty claims;
+2. recover missing G1 only if an actual source becomes available;
 3. build genealogy links from Volume II/III claims.
 
 ---
@@ -214,7 +198,7 @@ Hardening phase:
 \boxed{
 \mathrm{HCube\ DONE}
 \to
-\mathrm{Go}
+\mathrm{Go\ DONE}
 \to
 \mathrm{FS\!-\!STAT}
 \to
