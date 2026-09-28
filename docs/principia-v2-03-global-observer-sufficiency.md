@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.3. Globalna wystarczalność obserwatora
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C08 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-01.md`, T2.3  
@@ -397,7 +397,7 @@ Twierdzenie II.3 nie daje automatycznie:
 - identyfikacji pełnego kandydata;
 - rozstrzygalności dla każdego rekordu przy nieadekwatnym katalogu;
 - stabilności na perturbacje danych;
-- probabilistycznej wystarczalności/statystycznej sufficiency;
+- statystycznej dostateczności ani licencji probabilistycznej;
 - mierzalności, ciągłości ani obliczalności mapy \(f\);
 - legalności całego kontraktu tylko z samej inkluzji jąder;
 - unikalnego rozszerzenia \(f\) na całą \(\mathcal B_c\).
