@@ -43,7 +43,10 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Initial claim registry](docs/claim-registry-01.md)
+- [Current claim registry v02](docs/claim-registry-02.md)
+- [Falsifier registry](docs/falsifier-registry-01.md)
+- [PSI agent dual-operator discipline](docs/agent-psi-dual-operator-01.md)
+- [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
 - [Principia four-volume skeleton](docs/principia-volume-skeleton-01.md)
 - [Source governance discipline](docs/source-governance-01.md)
@@ -57,6 +60,8 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 - Public lineage page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/?view=lineage
+
+The initial registry remains archived as [claim-registry-01.md](docs/claim-registry-01.md); v02 is the current public derivative after the first classical-comparison and falsifier pass.
 
 ## Mathematical lineage
 
@@ -112,9 +117,9 @@ The framework is developed through mathematics, counterexamples and stress tests
 
 **Research / work in progress.**
 
-The mathematical core is under active consolidation. In particular, classical imports, adaptations, open problems and PSI-specific claims are being separated more explicitly. Public statements should not imply novelty merely because a classical construction has been placed inside PSI notation.
+The mathematical core is under active consolidation. Classical imports, adaptations, open problems and PSI-specific claims are separated explicitly; substantial claims are now paired with falsification or proof scope before freeze.
 
-Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text. The [migration registry](docs/principia-migration-01.md) records `KEEP | REFORMULATE | SUPERSEDE | GENEALOGY`; the [claim registry](docs/claim-registry-01.md) records the current public theorem/policy/open-bridge layer.
+Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text. The [migration registry](docs/principia-migration-01.md) records `KEEP | REFORMULATE | SUPERSEDE | GENEALOGY`; the [current claim registry](docs/claim-registry-02.md) records the public theorem/policy/open-bridge layer.
 
 ## Publications / Zenodo
 
