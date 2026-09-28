@@ -26,30 +26,21 @@ F(Y)^2\subseteq E_{\mathcal T}.
 
 - [Physical CANON-03 source bind](docs/canon03-source-bind-01.md)
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v12](docs/claim-registry-12.md)
-- [Current falsifier registry v11](docs/falsifier-registry-11.md)
+- [Current claim registry v13](docs/claim-registry-13.md)
+- [Current falsifier registry v12](docs/falsifier-registry-12.md)
 - [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
-- [V1 Normalization 01](docs/principia-v1-normalization-01.md)
-- [V2.1 Exact task-level decidability](docs/principia-v2-01-exact-task-decidability.md)
-- [V2.2 Kernel factorization](docs/principia-v2-02-kernel-factorization.md)
-- [V2.3 Global observer sufficiency](docs/principia-v2-03-global-observer-sufficiency.md)
-- [V2.4 Representation adequacy](docs/principia-v2-04-representation-adequacy.md)
-- [V2.5 Task-information legality of reduction](docs/principia-v2-05-task-information-legality-of-reduction.md)
-- [V2.6 Deterministic quotient dynamics](docs/principia-v2-06-deterministic-quotient-dynamics.md)
-- [V2.7 Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
-- [V2.8 Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
-- [V2.9 Recursive history quotient update](docs/principia-v2-09-recursive-history-quotient-update.md)
-- [V2 own-layer handoff audit](docs/principia-v2-own-layer-crosscheck-02.md)
-- [V2 handoff dependency errata](docs/principia-v2-own-layer-crosscheck-02-errata-01.md)
-- [V2.10 Strong Markov lumpability](docs/principia-v2-10-strong-lumpability-bridge.md)
-- [V2.11 Myhill–Nerode](docs/principia-v2-11-myhill-nerode-bridge.md)
-- [V2.12 Paige–Tarjan](docs/principia-v2-12-paige-tarjan-benchmark.md)
-- [V2 classical bridge layer cross-check](docs/principia-v2-classical-bridges-crosscheck-01.md)
-- [Current V2 theorem map](docs/principia-v2-theorem-map-02.md)
-- [Classical comparison map](docs/classical-compare-01.md)
+- [Freeze 01 Errata 01](docs/principia-v1-v2-freeze-01-errata-01.md)
+- [Current V2 Theorem Map 03](docs/principia-v2-theorem-map-03.md)
+- [V2 own-layer cross-check](docs/principia-v2-own-layer-crosscheck-02.md)
+- [V2 handoff errata](docs/principia-v2-own-layer-crosscheck-02-errata-01.md)
+- [V2 classical bridge cross-check](docs/principia-v2-classical-bridges-crosscheck-01.md)
+- [V2 CAT/FACT/NORM cross-check](docs/principia-v2-cat-fact-norm-crosscheck-01.md)
+- [Corrected CAT–FACT–NORM–MINI 02](docs/cat-fact-norm-mini-02.md)
 - [Decision / Epistemic Ledger](docs/psi-ledger-01.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
+
+Historical versions remain for provenance.
 
 ## Core status
 
@@ -87,7 +78,7 @@ Inference discipline:
 }
 \]
 
-### Volume II — own layer
+### Volume II — own quotient/history layer
 
 \[
 \boxed{
@@ -95,20 +86,7 @@ Inference discipline:
 }
 \]
 
-The II.9 dependency correction is now explicit:
-
-\[
-\text{SOURCE/RESULT IDS}=C45+C59,
-\]
-
-\[
-\text{STRICT PROOF DEPENDENCY}=II.7\;(C57/C58)
-+\text{typed extension definitions}.
-\]
-
-II.6 is structural analogy; II.8 is not a proof prerequisite.
-
-### Volume II — classical bridge layer
+### Volume II — classical bridges
 
 \[
 \boxed{
@@ -116,53 +94,66 @@ II.6 is structural analogy; II.8 is not a proof prerequisite.
 }
 \]
 
-The bridges are intentionally different:
-
-- **II.10:** Kemeny–Snell / strong lumpability — preservation of transition masses on quotient blocks;
-- **II.11:** Myhill–Nerode — exact equality of PSI future-test equivalence with Nerode under the full right-continuation contract;
-- **II.12:** Paige–Tarjan — classical algorithm for an eligible finite relational coarsest-partition problem after an explicit reduction.
-
-Permanent boundaries:
+### Volume II — CAT / FACT / NORM
 
 \[
 \boxed{
-\text{task quotient}\not\Rightarrow\text{Markov lumpability}
+\mathrm{II.13:II.14}
+=\mathrm{GLOBAL\ PASS\ AFTER\ FREEZE\ ERRATA\ 01}.
 }
 \]
 
-(F61),
+The current canonical CAT/FACT definitions remain C62/C63.
+
+The former MINI C19-v2 statement that the gauge-only factorization fibre is a singleton has been withdrawn.
+
+Correct MINI result:
+
+\[
+\mathfrak F^{0}_{FB,P}(Y)
+=
+\operatorname{RawFact}^{0}_{FB,P}(Y)/G_P
+\]
+
+may be non-singleton, while the normalization map satisfies
+
+\[
+\boxed{|\operatorname{im}\operatorname{NF}|=1.}
+\]
+
+Equivalently, for equality of normal form,
 
 \[
 \boxed{
-\text{arbitrary task equivalence}\neq\text{Nerode equivalence}
+|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.
 }
 \]
 
-without full continuation tests, and
+Permanent regression F62:
 
 \[
 \boxed{
-\text{finite PSI instance}\not\Rightarrow\text{Paige–Tarjan applicability}
+\text{unique normal form}
+\not\Rightarrow
+\text{singleton factorization fibre modulo gauge}.
 }
 \]
 
-without a reduction proof.
-
-Paige–Tarjan complexity is scoped to the classical relational problem: literature reports \(O(m\log n)\) refinement time and \(O(n+m)\) space; Principia separately account for linear explicit-input initialization.
+This correction changes no CORE role and does not justify Agent v03.
 
 ## Current phase
 
 \[
 \boxed{
-\mathrm{V1\ NORMALIZED\ PASS}
+\mathrm{V1\ NORMALIZED}
 \to
 \mathrm{II.1:II.9\ GLOBAL\ PASS}
 \to
 \mathrm{II.10:II.12\ CLASSICAL\ GLOBAL\ PASS}
 \to
-\mathrm{CAT/FACT/NORM\ NEXT}
+\mathrm{II.13:II.14\ CAT/FACT/NORM\ PASS}
 \to
-\mathrm{FRAME}
+\mathrm{FRAME\ NEXT}
 \to
 \mathrm{HIGHER}
 \to
