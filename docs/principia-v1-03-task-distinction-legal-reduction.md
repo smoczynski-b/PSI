@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.3. Rozróżnienie zadaniowe i legalna redukcja
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`  
 **Zakres:** C03–C05, C09, C32, C37, C60; dowody faktoryzacyjne pozostają w Tomie II.
@@ -315,7 +315,7 @@ bez podania zadania i kontraktu jest niepełne.
 
 ---
 
-## 8. Redukcja, quotient i gauge
+## 8. Redukcja, iloraz i gauge
 
 Niech
 
@@ -353,7 +353,7 @@ Redukcja może zachowywać informację zadaniową, a mimo to być niedopuszczaln
 
 - działanie nie jest zdefiniowane na właściwej dziedzinie;
 - proponowany gauge nie jest ustanowiony przez kontrakt;
-- obserwacja nie schodzi na quotient ani nie jest odpowiednio ekwiwariantna;
+- obserwacja nie schodzi na iloraz ani nie jest odpowiednio ekwiwariantna;
 - naruszony zostaje twardy warunek dziedzinowy;
 - zmienia się interfejs albo typ danych;
 - redukcja wymaga informacji niedostępnej w deklarowanym protokole.
@@ -374,7 +374,7 @@ Pierwszy warunek jest dokładnym testem zachowania rozróżnień zadaniowych. Dr
 
 ---
 
-## 9. Symetria nie daje automatycznie quotientu
+## 9. Symetria nie daje automatycznie ilorazu
 
 W I.1 rozdzieliliśmy deklarację symetrii od prawa do redukcji. Teraz możemy sformułować część zadaniową tego prawa dokładnie.
 
@@ -394,7 +394,7 @@ E_{\mathcal T,c}.
 }
 \]
 
-Jeżeli dwie realizacje należą do tej samej orbity, lecz zadanie wymaga ich rozróżnienia, coarse quotient przez \(G\) jest za gruby dla tego zadania.
+Jeżeli dwie realizacje należą do tej samej orbity, lecz zadanie wymaga ich rozróżnienia, iloraz przez orbity \(G\) jest za gruby dla tego zadania.
 
 Nawet spełnienie tej inkluzji nie zwalnia z warunków obserwacyjnych i dziedzinowych. W szczególności geometryczna symetria realizacji nie musi być gauge ustalonego problemu danych.
 
@@ -402,13 +402,13 @@ Zasada pozostaje więc dwustopniowa:
 
 \[
 \boxed{
-\text{czy wolno utożsamić?}
+\text{czy utożsamienie zachowuje informację zadaniową?}
 \to
-\text{czy wolno to utożsamienie zastosować w tym kontrakcie?}
+\text{czy ta redukcja jest legalna w całym kontrakcie?}
 }
 \]
 
-Pierwsze pytanie jest zadaniowe. Drugie jest pełnym pytaniem kontraktowym.
+Pierwsze pytanie dotyczy dokładnej adekwatności zadaniowej. Drugie obejmuje pełny zestaw warunków kontraktowych.
 
 ---
 
@@ -494,7 +494,7 @@ W Tomie II zostaną jawnie udowodnione:
 2. globalna wystarczalność obserwatora;
 3. równoważność warunku adekwatności z faktoryzacją \(q_{\mathcal T,c}\) przez \(\rho\);
 4. dokładne kryterium rozstrzygalności zadaniowej na włóknie;
-5. warunek legalnego zejścia dynamiki na quotient.
+5. warunek legalnego zejścia dynamiki na iloraz.
 
 Tom I zachowuje więc granicę:
 
