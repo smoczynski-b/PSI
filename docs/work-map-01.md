@@ -10,15 +10,16 @@
 
 Done:
 - migration registry;
-- claim registry v03;
+- claim registry v04;
 - four-volume skeleton;
 - source governance;
-- CAT/FACT MINI claim entered with explicit scope and falsifiers.
+- CAT/FACT MINI claim entered with explicit scope and falsifiers;
+- CLOSED-FRAME claims migrated as classical geometry + PSI bridge/pressure result.
 
 Next:
-1. migrate FRAME / closed-frame claims;
-2. migrate higher-fibre / transport / BISHOP-COV claims;
-3. migrate the exact CAT/FACT definitions needed by Volume I/II;
+1. migrate higher-fibre / transport / BISHOP-COV claims;
+2. migrate Lazarus agency witness into the claim/falsifier layer;
+3. migrate exact CAT/FACT/FRAME definitions needed by Volume I/II;
 4. build Volume I/II chapter units only from registered claims.
 
 STOP condition: no polished chapter without claim IDs and migration status.
@@ -27,7 +28,7 @@ STOP condition: no polished chapter without claim IDs and migration status.
 
 ## S1 — MATHEMATICAL CORE
 
-**State:** CORE5 frozen; pressure tests active.
+**State:** CORE5 frozen; two independent pressure tests remain before R4 court.
 
 Done:
 - deterministic quotient comparison;
@@ -37,31 +38,42 @@ Done:
 - `CAT–FACT–NORM–MINI-01` completed on exact regular interval curves;
 - raw compatible realizations separated from the gauge-quotiented factorization fibre;
 - external Euclidean gauge separated from internal Bishop normal-frame gauge;
-- Frenet→Bishop at `kappa=0` classified as recode/domain repair under the MINI contract, not `birth`.
+- Frenet→Bishop at `kappa=0` classified as recode/domain repair under the MINI contract, not `birth`;
+- `CLOSED-FRAME-01` completed on closed curves;
+- normal/Bishop holonomy separated from bundle triviality and from preferred-frame choice;
+- periodic-frame condition represented as task/compatibility data;
+- CLOSED-FRAME R4 pressure test: `CORE5 SURVIVES`.
 
-The first mathematical agent cycle survived only after narrowing to:
+CLOSED-FRAME result:
 
 \[
-C^3\text{ regular interval curve}
-+\text{fixed time}
-+\text{exact observation}
-+\text{declared Euclidean/normal-frame gauges}.
+H_\gamma\in SO(2),
+\qquad
+\text{periodic RMF}\iff H_\gamma=I.
 \]
 
-Next pressure branches are parallel:
+On the Frenet-valid periodic-binormal domain,
 
-1. `CLOSED-FRAME-01` / FRAME — holonomy, periodicity, frame versus catalogue change;
-2. higher-fibre — test whether stabilizers/homotopy data remain derived candidate structure;
-3. Lazarus agency witness — same information relation, different executable action structure;
-4. after 1–3, run the explicit R4 pressure court.
+\[
+H_\gamma=R_{-\int\tau ds}
+\quad\text{mod }2\pi
+\]
 
-R4 gate: no new primitive unless current candidate/observation/compatibility/task/dynamics roles plus contract all fail with a typed loss witness and the proposed new role is minimal.
+up to sign convention. This is classical geometry; the PSI result is the typed reduction of the datum into existing roles.
+
+Remaining pressure branches:
+
+1. higher-fibre — test whether stabilizers/homotopy data remain derived candidate structure;
+2. Lazarus agency witness — same information relation, different executable action structure;
+3. after 1–2, run the explicit R4 pressure court.
+
+R4 gate: no new primitive unless candidate/observation/compatibility/task/dynamics plus contract all fail with a typed loss witness and the proposed new role is minimal.
 
 ---
 
 ## S2 — FALSIFICATION APPARATUS
 
-**State:** `falsifier-registry-02` ACTIVE.
+**State:** `falsifier-registry-03` ACTIVE.
 
 Done:
 - PASS-inflation rule;
@@ -69,27 +81,26 @@ Done:
 - traffic click/transition overclaim corrected;
 - MINI exact uniqueness falsifier F12;
 - CAT birth/recode falsifier F13;
-- closed-frame extension gate F14;
-- noisy/sampled FS-STAT gate F15.
+- CLOSED-FRAME extension gate F14 resolved with a fixed witness class;
+- FS-STAT gate F15 remains open;
+- CLOSED-FRAME R4 falsifier F16;
+- holonomy/gauge regression F17;
+- bundle/connection confusion regression F18;
+- concrete closed-loop computational fixture F19.
 
 Next:
-1. attach current falsifier IDs to every PSI-NEW/BRIDGE claim;
-2. collect permanent regression witnesses from Lazarus, Go, HCube and FRAME;
-3. require `WHAT THIS DOES NOT TEST` in every run report.
+1. normalize Lazarus agency falsifier into current schema;
+2. run higher-fibre pressure with an explicit loss/reduction table;
+3. collect permanent regression witnesses from Go and HCube;
+4. require `WHAT THIS DOES NOT TEST` in every run report.
 
 ---
 
 ## S3 — PSI AGENT
 
-**State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT; first live mathematical regression incorporated.
+**State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT; survived two mathematical runs.
 
-The original dual-operator cycle
-
-\[
-\mathsf E\to\mathsf A\to\mathsf E_{fals}\to\mathsf A_{freeze}
-\]
-
-was useful but too coarse. The current control path is
+Current control path:
 
 \[
 \boxed{
@@ -117,21 +128,32 @@ was useful but too coarse. The current control path is
 }
 \]
 
-State is separated into
+State:
 
 \[
 \mathrm{CANON}\mid\mathrm{SPEC}\mid\mathrm{WORKING}\mid\mathrm{LIVE}\mid\mathrm{FRONTIER}\mid\mathrm{HISTORY}.
 \]
 
-First regression lessons from MINI:
-- normal equivalence class ≠ preferred representative;
-- raw factorization realizations ≠ already-quotiented `Fact`;
-- external and internal gauge must act on their proper objects;
-- exact interval identification ≠ closed/noisy/reparameterized identification.
+Run 1 — `CAT–FACT–NORM–MINI`:
+- corrected preferred-representative inflation;
+- corrected raw/quotient FACT semantics;
+- separated external/internal gauge;
+- isolated interval/noise/closed-domain boundaries.
+
+Run 2 — `CLOSED-FRAME-01`:
+- Router prevented holonomy from being promoted to CORE;
+- Contract Snapshot separated closed exact geometry from noisy/statistical claims;
+- A0 separated bundle, connection, gauge and task relevance;
+- A1 recovered the classical periodic-RMF theorem;
+- falsification blocked fake gauge removal and contract drift;
+- Impact resolved C21 without altering C19;
+- regression set records local/global frame failures.
+
+No new agent-control primitive was required.
 
 Next:
-1. run `CLOSED-FRAME-01` using Router + Contract Snapshot before exploration;
-2. run Lazarus agency witness through the same architecture;
+1. run higher-fibre through v02;
+2. run Lazarus agency witness through v02;
 3. test model handoff with preserved `WORKING`, `FRONTIER`, regressions and WAIT;
 4. record high-impact actions in Decision Ledger and status changes in Epistemic Ledger.
 
@@ -147,7 +169,7 @@ Next audit order:
 1. Lazarus — agency witness;
 2. HCube — representation insufficiency / pseudospectral separator;
 3. Go — memory sufficiency;
-4. `FS-STAT-01` — sampled/noisy extension of the exact Frenet/Bishop MINI;
+4. `FS-STAT-01` — sampled/noisy extension of exact Frenet/Bishop geometry;
 5. PHISICA / operator reductions;
 6. SOP-11b;
 7. cultural laboratories.
@@ -220,13 +242,16 @@ Done:
 - Integrata ontology superseded as core;
 - SOP provenance machinery retained while strong threshold claims downgraded;
 - source-governance rule frozen;
-- historical CAT/FACT programme recovered and used only after retyping against current canon;
-- classical Bishop/Frenet ingredients kept distinct from the PSI MINI packaging.
+- historical CAT/FACT programme recovered and retyped against current canon;
+- classical Bishop/Frenet ingredients kept distinct from PSI MINI packaging;
+- classical Bishop/RMF holonomy and total-torsion periodicity separated from the PSI CLOSED-FRAME bridge;
+- earlier PSI local/global monodromy warning recovered and confirmed as the correct predecessor of CLOSED-FRAME.
 
 Next:
-1. claim-by-claim PHISICA/LOGOS migration;
-2. FRAME/higher-fibre provenance;
-3. resolve missing classical references before novelty claims.
+1. higher-fibre provenance and classical comparison;
+2. Lazarus agency provenance into current R3 roles;
+3. claim-by-claim PHISICA/LOGOS migration;
+4. resolve missing classical references before novelty claims.
 
 ---
 
@@ -242,25 +267,23 @@ Completed:
 \to
 \mathrm{CAT\!-\!FACT\!-\!NORM\!-\!MINI}
 \to
-\mathrm{FREEZE}_{\rm MINI}
-\to
-\mathrm{REGRESSION}
+\mathrm{CLOSED\!-\!FRAME}
 }
 \]
 
-Next parallel pressure packet:
+with each freeze followed by regression.
+
+Remaining independent pressure packet:
 
 \[
 \boxed{
-\begin{array}{ccc}
-\mathrm{CLOSED\!-\!FRAME/FRAME}
-&
+\begin{array}{cc}
 \mathrm{HIGHER\ FIBRE}
 &
 \mathrm{LAZARUS\ AGENCY}
 \\
-\searrow & \downarrow & \swarrow\\
-&\mathrm{R4\ PRESSURE\ COURT}&
+\searrow & \swarrow\\
+&\mathrm{R4\ PRESSURE\ COURT}
 \end{array}}
 \]
 
