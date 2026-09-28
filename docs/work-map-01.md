@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 PROSE RELEASED`.
+**State:** `V1 NORMALIZED PASS / V2 THEOREM SPINE IN PROGRESS`.
 
 Done:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -28,7 +28,8 @@ Done:
 - I.2 normalized: `P0 -> diagnosis -> P1` protocol redesign semantics;
 - I.4 normalized: contract-index suppression declared, memory codomain `Z_t`, Go/LAZARUS symbols locally typed;
 - I.5 normalized: inference gates `G_EX/G_ST/G_PR` instead of collision with `E_T`;
-- I.6 normalized: no chained untyped `!=`; pressure-court genealogy removed from foundation prose.
+- I.6 normalized: no chained untyped `!=`; pressure-court genealogy removed from foundation prose;
+- V2.1 `Dokładna rozstrzygalność zadaniowa` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
 
 ### Current Volume-I verdict
 
@@ -42,12 +43,28 @@ Done:
 
 No Freeze 01 erratum was required.
 
+### Current V2 theorem-spine status
+
+\[
+\boxed{
+\mathrm{II.1\ EXACT\ TASK\ DECIDABILITY}=\mathrm{PASS}.
+}
+\]
+
+II.1 is explicitly typed as a classical elementary quotient fact adapted as a central PSI criterion. The proof preserves the empty-fibre condition
+
+\[
+F(Y)\neq\varnothing
+\]
+
+and does not import stability, probability or computability assumptions.
+
 ### Next
 
-1. write **V2.1 — Exact task-level decidability**;
-2. include types/hypotheses, direct proof, scope, source status, falsifier/regression binding;
-3. then V2.2 kernel factorization;
-4. V2.3 global sufficiency;
+1. write **V2.2 — Kernel factorization criterion**;
+2. type `rho:Omega->Z`, `R:Omega->W` and prove factorization through `im rho`;
+3. preserve uniqueness only on `im rho` (F60);
+4. then V2.3 global sufficiency;
 5. V2.4 representation adequacy;
 6. cross-check the V2 theorem spine before classical bridges and laboratories.
 
@@ -105,6 +122,10 @@ Mandatory boundaries:
 - F58 old-source automatic promotion;
 - F59 MINI vs general FACT;
 - F60 factorization uniqueness only on `im rho`.
+
+Local II.1 theorem regression:
+- empty fibre must give `|q(F)|=0`, never exact resolution;
+- a single task-inequivalent pair inside `F` falsifies exact task decidability.
 
 ---
 
@@ -176,13 +197,11 @@ Current physical source:
 \boxed{
 \mathrm{FREEZE\ 01=PASS}
 \to
-\mathrm{V1\ LOCAL\ PASS}
-\to
-\mathrm{WHOLE\!-\!V1\ CROSSCHECK}
-\to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1\ NEXT}.
+\mathrm{V2.1\ PASS}
+\to
+\mathrm{V2.2\ NEXT}.
 }
 \]
 
