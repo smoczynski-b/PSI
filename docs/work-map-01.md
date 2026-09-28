@@ -25,7 +25,8 @@ Done:
 - skeleton v02 synchronized to freeze;
 - V1 I.1 `Kontrakt i role semantyczne` — PROSE PASS 01 / CROSS-CHECK PASS;
 - V1 I.2 `Obserwacja, włókno zgodności i adekwatność katalogu` — PROSE PASS 01 / CROSS-CHECK PASS;
-- V1 I.3 `Rozróżnienie zadaniowe i legalna redukcja` — PROSE PASS 01 / CROSS-CHECK PASS.
+- V1 I.3 `Rozróżnienie zadaniowe i legalna redukcja` — PROSE PASS 01 / CROSS-CHECK PASS;
+- V1 I.4 `Historia, pamięć i przyszła semantyka zadania` — PROSE PASS 01 / CROSS-CHECK PASS.
 
 ### Freeze result
 
@@ -39,12 +40,13 @@ This freezes definitions, theorem statements, status classes, source roles, depe
 
 - I.1: task-information adequacy was separated from full contract legality;
 - I.2: `F_c(Y)=∅` was prevented from being misread as an automatic diagnosis of catalog inadequacy; it only diagnoses inconsistency of the full current package unless the protocol freezes the other components and explicitly tests the catalog;
-- I.3: `ker q⊆E_T` remains the exact task-information adequacy test, while full contract legality can impose additional typing, observation and domain conditions; wording was corrected from “may identify” to “preserves task information”.
+- I.3: `ker q⊆E_T` remains the exact task-information adequacy test, while full contract legality can impose additional typing, observation and domain conditions;
+- I.4: the history space `H_t` is required to contain at least enough structure to define legal future extensions, but is not assumed minimal; task-quotient minimality remains quotient-order minimality only.
 
 Next:
-1. write **V1 I.4 — History, memory and future-task semantics** from frozen units C57–C59, C42 and the scoped LAZARUS/Go boundaries;
-2. cross-check I.4 against the rule that current world fibre is not automatically a sufficient future-task state;
-3. continue I.5→I.6 with the same prose/cross-check cycle;
+1. write **V1 I.5 — Exact identification, stability and statistical licensing** from frozen C51–C52 plus scoped FS-STAT boundaries;
+2. cross-check I.5 against R03 so exact uniqueness is not upgraded to perturbation stability or confidence;
+3. write I.6 and perform V1 cross-check as a whole;
 4. then write V2 theorem prose with proofs/source boxes;
 5. issue an erratum + impact audit for any semantic change discovered during prose;
 6. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
@@ -134,7 +136,7 @@ Current prose-phase role:
 - correct prose before it becomes a new source of drift;
 - do not design new governance.
 
-I.1/I.2/I.3 cross-checks each found and corrected scope-risk without changing CORE5.
+I.1–I.4 cross-checks each found and corrected at least one scope-risk without changing CORE5.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -207,7 +209,9 @@ Historical missing originals remain genealogy gaps only; do not represent them a
 \to
 \mathrm{I.3\ PASS}
 \to
-\mathrm{I.4\ NEXT}
+\mathrm{I.4\ PASS}
+\to
+\mathrm{I.5\ NEXT}
 }
 \]
 
