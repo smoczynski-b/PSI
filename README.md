@@ -71,14 +71,23 @@ For each substantial imported construction, the public project should state:
 }
 \]
 
-A classical result remains classical when PSI uses it. The project distinguishes:
+A classical result remains classical when PSI uses it. Public provenance keeps two independent metadata axes.
+
+**Claim status:**
 
 - `CLASSICAL` — established mathematics;
-- `ADAPTED` — established mathematics used in a different role;
 - `BRIDGE` — a claimed connection requiring proof or testing;
 - `PSI-NEW` — a genuinely new result requiring proof or a precise formal falsifier;
 - `POLICY` — an operational rule rather than a theorem;
 - `OPEN` — an unresolved mathematical point.
+
+**Role in PSI:**
+
+- `ADAPTED` — inherited mathematics used in a different task or architectural role;
+- `GENEALOGICAL` — conceptual or mathematical ancestry;
+- `BENCHMARK` — a classical reference against which a PSI construction must be compared.
+
+The two axes must not be collapsed: for example, an item can have `status: CLASSICAL` and `role: BENCHMARK`.
 
 The growing guide is in [docs/lineage.md](docs/lineage.md).
 
