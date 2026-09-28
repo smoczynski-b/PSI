@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.4. Adekwatność reprezentacji względem zadania
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C09 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-01.md`, T2.4  
@@ -407,7 +407,7 @@ jako kryterium tego, które sklejenia reprezentacji są informacyjnie legalne dl
 
 ### R01 — HCube
 
-HCube dostarcza reprezentacji \(\rho_0\), która utożsamia dwie macierze o tej samej informacji grubej, podczas gdy zadanie rezolwentowe nadal je rozróżnia. Schematycznie:
+Dla zadania, którego domknięcie zadaniowe zawiera wielkość rezolwentową \(R_{1/2}\), HCube dostarcza reprezentacji \(\rho_0\), która utożsamia dwie macierze o tej samej informacji grubej, podczas gdy zadanie nadal je rozróżnia:
 
 \[
 \rho_0(A)=\rho_0(B),
@@ -415,7 +415,13 @@ HCube dostarcza reprezentacji \(\rho_0\), która utożsamia dwie macierze o tej 
 R_{1/2}(A)\neq R_{1/2}(B).
 \]
 
-To jest konkretny świadek
+Z definicji \(E_{\mathcal T}\) wynika wtedy
+
+\[
+A\not E_{\mathcal T}B,
+\]
+
+a więc jest to konkretny świadek
 
 \[
 \ker_{\rm eq}\rho_0
