@@ -41,6 +41,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.2 — Kernel factorization criterion](docs/principia-v2-02-kernel-factorization.md)
 - [Principia V2.3 — Global observer sufficiency](docs/principia-v2-03-global-observer-sufficiency.md)
 - [Principia V2.4 — Representation adequacy](docs/principia-v2-04-representation-adequacy.md)
+- [Principia V2.5 — Task-information legality of reduction/quotient](docs/principia-v2-05-task-information-legality-of-reduction.md)
 - [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
@@ -199,31 +200,54 @@ q_{\mathcal T,c}=g\circ\rho.
 
 Task-information adequacy remains distinct from full contract legality. HCube/Go are direct application regressions only at their declared task scopes; FS-STAT is a scope-boundary regression.
 
-### Spine verdict
+### V2.5 — task-information legality of reduction / quotient
+
+For a proposed reduction
+
+\[
+q:\Omega_c\to Z,
+\]
 
 \[
 \boxed{
-\mathrm{V2.1:V2.4\ THEOREM\ SPINE}=\mathrm{PASS}.
+\ker_{eq}q\subseteq E_{\mathcal T,c}
+\iff
+\exists!\,h:\operatorname{im}q\to M_{\mathcal T,c},
+\quad
+q_{\mathcal T,c}=h\circ q.
 }
 \]
 
-`V2 SPINE CROSS-CHECK 01` found no mathematical contradiction, no proof circularity and no Freeze 01 erratum. It did find document drift in Theorem Map 01; Theorem Map 02 is now current and v01 is genealogy only.
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+This is a scope corollary of V2.4. It licenses only exact task-information preservation. F57 remains mandatory: this does not imply full contract legality. F55 separately requires observation compatibility for declared gauge actions.
+
+### Current verdict
+
+\[
+\boxed{
+\mathrm{V2.1:V2.5}=\mathrm{PASS}.
+}
+\]
+
+`V2 SPINE CROSS-CHECK 01` found no mathematical contradiction, no proof circularity and no Freeze 01 erratum in V2.1–V2.4. V2.5 then passed its local proof/scope cross-check. Theorem Map 02 is the current control map; Map 01 is genealogy only.
 
 Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.5\ —\ task\!-information\ legality\ of\ reduction/quotient}.
+\mathrm{V2.6\ —\ deterministic\ quotient\ dynamics}.
 }
 \]
 
-It must preserve
+The new gate is dynamic, not merely informational:
 
 \[
-\ker_{eq}q\subseteq E_{\mathcal T,c}
+\boxed{
+xEy\Longrightarrow\delta(x)E\delta(y).}
 \]
 
-as a task-information criterion, not inflate it into full contract legality.
+Static task adequacy alone does not prove that the declared dynamics descends to the quotient.
 
 ## Hardening bank
 
@@ -249,11 +273,7 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.4\ PASS}
-\to
-\mathrm{V2\ SPINE\ CROSSCHECK\ PASS}
-\to
-\mathrm{V2.5\ REDUCTION/QUOTIENT}
+\mathrm{V2.1:V2.5\ PASS}
 \to
 \mathrm{V2.6\ DYNAMICS}
 \to
