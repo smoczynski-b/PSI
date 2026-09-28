@@ -1,36 +1,20 @@
 # PSI — CAT–FACT–NORM–MINI 01
 
-**Status:** `BRIDGE / EXACT-NOISELESS MINI-THEOREM / FIRST DUAL-OPERATOR RUN`  
-**Scope:** regular open-interval curves in `R^3`; exact observation; time parameter preserved.  
+**Status:** `BRIDGE / EXACT-NOISELESS MINI / FIRST DUAL-OPERATOR RUN`  
+**Scope:** `C^3` regular curves on the compact interval `[0,T]`; exact observation; time parameter preserved.  
 **Does not claim:** statistical stability, noisy-data recovery, closed-curve periodic normalization, or a new theorem of differential geometry.
 
-This document is the first full run of the PSI dual-operator cycle
+This document records the first full PSI dual-operator run
 
 \[
 \mathsf E\to\mathsf A\to\mathsf E_{\rm fals}\to\mathsf A_{\rm freeze}.
 \]
 
-The purpose is to turn the earlier proposal `CAT–FACT–NORM–MINI on Frenet/Bishop trajectories` into one typed, falsifiable, minimal construction.
+The result is intentionally small. Its role is to test whether PSI can distinguish catalogue change, representation repair, factorization gauge and normal form without promoting classical Frenet/Bishop geometry into a new core primitive.
 
 ---
 
-## 1. Source motivation
-
-Earlier PSI work proposed the following closure programme:
-
-- finite catalogue grammar;
-- explicit `SE(3)` gauge;
-- reduction rules;
-- termination;
-- local confluence modulo gauge;
-- a normal front;
-- later adequacy/stability testing on data.
-
-The same source explicitly proposed Frenet/Bishop trajectories as the preferred small laboratory. The present MINI executes only the **exact mathematical layer**. Statistical adequacy under sampling/noise remains outside this theorem.
-
----
-
-## 2. Domain and protocol
+## 1. Contract snapshot
 
 Let
 
@@ -38,68 +22,67 @@ Let
 \gamma:[0,T]\to\mathbb R^3
 \]
 
-be a `C^3` regular curve with
+be `C^3` and regular:
 
 \[
-v(t)=\|\dot\gamma(t)\|>0
-\qquad\forall t\in[0,T].
+v(t)=\|\dot\gamma(t)\|>0\qquad\forall t\in[0,T].
 \]
 
-The protocol `P_0` observes the full trajectory with its time parameter:
+The exact protocol `P_0` observes the full time-parametrized trajectory
 
 \[
 Y=\gamma(t),\qquad t\in[0,T].
 \]
 
-The observational gauge is the orientation-preserving Euclidean group
+Time reparameterization is **not** part of the gauge in MINI-01.
+
+The external geometric gauge acts on the curve:
 
 \[
-G_{\rm ext}=SE(3).
+G_{\rm ext}=SE(3),
+\qquad
+\gamma\sim g\gamma.
 \]
-
-Thus the external object is the class
-
-\[
-[\gamma]_{SE(3)}.
-\]
-
-Time reparameterization is **not** part of the gauge in MINI-01. If it is admitted, the timing factor `v(t)` must be quotiented or reformulated separately.
 
 Define arc length
 
 \[
 s(t)=\int_0^t v(u)\,du,
-\qquad L=s(T),
+\qquad L=s(T).
 \]
 
-and write the curve by arc length when discussing frames.
+The internal frame gauge acts on an oriented Bishop normal pair by one constant rotation
+
+\[
+G_{\rm normal}=SO(2).
+\]
+
+These two actions must not be confused: `SE(3)` acts on the embedded curve/frame, while `SO(2)` acts on the choice of oriented basis in the normal plane.
 
 ---
 
-## 3. Two classical local encodings
+## 2. Classical local encodings
 
-### 3.1 Frenet atom
+### Frenet atom
 
-On an interval `I` on which the curvature satisfies
+On an interval `I` where
 
 \[
 \kappa(s)>0,
 \]
 
-a Frenet atom is
+a legal Frenet atom is represented by
 
 \[
 F_I=(v,\kappa,\tau)_I.
 \]
 
-The Frenet frame is defined only on the part of the curve where the required nondegeneracy holds.
+### Bishop atom
 
-### 3.2 Bishop atom
-
-A Bishop / relatively-parallel atom is
+A Bishop / relatively-parallel atom is represented by
 
 \[
-B_I=(v,k_1,k_2)_I,
+B_I=(v,k_1,k_2)_I
 \]
 
 with frame `(T,N_1,N_2)` satisfying
@@ -114,9 +97,7 @@ N_1'=-k_1T,
 N_2'=-k_2T.
 \]
 
-For a regular curve on an interval such a frame exists after choosing an oriented orthonormal normal pair at one point.
-
-Changing that initial normal pair by a constant rotation
+For a regular curve on an interval, specifying one oriented orthonormal normal pair at one point determines the Bishop frame. Changing this initial pair by a constant
 
 \[
 R_\alpha\in SO(2)
@@ -128,75 +109,45 @@ rotates the curvature vector
 k=(k_1,k_2)
 \]
 
-by the same constant normal-plane gauge. Therefore the intrinsic Bishop datum for this MINI is
+by the same constant normal-plane gauge. Thus the invariant Bishop shape datum in this MINI is
 
 \[
 [k]_{SO(2)},
 \]
 
-not a preferred pair `(k_1,k_2)`.
+not a preferred ordered pair `(k_1,k_2)`.
 
 ---
 
-## 4. Finite grammar
+## 3. Finite grammar
 
-A term in the grammar `L_FB` is a finite ordered concatenation
-
-\[
-X=X_1\oplus\cdots\oplus X_n,
-\]
-
-where every atom `X_j` is either a legal Frenet atom `F_{I_j}` or a legal Bishop atom `B_{I_j}` on consecutive subintervals covering `[0,L]`.
-
-Admissible concatenation requires that adjacent atoms reconstruct the same position and tangent at the shared endpoint. Frame variables may differ by their declared gauge.
-
-The grammar therefore has only two atom types:
+Let
 
 \[
-\boxed{\mathcal L_{FB}=\{F,B\}.}
+\mathcal L_{FB}=\{F,B\}.
 \]
 
-This is deliberately smaller than the general PSI-CAT calculus. `birth`, `death`, `split`, `merge`, and `recode` remain general catalogue operations; MINI-01 tests whether the apparent Frenet→Bishop change actually requires `birth`.
+A grammar term is a finite ordered concatenation
+
+\[
+X=X_1\oplus\cdots\oplus X_n
+\]
+
+of legal Frenet or Bishop atoms on consecutive subintervals covering `[0,L]` and reconstructing one regular curve with matching position and tangent at shared boundaries.
+
+Gauge is an isomorphism relation on realizations; it is not a catalogue-changing rewrite.
 
 ---
 
-## 5. Gauge
+## 4. Frenet-to-Bishop recode
 
-The complete MINI gauge is
-
-\[
-\boxed{G=SE(3)\times SO(2)_{\rm normal}.}
-\]
-
-- `SE(3)` changes global position and orientation of the curve;
-- `SO(2)_normal` changes the initial oriented Bishop normal pair.
-
-For a segmented Bishop representation, each local segment may initially carry its own `SO(2)` presentation. Boundary matching removes the relative rotations; after gluing a connected interval, only one global constant `SO(2)` gauge remains.
-
-Gauge is an isomorphism relation, **not** a catalogue-changing rewrite.
-
----
-
-## 6. Recode `F -> B`
-
-On every Frenet-valid interval there is a Bishop recoding.
-
-Let `(T,N,B)` be the Frenet frame. Choose an angle `theta` satisfying the convention-dependent relation
+On every Frenet-valid interval choose `theta` with
 
 \[
 \theta'=-\tau
 \]
 
-for the rotation
-
-\[
-\begin{pmatrix}N_1\\N_2\end{pmatrix}
-=
-R_{\theta}
-\begin{pmatrix}N\\B\end{pmatrix}.
-\]
-
-Then the corresponding Bishop curvature vector is obtained by the same rotation of the normal curvature vector. In one fixed convention,
+in a fixed convention and rotate the Frenet normal/binormal pair into a relatively-parallel normal pair. Then, in the same convention,
 
 \[
 k_1=\kappa\cos\theta,
@@ -206,39 +157,37 @@ k_2=-\kappa\sin\theta.
 
 Changing the integration constant in `theta` changes only the constant `SO(2)` normal gauge.
 
-Hence the first rewrite is
+Hence
 
 \[
-\boxed{R_F:\quad F_I\longrightarrow B_I.}
+\boxed{R_F:F_I\longrightarrow B_I}
 \]
 
-It is a **recode**, not a birth of a new geometric behaviour.
+is a recode between two legal representations of the same curve on that interval.
 
 ---
 
-## 7. Bishop gluing and merge
+## 5. Bishop gluing
 
-Let two adjacent Bishop atoms reconstruct the same regular curve and share the same tangent at their common endpoint:
-
-\[
-B_{I_1}\oplus B_{I_2}.
-\]
-
-Their oriented normal pairs at the shared point differ by one element of `SO(2)`. Rotate the second local frame by that constant gauge so that the frames agree at the boundary. Relative parallel transport then gives one Bishop frame on the union.
-
-Thus the second rewrite is
+For adjacent Bishop atoms reconstructing the same curve,
 
 \[
-\boxed{R_M:\quad B_{I_1}\oplus B_{I_2}\longrightarrow B_{I_1\cup I_2}.}
+B_{I_1}\oplus B_{I_2},
 \]
 
-The alignment choice is unique modulo the remaining global constant `SO(2)` gauge.
+their oriented normal pairs at the common endpoint differ by one `SO(2)` rotation. Align the second segment by that constant gauge. Relative parallel transport then produces one Bishop frame on the union:
+
+\[
+\boxed{R_M:B_{I_1}\oplus B_{I_2}\longrightarrow B_{I_1\cup I_2}.}
+\]
+
+After gluing a connected interval, only one global constant `SO(2)` presentation gauge remains.
 
 ---
 
-## 8. Termination
+## 6. Termination
 
-For a grammar term `X`, define
+Define
 
 \[
 \mu(X)=\bigl(n_F(X),n_{\rm seg}(X)\bigr)\in\mathbb N^2
@@ -247,132 +196,137 @@ For a grammar term `X`, define
 with lexicographic order.
 
 - `R_F` strictly decreases `n_F`;
-- `R_M` leaves `n_F=0` on its redex and strictly decreases the number of segments.
+- once no Frenet atoms remain, `R_M` strictly decreases `n_seg`.
 
-No rule increases either component before a decrease in the earlier component.
-
-Therefore there is no infinite rewrite chain:
-
-\[
-\boxed{\mathcal L_{FB}/G\text{ is terminating under }\{R_F,R_M\}.}
-\]
+Therefore there is no infinite rewrite chain.
 
 ---
 
-## 9. Local confluence modulo gauge
+## 7. Confluence modulo gauge
 
-The possible critical configurations are elementary.
+The rewrite rules respect the declared gauge, so they induce a rewrite relation on gauge classes.
 
-### 9.1 Two independent Frenet recodes
+The relevant critical configurations are:
 
-Recoding disjoint Frenet atoms commutes. Different integration constants for `theta` differ only by local `SO(2)` gauge and are removed at gluing.
+1. independent Frenet recodes — they commute modulo local `SO(2)` choices;
+2. triple Bishop merge — either merge order gives the same transported frame class after fixing the first segment presentation;
+3. recode/merge — the redex types are distinct; after the required recodes only Bishop merges remain.
 
-### 9.2 Triple Bishop merge
+Thus the induced quotient rewrite is locally confluent. Together with termination, Newman's lemma gives confluence of the induced rewrite system on gauge classes.
 
-For
-
-\[
-B_1\oplus B_2\oplus B_3,
-\]
-
-merging `(B_1,B_2)` first or `(B_2,B_3)` first yields the same relatively-parallel frame on the full union once the first segment frame is fixed. Any two initial choices differ by one global `SO(2)` rotation.
-
-Therefore the two reduction paths meet in the same quotient class.
-
-### 9.3 Recode / merge interaction
-
-`R_M` has only Bishop–Bishop redexes, whereas `R_F` has Frenet redexes. Hence there is no nontrivial same-redex overlap. After all necessary recodes, the merge rules reduce the resulting Bishop segmentation.
-
-Thus the rewrite system is locally confluent **modulo `G`**.
-
-Since it is also terminating, Newman's lemma applied on the quotient gives confluence.
+The conclusion is a unique **normal class**, not a canonical frame representative.
 
 ---
 
-## 10. Normal form
+## 8. Normal datum
 
-Every legal finite Frenet/Bishop segmentation of the same regular curve on `[0,T]` reduces to one Bishop class
+For the exact interval contract define
 
 \[
 \boxed{
-\operatorname{NF}_{FB}(\gamma)
-=
-\bigl[v(t),k_1(s),k_2(s)\bigr]_{SE(3)\times SO(2)}.
+N_{FB}(\gamma)=\bigl(v(t),[k_1(s),k_2(s)]_{SO(2)}\bigr).
 }
 \]
 
-More precisely, the curve itself is quotiented by `SE(3)`, while `(k_1,k_2)` is quotiented by the constant normal-plane `SO(2)` gauge.
+`SE(3)` does not act on these scalar functions; it acts on the reconstructed embedded curve and initial Euclidean frame. The relation is:
 
-The normal object is therefore a **class**, not a preferred frame.
+\[
+N_{FB}(\gamma)
++\text{one initial Euclidean frame}
+\Longrightarrow
+\gamma,
+\]
+
+and changing that initial Euclidean frame changes only the reconstructed representative in `[\gamma]_{SE(3)}`.
+
+Therefore every legal finite Frenet/Bishop segmentation of one exact regular interval curve reduces to the same datum `N_FB(γ)` modulo the one constant normal-plane rotation.
 
 ---
 
-## 11. Exact identifiability of the MINI factorization
+## 9. Factorization fibre: raw versus quotiented
 
-From the exact time-parametrized observation:
-
-\[
-v(t)=\|\dot\gamma(t)\|
-\]
-
-is determined uniquely. Arc length `s(t)` and unit tangent `T(s)` are therefore determined.
-
-A Bishop frame is determined by the choice of one initial oriented normal pair. Any two such choices differ by a constant `SO(2)` rotation, and the corresponding Bishop curvature vectors differ by that same gauge.
-
-Conversely, given
+To avoid double quotienting, distinguish the raw realization set
 
 \[
-(v,[k]_{SO(2)})
+\operatorname{RawFact}^{0}_{FB,P_0}(Y)
 \]
 
-and one initial Euclidean frame, the Bishop ODE together with
-
-\[
-\dot\gamma(t)=v(t)T(s(t))
-\]
-
-reconstructs the trajectory. Different initial Euclidean frames differ by `SE(3)`.
-
-Hence, for this exact protocol,
+from the factorization fibre after the declared realization gauge:
 
 \[
 \boxed{
-\left|
 \operatorname{Fact}^{0}_{FB,P_0}(Y)
-/\bigl(SE(3)\times SO(2)\bigr)
-\right|=1.
+:=
+\operatorname{RawFact}^{0}_{FB,P_0}(Y)
+/\bigl(SE(3)\times SO(2)_{\rm normal}\bigr).
+}
+\]
+
+Here `SE(3)` refers to the external Euclidean realization and `SO(2)` to the Bishop normal presentation. With this convention **no further quotient is applied to `Fact`**.
+
+Exact observation determines
+
+\[
+v(t)=\|\dot\gamma(t)\|,
+\]
+
+then arc length and the tangent. A Bishop frame is determined by one initial oriented normal pair, and any two such choices differ by one constant `SO(2)` rotation. Conversely, `v`, the Bishop curvature vector modulo that rotation, and one initial Euclidean frame reconstruct the trajectory.
+
+Hence
+
+\[
+\boxed{
+\left|\operatorname{Fact}^{0}_{FB,P_0}(Y)\right|=1.
 }
 \]
 
 This is the MINI factorization-identifiability result.
 
-Its geometric ingredients are classical; the PSI content is the explicit separation
+Its geometric ingredients are classical. The PSI content is the explicit separation
 
 \[
-\text{catalogue}\mid\text{factorization}\mid\text{gauge}\mid\text{recode}\mid\text{normal class}\mid\text{protocol}.
+\text{catalogue}
+\mid
+\text{raw realization}
+\mid
+\text{gauge}
+\mid
+\text{recode}
+\mid
+\text{normal class}
+\mid
+\text{protocol}.
 \]
 
 ---
 
-## 12. CAT verdict: Frenet singularity is not `birth`
+## 10. CAT verdict: Frenet failure is not birth
 
-Suppose `kappa` approaches or reaches zero at a point at which the curve remains regular.
+Suppose
 
-The Frenet encoding ceases to be legal there, but the Bishop encoding remains a legal representation of the same regular curve. Because legal Frenet pieces recode into the Bishop representation without adding a new external behavioural sector,
+\[
+\kappa(s_0)=0
+\]
+
+while the curve remains regular.
+
+The Frenet representation ceases to be legal at the singular point, whereas a Bishop representation remains legal for the regular curve. No new external behavioural sector is introduced; the same observed curve admits a legal representation repair.
+
+Therefore, under MINI-01,
 
 \[
 \boxed{
-F\to B\text{ at a Frenet singularity is a recode/domain repair, not catalog birth, under MINI-01.}
+F\to B\text{ at a Frenet singularity is recode/domain repair, not catalogue birth.}
 }
 \]
 
-This is a **contract-relative verdict**. It does not assert that every representation failure in every domain is merely a recode.
+This is contract-relative and is not a universal statement about representation failures.
 
 ---
 
-## 13. Falsification pass
+## 11. Falsification boundary
 
-The exploratory strong version does **not** survive unchanged. The following cases block a universal statement.
+The stronger exploratory proposal fails outside the frozen contract.
 
 ### X1 — loss of regularity
 
@@ -382,81 +336,79 @@ If
 \dot\gamma(t_0)=0,
 \]
 
-then the present construction of arc length, tangent and Bishop data may fail. MINI-01 makes no claim there.
+the present tangent/arc-length construction is outside scope.
 
-### X2 — time reparameterization admitted as gauge
+### X2 — reparameterization admitted as gauge
 
-If arbitrary orientation-preserving reparameterizations are included in the gauge, `v(t)` is not invariant. The factorization must then quotient timing separately or use arc-length-only shape data.
+If arbitrary orientation-preserving reparameterizations are admitted, `v(t)` is not invariant. Timing must then be quotiented or removed from the factorization target.
 
-Therefore the present uniqueness statement requires the observed time parameter to remain part of the protocol.
+### X3 — closed curves
 
-### X3 — closed curves / periodic frame requirement
+For a closed parameter domain, normal-plane parallel transport may return the normal pair rotated. A periodic representative therefore requires explicit treatment of return rotation / holonomy rather than silent extension of the interval result.
 
-On a closed parameter domain, parallel transport of the normal plane may have nontrivial holonomy. A Bishop frame transported once around the loop need not satisfy the same periodic frame condition without an additional holonomy datum.
+### X4 — sampled/noisy data
 
-Therefore the interval normal-form theorem is **not** silently extended to `S^1`.
-
-### X4 — sampled or noisy observations
-
-Derivative estimation, curvature estimation and frame switching may be unstable near low-curvature regions. Exact identifiability does not imply statistical stability.
-
-This is delegated to a later `FS-STAT` experiment.
+Exact identifiability does not imply stable derivative, curvature or frame recovery from finite noisy samples, especially in low-curvature regions.
 
 ### X5 — reflections
 
-`SE(3)` does not identify mirror images. If the intended observational gauge is `E(3)` or `O(3)` rather than orientation-preserving rigid motions, the contract must state that explicitly.
+`SE(3)` distinguishes mirror images. If the intended gauge is `E(3)` or `O(3)`, the contract must state this separately.
 
 ---
 
-## 14. What the result establishes
+## 12. What MINI-01 establishes
 
-`PASS` for MINI-01 means:
+Under the frozen exact contract:
 
 1. the grammar `{F,B}` is finite;
-2. the declared rewrite system terminates;
-3. it is locally confluent modulo the declared gauge;
-4. every legal finite Frenet/Bishop segmentation on an open interval has one Bishop normal **class**;
-5. under exact time-parametrized observation the `(timing, Bishop-shape)` factorization is identifiable modulo `SE(3) x SO(2)`;
-6. Frenet failure at zero curvature does not force a PSI-CAT `birth` in this contract.
+2. the induced rewrite on gauge classes terminates;
+3. it is locally confluent and therefore confluent;
+4. every legal finite Frenet/Bishop segmentation reduces to one Bishop normal class;
+5. the raw compatible realization family has one class after the declared realization gauge;
+6. a zero-curvature Frenet failure of an otherwise regular curve is a representation/domain event, not evidence for catalogue birth.
 
 ---
 
-## 15. What the result does NOT test
+## 13. What MINI-01 does not establish
 
-MINI-01 does **not** establish:
+It does not establish:
 
 - noisy-data consistency;
 - robustness under finite sampling;
 - a canonical global frame representative;
 - periodic normalization for closed curves;
-- uniqueness under arbitrary time reparameterization;
+- uniqueness modulo arbitrary time reparameterization;
 - general confluence of PSI-CAT;
 - general identifiability of arbitrary system factorizations;
-- a new differential-geometric Frenet/Bishop theorem;
+- a new Frenet/Bishop theorem;
 - universal sufficiency of CORE5.
 
 ---
 
-## 16. Dual-operator verdict
+## 14. Dual-operator audit record
 
-### `E` — exploratory proposal
+### `E`
 
 Strong proposal: every admissible Frenet/Bishop realization of a regular trajectory normalizes to one canonical decomposition.
 
-### `A` — audit reduction
+### `A0` — semantic/source audit
 
-Replace `canonical decomposition` by a **normal equivalence class** and add exact hypotheses: regular `C^3` interval curve, fixed time parameter, exact observation, `SE(3) x SO(2)` gauge.
+Downgrade `canonical decomposition` to a normal equivalence class; separate external Euclidean gauge from internal normal-frame gauge; distinguish raw factorization realizations from their quotient.
 
-### `E_fals` — attacks
+### `A1` — mathematical audit
 
-Regularity failure, reparameterization gauge, closed-loop holonomy and noisy derivative recovery defeat the unrestricted proposal.
+Freeze the domain `C^3`, regular interval curve, fixed time parameter and exact observation. Establish termination and confluence only for the finite `{F,B}` rewrite under these hypotheses.
 
-### `A_freeze` — surviving claim
+### `E_fals`
+
+Regularity failure, reparameterization, closed-loop return rotation, reflections and noisy derivative recovery defeat the unrestricted proposal.
+
+### freeze
 
 \[
 \boxed{
 \begin{minipage}{0.88\linewidth}
-For an exactly observed, time-parametrized `C^3` regular curve on an interval, every finite legal Frenet/Bishop segmentation reduces, under Frenet-to-Bishop recoding and Bishop gluing, to a unique global Bishop factorization class modulo orientation-preserving rigid motion and constant normal-plane rotation. In this contract, a Frenet singularity caused by vanishing curvature is a representation/domain event, not evidence for catalog birth.
+For an exactly observed, time-parametrized `C^3` regular curve on a compact interval, every finite legal Frenet/Bishop segmentation reduces to one Bishop normal class modulo constant normal-plane rotation; the corresponding raw realization family has one factorization class after the declared Euclidean and normal-frame gauge. In this contract, vanishing curvature that only invalidates the Frenet frame is a recode/domain event, not evidence for catalogue birth.
 \end{minipage}
 }
 \]
@@ -465,13 +417,9 @@ For an exactly observed, time-parametrized `C^3` regular curve on an interval, e
 
 ---
 
-## 17. Next legal step
+## 15. Next legal attacks
 
-The next step is **not** to generalize the theorem immediately.
+1. `CLOSED-FRAME-01` — closed-loop return rotation / holonomy and its correct role in FRAME/CORE5;
+2. `FS-STAT-01` — finite sampling, noise and low-curvature conditioning.
 
-Run two attacks in parallel:
-
-1. `FS-STAT-01` — finite sampling/noise/low-curvature stability and held-out adequacy;
-2. `CLOSED-FRAME-01` — add loop holonomy and test whether it remains derived data or creates genuine pressure on the current candidate/gauge/frame architecture.
-
-Only after those tests should CAT–FACT–NORM be generalized beyond this MINI.
+Only after those attacks may CAT–FACT–NORM be generalized beyond MINI-01.
