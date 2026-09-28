@@ -12,7 +12,7 @@ The central object is not a guessed hidden state, but the full set of states sti
 F(Y)=\Psi^{-1}(\mathcal K^Y).
 \]
 
-For a task \(\mathcal T\), the current exact task-level criterion is
+For a task \(\mathcal T\), exact resolution means
 
 \[
 |q_{\mathcal T}(F(Y))|=1
@@ -22,50 +22,56 @@ F(Y)\neq\varnothing
 F(Y)\times F(Y)\subset E_{\mathcal T}.
 \]
 
-This repository is a **public entry point** to the PSI project. It is intentionally smaller and more stable than the internal working corpus.
+## Current control pointers
 
-## Start here
-
+- [Physical CANON-03 source bind](docs/canon03-source-bind-01.md)
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v11](docs/claim-registry-11.md)
+- [Current claim registry v12](docs/claim-registry-12.md)
 - [Current falsifier registry v10](docs/falsifier-registry-10.md)
+- [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
 - [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
 - [Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
-- [CAT–FACT–NORM–MINI 01 — corrected contract](docs/cat-fact-norm-mini-01.md)
-- [CLOSED-FRAME 01](docs/closed-frame-01.md)
-- [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
-- [HIGHER-FIBRE 01](docs/higher-fibre-01.md)
-- [R4 PRESSURE COURT 01](docs/r4-pressure-court-01.md)
-- [HCUBE REGRESSION 01](docs/hcube-regression-01.md)
-- [GO MEMORY REGRESSION 01](docs/go-memory-regression-01.md)
-- [FS-STAT 01](docs/fs-stat-01.md)
+- [Current Principia four-volume skeleton v02](docs/principia-volume-skeleton-02.md)
+- [Corrected CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
+- [Classical comparison map](docs/classical-compare-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
-- [Principia migration registry](docs/principia-migration-01.md)
-- [Current Principia four-volume skeleton v02](docs/principia-volume-skeleton-02.md)
-- [Source governance discipline](docs/source-governance-01.md)
-- [Classical comparison map](docs/classical-compare-01.md)
-- [Mathematical lineage](docs/lineage.md)
 
-Historical registries/specs remain for provenance. Current control pointers are **claim-registry v11**, **falsifier-registry v10**, **Regression Bank 01**, **Agent Architecture v02**, and **Proof/Source/Migration Audit 01**.
+Historical registries/specs remain for provenance.
+
+## Physical canon
+
+The current authoritative physical canon is bound to:
+
+- repository `smoczynski-b/psi-model`;
+- commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+- path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
+- version `1.0.0`;
+- blob `72d711a40c65376ee932809802622f3985ecb02a`.
+
+This closes the current-canon provenance gap. Historical missing originals remain genealogy gaps only.
 
 ## Core status
 
-The primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZARUS-AGENCY and HIGHER-FIBRE did not force a sixth semantic role. `R4-PRESSURE-COURT-01` keeps CORE5 frozen until a genuinely new typed counterexample survives the role-preservation and minimality gates.
+CORE5 remains
 
-This is not a universal completeness theorem.
+\[
+\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
+\]
 
-Exact representation adequacy is
+The current counterexample set does not force R4. This is not a universal completeness theorem.
+
+Exact task-information adequacy is
 
 \[
 \boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
-The proof audit sharpened its scope:
+The proof audit sharpened the scope:
 
 \[
 \boxed{
@@ -77,85 +83,69 @@ The proof audit sharpened its scope:
 
 in general. Full legality can additionally require correct typing, admissible gauge/action, observation compatibility/equivariance and domain constraints.
 
-## Proof/source/migration audit
+## Corrected MINI contract
 
-`PROOF-SOURCE-MIGRATION-AUDIT-01` gives the first formal freeze-gate result.
+The first proof/source audit found a genuine error in the earlier Frenet/Bishop MINI statement: fixed-coordinate exact observation had been mixed with an external `SE(3)` quotient.
 
-### Passed elementary spine
-
-- C06 exact task-level decidability — `PASS`;
-- C07 kernel factorization — `PASS`;
-- C08 global task sufficiency — `PASS`;
-- C09 exact representation adequacy — `PASS WITH SCOPE CORRECTION`;
-- C10 deterministic quotient dynamics — `PASS`.
-
-### History quotient
-
-The RED-1 future-task construction has been migrated to C57–C59:
+The corrected theorem distinguishes:
 
 \[
-H\equiv_{\mathcal T,t}H'
-\iff
-\operatorname{Beh}_{\mathcal T}(H)
-\cong
-\operatorname{Beh}_{\mathcal T}(H')
+P_0^{abs}:Y=\gamma(t),
 \]
 
-through a rooted label-preserving future-tree isomorphism. Its equivalence, congruence and partial recursive-update results are now registered.
-
-### MINI contract errata
-
-The audit found a real defect in the earlier MINI statement. Exact fixed-coordinate observation
+with only constant Bishop-normal `SO(2)` presentation quotient in the same observation fibre, from
 
 \[
-Y=\gamma(t)
-\]
-
-was combined with an external `SE(3)` quotient, although a nontrivial Euclidean motion generally changes that observation.
-
-The corrected result now distinguishes:
-
-\[
-P_0^{abs}:\quad Y=\gamma(t),
-\]
-
-with only constant Bishop-normal `SO(2)` quotient in the same observation fibre, from
-
-\[
-P_0^{shape}:\quad Y=[\gamma]_{SE(3)},
+P_0^{shape}:Y=[\gamma]_{SE(3)},
 \]
 
 where external `SE(3)` gauge is legal.
 
-C19 has therefore been replaced by **C19-v2** without changing CORE5.
+C19-v2 records the repaired result.
 
-## CAT / ADEQ / FACT migration
+## Current CAT / FACT status
 
-Strong older typed sources have been aligned with the current public CANON-03 derivative. They contain:
+Physical CANON-03 defines:
 
-- protocol-relative catalog adequacy;
-- `GEN ≠ TEST ≠ SELECT`;
-- gauge as realization isomorphism rather than catalog change;
-- typed CAT layers `ISO/HOR/REF/CRS`;
-- `PSI-FACT = PSI-CAT|_{FactMorph}`;
-- a factorization groupoid and weak/homotopy ADEQ fibre preserving stabilizers and compatibility witnesses.
+- `PSI-CAT`: whether data/protocol justify a catalog change and which class of changes is justified;
+- `PSI-CAT^D`: the same problem under domain-admissibility conditions `ADM_D`;
+- `PSI-FACT`: the contract-relative fibre
+  \[
+  \operatorname{Fact}^{\varepsilon}_{D,P}(Y)
+  \]
+  of legal factorizations compatible with observation, external interface and domain constraints.
 
-The semantic roles align with the current public core. However the physical authoritative `PSI-R3-CONSOLIDATED-CANON-03` source has not yet been bound in this audit, so the migration remains **ALIGNMENT / REVIEW**, not canonical freeze.
+Gauge is quotiented when the contract establishes it.
 
-## Classical comparison
+The richer older CAT taxonomy and FACT groupoid/homotopy fibre are retained as **derived extensions**, not as replacements for the current physical definitions.
 
-The comparison map now binds the main imported sources and keeps their role separate from PSI claims:
+A universal scalar `D_ADEQ^cat` is likewise not a CORE primitive; metric/loss-based catalog adequacy is a protocol-specific adapter.
 
-- Kemeny–Snell — Markov lumpability;
-- Larsen–Skou — probabilistic bisimulation;
-- Myhill / Nerode — future-continuation equivalence and automata theorem provenance;
-- Paige–Tarjan — partition refinement benchmark;
-- Newman — termination + local confluence ⇒ confluence;
-- Bishop / later RMF literature — framing and closed-loop geometry.
+## First Principia freeze
+
+The first mathematical/source freeze for Volumes I and II has passed:
+
+\[
+\boxed{
+\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.
+}
+\]
+
+It freezes:
+
+- definitions and semantic roles;
+- theorem statements and hypotheses;
+- source/classical status;
+- dependencies and principal boundaries;
+- regression obligations.
+
+It does **not** freeze final prose or typography and does not assert universal completeness of CORE5.
+
+The next legal phase is chapter prose **from frozen units**, with semantic changes requiring an explicit erratum and impact audit.
 
 ## Hardening bank
 
-The first post-R4 hardening cycle remains
+The first regression bank remains
 
 \[
 \boxed{R01=\mathrm{HCube},\qquad R02=\mathrm{Go},\qquad R03=\mathrm{FS\!-\!STAT}.}
@@ -171,39 +161,31 @@ Permanent statistical discipline:
 }
 \]
 
-## Principia freeze status
-
-The V1/V2 maps and Audit 01 are complete, but the first volume freeze is still deliberately blocked.
-
-Current remaining gate:
-
-\[
-\boxed{\mathrm{CANON03\!-\!SOURCE\!-\!BIND\!-\!01}.}
-\]
-
-After that bind, the next legal step is
-
-\[
-\boxed{\mathrm{V1\!-\!V2\!-\!FREEZE\!-\!RECHECK\!-\!01}.}
-\]
-
-Only after a PASS should polished chapter prose begin.
-
 ## PSI Agent Architecture v02
 
-The audit is a substantive Agent-v02 regression: the procedure found and corrected a genuine contract error in an already accepted bridge result instead of defending it narratively.
+The Agent-v02 procedure found and corrected the MINI contract error, recovered the physical canon instead of filling the gap from memory, and downgraded older rich machinery where the physical canon was narrower.
 
-No Agent v03 is justified by the current evidence.
+No Agent v03 is justified by current evidence.
 
-## Status
+## Current phase
 
-**Research / work in progress.**
+\[
+\boxed{
+\mathrm{V1\ PROSE}
+\to
+\mathrm{V1\ CROSS\!-\!CHECK}
+\to
+\mathrm{V2\ PROSE}
+\to
+\mathrm{V2\ CROSS\!-\!CHECK}.
+}
+\]
 
-Primitive growth remains stopped until a new counterexample forces a genuinely new semantic role.
+Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
 
 ## Publications / Zenodo
 
-Archived project materials are available on Zenodo:
+Archived project materials:
 
 - DOI: 10.5281/zenodo.18893354
 - DOI: 10.5281/zenodo.18644750
