@@ -4,6 +4,7 @@
 **Status:** `CLASSICAL THEOREM / PSI BRIDGE / PROSE PASS 01 / LOCAL CROSS-CHECK PASS`  
 **Źródło nadrzędne PSI:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, zachowane C13  
+**Rejestr falsyfikatorów:** `falsifier-registry-11.md`, F61  
 **Mapa porównawcza:** `classical-compare-01.md`  
 **Zależności PSI:** II.5–II.6 jako warstwa rozróżnienia statyczna/dynamiczna; nie jako dowód klasycznego twierdzenia  
 **Źródło klasyczne:** J. G. Kemeny, J. L. Snell, *Finite Markov Chains*, Chapter VI, §6.3, Theorem 6.3.2 (warunek lumpowalności względem partycji).  
@@ -301,7 +302,7 @@ A dla skończonego jednorodnego łańcucha warunek stabilności blokowej jest ta
 
 ---
 
-## 7. Minimalny kontrprzykład do automatycznej lumpowalności
+## 7. Minimalny kontrprzykład do automatycznej lumpowalności — F61
 
 Niech
 
@@ -444,8 +445,8 @@ To rozdzielenie chroni przed utożsamieniem adekwatności reprezentacji ze stoch
 ### PSI status
 `PASS`: C13 pozostaje `CLASSICAL CONDITION + PSI BRIDGE / BENCHMARK`; brak nowego prymitywu.
 
-### Falsifier
-`PASS`: trzystanowy przykład rozdziela statyczną task-equivalence od dynamicznej lumpowalności.
+### Falsifier / regression
+`PASS`: F61 — trzystanowy przykład rozdziela statyczną task-equivalence od dynamicznej lumpowalności.
 
 ### Agent impact
 `PASS`: brak Freeze 01 erraty, brak CORE5 zmiany, brak Agent v03.
