@@ -1,6 +1,6 @@
 # PSI
 
-**PSI is a theory of justified inference under constrained observation.**
+**PSI is a formal research program on justified inference under constrained observation.**
 
 It asks a strict question:
 
@@ -12,7 +12,7 @@ The central object is not a guessed hidden state, but the full set of states sti
 F(Y)=\Psi^{-1}(\mathcal K^Y).
 \]
 
-Inference proceeds in a fixed order:
+Inference is organized in the intended order
 
 \[
 \text{catalog adequacy}
@@ -26,9 +26,9 @@ Inference proceeds in a fixed order:
 \text{protocol design}.
 \]
 
-A conclusion is justified only when the available observation collapses the task-relevant ambiguity far enough.
+A conclusion is justified only when the available observation collapses task-relevant ambiguity far enough.
 
-For a task \(\mathcal T\), exact decidability is expressed by
+For a task \(\mathcal T\), the current exact task-level criterion is
 
 \[
 |q_{\mathcal T}(F(Y))|=1
@@ -43,13 +43,44 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
+- [Mathematical lineage — people, problems, ideas](docs/lineage.md)
 - [Method and working discipline](docs/method.md)
 - [Model-to-model handoff discipline](docs/llm-handoff.md)
 - [Minimal separating-test example](examples/separating-test.md)
 - [Experimental PSI–Jev adapter](docs/jev-adapter.md)
-- [Controlled experiments and falsification runs](experiments/README.md)
+- [Experimental and conformance runs](experiments/README.md)
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
+- Public lineage page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/?view=lineage
+
+## Mathematical lineage
+
+PSI is not presented as mathematics without ancestors.
+
+For each substantial imported construction, the public project should state:
+
+\[
+\boxed{
+\text{person}
+\to
+\text{problem}
+\to
+\text{contribution}
+\to
+\text{role in PSI}
+}
+\]
+
+A classical result remains classical when PSI uses it. The project distinguishes:
+
+- `CLASSICAL` — established mathematics;
+- `ADAPTED` — established mathematics used in a different role;
+- `BRIDGE` — a claimed connection requiring proof or testing;
+- `PSI-NEW` — a genuinely new result requiring proof or a precise formal falsifier;
+- `POLICY` — an operational rule rather than a theorem;
+- `OPEN` — an unresolved mathematical point.
+
+The growing guide is in [docs/lineage.md](docs/lineage.md).
 
 ## What PSI is for
 
@@ -67,7 +98,7 @@ The framework is developed through mathematics, counterexamples and stress tests
 
 **Research / work in progress.**
 
-The mathematical core is under active consolidation. Later public releases will separate stable canonical statements from genealogy, examples and experimental modules.
+The mathematical core is under active consolidation. In particular, classical imports, adaptations, open problems and PSI-specific claims are being separated more explicitly. Public statements should not imply novelty merely because a classical construction has been placed inside PSI notation.
 
 ## Publications / Zenodo
 
