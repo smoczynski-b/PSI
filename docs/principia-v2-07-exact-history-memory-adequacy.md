@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.7. Dokładna adekwatność pamięci historii
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md` z zachowanymi C42 oraz C57–C59  
 **Mapa twierdzeń:** `principia-v2-theorem-map-02.md`, II.7  
@@ -38,13 +38,7 @@ Nie zakładamy, że \(\mathcal H_t\) jest minimalną reprezentacją pamięci. Je
 
 ## 2. Przyszłe drzewo zadaniowe
 
-Dla historii
-
-\[
-H\in\mathcal H_t
-\]
-
-definiujemy
+Dla historii \(H\in\mathcal H_t\) definiujemy
 
 \[
 \operatorname{Beh}_{\mathcal T}(H)
@@ -65,13 +59,7 @@ Nie jest to drzewo wszystkich ontologicznie możliwych przyszłości. Jest obiek
 
 ### Definicja II.7.1
 
-Dla
-
-\[
-H,H'\in\mathcal H_t
-\]
-
-definiujemy
+Dla \(H,H'\in\mathcal H_t\) definiujemy
 
 \[
 \boxed{
@@ -83,97 +71,19 @@ H\equiv_{\mathcal T,t}H'
 }
 \]
 
-przez izomorfizm zachowujący:
+przez izomorfizm zachowujący korzeń, etykiety węzłów, etykiety krawędzi i relację rodzic–dziecko.
 
-- korzeń;
-- etykiety węzłów;
-- etykiety krawędzi;
-- relację rodzic–dziecko.
-
-W szczególności dwie różne historie mogą być równoważne, jeżeli żadna ich różnica nie zmienia już przyszłej semantyki zadania.
+Dwie różne historie mogą więc być równoważne, jeżeli żadna ich różnica nie zmienia już przyszłej semantyki zadania.
 
 ---
 
-## 4. Lemat II.7.A — \(\equiv_{\mathcal T,t}\) jest relacją równoważności
+## 4. Lemat II.7.A — relacja równoważności
 
-### Lemat
+Relacja \(\equiv_{\mathcal T,t}\) jest relacją równoważności na \(\mathcal H_t\).
 
-Relacja
+**Dowód.** Refleksyjność daje identyczność drzewa \(\operatorname{Beh}_{\mathcal T}(H)\). Symetrię daje odwrotność izomorfizmu. Przechodniość daje złożenie dwóch izomorfizmów zachowujących korzeń, etykiety i relację rodzic–dziecko. Zatem relacja jest refleksyjna, symetryczna i przechodnia. \(\square\)
 
-\[
-\equiv_{\mathcal T,t}
-\]
-
-z Definicji II.7.1 jest relacją równoważności na \(\mathcal H_t\).
-
-### Dowód
-
-**Refleksyjność.** Dla każdego \(H\in\mathcal H_t\) identyczność
-
-\[
-\operatorname{id}_{\operatorname{Beh}_{\mathcal T}(H)}
-\]
-
-jest izomorfizmem ukorzenionego drzewa zachowującym wszystkie wymagane etykiety i relację rodzic–dziecko. Zatem
-
-\[
-H\equiv_{\mathcal T,t}H.
-\]
-
-**Symetria.** Jeżeli
-
-\[
-\phi:
-\operatorname{Beh}_{\mathcal T}(H)
-\to
-\operatorname{Beh}_{\mathcal T}(H')
-\]
-
-jest wymaganym izomorfizmem, to jego odwrotność
-
-\[
-\phi^{-1}
-\]
-
-również zachowuje korzeń, etykiety i strukturę drzewa. Stąd
-
-\[
-H'\equiv_{\mathcal T,t}H.
-\]
-
-**Przechodniość.** Jeżeli
-
-\[
-\operatorname{Beh}_{\mathcal T}(H)
-\cong
-\operatorname{Beh}_{\mathcal T}(H')
-\]
-
-oraz
-
-\[
-\operatorname{Beh}_{\mathcal T}(H')
-\cong
-\operatorname{Beh}_{\mathcal T}(H''),
-\]
-
-to złożenie odpowiednich izomorfizmów jest izomorfizmem
-
-\[
-\operatorname{Beh}_{\mathcal T}(H)
-\cong
-\operatorname{Beh}_{\mathcal T}(H'')
-\]
-
-zachowującym te same dane. Zatem
-
-\[
-H\equiv_{\mathcal T,t}H''.
-\]
-
-Relacja jest więc refleksyjna, symetryczna i przechodnia. \(\square\)
-
-Dowód nie wymaga założenia skończonego horyzontu przyszłości.
+Dowód nie wymaga skończonego horyzontu przyszłości.
 
 ---
 
@@ -201,8 +111,6 @@ Jej jądro równoważności ma postać
 
 ## 6. Twierdzenie II.7 — dokładna adekwatność pamięci historii
 
-### Twierdzenie
-
 Reprezentacja
 
 \[
@@ -219,7 +127,7 @@ jest dokładnie adekwatna względem przyszłej semantyki zadania wtedy i tylko w
 }
 \]
 
-Równoważnie, jeżeli
+Równoważnie, dla projekcji
 
 \[
 q_{\mathcal T,t}:
@@ -230,7 +138,7 @@ M_{\mathcal T,t}
 \mathcal H_t/\!\equiv_{\mathcal T,t}
 \]
 
-jest projekcją na iloraz historii, to
+zachodzi
 
 \[
 \boxed{
@@ -248,13 +156,7 @@ Unikalność \(f_t\) obowiązuje wyłącznie na \(\operatorname{im}\rho_t\).
 
 ### Dowód
 
-Z Lematu II.7.A relacja
-
-\[
-\equiv_{\mathcal T,t}
-\]
-
-jest relacją równoważności na \(\mathcal H_t\). Możemy więc zastosować Twierdzenie II.4 do:
+Z Lematu II.7.A relacja \(\equiv_{\mathcal T,t}\) jest relacją równoważności na \(\mathcal H_t\). Stosujemy więc Twierdzenie II.4 do
 
 \[
 \Omega=\mathcal H_t,
@@ -264,31 +166,13 @@ E_{\mathcal T}=\equiv_{\mathcal T,t},
 \rho=\rho_t.
 \]
 
-Twierdzenie II.4 daje dokładnie
-
-\[
-\ker_{\rm eq}\rho_t
-\subseteq
-\equiv_{\mathcal T,t}
-\iff
-\exists!\,f_t:\operatorname{im}\rho_t\to M_{\mathcal T,t},
-\quad
-q_{\mathcal T,t}=f_t\circ\rho_t.
-\]
-
-To kończy dowód. \(\square\)
+Otrzymujemy dokładnie podaną równoważność i faktoryzację. \(\square\)
 
 ---
 
 ## 7. Najkrótszy falsyfikator pamięci
 
-Jedna para historii
-
-\[
-H,H'\in\mathcal H_t
-\]
-
-spełniająca
+Jedna para historii \(H,H'\in\mathcal H_t\) spełniająca
 
 \[
 \rho_t(H)=\rho_t(H')
@@ -310,45 +194,49 @@ wystarcza do wykazania
 
 Taka pamięć jest za gruba dla zadania.
 
-Nie trzeba rekonstruować całej przestrzeni historii, aby obalić adekwatność konkretnej reprezentacji. Wystarcza jedna para rozdzielająca.
-
 ---
 
 ## 8. Bieżący stan nie jest z definicji pamięcią wystarczającą
 
-Może zachodzić
+Niech
 
 \[
-S_t(H)=S_t(H')
+s_t:\mathcal H_t\to X_t
 \]
 
-dla wybranej reprezentacji bieżącego stanu, a jednocześnie
+będzie dowolną jawnie otypowaną reprezentacją bieżącego stanu. Może zachodzić
+
+\[
+s_t(H)=s_t(H')
+\]
+
+przy jednoczesnym
 
 \[
 H\not\equiv_{\mathcal T,t}H'.
 \]
 
-Wtedy sama reprezentacja bieżąca
+Wtedy \(s_t\) nie jest wystarczającą pamięcią zadaniową.
+
+W świadku LAZARUS używamy dodatkowo mapy
 
 \[
-\rho_S(H)=S_t(H)
+F_t:\mathcal H_t\to\mathcal P(X_t),
 \]
 
-jest zadaniowo niewystarczająca.
-
-W szczególności równość bieżącego włókna świata
+gdzie \(F_t(H)\) jest bieżącym włóknem świata indukowanym przez historię. Może zachodzić
 
 \[
 F_t(H)=F_t(H')
 \]
 
-nie musi implikować
+przy
 
 \[
-H\equiv_{\mathcal T,t}H'.
+H\not\equiv_{\mathcal T,t}H'.
 \]
 
-To jest dokładny sens świadka LAZARUS. Nie ustanawia on nowego prymitywu „sprawczości”; wykazuje niewystarczalność wybranej pamięci.
+To jest dokładny sens świadka LAZARUS. Nie ustanawia on nowego prymitywu „sprawczości”; wykazuje niewystarczalność wybranej reprezentacji pamięci.
 
 ---
 
@@ -366,7 +254,7 @@ W regresie Go kolejne reprezentacje pamięci były testowane względem różnych
 (B_t,\sigma_t,U_t).
 \]
 
-Każda reprezentacja jest oceniana przez ten sam warunek:
+Każda jest oceniana przez ten sam warunek
 
 \[
 \ker_{\rm eq}\rho_t
@@ -376,19 +264,13 @@ Każda reprezentacja jest oceniana przez ten sam warunek:
 
 Jeżeli po zmianie reguły istnieją dwie historie o tej samej reprezentacji, ale różnej legalności przyszłego ruchu, otrzymujemy bezpośredni kontrprzykład do adekwatności tej pamięci.
 
-Sekwencja Go nie jest uniwersalną hierarchią pamięci. Poszczególne reprezentacje odpowiadają różnym zadaniom i kontraktom.
+Sekwencja Go nie jest uniwersalną hierarchią pamięci; odpowiada różnym kontraktom zadaniowym.
 
 ---
 
 ## 10. Pełna historia nie jest twierdzeniem o minimalnej pamięci
 
-Twierdzenie II.7 nie mówi:
-
-\[
-\boxed{\text{należy przechowywać pełną historię}.}
-\]
-
-Przeciwnie: dopuszcza każdą kompresję \(\rho_t\), która spełnia
+Twierdzenie II.7 nie mówi, że należy przechowywać pełną historię. Dopuszcza każdą kompresję \(\rho_t\), która spełnia
 
 \[
 \ker_{\rm eq}\rho_t
@@ -396,30 +278,13 @@ Przeciwnie: dopuszcza każdą kompresję \(\rho_t\), która spełnia
 \equiv_{\mathcal T,t}.
 \]
 
-Nie wynika z niego również minimalność:
-
-- liczby bitów;
-- liczby stanów implementacji;
-- wymiaru reprezentacji;
-- kosztu pamięci;
-- kosztu aktualizacji;
-- czasu obliczeń.
-
-Te własności wymagają dodatkowej struktury kosztowej lub algorytmicznej.
+Nie wynika z niego minimalność liczby bitów, liczby stanów implementacji, wymiaru reprezentacji, kosztu pamięci, kosztu aktualizacji ani czasu obliczeń. Te własności wymagają dodatkowej struktury kosztowej lub algorytmicznej.
 
 ---
 
 ## 11. Dokładna pamięć może być nadmiarowa
 
-Jeżeli dwie reprezentacje
-
-\[
-\rho_t^{(1)}:\mathcal H_t\to Z_t^{(1)},
-\qquad
-\rho_t^{(2)}:\mathcal H_t\to Z_t^{(2)}
-\]
-
-spełniają
+Jeżeli
 
 \[
 \ker_{\rm eq}\rho_t^{(1)}
@@ -429,7 +294,7 @@ spełniają
 \equiv_{\mathcal T,t},
 \]
 
-to obie są dokładnie adekwatne, lecz \(\rho_t^{(1)}\) zachowuje więcej rozróżnień historycznych niż wymaga zadanie.
+to obie reprezentacje są dokładnie adekwatne, lecz \(\rho_t^{(1)}\) zachowuje więcej rozróżnień historycznych niż wymaga zadanie.
 
 Adekwatność nie jest więc równoznaczna z maksymalną kompresją.
 
@@ -437,15 +302,7 @@ Adekwatność nie jest więc równoznaczna z maksymalną kompresją.
 
 ## 12. Status źródłowy
 
-Definicja przyszłego drzewa i relacji
-
-\[
-\equiv_{\mathcal T,t}
-\]
-
-jest bieżącą migracją RED-1, zapisaną jako C57. Fakt, że jest to relacja równoważności, jest C58. Kryterium pamięci C42 jest specjalizacją ogólnego kryterium adekwatności reprezentacji II.4.
-
-Status:
+Definicja przyszłego drzewa i relacji \(\equiv_{\mathcal T,t}\) jest bieżącą migracją RED-1 zapisaną jako C57. Fakt, że jest to relacja równoważności, jest C58. Kryterium pamięci C42 jest specjalizacją ogólnego kryterium adekwatności reprezentacji II.4.
 
 \[
 \boxed{
@@ -476,18 +333,10 @@ Twierdzenie II.7 nie ustanawia jeszcze:
 
 ## 14. Przejście do II.8
 
-Skoro
+Skoro \(\equiv_{\mathcal T,t}\) jest relacją równoważności, możemy utworzyć
 
 \[
-\equiv_{\mathcal T,t}
-\]
-
-jest relacją równoważności, możemy utworzyć
-
-\[
-M_{\mathcal T,t}
-=
-\mathcal H_t/\!\equiv_{\mathcal T,t}.
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}.
 \]
 
 Twierdzenie II.7 mówi, kiedy dowolna pamięć zachowuje całą przyszłą informację zadaniową. Następny krok pyta o pozycję samego ilorazu \(M_{\mathcal T,t}\) w porządku wszystkich dokładnie wystarczających reprezentacji.
