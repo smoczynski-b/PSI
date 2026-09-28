@@ -46,6 +46,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
 - [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
+- [Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
@@ -72,81 +73,27 @@ Historical registries/specs remain for provenance. Current control pointers are 
 
 ## Pressure phase
 
-The current primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZARUS-AGENCY and HIGHER-FIBRE did not force a sixth semantic role. `R4-PRESSURE-COURT-01` therefore keeps CORE5 frozen until a genuinely new typed counterexample survives the role-preservation and minimality gates.
+The primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZARUS-AGENCY and HIGHER-FIBRE did not force a sixth semantic role. `R4-PRESSURE-COURT-01` keeps CORE5 frozen until a genuinely new typed counterexample survives the role-preservation and minimality gates.
 
 This is not a universal completeness theorem.
 
 ## First hardening cycle
 
-The first post-R4 hardening cycle contains three independent regressions.
-
-### HCube — operator representation
-
-Equal characteristic polynomial and equal operator norm need not preserve resolvent behaviour. The fixed pair in `HCUBE-REGRESSION-01` therefore falsifies spectrum-plus-norm sufficiency for the declared resolvent-sensitive task.
-
-HCube remains a derived separator/benchmark, not a CORE primitive.
-
-### Go — memory/history representation
-
-For a history representation
+The first post-R4 hardening cycle contains three independent regressions:
 
 \[
-\rho_t:\mathcal H_t\to R_t,
+\boxed{R01=\mathrm{HCube},\qquad R02=\mathrm{Go},\qquad R03=\mathrm{FS\!-\!STAT}.}
 \]
 
-exact task adequacy is
+Their common invariant is:
 
 \[
-\boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
-}
+\boxed{\text{a representation is legal only if it preserves every distinction required by the task}.}
 \]
 
-The recovered no-ko/simple-ko/PSK/SSK ladder gives successive exact counterexamples to memories that are too coarse for the rule/task contract.
+HCube tests operator representation adequacy; Go tests history/memory adequacy; FS-STAT separates exact identifiability from perturbation stability and confidence licensing.
 
-The canonical quotient
-
-\[
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
-\]
-
-is the coarsest exact quotient in quotient order, not necessarily the smallest implementation in bits, dimension or computation.
-
-### FS-STAT — exact versus stable/statistical identification
-
-The exact Frenet/Bishop MINI result does not automatically survive sampled noisy observations.
-
-For bounded sample error, explicit centered stencils give derivative-error terms of the form
-
-\[
-O(h^2)+O(\delta h^{-r}),
-\]
-
-with increasing noise amplification at derivative order `r=1,2,3`.
-
-The fixed low-curvature family
-
-\[
-\gamma_{\varepsilon,\omega}(s)
-=
-(s,\varepsilon\cos\omega s,\varepsilon\sin\omega s)
-\]
-
-satisfies
-
-\[
-\kappa_{\varepsilon,\omega}
-=
-\frac{\varepsilon\omega^2}{1+\varepsilon^2\omega^2},
-\qquad
-\tau_{\varepsilon,\omega}
-=
-\frac{\omega}{1+\varepsilon^2\omega^2}.
-\]
-
-As `ε→0`, the curves converge in `C^3` to a line and `κ→0`, while `τ→ω`. Thus Frenet torsion has no continuous extension through the zero-curvature straight-line stratum and cannot be uniformly stably recovered across that boundary.
-
-The permanent inference discipline is
+Permanent statistical discipline:
 
 \[
 \boxed{
@@ -156,46 +103,54 @@ The permanent inference discipline is
 }
 \]
 
-Confidence claims require an explicit probability model. The Frenet/Bishop switch must be uncertainty- and task-driven rather than based on a universal curvature threshold.
-
-## Regression Bank 01
-
-The three hardening runs are frozen as
-
-\[
-\boxed{
-R01=\mathrm{HCube},
-\qquad
-R02=\mathrm{Go},
-\qquad
-R03=\mathrm{FS\!-\!STAT}.
-}
-\]
-
-Their common invariant is:
-
-\[
-\boxed{
-\text{a representation is legal only if it preserves every distinction required by the task}.}
-\]
-
-The bank is mandatory regression material for later theorem promotion, redaction and model handoff.
-
 ## Principia redaction
 
-`V1-UNIT-MAP-01` is complete. It separates `DEFINITION`, `THEOREM/LEMMA`, `BRIDGE`, `POLICY`, `BOUNDARY`, `BENCHMARK`, `OPEN` and `SOURCE-ONLY` material, and records both `DEPENDS ON` and `USED BY` directions.
+`V1-UNIT-MAP-01` and `V2-THEOREM-MAP-01` are complete. Neither is a volume freeze.
 
-The V1 scan found one current migration gap: the older formal catalog-adequacy definition has a recoverable source but is not yet a dedicated current claim. It must be audited against CANON-03 rather than silently promoted.
+### V1
+
+Volume I is mapped as six structural units with explicit statement class, dependencies, downstream use, regression binding and source status. One major migration gap remains: the older formal catalog-adequacy definition has a recoverable source but no dedicated current claim ID.
+
+### V2
+
+Volume II is now separated into:
+
+1. self-contained quotient/factorization results;
+2. classical bridges requiring exact source/hypothesis binding;
+3. benchmarks/pressure witnesses that test scope but do not create theorem status.
+
+The elementary spine
+
+\[
+C06,C07\to C08,C09\to C32/C37
+\]
+
+is structurally ready for proof audit.
+
+Current V2 blockers are explicit:
+
+- history future-task equivalence lacks a dedicated current definition ID;
+- probabilistic bisimulation comparison lacks a current C-ID;
+- general CAT/FACT definitions are not yet fully migrated into current registered form;
+- exact source/hypothesis binding is still needed for imported classical results;
+- MINI requires a dedicated proof audit of quotient rewrite, critical pairs and Newman hypotheses.
+
+Therefore:
+
+\[
+\boxed{\mathrm{V1\ FREEZE}=\mathrm{NOT\ YET},\qquad
+\mathrm{V2\ FREEZE}=\mathrm{NOT\ YET}.}
+\]
 
 Current execution order:
 
 \[
 \boxed{
-\mathrm{V1\ UNIT\ MAP\ DONE}
+\mathrm{V1\ MAP\ DONE}
++
+\mathrm{V2\ MAP\ DONE}
 \to
-\mathrm{V2\ THEOREM\ MAP}
-\to
-\mathrm{PROOF/SOURCE/REGRESSION\ AUDIT}
+\mathrm{PROOF/SOURCE/MIGRATION\ AUDIT}
 \to
 \mathrm{FIRST\ V1/V2\ FREEZE}
 \to
@@ -233,7 +188,7 @@ The current agent operates through
 }
 \]
 
-The pressure phase, R4 court, first hardening cycle and first V1 dependency scan did not reveal a missing control primitive.
+The V1/V2 mapping phase did not reveal a missing control primitive. Missing sources and missing current claim IDs remain explicit gaps instead of being filled from memory.
 
 Decision and epistemic phase changes are recorded in `docs/psi-ledger-01.md`; ordinary derivations are intentionally not logged.
 
