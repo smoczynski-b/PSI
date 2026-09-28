@@ -31,17 +31,19 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Freeze 01 Errata 01](docs/principia-v1-v2-freeze-01-errata-01.md)
 - [Current Volume Skeleton 03](docs/principia-volume-skeleton-03.md)
+- [Volume III Addendum 01](docs/principia-volume-skeleton-03-v3-addendum-01.md)
 - [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Whole-V2 Cross-Check 01](docs/principia-v2-whole-crosscheck-01.md)
-- [Corrected CAT–FACT–NORM–MINI 02](docs/cat-fact-norm-mini-02.md)
-- [V2 FRAME — II.15](docs/principia-v2-15-closed-frame-holonomy.md)
-- [V2 HIGHER — II.16](docs/principia-v2-16-higher-compatibility-truncation.md)
+- [Current V3 Theorem Map 01](docs/principia-v3-theorem-map-01.md)
+- [PHISICA Operator Migration 01](docs/phisica-operator-migration-01.md)
+- [PHISICA Falsifier Registry 01](docs/phisica-falsifier-registry-01.md)
+- [Volume III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
-- [Decision / Epistemic Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
+- [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
+- [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
-- [Sector work map](docs/work-map-01.md)
+- [Current Sector Work Map 02](docs/work-map-02.md)
 
-Historical maps, skeletons and MINI-01 remain for provenance.
+Historical maps, skeletons and pre-repair PHISICA material remain for provenance.
 
 ## Core status
 
@@ -75,14 +77,11 @@ Inference discipline:
 
 \[
 \boxed{
-\mathrm{V1\ FIRST\ PROSE\ PASS}
-=\mathrm{NORMALIZED\ PASS}.
+\mathrm{V1\ FIRST\ PROSE\ PASS}=\mathrm{NORMALIZED\ PASS}.
 }
 \]
 
 ### Volume II
-
-After the own-layer, classical-bridge, CAT/FACT/NORM, FRAME, HIGHER and whole-volume cross-checks:
 
 \[
 \boxed{
@@ -91,7 +90,7 @@ After the own-layer, classical-bridge, CAT/FACT/NORM, FRAME, HIGHER and whole-vo
 }
 \]
 
-The control layer is normalized through Volume Skeleton 03 and V2 Theorem Map 04.
+The V2 control layer is normalized through Volume Skeleton 03 and V2 Theorem Map 04.
 
 ### Freeze Errata 01
 
@@ -117,53 +116,83 @@ and equivalently
 \boxed{|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.}
 \]
 
-Permanent F62:
+No CORE role changed and no Agent v03 is justified.
+
+## Volume III — PHISICA operator migration
+
+Historical PHISICA is being rebuilt by operator legality rather than copied chapter-by-chapter.
+
+The current first theorem is:
 
 \[
 \boxed{
-\text{unique normal form}
-\not\Rightarrow
-\text{singleton factorization fibre modulo gauge}.
+\Delta_g\operatorname{im}T_\Lambda
+\subseteq
+\operatorname{im}T_\Lambda
+\iff
+|\nabla\Lambda|^2=B\circ\Lambda
+\land
+\Delta_g\Lambda=C\circ\Lambda.
 }
 \]
 
-No CORE role changed and no Agent v03 is justified.
-
-## V2 layer summary
-
-- **II.1–II.9:** quotient/history layer — global PASS;
-- **II.10–II.12:** classical bridges — global PASS;
-- **II.13–II.14:** CAT/FACT/NORM — global PASS after Errata 01;
-- **II.15:** closed-frame holonomy — global PASS;
-- **II.16:** higher compatibility/truncation — global PASS.
-
-Permanent boundaries include:
+For a Schrödinger-type reduction
 
 \[
-\text{task quotient}\not\Rightarrow\text{Markov lumpability},
+H=-\frac12\Delta_g+V,
+\]
+
+one additionally requires
+
+\[
+\boxed{V=V_\Lambda\circ\Lambda.}
+\]
+
+Therefore
+
+\[
+\boxed{
+d\Lambda\neq0
+\not\Rightarrow
+\text{one-dimensional operator reduction}.
+}
+\]
+
+`III.1` is PASS. The next unit is `III.2 — weight measure and Sturm–Liouville form`.
+
+Permanent PHISICA locks now include:
+
+\[
+\text{formal differential expression}\neq\text{self-adjoint operator},
 \]
 
 \[
-\text{interval normal form}\not\Rightarrow\text{periodic closed-loop RMF},
+\rho(\lambda)d\lambda\neq\text{spectral measure by definition},
+\]
+
+\[
+\{E_n\}\not\Rightarrow\text{complete model identification},
 \]
 
 and
 
 \[
-\text{richer representation}\not\Rightarrow\text{new CORE primitive}.
+\text{formal drift removal}\not\Rightarrow\text{unitary isospectral equivalence}.
 \]
 
 ## Current phase
 
 \[
 \boxed{
-\mathrm{V1\ NORMALIZED\ PASS}
+\mathrm{V1\ PASS}
 \to
-\mathrm{V2\ MATHEMATICAL\ GLOBAL\ PASS}
+\mathrm{V2\ GLOBAL\ PASS}
 \to
-\mathrm{V2\ CONTROL\ NORMALIZED}
+\mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{VOLUME\ III/PHISICA\!\!-\!LOGOS\ MIGRATION}.
+\mathrm{III.1\ PASS}
+\to
+\mathrm{III.2\ NEXT}.
 }
 \]
 
