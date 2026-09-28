@@ -41,14 +41,15 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v08](docs/claim-registry-08.md)
-- [Current falsifier registry v07](docs/falsifier-registry-07.md)
+- [Current claim registry v09](docs/claim-registry-09.md)
+- [Current falsifier registry v08](docs/falsifier-registry-08.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
 - [HIGHER-FIBRE 01](docs/higher-fibre-01.md)
 - [R4 PRESSURE COURT 01](docs/r4-pressure-court-01.md)
 - [HCUBE REGRESSION 01](docs/hcube-regression-01.md)
+- [GO MEMORY REGRESSION 01](docs/go-memory-regression-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
@@ -63,79 +64,17 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries/specs remain for provenance. Current control pointers are claim-registry v08, falsifier-registry v07 and Agent Architecture v02.
+Historical registries/specs remain for provenance. Current control pointers are claim-registry v09, falsifier-registry v08 and Agent Architecture v02.
 
 ## Pressure phase
 
-### CAT–FACT–NORM–MINI
+The current primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZARUS-AGENCY and HIGHER-FIBRE did not force a sixth semantic role. `R4-PRESSURE-COURT-01` therefore keeps CORE5 frozen until a genuinely new typed counterexample survives the role-preservation and minimality gates.
 
-For an exact time-parametrized regular `C^3` interval curve, legal Frenet/Bishop segmentations reduce to one Bishop normal class under the declared gauge. Frenet failure at zero curvature is a representation/domain event, not automatic catalog `birth`.
-
-### CLOSED-FRAME
-
-For a closed curve, normal parallel transport produces a return holonomy
-
-\[
-H_\gamma\in SO(2).
-\]
-
-A periodic RMF exists iff `H_γ=I`. The global datum is representable through transport/task roles; no sixth primitive is required.
-
-### LAZARUS-AGENCY
-
-The exact statement is
-
-\[
-F_t(H)=F_t(H')
-\not\Rightarrow
-H\equiv_{\mathcal T,t}H'.
-\]
-
-Equal current world-state fibres can support different executable/future task semantics. This is a representation inadequacy of `rho_F(H)=F_t(H)`, not “same full information, different agency”.
-
-### HIGHER-FIBRE
-
-For
-
-\[
-*\to B\mathbb Z_2\leftarrow *,
-\]
-
-the coarse strict object-set pullback is one point, while the weak/2-pullback retains two compatibility witnesses. Therefore truncating before fibre construction can lose task-relevant data.
-
-The PSI consequence is a legality condition on representation/gauge reduction:
-
-\[
-\boxed{\ker_{eq}q\subseteq E_{\mathcal T}.}
-\]
-
-If stabilizers or compatibility witnesses matter for the task, the contract must retain them before coarse truncation.
-
-## R4 PRESSURE COURT
-
-The accepted pressure branches were compared under a non-vacuity rule: CORE5 may not be “saved” by stuffing observed answers, task verdicts or oracle information into the candidate object.
-
-No current witness exhibits an unavoidable task-relevant distinction outside the current semantic roles. Therefore
-
-\[
-\boxed{
-\mathrm{R4\ PRESSURE\ COURT\ 01}
-=
-\mathrm{NO\ R4\ WITNESS}.
-}
-\]
-
-and
-
-\[
-\boxed{\mathrm{CORE5\ remains\ frozen}.}
-\]
-
-This is **not** a universal completeness theorem. R4 may reopen only after a genuinely new typed counterexample survives the role-preservation and minimality gates.
+This is not a universal completeness theorem.
 
 ## Hardening phase — HCube regression
 
-The first post-R4 hardening benchmark uses
+The first hardening benchmark uses
 
 \[
 A=\operatorname{diag}(2,1,0),
@@ -143,47 +82,71 @@ A=\operatorname{diag}(2,1,0),
 B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}.
 \]
 
-They have the same characteristic polynomial and the same Euclidean operator norm:
-
-\[
-\chi_A=\chi_B,
-\qquad
-\|A\|_2=\|B\|_2=2.
-\]
-
-But at `z=1/2`:
+They have the same characteristic polynomial and Euclidean operator norm, but at `z=1/2`:
 
 \[
 \left\|\left(\tfrac12I-A\right)^{-1}\right\|_2=2,
-\]
-
-while
-
-\[
+\qquad
 \left\|\left(\tfrac12I-B\right)^{-1}\right\|_2=2(1+\sqrt2).
 \]
 
-Therefore the coarse representation
+Hence the coarse representation
 
 \[
 \rho_0(X)=(\chi_X,\|X\|_2)
 \]
 
-fails the PSI adequacy condition for this resolvent-sensitive task:
+is insufficient for this resolvent-sensitive task.
+
+HCube remains a derived diagnostic/benchmark, not a CORE primitive.
+
+## Hardening phase — Go memory regression
+
+The Go benchmark tests exact history/memory sufficiency.
+
+For a representation
+
+\[
+\rho_t:\mathcal H_t\to R_t,
+\]
+
+exact task adequacy is
 
 \[
 \boxed{
-\ker\rho_0\not\subseteq\ker R_{1/2}.
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
 }
 \]
 
-The HCube bridge also separates the pair through
+The recovered frozen sequence gives:
 
 \[
-\|e^{t\operatorname{ad}_X}\|_{HS}=\kappa_2(e^{tX}),
+(B_t,\sigma_t)
+\to
+(B_t,\sigma_t,B_{t-1})
+\to
+(B_t,\sigma_t,V_t)
+\to
+(B_t,\sigma_t,U_t),
 \]
 
-but this does not promote HCube to a necessary/minimal/universal representation. HCube remains a derived diagnostic and benchmark.
+where the successive contracts are no-ko, simple ko, positional superko and situational superko.
+
+The progression is not primitive growth. It is a sequence of increasingly adequate representations for different rule/task contracts.
+
+The canonical history quotient
+
+\[
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
+\]
+
+is the **coarsest exact quotient of histories** for the task. This is minimality in quotient order, not minimality of dimension, bits, storage or computation.
+
+When the equivalence is a congruence for update, task classes admit a well-defined mathematical recursive update `U_T,t`; this does not by itself prove finite memory or an efficient algorithm.
+
+### Source boundary
+
+The currently recovered RED-1 artifact explicitly freezes `G0`, `G2`, `G3`, `G4` but does not contain a separate `G1` statement. No `G1` witness or theorem is reconstructed without its actual source.
 
 ## PSI Agent Architecture v02
 
@@ -215,7 +178,7 @@ The current agent operates through
 }
 \]
 
-The architecture survived the pressure sequence, the R4 court and the first hardening regression without requiring a new governance primitive.
+HCube and Go hardening both passed without requiring a new governance primitive. The Go run additionally validated source-gap discipline by refusing to fabricate missing `G1` content.
 
 No Agent v03 is justified by the current evidence.
 
@@ -223,13 +186,13 @@ No Agent v03 is justified by the current evidence.
 
 **Research / work in progress.**
 
-The primitive-pressure phase is closed. Current work is regression strengthening and Principia redaction:
+Current hardening sequence:
 
 \[
 \boxed{
 \mathrm{HCube\ DONE}
 \to
-\mathrm{Go}
+\mathrm{Go\ DONE}
 \to
 \mathrm{FS\!-\!STAT}
 \to
