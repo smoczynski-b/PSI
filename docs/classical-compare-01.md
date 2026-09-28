@@ -1,7 +1,7 @@
 # PSI — classical comparison 01
 
 **Status:** CURRENT COMPARISON MAP / SOURCE-BOUND / NO UNIVERSAL EQUIVALENCE CLAIM  
-**Depends on:** `docs/core.md`, `docs/claim-registry-11.md`, `docs/proof-source-migration-audit-01.md`  
+**Depends on:** `docs/core.md`, `docs/claim-registry-12.md`, `docs/proof-source-migration-audit-01.md`, `docs/principia-v2-own-layer-crosscheck-02.md`  
 **Purpose:** identify where PSI task-equivalence coincides with, refines, or differs from classical quotient/equivalence constructions.
 
 The comparison rule is deliberately conservative:
@@ -119,8 +119,10 @@ In general no unconditional equality is licensed: a PSI task may forget distinct
 
 K. G. Larsen and A. Skou, “Bisimulation through probabilistic testing,” *Information and Computation* 94(1), 1991, 1–28, DOI `10.1016/0890-5401(91)90030-6`.
 
-**Registry:** no dedicated current C-ID yet.  
-**Audit status:** `SOURCE PASS / REGISTRY MIGRATION PENDING`.
+**Registry:** no dedicated current C-ID by deliberate Claim Registry v12 decision.  
+**Audit status:** `SOURCE PASS / COMPARISON-ONLY / NO CURRENT C-ID REQUIRED`.
+
+No frozen V1/V2 theorem depends essentially on probabilistic bisimulation. If a later theorem does, ordinary claim/source promotion must be performed at that time.
 
 ---
 
@@ -258,7 +260,7 @@ The concrete calculation is self-contained; only the terminology and general con
 |---|---|---|---|
 | deterministic congruence | invariance under `δ` | quotient-dynamics condition | exact coincidence under deterministic hypotheses |
 | Markov lumpability | equal transition mass to quotient blocks | adds stochastic stability to a PSI partition | conditional coincidence |
-| probabilistic bisimulation | action-labelled future transition behaviour | obtainable when task closure contains exactly these tests | conditional; no universal equality |
+| probabilistic bisimulation | action-labelled future transition behaviour | obtainable when task closure contains exactly these tests | conditional; comparison-only at current freeze |
 | Nerode | all future continuations + acceptance | exact future-test PSI realization | exact realization under stated contract |
 | Paige–Tarjan refinement | finite relational stability operator | algorithmic method for eligible finite PSI instances | benchmark, not identity |
 | Newman | terminating locally confluent rewrite | imported theorem used after PSI-specific quotient rewrite audit | classical theorem, scoped use |
