@@ -95,26 +95,84 @@ V=V_\Lambda\circ\Lambda.
 
 # 3. III.2 — Weight measure and Sturm–Liouville form
 
-Target:
+For projectable coefficients with \(B>0\):
 
 \[
-(\rho B)'=\rho C
+\boxed{(\rho B)'=\rho C}
 \]
 
-and
+has a positive solution unique up to scale,
 
 \[
-H_\Lambda
-=-\frac1{2\rho}\partial_\lambda(\rho B\partial_\lambda)+V_\Lambda.
+\boxed{
+\rho(\lambda)
+=K\,B(\lambda)^{-1}
+\exp\!\left(\int^\lambda\frac{C}{B}\,d\mu\right).
+}
 \]
 
-Required distinctions:
+Hence
 
-- `rho dlambda` = Hilbert/weight measure, not automatically spectral measure;
-- `rho` is derived from `B,C` up to positive scale in the formal ODE;
-- geometric identification of `rho` with `Lambda_*(dvol_g)` requires a separate pushforward/coarea theorem.
+\[
+\boxed{
+L_\Lambda
+=\frac1\rho\partial_\lambda(\rho B\partial_\lambda).
+}
+\]
 
-**STATUS:** `NEXT`.
+On compactly supported test functions this is formally symmetric in
+
+\[
+L^2(I,\rho d\lambda),
+\]
+
+but it is not yet a self-adjoint realization.
+
+Under the additional proper-submersion/coarea contract,
+
+\[
+\mu_\Lambda:=\Lambda_*(d\mathrm{vol}_g)
+=m(\lambda)d\lambda
+\]
+
+with
+
+\[
+m(\lambda)=\int_{\Lambda^{-1}(\lambda)}\frac1{|\nabla\Lambda|}\,dA_\lambda,
+\]
+
+and Green's identity plus projectability yields
+
+\[
+\boxed{(mB)'=mC.}
+\]
+
+Thus on connected \(I\),
+
+\[
+\boxed{m=K\rho.}
+\]
+
+After normalization,
+
+\[
+\boxed{
+\rho d\lambda=\Lambda_*(d\mathrm{vol}_g),
+}
+\]
+
+and \(T_\Lambda\) is an isometry onto the fibre-constant Hilbert subspace.
+
+Permanent distinctions:
+
+- `rho dlambda` = Hilbert/weight measure, not spectral measure;
+- integrating-factor weight != geometric pushforward without an integration/coarea contract (PF11);
+- formal symmetry != self-adjointness;
+- `(B,C,rho)` do not determine full dynamics.
+
+**STATUS:** `PASS`  
+**SOURCE:** `principia-v3-02-weight-sturm-liouville.md`  
+**FALSIFIERS:** PF03, PF04, PF06, PF11.
 
 ---
 
@@ -130,7 +188,7 @@ maximal/minimal domains, boundary form, regular self-adjoint boundary conditions
 
 No self-adjoint theorem before the domain is explicit.
 
-**STATUS:** `QUEUED`.
+**STATUS:** `NEXT`.
 
 ---
 
@@ -192,9 +250,9 @@ These remain source material/genealogy, not current V3 theorem units.
 \boxed{
 \mathrm{III.1\ PASS}
 \to
-\mathrm{III.2\ NEXT}
+\mathrm{III.2\ PASS}
 \to
-\mathrm{III.3}
+\mathrm{III.3\ NEXT}
 \to
 \mathrm{III.4}
 \to
