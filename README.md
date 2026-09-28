@@ -40,12 +40,15 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.1 — Exact task-level decidability](docs/principia-v2-01-exact-task-decidability.md)
 - [Principia V2.2 — Kernel factorization criterion](docs/principia-v2-02-kernel-factorization.md)
 - [Principia V2.3 — Global observer sufficiency](docs/principia-v2-03-global-observer-sufficiency.md)
+- [Principia V2.4 — Representation adequacy](docs/principia-v2-04-representation-adequacy.md)
+- [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
+- [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
+- [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
 - [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
-- [Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
 - [Principia four-volume skeleton v02](docs/principia-volume-skeleton-02.md)
 - [Corrected CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [Classical comparison map](docs/classical-compare-01.md)
@@ -118,6 +121,8 @@ Inference discipline:
 }
 \]
 
+It freezes definitions, theorem statements/hypotheses, source status, dependencies, principal boundaries and regression obligations. It does not freeze final wording or typography.
+
 ## Volume I status
 
 \[
@@ -176,15 +181,49 @@ q_{\mathcal T,c}=f\circ\Psi_c.
 
 **Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
 
-`Global` means sufficiency of the observer over the whole candidate space, not resolution of every individual record. The term is factorization-based and must not be conflated with statistical sufficiency.
+`Global` means sufficiency of the observer over the whole candidate space, not resolution of every individual record. The term is factorization-based and not statistical sufficiency.
+
+### V2.4 — representation adequacy
+
+\[
+\boxed{
+\ker_{eq}\rho\subseteq E_{\mathcal T,c}
+\iff
+\exists!\,g:\operatorname{im}\rho\to M_{\mathcal T,c},
+\quad
+q_{\mathcal T,c}=g\circ\rho.
+}
+\]
+
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+
+Task-information adequacy remains distinct from full contract legality. HCube/Go are direct application regressions only at their declared task scopes; FS-STAT is a scope-boundary regression.
+
+### Spine verdict
+
+\[
+\boxed{
+\mathrm{V2.1:V2.4\ THEOREM\ SPINE}=\mathrm{PASS}.
+}
+\]
+
+`V2 SPINE CROSS-CHECK 01` found no mathematical contradiction, no proof circularity and no Freeze 01 erratum. It did find document drift in Theorem Map 01; Theorem Map 02 is now current and v01 is genealogy only.
 
 Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.4\ —\ representation\ adequacy}.
+\mathrm{V2.5\ —\ task\!-information\ legality\ of\ reduction/quotient}.
 }
 \]
+
+It must preserve
+
+\[
+\ker_{eq}q\subseteq E_{\mathcal T,c}
+\]
+
+as a task-information criterion, not inflate it into full contract legality.
 
 ## Hardening bank
 
@@ -210,19 +249,19 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1\ PASS}
+\mathrm{V2.1:V2.4\ PASS}
 \to
-\mathrm{V2.2\ PASS}
+\mathrm{V2\ SPINE\ CROSSCHECK\ PASS}
 \to
-\mathrm{V2.3\ PASS}
+\mathrm{V2.5\ REDUCTION/QUOTIENT}
 \to
-\mathrm{V2.4\ REPRESENTATION\ ADEQUACY}
+\mathrm{V2.6\ DYNAMICS}
 \to
-\mathrm{V2\ SPINE\ CROSSCHECK}.
+\mathrm{V2.7:V2.9\ HISTORY}.
 }
 \]
 
-Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
+Classical bridges follow the own quotient/history layer. Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
 
 ## Publications / Zenodo
 
