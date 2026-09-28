@@ -19,7 +19,7 @@ For a task \(\mathcal T\), exact resolution means
 \iff
 F(Y)\neq\varnothing
 \land
-F(Y)\times F(Y)\subset E_{\mathcal T}.
+F(Y)\times F(Y)\subseteq E_{\mathcal T}.
 \]
 
 ## Current control pointers
@@ -46,17 +46,15 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V2.7 — Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
 - [Principia V2.8 — Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
 - [Principia V2.9 — Recursive history quotient update](docs/principia-v2-09-recursive-history-quotient-update.md)
-- [Principia V2 Spine Cross-Check 01](docs/principia-v2-spine-crosscheck-01.md)
+- [Principia V2 Spine Cross-Check 01 — early II.1–II.4 audit](docs/principia-v2-spine-crosscheck-01.md)
+- [Principia V2 Own-Layer Cross-Check 02 — independent II.1–II.9 handoff audit](docs/principia-v2-own-layer-crosscheck-02.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
 - [Historical Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
+- [Classical comparison map](docs/classical-compare-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
-- [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
-- [Principia four-volume skeleton v02](docs/principia-volume-skeleton-02.md)
-- [Corrected CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
-- [Classical comparison map](docs/classical-compare-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 
@@ -142,11 +140,36 @@ No Freeze 01 erratum was required.
 
 ## Volume II own theorem layer
 
-### V2.1–V2.6
+The exact quotient/history layer contains:
 
-The exact quotient/representation/dynamics spine is frozen in prose with PASS status, including exact task-level decidability, factorization, observer sufficiency, representation adequacy, task-information legality of reductions and deterministic quotient dynamics.
+\[
+|q_{\mathcal T,c}(F_c(Y))|=1
+\iff
+F_c(Y)\neq\varnothing
+\land
+F_c(Y)^2\subseteq E_{\mathcal T,c},
+\]
 
-### V2.7 — exact history-memory adequacy
+\[
+\ker_{eq}\rho\subseteq\ker_{eq}R
+\iff
+\exists!\,g:\operatorname{im}\rho\to W,
+\quad R=g\circ\rho,
+\]
+
+\[
+\ker_{eq}\rho\subseteq E_{\mathcal T,c},
+\qquad
+\ker_{eq}q\subseteq E_{\mathcal T,c},
+\]
+
+and deterministic quotient dynamics under
+
+\[
+xEy\Longrightarrow\delta(x)E\delta(y).
+\]
+
+For histories:
 
 \[
 H\equiv_{\mathcal T,t}H'
@@ -156,81 +179,66 @@ H\equiv_{\mathcal T,t}H'
 \operatorname{Beh}_{\mathcal T}(H'),
 \]
 
-and for \(\rho_t:\mathcal H_t\to Z_t\),
-
 \[
-\boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
-\iff
-q_{\mathcal T,t}\text{ factors uniquely through }\rho_t\text{ on }\operatorname{im}\rho_t.
-}
-\]
-
-**Status:** `PASS`.
-
-### V2.8 — coarsest exact history quotient
-
-\[
-\boxed{
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}.
-}
-\]
-
-For every exact memory \(\rho_t\),
-
-\[
-\boxed{
-q_{\mathcal T,t}=f_t\circ\rho_t,
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t},
 \qquad
-f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t}.
-}
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
 \]
 
-Thus \(M_{\mathcal T,t}\) is the coarsest exact history quotient in quotient order, not automatically a minimum-bit or minimum-cost implementation.
-
-**Status:** `PASS`.
-
-### V2.9 — recursive history quotient update
-
-Let
+and on the typed legal quotient domain
 
 \[
-D_t\subseteq\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1},
-\qquad
-\delta_t:D_t\to\mathcal H_{t+1}
-\]
-
-be the legal partial history update. Under C59, both legality of the same literal label and the future-task class of the successor are invariant under \(\equiv_{\mathcal T,t}\). Therefore the quotient domain \(\overline D_t\) is well-defined and
-
-\[
-\boxed{
-U_{\mathcal T,t}:\overline D_t\to M_{\mathcal T,t+1}
-}
-\]
-
-exists uniquely with
-
-\[
-\boxed{
 U_{\mathcal T,t}([H],\varepsilon,y)
 =
 [\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
-}
 \]
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`.
+### Independent handoff verdict
 
-This is abstract representative-independent well-definedness. It does not imply an algorithm that computes the quotient update without a representative, nor finite memory, decidable equivalence, computability or efficiency.
-
-### Current verdict
+After the post-history independent Agent audit:
 
 \[
 \boxed{
-\mathrm{V2.1:V2.9}=\mathrm{PASS}.
+\mathrm{V2.1:V2.9\ OWN\ LAYER}
+=
+\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
 }
 \]
 
-The own quotient/history layer is now complete. The next phase is the classical bridge layer, beginning with strong lumpability. Deterministic congruence must not be transferred unchanged to stochastic kernels.
+The audit found no mathematical contradiction and no Freeze 01 erratum. It did require control corrections:
+
+- the II.9 dependency graph was narrowed: strict proof dependency is `II.7 + C59`; II.6 is structural analogy and II.8 is not a proof prerequisite;
+- the classical comparison map was updated from Claim Registry v11 to v12;
+- probabilistic bisimulation is now explicitly comparison-only with no current C-ID required;
+- the Decision/Epistemic Ledger now records V1 normalization, V2 own-layer completion and the independent handoff gate.
+
+Permanent Agent-process lesson:
+
+\[
+\boxed{
+\text{sequence of local PASSes}
+\not\Rightarrow
+\text{whole-layer PASS}.
+}
+\]
+
+This uses existing Agent v02 `IMPACT/HANDOFF` controls; it does not justify Agent v03.
+
+## Classical bridges — released
+
+The next bridge layer starts with strong Markov lumpability. The critical scope lock is:
+
+\[
+\boxed{
+E_{\mathcal T}
+\not\Rightarrow
+\text{stochastic lumpability}
+}
+\]
+
+without the classical block-transition stability condition.
+
+Next: Myhill–Nerode, then Paige–Tarjan strictly as an algorithmic benchmark.
 
 ## Hardening bank
 
@@ -246,7 +254,7 @@ These remain regression/boundary witnesses, not theorem substitutes.
 
 ## PSI Agent Architecture v02
 
-Agent v02 remains current and enforces type/domain discipline, scope fidelity, source/classical-status separation, theorem/benchmark separation and regression binding during theorem prose.
+Agent v02 remains current. The handoff audit found execution drift, not a missing control primitive.
 
 No Agent v03 is justified by current evidence.
 
@@ -256,7 +264,7 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.9\ PASS}
+\mathrm{V2.1:V2.9\ GLOBAL\ PASS}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
