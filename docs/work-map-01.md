@@ -1,22 +1,23 @@
 # PSI — sector work map 01
 
 **Status:** LIVE WORK MAP  
-**Date:** 2026-09-28  
+**Date:** 2026-09-29  
 **Rule:** map coordinates work; it does not create new canon.
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL CROSSCHECK PASS / CLASSICAL BRIDGES RELEASED`.
+**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL CROSSCHECK PASS / II.10 LUMPABILITY PASS / MYHILL–NERODE NEXT`.
 
 Current control stack:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
 - Claim Registry v12;
-- Falsifier Registry v10;
+- Falsifier Registry v11;
 - Regression Bank 01;
 - V1/V2 First Freeze 01 — PASS;
 - V1 I.1–I.6 — `NORMALIZED PASS`;
 - V2 Theorem Map 02 — current;
-- V2.1–V2.9 — local proof/cross-check PASS;
+- V2.1–V2.9 — own layer `GLOBAL CROSSCHECK PASS`;
+- V2.10 `Silna lumpowalność jako stochastyczne zejście dynamiki na iloraz` — PASS;
 - `principia-v2-own-layer-crosscheck-02.md` — independent handoff/global own-layer PASS;
 - Agent PSI Architecture v02 — current.
 
@@ -83,12 +84,45 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 [\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
 \]
 
+### Current classical-bridge result — II.10
+
+For finite homogeneous Markov chains, strong/Kemeny–Snell lumpability of a partition `E` is exactly the block-transition stability condition
+
+\[
+\boxed{
+xEy
+\Longrightarrow
+P(x,C)=P(y,C)
+\quad\forall C\in S/E.
+}
+\]
+
+When it holds, the quotient transition law
+
+\[
+\bar P([x],C)=P(x,C)
+\]
+
+is representative-independent and the block process is Markov for every initial distribution.
+
+PSI scope lock:
+
+\[
+\boxed{
+\text{task quotient}
+\not\Rightarrow
+\text{Markov lumpability}.
+}
+\]
+
+F61 permanently records the three-state witness separating static task adequacy from stochastic projectability.
+
 ### Handoff corrections now frozen at control level
 
 1. local theorem PASSes do not substitute for a whole-layer cross-check;
 2. strict proof dependency of II.9 is `II.7 + C59`; II.6 is structural analogy and II.8 is not a proof prerequisite;
 3. `classical-compare-01.md` is bound to Claim Registry v12; probabilistic bisimulation remains comparison-only with no current C-ID required;
-4. Decision/Epistemic Ledger now records V1 normalization, V2 own-layer completion and the independent handoff audit;
+4. Decision/Epistemic Ledger records V1 normalization, V2 own-layer completion and the independent handoff audit;
 5. no CORE, Freeze 01 or Agent v02 erratum was required.
 
 ### Scope locks
@@ -98,7 +132,8 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 - factorization sufficiency is not statistical sufficiency;
 - task-information adequacy is not full contract legality (F57);
 - geometric symmetry does not automatically establish observation-compatible gauge (F55);
-- static task adequacy does not imply dynamic descent;
+- static task adequacy does not imply deterministic dynamic descent;
+- task quotient does not imply Markov lumpability (F61);
 - deterministic congruence is not stochastic lumpability;
 - quotient-order coarseness is not bit/dimension/storage/compute minimality;
 - well-defined mathematical recurrence does not imply representative-free algorithmics, computability or efficiency (F43);
@@ -106,19 +141,19 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 
 ### Next
 
-1. begin **classical bridge layer** with strong lumpability C13;
-2. type the finite Markov chain, partition and block-transition condition explicitly;
-3. preserve the no-go:
+1. build **II.11 — Myhill–Nerode C18**;
+2. freeze the exact language contract: histories/prefixes, right-concatenation futures, acceptance indicator;
+3. prove directly
    \[
-   E_{\mathcal T}\not\Rightarrow\text{lumpability}
+   E_{\mathcal T}=\equiv_L
    \]
-   without stochastic block stability;
-4. then Myhill–Nerode C18;
+   under continuation-test closure;
+4. keep finite-index/minimal-DFA theorem classical and separate from the PSI realization;
 5. then Paige–Tarjan C14 strictly as algorithmic benchmark;
 6. then CAT/FACT/FRAME/HIGHER;
 7. only after these imported/derived layers run a final whole-V2 cross-check.
 
-STOP condition: do not transfer deterministic congruence unchanged to stochastic kernels and do not present classical constructions as PSI inventions.
+STOP condition: do not identify Nerode equivalence with arbitrary task equivalence without matching the continuation-test contract; do not present classical minimal-automaton theory as PSI invention.
 
 ---
 
@@ -160,7 +195,7 @@ Task adequacy and full contract legality remain distinct.
 
 ## S2 — FALSIFICATION / REGRESSION
 
-**State:** `falsifier-registry-10 ACTIVE / REGRESSION-BANK-01 ACTIVE`.
+**State:** `falsifier-registry-11 ACTIVE / REGRESSION-BANK-01 ACTIVE`.
 
 Mandatory boundaries:
 - R01 HCube — coarse representation;
@@ -172,7 +207,8 @@ Mandatory boundaries:
 - F57 task adequacy vs full contract legality;
 - F58 old-source auto-promotion;
 - F59 MINI vs general FACT;
-- F60 factorization uniqueness only on `im rho`.
+- F60 factorization uniqueness only on `im rho`;
+- F61 task quotient vs Markov lumpability conflation.
 
 Agent-process regression learned in handoff audit:
 
@@ -262,7 +298,9 @@ Current physical source:
 \to
 \mathrm{V2.1:V2.9\ GLOBAL\ PASS}
 \to
-\mathrm{CLASSICAL\ BRIDGES\ RELEASED}.
+\mathrm{II.10\ LUMPABILITY\ PASS}
+\to
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}.
 }
 \]
 
@@ -270,8 +308,6 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{LUMPABILITY}
-\to
 \mathrm{MYHILL\!\!-\!NERODE}
 \to
 \mathrm{PAIGE\!\!-\!TARJAN}
