@@ -26,7 +26,8 @@ Done:
 - WHOLE-V1 CROSS-CHECK 01 — PASS WITH REQUIRED NONSEMANTIC NORMALIZATION;
 - V1 NORMALIZATION 01 — PASS;
 - V2.1 `Dokładna rozstrzygalność zadaniowa` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS;
-- V2.2 `Kryterium faktoryzacji przez reprezentację` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
+- V2.2 `Kryterium faktoryzacji przez reprezentację` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS;
+- V2.3 `Globalna wystarczalność obserwatora` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
 
 ### Current Volume-I verdict
 
@@ -44,9 +45,11 @@ No Freeze 01 erratum was required.
 
 \[
 \boxed{
-\mathrm{II.1\ EXACT\ TASK\ DECIDABILITY}=\mathrm{PASS},
+\mathrm{II.1}=\mathrm{PASS},
 \qquad
-\mathrm{II.2\ KERNEL\ FACTORIZATION}=\mathrm{PASS}.
+\mathrm{II.2}=\mathrm{PASS},
+\qquad
+\mathrm{II.3}=\mathrm{PASS}.
 }
 \]
 
@@ -68,16 +71,29 @@ R=g\circ\rho,
 }
 \]
 
-with uniqueness only on `im rho` as required by F60. No surjectivity, topology, probability, stability or computability is silently assumed.
+with uniqueness only on `im rho` as required by F60.
+
+II.3 specializes II.2 to the observer:
+
+\[
+\boxed{
+E_{\Psi,c}\subseteq E_{\mathcal T,c}
+\iff
+\exists!\,f:\operatorname{im}\Psi_c\to M_{\mathcal T,c},
+\quad
+q_{\mathcal T,c}=f\circ\Psi_c.
+}
+\]
+
+`Global` means sufficiency on the whole candidate space, not resolution of every individual record. The result is exact/factorizational, not statistical sufficiency.
 
 ### Next
 
-1. write **V2.3 — Global task sufficiency of the observer**;
-2. specialize II.2 with `rho=Psi_c` and `R=q_{T,c}`;
-3. preserve uniqueness only on `im Psi_c`;
-4. separate exact observation sufficiency from approximate/stochastic sufficiency;
-5. then V2.4 representation adequacy;
-6. cross-check the V2 theorem spine before classical bridges and laboratories.
+1. write **V2.4 — Representation adequacy**;
+2. generalize II.3 from the observer `Psi_c` to arbitrary `rho:Omega_c->Z`;
+3. preserve the distinction `task-information adequacy != full contract legality`;
+4. bind R01 HCube, R02 Go and R03 FS-STAT to the correct scopes;
+5. then run the first V2 theorem-spine cross-check before dynamics/history and classical bridges.
 
 STOP condition: V2 prose may expose proofs already frozen, but must not silently strengthen theorem scope or promote benchmark/classical comparison into PSI novelty.
 
@@ -141,6 +157,10 @@ Local II.1 theorem regression:
 Local II.2 theorem regression:
 - if `rho` is not surjective, factorization does not imply a unique extension `g:Z->W`;
 - F60 fixed witness must remain valid.
+
+Local II.3 theorem regression:
+- one pair `Psi_c(x)=Psi_c(y)` with `x not E_{T,c} y` falsifies global observer sufficiency;
+- uniqueness of the decoding map is only on `im Psi_c`.
 
 ---
 
@@ -218,7 +238,9 @@ Current physical source:
 \to
 \mathrm{V2.2\ PASS}
 \to
-\mathrm{V2.3\ NEXT}.
+\mathrm{V2.3\ PASS}
+\to
+\mathrm{V2.4\ NEXT}.
 }
 \]
 
