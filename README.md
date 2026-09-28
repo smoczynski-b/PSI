@@ -37,6 +37,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V1 I.6 — Methodological boundaries](docs/principia-v1-06-methodological-boundaries.md)
 - [Whole-V1 Cross-Check 01](docs/principia-v1-whole-crosscheck-01.md)
 - [V1 Normalization 01](docs/principia-v1-normalization-01.md)
+- [Principia V2.1 — Exact task-level decidability](docs/principia-v2-01-exact-task-decidability.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -179,6 +180,38 @@ Key normalizations include:
 
 No Freeze 01 erratum was required.
 
+## Volume II theorem-spine status
+
+V2.1 has been written, proved and cross-checked:
+
+\[
+\boxed{
+|q_{\mathcal T,c}(F_c(Y))|=1
+\iff
+F_c(Y)\neq\varnothing
+\land
+F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c}.
+}
+\]
+
+Status:
+
+\[
+\boxed{
+\mathrm{V2.1}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-\!CHECK\ PASS}.
+}
+\]
+
+The result is explicitly classified as a **classical elementary quotient fact / PSI-adapted central criterion**. The proof uses no finiteness, topology, probability, stability or computability assumptions. The empty-fibre condition is retained as a mandatory theorem boundary.
+
+Next theorem:
+
+\[
+\boxed{
+\mathrm{V2.2\ —\ kernel\ factorization\ criterion}.
+}
+\]
+
 ## Hardening bank
 
 \[
@@ -209,7 +242,7 @@ No Agent v03 is justified by current evidence.
 \boxed{
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1\ EXACT\ TASK\ DECIDABILITY}
+\mathrm{V2.1\ PASS}
 \to
 \mathrm{V2.2\ KERNEL\ FACTORIZATION}
 \to
