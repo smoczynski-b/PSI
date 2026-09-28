@@ -1,10 +1,8 @@
 # PSI — Decision / Epistemic Ledger 01
 
 **Status:** CURRENT LEDGER IMPLEMENTATION  
-**Date:** 2026-09-28  
+**Date:** 2026-09-29  
 **Spec source:** `docs/agent-psi-architecture-02.md`
-
-This file implements the two ledgers already required by Agent Architecture v02. It introduces no new control primitive.
 
 \[
 \boxed{\text{why we believe}\neq\text{why we acted}.}
@@ -31,10 +29,11 @@ Canonical-representative language downgraded to one normal equivalence class; ra
 Holonomy is task-relevant global transport data but does not force a sixth primitive.
 
 ## E005 — LAZARUS agency language
-Correct statement:
+
 \[
 F_t(H)=F_t(H')\not\Rightarrow H\equiv_{\mathcal T,t}H'.
 \]
+
 Current fibre is not full task information.
 
 ## E006 — HIGHER-FIBRE / gauge legality
@@ -50,11 +49,13 @@ HCube normalized to LAB/BENCHMARK separator; no CORE or universality status.
 G0/G2/G3/G4 normalized by `ker rho_t⊆≡_{T,t}`; quotient-order minimality separated from bit/compute minimality; G1 remains source gap.
 
 ## E010 — FS-STAT transport from exact to noisy data
+
 \[
 \mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
 \qquad
 \mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
 \]
+
 Global planarity and quotient-level confidence remain open.
 
 ## E011 — hardening cycle
@@ -101,118 +102,198 @@ where external `SE(3)` gauge is legal.
 Result: C19 replaced by C19-v2; MINI survives after typed contract errata.
 
 ## E016 — RED-1 registry migration
-
-Future-task tree/equivalence and congruence/update were recovered and registered as C57–C59. Former V2-GAP-01 closed.
+Future-task tree/equivalence and congruence/update recovered and registered as C57–C59. Former V2-GAP-01 closed.
 
 ## E017 — CAT/ADEQ/FACT pre-bind alignment
-
-Older typed sources were compared to the public core derivative. Semantic alignment passed but remained on provenance hold until physical CANON-03 was recovered.
+Older typed sources compared to public core derivative; semantic alignment passed but remained on provenance hold until physical CANON-03 was recovered.
 
 ## E018 — physical CANON-03 source bind
 
-- **Prior status:** current canon pointer known semantically, physical source unbound in this audit.
-- **New basis:** `psi-model` exact pinned source recovered:
-  - commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
-  - path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
-  - version 1.0.0;
-  - blob `72d711a40c65376ee932809802622f3985ecb02a`.
-- **Result:** `CANON03 SOURCE BIND = PASS`.
-- **Consequence:** current CAT/FACT definitions are sections 12/13 of physical canon; richer older CAT calculus and FACT groupoid/homotopy fibre are derived extensions, not canonical minimal definitions.
-- **Additional correction:** universal scalar `D_ADEQ^cat` is not required by physical CORE5; V1-GAP-01 closes by scope correction.
+Physical source recovered at:
+- repo `smoczynski-b/psi-model`;
+- commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+- path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
+- blob `72d711a40c65376ee932809802622f3985ecb02a`.
+
+Result: `CANON03 SOURCE BIND = PASS`.
+
+Current CAT/FACT definitions are sections 12/13 of physical canon; richer older CAT calculus and FACT groupoid/homotopy fibre remain derived extensions. Universal scalar `D_ADEQ^cat` is not required by CORE5.
 
 ## E019 — first V1/V2 mathematical-source freeze
 
-- **Prior status:** maps/audit complete but freeze blocked.
-- **New basis:** physical CANON-03 bound; C19 patched; RED-1 migrated; C62–C66 registered; classical source layer bound; nonessential bisimulation comparison deferred.
-- **Result:**
-  \[
-  \boxed{\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.}
-  \]
-- **Meaning:** definitions, theorem statements, source roles, status classes, dependencies and principal boundaries are fixed for the first prose pass.
-- **Not implied:** final prose, typography, universal CORE5 completeness.
+\[
+\boxed{\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.}
+\]
+
+Meaning: definitions, theorem statements, source roles, status classes, dependencies and principal boundaries fixed for first prose pass; not final prose or universal CORE5 completeness.
 
 ## E020 — V1 whole-volume normalization
 
-- **Prior status:** I.1–I.6 each had local PASS.
-- **New basis:** whole-volume semantic/notation cross-check exposed inter-section symbol collisions, protocol-redesign ambiguity and genealogy inflation.
-- **Result:** N1–N7 applied; `PRINCIPIA V1 FIRST PROSE PASS = NORMALIZED PASS`.
-- **Freeze impact:** none.
-- **Permanent lesson:** local section correctness does not by itself certify whole-volume coherence.
+Local I.1–I.6 PASS did not certify whole-volume coherence. Whole-volume cross-check exposed nonsemantic collisions; N1–N7 applied.
+
+Result:
+
+\[
+\boxed{\mathrm{V1\ FIRST\ PROSE\ PASS}=\mathrm{NORMALIZED\ PASS}.}
+\]
+
+Permanent lesson: local section correctness does not itself certify whole-volume coherence.
 
 ## E021 — V2 own quotient/history layer
 
 - **Object:** II.1–II.9.
-- **Prior status:** individual theorem/local cross-check PASSes; earlier spine cross-check covered only II.1–II.4.
-- **New basis:** `principia-v2-own-layer-crosscheck-02.md` independent handoff audit.
-- **Result:** mathematics PASS; no Freeze 01 erratum; three control corrections required and applied: II.9 dependency graph, classical-comparison status drift, ledger/handoff completion.
-- **Corrected dependency:** strict proof dependency for II.9 is `II.7 + C59`; II.6 is structural analogy; II.8 is not a proof prerequisite.
-- **Permanent lesson:**
-  \[
-  \boxed{\text{sequence of local PASSes}\not\Rightarrow\text{whole-layer PASS}.}
-  \]
+- **Prior status:** local PASSes; earlier spine audit covered only II.1–II.4.
+- **Basis:** `principia-v2-own-layer-crosscheck-02.md`.
+- **Result:** mathematics PASS; no Freeze 01 erratum; control corrections required.
+
+The Six audit correctly removed II.8 as a proof prerequisite and classified II.6 as structural analogy, but its residual notation `II.7 + C59` as strict proof dependency was later corrected by Errata 01 because C59 is one of the results being migrated/proved in II.9.
+
+Final classification:
+
+\[
+\boxed{\text{SOURCE/RESULT IDS}=C45+C59,}
+\]
+
+\[
+\boxed{
+\text{STRICT PROOF DEPENDENCY}
+=II.7\;(C57/C58)+\text{typed legal-extension definitions},
+}
+\]
+
+\[
+II.6=\text{STRUCTURAL ANALOGY},
+\qquad
+II.8=\text{NOT A PROOF PREREQUISITE}.
+\]
+
+Permanent lesson:
+
+\[
+\boxed{\text{sequence of local PASSes}\not\Rightarrow\text{whole-layer PASS}.}
+\]
 
 ## E022 — classical comparison status normalization
 
-- **Prior status:** `classical-compare-01.md` still pointed to Claim Registry v11 and labelled probabilistic-bisimulation registry migration `PENDING`.
-- **New basis:** Claim Registry v12 deliberate editorial decision.
-- **Result:** comparison map now points to v12; probabilistic bisimulation remains source-bound comparison-only with no current C-ID required.
-- **Mathematical impact:** none.
+`classical-compare-01.md` moved from stale Claim Registry v11 to v12. Probabilistic bisimulation remains source-bound comparison-only with no current C-ID required. Mathematical impact: none.
+
+## E023 — Six handoff dependency errata
+
+- **Object:** `principia-v2-own-layer-crosscheck-02.md` dependency statement for II.9.
+- **Basis:** direct reread of II.7 and II.9.
+- **Result:** `principia-v2-own-layer-crosscheck-02-errata-01.md`.
+- **Impact:** control graph only; mathematical handoff verdict remains valid; no Freeze/Core/Agent erratum.
+
+## E024 — strong lumpability bridge
+
+C13 expanded as II.10 with the finite Markov block-stability criterion
+
+\[
+\boxed{
+xEy\Rightarrow P(x,C)=P(y,C)\quad\forall C\in S/E.
+}
+\]
+
+Task equivalence identifies allowed forgetting; strong lumpability separately tests stochastic dynamic autonomy. F61 added:
+
+\[
+\boxed{\text{task quotient}\not\Rightarrow\text{Markov lumpability}.}
+\]
+
+## E025 — Myhill–Nerode exact realization
+
+Under the exact language contract
+
+\[
+\Omega=\Sigma^*,
+\qquad
+R_w(u)=\mathbf1_L(uw),
+\quad w\in\Sigma^*,
+\]
+
+we obtain
+
+\[
+\boxed{E_{\mathcal T,L}=\equiv_L.}
+\]
+
+Finite-index/minimal-DFA results remain classical. Arbitrary task equivalence is not Nerode equivalence without full continuation-test closure.
+
+## E026 — Paige–Tarjan benchmark and cost-model normalization
+
+C14 expanded strictly as a classical algorithmic benchmark. Applicability to PSI requires an explicit reduction PT1–PT4 to a finite relational coarsest partition problem.
+
+Standard literature reports \(O(m\log n)\) refinement time and \(O(n+m)\) space. Principia additionally separate explicit linear input initialization, using conservative full-input bookkeeping \(O(n+m\log n)\) where appropriate.
+
+Permanent boundary:
+
+\[
+\boxed{
+\text{finite PSI instance}\not\Rightarrow\text{Paige–Tarjan applicability}
+}
+\]
+
+without a reduction proof.
+
+## E027 — classical bridge layer whole-crosscheck
+
+`principia-v2-classical-bridges-crosscheck-01.md` checks II.10–II.12 as one layer.
+
+Result:
+
+\[
+\boxed{
+\mathrm{II.10:II.12\ CLASSICAL\ BRIDGES}
+=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
+}
+\]
+
+No automatic chain `Nerode -> Paige–Tarjan -> lumpability` is licensed; the three constructions are differently typed. No Freeze 01/Core/Agent change.
 
 ---
 
 # B. Decision Ledger
 
-Format:
-
-`ID | observation/state | alternatives | action | licensing gate | result`.
-
 ## D001 — stop primitive growth
-Four independent pressure branches + R4 court produced no sixth-role witness. Action: freeze CORE5; reopen only on a new typed counterexample satisfying the R4 gate.
+Four independent pressure branches + R4 court produced no sixth-role witness. Freeze CORE5; reopen only on new typed counterexample satisfying R4 gate.
 
 ## D002 — do not optimize OPEN-PSI traffic yet
-Current telemetry is insufficient for uncontaminated optimization. Action: `WAIT`.
+Telemetry insufficient for uncontaminated optimization. `WAIT`.
 
 ## D003 — do not redesign WWW globally
-Visual grammar frozen and no measurement-driven reason exists. Action: preserve current grammar.
+Visual grammar frozen; preserve without measurement-driven reason.
 
 ## D004 — move from pressure to hardening
-CORE5 survived current pressure set. Action: HCube → Go → FS-STAT. Result: first hardening triad completed.
+HCube → Go → FS-STAT completed.
 
 ## D005 — move from hardening to Principia V1/V2
-Action: construct V1/V2 maps before prose. Result: maps completed and returned `FREEZE = NOT YET`.
+Construct maps before prose; first result `FREEZE = NOT YET`.
 
 ## D006 — repair before freeze
-Proof audit found a real C19 mixed-contract error and finite migration/source gaps. Action: patch source/registries, bind canon, then rerun freeze gate.
+C19 mixed-contract error and finite source/migration gaps repaired before freeze.
 
-## D007 — open prose phase after freeze PASS
-
-- **Observation:** all required first-freeze mathematical/source gates now pass or are explicitly excluded as nonblocking.
-- **Alternatives:** continue adding theory / begin prose from frozen units.
-- **Action:** open first V1/V2 prose pass; do not reopen primitive/theorem discovery absent a new contradiction.
-- **Gate:** `principia-v1-v2-freeze-01.md`.
-- **Result:** V1 prose completed and normalized; V2 own theorem layer subsequently developed through II.9.
+## D007 — open prose phase after Freeze PASS
+V1 prose completed and normalized; V2 own theorem layer developed through II.9.
 
 ## D008 — require whole-V1 gate before V2
-
-- **Observation:** all six V1 units had local PASS but whole-volume scan exposed nonsemantic collisions.
-- **Action:** stop V2 prose until `V1-NORMALIZATION-01` completed.
-- **Gate:** `principia-v1-whole-crosscheck-01.md`.
-- **Result:** `V1 NORMALIZED PASS`; V2 released.
+Local V1 PASSes did not suffice; whole-volume normalization required before releasing V2.
 
 ## D009 — pause classical bridges for independent V2 handoff audit
+II.1–II.9 local PASSes were insufficient because prior spine audit covered only II.1–II.4. Classical bridges held until global own-layer audit.
 
-- **Observation:** II.1–II.9 each had local PASS, but the only prior whole-spine audit covered II.1–II.4.
-- **Alternatives:** enter lumpability immediately / audit the completed own layer first.
-- **Action:** hold classical bridges; run `principia-v2-own-layer-crosscheck-02.md`.
-- **Gate:** Agent v02 `IMPACT → REGRESSION → HANDOFF` discipline.
-- **Result:** global own-layer PASS after control corrections; no Freeze 01 erratum.
+## D010 — release classical bridges after handoff audit + Errata 01
 
-## D010 — release classical bridges after Six handoff corrections
+- **Observation:** II.1–II.9 mathematics globally passes; control drift corrected.
+- **Gate:** own-layer audit plus dependency errata.
+- **Action:** release C13/C18/C14 classical layer.
+- **Result:** legal; CORE5 and Agent v02 unchanged.
 
-- **Observation:** own-layer mathematics passes globally; dependency/status/ledger drift corrected.
-- **Action:** release classical bridge layer beginning with strong lumpability C13.
-- **Gate:** `principia-v2-own-layer-crosscheck-02.md` plus corrected Theorem Map 02 and classical comparison map.
-- **Result:** classical bridge phase is legal; CORE5 and Agent v02 unchanged.
+## D011 — require whole classical-layer gate before CAT/FACT
+
+- **Observation:** II.10, II.11 and II.12 each locally pass, but they use distinct types and could be rhetorically conflated.
+- **Action:** hold CAT/FACT transition until a joint II.10–II.12 cross-check.
+- **Gate:** `principia-v2-classical-bridges-crosscheck-01.md`.
+- **Result:** `GLOBAL CROSSCHECK PASS`; Paige–Tarjan cost-model scope normalized; CAT/FACT/NORM released.
 
 ---
 
