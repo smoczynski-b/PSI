@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1/V2 FIRST FREEZE PASS / V1 PROSE IN PROGRESS`.
+**State:** `V1/V2 FIRST FREEZE PASS / V1 FIRST PROSE PASS COMPLETE / WHOLE-V1 CROSS-CHECK NEXT`.
 
 Done:
 - physical CANON-03 source bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -27,7 +27,8 @@ Done:
 - V1 I.2 `Obserwacja, włókno zgodności i adekwatność katalogu` — PROSE PASS 01 / CROSS-CHECK PASS;
 - V1 I.3 `Rozróżnienie zadaniowe i legalna redukcja` — PROSE PASS 01 / CROSS-CHECK PASS;
 - V1 I.4 `Historia, pamięć i przyszła semantyka zadania` — PROSE PASS 01 / CROSS-CHECK PASS;
-- V1 I.5 `Dokładna identyfikowalność, stabilność i licencja statystyczna` — PROSE PASS 01 / CROSS-CHECK PASS.
+- V1 I.5 `Dokładna identyfikowalność, stabilność i licencja statystyczna` — PROSE PASS 01 / CROSS-CHECK PASS;
+- V1 I.6 `Granice metodologiczne i dyscyplina prymitywów` — PROSE PASS 01 / CROSS-CHECK PASS.
 
 ### Freeze result
 
@@ -43,17 +44,17 @@ This freezes definitions, theorem statements, status classes, source roles, depe
 - I.2: `F_c(Y)=∅` was prevented from being misread as an automatic diagnosis of catalog inadequacy; it only diagnoses inconsistency of the full current package unless the protocol freezes the other components and explicitly tests the catalog;
 - I.3: `ker q⊆E_T` remains the exact task-information adequacy test, while full contract legality can impose additional typing, observation and domain conditions;
 - I.4: the history space `H_t` is required to contain at least enough structure to define legal future extensions, but is not assumed minimal; task-quotient minimality remains quotient-order minimality only;
-- I.5: the first prose draft over-imported FS-STAT calculations into V1; cross-check removed torsion witnesses, finite-difference constants and other technical machinery back to V2/V3, leaving only the frozen inference discipline `exact ↛ stable ↛ confidence`, `UNRESOLVED`, and explicit probability-contract requirements.
+- I.5: the first prose draft over-imported FS-STAT calculations into V1; cross-check removed technical machinery back to V2/V3, leaving only the frozen inference discipline `exact ↛ stable ↛ confidence`, `UNRESOLVED`, and explicit probability-contract requirements;
+- I.6: canonical identification order was separated from the orthogonal inference-quality ladder; R4 stop remains project policy, not a universal theorem.
 
 Next:
-1. write **V1 I.6 — Methodological boundaries** from the frozen governance/method claims;
-2. cross-check I.6 for theorem/policy/source-status confusion and accidental CORE growth;
-3. perform the first **whole-V1 cross-check** across I.1–I.6;
-4. then write V2 theorem prose with proofs/source boxes;
-5. issue an erratum + impact audit for any semantic change discovered during prose;
-6. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
+1. perform the first **WHOLE-V1-CROSS-CHECK-01** across I.1–I.6;
+2. verify notation, typing, logical order, theorem/policy boundaries, V2 handoffs and absence of laboratory inflation;
+3. issue an erratum + impact audit only if the whole-volume check finds a semantic defect rather than a wording issue;
+4. after whole-V1 PASS, begin V2 theorem prose with proofs/source boxes;
+5. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
 
-STOP condition: prose may improve exposition but must not silently alter frozen semantics.
+STOP condition: V2 prose does not begin until whole-V1 cross-check passes or all discovered blockers are explicitly classified.
 
 ---
 
@@ -107,6 +108,8 @@ Primitive-growth rule:
 \boxed{\mathrm{NO\ R4\ WITHOUT\ NEW\ TYPED\ COUNTEREXAMPLE}.}
 \]
 
+This last item is current project policy after the pressure court, not a universal completeness theorem.
+
 ---
 
 ## S2 — FALSIFICATION / REGRESSION APPARATUS
@@ -138,7 +141,7 @@ Current prose-phase role:
 - correct prose before it becomes a new source of drift;
 - do not design new governance.
 
-I.1–I.5 cross-checks have each found and corrected at least one scope-risk without changing CORE5.
+I.1–I.6 cross-checks each found and corrected at least one scope-risk without changing CORE5.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -215,7 +218,9 @@ Historical missing originals remain genealogy gaps only; do not represent them a
 \to
 \mathrm{I.5\ PASS}
 \to
-\mathrm{I.6\ NEXT}
+\mathrm{I.6\ PASS}
+\to
+\mathrm{WHOLE\!-\!V1\ CROSS\!-\!CHECK\ NEXT}
 }
 \]
 
@@ -223,9 +228,7 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{V1\ PROSE}
-\to
-\mathrm{V1\ CROSS\!-\!CHECK}
+\mathrm{V1\ WHOLE\ CROSS\!-\!CHECK}
 \to
 \mathrm{V2\ PROSE}
 \to
