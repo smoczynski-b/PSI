@@ -3,7 +3,7 @@
 **Status:** CURRENT EDITORIAL SKELETON / V1-V2 FIRST FREEZE BOUND  
 **Canonical source:** physical `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Current claim source:** `docs/claim-registry-12.md`  
-**Current falsifier source:** `docs/falsifier-registry-10.md`  
+**Current falsifier source:** `docs/falsifier-registry-11.md`  
 **Current regression source:** `docs/regression-bank-01.md`  
 **Freeze source:** `docs/principia-v1-v2-freeze-01.md`  
 **Migration source:** `docs/principia-migration-01.md`
@@ -26,7 +26,7 @@ The redaction rule is:
 }
 \]
 
-The first V1/V2 mathematical-source freeze has passed. Polished prose is now legal **only inside the frozen semantic boundaries**.
+The first V1/V2 mathematical-source freeze has passed. Polished prose is legal **only inside the frozen semantic boundaries**.
 
 ---
 
@@ -156,9 +156,21 @@ Regression binding: `R02`.
 Freeze only the comparisons needed by current theorem architecture:
 
 - deterministic congruence;
-- Nerode exact realization — `C18`;
-- Markov lumpability bridge — `C13`;
+- Markov strong/Kemeny–Snell lumpability bridge — `C13`, prose unit `II.10`, `PASS`;
+- Nerode exact realization — `C18`, next prose unit `II.11`;
 - Paige–Tarjan benchmark — `C14`.
+
+Permanent stochastic boundary:
+
+\[
+\boxed{
+\text{task quotient}
+\not\Rightarrow
+\text{Markov lumpability}
+}
+\]
+
+without block-transition stability; regression `F61`.
 
 Probabilistic bisimulation remains explanatory comparison-only; it has no current C-ID because no frozen theorem depends on it.
 
@@ -273,20 +285,21 @@ Before prose for any V1/V2 unit require:
 
 ## Current execution order
 
-The structural freeze stage is complete:
+The structural freeze stage is complete. Current prose state is
 
 \[
 \boxed{
-\text{V1 MAP}
-+\text{V2 MAP}
-+\text{AUDIT}
-+\text{CANON-03 SOURCE BIND}
+\mathrm{V1\ NORMALIZED\ PASS}
 \to
-\text{FIRST V1/V2 FREEZE}=\mathrm{PASS}.
+\mathrm{V2.1:V2.9\ GLOBAL\ PASS}
+\to
+\mathrm{II.10\ LUMPABILITY\ PASS}
+\to
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}.
 }
 \]
 
-Current legal phase:
+Continue through frozen units using
 
 \[
 \boxed{
