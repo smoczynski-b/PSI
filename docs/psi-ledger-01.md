@@ -6,8 +6,6 @@
 
 This file implements the two ledgers already required by Agent Architecture v02. It introduces no new control primitive.
 
-The distinction is:
-
 \[
 \boxed{\text{why we believe}\neq\text{why we acted}.}
 \]
@@ -21,109 +19,64 @@ Format:
 `ID | claim/object | prior status | new basis | resulting status | affected artifacts`.
 
 ## E001 — public core dynamics diagnosis
-
-- **Object:** apparent missing formalization of task closure/dynamics in public `core.md`.
-- **Prior status:** suspected mathematical CORE gap.
-- **New basis:** comparison with living CANON-03/source architecture showed the mathematical role already existed; public documentation lagged.
-- **Result:** `DOC-CANON-DRIFT`, not R4/core growth.
-- **Effect:** public core corrected; primitive-growth claim revoked.
+Public documentation lagged the living canon; result `DOC-CANON-DRIFT`, not CORE growth.
 
 ## E002 — traffic transition semantics
-
-- **Object:** G0D telemetry.
-- **Prior status:** described as aggregate outbound `transitions`.
-- **New basis:** instrumentation records click initiation, not confirmed destination arrival.
-- **Result:** `aggregate outbound research clicks`.
-- **No-go:** click ≠ confirmed transition/arrival/comprehension.
+Instrumentation measures aggregate outbound research clicks, not confirmed arrivals/transitions.
 
 ## E003 — CAT–FACT–NORM–MINI strength
-
-- **Object:** Frenet/Bishop normalization.
-- **Prior status:** exploratory canonical representation / decomposition language.
-- **New basis:** gauge and confluence audit; raw-versus-quotiented FACT distinction.
-- **Result:** one **normal equivalence class** under the frozen exact interval contract; `BRIDGE/MINI`.
-- **No-go:** canonical representative without a section/gauge proof.
+Canonical-representative language downgraded to one normal equivalence class under the frozen interval/gauge contract; raw versus quotient FACT separated.
 
 ## E004 — CLOSED-FRAME pressure
-
-- **Object:** closed-loop Bishop/RMF holonomy.
-- **Prior status:** possible R4 pressure.
-- **New basis:** holonomy is representable as transport-derived task data; periodic gauge cannot erase nontrivial return holonomy.
-- **Result:** `CORE5 SURVIVES`; global/local regression retained.
+Holonomy is task-relevant global transport data but does not force a sixth primitive.
 
 ## E005 — LAZARUS agency language
-
-- **Object:** slogan `same information, different agency`.
-- **Prior status:** overly broad.
-- **New basis:** D2/D3 distinguish equal current world-state fibre from full history/task state.
-- **Result:**
-  \[
-  F_t(H)=F_t(H')\not\Rightarrow H\equiv_{\mathcal T,t}H'.
-  \]
-- **No-go:** current fibre = full task information.
+Correct statement:
+\[
+F_t(H)=F_t(H')\not\Rightarrow H\equiv_{\mathcal T,t}H'.
+\]
+Current fibre is not full task information.
 
 ## E006 — HIGHER-FIBRE / gauge legality
-
-- **Object:** groupoid/homotopy witness data.
-- **Prior status:** possible new primitive pressure.
-- **New basis:** `*→B Z_2←*` weak pullback retains witness multiplicity lost by coarse-first truncation; structured candidate/compatibility representation preserves the role.
-- **Result:** no sixth primitive; gauge/truncation itself must satisfy representation adequacy.
-- **Freeze:** `ker q⊆E_T` for task-legal reduction.
+Coarse-first truncation can lose witness/stabilizer data; legal reduction must satisfy representation adequacy.
 
 ## E007 — R4 pressure court
-
-- **Object:** CORE5 sufficiency against current counterexample set.
-- **Prior status:** open pressure question.
-- **New basis:** CAT/FACT, CLOSED-FRAME, LAZARUS, HIGHER-FIBRE plus anti-tautology role-preservation gate.
-- **Result:** `NO R4 WITNESS`; CORE5 frozen.
-- **Scope:** not a universal completeness theorem.
+Current counterexample set gives `NO R4 WITNESS`; CORE5 frozen. Not a universal completeness theorem.
 
 ## E008 — HCube role
-
-- **Object:** HCube.
-- **Prior status:** historically stronger/central language.
-- **New basis:** exact 3×3 paired witness and resolvent oracle; classical nonnormal/pseudospectral comparison.
-- **Result:** `LAB/BENCHMARK separator`, not CORE and not necessary universal representation.
-- **No-go:** HCube separator ⇒ HCube necessity; P9 = HCube.
+HCube normalized to LAB/BENCHMARK separator; no CORE or universality status.
 
 ## E009 — Go memory series
-
-- **Object:** G0–G4 memory adequacy.
-- **Prior status:** heterogeneous historical tests.
-- **New basis:** common criterion `ker ρ_t⊆≡_{T,t}` and RED-1 quotient theorem.
-- **Result:** representation-regression ladder; coarsest exact history quotient distinguished from bit/compute minimality.
-- **Source boundary:** recovered source states G0/G2/G3/G4; G1 remains source gap.
+G0/G2/G3/G4 normalized by `ker rho_t⊆≡_{T,t}`; quotient-order minimality separated from bit/compute minimality; G1 remains source gap.
 
 ## E010 — FS-STAT transport from exact to noisy data
-
-- **Object:** exact MINI versus finite noisy samples.
-- **Prior status:** open hardening problem.
-- **New basis:** explicit derivative-error scaling and low-curvature torsion counterexample.
-- **Result:**
-  \[
-  \mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
-  \qquad
-  \mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
-  \]
-- **Correction:** use non-implication, not literal inequality between differently typed notions.
-- **Open:** global planarity inference and quotient-level confidence coverage.
+\[
+\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
+\]
+Global planarity and quotient-level confidence remain open.
 
 ## E011 — hardening cycle
-
-- **Object:** post-R4 regression phase.
-- **Prior status:** HCube/Go/FS-STAT planned independently.
-- **New basis:** all three completed with fixed witnesses/oracles.
-- **Result:** `REGRESSION-BANK-01` frozen as first hardening bank.
-- **Next status:** Principia V1/V2 redaction becomes primary.
+HCube + Go + FS-STAT completed with fixed witnesses/oracles; `REGRESSION-BANK-01` frozen.
 
 ## E012 — Volume I unit/dependency scan
+Six V1 units mapped. `V1 FREEZE = NOT YET`. Formal catalog adequacy source found in 2026-07-26A but not yet migrated (`V1-GAP-01`). Technical FS-STAT material kept out of foundations except as boundaries/cross-references.
 
-- **Object:** Principia Volume I structure.
-- **Prior status:** Skeleton v02 listed thematic units and claim ranges but not a full dependency/blast-radius map.
-- **New basis:** `V1-UNIT-MAP-01` classification of C01–C56 by statement class, dependency, downstream use and regression binding.
-- **Result:** six V1 units are structurally usable, but `V1 FREEZE = NOT YET`.
-- **New gap:** formal catalog-adequacy definition exists in the 2026-07-26A source but is not a dedicated current C-ID; status `SOURCE FOUND → MIGRATION/AUDIT REQUIRED` (`V1-GAP-01`).
-- **Redaction correction:** C48–C50 and C53–C55 remain technical/laboratory material rather than being promoted into V1 foundations; C09/C42 may be stated in V1 but proved in V2.
+## E013 — Volume II theorem/dependency scan
+
+- **Object:** Principia Volume II theorem structure.
+- **Prior status:** Skeleton v02 listed thematic theorem families but did not expose proof state, source state or full dependency/blast-radius structure.
+- **New basis:** `V2-THEOREM-MAP-01` separates self-contained quotient/factorization results, classical bridges and benchmarks/pressure witnesses.
+- **Result:** elementary spine C06–C09/C32 is structurally ready for proof audit; V2 freeze remains blocked by five explicit gaps.
+- **New gaps:**
+  - `V2-GAP-01` — future-task history equivalence lacks a dedicated current registered definition;
+  - `V2-GAP-02` — probabilistic bisimulation comparison has no current C-ID;
+  - `V2-GAP-03` — general CAT/FACT definitions are not fully registered in current form;
+  - `V2-GAP-04` — exact source/hypothesis binding for imported classical results;
+  - `V2-GAP-05` — MINI proof audit for quotient rewrite, critical pairs and Newman hypotheses.
+- **Redaction correction:** C23/C33 pressure verdicts are not mathematical theorems of geometry/category theory; benchmarks R01–R03 test theorem scope but do not create theorem status.
+- **Affected artifacts:** V2 theorem map, work map, README; next phase becomes combined proof/source/migration audit.
 
 ---
 
@@ -134,43 +87,24 @@ Format:
 `ID | observation/state | alternatives | action | licensing gate | result`.
 
 ## D001 — stop primitive growth
-
-- **Observation:** four independent pressure branches completed; R4 court produced no sixth-role witness.
-- **Alternatives:** continue searching primitives / freeze CORE5.
-- **Action:** freeze CORE5; reopen only on new typed counterexample satisfying the R4 gate.
-- **Gate:** `R4-PRESSURE-COURT-01`.
-- **Result:** primitive-discovery phase closed.
+Four independent pressure branches + R4 court produced no sixth-role witness. Action: freeze CORE5; reopen only on a new typed counterexample satisfying the R4 gate.
 
 ## D002 — do not optimize OPEN-PSI traffic yet
-
-- **Observation:** pageviews/outbound-click instrumentation exists but baseline/sample is not yet sufficient; confirmed arrivals/users remain unobserved.
-- **Alternatives:** modify content/queue / WAIT.
-- **Action:** `WAIT`.
-- **Gate:** measurement-before-optimization.
-- **Result:** S5 remains running without contaminating intervention.
+Current telemetry is insufficient for uncontaminated optimization. Action: `WAIT`.
 
 ## D003 — do not redesign WWW globally
-
-- **Observation:** visual grammar frozen; no measurement-driven reason for a site-wide redesign.
-- **Alternatives:** redesign / preserve current grammar.
-- **Action:** preserve.
-- **Gate:** structure-before-ornament + contamination control.
+Visual grammar frozen and no measurement-driven reason exists. Action: preserve current grammar.
 
 ## D004 — move from pressure to hardening
-
-- **Observation:** CORE5 survived current pressure set.
-- **Alternatives:** search more speculative counterexamples / strengthen known boundaries.
-- **Action:** HCube → Go → FS-STAT.
-- **Gate:** Frontier value/cost and R4 STOP.
-- **Result:** first hardening triad completed.
+CORE5 survived current pressure set. Action: HCube → Go → FS-STAT. Result: first hardening triad completed.
 
 ## D005 — move from hardening to Principia V1/V2
 
-- **Observation:** Claim Registry v10 and Regression Bank 01 exist; HCube/Go/FS-STAT no longer block first redaction freeze.
-- **Alternatives:** add more laboratories / begin V1/V2 unit construction.
-- **Action:** begin V1/V2 unit map and theorem/source/regression audit.
-- **Gate:** current work map + skeleton v02.
-- **Result so far:** `V1-UNIT-MAP-01` completed; next step `V2-THEOREM-MAP-01`.
+- **Observation:** Claim Registry v10 + Regression Bank 01 + Skeleton v02 exist.
+- **Action:** construct V1/V2 maps before prose.
+- **Gate:** source/status/dependency/regression discipline.
+- **Result:** `V1-UNIT-MAP-01` and `V2-THEOREM-MAP-01` completed; both explicitly return `FREEZE = NOT YET`.
+- **Next action:** `PROOF-SOURCE-MIGRATION-AUDIT-01` resolving V1-GAP-01 and V2-GAP-01…05 before any chapter prose.
 
 ---
 
@@ -182,4 +116,4 @@ Add a Decision Ledger entry only for high-impact actions, WAIT decisions or phas
 
 Do **not** log every ordinary derivation or file edit.
 
-The ledger is therefore sparse by design.
+The ledger is sparse by design.
