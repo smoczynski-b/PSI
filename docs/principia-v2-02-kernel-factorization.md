@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.2. Kryterium faktoryzacji przez reprezentację
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C07 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-01.md`, T2.2  
@@ -19,30 +19,23 @@ Niech
 R:\Omega\to W
 \]
 
-będą dowolnymi mapami zbiorów o wspólnej dziedzinie \(\Omega\).
-
-Definiujemy relacje nierozróżnialności
+będą dowolnymi mapami zbiorów o wspólnej dziedzinie \(\Omega\). Definiujemy
 
 \[
 \ker_{\rm eq}\rho
-=
-\{(x,y)\in\Omega^2:\rho(x)=\rho(y)\},
+=\{(x,y)\in\Omega^2:\rho(x)=\rho(y)\},
+\]
+
+\[
+\ker_{\rm eq}R
+=\{(x,y)\in\Omega^2:R(x)=R(y)\},
 \]
 
 oraz
 
 \[
-\ker_{\rm eq}R
-=
-\{(x,y)\in\Omega^2:R(x)=R(y)\}.
-\]
-
-Obraz reprezentacji oznaczamy
-
-\[
 \operatorname{im}\rho
-=
-\{\rho(x):x\in\Omega\}\subseteq Z.
+=\{\rho(x):x\in\Omega\}\subseteq Z.
 \]
 
 Nie zakładamy surjektywności \(\rho\) na \(Z\).
@@ -51,7 +44,7 @@ Nie zakładamy surjektywności \(\rho\) na \(Z\).
 
 ## 2. Pytanie faktoryzacyjne
 
-Mapa \(R\) zależy wyłącznie od reprezentacji \(\rho(x)\), jeśli istnieje mapa
+Mapa \(R\) zależy wyłącznie od reprezentacji \(\rho(x)\), jeśli istnieje
 
 \[
 g:\operatorname{im}\rho\to W
@@ -63,23 +56,11 @@ taka, że
 R=g\circ\rho.
 \]
 
-Warunek ten oznacza, że wartość \(R(x)\) można wyznaczyć z samego obrazu \(\rho(x)\), bez potrzeby odzyskiwania reprezentanta \(x\).
-
-Pytanie brzmi zatem:
-
-\[
-\boxed{
-\text{kiedy }R\text{ jest stała na wszystkich włóknach }\rho?
-}
-\]
-
-Odpowiedzią jest inkluzja jąder równoważności.
+Jest to równoważne pytaniu, czy \(R\) jest stała na każdym włóknie \(\rho\).
 
 ---
 
 ## 3. Twierdzenie II.2 — kryterium faktoryzacji
-
-### Twierdzenie
 
 Dla map
 
@@ -89,7 +70,7 @@ Dla map
 R:\Omega\to W
 \]
 
-zachodzi równoważność
+zachodzi
 
 \[
 \boxed{
@@ -97,19 +78,13 @@ zachodzi równoważność
 \subseteq
 \ker_{\rm eq}R
 \iff
-\exists!\,g:\operatorname{im}\rho\to W
+\exists!\,g:\operatorname{im}\rho\to W,
 \quad
 R=g\circ\rho.
 }
 \]
 
-Unikalność dotyczy wyłącznie mapy
-
-\[
-g:\operatorname{im}\rho\to W.
-\]
-
-Nie jest to twierdzenie o unikalnym rozszerzeniu \(g\) na całe \(Z\).
+Unikalność dotyczy wyłącznie mapy na \(\operatorname{im}\rho\). Twierdzenie nie ustanawia unikalnego rozszerzenia \(g\) na całe \(Z\).
 
 ---
 
@@ -120,65 +95,32 @@ Nie jest to twierdzenie o unikalnym rozszerzeniu \(g\) na całe \(Z\).
 Załóżmy
 
 \[
-\ker_{\rm eq}\rho
-\subseteq
-\ker_{\rm eq}R.
+\ker_{\rm eq}\rho\subseteq\ker_{\rm eq}R.
 \]
 
-Dla każdego
+Dla \(z\in\operatorname{im}\rho\) definiujemy \(g(z)\) jako jedyną wartość \(R(x)\) wspólną dla wszystkich \(x\in\Omega\) spełniających \(\rho(x)=z\).
+
+Definicja jest dobrze określona: jeśli
 
 \[
-z\in\operatorname{im}\rho
-\]
-
-istnieje co najmniej jeden \(x\in\Omega\) taki, że
-
-\[
-\rho(x)=z.
-\]
-
-Definiujemy
-
-\[
-\boxed{
-g(z)=R(x).}
-\]
-
-Musimy sprawdzić, że definicja nie zależy od wyboru reprezentanta.
-
-Jeżeli również \(y\in\Omega\) spełnia
-
-\[
-\rho(y)=z,
+\rho(x)=\rho(y)=z,
 \]
 
 to
 
 \[
-\rho(x)=\rho(y),
+(x,y)\in\ker_{\rm eq}\rho
+\subseteq
+\ker_{\rm eq}R,
 \]
 
 a więc
 
 \[
-(x,y)\in\ker_{\rm eq}\rho.
-\]
-
-Z założonej inkluzji wynika
-
-\[
-(x,y)\in\ker_{\rm eq}R,
-\]
-
-a zatem
-
-\[
 R(x)=R(y).
 \]
 
-Definicja \(g\) jest więc dobrze określona.
-
-Dla każdego \(x\in\Omega\):
+Zatem dla każdego \(x\in\Omega\)
 
 \[
 g(\rho(x))=R(x),
@@ -190,68 +132,38 @@ czyli
 R=g\circ\rho.
 \]
 
-Pozostaje unikalność. Niech
+Jeżeli także
 
 \[
 h:\operatorname{im}\rho\to W
 \]
 
-również spełnia
-
-\[
-R=h\circ\rho.
-\]
-
-Dla dowolnego \(z\in\operatorname{im}\rho\) wybierzmy \(x\in\Omega\) z \(\rho(x)=z\). Wtedy
+spełnia \(R=h\circ\rho\), to dla dowolnego \(z\in\operatorname{im}\rho\) i dowolnego \(x\) z \(\rho(x)=z\):
 
 \[
 h(z)=h(\rho(x))=R(x)=g(\rho(x))=g(z).
 \]
 
-Zatem
-
-\[
-h=g
-\]
-
-na \(\operatorname{im}\rho\).
+Stąd \(h=g\) na \(\operatorname{im}\rho\).
 
 ### Kierunek \(\Leftarrow\)
 
-Załóżmy, że istnieje
+Załóżmy
 
 \[
-g:\operatorname{im}\rho\to W
+R=g\circ\rho
 \]
 
-taka, że
+dla pewnego \(g:\operatorname{im}\rho\to W\). Jeżeli
 
 \[
-R=g\circ\rho.
-\]
-
-Jeżeli
-
-\[
-(x,y)\in\ker_{\rm eq}\rho,
+\rho(x)=\rho(y),
 \]
 
 to
 
 \[
-\rho(x)=\rho(y).
-\]
-
-Stąd
-
-\[
-R(x)=g(\rho(x))=g(\rho(y))=R(y),
-\]
-
-czyli
-
-\[
-(x,y)\in\ker_{\rm eq}R.
+R(x)=g(\rho(x))=g(\rho(y))=R(y).
 \]
 
 Zatem
@@ -264,6 +176,28 @@ Zatem
 
 To kończy dowód. \(\square\)
 
+### Przypadek pustej dziedziny
+
+Jeżeli
+
+\[
+\Omega=\varnothing,
+\]
+
+to
+
+\[
+\operatorname{im}\rho=\varnothing
+\]
+
+i istnieje dokładnie jedna mapa
+
+\[
+\varnothing\to W.
+\]
+
+Obie relacje jąder są puste, więc twierdzenie pozostaje prawdziwe bez dodatkowej hipotezy niepustości i bez użycia aksjomatu wyboru.
+
 ---
 
 ## 5. Sens informacyjny
@@ -271,48 +205,36 @@ To kończy dowód. \(\square\)
 Warunek
 
 \[
-\ker_{\rm eq}\rho
-\subseteq
-\ker_{\rm eq}R
+\ker_{\rm eq}\rho\subseteq\ker_{\rm eq}R
 \]
 
 mówi dokładnie, że reprezentacja \(\rho\) nie skleja żadnej pary kandydatów, którą wielkość \(R\) nadal rozróżnia.
 
-Jeżeli więc
-
-\[
-\rho(x)=\rho(y),
-\]
-
-to dla faktoryzacji konieczne jest
-
-\[
-R(x)=R(y).
-\]
-
-Kryterium jest całkowicie względne wobec wybranej wielkości \(R\). Ta sama reprezentacja może faktoryzować jedną wielkość, a nie faktoryzować innej.
+Ta sama reprezentacja może więc faktoryzować jedną wielkość, a nie faktoryzować innej.
 
 ---
 
-## 6. Najważniejsza granica: obraz reprezentacji
+## 6. Granica F60 — tylko obraz reprezentacji
 
-Twierdzenie nie mówi
+Twierdzenie mówi
+
+\[
+\exists!\,g:\operatorname{im}\rho\to W,
+\]
+
+a nie w ogólności
 
 \[
 \exists!\,g:Z\to W.
 \]
 
-Mówi tylko
+Jeżeli \(\rho\) nie jest surjektywna, równanie
 
 \[
-\exists!\,g:\operatorname{im}\rho\to W.
+R=g\circ\rho
 \]
 
-Jeżeli \(\rho\) nie jest surjektywna, wartości mapy poza \(\operatorname{im}\rho\) nie są ograniczone przez równanie
-
-\[
-R=g\circ\rho.
-\]
+nie ogranicza wartości \(g\) poza \(\operatorname{im}\rho\).
 
 ### Kontrprzykład F60
 
@@ -320,13 +242,11 @@ Niech
 
 \[
 \Omega=\{a\},
-\qquad
+\quad
 Z=\{0,1\},
-\qquad
+\quad
 W=\{u,v\},
 \]
-
-oraz
 
 \[
 \rho(a)=0,
@@ -334,25 +254,23 @@ oraz
 R(a)=u.
 \]
 
-Na obrazie
+Na
 
 \[
 \operatorname{im}\rho=\{0\}
 \]
 
-jedyna możliwa mapa faktoryzująca spełnia
+faktoryzacja wymusza jednoznacznie
 
 \[
 g(0)=u.
 \]
 
-Ale na całym \(Z\) istnieją co najmniej dwa rozszerzenia:
+Na całym \(Z\) istnieją jednak dwa różne rozszerzenia:
 
 \[
 g_1(0)=u,\quad g_1(1)=u,
 \]
-
-oraz
 
 \[
 g_2(0)=u,\quad g_2(1)=v.
@@ -364,19 +282,13 @@ Oba spełniają
 R=g_i\circ\rho,
 \]
 
-lecz
-
-\[
-g_1\neq g_2.
-\]
-
-Dlatego każde przyszłe sformułowanie „istnieje unikalne \(g:Z\to W\)” wymaga dodatkowej hipotezy, np. surjektywności \(\rho\), albo osobnego prawa rozszerzenia.
+ale \(g_1\neq g_2\). Unikalność na całym \(Z\) wymaga więc dodatkowej hipotezy, np. surjektywności \(\rho\), albo osobnego prawa rozszerzenia.
 
 ---
 
 ## 7. Przypadki szczególne
 
-### 7.1. \(\rho\) surjektywna
+### 7.1. Reprezentacja surjektywna
 
 Jeżeli
 
@@ -384,29 +296,23 @@ Jeżeli
 \operatorname{im}\rho=Z,
 \]
 
-to twierdzenie daje rzeczywiście unikalną mapę
+to twierdzenie daje unikalne
 
 \[
 g:Z\to W.
 \]
 
-Nie jest to nowa treść; jest to specjalny przypadek głównego twierdzenia.
-
-### 7.2. \(\rho\) injektywna
+### 7.2. Reprezentacja injektywna
 
 Jeżeli \(\rho\) jest injektywna, to
 
 \[
-\ker_{\rm eq}\rho=\Delta_\Omega,
+\ker_{\rm eq}\rho=\Delta_\Omega
+\subseteq
+\ker_{\rm eq}R
 \]
 
-gdzie \(\Delta_\Omega\) jest diagonalą. Ponieważ
-
-\[
-\Delta_\Omega\subseteq\ker_{\rm eq}R
-\]
-
-dla każdej mapy \(R\), każda \(R\) faktoryzuje przez injektywną reprezentację na \(\operatorname{im}\rho\).
+dla każdej mapy \(R\). Każda \(R\) faktoryzuje więc przez \(\rho\) na \(\operatorname{im}\rho\).
 
 ### 7.3. Reprezentacja stała
 
@@ -416,7 +322,7 @@ Jeżeli \(\rho\) jest stała, to
 \ker_{\rm eq}\rho=\Omega\times\Omega.
 \]
 
-Faktoryzacja istnieje wtedy i tylko wtedy, gdy \(R\) także jest stała.
+Faktoryzacja istnieje wtedy i tylko wtedy, gdy \(R\) jest stała na \(\Omega\).
 
 ---
 
@@ -424,15 +330,13 @@ Faktoryzacja istnieje wtedy i tylko wtedy, gdy \(R\) także jest stała.
 
 Twierdzenie II.2 jest elementarnym klasycznym faktem o faktoryzacji map przez ich włókna. Dowód został podany samodzielnie.
 
-Status:
-
 \[
 \boxed{
 \text{CLASSICAL ELEMENTARY FACTORIZATION LEMMA / PSI-ADAPTED TOOL}.
 }
 \]
 
-PSI nie rości sobie autorstwa samego lematu. Jego rola w PSI jest centralna dlatego, że późniejsze twierdzenia o wystarczalności obserwatora, adekwatności reprezentacji, pamięci i legalnych redukcjach są jego bezpośrednimi specjalizacjami.
+PSI nie rości sobie autorstwa lematu. Jego znaczenie dla PSI polega na tym, że wystarczalność obserwatora, adekwatność reprezentacji, pamięć i legalne redukcje są jego bezpośrednimi specjalizacjami.
 
 ---
 
@@ -442,21 +346,11 @@ Bezpośrednim obowiązkowym falsyfikatorem zakresu jest F60:
 
 \[
 \boxed{
-\text{unikalność faktoryzacji tylko na }\operatorname{im}\rho.
+\text{unikalność tylko na }\operatorname{im}\rho.
 }
 \]
 
-R01 HCube i R02 Go dostarczają później przykładów, w których warunek
-
-\[
-\ker_{\rm eq}\rho
-\subseteq
-\ker_{\rm eq}R
-\]
-
-lub jego zadaniowa specjalizacja nie zachodzi dla zbyt grubej reprezentacji.
-
-Nie są one jednak dowodem samego lematu.
+R01 HCube i R02 Go dostarczają później przykładów, w których zbyt gruba reprezentacja narusza odpowiednią inkluzję jąder. Nie są one dowodem samego lematu.
 
 ---
 
@@ -464,35 +358,49 @@ Nie są one jednak dowodem samego lematu.
 
 Twierdzenie II.2 nie daje automatycznie:
 
-- ciągłości \(g\);
-- mierzalności \(g\);
-- liniowości \(g\);
-- gładkości \(g\);
-- obliczalności \(g\);
-- stabilności numerycznej faktoryzacji;
+- ciągłości, mierzalności, liniowości ani gładkości \(g\);
+- obliczalności lub stabilności numerycznej faktoryzacji;
 - rozszerzenia \(g\) poza \(\operatorname{im}\rho\);
-- unikalnego takiego rozszerzenia;
-- legalności reprezentacji w całym kontrakcie PSI.
+- unikalności takiego rozszerzenia;
+- pełnej legalności reprezentacji w kontrakcie PSI.
 
-Każda z tych własności wymaga osobnych założeń.
+Każda z tych własności wymaga dodatkowych hipotez.
 
 ---
 
-## 11. Przejście do II.3
+## 11. Cross-check
 
-W następnym kroku podstawimy
+Sprawdzono:
+
+1. dobrą określoność \(g\) na włóknach \(\rho\);
+2. unikalność wyłącznie na \(\operatorname{im}\rho\);
+3. przypadek \(\Omega=\varnothing\);
+4. brak niejawnej hipotezy surjektywności;
+5. brak importu topologii, miary, liniowości, stabilności lub obliczalności;
+6. zgodność z F60.
+
+Nie stwierdzono potrzeby erraty Freeze 01.
 
 \[
-\rho=\Psi_c
+\boxed{
+\mathrm{II.2}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-
+CHECK\ PASS}.
+}
 \]
 
-oraz
+---
+
+## 12. Przejście do II.3
+
+W II.3 podstawimy
 
 \[
+\rho=\Psi_c,
+\qquad
 R=q_{\mathcal T,c}.
 \]
 
-Wtedy Twierdzenie II.2 da dokładnie globalne kryterium wystarczalności obserwatora:
+Otrzymamy globalne kryterium wystarczalności obserwatora:
 
 \[
 \ker_{\rm eq}\Psi_c
@@ -503,5 +411,3 @@ E_{\mathcal T,c}
 \quad
 q_{\mathcal T,c}=f\circ\Psi_c.
 \]
-
-To będzie Twierdzenie II.3.
