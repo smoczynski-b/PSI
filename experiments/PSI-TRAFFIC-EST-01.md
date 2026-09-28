@@ -6,7 +6,7 @@
 
 This experiment treats public communication as a PSI observation problem rather than as a branding exercise.
 
-The immediate target variable is **traffic to the Ψ Omni public website and aggregate movement into deeper public research layers**. The protocol was fixed before adaptive optimization began.
+The immediate measured variables are **traffic to the Ψ Omni public website and aggregate outbound research clicks**. The protocol was fixed before adaptive optimization began.
 
 ---
 
@@ -44,7 +44,13 @@ with:
 - \(V_t\) — page views / visits;
 - \(U_t\) — users or sessions when distinguishable;
 - \(S_t\) — source / referral class;
-- \(R_t\) — deeper transitions: GitHub, Zenodo, PSI-FORUM or another declared research destination.
+- \(R_t\) — deeper destination arrival / transition when it is actually observable.
+
+Under the present instrumentation, \(R_t\) itself is **not** observed. Instead we observe an outbound-click variable
+
+\[
+C_t^{\rm out}=\text{clicks on declared GitHub / Zenodo / PSI-FORUM links}.
+\]
 
 Primary quantity after a baseline exists:
 
@@ -67,22 +73,28 @@ Deployed on 2026-09-28. The site records one anonymous first-party event per bro
 - coarse source class (`direct`, `internal`, `facebook`, `google`, `github`, `chatgpt`, `other`);
 - sanitized explicit campaign tag.
 
-### G0D — outbound research transitions
+### G0D — outbound research clicks
 
-Also deployed on 2026-09-28. The site records anonymous aggregate clicks from Ψ Omni to exactly three research-destination classes:
+Deployed on 2026-09-28 and semantically corrected on the same day. The site records anonymous aggregate **click events** on links from Ψ Omni to exactly three research-destination classes:
 
 - `github`;
 - `zenodo` (including DOI links);
 - `forum` (PSI-FORUM).
 
-Each transition carries only:
+Each click event carries only:
 
 - UTC hour bucket;
 - current public view;
 - destination class;
 - the same sanitized campaign tag, if one was supplied at entry.
 
-No user/session/person identifier is created. Consequently campaign-level population flows can be counted, but individual journeys cannot be reconstructed.
+The event is recorded at click time. It does **not** confirm that the destination loaded, that the visitor read it, or that any scientific contribution occurred.
+
+\[
+\boxed{\text{outbound click}\neq\text{confirmed transition / arrival}.}
+\]
+
+No user/session/person identifier is created. Campaign-level outbound-click counts can be associated with campaign tags, but individual journeys cannot be reconstructed.
 
 ### Privacy boundary
 
@@ -91,13 +103,13 @@ The implementation stores **no IP address, cookie, persistent visitor identifier
 The summary endpoint explicitly reports:
 
 - `observable = first_party_browser_pageviews`;
-- `outboundObservable = aggregate_outbound_research_transitions`;
+- `outboundObservable = aggregate_outbound_research_clicks`;
 - `uniqueUsers = null`;
 - `uniqueUsersStatus = UNOBSERVED_NO_PERSISTENT_VISITOR_ID`;
 - `rawServerRequestsStatus = UNOBSERVED`;
 - `journeyIdentityStatus = UNOBSERVED_NO_SESSION_OR_PERSON_IDENTIFIER`.
 
-Daily reads are deliberately bounded. If the safe one-page read is exceeded, the result is marked `censored=true`; no exact pageview or transition total is asserted. A breakout must then trigger a telemetry upgrade rather than silent truncation.
+Daily reads are deliberately bounded. If the safe one-page read is exceeded, the result is marked `censored=true`; no exact pageview or outbound-click total is asserted. A breakout must then trigger a telemetry upgrade rather than silent truncation.
 
 ### Current G0 state
 
@@ -106,16 +118,18 @@ Daily reads are deliberately bounded. If the safe one-page read is exceeded, the
 \]
 
 \[
-\boxed{G0_D(\text{aggregate outbound research transitions})=PASS}
+\boxed{G0_D(\text{aggregate outbound research clicks})=PASS}
 \]
 
 \[
 G0_B(\text{unique users/sessions})=UNOBSERVED,
 \qquad
-G0_C(\text{raw server requests})=UNOBSERVED.
+G0_C(\text{raw server requests})=UNOBSERVED,
+\qquad
+G0_E(\text{confirmed destination arrivals})=UNOBSERVED.
 \]
 
-Therefore browser-pageview and aggregate outbound-transition claims from the deployment boundary onward are legal. Claims about unique people, sessions, raw server traffic or person-level paths are not.
+Therefore browser-pageview and aggregate outbound-click claims from the deployment boundary onward are legal. Claims about unique people, sessions, raw server traffic, confirmed arrivals or person-level paths are not.
 
 Social-platform reactions remain contextual observations only.
 
@@ -133,7 +147,7 @@ Minimal baseline:
 
 The control window should preserve, as far as data allow, comparable weekday and clock-time structure. The model version used for every estimate must be recorded.
 
-Because G0A/G0D began only on 2026-09-28, no first-party pageview or outbound-transition baseline may be reconstructed for earlier periods from reactions, memory or platform impressions.
+Because G0A/G0D began only on 2026-09-28, no first-party pageview or outbound-click baseline may be reconstructed for earlier periods from reactions, memory or platform impressions.
 
 ---
 
@@ -155,7 +169,7 @@ The campaign tag is metadata, not evidence; it becomes evidence only when record
 
 ## 6. Initial natural sequence
 
-The first public sequence already contains heterogeneous representations:
+The first public sequence contains heterogeneous representations:
 
 1. PSI formal core,
 2. observation versus hidden object,
@@ -185,7 +199,7 @@ A `BREAKOUT` candidate requires:
 1. \(Q_i\gg1\) relative to the established baseline;
 2. persistence beyond the first short-lived impulse;
 3. evidence against trivial mechanical-refresh explanation insofar as the available observables permit;
-4. preferably increased aggregate transition counts into deeper research layers.
+4. preferably increased aggregate outbound-click counts toward deeper research layers.
 
 No fixed numeric breakout threshold is frozen before baseline variance is known.
 
@@ -204,8 +218,8 @@ Because no persistent visitor identity is collected, condition 3 remains only pa
 - preserve the scheduled sequence;
 - collect observations;
 - do not optimize from one noisy result;
-- distinguish browser pageviews, platform reactions, people/sessions and server requests;
-- use outbound research transitions as a separate observable, not as proof of comprehension;
+- distinguish browser pageviews, platform reactions, people/sessions, server requests, outbound clicks and confirmed arrivals;
+- use outbound research clicks as a separate observable, not as proof of arrival or comprehension;
 - keep uncertainty explicit.
 
 ### BREAKOUT
@@ -236,17 +250,17 @@ If a representation attracts a new population, the correct conclusion is not aut
 
 The stronger hypothesis is that the representation may function as an **interface between populations**.
 
-We can now test the aggregate chain
+Under current G0 we can observe the aggregate chain only up to
 
 \[
 \text{campaign/representation}
 \rightarrow
 \text{Ψ Omni pageviews}
 \rightarrow
-\{\text{GitHub},\text{Zenodo},\text{FORUM}\}\text{ transitions},
+\text{outbound clicks toward }\{\text{GitHub},\text{Zenodo},\text{FORUM}\}.
 \]
 
-but not person-level paths. A transition records an action, not comprehension, agreement or scientific contribution.
+We cannot infer confirmed destination arrival, person-level traversal, comprehension, agreement or scientific contribution from a click event.
 
 ---
 
@@ -268,18 +282,20 @@ No aesthetic superiority is assumed in advance; it is a testable representation 
 
 `G0A FIRST-PARTY BROWSER TELEMETRY = PASS`
 
-`G0D AGGREGATE OUTBOUND RESEARCH TRANSITIONS = PASS`
+`G0D AGGREGATE OUTBOUND RESEARCH CLICKS = PASS`
 
 `G0B UNIQUE USERS / SESSIONS = UNOBSERVED`
 
 `G0C RAW SERVER REQUESTS = UNOBSERVED`
 
+`G0E CONFIRMED DESTINATION ARRIVALS = UNOBSERVED`
+
 Therefore:
 
 - **instrumentation work stops here for the current experiment**;
 - the public sequence continues unchanged;
-- pageviews and aggregate research transitions are accumulated prospectively;
+- pageviews and aggregate outbound clicks are accumulated prospectively;
 - no optimization is permitted until a baseline/sample exists;
 - an observed censoring boundary or a genuine breakout is the trigger for revisiting telemetry.
 
-This preserves the requested measurement discipline instead of replacing unavailable quantities with easier proxies after the fact.
+This preserves the measurement discipline instead of replacing unavailable quantities with easier proxies after the fact.
