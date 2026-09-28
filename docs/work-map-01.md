@@ -10,18 +10,19 @@
 
 Done:
 - migration registry;
-- claim registry v07;
+- claim registry v08;
 - four-volume skeleton;
 - source governance;
 - CAT/FACT MINI claims migrated;
 - CLOSED-FRAME claims migrated;
 - LAZARUS agency claims normalized;
 - HIGHER-FIBRE claims migrated;
-- R4 pressure court recorded.
+- R4 pressure court recorded;
+- HCube normalized as representation-adequacy LAB/BENCHMARK rather than a core theory.
 
 Next:
 1. migrate exact CAT/FACT/FRAME/LAZARUS/HIGHER definitions needed by Volume I/II;
-2. integrate the gauge/truncation legality criterion into Volume I;
+2. integrate gauge/truncation legality and representation-adequacy regressions into Volume I;
 3. build Volume I/II chapter units only from registered claims;
 4. continue PHISICA/LOGOS claim-by-claim migration.
 
@@ -33,13 +34,7 @@ STOP condition: no polished chapter without claim IDs and migration status.
 
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW COUNTEREXAMPLE`.
 
-Completed pressure branches:
-
-1. `CAT–FACT–NORM–MINI-01` — representation singularity/recode does not force catalog birth;
-2. `CLOSED-FRAME-01` — holonomy is transport/task data, not a new primitive;
-3. `LAZARUS-AGENCY-01` — equal current fibres can hide different task futures; defect is representation inadequacy;
-4. `HIGHER-FIBRE-01` — witness/stabilizer data can be task-relevant; coarse truncation may fail, but richer compatibility/candidate representation remains inside current semantic roles;
-5. `R4-PRESSURE-COURT-01` — no accepted witness survives all role-preserving reductions.
+Pressure phase remains closed. `HCUBE-REGRESSION-01` does not reopen R4.
 
 Current freeze:
 
@@ -49,15 +44,15 @@ Current freeze:
 }
 \]
 
-with the strengthened reduction rule
+with representation/reduction adequacy
 
 \[
 \boxed{
-\ker_{eq}q\subseteq E_{\mathcal T}
+\ker_{eq}\rho\subseteq E_{\mathcal T}
 }
 \]
 
-for any proposed task-level quotient/truncation/gauge reduction.
+as the governing sufficiency test.
 
 Primitive-growth rule:
 
@@ -65,81 +60,76 @@ Primitive-growth rule:
 \boxed{\mathrm{NO\ R4\ WITHOUT\ NEW\ TYPED\ COUNTEREXAMPLE}.}
 \]
 
-The pressure court is not a universal completeness theorem.
-
 ---
 
 ## S2 — FALSIFICATION / REGRESSION APPARATUS
 
-**State:** `falsifier-registry-06` ACTIVE.
+**State:** `falsifier-registry-07` ACTIVE.
 
-Permanent regressions now include:
+New HCube regression:
 
-- PASS inflation / implementation-vs-theory scope;
-- MINI raw/quotient/gauge boundaries;
-- CLOSED-FRAME local/global holonomy;
-- LAZARUS world-fibre/task-state/agency distinction;
-- HIGHER-FIBRE truncation order and stabilizer erasure;
-- gauge quotient legality;
-- candidate-stuffing anti-tautology rule;
-- R4 reopen gate;
-- prohibition on claiming universal CORE5 completeness from current pressure tests.
+\[
+A=\operatorname{diag}(2,1,0),
+\qquad
+B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}.
+\]
+
+Although
+
+\[
+\chi_A=\chi_B,
+\qquad
+\|A\|_2=\|B\|_2=2,
+\]
+
+at `z=1/2`:
+
+\[
+\left\|\left(\tfrac12I-A\right)^{-1}\right\|_2=2,
+\]
+
+\[
+\left\|\left(\tfrac12I-B\right)^{-1}\right\|_2=2(1+\sqrt2).
+\]
+
+Thus
+
+\[
+\boxed{
+\ker\rho_0\not\subseteq\ker R_{1/2},
+\qquad
+\rho_0=(\chi,\|\cdot\|_2).
+}
+\]
+
+Permanent HCube controls now include:
+- spectrum+norm insufficiency for resolvent-sensitive tasks;
+- HCube inflation prohibition;
+- P9/HCube type separation;
+- metric/norm consistency.
 
 Next:
-1. normalize HCube;
-2. normalize Go;
-3. run `FS-STAT-01`;
-4. attach permanent regression IDs to Volume I/II claims where appropriate.
+1. normalize Go memory sufficiency;
+2. run `FS-STAT-01`;
+3. attach permanent regression IDs to Volume I/II claims where appropriate.
 
 ---
 
 ## S3 — PSI AGENT
 
-**State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT; survived four branch runs plus the R4 court.
+**State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-Current control path:
-
-\[
-\boxed{
-\mathrm{RESCAN}
-\to
-\mathrm{ROUTER}
-\to
-\mathrm{CONTRACT\ SNAPSHOT}
-\to
-\mathsf E
-\to
-\mathsf A_0
-\to
-\mathsf A_1
-\to
-\mathsf E_{fals}
-\to
-\mathrm{IMPACT}
-\to
-\mathrm{DECIDE}
-\to
-\mathrm{REGRESSION}
-\to
-\mathrm{HANDOFF}.
-}
-\]
-
-Run 4 — `HIGHER-FIBRE-01` added:
-- truncation-order regression;
-- stabilizer/witness sensitivity;
-- task-legal quotient requirement.
-
-R4 court added:
-- candidate stuffing is not a legal sufficiency proof;
-- semantic role preservation is mandatory in CORE reductions.
-
-No new agent-control primitive is required.
+HCube hardening run confirmed:
+- ROUTER correctly classified the object as LAB/BENCHMARK;
+- A0 prevented historical HCube centrality from becoming a current novelty claim;
+- A1 produced an exact matrix witness rather than narrative comparison;
+- E_fals blocked the inference `separator => necessary/universal representation`;
+- no new agent-control primitive was required.
 
 Next:
-1. model-handoff test with preserved WORKING/FRONTIER/regressions/WAIT;
-2. keep Decision/Epistemic Ledger only for high-impact transitions;
-3. use v02 on regression and Principia work without further governance growth.
+1. Go-memory regression;
+2. model-handoff test with preserved WORKING/FRONTIER/regressions/WAIT;
+3. use v02 on Principia redaction without further governance growth.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -149,13 +139,15 @@ Next:
 
 **State:** REGRESSION NORMALIZATION ACTIVE.
 
+Done:
+1. `HCUBE-REGRESSION-01` — exact paired representation witness.
+
 Next audit order:
-1. HCube — representation insufficiency / pseudospectral separator;
-2. Go — memory sufficiency / history quotient;
-3. `FS-STAT-01` — sampled/noisy extension of exact Frenet/Bishop work;
-4. PHISICA / operator reductions;
-5. SOP-11b;
-6. cultural laboratories.
+1. Go — memory sufficiency / history quotient;
+2. `FS-STAT-01` — sampled/noisy extension of exact Frenet/Bishop work;
+3. PHISICA / operator reductions;
+4. SOP-11b;
+5. cultural laboratories.
 
 For each:
 
@@ -166,13 +158,6 @@ For each:
 ## S5 — OPEN-PSI / TRAFFIC
 
 **State:** RUNNING / WAIT.
-
-Verified instrumentation:
-- G0A browser pageviews = PASS;
-- G0D aggregate outbound research clicks = PASS;
-- unique users/sessions = UNOBSERVED;
-- raw server requests = UNOBSERVED;
-- confirmed destination arrivals = UNOBSERVED.
 
 No optimization before baseline/sample.
 
@@ -202,14 +187,11 @@ No global redesign before measurement or an isolated non-contaminating implement
 
 **State:** ACTIVE.
 
-Done:
-- old psi field classified as realization/genealogy;
-- Integrata ontology superseded as core;
-- SOP provenance retained while strong threshold claims downgraded;
-- CAT/FACT recovered and retyped;
-- Bishop/Frenet/CLOSED-FRAME classical geometry separated from PSI packaging;
-- POST-RUN3 D1–D3 normalized;
-- higher-fibre/BZ2 witness recovered into current representation/gauge language.
+HCube source status now fixed:
+- pseudospectral/nonnormal theory = classical;
+- `ad_A` / similarity-action bridge = classical lemma/bridge;
+- HCube = derived diagnostic/benchmark;
+- historical claims making HCube central to PSI remain genealogical only.
 
 Next:
 1. claim-by-claim PHISICA/LOGOS migration;
@@ -220,33 +202,21 @@ Next:
 
 # Current execution graph
 
-Primitive-pressure phase completed:
+Primitive-pressure phase:
+
+\[
+\boxed{\mathrm{CLOSED}.}
+\]
+
+Hardening phase:
 
 \[
 \boxed{
-\mathrm{CAT/FACT}
+\mathrm{HCube\ DONE}
 \to
-\mathrm{CLOSED\!-\!FRAME}
+\mathrm{Go}
 \to
-\mathrm{LAZARUS}
-\to
-\mathrm{HIGHER\ FIBRE}
-\to
-\mathrm{R4\ COURT}
-}
-\]
-
-with verdict
-
-\[
-\boxed{\mathrm{CORE5\ SURVIVES;\ R4\ CLOSED}.}
-\]
-
-Current work phase:
-
-\[
-\boxed{
-\mathrm{HCube}+\mathrm{Go}+\mathrm{FS\!-\!STAT}
+\mathrm{FS\!-\!STAT}
 \to
 \text{regression bank}
 \to
