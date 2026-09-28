@@ -43,8 +43,9 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v02](docs/claim-registry-02.md)
-- [Falsifier registry](docs/falsifier-registry-01.md)
+- [Current claim registry v03](docs/claim-registry-03.md)
+- [Current falsifier registry v02](docs/falsifier-registry-02.md)
+- [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [PSI agent dual-operator discipline](docs/agent-psi-dual-operator-01.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
@@ -61,7 +62,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 - Public lineage page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/?view=lineage
 
-The initial registry remains archived as [claim-registry-01.md](docs/claim-registry-01.md); v02 is the current public derivative after the first classical-comparison and falsifier pass.
+Historical registries remain in the repository for provenance; v03/v02 are the current public claim/falsifier layers.
 
 ## Mathematical lineage
 
@@ -97,9 +98,19 @@ A classical result remains classical when PSI uses it. Public provenance keeps t
 - `GENEALOGICAL` — conceptual or mathematical ancestry;
 - `BENCHMARK` — a classical reference against which a PSI construction must be compared.
 
-The two axes must not be collapsed: for example, an item can have `status: CLASSICAL` and `role: BENCHMARK`.
+The two axes must not be collapsed.
 
-The growing guide is in [docs/lineage.md](docs/lineage.md).
+## First dual-operator mathematical run
+
+`CAT–FACT–NORM–MINI-01` is the first result carried through
+
+\[
+\mathsf E\to\mathsf A\to\mathsf E_{\rm fals}\to\mathsf A_{\rm freeze}.
+\]
+
+Under an exact, time-parametrized `C^3` regular curve on an interval, finite legal Frenet/Bishop segmentations reduce to one Bishop factorization class modulo `SE(3)×SO(2)`. In that specific contract, loss of the Frenet frame at zero curvature is a representation/domain event rather than evidence for catalog `birth`.
+
+The result is deliberately narrow: closed-loop holonomy, reparameterization gauge and sampled/noisy stability remain open gates.
 
 ## What PSI is for
 
@@ -117,9 +128,21 @@ The framework is developed through mathematics, counterexamples and stress tests
 
 **Research / work in progress.**
 
-The mathematical core is under active consolidation. Classical imports, adaptations, open problems and PSI-specific claims are separated explicitly; substantial claims are now paired with falsification or proof scope before freeze.
+The mathematical core is under active consolidation. Classical imports, adaptations, open problems and PSI-specific claims are separated explicitly; substantial claims are paired with proof/falsification scope before freeze.
 
-Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text. The [migration registry](docs/principia-migration-01.md) records `KEEP | REFORMULATE | SUPERSEDE | GENEALOGY`; the [current claim registry](docs/claim-registry-02.md) records the public theorem/policy/open-bridge layer.
+Historical Principia material is migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text.
+
+The next core-pressure packet is parallel rather than linear:
+
+\[
+\mathrm{CLOSED\!-\!FRAME/FRAME}
+\parallel
+\mathrm{HIGHER\ FIBRE}
+\parallel
+\mathrm{LAZARUS\ AGENCY},
+\]
+
+followed by an explicit R4 pressure test.
 
 ## Publications / Zenodo
 
