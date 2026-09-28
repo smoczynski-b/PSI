@@ -18,3 +18,11 @@ A Jev success or failure in RUN-01 does not confirm or falsify PSI. It evaluates
 The live Jev call is separated from the oracle construction to prevent post-hoc changes to the task partition, admissible tests or scoring rule. That is useful test hygiene, but should not be confused with evidence for the mathematical theory.
 
 A genuine PSI falsification attempt must put a PSI-specific formal claim at risk: for example, a counterexample satisfying the stated hypotheses while violating the claimed conclusion.
+
+## PSI–Traffic
+
+- [PSI-TRAFFIC-EST-01 — public-traffic estimation protocol](PSI-TRAFFIC-EST-01.md)
+
+PSI-TRAFFIC-EST-01 treats public communication as an observation problem. The primary measured object is traffic into the Ψ Omni public research surface, not reactions on the source platform.
+
+The protocol is fixed before adaptive optimization. Its first gate is telemetry: until traffic magnitude, time and source attribution are sufficiently observable, quantitative claims about publication effectiveness remain blocked.
