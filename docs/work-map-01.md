@@ -6,130 +6,110 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL PASS / CLASSICAL BRIDGES GLOBAL PASS / CAT-FACT-NORM NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 OWN GLOBAL PASS / CLASSICAL GLOBAL PASS / CAT-FACT-NORM GLOBAL PASS AFTER ERRATA 01 / FRAME NEXT`.
 
 Current control stack:
-- physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
-- Claim Registry v12;
-- Falsifier Registry v11;
+- physical CANON-03 bound;
+- Claim Registry v13;
+- Falsifier Registry v12;
 - Regression Bank 01;
-- V1/V2 First Freeze 01 — PASS;
+- V1/V2 First Freeze 01 — active subject to Errata 01;
 - V1 I.1–I.6 — `NORMALIZED PASS`;
-- V2.1–V2.9 — `GLOBAL CROSSCHECK PASS`;
-- V2.10 strong lumpability — PASS;
-- V2.11 Myhill–Nerode — PASS;
-- V2.12 Paige–Tarjan — PASS after complexity-scope normalization;
-- `principia-v2-classical-bridges-crosscheck-01.md` — `GLOBAL CROSSCHECK PASS`;
+- II.1–II.9 — `GLOBAL CROSSCHECK PASS`;
+- II.10–II.12 — `CLASSICAL BRIDGES GLOBAL CROSSCHECK PASS`;
+- II.13–II.14 — `CAT/FACT/NORM GLOBAL PASS AFTER ERRATA 01`;
+- V2 Theorem Map 03 — current;
 - Agent PSI Architecture v02 — current.
 
-### V2 own-layer lock
+### Current theorem-layer locks
+
+\[
+\boxed{\mathrm{II.1:II.9}=\mathrm{GLOBAL\ PASS}}
+\]
+
+\[
+\boxed{\mathrm{II.10:II.12}=\mathrm{CLASSICAL\ GLOBAL\ PASS}}
+\]
+
+\[
+\boxed{\mathrm{II.13:II.14}=\mathrm{GLOBAL\ PASS\ AFTER\ ERRATA\ 01}}
+\]
+
+### MINI correction now permanent
+
+Gauge-only factorization candidate space:
+
+\[
+\mathfrak F^{0}_{FB,P}(Y)=\operatorname{RawFact}^{0}_{FB,P}(Y)/G_P
+\]
+
+may be non-singleton.
+
+Correct exact result:
+
+\[
+\boxed{|\operatorname{im}\operatorname{NF}|=1}
+\]
+
+or equivalently
+
+\[
+\boxed{|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.}
+\]
+
+Permanent boundary F62:
 
 \[
 \boxed{
-\mathrm{II.1:II.9}=\mathrm{GLOBAL\ PASS}.
+\text{unique normal form}
+\not\Rightarrow
+\text{singleton gauge-only factorization fibre}.
 }
 \]
-
-II.9 dependency classification after Errata 01:
-
-\[
-\boxed{
-\text{SOURCE/RESULT IDS}=C45+C59,
-}
-\]
-
-\[
-\boxed{
-\text{STRICT PROOF DEPENDENCY}=II.7\;(C57/C58)
-+\text{typed extension definitions},
-}
-\]
-
-with II.6 as structural analogy and II.8 not a proof prerequisite.
-
-### Classical bridge lock
-
-\[
-\boxed{
-\mathrm{II.10:II.12}
-=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
-}
-\]
-
-The three bridges remain type-distinct:
-
-1. II.10 — Markov block masses;
-2. II.11 — all right-continuation acceptance tests;
-3. II.12 — relational stable partition + algorithm.
-
-No chain
-
-\[
-\text{Nerode}\Rightarrow\text{Paige–Tarjan}\Rightarrow\text{lumpability}
-\]
-
-is licensed without separate reduction theorems.
-
-### Permanent scope locks
-
-- F57: task-information adequacy != full contract legality;
-- F55: geometric symmetry != automatically legal observation gauge;
-- F60: factorization uniqueness only on representation image;
-- F61: task quotient != automatically Markov lumpability;
-- arbitrary task equivalence != Nerode equivalence without full continuation closure;
-- finite PSI instance != Paige–Tarjan applicability without PT1–PT4;
-- deterministic congruence != stochastic lumpability;
-- quotient-order/DFA-state minimality != universal coding/compute minimality;
-- mathematical recurrence != finite/efficient implementation (F43).
 
 ### Next
 
-1. construct **CAT / FACT / NORM V2 prose layer** from C62/C63/C19-v2/C20/C66;
-2. preserve current canonical minimal CAT/FACT definitions;
-3. keep older ISO/HOR/REF/CRS calculus and factorization groupoid/homotopy layer as derived extensions unless explicitly needed;
-4. rerun MINI gauge-observation and F58/F59 regressions;
-5. then FRAME C22–C24;
-6. then HIGHER C29–C33;
-7. then whole-V2 cross-check.
+1. FRAME C22–C24;
+2. keep return holonomy primary;
+3. use total torsion only on stronger Frenet-valid domain;
+4. preserve the interval/closed-loop distinction;
+5. then HIGHER C29–C33;
+6. then whole-V2 cross-check.
 
-STOP: no old-source automatic promotion and no universal homotopy-fibre interpretation of PSI-FACT.
+STOP:
+- no old-source auto-promotion (F58);
+- no MINI/general-FACT conflation (F59);
+- no normal-form/factorization-fibre conflation (F62);
+- no silent interval→closed-loop extension.
 
 ---
 
 ## S1 — MATHEMATICAL CORE
 
-**State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW TYPED COUNTEREXAMPLE`.
+**State:** `CORE5 FROZEN / NO R4 WITNESS IN CURRENT PRESSURE SET`.
 
 \[
 \boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
 \]
 
+Freeze Errata 01 changes no CORE role.
+
 ---
 
 ## S2 — FALSIFICATION / REGRESSION
 
-**State:** `falsifier-registry-11 ACTIVE / REGRESSION-BANK-01 ACTIVE`.
+**State:** `falsifier-registry-12 ACTIVE / regression-bank-01 ACTIVE`.
 
-Current high-value regressions:
-- R01 HCube;
-- R02 Go;
-- R03 FS-STAT;
-- F43 recurrence vs finite/efficient memory;
+High-value locks:
+- F43 recurrence vs finite/efficient implementation;
 - F55 gauge/observation mismatch;
-- F56 quotient rewrite well-definedness;
-- F57 task adequacy/full legality;
-- F58 old-source promotion;
-- F59 MINI/general FACT conflation;
-- F60 uniqueness beyond `im rho`;
-- F61 task quotient/Markov lumpability conflation.
-
-Agent-process regression:
-
-\[
-\boxed{
-\text{local PASS sequence}\not\Rightarrow\text{whole-layer PASS}.
-}
-\]
+- F56 rewrite must descend to gauge classes;
+- F57 task adequacy vs full legality;
+- F58 old-source auto-promotion;
+- F59 MINI vs general FACT;
+- F60 uniqueness only on representation image;
+- F61 task quotient vs Markov lumpability;
+- F62 normal-form uniqueness vs factorization-fibre singleton.
 
 ---
 
@@ -137,13 +117,21 @@ Agent-process regression:
 
 **State:** `AGENT-PSI-ARCHITECTURE-02 CURRENT`.
 
+Recent process lesson:
+
+\[
+\boxed{
+\text{local PASS sequence}\not\Rightarrow\text{whole-layer PASS}.
+}
+\]
+
 No missing-control witness; no v03.
 
 ---
 
 ## S4 — REALIZATIONS / LABORATORIES
 
-**State:** `HARDENING TRIAD COMPLETE / DEFERRED DURING PRINCIPIA V2`.
+**State:** `HARDENING BANK COMPLETE / DEFERRED DURING PRINCIPIA V2`.
 
 ---
 
@@ -151,19 +139,11 @@ No missing-control witness; no v03.
 
 **State:** `RUNNING / WAIT`.
 
-Measured: browser pageviews and aggregate outbound research clicks. Confirmed destination arrivals remain unobserved unless separately instrumented.
-
 ---
 
 ## S6 — PSI-FORUM
 
 **State:** `INFRASTRUCTURE READY / WATCH`.
-
-Success event:
-
-\[
-\boxed{\text{someone external does something with PSI that we did not script}.}
-\]
 
 ---
 
@@ -177,34 +157,27 @@ Success event:
 
 **State:** `PHYSICAL CURRENT CANON BOUND / GENEALOGY OPEN`.
 
+Historical MINI-01 remains provenance; MINI-02 is the corrected current MINI source.
+
 ---
 
 # Current execution graph
 
 \[
 \boxed{
-\mathrm{FREEZE\ 01=PASS}
+\mathrm{FREEZE\ 01+ERRATA\ 01}
 \to
-\mathrm{V1\ NORMALIZED\ PASS}
+\mathrm{V1\ NORMALIZED}
 \to
 \mathrm{II.1:II.9\ GLOBAL\ PASS}
 \to
 \mathrm{II.10:II.12\ CLASSICAL\ GLOBAL\ PASS}
 \to
-\mathrm{CAT/FACT/NORM\ NEXT}
+\mathrm{II.13:II.14\ CAT/FACT/NORM\ PASS}
 \to
-\mathrm{FRAME}
+\mathrm{FRAME\ NEXT}
 \to
 \mathrm{HIGHER}
 \to
 \mathrm{V2\ WHOLE\ CROSSCHECK}.
 }
-\]
-
-In parallel:
-
-\[
-S5=\mathrm{WAIT},
-\qquad
-S6=\mathrm{WATCH}.
-\]
