@@ -61,58 +61,75 @@ Global planarity and quotient-level confidence remain open.
 HCube + Go + FS-STAT completed with fixed witnesses/oracles; `REGRESSION-BANK-01` frozen.
 
 ## E012 — Volume I unit/dependency scan
-Six V1 units mapped. `V1 FREEZE = NOT YET`. Formal catalog adequacy source found but initially not migrated.
+Six V1 units mapped. `V1 FREEZE = NOT YET` at that stage.
 
 ## E013 — Volume II theorem/dependency scan
-V2 map separated self-contained proofs, classical bridges and benchmarks. Five explicit proof/source/migration gaps were exposed.
+V2 map separated self-contained proofs, classical bridges and benchmarks; five explicit gaps exposed.
 
 ## E014 — proof/source/migration audit 01
 
-- **Object:** V1/V2 freeze readiness.
-- **Prior status:** mapped but unaudited.
-- **New basis:** direct proof audit C06–C10, RED-1 source recovery, classical source binding, CAT/FACT source recovery, MINI proof audit.
-- **Result:**
-  - C06/C07/C08/C10 = PASS;
-  - C09 = PASS WITH SCOPE CORRECTION;
-  - RED-1 mathematics = PASS;
-  - CAT/FACT strong source layer = FOUND, canonical migration still provenance-gated;
-  - V1/V2 freeze = BLOCKED BUT LOCALISED.
-- **Main new distinction:**
-  \[
-  \text{task-adequate reduction}\neq\text{fully contract-legal reduction}.
-  \]
+- C06/C07/C08/C10 = PASS;
+- C09 = PASS WITH SCOPE CORRECTION;
+- RED-1 mathematics = PASS;
+- CAT/FACT strong source layer = FOUND;
+- V1/V2 freeze = BLOCKED BUT LOCALISED at audit time.
+
+Main distinction:
+
+\[
+\text{task-adequate reduction}\neq\text{fully contract-legal reduction}.
+\]
 
 ## E015 — MINI gauge/observation correction
 
-- **Object:** C19 exact Frenet/Bishop MINI contract.
-- **Prior status:** exact coordinate observation `Y=gamma(t)` combined with external `SE(3)` quotient inside the same factorization fibre.
-- **New basis:** observation/gauge descent audit; nontrivial Euclidean motion generally changes the fixed coordinate observation.
-- **Result:** split contract:
-  \[
-  P_0^{abs}:Y=\gamma(t),
-  \]
-  with only `SO(2)_normal` quotient inside the fixed-coordinate fibre; and
-  \[
-  P_0^{shape}:Y=[\gamma]_{SE(3)},
-  \]
-  where external `SE(3)` quotient is legal.
-- **Status:** C19 replaced by C19-v2; mathematical MINI survives after contract errata.
-- **No-go:** geometric symmetry = automatic gauge of the observed fibre.
+Earlier exact `Y=gamma(t)` was incorrectly combined with an external `SE(3)` quotient over the same observation fibre.
+
+Corrected split:
+
+\[
+P_0^{abs}:Y=\gamma(t)
+\]
+
+with only normal `SO(2)` presentation quotient, versus
+
+\[
+P_0^{shape}:Y=[\gamma]_{SE(3)}
+\]
+
+where external `SE(3)` gauge is legal.
+
+Result: C19 replaced by C19-v2; MINI survives after typed contract errata.
 
 ## E016 — RED-1 registry migration
 
-- **Object:** future-task history equivalence.
-- **Prior status:** mathematically present in RED-1 but lacking a dedicated current C-ID.
-- **New basis:** recovered labelled future-tree definition and proof of equivalence/congruence.
-- **Result:** C57–C59 registered; `V2-GAP-01` closed editorially.
+Future-task tree/equivalence and congruence/update were recovered and registered as C57–C59. Former V2-GAP-01 closed.
 
-## E017 — CAT/ADEQ/FACT alignment
+## E017 — CAT/ADEQ/FACT pre-bind alignment
 
-- **Object:** general catalog/factorization layer.
-- **Prior status:** source found but current role uncertain.
-- **New basis:** comparison of older typed sources with current public CANON-03 derivative.
-- **Result:** semantic roles align without CORE growth; created `cat-fact-migration-01.md` with `ALIGNMENT / REVIEW` status.
-- **Hold:** physical authoritative CANON-03 artifact not yet bound, so this is not canonical migration freeze.
+Older typed sources were compared to the public core derivative. Semantic alignment passed but remained on provenance hold until physical CANON-03 was recovered.
+
+## E018 — physical CANON-03 source bind
+
+- **Prior status:** current canon pointer known semantically, physical source unbound in this audit.
+- **New basis:** `psi-model` exact pinned source recovered:
+  - commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+  - path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
+  - version 1.0.0;
+  - blob `72d711a40c65376ee932809802622f3985ecb02a`.
+- **Result:** `CANON03 SOURCE BIND = PASS`.
+- **Consequence:** current CAT/FACT definitions are sections 12/13 of physical canon; richer older CAT calculus and FACT groupoid/homotopy fibre are derived extensions, not canonical minimal definitions.
+- **Additional correction:** universal scalar `D_ADEQ^cat` is not required by physical CORE5; V1-GAP-01 closes by scope correction.
+
+## E019 — first V1/V2 mathematical-source freeze
+
+- **Prior status:** maps/audit complete but freeze blocked.
+- **New basis:** physical CANON-03 bound; C19 patched; RED-1 migrated; C62–C66 registered; classical source layer bound; nonessential bisimulation comparison deferred.
+- **Result:**
+  \[
+  \boxed{\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.}
+  \]
+- **Meaning:** definitions, theorem statements, source roles, status classes, dependencies and principal boundaries are fixed for the first prose pass.
+- **Not implied:** final prose, typography, universal CORE5 completeness.
 
 ---
 
@@ -135,16 +152,18 @@ Visual grammar frozen and no measurement-driven reason exists. Action: preserve 
 CORE5 survived current pressure set. Action: HCube → Go → FS-STAT. Result: first hardening triad completed.
 
 ## D005 — move from hardening to Principia V1/V2
-Claim Registry + Regression Bank + Skeleton exist. Action: construct maps before prose. Result: V1/V2 maps completed; both returned `FREEZE = NOT YET`.
+Action: construct V1/V2 maps before prose. Result: maps completed and returned `FREEZE = NOT YET`.
 
-## D006 — repair before freeze, do not narrate around the defect
+## D006 — repair before freeze
+Proof audit found a real C19 mixed-contract error and finite migration/source gaps. Action: patch source/registries, bind canon, then rerun freeze gate.
 
-- **Observation:** proof audit found a real mixed-contract error in C19 and finite migration/source gaps elsewhere.
-- **Alternatives:** continue to prose / patch source and registries first.
-- **Action:** patch MINI, migrate RED-1 definition, align CAT/ADEQ/FACT, source-bind classical comparisons, then rerun freeze gate.
-- **Gate:** `PROOF-SOURCE-MIGRATION-AUDIT-01`.
-- **Result so far:** MINI repaired; Claim Registry v11; Falsifier Registry v10; CAT/FACT alignment and classical source map updated.
-- **Next action:** bind physical CANON-03 source, then `V1-V2-FREEZE-RECHECK-01`.
+## D007 — open prose phase after freeze PASS
+
+- **Observation:** all required first-freeze mathematical/source gates now pass or are explicitly excluded as nonblocking.
+- **Alternatives:** continue adding theory / begin prose from frozen units.
+- **Action:** open first V1/V2 prose pass; do not reopen primitive/theorem discovery absent a new contradiction.
+- **Gate:** `principia-v1-v2-freeze-01.md`.
+- **Result:** next legal work begins with V1 prose unit I.1 and cross-checks every section against the freeze package.
 
 ---
 
