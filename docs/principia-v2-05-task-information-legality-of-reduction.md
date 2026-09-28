@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.5. Zadaniowa legalność informacyjna redukcji i ilorazu
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C32/C37 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-02.md`, II.5  
@@ -75,9 +75,9 @@ Termin „legalna” w tym rozdziale jest zawsze kwalifikowany słowem **informa
 
 ---
 
-## 3. Corollarium II.5 — kryterium zadaniowej legalności informacyjnej redukcji
+## 3. Wniosek II.5 — kryterium zadaniowej legalności informacyjnej redukcji
 
-### Corollarium
+### Wniosek
 
 Dla dowolnej redukcji
 
@@ -157,7 +157,7 @@ Wtedy
 \ker_{\rm eq}q_Q=Q.
 \]
 
-Dlatego Corollarium II.5 przyjmuje szczególnie prostą postać:
+Dlatego Wniosek II.5 przyjmuje szczególnie prostą postać:
 
 \[
 \boxed{
@@ -263,9 +263,9 @@ Jest to dokładny, jednoparowy falsyfikator zbyt grubej redukcji.
 
 ---
 
-## 7. Dwie niezależne bramki: informacja zadaniowa i kontrakt
+## 7. Dwie odrębne bramki: informacja zadaniowa i kontrakt
 
-Corollarium II.5 odpowiada tylko na pytanie:
+Wniosek II.5 odpowiada tylko na pytanie:
 
 \[
 \boxed{
@@ -341,13 +341,13 @@ Wniosek:
 
 \[
 \boxed{
-\text{task adequacy gauge}
+\text{zadaniowa adekwatność gauge}
 \quad\text{i}\quad
-\text{observation compatibility gauge}
+\text{zgodność gauge z obserwacją}
 }
 \]
 
-są dwiema odrębnymi kontrolami.
+są dwiema odrębnymi kontrolami. W odpowiednim kontrakcie obie mogą być wymagane; żadna nie zastępuje drugiej.
 
 ---
 
@@ -453,7 +453,7 @@ Czyli przejście do reprezentacji drobniejszej informacyjnie nie może samo znis
 
 ## 12. Status źródłowy
 
-Corollarium II.5 jest bezpośrednią specjalizacją Twierdzenia II.4.
+Wniosek II.5 jest bezpośrednią specjalizacją Twierdzenia II.4.
 
 Status:
 
@@ -469,7 +469,7 @@ C32 i C37 nie tworzą nowego prymitywu CORE.
 
 ---
 
-## 13. Czego Corollarium II.5 nie ustanawia
+## 13. Czego Wniosek II.5 nie ustanawia
 
 Nie ustanawia automatycznie:
 
