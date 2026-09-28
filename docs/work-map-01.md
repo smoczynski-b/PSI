@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL CROSSCHECK PASS / II.10 LUMPABILITY PASS / MYHILL–NERODE NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 OWN LAYER GLOBAL CROSSCHECK PASS / II.10–II.11 CLASSICAL BRIDGES PASS / PAIGE–TARJAN NEXT`.
 
 Current control stack:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -18,6 +18,7 @@ Current control stack:
 - V2 Theorem Map 02 — current;
 - V2.1–V2.9 — own layer `GLOBAL CROSSCHECK PASS`;
 - V2.10 `Silna lumpowalność jako stochastyczne zejście dynamiki na iloraz` — PASS;
+- V2.11 `Równoważność Myhilla–Nerode’a jako dokładny iloraz przyszłych testów` — PASS;
 - `principia-v2-own-layer-crosscheck-02.md` — independent handoff/global own-layer PASS;
 - Agent PSI Architecture v02 — current.
 
@@ -84,7 +85,7 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 [\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
 \]
 
-### Current classical-bridge result — II.10
+### Classical bridge II.10 — strong lumpability
 
 For finite homogeneous Markov chains, strong/Kemeny–Snell lumpability of a partition `E` is exactly the block-transition stability condition
 
@@ -117,7 +118,44 @@ PSI scope lock:
 
 F61 permanently records the three-state witness separating static task adequacy from stochastic projectability.
 
-### Handoff corrections now frozen at control level
+### Classical bridge II.11 — Myhill–Nerode
+
+For the exact language contract
+
+\[
+\Omega=\Sigma^*,
+\qquad
+R_w(u)=\mathbf 1_L(uw),
+\quad w\in\Sigma^*,
+\]
+
+we obtain
+
+\[
+\boxed{
+E_{\mathcal T,L}
+=
+\bigcap_{w\in\Sigma^*}\ker_{eq}R_w
+=
+\equiv_L.
+}
+\]
+
+The identity is exact under the full right-continuation test family. The finite-index/minimal-DFA theorem remains classical.
+
+Permanent scope lock:
+
+\[
+\boxed{
+\text{arbitrary task equivalence}
+\neq
+\text{Nerode equivalence}
+}
+\]
+
+without the continuation-test contract.
+
+### Handoff corrections frozen at control level
 
 1. local theorem PASSes do not substitute for a whole-layer cross-check;
 2. strict proof dependency of II.9 is `II.7 + C59`; II.6 is structural analogy and II.8 is not a proof prerequisite;
@@ -135,25 +173,23 @@ F61 permanently records the three-state witness separating static task adequacy 
 - static task adequacy does not imply deterministic dynamic descent;
 - task quotient does not imply Markov lumpability (F61);
 - deterministic congruence is not stochastic lumpability;
+- arbitrary task equivalence is not Nerode equivalence without full continuation closure;
 - quotient-order coarseness is not bit/dimension/storage/compute minimality;
+- minimal DFA state count is not universal coding/compute minimality;
 - well-defined mathematical recurrence does not imply representative-free algorithmics, computability or efficiency (F43);
 - Go/LAZARUS/HCube/FS-STAT remain scoped regressions, not theorem substitutes.
 
 ### Next
 
-1. build **II.11 — Myhill–Nerode C18**;
-2. freeze the exact language contract: histories/prefixes, right-concatenation futures, acceptance indicator;
-3. prove directly
-   \[
-   E_{\mathcal T}=\equiv_L
-   \]
-   under continuation-test closure;
-4. keep finite-index/minimal-DFA theorem classical and separate from the PSI realization;
-5. then Paige–Tarjan C14 strictly as algorithmic benchmark;
+1. build **II.12 — Paige–Tarjan C14** strictly as an algorithmic benchmark;
+2. type the finite transition/relational structure and initial partition;
+3. distinguish the mathematical target partition from the refinement algorithm computing it;
+4. state complexity only at the classical-source scope actually justified;
+5. prohibit `Paige–Tarjan = PSI` and `algorithm computes every PSI quotient` inflation;
 6. then CAT/FACT/FRAME/HIGHER;
 7. only after these imported/derived layers run a final whole-V2 cross-check.
 
-STOP condition: do not identify Nerode equivalence with arbitrary task equivalence without matching the continuation-test contract; do not present classical minimal-automaton theory as PSI invention.
+STOP condition: do not turn an algorithm for a specific finite stable partition problem into a universal PSI quotient procedure.
 
 ---
 
@@ -300,7 +336,9 @@ Current physical source:
 \to
 \mathrm{II.10\ LUMPABILITY\ PASS}
 \to
-\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}.
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ PASS}
+\to
+\mathrm{II.12\ PAIGE\!\!-\!TARJAN\ NEXT}.
 }
 \]
 
@@ -308,8 +346,6 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{MYHILL\!\!-\!NERODE}
-\to
 \mathrm{PAIGE\!\!-\!TARJAN}
 \to
 \mathrm{CAT/FACT/FRAME/HIGHER}
