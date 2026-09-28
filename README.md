@@ -47,6 +47,7 @@ F(Y)\times F(Y)\subseteq E_{\mathcal T}.
 - [Principia V2.8 — Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
 - [Principia V2.9 — Recursive history quotient update](docs/principia-v2-09-recursive-history-quotient-update.md)
 - [Principia V2.10 — Strong Markov lumpability bridge](docs/principia-v2-10-strong-lumpability-bridge.md)
+- [Principia V2.11 — Myhill–Nerode future-test bridge](docs/principia-v2-11-myhill-nerode-bridge.md)
 - [Principia V2 Spine Cross-Check 01 — early II.1–II.4 audit](docs/principia-v2-spine-crosscheck-01.md)
 - [Principia V2 Own-Layer Cross-Check 02 — independent II.1–II.9 handoff audit](docs/principia-v2-own-layer-crosscheck-02.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
@@ -141,60 +142,9 @@ No Freeze 01 erratum was required.
 
 ## Volume II own theorem layer
 
-The exact quotient/history layer contains:
+The exact quotient/history layer contains exact task decidability, factorization, representation adequacy, deterministic quotient dynamics, exact history-memory adequacy, the coarsest exact history quotient and the typed recursive quotient update.
 
-\[
-|q_{\mathcal T,c}(F_c(Y))|=1
-\iff
-F_c(Y)\neq\varnothing
-\land
-F_c(Y)^2\subseteq E_{\mathcal T,c},
-\]
-
-\[
-\ker_{eq}\rho\subseteq\ker_{eq}R
-\iff
-\exists!\,g:\operatorname{im}\rho\to W,
-\quad R=g\circ\rho,
-\]
-
-\[
-\ker_{eq}\rho\subseteq E_{\mathcal T,c},
-\qquad
-\ker_{eq}q\subseteq E_{\mathcal T,c},
-\]
-
-and deterministic quotient dynamics under
-
-\[
-xEy\Longrightarrow\delta(x)E\delta(y).
-\]
-
-For histories:
-
-\[
-H\equiv_{\mathcal T,t}H'
-\iff
-\operatorname{Beh}_{\mathcal T}(H)
-\cong
-\operatorname{Beh}_{\mathcal T}(H'),
-\]
-
-\[
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t},
-\qquad
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
-\]
-
-and on the typed legal quotient domain
-
-\[
-U_{\mathcal T,t}([H],\varepsilon,y)
-=
-[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
-\]
-
-### Independent handoff verdict
+After independent handoff audit:
 
 \[
 \boxed{
@@ -233,13 +183,7 @@ P(x,C)=P(y,C)
 }
 \]
 
-It is equivalent to a well-defined quotient transition law
-
-\[
-\bar P([x],C)=P(x,C)
-\]
-
-and to strong lumpability / Markovian block dynamics for every initial distribution.
+It is equivalent to a representative-independent quotient transition law and strong lumpability / Markovian block dynamics for every initial distribution.
 
 PSI scope lock:
 
@@ -255,7 +199,34 @@ F61 records the permanent three-state regression against this conflation.
 
 **Status:** `PASS / CLASSICAL THEOREM + PSI BRIDGE`.
 
-Next: **II.11 Myhill–Nerode C18**, then Paige–Tarjan C14 strictly as an algorithmic benchmark.
+### II.11 — Myhill–Nerode
+
+For the exact language contract
+
+\[
+\Omega=\Sigma^*,
+\qquad
+R_w(u)=\mathbf 1_L(uw),
+\quad w\in\Sigma^*,
+\]
+
+PSI task equivalence is exactly Nerode equivalence:
+
+\[
+\boxed{
+E_{\mathcal T,L}
+=
+\bigcap_{w\in\Sigma^*}\ker_{eq}R_w
+=
+\equiv_L.
+}
+\]
+
+The classical finite-index/minimal-DFA theorem remains classical. The bridge is exact only under the full continuation-test contract.
+
+**Status:** `PASS / CLASSICAL THEOREM + EXACT PSI REALIZATION`.
+
+Next: **II.12 Paige–Tarjan C14**, strictly as an algorithmic benchmark.
 
 ## Hardening bank
 
@@ -285,9 +256,9 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{II.10\ LUMPABILITY\ PASS}
 \to
-\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ PASS}
 \to
-\mathrm{PAIGE\!\!-\!TARJAN}
+\mathrm{II.12\ PAIGE\!\!-\!TARJAN\ NEXT}
 \to
 \mathrm{CAT/FACT/FRAME/HIGHER}
 \to
