@@ -44,6 +44,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Current claim registry v10](docs/claim-registry-10.md)
 - [Current falsifier registry v09](docs/falsifier-registry-09.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
+- [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
@@ -55,7 +56,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
-- [Principia four-volume skeleton](docs/principia-volume-skeleton-01.md)
+- [Current Principia four-volume skeleton v02](docs/principia-volume-skeleton-02.md)
 - [Source governance discipline](docs/source-governance-01.md)
 - [Classical comparison map](docs/classical-compare-01.md)
 - [Mathematical lineage](docs/lineage.md)
@@ -66,7 +67,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries/specs remain for provenance. Current control pointers are claim-registry v10, falsifier-registry v09, Regression Bank 01 and Agent Architecture v02.
+Historical registries/specs remain for provenance. Current control pointers are claim-registry v10, falsifier-registry v09, Regression Bank 01, Agent Architecture v02 and Principia skeleton v02.
 
 ## Pressure phase
 
@@ -213,6 +214,8 @@ The current agent operates through
 
 The pressure phase, R4 court and first hardening cycle did not reveal a missing control primitive.
 
+Decision and epistemic phase changes are now recorded in `docs/psi-ledger-01.md`; ordinary derivations are intentionally not logged.
+
 No Agent v03 is justified by the current evidence.
 
 ## Status
@@ -229,7 +232,11 @@ Current primary work is now:
 +
 \mathrm{Regression\ Bank\ 01}
 \to
-\mathrm{Principia\ V1/V2\ migration/freeze}.
+\mathrm{Principia\ V1/V2\ unit\ maps}
+\to
+\mathrm{source/proof/regression\ audit}
+\to
+\mathrm{first\ V1/V2\ freeze}.
 }
 \]
 
