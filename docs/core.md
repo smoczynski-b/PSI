@@ -12,13 +12,15 @@ Relative to a contract \(c\), the working core is
 
 Interpretation:
 
-- \(\Omega_c\) — candidate space after any legal realization/gauge quotient required by the contract;
+- \(\Omega_c\) — candidate space after any **task-legal** realization/gauge reduction required by the contract;
 - \(\Psi_c:\Omega_c\to\mathcal B_c\) — observation map;
 - \(\mathcal K_c\subseteq\mathcal B_c\times\mathcal Y_c\) — typed compatibility relation;
 - \(\mathscr O_{\mathcal T,c}\) — task-relevant local observables, each with an explicit codomain;
 - \(\delta_c\) — admissible dynamics/update. In the deterministic case \(\delta_c:\Omega_c\to\Omega_c\); stochastic dynamics require an explicitly typed transition kernel rather than silently reusing the deterministic notation.
 
 The contract matters: identifiability is always relative to what counts as a candidate, an observation, a task, an admissible distinction and an admissible evolution.
+
+The phrase `after gauge reduction` does not mean that every symmetry object may automatically be replaced by its coarse orbit set. A proposed reduction must preserve all distinctions required by the task; the exact adequacy test is stated below.
 
 ## 2. Observation and fiber
 
@@ -166,6 +168,26 @@ For a general representation \(\rho\), task adequacy is
 \[
 \boxed{\ker_{\rm eq}\rho\subseteq E_{\mathcal T}.}
 \]
+
+### 6.1. Gauge / truncation legality
+
+A proposed gauge, quotient or truncation map
+
+\[
+q_G:\Omega\to Z
+\]
+
+is legal for task \(\mathcal T\) only if it is itself a task-adequate representation:
+
+\[
+\boxed{
+\ker_{\rm eq}q_G\subseteq E_{\mathcal T}.
+}
+\]
+
+Therefore a groupoid, symmetry object or witness-bearing compatibility structure must not be replaced by a coarse orbit/component set when stabilizers, compatibility witnesses or other discarded data remain task-relevant.
+
+Equivalently: quotienting is a conclusion licensed by the task contract, not a preprocessing right.
 
 ## 7. Dynamics on the quotient
 
