@@ -37,6 +37,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [PHISICA Operator Migration 01](docs/phisica-operator-migration-01.md)
 - [PHISICA Falsifier Registry 01](docs/phisica-falsifier-registry-01.md)
 - [Volume III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
+- [Volume III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
@@ -122,7 +123,7 @@ No CORE role changed and no Agent v03 is justified.
 
 Historical PHISICA is being rebuilt by operator legality rather than copied chapter-by-chapter.
 
-The current first theorem is:
+### III.1 — operator projectability
 
 \[
 \boxed{
@@ -158,27 +159,57 @@ d\Lambda\neq0
 }
 \]
 
-`III.1` is PASS. The next unit is `III.2 — weight measure and Sturm–Liouville form`.
+### III.2 — weight, Sturm–Liouville form and geometric pushforward
 
-Permanent PHISICA locks now include:
+For \(B>0\), the canonical positive weight satisfies
 
 \[
-\text{formal differential expression}\neq\text{self-adjoint operator},
+\boxed{(\rho B)'=\rho C}
+\]
+
+and hence
+
+\[
+\boxed{
+L_\Lambda
+=\frac1\rho\partial_\lambda(\rho B\partial_\lambda).
+}
+\]
+
+Under the additional proper-submersion/coarea contract, the pushforward of Riemannian volume has density satisfying the same equation; after normalization,
+
+\[
+\boxed{
+\rho(\lambda)d\lambda
+=\Lambda_*(d\mathrm{vol}_g).
+}
+\]
+
+Thus the pullback map \(T_\Lambda\Phi=\Phi\circ\Lambda\) is an isometry from \(L^2(I,\rho d\lambda)\) onto the fibre-constant Hilbert subspace.
+
+Permanent distinctions:
+
+\[
+\boxed{
+\text{Hilbert weight}\neq\text{spectral measure},
+}
 \]
 
 \[
-\rho(\lambda)d\lambda\neq\text{spectral measure by definition},
-\]
-
-\[
-\{E_n\}\not\Rightarrow\text{complete model identification},
+\boxed{
+\text{integrating factor}\not\Rightarrow\text{geometric pushforward measure},
+}
 \]
 
 and
 
 \[
-\text{formal drift removal}\not\Rightarrow\text{unitary isospectral equivalence}.
+\boxed{
+\text{formal symmetry}\not\Rightarrow\text{self-adjoint realization}.
+}
 \]
+
+`III.1` and `III.2` are PASS. The next unit is `III.3 — domain and self-adjoint realization`.
 
 ## Current phase
 
@@ -192,7 +223,9 @@ and
 \to
 \mathrm{III.1\ PASS}
 \to
-\mathrm{III.2\ NEXT}.
+\mathrm{III.2\ PASS}
+\to
+\mathrm{III.3\ NEXT}.
 }
 \]
 
