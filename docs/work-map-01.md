@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 THEOREM SPINE IN PROGRESS`.
+**State:** `V1 NORMALIZED PASS / V2 FIRST THEOREM SPINE PASS`.
 
 Done:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -14,7 +14,8 @@ Done:
 - falsifier registry v10;
 - Regression Bank 01;
 - V1 Unit Map 01;
-- V2 Theorem Map 01;
+- V2 Theorem Map 01 retained as genealogy;
+- V2 Theorem Map 02 current after spine cross-check;
 - Proof/Source/Migration Audit 01;
 - CANON03 Source Bind 01;
 - CAT/ADEQ/FACT Migration 01;
@@ -25,9 +26,11 @@ Done:
 - V1 I.1–I.6 first prose pass — local cross-check PASS;
 - WHOLE-V1 CROSS-CHECK 01 — PASS WITH REQUIRED NONSEMANTIC NORMALIZATION;
 - V1 NORMALIZATION 01 — PASS;
-- V2.1 `Dokładna rozstrzygalność zadaniowa` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS;
-- V2.2 `Kryterium faktoryzacji przez reprezentację` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS;
-- V2.3 `Globalna wystarczalność obserwatora` — THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS.
+- V2.1 `Dokładna rozstrzygalność zadaniowa` — PASS;
+- V2.2 `Kryterium faktoryzacji przez reprezentację` — PASS;
+- V2.3 `Globalna wystarczalność obserwatora` — PASS;
+- V2.4 `Adekwatność reprezentacji względem zadania` — PASS;
+- V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA.
 
 ### Current Volume-I verdict
 
@@ -41,61 +44,61 @@ Done:
 
 No Freeze 01 erratum was required.
 
-### Current V2 theorem-spine status
+### Current V2 theorem-spine verdict
 
 \[
 \boxed{
-\mathrm{II.1}=\mathrm{PASS},
-\qquad
-\mathrm{II.2}=\mathrm{PASS},
-\qquad
-\mathrm{II.3}=\mathrm{PASS}.
+\mathrm{V2.1:V2.4}=\mathrm{PASS}.
 }
 \]
 
-II.1 preserves the empty-fibre condition
+Core exact results now exposed in theorem prose:
 
 \[
-F(Y)\neq\varnothing.
+|q_{\mathcal T,c}(F_c(Y))|=1
+\iff
+F_c(Y)\neq\varnothing
+\land
+F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c},
 \]
 
-II.2 proves
-
 \[
-\boxed{
 \ker_{eq}\rho\subseteq\ker_{eq}R
 \iff
 \exists!\,g:\operatorname{im}\rho\to W,
 \quad
 R=g\circ\rho,
-}
 \]
-
-with uniqueness only on `im rho` as required by F60.
-
-II.3 specializes II.2 to the observer:
 
 \[
-\boxed{
-E_{\Psi,c}\subseteq E_{\mathcal T,c}
+\ker_{eq}\Psi_c\subseteq E_{\mathcal T,c}
 \iff
-\exists!\,f:\operatorname{im}\Psi_c\to M_{\mathcal T,c},
-\quad
-q_{\mathcal T,c}=f\circ\Psi_c.
-}
+q_{\mathcal T,c}\text{ factors through }\Psi_c,
 \]
 
-`Global` means sufficiency on the whole candidate space, not resolution of every individual record. The result is exact/factorizational, not statistical sufficiency.
+\[
+\ker_{eq}\rho\subseteq E_{\mathcal T,c}
+\iff
+q_{\mathcal T,c}\text{ factors through }\rho.
+\]
+
+Scope locks:
+- uniqueness only on representation image (F60);
+- global observer sufficiency is not per-record decidability;
+- factorization sufficiency is not statistical sufficiency;
+- task-information adequacy is not full contract legality (F57);
+- HCube is a witness only for tasks containing the distinguishing resolvent quantity.
 
 ### Next
 
-1. write **V2.4 — Representation adequacy**;
-2. generalize II.3 from the observer `Psi_c` to arbitrary `rho:Omega_c->Z`;
-3. preserve the distinction `task-information adequacy != full contract legality`;
-4. bind R01 HCube, R02 Go and R03 FS-STAT to the correct scopes;
-5. then run the first V2 theorem-spine cross-check before dynamics/history and classical bridges.
+1. write **V2.5 — Task-information legality of reduction / quotient** (C32/C37);
+2. derive `ker_eq q ⊆ E_{T,c}` from II.4;
+3. preserve F57: task-information legal != fully contract-legal;
+4. then V2.6 deterministic quotient dynamics C10;
+5. then V2.7–V2.9 history/memory quotient layer C42/C44/C45;
+6. only afterward proceed to classical bridge layer.
 
-STOP condition: V2 prose may expose proofs already frozen, but must not silently strengthen theorem scope or promote benchmark/classical comparison into PSI novelty.
+STOP condition: do not skip C32/C37 when moving from representation adequacy to dynamics; do not silently promote task-information legality to full contract legality.
 
 ---
 
@@ -150,17 +153,22 @@ Mandatory boundaries:
 - F59 MINI vs general FACT;
 - F60 factorization uniqueness only on `im rho`.
 
-Local II.1 theorem regression:
+Local II.1 regression:
 - empty fibre gives `|q(F)|=0`, never exact resolution;
-- a single task-inequivalent pair inside `F` falsifies exact task decidability.
+- one task-inequivalent pair inside `F` falsifies exact task decidability.
 
-Local II.2 theorem regression:
-- if `rho` is not surjective, factorization does not imply a unique extension `g:Z->W`;
-- F60 fixed witness must remain valid.
+Local II.2 regression:
+- nonsurjective `rho` does not yield a unique extension `g:Z->W`;
+- F60 fixed witness remains mandatory.
 
-Local II.3 theorem regression:
+Local II.3 regression:
 - one pair `Psi_c(x)=Psi_c(y)` with `x not E_{T,c} y` falsifies global observer sufficiency;
-- uniqueness of the decoding map is only on `im Psi_c`.
+- uniqueness is only on `im Psi_c`.
+
+Local II.4 regression:
+- one pair `rho(x)=rho(y)` with `x not E_{T,c} y` falsifies representation adequacy;
+- R01/R02 are direct application witnesses at their declared task scopes;
+- R03 is a scope-boundary witness, not a falsifier of the exact theorem.
 
 ---
 
@@ -210,7 +218,7 @@ Success event:
 
 **State:** `VISUAL GRAMMAR FROZEN`.
 
-No global redesign during V2 theorem-spine prose.
+No global redesign during V2 theorem prose.
 
 ---
 
@@ -234,13 +242,11 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1\ PASS}
+\mathrm{V2.1:V2.4\ PASS}
 \to
-\mathrm{V2.2\ PASS}
+\mathrm{V2\ SPINE\ CROSSCHECK\ PASS}
 \to
-\mathrm{V2.3\ PASS}
-\to
-\mathrm{V2.4\ NEXT}.
+\mathrm{V2.5\ NEXT}.
 }
 \]
 
@@ -248,9 +254,11 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{V2\ THEOREM\ PROSE}
+\mathrm{II.5\ REDUCTION/QUOTIENT}
 \to
-\mathrm{V2\ SPINE\ CROSSCHECK}
+\mathrm{II.6\ DYNAMICS}
+\to
+\mathrm{II.7:II.9\ HISTORY}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
