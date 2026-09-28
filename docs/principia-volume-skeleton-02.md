@@ -157,8 +157,8 @@ Freeze only the comparisons needed by current theorem architecture:
 
 - deterministic congruence;
 - Markov strong/Kemeny–Snell lumpability bridge — `C13`, prose unit `II.10`, `PASS`;
-- Nerode exact realization — `C18`, next prose unit `II.11`;
-- Paige–Tarjan benchmark — `C14`.
+- Nerode exact realization — `C18`, prose unit `II.11`, `PASS`;
+- Paige–Tarjan benchmark — `C14`, next unit `II.12`.
 
 Permanent stochastic boundary:
 
@@ -171,6 +171,18 @@ Permanent stochastic boundary:
 \]
 
 without block-transition stability; regression `F61`.
+
+Permanent Nerode boundary:
+
+\[
+\boxed{
+\text{arbitrary task equivalence}
+\neq
+\text{Nerode equivalence}
+}
+\]
+
+without the full right-continuation acceptance-test contract.
 
 Probabilistic bisimulation remains explanatory comparison-only; it has no current C-ID because no frozen theorem depends on it.
 
@@ -295,7 +307,9 @@ The structural freeze stage is complete. Current prose state is
 \to
 \mathrm{II.10\ LUMPABILITY\ PASS}
 \to
-\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}.
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ PASS}
+\to
+\mathrm{II.12\ PAIGE\!\!-\!TARJAN\ NEXT}.
 }
 \]
 
