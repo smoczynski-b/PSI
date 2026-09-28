@@ -33,7 +33,8 @@ Done:
 - V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA;
 - V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS;
 - V2.6 `Deterministyczna dynamika ilorazowa` — PASS;
-- V2.7 `Dokładna adekwatność pamięci historii` — PASS.
+- V2.7 `Dokładna adekwatność pamięci historii` — PASS;
+- V2.8 `Najgrubszy dokładny iloraz historii` — PASS.
 
 ### Current Volume-I verdict
 
@@ -51,7 +52,7 @@ No Freeze 01 erratum was required.
 
 \[
 \boxed{
-\mathrm{V2.1:V2.7}=\mathrm{PASS}.
+\mathrm{V2.1:V2.8}=\mathrm{PASS}.
 }
 \]
 
@@ -69,7 +70,8 @@ F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c},
 \ker_{eq}\rho\subseteq\ker_{eq}R
 \iff
 \exists!\,g:\operatorname{im}\rho\to W,
-\quad R=g\circ\rho,
+\quad
+R=g\circ\rho,
 \]
 
 \[
@@ -106,30 +108,59 @@ H\equiv_{\mathcal T,t}H'
 \operatorname{Beh}_{\mathcal T}(H').
 \]
 
+The canonical history quotient is
+
+\[
+\boxed{
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
+}
+\]
+
+and for every exact memory
+
+\[
+\rho_t:\mathcal H_t\to Z_t
+\]
+
+there is a unique surjection
+
+\[
+\boxed{
+f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t},
+\qquad
+q_{\mathcal T,t}=f_t\circ\rho_t.
+}
+\]
+
+Thus `equiv_T,t` is the largest admissible exact equivalence relation and `M_T,t` the coarsest exact quotient in quotient order.
+
 Scope locks:
-- uniqueness only on representation image (F60);
+- uniqueness/minimality is evaluated on representation image (F60), not unused codomain points;
 - global observer sufficiency is not per-record decidability;
 - factorization sufficiency is not statistical sufficiency;
 - task-information adequacy is not full contract legality (F57);
 - geometric symmetry does not automatically establish observation-compatible gauge (F55);
 - static task adequacy does not imply dynamic descent;
 - deterministic congruence is not stochastic lumpability;
-- if the task closure is stable under `R -> R∘delta_c`, then `E_T,c` is automatically a congruence for `delta_c`;
-- full history is not asserted to be bit-, state-, dimension-, storage- or computation-minimal;
-- Go/LAZARUS remain scoped regressions, not proofs of the general history theorem.
+- if task closure is stable under `R -> R∘delta_c`, then `E_T,c` is automatically a congruence for `delta_c`;
+- coarsest exact quotient is not automatically minimum bits/dimension/storage/compute;
+- full history is not asserted to be the minimal implementation;
+- Go/LAZARUS remain scoped regressions, not proofs of the general history theorems.
 
 ### Next
 
-1. write **V2.8 — Coarsest exact history quotient** (C44);
-2. prove the factorization property of
+1. write **V2.9 — Recursive quotient update** (C45/C59);
+2. type the legal extension domain explicitly;
+3. prove well-definedness of
    \[
-   M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t};
+   U_{\mathcal T,t}([H_t],\varepsilon_t,y_{t+1})
+   =
+   [\delta_t(H_t,\varepsilon_t,y_{t+1})]_{\mathcal T,t+1};
    \]
-3. preserve the boundary: coarsest exact quotient in quotient order is not minimum bits/dimension/storage/compute;
-4. then V2.9 recursive quotient update C45 with explicit domain typing;
+4. preserve F43: mathematical recurrence does not imply finite memory, computability or efficiency;
 5. only afterward proceed to classical bridge layer.
 
-STOP condition: do not promote quotient-order minimality into implementation minimality.
+STOP condition: do not promote quotient-order coarseness or recursive well-definedness into implementation optimality.
 
 ---
 
@@ -191,7 +222,8 @@ Local theorem regressions:
 - II.4: one `rho`-collapsed but task-distinct pair falsifies representation adequacy;
 - II.5: F57/F55 block overpromotion of quotient/gauge legality;
 - II.6: fixed three-state witness shows static quotient adequacy does not imply dynamic projectability;
-- II.7: one pair of histories with equal memory and different future-task trees falsifies memory adequacy; R02 Go and LAZARUS remain fixed scoped witnesses.
+- II.7: one pair of histories with equal memory and different future-task trees falsifies memory adequacy;
+- II.8: any proposed quotient relation `Q` containing a pair `H Q H'` with `H not equiv_T,t H'` is too coarse; F60 restricts factorization/minimality claims to `im rho_t`.
 
 ---
 
@@ -265,9 +297,9 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.7\ PASS}
+\mathrm{V2.1:V2.8\ PASS}
 \to
-\mathrm{V2.8\ NEXT}.
+\mathrm{V2.9\ NEXT}.
 }
 \]
 
@@ -275,8 +307,6 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{II.8\ HISTORY\ QUOTIENT}
-\to
 \mathrm{II.9\ HISTORY\ UPDATE}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
