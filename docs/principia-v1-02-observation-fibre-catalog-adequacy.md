@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.2. Obserwacja, włókno zgodności i adekwatność katalogu
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`  
 **Zakres:** C02, C11, C64; bez twierdzenia o rozstrzygalności zadaniowej z Tomu II.
@@ -146,7 +146,7 @@ F_c(Y)=\varnothing.
 
 Oznacza to, że żaden kandydat dopuszczony przez bieżący kontrakt nie jest zgodny z danymi.
 
-Nie wolno z tego automatycznie wnosić, że dane są „błędne”, ani że istnieje określony brakujący mechanizm. Puste włókno mówi jedynie, że bieżąca kombinacja:
+Nie wolno z tego automatycznie wnosić, że dane są „błędne”, ani że istnieje określony brakujący mechanizm. Puste włókno mówi jedynie, że bieżąca kombinacja
 
 \[
 \Omega_c,
@@ -272,13 +272,15 @@ jako szóstego składnika rdzenia albo obowiązującej definicji dla wszystkich 
 
 Sposób testowania adekwatności zależy od kontraktu.
 
-W problemie dokładnym adekwatność może zostać sfalsyfikowana przez
+Puste włókno
 
 \[
-F_c(Y)=\varnothing.
+F_c(Y)=\varnothing
 \]
 
-W problemie przybliżonym kontrakt może posługiwać się metryką, pseudometryką, funkcją straty, testem zgodności albo inną dziedzinowo legalną procedurą.
+jest jednoznacznym świadkiem, że **cały bieżący pakiet** katalog–obserwacja–zgodność–dane nie posiada rozwiązania. Nie lokalizuje jednak przyczyny w samym katalogu. Może pełnić rolę falsyfikatora katalogu dopiero w protokole, który zamraża pozostałe składniki i jawnie ustanawia katalog jako testowany element.
+
+W problemach przybliżonych kontrakt może posługiwać się metryką, pseudometryką, funkcją straty, testem zgodności albo inną dziedzinowo legalną procedurą.
 
 ### Przykład adaptera metrycznego — nie definicja rdzenia
 
@@ -335,11 +337,11 @@ od
 }
 \]
 
-Pierwsze może wynikać z niezgodności danych z całym bieżącym katalogiem. Drugie jest osobnym problemem identyfikacji zmiany katalogu, rozwijanym później jako PSI-CAT.
+Pierwsze może wynikać z odpowiedniego testu niezgodności bieżącego katalogu przy zamrożonych pozostałych składnikach kontraktu. Drugie jest osobnym problemem identyfikacji zmiany katalogu, rozwijanym później jako PSI-CAT.
 
 Warunki dziedzinowe mogą eliminować część propozycji zmiany katalogu, lecz nie stają się przez to nową obserwacją empiryczną.
 
-Dlatego nawet przy pustym lub systematycznie nieadekwatnym włóknie obowiązuje rygiel:
+Dlatego przy pustym włóknie lub przy osobno wykazanej nieadekwatności katalogu obowiązuje rygiel:
 
 \[
 \boxed{
