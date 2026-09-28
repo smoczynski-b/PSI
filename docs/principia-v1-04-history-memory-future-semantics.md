@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.4. Historia, pamięć i przyszła semantyka zadania
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md` z zachowanymi C42, C44–C46 oraz C57–C59  
 **Zakres:** C25–C27, C42, C57 jako fundamenty/granice; C44–C45 i dowody pozostają w Tomie II; Go i LAZARUS występują wyłącznie jako świadki regresyjne.
@@ -74,9 +74,11 @@ Istotna jest zasada:
 \[
 \boxed{
 \mathcal H_t
-\text{ musi zawierać dokładnie tyle struktury, ile wymaga definicja legalnej przyszłości.}
+\text{ musi zawierać co najmniej strukturę potrzebną do zdefiniowania legalnej przyszłości.}
 }
 \]
+
+Może zawierać więcej informacji niż ostatecznie wymaga zadanie; usuwanie takich nadmiarowych rozróżnień należy do problemu reprezentacji pamięci i ilorazu zadaniowego, nie do samej definicji przestrzeni historii.
 
 Przestrzeń historii jest w tym rozdziale **przestrzenią odniesienia dla semantyki przyszłości**, a nie automatycznie zalecaną implementacją pamięci.
 
