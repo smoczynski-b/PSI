@@ -6,69 +6,50 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** ACTIVE / FREEZE GATES LOCALIZED.
+**State:** `V1/V2 FIRST FREEZE PASS / PROSE PHASE OPEN`.
 
 Done:
-- migration registry;
-- claim registry v11;
+- physical CANON-03 source bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+- claim registry v12;
 - falsifier registry v10;
-- `REGRESSION-BANK-01`;
-- source governance;
-- Decision / Epistemic Ledger 01;
-- Principia four-volume skeleton v02;
-- `V1-UNIT-MAP-01`;
-- `V2-THEOREM-MAP-01`;
-- `PROOF-SOURCE-MIGRATION-AUDIT-01`;
-- `CAT/ADEQ/FACT-MIGRATION-01` alignment map;
-- corrected `CAT–FACT–NORM–MINI-01` observation/gauge contract;
-- RED-1 future-task equivalence migrated to C57–C59;
-- exact task adequacy/full contract legality separated in C60/C61;
-- classical comparison map source-bound.
+- Regression Bank 01;
+- V1 Unit Map 01;
+- V2 Theorem Map 01;
+- Proof/Source/Migration Audit 01;
+- CANON03 Source Bind 01;
+- CAT/ADEQ/FACT Migration 01;
+- corrected CAT–FACT–NORM–MINI contract;
+- RED-1 history definitions C57–C59;
+- current CAT/FACT definitions C62/C63;
+- V1/V2 First Freeze 01 — PASS;
+- skeleton v02 synchronized to freeze.
 
-### Audit results
+### Freeze result
 
-**Elementary spine**
-- C06 PASS;
-- C07 PASS;
-- C08 PASS;
-- C09 PASS WITH SCOPE CORRECTION;
-- C10 PASS.
+\[
+\boxed{\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.}
+\]
 
-**History / RED-1**
-- mathematics PASS;
-- definition and update now registered as C57–C59.
+This freezes definitions, theorem statements, status classes, source roles, dependencies and principal boundaries for the first prose pass. It does not freeze final wording or typography.
 
-**MINI**
-- termination PASS with wording correction;
-- confluence PASS with quotient-rewrite formalization correction;
-- old fixed-coordinate `Y=gamma(t)` + external `SE(3)` quotient was invalidly mixed;
-- corrected into `P_abs` and `P_shape` variants;
-- C19 replaced by C19-v2.
+### Important resolved gaps
 
-**CAT/ADEQ/FACT**
-- strong older typed sources recovered;
-- role alignment with current public core passes;
-- physical authoritative CANON-03 source still not bound in this audit, so canonical migration freeze remains on provenance hold.
-
-### Remaining V1/V2 freeze blockers
-
-1. `CANON03-PHYS-01` — bind the physical authoritative `PSI-R3-CONSOLIDATED-CANON-03` artifact, or explicitly document its unavailability in the first freeze package;
-2. `MIG-CAT-ADEQ-01` — promote catalog adequacy from provisional alignment to current canonical definition only after the above bind;
-3. `MIG-CAT-FACT-01` — same for general CAT/FACT groupoid/homotopy layer;
-4. `BISIM-CID-01` — either assign probabilistic bisimulation a current C-ID or leave it as explanatory comparison outside the frozen theorem registry;
-5. final bibliography/locator pass for the imported classical statements.
-
-The previous mathematical blocker `MINI-GAUGE-OBS-01` is **RESOLVED**.
+- `V1-GAP-01` — resolved: catalog adequacy is canonical as a prior gate, but no universal scalar `D_ADEQ^cat` is required;
+- `V2-GAP-01` — resolved by C57–C59;
+- `V2-GAP-03` — resolved by physical CANON-03 C62/C63 definitions;
+- `V2-GAP-04` — main classical source bindings completed;
+- `V2-GAP-05` — MINI patched and proof-audited;
+- `CANON03-PHYS-01` — resolved by exact commit/path/blob bind;
+- probabilistic bisimulation — explicitly deferred as comparison-only, not a freeze blocker.
 
 Next:
-1. execute `CANON03-SOURCE-BIND-01` using Project/Library evidence;
-2. on success, issue audited CAT/ADEQ/FACT registry migration;
-3. decide `BISIM-CID-01` by editorial necessity, not completeness anxiety;
-4. run `V1-V2-FREEZE-RECHECK-01`;
-5. only after PASS begin polished chapter prose;
-6. resume PHISICA/LOGOS claim-by-claim migration after first V1/V2 freeze.
+1. begin **V1 prose pass** from frozen units I.1→I.6;
+2. cross-check every prose section against `principia-v1-v2-freeze-01.md`;
+3. then write V2 theorem prose with proofs/source boxes;
+4. issue an erratum + impact audit for any semantic change discovered during prose;
+5. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
 
-STOP condition: no polished chapter before the freeze recheck.
+STOP condition: prose may improve exposition but must not silently alter frozen semantics.
 
 ---
 
@@ -76,22 +57,16 @@ STOP condition: no polished chapter before the freeze recheck.
 
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW COUNTEREXAMPLE`.
 
-Current public derivative:
+Physical CANON-03 binds:
 
 \[
-\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c)}
+\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
 \]
 
-with exact task-information adequacy
+Exact task-information adequacy:
 
 \[
-\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}}
-\]
-
-and history-memory specialization
-
-\[
-\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}}.
+\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
 Audit correction:
@@ -104,9 +79,15 @@ Audit correction:
 }
 \]
 
-in general. Contract legality additionally checks typing, admissible action/gauge, observation compatibility/equivariance and hard constraints.
+in general.
 
-Inference-quality discipline:
+History specialization:
+
+\[
+\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
+\]
+
+Inference discipline:
 
 \[
 \boxed{
@@ -122,23 +103,24 @@ Primitive-growth rule:
 \boxed{\mathrm{NO\ R4\ WITHOUT\ NEW\ TYPED\ COUNTEREXAMPLE}.}
 \]
 
-No audit result reopens CORE5.
-
 ---
 
 ## S2 — FALSIFICATION / REGRESSION APPARATUS
 
 **State:** `falsifier-registry-10` ACTIVE / `REGRESSION-BANK-01` ACTIVE.
 
-Permanent audit regressions added:
-- F55 gauge/observation mismatch;
-- F56 quotient rewrite before gauge well-definedness;
-- F57 task adequacy versus full contract legality;
-- F58 old-source automatic promotion;
-- F59 MINI set model versus general PSI-FACT;
-- F60 uniqueness only on `im rho`.
+Mandatory prose/regression boundaries:
+- R01 HCube — coarse operator representation;
+- R02 Go — history/memory compression;
+- R03 FS-STAT — exact→stable/confidence boundary;
+- F55 — gauge/observation mismatch;
+- F56 — quotient rewrite well-definedness before confluence;
+- F57 — task adequacy vs full contract legality;
+- F58 — old-source automatic promotion;
+- F59 — MINI set model vs general FACT;
+- F60 — factorization uniqueness only on `im rho`.
 
-R01/R02/R03 remain the first hardening bank.
+No new regression bank entry without a fixed witness actually needed by a frozen theorem boundary.
 
 ---
 
@@ -146,21 +128,14 @@ R01/R02/R03 remain the first hardening bank.
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-`PROOF-SOURCE-MIGRATION-AUDIT-01` validated the architecture by finding a real error in a previously frozen bridge result and forcing a source-level repair rather than narrative defense.
+Audit success:
+- Agent found a real mixed observation/gauge error in C19;
+- corrected source before freeze;
+- recovered and bound the physical canon instead of relying on memory;
+- downgraded older rich CAT/FACT machinery where the physical canon was narrower;
+- no new governance primitive required.
 
-Most important Agent regression:
-
-\[
-\boxed{
-\text{geometric symmetry}\not\Rightarrow\text{legal gauge of the observed fibre}.
-}
-\]
-
-No new Agent control primitive was required.
-
-Next Agent use:
-- `CANON03-SOURCE-BIND-01`;
-- then `V1-V2-FREEZE-RECHECK-01`.
+Next Agent task: enforce **prose fidelity to freeze**, not design new governance.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -168,11 +143,11 @@ Next Agent use:
 
 ## S4 — REALIZATIONS / LABORATORIES
 
-**State:** FIRST HARDENING TRIAD COMPLETE / NOT A CURRENT BLOCKER.
+**State:** FIRST HARDENING TRIAD COMPLETE / DEFERRED DURING FIRST PROSE PASS.
 
-HCube, Go and FS-STAT remain regression/examples attached to theorem scope. They do not replace proofs.
+HCube, Go and FS-STAT remain regression/examples, not theorem substitutes.
 
-PHISICA / SOP / cultural laboratories remain deferred until after first V1/V2 freeze unless required as an exact source witness.
+PHISICA / SOP / cultural laboratories resume after first V1/V2 prose pass unless a frozen theorem requires a precise source bridge.
 
 ---
 
@@ -203,34 +178,21 @@ Success event:
 
 **State:** VISUAL GRAMMAR FROZEN.
 
-No global redesign before measurement or an isolated non-contaminating implementation test.
+No global redesign during first V1/V2 prose pass unless an isolated non-contaminating implementation issue forces it.
 
 ---
 
 ## S8 — SOURCES / GENEALOGY
 
-**State:** ACTIVE / CANONICAL SOURCE BIND IS NOW THE MAIN FREEZE GATE.
+**State:** PHYSICAL CURRENT CANON BOUND / GENEALOGY STILL OPEN.
 
-Bound or substantially bound:
-- Kemeny–Snell lumpability;
-- Larsen–Skou probabilistic bisimulation;
-- Myhill/Nerode;
-- Paige–Tarjan;
-- Newman;
-- Bishop/RMF closed-frame sources;
-- groupoid weak/2-pullback terminology pending final bibliography locator only.
+Current physical source:
+- repo `smoczynski-b/psi-model`;
+- commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+- path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
+- blob `72d711a40c65376ee932809802622f3985ecb02a`.
 
-Recovered older typed PSI sources:
-- catalog ADEQ;
-- CAT `GEN/TEST/SELECT` and `ISO/HOR/REF/CRS`;
-- general FACT groupoid and weak/homotopy ADEQ fibre;
-- observation descent under gauge invariance.
-
-Remaining highest-priority source task:
-
-\[
-\boxed{\mathrm{CANON03\!-\!SOURCE\!-\!BIND\!-\!01}.}
-\]
+Historical missing originals remain genealogy gaps only; do not represent them as recovered.
 
 ---
 
@@ -238,29 +200,27 @@ Remaining highest-priority source task:
 
 \[
 \boxed{
-\mathrm{V1/V2\ MAPS\ DONE}
+\mathrm{MAPS}
 \to
-\mathrm{AUDIT\ 01\ DONE}
+\mathrm{AUDIT}
 \to
-\mathrm{MINI\ PATCH\ DONE}
-+
-\mathrm{RED1\ MIGRATION\ DONE}
-+
-\mathrm{CAT/FACT\ ALIGNMENT\ DONE}
-+
-\mathrm{CLASSICAL\ SOURCE\ BIND\ MOSTLY\ DONE}
+\mathrm{CANON03\ BIND}
+\to
+\mathrm{FREEZE\ 01=PASS}
 }
 \]
 
-then
+Current legal phase:
 
 \[
 \boxed{
-\mathrm{CANON03\ SOURCE\ BIND}
+\mathrm{V1\ PROSE}
 \to
-\mathrm{FREEZE\ RECHECK}
+\mathrm{V1\ CROSS\!-\!CHECK}
 \to
-\mathrm{PROSE}.
+\mathrm{V2\ PROSE}
+\to
+\mathrm{V2\ CROSS\!-\!CHECK}.
 }
 \]
 
