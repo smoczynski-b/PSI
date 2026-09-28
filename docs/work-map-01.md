@@ -11,8 +11,11 @@
 Done:
 - migration registry;
 - claim registry v10;
-- four-volume skeleton;
+- falsifier registry v09;
+- `REGRESSION-BANK-01`;
 - source governance;
+- Decision / Epistemic Ledger 01;
+- Principia four-volume skeleton v02;
 - CAT/FACT MINI claims migrated;
 - CLOSED-FRAME claims migrated;
 - LAZARUS agency claims normalized;
@@ -20,16 +23,17 @@ Done:
 - R4 pressure court recorded;
 - HCube normalized as representation-adequacy LAB/BENCHMARK;
 - Go memory/history quotient normalized as representation-adequacy LAB/BENCHMARK;
-- FS-STAT exact/stable/confidence boundary normalized;
-- `REGRESSION-BANK-01` assembled.
+- FS-STAT exact/stable/confidence boundary normalized.
 
 Next:
-1. build Volume I theorem/definition units from claim-registry v10;
-2. build Volume II theorem units with explicit hypotheses, classical provenance and regression IDs;
-3. migrate CAT/FACT/FRAME/LAZARUS/HIGHER/Go/FS-STAT material into those units;
-4. continue PHISICA/LOGOS claim-by-claim migration after the first V1/V2 freeze.
+1. build `V1 UNIT MAP 01` from claim-registry v10 + skeleton v02;
+2. build `V2 THEOREM MAP 01` with explicit hypotheses, provenance, dependencies and regression IDs;
+3. run proof/source/regression audit on those units;
+4. perform first V1/V2 freeze;
+5. only then begin polished chapter prose;
+6. resume PHISICA/LOGOS claim-by-claim migration after the first V1/V2 freeze.
 
-STOP condition: no polished chapter without claim IDs, source status and applicable regression IDs.
+STOP condition: no polished chapter without claim IDs, source status, dependencies and applicable regression IDs.
 
 ---
 
@@ -112,7 +116,7 @@ Primitive-growth rule:
 - quotient-level confidence remains open.
 
 Next:
-1. attach R01/R02/R03 IDs to the relevant Volume I/II claims;
+1. bind `R01/R02/R03` to explicit V1/V2 units;
 2. add further bank entries only when a new fixed witness is actually needed.
 
 ---
@@ -121,20 +125,17 @@ Next:
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-FS-STAT hardening confirmed:
-- ROUTER separated exact geometry from statistical inference;
-- CONTRACT SNAPSHOT forced separate bounded-noise and probabilistic noise contracts;
-- A0 blocked confidence claims without a probability model;
-- A1 produced an exact low-curvature instability witness rather than a narrative warning;
-- E_fals blocked universal curvature thresholds, pointwise-to-global flatness inflation and Bishop-is-noiseless inflation;
-- no new control primitive was required.
-
 The first hardening triad and `REGRESSION-BANK-01` are complete.
 
+Process audit correction:
+- Agent v02 already required Decision and Epistemic Ledgers for material transitions;
+- those transitions were occurring but were not durably collected in one artifact;
+- `psi-ledger-01.md` now implements the existing requirement without adding a new governance primitive.
+
 Next:
-1. use v02 directly for Principia V1/V2 redaction;
+1. use v02 directly for V1/V2 unit construction;
 2. run model-handoff regression only when an actual handoff occurs;
-3. preserve WORKING/FRONTIER/WAIT and regression IDs across that handoff.
+3. preserve WORKING/FRONTIER/WAIT, ledger state and regression IDs across that handoff.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -161,6 +162,10 @@ These are no longer blockers for the first Principia V1/V2 freeze.
 ## S5 — OPEN-PSI / TRAFFIC
 
 **State:** RUNNING / WAIT.
+
+Verified semantic boundary:
+- browser pageviews and aggregate outbound research clicks are measured;
+- confirmed destination arrivals / unique users / raw server requests remain separate unobserved layers unless independently instrumented.
 
 No optimization before baseline/sample.
 
@@ -198,7 +203,7 @@ Current source status:
 - quotient-level PSI-STAT coverage remains OPEN rather than silently inferred.
 
 Next:
-1. source-bind Volume I/II units during redaction;
+1. source-bind V1/V2 units during redaction;
 2. continue PHISICA/LOGOS migration after first V1/V2 freeze;
 3. recover missing G1 only if an actual source becomes available.
 
@@ -233,8 +238,14 @@ Current primary phase:
 \mathrm{Claim\ Registry\ v10}
 +
 \mathrm{Regression\ Bank\ 01}
++
+\mathrm{Principia\ Skeleton\ v02}
 \to
-\mathrm{Principia\ V1/V2\ migration/freeze}.
+\mathrm{V1/V2\ UNIT\ MAPS}
+\to
+\mathrm{AUDIT}
+\to
+\mathrm{FIRST\ FREEZE}.
 }
 \]
 
