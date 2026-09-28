@@ -41,8 +41,9 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v09](docs/claim-registry-09.md)
-- [Current falsifier registry v08](docs/falsifier-registry-08.md)
+- [Current claim registry v10](docs/claim-registry-10.md)
+- [Current falsifier registry v09](docs/falsifier-registry-09.md)
+- [Regression Bank 01](docs/regression-bank-01.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
@@ -50,6 +51,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [R4 PRESSURE COURT 01](docs/r4-pressure-court-01.md)
 - [HCUBE REGRESSION 01](docs/hcube-regression-01.md)
 - [GO MEMORY REGRESSION 01](docs/go-memory-regression-01.md)
+- [FS-STAT 01](docs/fs-stat-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
@@ -64,7 +66,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries/specs remain for provenance. Current control pointers are claim-registry v09, falsifier-registry v08 and Agent Architecture v02.
+Historical registries/specs remain for provenance. Current control pointers are claim-registry v10, falsifier-registry v09, Regression Bank 01 and Agent Architecture v02.
 
 ## Pressure phase
 
@@ -72,39 +74,19 @@ The current primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZAR
 
 This is not a universal completeness theorem.
 
-## Hardening phase — HCube regression
+## First hardening cycle
 
-The first hardening benchmark uses
+The first post-R4 hardening cycle contains three independent regressions.
 
-\[
-A=\operatorname{diag}(2,1,0),
-\qquad
-B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}.
-\]
+### HCube — operator representation
 
-They have the same characteristic polynomial and Euclidean operator norm, but at `z=1/2`:
+Equal characteristic polynomial and equal operator norm need not preserve resolvent behaviour. The fixed pair in `HCUBE-REGRESSION-01` therefore falsifies spectrum-plus-norm sufficiency for the declared resolvent-sensitive task.
 
-\[
-\left\|\left(\tfrac12I-A\right)^{-1}\right\|_2=2,
-\qquad
-\left\|\left(\tfrac12I-B\right)^{-1}\right\|_2=2(1+\sqrt2).
-\]
+HCube remains a derived separator/benchmark, not a CORE primitive.
 
-Hence the coarse representation
+### Go — memory/history representation
 
-\[
-\rho_0(X)=(\chi_X,\|X\|_2)
-\]
-
-is insufficient for this resolvent-sensitive task.
-
-HCube remains a derived diagnostic/benchmark, not a CORE primitive.
-
-## Hardening phase — Go memory regression
-
-The Go benchmark tests exact history/memory sufficiency.
-
-For a representation
+For a history representation
 
 \[
 \rho_t:\mathcal H_t\to R_t,
@@ -118,35 +100,86 @@ exact task adequacy is
 }
 \]
 
-The recovered frozen sequence gives:
+The recovered no-ko/simple-ko/PSK/SSK ladder gives successive exact counterexamples to memories that are too coarse for the rule/task contract.
 
-\[
-(B_t,\sigma_t)
-\to
-(B_t,\sigma_t,B_{t-1})
-\to
-(B_t,\sigma_t,V_t)
-\to
-(B_t,\sigma_t,U_t),
-\]
-
-where the successive contracts are no-ko, simple ko, positional superko and situational superko.
-
-The progression is not primitive growth. It is a sequence of increasingly adequate representations for different rule/task contracts.
-
-The canonical history quotient
+The canonical quotient
 
 \[
 M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
 \]
 
-is the **coarsest exact quotient of histories** for the task. This is minimality in quotient order, not minimality of dimension, bits, storage or computation.
+is the coarsest exact quotient in quotient order, not necessarily the smallest implementation in bits, dimension or computation.
 
-When the equivalence is a congruence for update, task classes admit a well-defined mathematical recursive update `U_T,t`; this does not by itself prove finite memory or an efficient algorithm.
+### FS-STAT — exact versus stable/statistical identification
 
-### Source boundary
+The exact Frenet/Bishop MINI result does not automatically survive sampled noisy observations.
 
-The currently recovered RED-1 artifact explicitly freezes `G0`, `G2`, `G3`, `G4` but does not contain a separate `G1` statement. No `G1` witness or theorem is reconstructed without its actual source.
+For bounded sample error, explicit centered stencils give derivative-error terms of the form
+
+\[
+O(h^2)+O(\delta h^{-r}),
+\]
+
+with increasing noise amplification at derivative order `r=1,2,3`.
+
+The fixed low-curvature family
+
+\[
+\gamma_{\varepsilon,\omega}(s)
+=
+(s,\varepsilon\cos\omega s,\varepsilon\sin\omega s)
+\]
+
+satisfies
+
+\[
+\kappa_{\varepsilon,\omega}
+=
+\frac{\varepsilon\omega^2}{1+\varepsilon^2\omega^2},
+\qquad
+\tau_{\varepsilon,\omega}
+=
+\frac{\omega}{1+\varepsilon^2\omega^2}.
+\]
+
+As `ε→0`, the curves converge in `C^3` to a line and `κ→0`, while `τ→ω`. Thus Frenet torsion has no continuous extension through the zero-curvature straight-line stratum and cannot be uniformly stably recovered across that boundary.
+
+The permanent inference distinction is
+
+\[
+\boxed{
+\mathrm{ID}_{exact}
+\mid
+\mathrm{ID}_{stable}
+\mid
+\mathrm{CONF}_{1-\alpha}.
+}
+\]
+
+Confidence claims require an explicit probability model. The Frenet/Bishop switch must be uncertainty- and task-driven rather than based on a universal curvature threshold.
+
+## Regression Bank 01
+
+The three hardening runs are frozen as
+
+\[
+\boxed{
+R01=\mathrm{HCube},
+\qquad
+R02=\mathrm{Go},
+\qquad
+R03=\mathrm{FS\!-\!STAT}.
+}
+\]
+
+Their common invariant is:
+
+\[
+\boxed{
+\text{a representation is legal only if it preserves every distinction required by the task}.}
+\]
+
+The bank is mandatory regression material for later theorem promotion, redaction and model handoff.
 
 ## PSI Agent Architecture v02
 
@@ -178,7 +211,7 @@ The current agent operates through
 }
 \]
 
-HCube and Go hardening both passed without requiring a new governance primitive. The Go run additionally validated source-gap discipline by refusing to fabricate missing `G1` content.
+The pressure phase, R4 court and first hardening cycle did not reveal a missing control primitive.
 
 No Agent v03 is justified by the current evidence.
 
@@ -186,19 +219,17 @@ No Agent v03 is justified by the current evidence.
 
 **Research / work in progress.**
 
-Current hardening sequence:
+The primitive-pressure phase and first hardening cycle are closed.
+
+Current primary work is now:
 
 \[
 \boxed{
-\mathrm{HCube\ DONE}
+\mathrm{Claim\ Registry\ v10}
++
+\mathrm{Regression\ Bank\ 01}
 \to
-\mathrm{Go\ DONE}
-\to
-\mathrm{FS\!-\!STAT}
-\to
-\text{regression bank}
-\to
-\text{Principia V1/V2 migration/freeze}.
+\mathrm{Principia\ V1/V2\ migration/freeze}.
 }
 \]
 
