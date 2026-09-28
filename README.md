@@ -46,7 +46,8 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Current claim registry v03](docs/claim-registry-03.md)
 - [Current falsifier registry v02](docs/falsifier-registry-02.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
-- [PSI agent dual-operator discipline](docs/agent-psi-dual-operator-01.md)
+- [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
+- [Historical dual-operator discipline v01](docs/agent-psi-dual-operator-01.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
 - [Principia four-volume skeleton](docs/principia-volume-skeleton-01.md)
@@ -62,7 +63,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 - Public lineage page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/?view=lineage
 
-Historical registries remain in the repository for provenance; v03/v02 are the current public claim/falsifier layers.
+Historical registries and agent specs remain in the repository for provenance. Current control pointers are claim-registry v03, falsifier-registry v02 and Agent Architecture v02.
 
 ## Mathematical lineage
 
@@ -82,35 +83,65 @@ For each substantial imported construction, the public project should state:
 }
 \]
 
-A classical result remains classical when PSI uses it. Public provenance keeps two independent metadata axes.
+A classical result remains classical when PSI uses it. Public provenance keeps claim status and role in PSI as separate metadata axes.
 
-**Claim status:**
+## First full agent-cycle mathematical run
 
-- `CLASSICAL` — established mathematics;
-- `BRIDGE` — a claimed connection requiring proof or testing;
-- `PSI-NEW` — a genuinely new result requiring proof or a precise formal falsifier;
-- `POLICY` — an operational rule rather than a theorem;
-- `OPEN` — an unresolved mathematical point.
+`CAT–FACT–NORM–MINI-01` is the first result carried through exploration, semantic/source audit, mathematical audit, falsification and freeze.
 
-**Role in PSI:**
+For an exact, time-parametrized `C^3` regular curve on `[0,T]`, finite legal Frenet/Bishop segmentations reduce to one Bishop normal class modulo constant normal-plane rotation. The raw compatible realization family has one factorization class after the declared Euclidean and normal-frame gauge.
 
-- `ADAPTED` — inherited mathematics used in a different task or architectural role;
-- `GENEALOGICAL` — conceptual or mathematical ancestry;
-- `BENCHMARK` — a classical reference against which a PSI construction must be compared.
-
-The two axes must not be collapsed.
-
-## First dual-operator mathematical run
-
-`CAT–FACT–NORM–MINI-01` is the first result carried through
+The current notation explicitly distinguishes
 
 \[
-\mathsf E\to\mathsf A\to\mathsf E_{\rm fals}\to\mathsf A_{\rm freeze}.
+\operatorname{RawFact}
+\quad\text{from}\quad
+\operatorname{Fact}=\operatorname{RawFact}/G,
 \]
 
-Under an exact, time-parametrized `C^3` regular curve on an interval, finite legal Frenet/Bishop segmentations reduce to one Bishop factorization class modulo `SE(3)×SO(2)`. In that specific contract, loss of the Frenet frame at zero curvature is a representation/domain event rather than evidence for catalog `birth`.
+so the realization gauge is not applied twice.
+
+Within that contract, loss of the Frenet frame at zero curvature is a representation/domain event rather than evidence for catalog `birth`.
 
 The result is deliberately narrow: closed-loop holonomy, reparameterization gauge and sampled/noisy stability remain open gates.
+
+## PSI Agent Architecture v02
+
+The first full run showed that `EXPLORE → AUDIT → FALSIFY → FREEZE` was useful but too coarse. The current agent therefore operates through
+
+\[
+\boxed{
+\mathrm{RESCAN}
+\to
+\mathrm{ROUTER}
+\to
+\mathrm{CONTRACT\ SNAPSHOT}
+\to
+\mathsf E
+\to
+\mathsf A_0
+\to
+\mathsf A_1
+\to
+\mathsf E_{fals}
+\to
+\mathrm{IMPACT}
+\to
+\mathrm{DECIDE}
+\to
+\mathrm{REGRESSION}
+\to
+\mathrm{HANDOFF}.
+}
+\]
+
+State is separated into
+
+\[
+\mathrm{CANON}\mid\mathrm{SPEC}\mid\mathrm{WORKING}\mid\mathrm{LIVE}\mid\mathrm{FRONTIER}\mid\mathrm{HISTORY}.
+\]
+
+This is intended to preserve aggressive exploration without allowing source drift, level drift, silent contract changes or unchecked public/canonical promotion.
 
 ## What PSI is for
 
@@ -154,8 +185,6 @@ Archived project materials are available on Zenodo:
 - DOI: [10.5281/zenodo.18498440](https://doi.org/10.5281/zenodo.18498440)
 
 See [docs/publications.md](docs/publications.md) for the release index.
-
-When a Zenodo record and a repository version refer to the same work, cite the Zenodo record as the archival publication and this repository as the evolving public source.
 
 ## Language
 
