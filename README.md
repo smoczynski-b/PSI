@@ -2,17 +2,17 @@
 
 **PSI is a formal research program on justified inference under constrained observation.**
 
-It asks a strict question:
+It asks:
 
 > What are we entitled to conclude from what we can actually observe?
 
-The central object is not a guessed hidden state, but the full set of states still compatible with the observation.
+The central object is not a guessed hidden state but the full compatible fibre
 
 \[
 F(Y)=\Psi^{-1}(\mathcal K^Y).
 \]
 
-For a task \(\mathcal T\), exact resolution means
+For task \(\mathcal T\), exact resolution is
 
 \[
 |q_{\mathcal T}(F(Y))|=1
@@ -29,6 +29,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Current claim registry v12](docs/claim-registry-12.md)
 - [Current falsifier registry v10](docs/falsifier-registry-10.md)
 - [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
+- [Whole-V1 Cross-Check 01](docs/principia-v1-whole-crosscheck-01.md)
 - [Principia V1 I.1 — Contract and semantic roles](docs/principia-v1-01-contract-semantic-roles.md)
 - [Principia V1 I.2 — Observation, compatible fibre and catalog adequacy](docs/principia-v1-02-observation-fibre-catalog-adequacy.md)
 - [Principia V1 I.3 — Task-relative distinction and legal reduction](docs/principia-v1-03-task-distinction-legal-reduction.md)
@@ -51,7 +52,7 @@ Historical registries/specs remain for provenance.
 
 ## Physical canon
 
-The current authoritative physical canon is bound to:
+The authoritative physical canon is bound to:
 
 - repository `smoczynski-b/psi-model`;
 - commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -59,129 +60,85 @@ The current authoritative physical canon is bound to:
 - version `1.0.0`;
 - blob `72d711a40c65376ee932809802622f3985ecb02a`.
 
-This closes the current-canon provenance gap. Historical missing originals remain genealogy gaps only.
+Historical missing originals remain genealogy gaps only.
 
 ## Core status
-
-CORE5 remains
 
 \[
 \boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
 \]
 
-The current counterexample set does not force R4. This is not a universal completeness theorem.
+The current counterexample set does not force R4; this is not a universal completeness theorem.
 
-Exact task-information adequacy is
+Exact task-information adequacy:
 
 \[
 \boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
-For history/memory representations:
+History/memory specialization:
 
 \[
 \boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
 \]
 
-The proof audit and prose cross-checks preserve the scope distinction:
-
-\[
-\boxed{
-\text{task-adequate reduction}
-\neq
-\text{fully contract-legal reduction}
-}
-\]
-
-in general. Full legality can additionally require correct typing, admissible gauge/action, observation compatibility/equivariance and domain constraints.
-
-## Corrected MINI contract
-
-The first proof/source audit found a genuine error in the earlier Frenet/Bishop MINI statement: fixed-coordinate exact observation had been mixed with an external `SE(3)` quotient.
-
-The corrected theorem distinguishes:
-
-\[
-P_0^{abs}:Y=\gamma(t),
-\]
-
-with only constant Bishop-normal `SO(2)` presentation quotient in the same observation fibre, from
-
-\[
-P_0^{shape}:Y=[\gamma]_{SE(3)},
-\]
-
-where external `SE(3)` gauge is legal.
-
-C19-v2 records the repaired result.
+Task-information adequacy is not, in general, the whole contract-legality test.
 
 ## Current CAT / FACT status
 
 Physical CANON-03 defines:
 
-- `PSI-CAT`: whether data/protocol justify a catalog change and which class of changes is justified;
-- `PSI-CAT^D`: the same problem under domain-admissibility conditions `ADM_D`;
+- `PSI-CAT`: whether data/protocol justify catalog change and which class of changes is justified;
+- `PSI-CAT^D`: the same question under `ADM_D`;
 - `PSI-FACT`: the contract-relative fibre
   \[
   \operatorname{Fact}^{\varepsilon}_{D,P}(Y)
   \]
-  of legal factorizations compatible with observation, external interface and domain constraints.
+  of legal factorizations compatible with observation, interface and domain constraints.
 
-Gauge is quotiented when the contract establishes it.
+Gauge is quotiented only when the contract establishes it. Older rich CAT taxonomies and FACT groupoid/homotopy constructions remain derived extensions. `D_ADEQ^cat` is a typed protocol adapter, not a universal CORE primitive.
 
-The richer older CAT taxonomy and FACT groupoid/homotopy fibre are retained as **derived extensions**, not as replacements for the current physical definitions.
-
-A universal scalar `D_ADEQ^cat` is likewise not a CORE primitive; metric/loss-based catalog adequacy is a protocol-specific adapter.
-
-## First Principia freeze
+## Principia freeze and prose status
 
 The first mathematical/source freeze for Volumes I and II has passed:
 
 \[
+\boxed{\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.}
+\]
+
+The first V1 prose pass contains six locally checked units I.1–I.6.
+
+The whole-volume audit then found no semantic contradiction and no Freeze 01 erratum, but did find seven cross-chapter normalization requirements: protocol-refinement wording, suppressed contract indices in history notation, symbol collisions in I.4/I.5, local typing of laboratory witnesses, formal replacement of chained `!=` shorthand, and reduction of R4 project-history material in I.6.
+
+Therefore:
+
+\[
 \boxed{
-\mathrm{PRINCIPIA\ V1/V2\ FIRST\ FREEZE}=\mathrm{PASS}.
+\mathrm{WHOLE\!-
+V1\ CROSS\!-
+CHECK\ 01}
+=
+\mathrm{PASS\ WITH\ REQUIRED\ NORMALIZATION}.
 }
 \]
 
-It freezes definitions, theorem statements and hypotheses, source/classical status, dependencies, principal boundaries and regression obligations. It does **not** freeze final prose or typography and does not assert universal completeness of CORE5.
-
-## Principia V1 prose status
-
-The first prose pass now contains six units, each with local cross-check PASS:
-
-- `I.1 — Kontrakt i role semantyczne`;
-- `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu`;
-- `I.3 — Rozróżnienie zadaniowe i legalna redukcja`;
-- `I.4 — Historia, pamięć i przyszła semantyka zadania`;
-- `I.5 — Dokładna identyfikowalność, stabilność i licencja statystyczna`;
-- `I.6 — Granice metodologiczne i dyscyplina prymitywów`.
-
-Local cross-checks removed six recurrent scope inflations:
-
-1. task-information adequacy is not full contract legality;
-2. an empty fibre does not by itself localize the defect to the catalog;
-3. a quotient can preserve task information without being otherwise contract-legal;
-4. the reference history space need only contain enough structure to define legal future semantics and is not assumed memory-minimal;
-5. V1 statistical foundations retain only `exact ↛ stable ↛ confidence`, `UNRESOLVED` and probability-contract discipline; technical FS-STAT machinery remains in V2/V3;
-6. the canonical identification pipeline is distinct from the orthogonal `exact/stable/confidence` quality ladder, and the R4 stop remains project policy rather than a completeness theorem.
-
-The next gate is not V2 yet:
+The next gate is
 
 \[
-\boxed{\mathrm{WHOLE\!-\!V1\ CROSS\!-\!CHECK\ 01}.}
+\boxed{\mathrm{V1\!-
+NORMALIZATION\!-
+01}.}
 \]
 
-It must test I.1–I.6 as one system for notation, typing, logical order, theorem/policy boundaries, V2 handoffs and laboratory inflation.
+V2 prose does not begin until those nonsemantic corrections are applied and mechanically rechecked.
 
 ## Hardening bank
-
-The first regression bank remains
 
 \[
 \boxed{R01=\mathrm{HCube},\qquad R02=\mathrm{Go},\qquad R03=\mathrm{FS\!-\!STAT}.}
 \]
 
-Permanent statistical discipline:
+Permanent inference discipline:
 
 \[
 \boxed{
@@ -193,23 +150,24 @@ Permanent statistical discipline:
 
 ## PSI Agent Architecture v02
 
-The Agent-v02 procedure found and corrected the MINI contract error, recovered the physical canon instead of filling the gap from memory, and downgraded older rich machinery where the physical canon was narrower.
-
-During the prose phase it is used as a semantic cross-check: exposition may be improved, frozen semantics may not drift silently.
-
-No Agent v03 is justified by current evidence.
+Agent v02 remains current. During redaction it acts as a semantic/type cross-check. The whole-V1 audit found cross-chapter notation and architecture defects without exposing a missing governance primitive; no Agent v03 is justified.
 
 ## Current phase
 
 \[
 \boxed{
-\mathrm{I.1\!\!-\!I.6\ LOCAL\ PASS}
+\mathrm{V1\ LOCAL\ PASS}
 \to
-\mathrm{WHOLE\!-\!V1\ CROSS\!-\!CHECK}
+\mathrm{WHOLE\!-
+V1\ CROSS\!-
+CHECK}
+\to
+\mathrm{V1\ NORMALIZATION}
 \to
 \mathrm{V2\ PROSE}
 \to
-\mathrm{V2\ CROSS\!-\!CHECK}.
+\mathrm{V2\ CROSS\!-
+CHECK}.
 }
 \]
 
