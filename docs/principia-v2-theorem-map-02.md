@@ -1,11 +1,11 @@
 # PRINCIPIA SEMANTICA — V2 THEOREM MAP 02
 
-**Status:** `CURRENT / POST-OWN-LAYER-HANDOFF-AUDIT CONTROL MAP`  
-**Date:** 2026-09-28  
+**Status:** `CURRENT / CLASSICAL-BRIDGE LAYER IN PROGRESS`  
+**Date:** 2026-09-29  
 **Supersedes for control:** `principia-v2-theorem-map-01.md`  
 **Canonical source:** physical `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Claim source:** `claim-registry-12.md`  
-**Falsifier source:** `falsifier-registry-10.md`  
+**Falsifier source:** `falsifier-registry-11.md`  
 **Regression source:** `regression-bank-01.md`  
 **Freeze:** `principia-v1-v2-freeze-01.md`  
 **Early spine audit:** `principia-v2-spine-crosscheck-01.md` (`II.1–II.4`)  
@@ -15,7 +15,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i niezależnym handoff-cross-checku II.1–II.9.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass, niezależnym handoff-cross-checku II.1–II.9 oraz rozpoczęciu klasycznej warstwy mostów.
 
 Każda jednostka V2 ma mieć:
 
@@ -272,23 +272,51 @@ No Freeze 01 erratum was required.
 
 ---
 
-## 4. Classical bridge layer — released after own-layer handoff audit
+## 4. Classical bridge layer — in progress
 
-### Lumpability — C13
+### II.10 — C13 Strong Markov lumpability
 
-Strong lumpability remains a classical theorem plus conditional PSI bridge. Task equivalence alone does not imply stochastic lumpability.
+For a finite homogeneous Markov chain `(S,P)` and equivalence `E`, define
 
-**STATUS:** `NEXT / SOURCE-BOUND / RELEASED`.
+\[
+P(x,C)=\sum_{z\in C}P(x,z)
+\]
 
-### Myhill–Nerode — C18
+for quotient blocks `C∈S/E`.
+
+The Kemeny–Snell condition
+
+\[
+\boxed{
+xEy\Rightarrow P(x,C)=P(y,C)\quad\forall C\in S/E
+}
+\]
+
+is equivalent to existence of the representative-independent quotient transition matrix
+
+\[
+\bar P([x],C)=P(x,C),
+\]
+
+and to strong lumpability / Markovian block dynamics for every initial distribution.
+
+**STATUS:** `PASS / CLASSICAL THEOREM + PSI BRIDGE`.  
+**SOURCE:** Kemeny–Snell, *Finite Markov Chains*, Ch. VI §6.3, Thm. 6.3.2.  
+**PSI BRIDGE:** task equivalence identifies which distinctions may be forgotten; lumpability separately tests whether stochastic dynamics remain autonomous after forgetting.  
+**FALSIFIER:** F61 — a statically task-legal partition need not be lumpable.  
+**UNIT:** `principia-v2-10-strong-lumpability-bridge.md`.
+
+### II.11 — Myhill–Nerode — C18
 
 PSI future-test equivalence realizes Nerode equivalence under continuation-test closure.
 
-**STATUS:** `BRIDGE READY / CLASSICAL ATTRIBUTION REQUIRED`.
+**STATUS:** `NEXT / BRIDGE READY / CLASSICAL ATTRIBUTION REQUIRED`.
 
 ### Paige–Tarjan — C14
 
 Classical algorithmic benchmark only, not PSI theorem.
+
+**STATUS:** `QUEUED AFTER MYHILL–NERODE`.
 
 ### Probabilistic bisimulation
 
@@ -315,7 +343,11 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 \boxed{
 \mathrm{II.1:II.9\ GLOBAL\ PASS}
 \to
-\mathrm{CLASSICAL\ BRIDGES}
+\mathrm{II.10\ LUMPABILITY\ PASS}
+\to
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}
+\to
+\mathrm{PAIGE\!\!-\!TARJAN}
 \to
 \mathrm{CAT/FACT/FRAME/HIGHER}
 \to
@@ -323,4 +355,4 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 }
 \]
 
-No new primitive, Agent version or benchmark is licensed by this map. It coordinates already frozen material.
+No new primitive or Agent version is licensed by this map. F61 is a new regression of an existing distinction, not a new semantic role.
