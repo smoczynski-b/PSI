@@ -38,6 +38,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Whole-V1 Cross-Check 01](docs/principia-v1-whole-crosscheck-01.md)
 - [V1 Normalization 01](docs/principia-v1-normalization-01.md)
 - [Principia V2.1 — Exact task-level decidability](docs/principia-v2-01-exact-task-decidability.md)
+- [Principia V2.2 — Kernel factorization criterion](docs/principia-v2-02-kernel-factorization.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -156,9 +157,7 @@ It freezes definitions, theorem statements/hypotheses, source status, dependenci
 
 ## Volume I status
 
-The six first-pass foundation units have been written and locally cross-checked. The whole-volume audit then detected seven nonsemantic notation/editorial normalization issues. `V1 NORMALIZATION 01` applied all N1–N7 without changing Freeze 01 semantics.
-
-Therefore:
+The six foundation units passed local cross-check, Whole-V1 Cross-Check 01 and V1 Normalization 01.
 
 \[
 \boxed{
@@ -168,21 +167,11 @@ Therefore:
 }
 \]
 
-Key normalizations include:
-
-- protocol workflow read as `P0 -> diagnosis -> P1` redesign/refinement;
-- explicit suppression of contract index in RED-1 history notation;
-- memory codomain `Z_t`, avoiding collision with task quantity `R`;
-- local typing of all Go/LAZARUS witness symbols used in V1;
-- inference gates `G_EX`, `G_ST`, `G_PR`, avoiding collision with `E_T`;
-- removal of untyped chained `!=` shorthand;
-- detailed R4 pressure-court genealogy moved out of V1 foundation prose.
-
 No Freeze 01 erratum was required.
 
 ## Volume II theorem-spine status
 
-V2.1 has been written, proved and cross-checked:
+### V2.1 — exact task-level decidability
 
 \[
 \boxed{
@@ -202,13 +191,35 @@ Status:
 }
 \]
 
-The result is explicitly classified as a **classical elementary quotient fact / PSI-adapted central criterion**. The proof uses no finiteness, topology, probability, stability or computability assumptions. The empty-fibre condition is retained as a mandatory theorem boundary.
+This is explicitly a **classical elementary quotient fact / PSI-adapted central criterion**.
+
+### V2.2 — kernel factorization criterion
+
+\[
+\boxed{
+\ker_{eq}\rho\subseteq\ker_{eq}R
+\iff
+\exists!\,g:\operatorname{im}\rho\to W,
+\quad
+R=g\circ\rho.
+}
+\]
+
+Status:
+
+\[
+\boxed{
+\mathrm{V2.2}=\mathrm{THEOREM\ PROSE\ PASS\ 01 / PROOF\ PASS / CROSS\!-\!CHECK\ PASS}.
+}
+\]
+
+This is explicitly a **classical elementary factorization lemma / PSI-adapted tool**. F60 remains mandatory: uniqueness holds only on `im rho`; extension beyond the image requires additional structure and need not be unique.
 
 Next theorem:
 
 \[
 \boxed{
-\mathrm{V2.2\ —\ kernel\ factorization\ criterion}.
+\mathrm{V2.3\ —\ global\ task\ sufficiency\ of\ the\ observer}.
 }
 \]
 
@@ -226,13 +237,7 @@ These remain regression/boundary witnesses, not theorem substitutes.
 
 ## PSI Agent Architecture v02
 
-Agent v02 remains current. It is now used during theorem prose to enforce:
-
-- type/domain discipline;
-- scope fidelity to freeze;
-- source/classical-status separation;
-- theorem versus policy/benchmark separation;
-- regression binding.
+Agent v02 remains current and enforces type/domain discipline, scope fidelity, source/classical-status separation, theorem/benchmark separation and regression binding during theorem prose.
 
 No Agent v03 is justified by current evidence.
 
@@ -244,7 +249,7 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{V2.1\ PASS}
 \to
-\mathrm{V2.2\ KERNEL\ FACTORIZATION}
+\mathrm{V2.2\ PASS}
 \to
 \mathrm{V2.3\ GLOBAL\ SUFFICIENCY}
 \to
