@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 DYNAMIC-HISTORY LAYER IN PROGRESS`.
+**State:** `V1 NORMALIZED PASS / V2 OWN QUOTIENT-HISTORY LAYER COMPLETE / CLASSICAL BRIDGES NEXT`.
 
 Done:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -34,7 +34,8 @@ Done:
 - V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS;
 - V2.6 `Deterministyczna dynamika ilorazowa` — PASS;
 - V2.7 `Dokładna adekwatność pamięci historii` — PASS;
-- V2.8 `Najgrubszy dokładny iloraz historii` — PASS.
+- V2.8 `Najgrubszy dokładny iloraz historii` — PASS;
+- V2.9 `Rekurencyjna aktualizacja ilorazu historii` — PASS.
 
 ### Current Volume-I verdict
 
@@ -48,15 +49,15 @@ Done:
 
 No Freeze 01 erratum was required.
 
-### Current V2 quotient/dynamics/history verdict
+### Current V2 own-layer verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.8}=\mathrm{PASS}.
+\mathrm{V2.1:V2.9}=\mathrm{PASS}.
 }
 \]
 
-Core exact results now exposed in theorem prose include:
+The exact quotient/history spine now contains:
 
 \[
 |q_{\mathcal T,c}(F_c(Y))|=1
@@ -70,97 +71,59 @@ F_c(Y)\times F_c(Y)\subseteq E_{\mathcal T,c},
 \ker_{eq}\rho\subseteq\ker_{eq}R
 \iff
 \exists!\,g:\operatorname{im}\rho\to W,
-\quad
-R=g\circ\rho,
+\quad R=g\circ\rho,
 \]
 
 \[
-\ker_{eq}\rho\subseteq E_{\mathcal T,c}
-\iff
-q_{\mathcal T,c}\text{ factors through }\rho,
-\]
-
-\[
-\ker_{eq}q\subseteq E_{\mathcal T,c}
-\]
-
-for exact task-information legality of a reduction,
-
-\[
-\boxed{xEy\Longrightarrow\delta(x)E\delta(y)}
-\]
-
-iff a unique deterministic quotient dynamics exists, and for history memory
-
-\[
-\boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
-}
-\]
-
-with
-
-\[
-H\equiv_{\mathcal T,t}H'
-\iff
-\operatorname{Beh}_{\mathcal T}(H)
-\cong
-\operatorname{Beh}_{\mathcal T}(H').
-\]
-
-The canonical history quotient is
-
-\[
-\boxed{
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
-}
-\]
-
-and for every exact memory
-
-\[
-\rho_t:\mathcal H_t\to Z_t
-\]
-
-there is a unique surjection
-
-\[
-\boxed{
-f_t:\operatorname{im}\rho_t\twoheadrightarrow M_{\mathcal T,t},
+\ker_{eq}\rho\subseteq E_{\mathcal T,c},
 \qquad
-q_{\mathcal T,t}=f_t\circ\rho_t.
+\ker_{eq}q\subseteq E_{\mathcal T,c},
+\]
+
+\[
+xEy\Longrightarrow\delta(x)E\delta(y),
+\]
+
+\[
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t},
+\qquad
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
+\]
+
+and, for typed legal history extension,
+
+\[
+\boxed{
+U_{\mathcal T,t}([H],\varepsilon,y)
+=
+[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}
 }
 \]
 
-Thus `equiv_T,t` is the largest admissible exact equivalence relation and `M_T,t` the coarsest exact quotient in quotient order.
+on the quotient-level legal domain \(\overline D_t\).
 
 Scope locks:
-- uniqueness/minimality is evaluated on representation image (F60), not unused codomain points;
+- uniqueness/factorization only on representation images (F60);
 - global observer sufficiency is not per-record decidability;
 - factorization sufficiency is not statistical sufficiency;
 - task-information adequacy is not full contract legality (F57);
 - geometric symmetry does not automatically establish observation-compatible gauge (F55);
 - static task adequacy does not imply dynamic descent;
 - deterministic congruence is not stochastic lumpability;
-- if task closure is stable under `R -> R∘delta_c`, then `E_T,c` is automatically a congruence for `delta_c`;
-- coarsest exact quotient is not automatically minimum bits/dimension/storage/compute;
-- full history is not asserted to be the minimal implementation;
-- Go/LAZARUS remain scoped regressions, not proofs of the general history theorems.
+- quotient-order coarseness is not bit/dimension/storage/compute minimality;
+- well-defined mathematical recurrence does not imply representative-free algorithmics, computability or efficiency (F43);
+- Go/LAZARUS remain scoped regressions, not proofs of the general history results.
 
 ### Next
 
-1. write **V2.9 — Recursive quotient update** (C45/C59);
-2. type the legal extension domain explicitly;
-3. prove well-definedness of
-   \[
-   U_{\mathcal T,t}([H_t],\varepsilon_t,y_{t+1})
-   =
-   [\delta_t(H_t,\varepsilon_t,y_{t+1})]_{\mathcal T,t+1};
-   \]
-4. preserve F43: mathematical recurrence does not imply finite memory, computability or efficiency;
-5. only afterward proceed to classical bridge layer.
+1. start **classical bridge layer** with strong lumpability C13;
+2. state the classical Markov condition with exact block-transition typing;
+3. keep `task equivalence => lumpability` forbidden without the stochastic block condition;
+4. then Myhill–Nerode C18;
+5. then Paige–Tarjan C14 as algorithmic benchmark, not PSI theorem;
+6. only after bridges return to CAT/FACT/FRAME/HIGHER and then whole-V2 cross-check.
 
-STOP condition: do not promote quotient-order coarseness or recursive well-definedness into implementation optimality.
+STOP condition: do not transfer deterministic congruence unchanged to stochastic kernels, and do not present classical constructions as PSI inventions.
 
 ---
 
@@ -213,7 +176,8 @@ Mandatory boundaries:
 - F57 task adequacy vs full contract legality;
 - F58 old-source automatic promotion;
 - F59 MINI vs general FACT;
-- F60 factorization uniqueness only on `im rho`.
+- F60 factorization uniqueness only on `im rho`;
+- F43 mathematical recurrence vs finite/efficient memory.
 
 Local theorem regressions:
 - II.1: empty fibre never counts as exact resolution;
@@ -223,7 +187,8 @@ Local theorem regressions:
 - II.5: F57/F55 block overpromotion of quotient/gauge legality;
 - II.6: fixed three-state witness shows static quotient adequacy does not imply dynamic projectability;
 - II.7: one pair of histories with equal memory and different future-task trees falsifies memory adequacy;
-- II.8: any proposed quotient relation `Q` containing a pair `H Q H'` with `H not equiv_T,t H'` is too coarse; F60 restricts factorization/minimality claims to `im rho_t`.
+- II.8: any quotient relation containing a future-task-distinct pair is too coarse;
+- II.9: legal-domain invariance and successor-class invariance are both required for quotient update; R02 tests both.
 
 ---
 
@@ -297,9 +262,9 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.8\ PASS}
+\mathrm{V2.1:V2.9\ PASS}
 \to
-\mathrm{V2.9\ NEXT}.
+\mathrm{CLASSICAL\ BRIDGES\ NEXT}.
 }
 \]
 
@@ -307,9 +272,13 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{II.9\ HISTORY\ UPDATE}
+\mathrm{LUMPABILITY}
 \to
-\mathrm{CLASSICAL\ BRIDGES}
+\mathrm{MYHILL\!\!-\!NERODE}
+\to
+\mathrm{PAIGE\!\!-\!TARJAN}
+\to
+\mathrm{CAT/FACT/FRAME/HIGHER}
 \to
 \mathrm{V2\ WHOLE\ CROSSCHECK}.
 }
