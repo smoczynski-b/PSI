@@ -4,7 +4,7 @@
 **Supersedes:** `claim-registry-02.md` as current public registry  
 **Canonical source:** `PSI-R3-CONSOLIDATED-CANON-03`
 
-This version adds the first full dual-operator mathematical run: `CAT–FACT–NORM–MINI-01`.
+This version includes the first full dual-operator mathematical run: `CAT–FACT–NORM–MINI-01`, with the later notation correction separating raw realizations from the gauge-quotiented factorization fibre.
 
 | ID | Claim / object | Status | Role | Evidence / next gate |
 |---|---|---|---|---|
@@ -26,7 +26,7 @@ This version adds the first full dual-operator mathematical run: `CAT–FACT–N
 | C16 | STPψ/GTPψ, TAO/SMOK, universal semantic-field core | SUPERSEDED | GENEALOGICAL | may survive only as genealogy or independently typed realization |
 | C17 | SOP-11b resonance claims | OPEN / POLICY | LAB / BENCHMARK | fixed universal thresholds require stochastic assumptions/calibration/proof |
 | C18 | Nerode equivalence as future-test PSI realization | CLASSICAL theorem + exact PSI realization under stated contract | BENCHMARK / ADAPTED | future-test construction |
-| C19 | `CAT–FACT–NORM–MINI-01`: finite Frenet/Bishop grammar on a regular time-parametrized interval curve reduces to one Bishop factorization class modulo `SE(3)×SO(2)` | BRIDGE / MINI | LAB / BENCHMARK | termination + local confluence modulo gauge + exact reconstruction under stated hypotheses |
+| C19 | `CAT–FACT–NORM–MINI-01`: finite Frenet/Bishop grammar on a regular time-parametrized interval curve reduces to one Bishop normal class; the raw compatible realization family has one class after Euclidean and normal-frame gauge | BRIDGE / MINI | LAB / BENCHMARK | termination + confluence modulo gauge + exact reconstruction under stated hypotheses |
 | C20 | In MINI-01, failure of the Frenet frame at `κ=0` while the curve remains regular is a recode/domain event, not catalog `birth` | BRIDGE | CAT/FRAME BENCHMARK | follows from legal `F→B` recode preserving external curve behaviour |
 | C21 | Closed-loop extension of MINI-01 requires explicit holonomy/periodicity treatment | OPEN | BENCHMARK / PRESSURE TEST | do not extrapolate the interval theorem to `S^1` |
 
@@ -92,7 +92,7 @@ with fixed time parameter, use the finite grammar
 
 of legal Frenet and Bishop segments.
 
-The rewrites are:
+The rewrites are
 
 \[
 F_I\to B_I
@@ -110,23 +110,41 @@ With
 \mu(X)=(n_F(X),n_{seg}(X))
 \]
 
-in lexicographic order, the system terminates. Critical pairs are joinable modulo the declared `SO(2)` normal-plane gauge, giving local confluence modulo gauge. Therefore each legal finite Frenet/Bishop segmentation reduces to one Bishop normal class.
+in lexicographic order, the induced rewrite on gauge classes terminates. Its critical pairs are joinable modulo the constant `SO(2)` normal-plane gauge, so the induced quotient rewrite is confluent.
 
-Exact observation determines
+The reduced datum is
 
 \[
-v(t)=\|\dot\gamma(t)\|
+N_{FB}(\gamma)=\bigl(v(t),[k_1(s),k_2(s)]_{SO(2)}\bigr).
 \]
 
-and the Bishop curvature vector modulo one constant normal-plane rotation. Conversely those data reconstruct the curve modulo the initial Euclidean frame. Hence
+`SE(3)` acts on the embedded realization / initial Euclidean frame, not directly on these scalar functions.
+
+Define the raw compatible realization family
+
+\[
+\operatorname{RawFact}^{0}_{FB,P_0}(Y)
+\]
+
+and the factorization fibre after the declared realization gauge
 
 \[
 \boxed{
-\left|
-\operatorname{Fact}^{0}_{FB,P_0}(Y)/(SE(3)\times SO(2))
-\right|=1.
+\operatorname{Fact}^{0}_{FB,P_0}(Y)
+:=
+\operatorname{RawFact}^{0}_{FB,P_0}(Y)/(SE(3)\times SO(2)_{normal}).
 }
 \]
+
+Then
+
+\[
+\boxed{
+\left|\operatorname{Fact}^{0}_{FB,P_0}(Y)\right|=1.
+}
+\]
+
+No second quotient is applied to `Fact`.
 
 This is a PSI bridge/mini-realization built from classical differential geometry, not a novelty claim for Bishop or Frenet theory.
 
@@ -142,7 +160,7 @@ The statement is contract-relative and must not be generalized to unrelated repr
 
 ## C21 — closed-loop gate
 
-The C19 proof is for an interval. For a closed parameter domain, normal-plane parallel transport may carry a nontrivial return rotation. Any periodic/global normal-form statement must therefore carry a holonomy/monodromy datum or prove it trivial under additional hypotheses.
+The C19 proof is for an interval. For a closed parameter domain, normal-plane parallel transport may carry a nontrivial return rotation. Any periodic/global normal-form statement must therefore carry, quotient or otherwise account for the return-rotation/holonomy datum, or prove it trivial under additional hypotheses.
 
 Current status:
 
