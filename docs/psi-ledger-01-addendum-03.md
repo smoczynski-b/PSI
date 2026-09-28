@@ -74,15 +74,76 @@ Result: `III.1 PASS`.
 
 ## E035 — PHISICA local falsifier bank
 
-`phisica-falsifier-registry-01.md` freezes PF01–PF10, including:
+`phisica-falsifier-registry-01.md` freezes PF01–PF11, including:
 
 - regular coordinate != projectable operator;
 - formal expression != self-adjoint realization;
 - weight measure != spectral measure;
 - eigenvalues alone != complete representation;
-- Hellmann–Feynman requires perturbation hypotheses.
+- Hellmann–Feynman requires perturbation hypotheses;
+- integrating-factor weight != geometric pushforward without an additional coarea/integration contract.
 
 These are migration guards, not new PSI primitives.
+
+## E036 — weighted realization and geometric pushforward
+
+III.2 separates two statements previously conflated in PHISICA.
+
+First, for projectable coefficients with `B>0`,
+
+\[
+\boxed{(\rho B)'=\rho C}
+\]
+
+defines a positive Sturm–Liouville/Hilbert weight uniquely up to positive scale and yields
+
+\[
+\boxed{
+L_\Lambda
+=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).
+}
+\]
+
+This gives formal symmetry on compactly supported test functions but not self-adjointness.
+
+Second, under a proper-submersion/coarea contract, the geometric pushforward
+
+\[
+\Lambda_*(d\mathrm{vol}_g)=m(\lambda)d\lambda
+\]
+
+has density
+
+\[
+m(\lambda)
+=\int_{\Lambda^{-1}(\lambda)}|\nabla\Lambda|^{-1}dA_\lambda
+\]
+
+and Green's identity plus III.1 projectability gives
+
+\[
+\boxed{(mB)'=mC.}
+\]
+
+Hence on connected `I`, `m=K rho`; after normalization,
+
+\[
+\boxed{
+\rho d\lambda=\Lambda_*(d\mathrm{vol}_g).
+}
+\]
+
+This fixes the geometric normalization and makes `T_Lambda` an isometry onto the fibre-constant Hilbert subspace.
+
+Permanent boundary:
+
+\[
+\boxed{
+\text{Hilbert weight}\neq\text{spectral measure}.
+}
+\]
+
+Result: `III.2 PASS`.
 
 ---
 
@@ -112,7 +173,7 @@ These are migration guards, not new PSI primitives.
 }
 \]
 
-**Result:** III.1 passes; III.2 released.
+**Result:** III.1 and III.2 pass; III.3 released.
 
 ## D016 — keep historical PSI-13 / DNA / broad LOGOS claims in genealogy
 
@@ -125,6 +186,18 @@ Until they pass the new gates, do not promote:
 
 These remain Volume IV/source genealogy or unresolved Volume III material.
 
+## D017 — separate weight construction from geometric and spectral measures
+
+**Observation:** the historical source uses the same `rho` language for the integrating factor, Hilbert weight and a claimed spectral measure.
+
+**Action:** keep three levels separate:
+
+1. integrating-factor/Hilbert weight from `(rho B)'=rho C`;
+2. geometric pushforward only after coarea/integration hypotheses;
+3. spectral measure only after a specified self-adjoint realization and the spectral theorem.
+
+**Result:** III.2 passes without promoting any spectral-measure claim. PF11 added.
+
 ---
 
 # C. Current handoff
@@ -133,7 +206,9 @@ These remain Volume IV/source genealogy or unresolved Volume III material.
 \boxed{
 \mathrm{III.1\ PASS}
 \to
-\mathrm{III.2\ WEIGHT/STURM\!-\!LIOUVILLE\ NEXT}.
+\mathrm{III.2\ PASS}
+\to
+\mathrm{III.3\ DOMAIN/SELF\!\!-\!ADJOINT\ NEXT}.
 }
 \]
 
