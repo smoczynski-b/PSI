@@ -12,20 +12,6 @@ The central object is not a guessed hidden state, but the full set of states sti
 F(Y)=\Psi^{-1}(\mathcal K^Y).
 \]
 
-Inference is organized in the intended order
-
-\[
-\text{catalog adequacy}
-\to
-\text{fiber}
-\to
-\text{local identifiability}
-\to
-\text{global identifiability}
-\to
-\text{protocol design}.
-\]
-
 For a task \(\mathcal T\), the current exact task-level criterion is
 
 \[
@@ -33,7 +19,7 @@ For a task \(\mathcal T\), the current exact task-level criterion is
 \iff
 F(Y)\neq\varnothing
 \land
-F(Y)^2\subset E_{\mathcal T}.
+F(Y)\times F(Y)\subset E_{\mathcal T}.
 \]
 
 This repository is a **public entry point** to the PSI project. It is intentionally smaller and more stable than the internal working corpus.
@@ -41,13 +27,15 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v10](docs/claim-registry-10.md)
-- [Current falsifier registry v09](docs/falsifier-registry-09.md)
+- [Current claim registry v11](docs/claim-registry-11.md)
+- [Current falsifier registry v10](docs/falsifier-registry-10.md)
+- [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
+- [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
 - [Decision / Epistemic Ledger 01](docs/psi-ledger-01.md)
 - [Principia V1 Unit Map 01](docs/principia-v1-unit-map-01.md)
 - [Principia V2 Theorem Map 01](docs/principia-v2-theorem-map-01.md)
-- [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
+- [CAT–FACT–NORM–MINI 01 — corrected contract](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
 - [HIGHER-FIBRE 01](docs/higher-fibre-01.md)
@@ -62,36 +50,116 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Source governance discipline](docs/source-governance-01.md)
 - [Classical comparison map](docs/classical-compare-01.md)
 - [Mathematical lineage](docs/lineage.md)
-- [Method and working discipline](docs/method.md)
-- [Model-to-model handoff discipline](docs/llm-handoff.md)
-- [Experimental PSI–Jev adapter](docs/jev-adapter.md)
-- [Experimental and conformance runs](experiments/README.md)
-- [Publications and archived research objects](docs/publications.md)
-- Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries/specs remain for provenance. Current control pointers are claim-registry v10, falsifier-registry v09, Regression Bank 01, Agent Architecture v02 and Principia skeleton v02.
+Historical registries/specs remain for provenance. Current control pointers are **claim-registry v11**, **falsifier-registry v10**, **Regression Bank 01**, **Agent Architecture v02**, and **Proof/Source/Migration Audit 01**.
 
-## Pressure phase
+## Core status
 
 The primitive-pressure sequence is closed. CAT/FACT, CLOSED-FRAME, LAZARUS-AGENCY and HIGHER-FIBRE did not force a sixth semantic role. `R4-PRESSURE-COURT-01` keeps CORE5 frozen until a genuinely new typed counterexample survives the role-preservation and minimality gates.
 
 This is not a universal completeness theorem.
 
-## First hardening cycle
+Exact representation adequacy is
 
-The first post-R4 hardening cycle contains three independent regressions:
+\[
+\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
+\]
+
+The proof audit sharpened its scope:
+
+\[
+\boxed{
+\text{task-adequate reduction}
+\neq
+\text{fully contract-legal reduction}
+}
+\]
+
+in general. Full legality can additionally require correct typing, admissible gauge/action, observation compatibility/equivariance and domain constraints.
+
+## Proof/source/migration audit
+
+`PROOF-SOURCE-MIGRATION-AUDIT-01` gives the first formal freeze-gate result.
+
+### Passed elementary spine
+
+- C06 exact task-level decidability — `PASS`;
+- C07 kernel factorization — `PASS`;
+- C08 global task sufficiency — `PASS`;
+- C09 exact representation adequacy — `PASS WITH SCOPE CORRECTION`;
+- C10 deterministic quotient dynamics — `PASS`.
+
+### History quotient
+
+The RED-1 future-task construction has been migrated to C57–C59:
+
+\[
+H\equiv_{\mathcal T,t}H'
+\iff
+\operatorname{Beh}_{\mathcal T}(H)
+\cong
+\operatorname{Beh}_{\mathcal T}(H')
+\]
+
+through a rooted label-preserving future-tree isomorphism. Its equivalence, congruence and partial recursive-update results are now registered.
+
+### MINI contract errata
+
+The audit found a real defect in the earlier MINI statement. Exact fixed-coordinate observation
+
+\[
+Y=\gamma(t)
+\]
+
+was combined with an external `SE(3)` quotient, although a nontrivial Euclidean motion generally changes that observation.
+
+The corrected result now distinguishes:
+
+\[
+P_0^{abs}:\quad Y=\gamma(t),
+\]
+
+with only constant Bishop-normal `SO(2)` quotient in the same observation fibre, from
+
+\[
+P_0^{shape}:\quad Y=[\gamma]_{SE(3)},
+\]
+
+where external `SE(3)` gauge is legal.
+
+C19 has therefore been replaced by **C19-v2** without changing CORE5.
+
+## CAT / ADEQ / FACT migration
+
+Strong older typed sources have been aligned with the current public CANON-03 derivative. They contain:
+
+- protocol-relative catalog adequacy;
+- `GEN ≠ TEST ≠ SELECT`;
+- gauge as realization isomorphism rather than catalog change;
+- typed CAT layers `ISO/HOR/REF/CRS`;
+- `PSI-FACT = PSI-CAT|_{FactMorph}`;
+- a factorization groupoid and weak/homotopy ADEQ fibre preserving stabilizers and compatibility witnesses.
+
+The semantic roles align with the current public core. However the physical authoritative `PSI-R3-CONSOLIDATED-CANON-03` source has not yet been bound in this audit, so the migration remains **ALIGNMENT / REVIEW**, not canonical freeze.
+
+## Classical comparison
+
+The comparison map now binds the main imported sources and keeps their role separate from PSI claims:
+
+- Kemeny–Snell — Markov lumpability;
+- Larsen–Skou — probabilistic bisimulation;
+- Myhill / Nerode — future-continuation equivalence and automata theorem provenance;
+- Paige–Tarjan — partition refinement benchmark;
+- Newman — termination + local confluence ⇒ confluence;
+- Bishop / later RMF literature — framing and closed-loop geometry.
+
+## Hardening bank
+
+The first post-R4 hardening cycle remains
 
 \[
 \boxed{R01=\mathrm{HCube},\qquad R02=\mathrm{Go},\qquad R03=\mathrm{FS\!-\!STAT}.}
 \]
-
-Their common invariant is:
-
-\[
-\boxed{\text{a representation is legal only if it preserves every distinction required by the task}.}
-\]
-
-HCube tests operator representation adequacy; Go tests history/memory adequacy; FS-STAT separates exact identifiability from perturbation stability and confidence licensing.
 
 Permanent statistical discipline:
 
@@ -103,94 +171,27 @@ Permanent statistical discipline:
 }
 \]
 
-## Principia redaction
+## Principia freeze status
 
-`V1-UNIT-MAP-01` and `V2-THEOREM-MAP-01` are complete. Neither is a volume freeze.
+The V1/V2 maps and Audit 01 are complete, but the first volume freeze is still deliberately blocked.
 
-### V1
-
-Volume I is mapped as six structural units with explicit statement class, dependencies, downstream use, regression binding and source status. One major migration gap remains: the older formal catalog-adequacy definition has a recoverable source but no dedicated current claim ID.
-
-### V2
-
-Volume II is now separated into:
-
-1. self-contained quotient/factorization results;
-2. classical bridges requiring exact source/hypothesis binding;
-3. benchmarks/pressure witnesses that test scope but do not create theorem status.
-
-The elementary spine
+Current remaining gate:
 
 \[
-C06,C07\to C08,C09\to C32/C37
+\boxed{\mathrm{CANON03\!-\!SOURCE\!-\!BIND\!-\!01}.}
 \]
 
-is structurally ready for proof audit.
-
-Current V2 blockers are explicit:
-
-- history future-task equivalence lacks a dedicated current definition ID;
-- probabilistic bisimulation comparison lacks a current C-ID;
-- general CAT/FACT definitions are not yet fully migrated into current registered form;
-- exact source/hypothesis binding is still needed for imported classical results;
-- MINI requires a dedicated proof audit of quotient rewrite, critical pairs and Newman hypotheses.
-
-Therefore:
+After that bind, the next legal step is
 
 \[
-\boxed{\mathrm{V1\ FREEZE}=\mathrm{NOT\ YET},\qquad
-\mathrm{V2\ FREEZE}=\mathrm{NOT\ YET}.}
+\boxed{\mathrm{V1\!-\!V2\!-\!FREEZE\!-\!RECHECK\!-\!01}.}
 \]
 
-Current execution order:
-
-\[
-\boxed{
-\mathrm{V1\ MAP\ DONE}
-+
-\mathrm{V2\ MAP\ DONE}
-\to
-\mathrm{PROOF/SOURCE/MIGRATION\ AUDIT}
-\to
-\mathrm{FIRST\ V1/V2\ FREEZE}
-\to
-\mathrm{PROSE}.
-}
-\]
+Only after a PASS should polished chapter prose begin.
 
 ## PSI Agent Architecture v02
 
-The current agent operates through
-
-\[
-\boxed{
-\mathrm{RESCAN}
-\to
-\mathrm{ROUTER}
-\to
-\mathrm{CONTRACT\ SNAPSHOT}
-\to
-\mathsf E
-\to
-\mathsf A_0
-\to
-\mathsf A_1
-\to
-\mathsf E_{fals}
-\to
-\mathrm{IMPACT}
-\to
-\mathrm{DECIDE}
-\to
-\mathrm{REGRESSION}
-\to
-\mathrm{HANDOFF}.
-}
-\]
-
-The V1/V2 mapping phase did not reveal a missing control primitive. Missing sources and missing current claim IDs remain explicit gaps instead of being filled from memory.
-
-Decision and epistemic phase changes are recorded in `docs/psi-ledger-01.md`; ordinary derivations are intentionally not logged.
+The audit is a substantive Agent-v02 regression: the procedure found and corrected a genuine contract error in an already accepted bridge result instead of defending it narratively.
 
 No Agent v03 is justified by the current evidence.
 
@@ -204,14 +205,14 @@ Primitive growth remains stopped until a new counterexample forces a genuinely n
 
 Archived project materials are available on Zenodo:
 
-- DOI: [10.5281/zenodo.18893354](https://doi.org/10.5281/zenodo.18893354)
-- DOI: [10.5281/zenodo.18644750](https://doi.org/10.5281/zenodo.18644750)
-- DOI: [10.5281/zenodo.18498472](https://doi.org/10.5281/zenodo.18498472)
-- DOI: [10.5281/zenodo.18498440](https://doi.org/10.5281/zenodo.18498440)
+- DOI: 10.5281/zenodo.18893354
+- DOI: 10.5281/zenodo.18644750
+- DOI: 10.5281/zenodo.18498472
+- DOI: 10.5281/zenodo.18498440
 
 ## Language
 
-The internal theoretical development is primarily in Polish. Public interoperability and repository-facing material are written in English. Important material transferred between models follows the model-to-model handoff discipline: facts, claims, inferences, uncertainty and next actions retain their status.
+The internal theoretical development is primarily in Polish. Public interoperability and repository-facing material are written in English.
 
 ## License
 
