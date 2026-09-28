@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.6. Granice metodologiczne i dyscyplina prymitywów
 
-**Status:** `FIRST PROSE PASS / FROM V1-V2 FREEZE 01`  
+**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md` z zachowanymi C12, C34–C36, C60–C66  
 **Zakres:** zasady graniczne i dyscyplina wnioskowania; bez nowych twierdzeń matematycznych i bez rozszerzania CORE5.
@@ -96,9 +96,9 @@ Ta sama zasada pojawiła się w I.5 przy bramce stabilności: brak certyfikacji 
 
 ---
 
-## 4. Adekwatność, identyfikowalność i stabilność są różnymi pytaniami
+## 4. Dwa porządki, których nie wolno mieszać
 
-PSI utrzymuje porządek logiczny:
+PSI utrzymuje kanoniczną kolejność problemu identyfikacji:
 
 \[
 \boxed{
@@ -106,27 +106,41 @@ PSI utrzymuje porządek logiczny:
 \to
 \text{WŁÓKNO}
 \to
-\text{IDENTYFIKOWALNOŚĆ}
+\text{IDENTYFIKOWALNOŚĆ LOKALNA}
 \to
-\text{STABILNOŚĆ}
+\text{IDENTYFIKOWALNOŚĆ GLOBALNA}
 \to
-\text{LICENCJA STATYSTYCZNA},
+\text{PROJEKTOWANIE PROTOKOŁU}.
 }
 \]
 
-gdy kolejne poziomy są częścią danego problemu.
+Jest to porządek pytań o katalog, dane i rozstrzygalność.
 
-Nie wolno skracać tego ciągu przez utożsamienia:
+Osobno, gdy konkretny wniosek został już sformułowany, można badać jego jakość:
 
 \[
 \boxed{
-\text{adekwatność}\neq\text{identyfikowalność}\neq\text{stabilność}.
+\mathrm{ID}_{exact}
+\not\Rightarrow
+\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}
+\not\Rightarrow
+\mathrm{CONF}_{1-\alpha}.
 }
 \]
 
-Adekwatny katalog może zawierać wiele realizacji zgodnych z danymi. Dokładnie identyfikowalny wynik może być niestabilny. Stabilny estimator nie otrzymuje przez to automatycznie częstotliwościowej interpretacji ufności.
+Ta druga relacja nie jest dalszym odcinkiem pierwszej sekwencji. Jest **ortogonalną kontrolą jakości wniosku**. Nie każdy problem wymaga warstwy statystycznej, a projektowanie protokołu może następować zarówno w problemie dokładnym, jak i probabilistycznym.
 
-Każdy z tych poziomów wymaga własnego kontraktu i własnego testu.
+Dlatego nie wolno skracać ani mieszać obu porządków przez utożsamienia:
+
+\[
+\boxed{
+\text{adekwatność}\neq\text{identyfikowalność}\neq\text{stabilność}\neq\text{ufność}.
+}
+\]
+
+Każdy poziom wymaga własnego kontraktu i własnego testu wtedy, gdy jest częścią deklarowanego problemu.
 
 ---
 
@@ -460,7 +474,7 @@ Dowody faktoryzacyjne, twierdzenie o dokładnej rozstrzygalności, dynamika ilor
 
 ## 16. Status po pierwszym przebiegu
 
-Po napisaniu I.6 nie wolno jeszcze traktować Tomu I jako redakcyjnie zamrożonego.
+Po I.6 nie wolno jeszcze traktować Tomu I jako redakcyjnie zamrożonego.
 
 Następny krok musi być globalnym cross-checkiem I.1–I.6 jako jednego systemu. Należy sprawdzić w szczególności:
 
