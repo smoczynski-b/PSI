@@ -15,7 +15,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass, niezależnym handoff-cross-checku II.1–II.9 oraz rozpoczęciu klasycznej warstwy mostów.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass, niezależnym handoff-cross-checku II.1–II.9 oraz bieżącej klasycznej warstwie mostów.
 
 Każda jednostka V2 ma mieć:
 
@@ -276,15 +276,7 @@ No Freeze 01 erratum was required.
 
 ### II.10 — C13 Strong Markov lumpability
 
-For a finite homogeneous Markov chain `(S,P)` and equivalence `E`, define
-
-\[
-P(x,C)=\sum_{z\in C}P(x,z)
-\]
-
-for quotient blocks `C∈S/E`.
-
-The Kemeny–Snell condition
+For a finite homogeneous Markov chain `(S,P)` and equivalence `E`, the Kemeny–Snell block-stability condition
 
 \[
 \boxed{
@@ -292,31 +284,45 @@ xEy\Rightarrow P(x,C)=P(y,C)\quad\forall C\in S/E
 }
 \]
 
-is equivalent to existence of the representative-independent quotient transition matrix
-
-\[
-\bar P([x],C)=P(x,C),
-\]
-
-and to strong lumpability / Markovian block dynamics for every initial distribution.
+is equivalent to a representative-independent quotient transition matrix and strong lumpability for every initial distribution.
 
 **STATUS:** `PASS / CLASSICAL THEOREM + PSI BRIDGE`.  
 **SOURCE:** Kemeny–Snell, *Finite Markov Chains*, Ch. VI §6.3, Thm. 6.3.2.  
-**PSI BRIDGE:** task equivalence identifies which distinctions may be forgotten; lumpability separately tests whether stochastic dynamics remain autonomous after forgetting.  
-**FALSIFIER:** F61 — a statically task-legal partition need not be lumpable.  
+**PSI BRIDGE:** task equivalence identifies allowed forgetting; lumpability tests stochastic dynamic autonomy after forgetting.  
+**FALSIFIER:** F61.  
 **UNIT:** `principia-v2-10-strong-lumpability-bridge.md`.
 
-### II.11 — Myhill–Nerode — C18
+### II.11 — C18 Myhill–Nerode exact future-test realization
 
-PSI future-test equivalence realizes Nerode equivalence under continuation-test closure.
+For `L⊆Σ*`, candidates `Σ*`, right-continuation transports `T_w(u)=uw` and acceptance tests
 
-**STATUS:** `NEXT / BRIDGE READY / CLASSICAL ATTRIBUTION REQUIRED`.
+\[
+R_w(u)=\mathbf 1_L(uw),
+\]
 
-### Paige–Tarjan — C14
+with all `w∈Σ*`,
 
-Classical algorithmic benchmark only, not PSI theorem.
+\[
+\boxed{
+E_{\mathcal T,L}
+=
+\bigcap_{w\in\Sigma^*}\ker_{eq}R_w
+=
+\equiv_L.
+}
+\]
 
-**STATUS:** `QUEUED AFTER MYHILL–NERODE`.
+**STATUS:** `PASS / CLASSICAL THEOREM + EXACT PSI REALIZATION`.  
+**SOURCE:** Myhill (1957), Nerode (1958).  
+**CLASSICAL BOUNDARY:** finite index iff regular language; index equals state count of minimal DFA.  
+**PSI BOUNDARY:** arbitrary task equivalence is not Nerode equivalence without the full continuation-test contract.  
+**UNIT:** `principia-v2-11-myhill-nerode-bridge.md`.
+
+### II.12 — Paige–Tarjan — C14
+
+Classical finite partition-refinement algorithmic benchmark only, not PSI theorem.
+
+**STATUS:** `NEXT`.
 
 ### Probabilistic bisimulation
 
@@ -345,9 +351,9 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 \to
 \mathrm{II.10\ LUMPABILITY\ PASS}
 \to
-\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ PASS}
 \to
-\mathrm{PAIGE\!\!-\!TARJAN}
+\mathrm{II.12\ PAIGE\!\!-\!TARJAN\ NEXT}
 \to
 \mathrm{CAT/FACT/FRAME/HIGHER}
 \to
@@ -355,4 +361,4 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 }
 \]
 
-No new primitive or Agent version is licensed by this map. F61 is a new regression of an existing distinction, not a new semantic role.
+No new primitive or Agent version is licensed by this map. The classical bridges remain imported mathematics with PSI-specific typing/placement only.
