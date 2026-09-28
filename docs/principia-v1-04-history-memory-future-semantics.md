@@ -1,52 +1,54 @@
 # PRINCIPIA SEMANTICA — TOM I
 ## I.4. Historia, pamięć i przyszła semantyka zadania
 
-**Status:** `PROSE PASS 01 / CROSS-CHECK PASS`  
+**Status:** `NORMALIZED PASS 01 / WHOLE-V1 N2–N4 APPLIED`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md` z zachowanymi C42, C44–C46 oraz C57–C59  
-**Zakres:** C25–C27, C42, C57 jako fundamenty/granice; C44–C45 i dowody pozostają w Tomie II; Go i LAZARUS występują wyłącznie jako świadki regresyjne.
+**Zakres:** C25–C27, C42, C57 jako fundamenty/granice; C44–C45 i dowody pozostają w Tomie II; Go i LAZARUS wyłącznie jako świadki regresyjne.
 
 ---
 
-## 1. Bieżący stan nie zawsze wystarcza do przewidywania przyszłej legalności
+## 1. Kontrakt jest ustalony, indeks `c` bywa tłumiony
 
-W poprzednich rozdziałach kandydat był traktowany jako element przestrzeni
-
-\[
-\Omega_c,
-\]
-
-a jego zadaniowa wartość była określana przez to, które rozróżnienia zachowuje iloraz
+W całym I.4 ustalamy kontrakt \(c\) oraz chwilę \(t\). Historyczne źródło RED-1 zapisuje dla czytelności
 
 \[
-M_{\mathcal T,c}=\Omega_c/E_{\mathcal T,c}.
+\operatorname{Beh}_{\mathcal T}(H),
+\qquad
+\equiv_{\mathcal T,t},
 \]
 
-W problemach dynamicznych może jednak wystąpić dodatkowe zjawisko: dwie sytuacje mogą mieć ten sam bieżący obraz świata, a mimo to różnić się tym, **co będzie dalej legalne, wykonalne albo zadaniowo osiągalne**.
+z tłumionym indeksem kontraktu. Gdy porównujemy kilka kontraktów, pełna notacja może mieć postać
 
-Przyczyną nie musi być nowa ukryta własność chwili obecnej. Różnica może wynikać z historii eksperymentów, wcześniejszych stanów, wykonanych interwencji, obowiązujących reguł pamięci albo korelacji, które nie są odzyskiwalne z samego bieżącego przekroju stanu.
+\[
+\operatorname{Beh}_{\mathcal T,c,t}(H),
+\qquad
+\equiv_{\mathcal T,c,t}.
+\]
 
-Dlatego należy rozdzielić:
+Ta normalizacja nie zmienia obiektu RED-1. Przypomina jedynie, że przyszła semantyka zadania nie jest kontraktowo absolutna.
+
+---
+
+## 2. Bieżący opis nie zawsze wystarcza dla przyszłości
+
+Dwie sytuacje mogą mieć ten sam bieżący obraz świata, a mimo to różnić się tym, co będzie dalej legalne, wykonalne albo zadaniowo osiągalne. Różnica może zależeć od wcześniejszych stanów, wykonanych interwencji, reguł pamięci lub korelacji niewidocznych w bieżącym przekroju.
+
+Dlatego:
 
 \[
 \boxed{
 \text{bieżący opis}
+\not\Rightarrow
+\text{wystarczająca informacja o przyszłej semantyce zadania}.
 }
 \]
 
-od
-
-\[
-\boxed{
-\text{informacji wystarczającej do zachowania przyszłej semantyki zadania}.
-}
-\]
-
-Rozdzielenie to nie oznacza, że każde zadanie wymaga pełnej historii. Oznacza tylko, że nie wolno zakładać z góry, iż bieżący stan jest wystarczającą pamięcią.
+Nie oznacza to, że każde zadanie wymaga pełnej historii.
 
 ---
 
-## 2. Przestrzeń historii jako obiekt odniesienia
+## 3. Przestrzeń historii
 
 Niech
 
@@ -54,76 +56,51 @@ Niech
 \mathcal H_t
 \]
 
-oznacza przestrzeń legalnych historii do chwili \(t\).
-
-W najprostszym przypadku historia może być zapisem kolejnych eksperymentów i wyników:
+oznacza przestrzeń legalnych historii do chwili \(t\). Przykładowo
 
 \[
-H_t
-=
-(\varepsilon_0,y_1,\varepsilon_1,y_2,\ldots,
-\varepsilon_{t-1},y_t),
+H_t=(\varepsilon_0,y_1,\varepsilon_1,y_2,\ldots,\varepsilon_{t-1},y_t),
 \]
 
-gdzie \(\varepsilon_i\) oznacza wykonaną interwencję, test lub ruch, a \(y_{i+1}\) — odpowiadający mu wynik obserwacji.
+gdzie \(\varepsilon_i\) jest interwencją/testem/ruchiem, a \(y_{i+1}\) odpowiadającym wynikiem.
 
-Nie jest to uniwersalny format historii. Kontrakt może wymagać innego zapisu, jeżeli dla legalnych rozszerzeń potrzebne są dodatkowe etykiety, czasy, decyzje, koszty albo elementy stanu operacyjnego.
-
-Istotna jest zasada:
+Format nie jest uniwersalny. Kontrakt może wymagać czasu, kosztów, decyzji lub innych etykiet. Wymóg brzmi tylko:
 
 \[
 \boxed{
 \mathcal H_t
-\text{ musi zawierać co najmniej strukturę potrzebną do zdefiniowania legalnej przyszłości.}
+\text{ zawiera co najmniej strukturę potrzebną do zdefiniowania legalnych rozszerzeń przyszłości.}
 }
 \]
 
-Może zawierać więcej informacji niż ostatecznie wymaga zadanie; usuwanie takich nadmiarowych rozróżnień należy do problemu reprezentacji pamięci i ilorazu zadaniowego, nie do samej definicji przestrzeni historii.
-
-Przestrzeń historii jest w tym rozdziale **przestrzenią odniesienia dla semantyki przyszłości**, a nie automatycznie zalecaną implementacją pamięci.
+Przestrzeń historii może zawierać nadmiar. Nie jest z definicji minimalną implementacją pamięci.
 
 ---
 
-## 3. Przyszłość jako drzewo legalnych rozszerzeń
+## 4. Przyszłe drzewo zadaniowe
 
-Aby porównać dwie historie, nie wystarczy zapytać, czy mają ten sam bieżący stan. Trzeba zapytać, czy prowadzą do tej samej struktury przyszłych możliwości istotnych dla zadania.
+### Definicja I.4.1
 
-### Definicja I.4.1 — przyszłe drzewo zadaniowe
-
-Dla historii
-
-\[
-H\in\mathcal H_t
-\]
-
-definiujemy
+Dla \(H\in\mathcal H_t\) obiekt
 
 \[
 \operatorname{Beh}_{\mathcal T}(H)
 \]
 
-jako ukorzenione drzewo wszystkich legalnych przyszłych rozszerzeń historii \(H\), przy czym:
+jest ukorzenionym drzewem wszystkich legalnych przyszłych rozszerzeń historii \(H\), gdzie:
 
 1. korzeń reprezentuje bieżącą historię;
-2. krawędzie są etykietowane literalnymi parami eksperyment/wynik albo innymi jawnie zadeklarowanymi zdarzeniami przejścia;
-3. węzły niosą dokładnie te etykiety zadaniowe, które kontrakt nakazuje zachować;
+2. krawędzie niosą jawnie zadeklarowane etykiety przejścia, np. eksperyment/wynik;
+3. węzły niosą etykiety zadaniowe wymagane przez kontrakt;
 4. relacja rodzic–dziecko odpowiada legalnemu rozszerzeniu historii.
 
-Drzewo to nie jest „wszystkim, co może się wydarzyć” w sensie ontologicznym. Jest obiektem kontraktowym: zawiera tylko przyszłe rozszerzenia legalne w zadanym problemie oraz tylko te etykiety, które są wymagane przez zadanie.
-
-Jeżeli kontrakt zmienia reguły legalności albo zakres etykiet zadaniowych, zmienia się również
-
-\[
-\operatorname{Beh}_{\mathcal T}(H).
-\]
+Nie jest to drzewo „wszystkich ontologicznie możliwych przyszłości”, lecz obiekt kontraktowy.
 
 ---
 
-## 4. Równoważność historii względem przyszłej semantyki
+## 5. Równoważność przyszłościowa
 
-Dwie historie należy uznać za równoważne dla zadania wtedy, gdy po ich osiągnięciu pozostaje ta sama struktura legalnych przyszłych rozgałęzień i tych samych przyszłych wyników zadaniowych.
-
-### Definicja I.4.2 — równoważność przyszłościowa historii
+### Definicja I.4.2
 
 \[
 \boxed{
@@ -135,70 +112,43 @@ H\equiv_{\mathcal T,t}H'
 }
 \]
 
-przez izomorfizm, który zachowuje:
+przez izomorfizm zachowujący korzeń, etykiety węzłów, etykiety krawędzi i relację rodzic–dziecko.
 
-- korzeń;
-- etykiety węzłów;
-- etykiety krawędzi;
-- relację rodzic–dziecko.
-
-Relacja ta nie twierdzi, że historie są identyczne jako zapisy zdarzeń. Może zachodzić
+Może więc zachodzić
 
 \[
 H\neq H'
 \]
 
-oraz jednocześnie
+i jednocześnie
 
 \[
 H\equiv_{\mathcal T,t}H',
 \]
 
-jeżeli wszystkie różnice między historiami są już nieistotne dla dalszego wykonania zadania.
+gdy różnice historyczne nie zmieniają już żadnej legalnej przyszłości zadaniowej.
 
-W Tomie II zostanie wykazane, że \(\equiv_{\mathcal T,t}\) jest relacją równoważności oraz — przy zamrożonym kontrakcie RED-1 — odpowiednią kongruencją dla legalnych rozszerzeń historii.
-
-W Tomie I potrzebujemy przede wszystkim interpretacji:
-
-\[
-\boxed{
-\text{historie są zadaniowo takie same wtedy,
-gdy mają tę samą legalną przyszłość zadaniową}.}
-\]
+Dowód, że \(\equiv_{\mathcal T,t}\) jest relacją równoważności oraz odpowiednią kongruencją dla zamrożonego RED-1, należy do Tomu II.
 
 ---
 
-## 5. Pamięć jako reprezentacja historii
+## 6. Pamięć jako reprezentacja historii
 
-Niech
-
-\[
-\rho_t:\mathcal H_t\to R_t
-\]
-
-będzie reprezentacją pamięci.
-
-Może ona przechowywać:
-
-- bieżący stan;
-- skończoną liczbę poprzednich stanów;
-- zbiór zdarzeń historycznych;
-- klasę równoważności historii;
-- stan automatu;
-- wystarczającą statystykę historyczną;
-- inny jawnie otypowany skrót historii.
-
-Każda taka pamięć jest kompresją:
+Aby uniknąć kolizji z oznaczeniem
 
 \[
-\rho_t(H)=\rho_t(H')
+R\in\mathscr R_{\mathcal T,c},
 \]
 
-oznacza, że system pamięci nie rozróżnia już historii \(H\) i \(H'\).
+przeciwdziedzinę pamięci oznaczamy w V1 przez \(Z_t\):
 
-Pytanie jest więc dokładnie analogiczne do I.3:
+\[
+\boxed{
+\rho_t:\mathcal H_t\to Z_t.
+}
+\]
 
-> czy wszystkie sklejenia wykonywane przez pamięć są bezpieczne dla zadania?
+Reprezentacja pamięci może kodować bieżący stan, część historii, zbiór zdarzeń, stan automatu lub inny jawnie otypowany skrót.
 
 ### Zasada I.4.3 — dokładna adekwatność pamięci
 
@@ -210,197 +160,104 @@ Pytanie jest więc dokładnie analogiczne do I.3:
 }
 \]
 
-Równoważnie:
-
-\[
-\rho_t(H)=\rho_t(H')
-\Longrightarrow
-H\equiv_{\mathcal T,t}H'.
-\]
-
-Jeżeli pamięć utożsamia dwie historie o różnej przyszłej semantyce zadaniowej, jest zbyt gruba.
-
-Jedna para
-
-\[
-H,H'
-\]
-
-spełniająca
+Jeśli
 
 \[
 \rho_t(H)=\rho_t(H')
 \]
 
-oraz
+ale
 
 \[
-H\not\equiv_{\mathcal T,t}H'
+H\not\equiv_{\mathcal T,t}H',
 \]
 
-jest kompletnym kontrprzykładem do dokładnej wystarczalności tej reprezentacji pamięci.
-
-Dowód faktoryzacyjny i własności ilorazu historii należą do Tomu II.
+to pamięć jest zbyt gruba dla zadania. Jedna taka para jest pełnym kontrprzykładem do dokładnej wystarczalności reprezentacji.
 
 ---
 
-## 6. Bieżące włókno świata nie musi być pamięcią zadaniową
+## 7. Świadek LAZARUS — lokalne typowanie
 
-W problemach obserwacyjnych można zbudować mapę
+W świadku LAZARUS niech:
 
-\[
-\rho_F:\mathcal H_t\to\mathcal P(X_t),
-\qquad
-\rho_F(H)=F_t(H),
-\]
+- \(X_t\) — bieżąca fizyczna przestrzeń kandydatów/stanu świata;
+- \(F_t(H)\subseteq X_t\) — bieżące włókno świata indukowane przez historię \(H\);
+- \(\Gamma_t\in\mathcal G_t^{op}\) — aktywny stan lub konfiguracja operacyjna;
+- \(J_t\subseteq X_t\times\mathcal G_t^{op}\) — wspólny zbiór zadaniowo dopuszczalnych par.
 
-która każdej historii przypisuje bieżące włókno kompatybilnych stanów świata.
-
-Może się jednak zdarzyć, że
+Może zachodzić
 
 \[
 F_t(H)=F_t(H')
 \]
 
-przy jednoczesnym
+przy
 
 \[
 H\not\equiv_{\mathcal T,t}H'.
 \]
 
-Wtedy
-
-\[
-\boxed{
-\ker_{\rm eq}\rho_F
-\not\subseteq
-\equiv_{\mathcal T,t}
-}
-\]
-
-i samo bieżące włókno nie jest wystarczającym stanem pamięci dla zadania.
-
-To jest precyzyjna wersja wniosku z laboratorium LAZARUS.
-
-Nie należy mówić bez doprecyzowania:
-
-\[
-\text{„ta sama informacja, różna sprawczość”.}
-\]
-
-Takie zdanie byłoby za mocne. Jeżeli dwie historie są identyczne w **pełnej informacji zadaniowej**, ich zadaniowo istotna przyszłość nie może różnić się z definicji.
-
-Poprawne zdanie brzmi:
-
-\[
-\boxed{
-\text{to samo bieżące włókno stanu świata}
-\not\Rightarrow
-\text{ta sama przyszła semantyka zadania}.
-}
-\]
-
-LAZARUS nie ustanawia nowego prymitywu „sprawczości”. Pokazuje tylko, że wybrana reprezentacja
+Wtedy sama mapa
 
 \[
 \rho_F(H)=F_t(H)
 \]
 
-może zapomnieć dane potrzebne zadaniu.
+nie jest wystarczającą pamięcią zadaniową.
+
+Poprawne stwierdzenie brzmi:
+
+\[
+\boxed{
+\text{to samo bieżące włókno świata}
+\not\Rightarrow
+\text{ta sama przyszła semantyka zadania}.
+}
+\]
+
+LAZARUS nie ustanawia prymitywu „sprawczości”; wykazuje niewystarczalność wybranej reprezentacji.
 
 ---
 
-## 7. Marginesy nie muszą zachowywać korelacji
+## 8. Marginesy nie zachowują automatycznie korelacji
 
-Historia może być potrzebna nie dlatego, że brakuje pojedynczej współrzędnej, ale dlatego, że kompresja usuwa korelację pomiędzy składnikami stanu.
-
-Załóżmy, że przyszłość zależy wspólnie od:
+Znajomość osobnych marginesów świata i stanu operacyjnego nie wyznacza w ogólności wspólnego zbioru
 
 \[
-x_t
+J_t\subseteq X_t\times\mathcal G_t^{op}.
 \]
 
-— stanu świata, oraz
-
-\[
-\Gamma_t
-\]
-
-— aktywnej kompozycji operacyjnej.
-
-Można znać dwa zbiory marginalne:
-
-\[
-F_t^X
-\]
-
-i
-
-\[
-F_t^{\Gamma},
-\]
-
-a mimo to nie znać właściwego wspólnego zbioru dopuszczalnego
-
-\[
-J_t
-\subseteq
-X_t\times\operatorname{Comp}(\mathcal R_t).
-\]
-
-Dwie historie mogą mieć te same marginesy, lecz różne dopuszczalne pary
-
-\[
-(x_t,\Gamma_t)
-\]
-
-i przez to różne przyszłe drzewa zadaniowe.
-
-Dlatego obowiązuje rygiel:
+Dwie historie mogą mieć te same marginesy, lecz różne legalne pary \((x_t,\Gamma_t)\), a przez to różną przyszłą semantykę zadania.
 
 \[
 \boxed{
 \text{marginesy}
-\neq
-\text{wspólny stan zadaniowo istotny}
+\not\Rightarrow
+\text{wspólny stan zadaniowo istotny}.
 }
 \]
 
-w ogólności.
-
-Nie oznacza to, że zawsze należy przechowywać pełny iloczyn kartezjański albo pełną historię. Oznacza tylko, że kompresja do osobnych marginesów wymaga testu adekwatności, jeżeli zadanie zależy od korelacji.
+Nie wynika z tego, że należy przechowywać pełny iloczyn kartezjański; każda kompresja wymaga po prostu testu adekwatności.
 
 ---
 
-## 8. Historia nie jest automatycznie pamięcią minimalną
+## 9. Historia nie jest pamięcią minimalną
 
-Z faktu, że pełna historia jest przestrzenią, na której można zdefiniować przyszłą semantykę zadania, nie wynika, że należy ją przechowywać dosłownie.
-
-Wiele różnych historii może należeć do tej samej klasy
+W Tomie II zdefiniujemy
 
 \[
-[H]_{\mathcal T,t}
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
 \]
 
-i nie istnieje zadaniowy powód, aby pamięć rozróżniała je dalej.
+i wykażemy, że jest najgrubszym dokładnym ilorazem historii w porządku ilorazów.
 
-W Tomie II zdefiniujemy iloraz
-
-\[
-M_{\mathcal T,t}
-=
-\mathcal H_t/\!\equiv_{\mathcal T,t}
-\]
-
-i wykażemy jego własność jako najgrubszego dokładnego ilorazu historii względem zadania.
-
-W Tomie I należy jednak od razu postawić granicę interpretacyjną:
+Już tutaj zamrażamy granice:
 
 \[
 \boxed{
 \text{najgrubszy dokładny iloraz}
 \not\Rightarrow
-\text{najmniej bitów}
+\text{minimum bitów}
 }
 \]
 
@@ -410,19 +267,17 @@ oraz
 \boxed{
 \text{najgrubszy dokładny iloraz}
 \not\Rightarrow
-\text{najtańsza implementacja}.
+\text{minimum kosztu implementacji}.
 }
 \]
 
-Porządek ilorazów jest własnością informacyjną. Minimalizacja pamięci fizycznej, wymiaru, kodu, liczby stanów implementacyjnych albo kosztu obliczeń jest osobnym problemem.
+Minimalizacja pamięci fizycznej, wymiaru, liczby stanów i kosztu obliczeń jest osobnym problemem.
 
 ---
 
-## 9. Rekurencyjność matematyczna nie oznacza pamięci skończonej
+## 10. Rekurencyjność matematyczna nie oznacza pamięci skończonej
 
-Jeżeli równoważność historii jest kongruencją względem legalnych rozszerzeń, można aktualizować klasy zadaniowe bez wybierania pełnego reprezentanta historii.
-
-Schematycznie:
+Przy odpowiedniej kongruencji można definiować aktualizację klas historii
 
 \[
 [H_t]_{\mathcal T,t}
@@ -430,35 +285,28 @@ Schematycznie:
 [H_{t+1}]_{\mathcal T,t+1}.
 \]
 
-Dokładny operator aktualizacji zostanie zdefiniowany i uzasadniony w Tomie II.
-
-Już tutaj należy jednak zamrozić granicę:
+Z dobrze określonej aktualizacji nie wynika jednak skończona liczba klas, efektywna obliczalność ani tania aktualizacja online.
 
 \[
 \boxed{
-\text{dobrze określona aktualizacja matematyczna}
+\text{rekurencyjność matematyczna}
 \not\Rightarrow
-\text{skończona pamięć}.
+\text{skończona lub efektywna pamięć}.
 }
 \]
 
-Nie wynika z niej również:
-
-- efektywna obliczalność klas;
-- skończona liczba klas;
-- tania aktualizacja online;
-- istnienie prostego kodu stanu;
-- minimalność implementacyjna.
-
-Te własności wymagają odrębnych twierdzeń.
-
 ---
 
-## 10. Świadek regresyjny: Go
+## 11. Świadek Go — lokalne typowanie
 
-Go dostarcza prostego laboratorium pokazującego, że adekwatność pamięci zależy od reguły zadania.
+W regresie Go używamy:
 
-W zamrożonym banku regresyjnym pojawia się ciąg reprezentacji:
+- \(B_t\) — pozycji planszy po \(t\) półruchach;
+- \(\sigma_t\) — gracza na ruchu;
+- \(V_t=\{B_0,\ldots,B_t\}\) — zbioru odwiedzonych plansz w świadku PSK;
+- \(U_t=\{(B_i,\sigma_i):i\le t\}\) — zbioru odwiedzonych sytuacji w świadku SSK.
+
+Zamrożona sekwencja
 
 \[
 (B_t,\sigma_t)
@@ -467,94 +315,24 @@ W zamrożonym banku regresyjnym pojawia się ciąg reprezentacji:
 \to
 (B_t,\sigma_t,V_t)
 \to
-(B_t,\sigma_t,U_t).
+(B_t,\sigma_t,U_t)
 \]
 
-Odpowiadają one kolejno kontraktom:
-
-- bez ko;
-- proste ko;
-- pozycyjne superko;
-- sytuacyjne superko.
-
-Ten ciąg nie jest uniwersalną drabiną „coraz lepszych stanów”. Jest serią odpowiedzi na **różne zadania legalności ruchu**.
-
-Reprezentacja wystarczająca pod słabszą regułą może być zbyt gruba po zmianie kontraktu.
-
-Regres R02 można streścić jako:
+nie jest uniwersalną drabiną pamięci. Każdy etap odpowiada innemu kontraktowi reguł. Wspólna lekcja brzmi:
 
 \[
 \boxed{
-\text{jedna ustalona kompresja teraźniejszości}
+\text{reprezentacja wystarczająca dla jednego zadania}
 \not\Rightarrow
-\text{wystarczalność dla różnych reguł przyszłości}.
+\text{wystarczalność dla innego}.
 }
 \]
 
-Pełny przebieg testów Go należy do Tomu III.
+Pełne laboratorium Go pozostaje w Tomie III.
 
 ---
 
-## 11. Świadek graniczny: LAZARUS
-
-LAZARUS testuje inny typ utraty informacji.
-
-Dwie historie mogą mieć ten sam bieżący zbiór możliwych stanów fizycznych, lecz różnić się aktywną strukturą wykonawczą albo korelacją między stanem świata i stanem operacyjnym. Wtedy legalne działania i osiągalne wyniki mogą się różnić.
-
-Nie jest to dowód, że „historia” albo „sprawczość” powinny zostać dodane jako szósty składnik CORE5.
-
-Naprawa mieści się w istniejącej architekturze:
-
-1. wybieramy bogatszy, poprawnie otypowany kandydat/stanu zadaniowy; albo
-2. pozostajemy na przestrzeni historii i stosujemy iloraz względem \(\equiv_{\mathcal T,t}\); albo
-3. znajdujemy inną reprezentację \(\rho_t\), która spełnia
-   \[
-   \ker_{\rm eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
-   \]
-
-Dlatego lekcja LAZARUS ma status:
-
-\[
-\boxed{
-\text{błąd reprezentacji, nie brak nowego prymitywu}.
-}
-\]
-
----
-
-## 12. Nie każda historia jest zadaniowo istotna
-
-Należy unikać przeciwnego błędu: skoro historia **czasem** jest potrzebna, nie wynika z tego, że zadanie powinno pamiętać wszystko.
-
-Dopuszczalna reprezentacja może całkowicie zapominać fragment historii, jeżeli wszystkie historie przez nią sklejana są równoważne przyszłościowo:
-
-\[
-\rho_t(H)=\rho_t(H')
-\Longrightarrow
-H\equiv_{\mathcal T,t}H'.
-\]
-
-W szczególności:
-
-- zadanie bez pamięci reguł historycznych może zależeć tylko od bieżącego stanu;
-- zadanie z pamięcią jednego kroku może wymagać tylko poprzedniej konfiguracji;
-- inne zadanie może wymagać zbioru odwiedzonych sytuacji;
-- jeszcze inne może mieć wystarczający stan automatu znacznie mniejszy niż dosłowna historia.
-
-PSI nie uprzywilejowuje żadnej z tych form z góry.
-
-Zasada brzmi:
-
-\[
-\boxed{
-\text{przechowuj nie „historię”, lecz wszystkie rozróżnienia historyczne wymagane przez zadanie}.}
-\]
-
----
-
-## 13. Historia, obserwacja i zadanie są różnymi warstwami
-
-Warto zebrać trzy odrębne pytania:
+## 12. Trzy warstwy pozostają rozdzielone
 
 ### Obserwacja bieżąca
 
@@ -562,9 +340,7 @@ Warto zebrać trzy odrębne pytania:
 F_t(H)
 \]
 
-odpowiada na pytanie:
-
-> jakie stany świata pozostają zgodne z dotychczasowym przebiegiem obserwacji?
+— jakie stany świata pozostają zgodne z przebiegiem obserwacji?
 
 ### Pamięć
 
@@ -572,9 +348,7 @@ odpowiada na pytanie:
 \rho_t(H)
 \]
 
-odpowiada na pytanie:
-
-> jakie rozróżnienia historii zachowuje wybrana reprezentacja?
+— jakie rozróżnienia historii zachowuje wybrana reprezentacja?
 
 ### Przyszła semantyka zadania
 
@@ -582,50 +356,29 @@ odpowiada na pytanie:
 [H]_{\mathcal T,t}
 \]
 
-odpowiada na pytanie:
+— które różnice historyczne mogą jeszcze zmienić legalną przyszłość zadaniową?
 
-> które różnice pomiędzy historiami mogą jeszcze zmienić legalną przyszłość zadaniową?
-
-Te trzy obiekty mogą się pokrywać w szczególnym kontrakcie, ale nie wolno utożsamiać ich definicyjnie.
-
-Właściwa zależność jest warunkowa:
-
-\[
-\boxed{
-\rho_t\text{ jest wystarczająca}
-\iff
-\ker_{\rm eq}\rho_t
-\subseteq
-\equiv_{\mathcal T,t}.
-}
-\]
+Te obiekty mogą się pokrywać w szczególnym kontrakcie, lecz nie są definicyjnie tym samym.
 
 ---
 
-## 14. Granice rozdziału
+## 13. Granice rozdziału
 
-W I.4 nie dowodzimy jeszcze:
+I.4 nie dowodzi jeszcze:
 
-1. że \(\equiv_{\mathcal T,t}\) jest relacją równoważności;
-2. że iloraz
-   \[
-   \mathcal H_t/\!\equiv_{\mathcal T,t}
-   \]
-   jest najgrubszym dokładnym ilorazem historii;
-3. że aktualizacja klas jest dobrze określona;
-4. że istnieje skończona reprezentacja pamięci;
-5. że istnieje algorytm minimalizacji takiej pamięci;
-6. że pełna historia jest kiedykolwiek implementacyjnie optymalna.
+1. równoważności \(\equiv_{\mathcal T,t}\);
+2. minimalności ilorazu w porządku ilorazów;
+3. dobrze określonej aktualizacji klas;
+4. istnienia skończonej pamięci;
+5. algorytmicznej minimalizacji pamięci.
 
-Punkty 1–3 należą do Tomu II. Punkty 4–6 wymagają dodatkowych założeń i w ogólności nie wynikają z samej architektury PSI.
+Punkty 1–3 należą do Tomu II. Punkty 4–5 wymagają dodatkowych założeń.
 
 ---
 
-## 15. Wniosek
+## 14. Wniosek
 
-Rozdział I.3 ustalił, że reprezentacja jest wystarczająca wtedy, gdy nie skleja kandydatów różniących się zadaniowo. Dla problemów historycznych ta sama zasada działa na przestrzeni historii.
-
-Centralny warunek przyjmuje postać
+Centralny warunek ma postać
 
 \[
 \boxed{
@@ -635,7 +388,7 @@ Centralny warunek przyjmuje postać
 }
 \]
 
-Nie oznacza on „pamiętaj wszystko”. Oznacza:
+Nie oznacza „pamiętaj wszystko”. Oznacza:
 
 \[
 \boxed{
@@ -643,4 +396,14 @@ Nie oznacza on „pamiętaj wszystko”. Oznacza:
 }
 \]
 
-W następnym rozdziale przejdziemy do innej granicy prawa do wniosku: nawet gdy wynik jest jednoznaczny dokładnie, nie musi być stabilny na małe perturbacje danych, a stabilność nie daje jeszcze prawa do probabilistycznego poziomu ufności.
+---
+
+## Status redakcyjny I.4
+
+Normalizacja N2–N4 dodała jawne tłumienie indeksu kontraktu, usunęła kolizję \(R_t\) przez \(Z_t\) oraz lokalnie otypowała świadki Go/LAZARUS. Semantyka C42/C57–C59 i Freeze 01 nie uległa zmianie.
+
+\[
+\boxed{
+\mathrm{I.4}=\mathrm{NORMALIZED\ PASS\ 01}.
+}
+\]
