@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1/V2 FIRST FREEZE PASS / PROSE PHASE OPEN`.
+**State:** `V1/V2 FIRST FREEZE PASS / V1 PROSE IN PROGRESS`.
 
 Done:
 - physical CANON-03 source bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -22,7 +22,9 @@ Done:
 - RED-1 history definitions C57–C59;
 - current CAT/FACT definitions C62/C63;
 - V1/V2 First Freeze 01 — PASS;
-- skeleton v02 synchronized to freeze.
+- skeleton v02 synchronized to freeze;
+- V1 I.1 `Kontrakt i role semantyczne` — PROSE PASS 01 / CROSS-CHECK PASS;
+- V1 I.2 `Obserwacja, włókno zgodności i adekwatność katalogu` — PROSE PASS 01 / CROSS-CHECK PASS.
 
 ### Freeze result
 
@@ -32,22 +34,18 @@ Done:
 
 This freezes definitions, theorem statements, status classes, source roles, dependencies and principal boundaries for the first prose pass. It does not freeze final wording or typography.
 
-### Important resolved gaps
+### Prose cross-check corrections already applied
 
-- `V1-GAP-01` — resolved: catalog adequacy is canonical as a prior gate, but no universal scalar `D_ADEQ^cat` is required;
-- `V2-GAP-01` — resolved by C57–C59;
-- `V2-GAP-03` — resolved by physical CANON-03 C62/C63 definitions;
-- `V2-GAP-04` — main classical source bindings completed;
-- `V2-GAP-05` — MINI patched and proof-audited;
-- `CANON03-PHYS-01` — resolved by exact commit/path/blob bind;
-- probabilistic bisimulation — explicitly deferred as comparison-only, not a freeze blocker.
+- I.1: task-information adequacy was separated from full contract legality;
+- I.2: `F_c(Y)=∅` was prevented from being misread as an automatic diagnosis of catalog inadequacy; it only diagnoses inconsistency of the full current package unless the protocol freezes the other components and explicitly tests the catalog.
 
 Next:
-1. begin **V1 prose pass** from frozen units I.1→I.6;
-2. cross-check every prose section against `principia-v1-v2-freeze-01.md`;
-3. then write V2 theorem prose with proofs/source boxes;
-4. issue an erratum + impact audit for any semantic change discovered during prose;
-5. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
+1. write **V1 I.3 — Task-relative distinction and legal reduction** from frozen units;
+2. cross-check I.3 against C03–C05, C09, C32/C37 and C60;
+3. continue I.4→I.6 with the same prose/cross-check cycle;
+4. then write V2 theorem prose with proofs/source boxes;
+5. issue an erratum + impact audit for any semantic change discovered during prose;
+6. only after first V1/V2 prose pass resume broad PHISICA/LOGOS migration.
 
 STOP condition: prose may improve exposition but must not silently alter frozen semantics.
 
@@ -128,14 +126,13 @@ No new regression bank entry without a fixed witness actually needed by a frozen
 
 **State:** `AGENT-PSI-ARCHITECTURE-02` CURRENT.
 
-Audit success:
-- Agent found a real mixed observation/gauge error in C19;
-- corrected source before freeze;
-- recovered and bound the physical canon instead of relying on memory;
-- downgraded older rich CAT/FACT machinery where the physical canon was narrower;
-- no new governance primitive required.
+Current prose-phase role:
+- enforce semantic fidelity to the freeze;
+- detect scope inflation during exposition;
+- correct prose before it becomes a new source of drift;
+- do not design new governance.
 
-Next Agent task: enforce **prose fidelity to freeze**, not design new governance.
+I.1/I.2 cross-checks each found and corrected one scope-risk without changing CORE5.
 
 **Governance STOP:** no Agent v03 without a concrete missing-control witness.
 
@@ -200,13 +197,13 @@ Historical missing originals remain genealogy gaps only; do not represent them a
 
 \[
 \boxed{
-\mathrm{MAPS}
-\to
-\mathrm{AUDIT}
-\to
-\mathrm{CANON03\ BIND}
-\to
 \mathrm{FREEZE\ 01=PASS}
+\to
+\mathrm{I.1\ PASS}
+\to
+\mathrm{I.2\ PASS}
+\to
+\mathrm{I.3\ NEXT}
 }
 \]
 
