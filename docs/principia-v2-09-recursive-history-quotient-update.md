@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.9. Rekurencyjna aktualizacja ilorazu historii
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, z zachowanymi C45 oraz C59  
 **Mapa twierdzeń:** `principia-v2-theorem-map-02.md`, II.9  
@@ -12,69 +12,31 @@
 
 ## 1. Typy i legalna dziedzina aktualizacji
 
-Ustalamy kontrakt oraz chwilę \(t\). Niech
+Ustalamy kontrakt oraz chwilę \(t\). Niech \(\mathcal H_t\) będzie przestrzenią legalnych historii do chwili \(t\), \(\mathcal E_t\) zbiorem dopuszczalnych etykiet eksperymentu/interwencji/ruchu, a \(\mathcal Y_{t+1}\) zbiorem możliwych etykiet wyniku kolejnego kroku.
 
-\[
-\mathcal H_t
-\]
-
-będzie przestrzenią legalnych historii do chwili \(t\), a
-
-\[
-\mathcal E_t
-\]
-
-zbiorem dopuszczalnych etykiet eksperymentu/interwencji/ruchu w chwili \(t\). Niech
-
-\[
-\mathcal Y_{t+1}
-\]
-
-będzie zbiorem możliwych etykiet wyniku kolejnego kroku.
-
-Legalność rozszerzenia nie musi być całkowita. Dlatego wprowadzamy jawnie
+Legalność rozszerzenia nie musi być całkowita. Wprowadzamy więc
 
 \[
 \boxed{
-D_t
-\subseteq
-\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1}
+D_t\subseteq\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1}
 }
 \]
 
-oraz częściową aktualizację historii
+oraz aktualizację
 
 \[
-\boxed{
-\delta_t:D_t\to\mathcal H_{t+1}.
-}
+\boxed{\delta_t:D_t\to\mathcal H_{t+1}.}
 \]
 
-Jeżeli
-
-\[
-(H,\varepsilon,y)\in D_t,
-\]
-
-to \(\delta_t(H,\varepsilon,y)\) jest historią po legalnym rozszerzeniu \(H\) etykietą \((\varepsilon,y)\).
-
-To typowanie jest obowiązkowe: zapis \(\delta_t(H,\varepsilon,y)\) poza \(D_t\) nie ma znaczenia w tym kontrakcie.
+Jeżeli \((H,\varepsilon,y)\in D_t\), to \(\delta_t(H,\varepsilon,y)\) jest historią po legalnym rozszerzeniu \(H\) etykietą \((\varepsilon,y)\). Zapis poza \(D_t\) nie ma znaczenia w tym kontrakcie.
 
 ---
 
-## 2. Równoważność historii i własność kongruencji RED-1
+## 2. Kongruencja RED-1
 
-Z II.7 mamy przyszłościową równoważność
+Z II.7 mamy przyszłościową równoważność \(\equiv_{\mathcal T,t}\) na \(\mathcal H_t\), zdefiniowaną przez izomorfizm literalnie etykietowanych drzew przyszłości.
 
-\[
-\equiv_{\mathcal T,t}
-\]
-
-na \(\mathcal H_t\), zdefiniowaną przez izomorfizm literalnie etykietowanych drzew przyszłości.
-
-C59 zamraża dwie własności potrzebne do aktualizacji.
-
-Jeżeli
+C59 daje dokładnie dwie własności potrzebne do aktualizacji. Jeżeli
 
 \[
 H\equiv_{\mathcal T,t}H',
@@ -82,22 +44,25 @@ H\equiv_{\mathcal T,t}H',
 
 to dla każdej etykiety \((\varepsilon,y)\):
 
-1. legalność tej etykiety jest zgodna między reprezentantami:
-   \[
-   (H,\varepsilon,y)\in D_t
-   \iff
-   (H',\varepsilon,y)\in D_t;
-   \]
-2. jeżeli rozszerzenie jest legalne, to następcy są przyszłościowo równoważni:
-   \[
-   \delta_t(H,\varepsilon,y)
-   \equiv_{\mathcal T,t+1}
-   \delta_t(H',\varepsilon,y).
-   \]
+\[
+\boxed{
+(H,\varepsilon,y)\in D_t
+\iff
+(H',\varepsilon,y)\in D_t
+}
+\]
 
-Pierwszy punkt wynika z tego, że izomorfizm drzew zachowuje literalne etykiety krawędzi; drugi z izomorfizmu odpowiadających poddrzew następników.
+oraz — gdy rozszerzenie jest legalne —
 
-To jest dokładna postać kongruencji potrzebna w warstwie historii.
+\[
+\boxed{
+\delta_t(H,\varepsilon,y)
+\equiv_{\mathcal T,t+1}
+\delta_t(H',\varepsilon,y).
+}
+\]
+
+Pierwsza własność wynika z zachowania literalnych etykiet krawędzi; kierunek odwrotny otrzymujemy, stosując tę samą własność do symetrycznej relacji \(H'\equiv_{\mathcal T,t}H\). Druga wynika z izomorfizmu odpowiadających poddrzew następników.
 
 ---
 
@@ -106,22 +71,14 @@ To jest dokładna postać kongruencji potrzebna w warstwie historii.
 Definiujemy
 
 \[
-M_{\mathcal T,t}
-=
-\mathcal H_t/\!\equiv_{\mathcal T,t},
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
 \qquad
-q_{\mathcal T,t}:\mathcal H_t\to M_{\mathcal T,t}.
+q_{\mathcal T,t}:\mathcal H_t\to M_{\mathcal T,t},
 \]
 
-Analogicznie
+oraz analogicznie \(M_{\mathcal T,t+1}\).
 
-\[
-M_{\mathcal T,t+1}
-=
-\mathcal H_{t+1}/\!\equiv_{\mathcal T,t+1}.
-\]
-
-Chcemy zdefiniować aktualizację bez potrzeby wybierania konkretnego reprezentanta historii.
+Celem jest zdefiniowanie aktualizacji klas, której **wartość i legalna dziedzina nie zależą od wyboru reprezentanta historii**.
 
 ---
 
@@ -147,15 +104,7 @@ przez
 }
 \]
 
-Trzeba sprawdzić, że definicja nie zależy od wyboru reprezentanta \(H\).
-
-Jeżeli
-
-\[
-H\equiv_{\mathcal T,t}H',
-\]
-
-to z własności C59
+Definicja jest reprezentantowo niezmiennicza, ponieważ dla \(H\equiv_{\mathcal T,t}H'\)
 
 \[
 (H,\varepsilon,y)\in D_t
@@ -163,22 +112,15 @@ to z własności C59
 (H',\varepsilon,y)\in D_t.
 \]
 
-Zatem członkostwo w \(\overline D_t\) jest dobrze określone na klasach.
-
 ---
 
 ## 5. Twierdzenie II.9 — rekurencyjna aktualizacja ilorazu historii
 
-### Twierdzenie
-
-Przy hipotezach z §1–§4 istnieje dokładnie jedna częściowa mapa
+Przy powyższych hipotezach istnieje dokładnie jedna mapa
 
 \[
 \boxed{
-U_{\mathcal T,t}:
-\overline D_t
-\to
-M_{\mathcal T,t+1}
+U_{\mathcal T,t}:\overline D_t\to M_{\mathcal T,t+1}
 }
 \]
 
@@ -193,46 +135,17 @@ U_{\mathcal T,t}
 }
 \]
 
-Jest ona dobrze określona niezależnie od wyboru reprezentanta \(H\).
-
 ### Dowód
 
-Niech
+Niech \(([H]_{\mathcal T,t},\varepsilon,y)\in\overline D_t\). Wybierzmy reprezentanta \(H\) z \((H,\varepsilon,y)\in D_t\) i zdefiniujmy prawą stronę wzoru.
+
+Jeżeli \(H'\equiv_{\mathcal T,t}H\), to z C59
 
 \[
-([H]_{\mathcal T,t},\varepsilon,y)
-\in
-\overline D_t.
+(H',\varepsilon,y)\in D_t
 \]
 
-Z definicji dziedziny możemy wybrać reprezentanta \(H\) z
-
-\[
-(H,\varepsilon,y)\in D_t.
-\]
-
-Definiujemy
-
-\[
-U_{\mathcal T,t}
-([H]_{\mathcal T,t},\varepsilon,y)
-:=
-[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
-\]
-
-Niech teraz \(H'\) będzie innym reprezentantem tej samej klasy:
-
-\[
-H'\equiv_{\mathcal T,t}H.
-\]
-
-Z C59 legalność jest reprezentantowo niezmiennicza, więc
-
-\[
-(H',\varepsilon,y)\in D_t.
-\]
-
-Ponadto następcy spełniają
+oraz
 
 \[
 \delta_t(H,\varepsilon,y)
@@ -240,7 +153,7 @@ Ponadto następcy spełniają
 \delta_t(H',\varepsilon,y).
 \]
 
-Stąd
+Zatem
 
 \[
 [\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}
@@ -248,15 +161,13 @@ Stąd
 [\delta_t(H',\varepsilon,y)]_{\mathcal T,t+1}.
 \]
 
-Wartość \(U_{\mathcal T,t}\) nie zależy więc od reprezentanta.
-
-Unikalność jest natychmiastowa: każda mapa spełniająca podany wzór musi na każdej klasie i legalnej etykiecie przyjmować dokładnie klasę następcy określoną przez prawą stronę. \(\square\)
+Wartość nie zależy od reprezentanta. Unikalność jest natychmiastowa: każda mapa spełniająca podany wzór musi na każdej klasie i legalnej etykiecie przyjmować klasę zadaniową odpowiedniego następcy. \(\square\)
 
 ---
 
 ## 6. Diagram aktualizacji
 
-Na legalnej dziedzinie mamy komutację
+Na legalnej dziedzinie zachodzi
 
 \[
 \boxed{
@@ -268,22 +179,13 @@ U_{\mathcal T,t}
 }
 \]
 
-Jest to odpowiednik Twierdzenia II.6 dla czasowo zmiennej przestrzeni historii i częściowej aktualizacji z jawną etykietą kroku.
-
-Nie jest to nowy prymityw. Jest to zejście legalnej aktualizacji historii na zadaniowy iloraz historii.
+Jest to czasowo zmienna i częściowa wersja zejścia dynamiki na iloraz z II.6.
 
 ---
 
 ## 7. Dlaczego częściowość jest istotna
 
-Nie każda para \((\varepsilon,y)\) musi być legalna po każdej historii. Legalność może zależeć od:
-
-- reguł gry;
-- poprzednich interwencji;
-- stanu operacyjnego;
-- ograniczeń domeny;
-- protokołu eksperymentalnego;
-- innych warunków kontraktu.
+Nie każda para \((\varepsilon,y)\) musi być legalna po każdej historii. Legalność może zależeć od reguł gry, wcześniejszych interwencji, stanu operacyjnego, ograniczeń domeny lub protokołu.
 
 Dlatego zapis całkowitej mapy
 
@@ -299,37 +201,32 @@ byłby zbyt mocny bez dodatkowej hipotezy totalności.
 
 ## 8. Relacja do II.6
 
-II.6 mówiło, że dla stałej przestrzeni i deterministycznej mapy \(\delta:\Omega\to\Omega\) zejście na iloraz wymaga kongruencji
-
-\[
-xEy\Rightarrow\delta(x)E\delta(y).
-\]
-
-II.9 jest wersją historii, w której:
+II.6 dotyczyło mapy \(\delta:\Omega\to\Omega\) na stałej przestrzeni. W II.9:
 
 - przestrzeń zmienia się z \(\mathcal H_t\) do \(\mathcal H_{t+1}\);
 - aktualizacja jest częściowa;
 - krok ma jawne etykiety \((\varepsilon,y)\);
 - trzeba kontrolować zarówno dziedzinę, jak i klasę następcy.
 
-Nie wolno więc traktować II.9 jako mechanicznego przepisania II.6 bez typowania dziedziny.
+Nie jest to więc mechaniczne przepisanie II.6 bez typowania dziedziny.
 
 ---
 
-## 9. Matematyczna rekurencja nie oznacza skończonej pamięci
+## 9. Rekurencja abstrakcyjna a implementacja
 
-Z istnienia \(U_{\mathcal T,t}\) wynika, że zadaniową klasę historii można aktualizować matematycznie bez odtwarzania konkretnego reprezentanta historii.
+Z istnienia \(U_{\mathcal T,t}\) wynika, że **na poziomie matematycznym** istnieje reprezentantowo niezależna aktualizacja klas zadaniowych.
 
-Nie wynika jednak:
+Nie wynika z tego, że istnieje algorytm obliczający \(U_{\mathcal T,t}\) bez dostępu do reprezentanta historii ani że rozpoznawanie klas \(\equiv_{\mathcal T,t}\) jest efektywne lub w ogóle obliczalne.
+
+W szczególności nie wynika:
 
 \[
-|M_{\mathcal T,t}|<\infty.
+|M_{\mathcal T,t}|<\infty,
 \]
 
-Nie wynika również:
+ani:
 
-- skończona liczba stanów implementacji;
-- skończona liczba bitów;
+- skończona liczba bitów lub stanów implementacji;
 - efektywna procedura rozpoznawania klasy;
 - obliczalność \(U_{\mathcal T,t}\);
 - tania aktualizacja online;
@@ -350,11 +247,11 @@ Dlatego
 
 ## 10. R02 Go jako regres dziedziny i następcy
 
-W regułach Go legalność następnego ruchu może zależeć od historii. Jeżeli pamięć skleja dwie historie, dla których ta sama etykieta ruchu jest legalna w jednej, a nielegalna w drugiej, nie da się nawet dobrze określić dziedziny aktualizacji na klasie pamięci.
+Jeżeli kandydacka pamięć skleja dwie historie, dla których ta sama etykieta ruchu jest legalna w jednej, a nielegalna w drugiej, nie da się dobrze określić dziedziny aktualizacji na klasie tej pamięci.
 
-Jeżeli ruch jest legalny w obu, ale prowadzi do przyszłości zadaniowo różnych, wartość aktualizacji również nie jest dobrze określona.
+Jeżeli etykieta jest legalna w obu, ale następcy mają różną przyszłą semantykę zadania, nie jest dobrze określona wartość aktualizacji.
 
-R02 testuje więc oba warunki:
+R02 testuje więc dwa warunki:
 
 \[
 \boxed{
@@ -364,15 +261,13 @@ R02 testuje więc oba warunki:
 }
 \]
 
-Nie jest dowodem Twierdzenia II.9; jest jego skończonym regressem zastosowania.
+Jest regressem zastosowania, nie dowodem Twierdzenia II.9.
 
 ---
 
 ## 11. Status źródłowy
 
 C59 pochodzi z migracji RED-1 i ustanawia kongruencję literalnie etykietowanego przyszłego drzewa dla legalnego rozszerzenia historii. C45 zapisuje wynik jako rekurencyjną aktualizację zadaniowego ilorazu historii.
-
-Status:
 
 \[
 \boxed{
@@ -382,7 +277,7 @@ Status:
 }
 \]
 
-PSI nie rości sobie autorstwa abstrakcyjnej zasady schodzenia kongruentnej aktualizacji na iloraz. Specyficzna treść PSI polega na wyborze przyszłej semantyki zadania i literalnie etykietowanej legalnej historii jako obiektu, względem którego wolno zapominać przeszłość.
+PSI nie rości sobie autorstwa abstrakcyjnej zasady schodzenia kongruentnej aktualizacji na iloraz.
 
 ---
 
@@ -398,8 +293,6 @@ Nie ustanawia automatycznie:
 - lumpowalności stochastycznej;
 - stacjonarności w czasie;
 - istnienia jednego stałego zbioru stanów dla wszystkich \(t\).
-
-Każda z tych własności wymaga osobnej hipotezy.
 
 ---
 
@@ -420,15 +313,11 @@ II.7–II.9 dają kolejno:
 W symbolach:
 
 \[
-\ker_{\rm eq}\rho_t
-\subseteq
-\equiv_{\mathcal T,t},
+\ker_{\rm eq}\rho_t\subseteq\equiv_{\mathcal T,t},
 \]
 
 \[
-M_{\mathcal T,t}
-=
-\mathcal H_t/\!\equiv_{\mathcal T,t},
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
 \]
 
 \[
