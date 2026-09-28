@@ -32,7 +32,8 @@ Done:
 - V2.4 `Adekwatność reprezentacji względem zadania` — PASS;
 - V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA;
 - V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS;
-- V2.6 `Deterministyczna dynamika ilorazowa` — PASS.
+- V2.6 `Deterministyczna dynamika ilorazowa` — PASS;
+- V2.7 `Dokładna adekwatność pamięci historii` — PASS.
 
 ### Current Volume-I verdict
 
@@ -46,11 +47,11 @@ Done:
 
 No Freeze 01 erratum was required.
 
-### Current V2 quotient/dynamics verdict
+### Current V2 quotient/dynamics/history verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.6}=\mathrm{PASS}.
+\mathrm{V2.1:V2.7}=\mathrm{PASS}.
 }
 \]
 
@@ -81,14 +82,29 @@ q_{\mathcal T,c}\text{ factors through }\rho,
 \ker_{eq}q\subseteq E_{\mathcal T,c}
 \]
 
-for exact task-information legality of a reduction, and
+for exact task-information legality of a reduction,
+
+\[
+\boxed{xEy\Longrightarrow\delta(x)E\delta(y)}
+\]
+
+iff a unique deterministic quotient dynamics exists, and for history memory
 
 \[
 \boxed{
-xEy\Longrightarrow\delta(x)E\delta(y)}
+\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
+}
 \]
 
-iff a unique deterministic quotient dynamics exists.
+with
+
+\[
+H\equiv_{\mathcal T,t}H'
+\iff
+\operatorname{Beh}_{\mathcal T}(H)
+\cong
+\operatorname{Beh}_{\mathcal T}(H').
+\]
 
 Scope locks:
 - uniqueness only on representation image (F60);
@@ -99,18 +115,21 @@ Scope locks:
 - static task adequacy does not imply dynamic descent;
 - deterministic congruence is not stochastic lumpability;
 - if the task closure is stable under `R -> R∘delta_c`, then `E_T,c` is automatically a congruence for `delta_c`;
-- HCube/HIGHER-FIBRE/Go remain scoped regressions, not proofs of the general theorems.
+- full history is not asserted to be bit-, state-, dimension-, storage- or computation-minimal;
+- Go/LAZARUS remain scoped regressions, not proofs of the general history theorem.
 
 ### Next
 
-1. write **V2.7 — Exact history-memory adequacy** (C42 with C57/C58);
-2. use `rho_t:H_t->Z_t` and the future-task equivalence `equiv_{T,t}`;
-3. preserve the distinction current world fibre vs full future-task state;
-4. then V2.8 coarsest exact history quotient C44;
-5. then V2.9 recursive quotient update C45 with explicit domain typing;
-6. only afterward proceed to classical bridge layer.
+1. write **V2.8 — Coarsest exact history quotient** (C44);
+2. prove the factorization property of
+   \[
+   M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t};
+   \]
+3. preserve the boundary: coarsest exact quotient in quotient order is not minimum bits/dimension/storage/compute;
+4. then V2.9 recursive quotient update C45 with explicit domain typing;
+5. only afterward proceed to classical bridge layer.
 
-STOP condition: do not claim that full history is the unique or bit-minimal memory; sufficiency is always relative to the declared future-task equivalence.
+STOP condition: do not promote quotient-order minimality into implementation minimality.
 
 ---
 
@@ -165,31 +184,14 @@ Mandatory boundaries:
 - F59 MINI vs general FACT;
 - F60 factorization uniqueness only on `im rho`.
 
-Local II.1 regression:
-- empty fibre gives `|q(F)|=0`, never exact resolution;
-- one task-inequivalent pair inside `F` falsifies exact task decidability.
-
-Local II.2 regression:
-- nonsurjective `rho` does not yield a unique extension `g:Z->W`;
-- F60 fixed witness remains mandatory.
-
-Local II.3 regression:
-- one pair `Psi_c(x)=Psi_c(y)` with `x not E_{T,c} y` falsifies global observer sufficiency;
-- uniqueness is only on `im Psi_c`.
-
-Local II.4 regression:
-- one pair `rho(x)=rho(y)` with `x not E_{T,c} y` falsifies representation adequacy;
-- R01/R02 are direct application witnesses at their declared task scopes;
-- R03 is a scope-boundary witness, not a falsifier of the exact theorem.
-
-Local II.5 regression:
-- one pair `q(x)=q(y)` with `x not E_{T,c} y` falsifies task-information legality of the reduction;
-- F57 blocks promotion from task-information legality to full contract legality;
-- F55 blocks promotion from geometric symmetry to observation-compatible gauge.
-
-Local II.6 regression:
-- the fixed three-state witness `{a,b}|{c}` with `delta(a)=a`, `delta(b)=c`, `delta(c)=c` shows that static quotient adequacy does not imply dynamic projectability;
-- stochastic lumpability remains outside the deterministic theorem.
+Local theorem regressions:
+- II.1: empty fibre never counts as exact resolution;
+- II.2: nonsurjective `rho` does not give a unique extension outside `im rho`;
+- II.3: one observation-collapsed but task-distinct pair falsifies global observer sufficiency;
+- II.4: one `rho`-collapsed but task-distinct pair falsifies representation adequacy;
+- II.5: F57/F55 block overpromotion of quotient/gauge legality;
+- II.6: fixed three-state witness shows static quotient adequacy does not imply dynamic projectability;
+- II.7: one pair of histories with equal memory and different future-task trees falsifies memory adequacy; R02 Go and LAZARUS remain fixed scoped witnesses.
 
 ---
 
@@ -263,9 +265,9 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.6\ PASS}
+\mathrm{V2.1:V2.7\ PASS}
 \to
-\mathrm{V2.7\ NEXT}.
+\mathrm{V2.8\ NEXT}.
 }
 \]
 
@@ -273,7 +275,9 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{II.7:II.9\ HISTORY}
+\mathrm{II.8\ HISTORY\ QUOTIENT}
+\to
+\mathrm{II.9\ HISTORY\ UPDATE}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
