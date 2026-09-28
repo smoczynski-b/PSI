@@ -6,7 +6,7 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 FIRST THEOREM SPINE PASS`.
+**State:** `V1 NORMALIZED PASS / V2 QUOTIENT-REPRESENTATION LAYER IN PROGRESS`.
 
 Done:
 - physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
@@ -30,7 +30,8 @@ Done:
 - V2.2 `Kryterium faktoryzacji przez reprezentację` — PASS;
 - V2.3 `Globalna wystarczalność obserwatora` — PASS;
 - V2.4 `Adekwatność reprezentacji względem zadania` — PASS;
-- V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA.
+- V2 SPINE CROSS-CHECK 01 — PASS WITH CONTROL-MAP NORMALIZATION / NO FREEZE ERRATA;
+- V2.5 `Zadaniowa legalność informacyjna redukcji i ilorazu` — PASS.
 
 ### Current Volume-I verdict
 
@@ -44,11 +45,11 @@ Done:
 
 No Freeze 01 erratum was required.
 
-### Current V2 theorem-spine verdict
+### Current V2 quotient/representation verdict
 
 \[
 \boxed{
-\mathrm{V2.1:V2.4}=\mathrm{PASS}.
+\mathrm{V2.1:V2.5}=\mathrm{PASS}.
 }
 \]
 
@@ -79,26 +80,41 @@ q_{\mathcal T,c}\text{ factors through }\Psi_c,
 \[
 \ker_{eq}\rho\subseteq E_{\mathcal T,c}
 \iff
-q_{\mathcal T,c}\text{ factors through }\rho.
+q_{\mathcal T,c}\text{ factors through }\rho,
 \]
+
+and for any proposed reduction `q`:
+
+\[
+\boxed{
+\ker_{eq}q\subseteq E_{\mathcal T,c}
+}
+\]
+
+is the exact task-information preservation criterion.
 
 Scope locks:
 - uniqueness only on representation image (F60);
 - global observer sufficiency is not per-record decidability;
 - factorization sufficiency is not statistical sufficiency;
 - task-information adequacy is not full contract legality (F57);
-- HCube is a witness only for tasks containing the distinguishing resolvent quantity.
+- geometric symmetry does not automatically establish observation-compatible gauge (F55);
+- HCube is a witness only for tasks containing the distinguishing resolvent quantity;
+- HIGHER-FIBRE and Go remain scoped regressions, not proofs of the general factorization results.
 
 ### Next
 
-1. write **V2.5 — Task-information legality of reduction / quotient** (C32/C37);
-2. derive `ker_eq q ⊆ E_{T,c}` from II.4;
-3. preserve F57: task-information legal != fully contract-legal;
-4. then V2.6 deterministic quotient dynamics C10;
-5. then V2.7–V2.9 history/memory quotient layer C42/C44/C45;
-6. only afterward proceed to classical bridge layer.
+1. write **V2.6 — Deterministic quotient dynamics** (C10);
+2. prove the congruence criterion
+   \[
+   xEy\Rightarrow\delta(x)E\delta(y)
+   \]
+   iff a unique quotient dynamics exists;
+3. keep the theorem deterministic and do not import stochastic lumpability;
+4. then V2.7–V2.9 history/memory quotient layer C42/C44/C45;
+5. only afterward proceed to classical bridge layer.
 
-STOP condition: do not skip C32/C37 when moving from representation adequacy to dynamics; do not silently promote task-information legality to full contract legality.
+STOP condition: do not infer dynamic descent merely from static task adequacy; the quotient relation must also be a congruence for the declared dynamics.
 
 ---
 
@@ -169,6 +185,11 @@ Local II.4 regression:
 - one pair `rho(x)=rho(y)` with `x not E_{T,c} y` falsifies representation adequacy;
 - R01/R02 are direct application witnesses at their declared task scopes;
 - R03 is a scope-boundary witness, not a falsifier of the exact theorem.
+
+Local II.5 regression:
+- one pair `q(x)=q(y)` with `x not E_{T,c} y` falsifies task-information legality of the reduction;
+- F57 blocks promotion from task-information legality to full contract legality;
+- F55 blocks promotion from geometric symmetry to observation-compatible gauge.
 
 ---
 
@@ -242,11 +263,9 @@ Current physical source:
 \to
 \mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{V2.1:V2.4\ PASS}
+\mathrm{V2.1:V2.5\ PASS}
 \to
-\mathrm{V2\ SPINE\ CROSSCHECK\ PASS}
-\to
-\mathrm{V2.5\ NEXT}.
+\mathrm{V2.6\ NEXT}.
 }
 \]
 
@@ -254,8 +273,6 @@ Current legal phase:
 
 \[
 \boxed{
-\mathrm{II.5\ REDUCTION/QUOTIENT}
-\to
 \mathrm{II.6\ DYNAMICS}
 \to
 \mathrm{II.7:II.9\ HISTORY}
