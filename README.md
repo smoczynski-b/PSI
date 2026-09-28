@@ -33,6 +33,7 @@ F(Y)\times F(Y)\subset E_{\mathcal T}.
 - [Principia V1 I.2 — Observation, compatible fibre and catalog adequacy](docs/principia-v1-02-observation-fibre-catalog-adequacy.md)
 - [Principia V1 I.3 — Task-relative distinction and legal reduction](docs/principia-v1-03-task-distinction-legal-reduction.md)
 - [Principia V1 I.4 — History, memory and future-task semantics](docs/principia-v1-04-history-memory-future-semantics.md)
+- [Principia V1 I.5 — Exact identification, stability and statistical licensing](docs/principia-v1-05-exact-stable-statistical-licensing.md)
 - [Proof / Source / Migration Audit 01](docs/proof-source-migration-audit-01.md)
 - [CAT / ADEQ / FACT Migration 01](docs/cat-fact-migration-01.md)
 - [Regression Bank 01](docs/regression-bank-01.md)
@@ -150,20 +151,24 @@ The first prose pass now contains:
 - `I.1 — Kontrakt i role semantyczne` — `CROSS-CHECK PASS`;
 - `I.2 — Obserwacja, włókno zgodności i adekwatność katalogu` — `CROSS-CHECK PASS`;
 - `I.3 — Rozróżnienie zadaniowe i legalna redukcja` — `CROSS-CHECK PASS`;
-- `I.4 — Historia, pamięć i przyszła semantyka zadania` — `CROSS-CHECK PASS`.
+- `I.4 — Historia, pamięć i przyszła semantyka zadania` — `CROSS-CHECK PASS`;
+- `I.5 — Dokładna identyfikowalność, stabilność i licencja statystyczna` — `CROSS-CHECK PASS`.
 
-Cross-check corrections have removed four recurrent scope inflations:
+Cross-check corrections have removed five recurrent scope inflations:
 
 1. task-information adequacy is not full contract legality;
 2. an empty fibre does not by itself localize the defect to the catalog;
 3. a quotient can preserve task information without being otherwise contract-legal;
-4. the reference history space need only contain enough structure to define legal future semantics and is not assumed memory-minimal.
+4. the reference history space need only contain enough structure to define legal future semantics and is not assumed memory-minimal;
+5. V1 statistical foundations retain only `exact ↛ stable ↛ confidence`, `UNRESOLVED` and probability-contract discipline; technical FS-STAT witnesses and numerical constants remain in V2/V3.
 
 Next prose unit:
 
 \[
-\boxed{\mathrm{I.5\ —\ exact\ identification,\ stability\ and\ statistical\ licensing}.}
+\boxed{\mathrm{I.6\ —\ methodological\ boundaries}.}
 \]
+
+After I.6, the first whole-Volume-I cross-check becomes the next gate before V2 prose.
 
 ## Hardening bank
 
@@ -203,9 +208,9 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{I.4\ PASS}
 \to
-\mathrm{I.5\ NEXT}
+\mathrm{I.5\ PASS}
 \to
-\mathrm{I.6}
+\mathrm{I.6\ NEXT}
 \to
 \mathrm{V1\ CROSS\!-\!CHECK}
 \to
