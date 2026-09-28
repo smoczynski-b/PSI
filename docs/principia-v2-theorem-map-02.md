@@ -14,15 +14,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po:
-
-- związaniu fizycznego CANON-03;
-- Claim Registry v12;
-- zamknięciu RED-1 C57–C59;
-- migracji CAT/FACT C62–C66;
-- Proof/Source/Migration Audit 01;
-- V1 Normalized Pass;
-- wykonaniu i cross-checku V2.1–V2.5.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.6.
 
 Każda jednostka V2 ma mieć:
 
@@ -89,16 +81,12 @@ F_c(Y)^2\subseteq E_{\mathcal T,c}.
 ### Spine verdict
 
 \[
-\boxed{
-\mathrm{V2.1:V2.4}=\mathrm{PASS}.
-}
+\boxed{\mathrm{V2.1:V2.4}=\mathrm{PASS}.}
 \]
-
-No Freeze 01 erratum required.
 
 ---
 
-## 2. Wniosek redukcyjny — wykonany przed dynamiką
+## 2. Wniosek redukcyjny — wykonany
 
 ### II.5 — C32/C37 Task-information legality of reduction / quotient
 
@@ -111,18 +99,15 @@ q:\Omega_c\to Z,
 exact preservation of task information is equivalent to
 
 \[
-\boxed{
-\ker_{eq}q\subseteq E_{\mathcal T,c}.
-}
+\boxed{\ker_{eq}q\subseteq E_{\mathcal T,c}.}
 \]
 
 Equivalently the task quotient factors uniquely through `q` on `im q`.
 
-**DEPENDS ON:** II.4.  
 **STATUS:** `PASS`.  
+**DEPENDS ON:** II.4.  
 **MANDATORY BOUNDARIES:** F57 and F55.  
-**INTERPRETATION:** `task-information legal`, not automatically `fully contract-legal`.  
-**REGRESSION:** HIGHER-FIBRE and R02 direct; corrected MINI gauge-observation case is a contract-scope warning.
+**REGRESSION:** HIGHER-FIBRE and R02 direct; corrected MINI gauge-observation case as scope warning.
 
 ---
 
@@ -130,43 +115,47 @@ Equivalently the task quotient factors uniquely through `q` on `im q`.
 
 ### II.6 — C10 Deterministic quotient dynamics
 
-For `delta:Omega->Omega`, equivalence `E`, quotient map `q`, a unique
+For
+
+\[
+\delta:\Omega\to\Omega,
+\]
+
+equivalence `E` and quotient map `q_E`, a unique
 
 \[
 \bar\delta:\Omega/E\to\Omega/E,
-\qquad \bar\delta\circ q=q\circ\delta
+\qquad
+\bar\delta\circ q_E=q_E\circ\delta
 \]
 
 exists iff
 
 \[
-xEy\Rightarrow\delta(x)E\delta(y).
+\boxed{xEy\Rightarrow\delta(x)E\delta(y).}
 \]
 
-**STATUS:** `NEXT / READY`.  
+**STATUS:** `PASS`.  
 **CLASS:** classical congruence criterion / PSI-adapted dynamic quotient.  
-**BOUNDARY:** deterministic theorem; stochastic kernels require separate lumpability conditions.
+**BOUNDARIES:** static task adequacy does not imply dynamic descent; deterministic theorem is not stochastic lumpability.  
+**PSI NOTE:** if `R∈R_T,c => R∘delta_c∈R_T,c` for all task quantities, then `E_T,c` is automatically a congruence for `delta_c`.
 
 ### II.7 — C42 Exact history-memory adequacy
 
 With future-task equivalence C57/C58:
 
 \[
-\boxed{
-\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.
-}
+\boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
 \]
 
-**STATUS:** `READY`; former V2-GAP-01 is closed by C57–C59.  
+**STATUS:** `NEXT / READY`; former V2-GAP-01 is closed by C57–C59.  
 **DEPENDS ON:** II.4 + registered history equivalence.  
 **REGRESSION:** R02.
 
 ### II.8 — C44 Coarsest exact history quotient
 
 \[
-M_{\mathcal T,t}
-=
-\mathcal H_t/\!\equiv_{\mathcal T,t}
+M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}
 \]
 
 and every exact sufficient `rho_t` factors uniquely to it on `im rho_t`.
@@ -226,17 +215,13 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 - higher/groupoid information is retained only when task/contract requires it;
 - no old source is automatically promoted to current canon (F58/F59).
 
-These units come after the elementary and dynamic/history quotient spine.
-
 ---
 
 ## 6. Current execution order
 
 \[
 \boxed{
-\mathrm{II.1:II.5\ PASS}
-\to
-\mathrm{II.6\ DYNAMICS}
+\mathrm{II.1:II.6\ PASS}
 \to
 \mathrm{II.7:II.9\ HISTORY}
 \to
