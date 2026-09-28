@@ -158,3 +158,35 @@ do not by themselves imply
 \]
 
 Any reuse of the historical central theorem must pass III.1 first.
+
+---
+
+## PF11 — integrating factor does not imply geometric pushforward
+
+The positive solution of
+
+\[
+(\rho B)'=\rho C
+\]
+
+is a formal Sturm–Liouville/Hilbert weight. It is **not automatically** the pushforward of Riemannian volume under \(\Lambda\).
+
+The identification
+
+\[
+\rho(\lambda)d\lambda
+=
+\Lambda_*(d\mathrm{vol}_g)
+\]
+
+requires an additional geometric integration contract, such as the proper-submersion/coarea hypotheses of III.2.
+
+Thus:
+
+\[
+\boxed{
+\text{integrating factor}
+\not\Rightarrow
+\text{geometric pushforward measure}.
+}
+\]
