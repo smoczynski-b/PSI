@@ -1,6 +1,6 @@
 # PRINCIPIA SEMANTICA — V2 THEOREM MAP 02
 
-**Status:** `CURRENT / POST-SPINE-CROSSCHECK CONTROL MAP`  
+**Status:** `CURRENT / POST-HISTORY-LAYER CONTROL MAP`  
 **Date:** 2026-09-28  
 **Supersedes for control:** `principia-v2-theorem-map-01.md`  
 **Canonical source:** physical `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
@@ -14,7 +14,7 @@
 
 ## 0. Zasada mapy
 
-Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.8.
+Mapa v01 pozostaje dokumentem genealogicznym. Mapa v02 odzwierciedla stan po związaniu fizycznego CANON-03, Claim Registry v12, migracji RED-1/CAT/FACT, V1 Normalized Pass oraz wykonaniu i cross-checku II.1–II.9.
 
 Każda jednostka V2 ma mieć:
 
@@ -111,7 +111,7 @@ Equivalently the task quotient factors uniquely through `q` on `im q`.
 
 ---
 
-## 3. Dynamic / history quotient layer
+## 3. Dynamic / history quotient layer — wykonany
 
 ### II.6 — C10 Deterministic quotient dynamics
 
@@ -179,13 +179,7 @@ Equivalently the history task quotient factors uniquely through `rho_t` on `im r
 M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t}.
 \]
 
-Every exact memory
-
-\[
-\rho_t:\mathcal H_t\to Z_t
-\]
-
-with
+Every exact memory \(\rho_t:\mathcal H_t\to Z_t\) with
 
 \[
 \ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}
@@ -208,31 +202,66 @@ For quotient representations `q_Q`, exactness is equivalent to `Q⊆equiv_T,t`; 
 **BOUNDARIES:** quotient-order coarseness is not bit/dimension/storage/compute minimality; F60 applies to `im rho_t`, not unused codomain points.  
 **REGRESSION:** R02/LAZARUS as scope witnesses only.
 
-### II.9 — C45 Recursive quotient update
+### II.9 — C45 + C59 Recursive quotient update
 
-For a typed legal update and congruence of history equivalence:
+Let
 
 \[
-U_{\mathcal T,t}([H_t],\varepsilon_t,y_{t+1})
-=
-[\delta_t(H_t,\varepsilon_t,y_{t+1})]_{\mathcal T,t+1}
+D_t\subseteq\mathcal H_t\times\mathcal E_t\times\mathcal Y_{t+1},
+\qquad
+\delta_t:D_t\to\mathcal H_{t+1}
 \]
 
-is well-defined.
+be the typed legal extension map. Under C59, legality of a literal label and the future-task class of its successor are invariant under `equiv_T,t`.
 
-**STATUS:** `NEXT / READY WITH EXPLICIT DOMAIN TYPING`.  
-**BOUNDARY:** mathematical recurrence does not imply finite memory, computability or efficiency.  
+Hence the quotient-domain
+
+\[
+\overline D_t
+\subseteq
+M_{\mathcal T,t}\times\mathcal E_t\times\mathcal Y_{t+1}
+\]
+
+is well-defined and there is a unique
+
+\[
+\boxed{
+U_{\mathcal T,t}:\overline D_t\to M_{\mathcal T,t+1}
+}
+\]
+
+with
+
+\[
+\boxed{
+U_{\mathcal T,t}([H],\varepsilon,y)
+=
+[\delta_t(H,\varepsilon,y)]_{\mathcal T,t+1}.
+}
+\]
+
+**STATUS:** `PASS`.  
+**DEPENDS ON:** II.6–II.8 + C59.  
+**BOUNDARIES:** domain invariance and successor-class invariance are both required; mathematical recurrence does not imply finite memory, computability, representative-free algorithmics or efficiency.  
 **REGRESSION:** R02 / F43.
+
+### History-layer verdict
+
+\[
+\boxed{
+\mathrm{II.7:II.9}=\mathrm{PASS}.
+}
+\]
 
 ---
 
-## 4. Classical bridge layer — after own quotient results
+## 4. Classical bridge layer — next
 
 ### Lumpability — C13
 
 Strong lumpability remains a classical theorem plus conditional PSI bridge. Task equivalence alone does not imply stochastic lumpability.
 
-**STATUS:** `SOURCE-BOUND / DEFER UNTIL AFTER II.9`.
+**STATUS:** `NEXT / SOURCE-BOUND`.
 
 ### Myhill–Nerode — C18
 
@@ -265,13 +294,13 @@ Current canonical definitions are C62/C63. Older richer groupoid/homotopy struct
 
 \[
 \boxed{
-\mathrm{II.1:II.8\ PASS}
-\to
-\mathrm{II.9\ HISTORY\ UPDATE}
+\mathrm{II.1:II.9\ PASS}
 \to
 \mathrm{CLASSICAL\ BRIDGES}
 \to
-\mathrm{CAT/FACT/FRAME/HIGHER}.
+\mathrm{CAT/FACT/FRAME/HIGHER}
+\to
+\mathrm{V2\ WHOLE\ CROSSCHECK}.
 }
 \]
 
