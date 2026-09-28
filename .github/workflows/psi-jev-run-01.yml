@@ -1,0 +1,51 @@
+name: PSI-JEV RUN-01
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/psi-jev-run-01.yml'
+      - 'scripts/run_psi_jev_01.py'
+      - 'experiments/psi-jev-run-01-fixture.json'
+
+permissions:
+  contents: read
+
+jobs:
+  run-jev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check TypeSafe API key
+        shell: bash
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+        run: |
+          if [ -z "$TYPESAFE_API_KEY" ]; then
+            echo 'BLOCKED: repository secret TYPESAFE_API_KEY is not configured.'
+            exit 2
+          fi
+
+      - name: Execute pre-registered RUN-01
+        env:
+          TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
+          TYPESAFE_MODEL: jev-latest
+        run: python scripts/run_psi_jev_01.py
+
+      - name: Show result
+        if: always()
+        shell: bash
+        run: |
+          if [ -f artifacts/PSI-JEV-RUN-01-result.json ]; then
+            cat artifacts/PSI-JEV-RUN-01-result.json
+          fi
+
+      - name: Upload result artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: PSI-JEV-RUN-01-result
+          path: artifacts/PSI-JEV-RUN-01-result.json
+          if-no-files-found: ignore
