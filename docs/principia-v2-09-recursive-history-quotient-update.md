@@ -3,9 +3,11 @@
 
 **Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
-**Rejestr tez:** `claim-registry-12.md`, z zachowanymi C45 oraz C59  
+**Rejestr tez / wynik migrowany:** `claim-registry-12.md`, C45 oraz C59  
 **Mapa twierdzeń:** `principia-v2-theorem-map-02.md`, II.9  
-**Zależności:** II.6, II.7 i II.8.  
+**Ścisła zależność dowodowa:** II.7, w szczególności C57/C58 i literalnie etykietowana przyszłościowa równoważność historii.  
+**Analogia strukturalna:** II.6 — ogólne deterministyczne zejście dynamiki na iloraz.  
+**Nie jest przesłanką dowodu:** II.8 — najgrubszość/minimalność ilorazu historii.  
 **Granica:** dobrze określona rekurencja matematyczna nie implikuje skończonej pamięci, obliczalności ani efektywności.
 
 ---
@@ -32,11 +34,13 @@ Jeżeli \((H,\varepsilon,y)\in D_t\), to \(\delta_t(H,\varepsilon,y)\) jest hist
 
 ---
 
-## 2. Kongruencja RED-1
+## 2. Kongruencja RED-1 — ponowne wyprowadzenie C59
 
 Z II.7 mamy przyszłościową równoważność \(\equiv_{\mathcal T,t}\) na \(\mathcal H_t\), zdefiniowaną przez izomorfizm literalnie etykietowanych drzew przyszłości.
 
-C59 daje dokładnie dwie własności potrzebne do aktualizacji. Jeżeli
+C59 jest identyfikatorem rejestrowym twierdzenia o kongruencji/aktualizacji, które w tej jednostce jest **ponownie wyprowadzane**, a nie używane jako wcześniejsza przesłanka.
+
+Jeżeli
 
 \[
 H\equiv_{\mathcal T,t}H',
@@ -62,7 +66,9 @@ oraz — gdy rozszerzenie jest legalne —
 }
 \]
 
-Pierwsza własność wynika z zachowania literalnych etykiet krawędzi; kierunek odwrotny otrzymujemy, stosując tę samą własność do symetrycznej relacji \(H'\equiv_{\mathcal T,t}H\). Druga wynika z izomorfizmu odpowiadających poddrzew następników.
+Pierwsza własność wynika z zachowania literalnych etykiet krawędzi przez izomorfizm przyszłych drzew; kierunek odwrotny otrzymujemy przez symetrię \(H'\equiv_{\mathcal T,t}H\). Druga wynika z izomorfizmu odpowiadających poddrzew następników.
+
+Są to dokładnie dwie własności kongruencji potrzebne do zejścia aktualizacji na klasy.
 
 ---
 
@@ -77,6 +83,8 @@ q_{\mathcal T,t}:\mathcal H_t\to M_{\mathcal T,t},
 \]
 
 oraz analogicznie \(M_{\mathcal T,t+1}\).
+
+Definicja tego ilorazu pochodzi już z II.7; II.8 dowodzi później jego najgrubszości w porządku dokładnych ilorazów, lecz ta własność nie jest potrzebna do niniejszego dowodu.
 
 Celem jest zdefiniowanie aktualizacji klas, której **wartość i legalna dziedzina nie zależą od wyboru reprezentanta historii**.
 
@@ -97,11 +105,9 @@ M_{\mathcal T,t}\times\mathcal E_t\times\mathcal Y_{t+1}
 przez
 
 \[
-\boxed{
 ([H]_{\mathcal T,t},\varepsilon,y)\in\overline D_t
 \iff
 (H,\varepsilon,y)\in D_t.
-}
 \]
 
 Definicja jest reprezentantowo niezmiennicza, ponieważ dla \(H\equiv_{\mathcal T,t}H'\)
@@ -139,7 +145,7 @@ U_{\mathcal T,t}
 
 Niech \(([H]_{\mathcal T,t},\varepsilon,y)\in\overline D_t\). Wybierzmy reprezentanta \(H\) z \((H,\varepsilon,y)\in D_t\) i zdefiniujmy prawą stronę wzoru.
 
-Jeżeli \(H'\equiv_{\mathcal T,t}H\), to z C59
+Jeżeli \(H'\equiv_{\mathcal T,t}H\), to z §2
 
 \[
 (H',\varepsilon,y)\in D_t
@@ -167,19 +173,23 @@ Wartość nie zależy od reprezentanta. Unikalność jest natychmiastowa: każda
 
 ## 6. Diagram aktualizacji
 
-Na legalnej dziedzinie zachodzi
+Na legalnej dziedzinie zachodzi komutacja
 
 \[
 \boxed{
 q_{\mathcal T,t+1}
-\bigl(\delta_t(H,\varepsilon,y)\bigr)
+\circ
+\delta_t
 =
 U_{\mathcal T,t}
-\bigl(q_{\mathcal T,t}(H),\varepsilon,y\bigr).
+\circ
+(q_{\mathcal T,t}\times\operatorname{id}_{\mathcal E_t}\times\operatorname{id}_{\mathcal Y_{t+1}})
 }
 \]
 
-Jest to czasowo zmienna i częściowa wersja zejścia dynamiki na iloraz z II.6.
+po ograniczeniu obu stron do \(D_t\).
+
+Jest to czasowo zmienna i częściowa wersja ogólnego schematu zejścia dynamiki na iloraz z II.6, ale dowód nie wymaga II.6 jako przesłanki.
 
 ---
 
@@ -208,123 +218,109 @@ II.6 dotyczyło mapy \(\delta:\Omega\to\Omega\) na stałej przestrzeni. W II.9:
 - krok ma jawne etykiety \((\varepsilon,y)\);
 - trzeba kontrolować zarówno dziedzinę, jak i klasę następcy.
 
-Nie jest to więc mechaniczne przepisanie II.6 bez typowania dziedziny.
+II.6 jest więc analogią strukturalną, nie wcześniejszym lematem wymaganym przez dowód II.9.
 
 ---
 
-## 9. Rekurencja abstrakcyjna a implementacja
+## 9. Matematyczna rekurencja nie oznacza skończonej pamięci
 
-Z istnienia \(U_{\mathcal T,t}\) wynika, że **na poziomie matematycznym** istnieje reprezentantowo niezależna aktualizacja klas zadaniowych.
-
-Nie wynika z tego, że istnieje algorytm obliczający \(U_{\mathcal T,t}\) bez dostępu do reprezentanta historii ani że rozpoznawanie klas \(\equiv_{\mathcal T,t}\) jest efektywne lub w ogóle obliczalne.
-
-W szczególności nie wynika:
+Istnienie dobrze określonego
 
 \[
-|M_{\mathcal T,t}|<\infty,
+U_{\mathcal T,t}
 \]
 
-ani:
+nie mówi nic samo przez się o:
 
-- skończona liczba bitów lub stanów implementacji;
-- efektywna procedura rozpoznawania klasy;
-- obliczalność \(U_{\mathcal T,t}\);
-- tania aktualizacja online;
-- istnienie skończonego automatu;
-- stabilność numeryczna.
+- liczbie klas w \(M_{\mathcal T,t}\);
+- długości kodu klasy;
+- obliczalności relacji \(\equiv_{\mathcal T,t}\);
+- możliwości wyznaczenia klasy bez reprezentanta historii;
+- koszcie aktualizacji;
+- istnieniu skończonego automatu realizującego iloraz.
 
-Dlatego
+Zatem
 
 \[
 \boxed{
-\text{rekurencyjność matematyczna}
+\text{mathematical recursive update}
 \not\Rightarrow
-\text{skończona lub efektywna pamięć}.
+\text{finite-memory efficient implementation}.
 }
 \]
+
+Jest to rygiel F43.
 
 ---
 
-## 10. R02 Go jako regres dziedziny i następcy
+## 10. Go jako regres kongruencji
 
-Jeżeli kandydacka pamięć skleja dwie historie, dla których ta sama etykieta ruchu jest legalna w jednej, a nielegalna w drugiej, nie da się dobrze określić dziedziny aktualizacji na klasie tej pamięci.
+W regułach Go legalność tego samego literalnego ruchu może zależeć od historii. Jeżeli pamięć scala historie, po których ten sam ruch ma różną legalność, nie może reprezentować poprawnie klasy przyszłościowej.
 
-Jeżeli etykieta jest legalna w obu, ale następcy mają różną przyszłą semantykę zadania, nie jest dobrze określona wartość aktualizacji.
+R02 testuje więc nie tylko samą adekwatność pamięci, ale także warunki wymagane do dobrze określonej aktualizacji ilorazu:
 
-R02 testuje więc dwa warunki:
-
-\[
-\boxed{
-\text{legalność etykiety}
-\quad+\quad
-\text{równoważność następcy}.
-}
-\]
-
-Jest regressem zastosowania, nie dowodem Twierdzenia II.9.
+1. legalność etykiety musi być klasowo niezmiennicza;
+2. następca po tej etykiecie musi mieć klasę niezależną od reprezentanta.
 
 ---
 
 ## 11. Status źródłowy
 
-C59 pochodzi z migracji RED-1 i ustanawia kongruencję literalnie etykietowanego przyszłego drzewa dla legalnego rozszerzenia historii. C45 zapisuje wynik jako rekurencyjną aktualizację zadaniowego ilorazu historii.
+C45 i C59 są migrowanymi wynikami RED-1. W tej jednostce ich treść jest odtwarzana z aktualnej definicji C57/C58 i jawnego typowania częściowej aktualizacji.
 
 \[
 \boxed{
-\text{RED-1 CONGRUENCE RESULT}
-\; + \;
-\text{CLASSICAL QUOTIENT-UPDATE PRINCIPLE / PSI HISTORY BRIDGE}.
+\text{RED-1 HISTORY CONGRUENCE}
++
+\text{CLASSICAL QUOTIENT WELL-DEFINEDNESS PATTERN}.
 }
 \]
 
-PSI nie rości sobie autorstwa abstrakcyjnej zasady schodzenia kongruentnej aktualizacji na iloraz.
+Nie jest to nowy prymityw PSI.
 
 ---
 
-## 12. Czego Twierdzenie II.9 nie ustanawia
+## 12. Granice II.9
 
-Nie ustanawia automatycznie:
+II.9 nie ustanawia:
 
-- skończoności \(M_{\mathcal T,t}\);
-- obliczalności relacji \(\equiv_{\mathcal T,t}\);
-- obliczalności lub efektywności \(U_{\mathcal T,t}\);
-- implementacyjnej minimalności pamięci;
-- stabilności na szum;
-- lumpowalności stochastycznej;
-- stacjonarności w czasie;
-- istnienia jednego stałego zbioru stanów dla wszystkich \(t\).
+- skończonej liczby klas historii;
+- minimalności bitowej;
+- algorytmu obliczania klasy;
+- decidowalności równoważności historii;
+- efektywnej implementacji aktualizacji;
+- totalności \(U_{\mathcal T,t}\);
+- stochastycznego odpowiednika bez osobnego typowania jądra przejścia;
+- automatycznej adekwatności jakiejkolwiek konkretnej pamięci.
 
 ---
 
-## 13. Domknięcie własnej warstwy historii
+## 13. Cross-check po korekcie grafu zależności
 
-II.7–II.9 dają kolejno:
+### Typy
+`PASS`: dziedzina częściowa, etykiety i przestrzenie historii są jawne.
+
+### Proof dependency
+`PASS`: dowód używa II.7/C57/C58 oraz własności literalnie etykietowanego izomorfizmu przyszłych drzew. C59 jest identyfikatorem wyniku dowodzonego/migrowanego w tej jednostce, a nie wcześniejszą przesłanką.
+
+### II.6 / II.8
+`PASS`: II.6 jest analogią strukturalną; II.8 nie jest przesłanką dowodu.
+
+### Granica
+`PASS`: F43 zachowany.
+
+### Freeze impact
+`NONE`: korekta dotyczy grafu zależności i prezentacji źródła wyniku, nie treści twierdzenia.
+
+---
+
+## 14. Werdykt
 
 \[
 \boxed{
-\text{adekwatność pamięci}
-\to
-\text{najgrubszy dokładny iloraz historii}
-\to
-\text{dobrze określoną częściową aktualizację ilorazową}.
+\mathrm{II.9\ RECURSIVE\ HISTORY\ QUOTIENT\ UPDATE}
+=\mathrm{PASS}.
 }
 \]
 
-W symbolach:
-
-\[
-\ker_{\rm eq}\rho_t\subseteq\equiv_{\mathcal T,t},
-\]
-
-\[
-M_{\mathcal T,t}=\mathcal H_t/\!\equiv_{\mathcal T,t},
-\]
-
-\[
-U_{\mathcal T,t}
-([H_t],\varepsilon_t,y_{t+1})
-=
-[\delta_t(H_t,\varepsilon_t,y_{t+1})]_{\mathcal T,t+1}.
-\]
-
-Po II.9 własna warstwa quotient/history PSI jest gotowa do porównania z klasycznymi konstrukcjami: lumpowalnością, Myhill–Nerode oraz algorytmicznym refinementem partycji.
+Treść C45/C59 pozostaje bez zmiany; poprawiono wyłącznie klasyfikację zależności dowodowych.
