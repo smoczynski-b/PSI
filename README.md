@@ -41,13 +41,14 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 ## Start here
 
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v05](docs/claim-registry-05.md)
-- [Current falsifier registry v04](docs/falsifier-registry-04.md)
+- [Current claim registry v07](docs/claim-registry-07.md)
+- [Current falsifier registry v06](docs/falsifier-registry-06.md)
 - [CAT–FACT–NORM–MINI 01](docs/cat-fact-norm-mini-01.md)
 - [CLOSED-FRAME 01](docs/closed-frame-01.md)
 - [LAZARUS-AGENCY 01](docs/lazarus-agency-01.md)
+- [HIGHER-FIBRE 01](docs/higher-fibre-01.md)
+- [R4 PRESSURE COURT 01](docs/r4-pressure-court-01.md)
 - [Current PSI Agent Architecture v02](docs/agent-psi-architecture-02.md)
-- [Historical dual-operator discipline v01](docs/agent-psi-dual-operator-01.md)
 - [Sector work map](docs/work-map-01.md)
 - [Principia migration registry](docs/principia-migration-01.md)
 - [Principia four-volume skeleton](docs/principia-volume-skeleton-01.md)
@@ -61,17 +62,13 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
-Historical registries remain for provenance. Current control pointers are claim-registry v05, falsifier-registry v04 and Agent Architecture v02.
+Historical registries/specs remain for provenance. Current control pointers are claim-registry v07, falsifier-registry v06 and Agent Architecture v02.
 
-## Mathematical lineage
-
-PSI is not presented as mathematics without ancestors. Classical results remain classical when placed inside PSI notation; claim status and role in PSI are separate metadata axes.
-
-## Pressure results already completed
+## Pressure sequence
 
 ### CAT–FACT–NORM–MINI
 
-For an exact time-parametrized regular `C^3` interval curve, legal Frenet/Bishop segmentations reduce to one Bishop normal class under the declared gauge. The result is a narrow bridge built from classical differential geometry, not a novelty claim for Bishop/Frenet theory.
+For an exact time-parametrized regular `C^3` interval curve, legal Frenet/Bishop segmentations reduce to one Bishop normal class under the declared gauge. Frenet failure at zero curvature is a representation/domain event, not automatic catalog `birth`.
 
 ### CLOSED-FRAME
 
@@ -81,35 +78,70 @@ For a closed curve, normal parallel transport produces a return holonomy
 H_\gamma\in SO(2).
 \]
 
-A periodic RMF exists iff `H_γ=I`. The PSI result is the typed reduction of this classical global datum into candidate/transport/task/compatibility roles. No sixth CORE primitive is required.
+A periodic RMF exists iff `H_γ=I`. The global datum is representable through transport/task roles; no sixth primitive is required.
 
 ### LAZARUS-AGENCY
 
-The historical slogan “same information, different agency” is corrected to the typed statement
+The exact statement is
 
 \[
-\boxed{
 F_t(H)=F_t(H')
 \not\Rightarrow
 H\equiv_{\mathcal T,t}H'.
+\]
+
+Equal current world-state fibres can support different executable/future task semantics. This is a representation inadequacy of `rho_F(H)=F_t(H)`, not “same full information, different agency”.
+
+### HIGHER-FIBRE
+
+For
+
+\[
+*\to B\mathbb Z_2\leftarrow *,
+\]
+
+the coarse strict object-set pullback is one point, while the weak/2-pullback retains two compatibility witnesses. Therefore truncating before fibre construction can lose task-relevant data.
+
+The PSI consequence is not a sixth primitive. It is a legality condition on representation/gauge reduction:
+
+\[
+\boxed{\ker_{eq}q\subseteq E_{\mathcal T}.}
+\]
+
+If stabilizers or compatibility witnesses matter for the task, the contract must retain them before coarse truncation.
+
+## R4 PRESSURE COURT
+
+The four accepted pressure branches were compared under a non-vacuity rule: CORE5 may not be “saved” by stuffing observed answers, task verdicts or oracle information into the candidate object.
+
+A legal reduction must preserve the semantic roles of:
+
+\[
+\Omega,
+\Psi,
+\mathcal K,
+\mathscr O_{\mathcal T},
+\delta,
+\text{contract}.
+\]
+
+No current witness exhibits an unavoidable task-relevant distinction outside those roles. Therefore
+
+\[
+\boxed{
+\mathrm{R4\ PRESSURE\ COURT\ 01}
+=
+\mathrm{NO\ R4\ WITNESS}.
 }
 \]
 
-Equal **current world-state fibres** can support different executable/future task semantics when history or operational composition differs. For
+and
 
 \[
-\rho_F(H)=F_t(H),
+\boxed{\mathrm{CORE5\ remains\ frozen}.}
 \]
 
-this is exactly the representation failure
-
-\[
-\ker_{eq}\rho_F
-\not\subseteq
-\equiv_{\mathcal T,t}.
-\]
-
-The repair is a task-sufficient history/joint-state representation; agency does not require a new CORE primitive. D3 adds the related warning that separate world-state and operational marginals can lose their task-relevant correlation.
+This is **not** a universal completeness theorem. R4 may reopen only after a genuinely new typed counterexample survives the role-preservation and minimality gates.
 
 ## PSI Agent Architecture v02
 
@@ -141,29 +173,33 @@ The current agent operates through
 }
 \]
 
-State is separated into
+The architecture has survived four branch runs plus the cross-branch R4 court without requiring a new governance primitive.
+
+Permanent new regression:
 
 \[
-\mathrm{CANON}\mid\mathrm{SPEC}\mid\mathrm{WORKING}\mid\mathrm{LIVE}\mid\mathrm{FRONTIER}\mid\mathrm{HISTORY}.
+\boxed{\text{candidate stuffing is not a legal proof of CORE sufficiency}.}
 \]
 
-The architecture has now survived three substantive mathematical/pressure runs without requiring a new governance primitive: CAT–FACT–NORM–MINI, CLOSED-FRAME and LAZARUS-AGENCY.
+No Agent v03 is justified by the current evidence.
 
 ## Status
 
 **Research / work in progress.**
 
-CORE5 remains frozen. After the three completed pressure runs, one independent branch remains before the explicit R4 court:
+The primitive-pressure phase is closed. Current work moves to regression strengthening and Principia redaction:
 
 \[
 \boxed{
-\mathrm{HIGHER\ FIBRE}
+\mathrm{HCube}+\mathrm{Go}+\mathrm{FS\!-\!STAT}
 \to
-\mathrm{R4\ PRESSURE\ COURT}.
+\text{regression bank}
+\to
+\text{Principia V1/V2 migration/freeze}.
 }
 \]
 
-Historical Principia material continues to be migrated claim-by-claim against the pinned CANON-03 rather than edited forward as one undifferentiated text.
+Primitive growth remains stopped until a new counterexample forces a genuinely new semantic role.
 
 ## Publications / Zenodo
 
