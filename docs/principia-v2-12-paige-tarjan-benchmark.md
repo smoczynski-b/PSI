@@ -1,46 +1,24 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.12. Paige–Tarjan jako algorytmiczny benchmark rafinacji partycji
 
-**Status:** `CLASSICAL ALGORITHM / PSI BENCHMARK / PROSE PASS 01 / LOCAL CROSS-CHECK PASS`  
+**Status:** `CLASSICAL ALGORITHM / PSI BENCHMARK / PROSE PASS 01 / LOCAL CROSS-CHECK PASS AFTER COMPLEXITY SCOPE NORMALIZATION`  
 **Źródło nadrzędne PSI:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, zachowane C14  
 **Mapa porównawcza:** `classical-compare-01.md`  
 **Źródło klasyczne:** R. Paige, R. E. Tarjan, “Three Partition Refinement Algorithms”, *SIAM Journal on Computing* 16(6), 1987, 973–989, DOI `10.1137/0216062`.  
-**Zakres:** skończona przestrzeń stanów, jedna jawna relacja binarna, jawna partycja początkowa, problem najgrubszej stabilnej rafinacji; brak twierdzenia o uniwersalnym algorytmie dla dowolnego kontraktu PSI.
+**Zakres:** skończona przestrzeń stanów, jawna relacja binarna, jawna partycja początkowa, problem najgrubszej stabilnej rafinacji; brak twierdzenia o uniwersalnym algorytmie dla dowolnego kontraktu PSI.
 
 ---
 
-## 1. Problem klasyczny — relational coarsest partition
+## 1. Relational coarsest partition
 
-Niech
-
-\[
-S
-\]
-
-będzie skończonym zbiorem stanów,
+Niech \(S\) będzie skończonym zbiorem, \(R\subseteq S\times S\) relacją, a \(\Pi_0\) partycją początkową. Dla \(C\subseteq S\):
 
 \[
-R\subseteq S\times S
+\operatorname{Pre}_R(C)=\{x\in S:\exists y\in C,\ xRy\}.
 \]
 
-relacją przejścia oraz
-
-\[
-\Pi_0
-\]
-
-partycją początkową zbioru \(S\).
-
-Dla \(C\subseteq S\) definiujemy poprzednik relacyjny
-
-\[
-\operatorname{Pre}_R(C)
-=
-\{x\in S:\exists y\in C,\ xRy\}.
-\]
-
-Partycję \(\Pi\) nazywamy **stabilną względem \(R\)**, jeżeli dla każdych bloków \(B,C\in\Pi\)
+Partycja \(\Pi\) jest **\(R\)-stabilna**, gdy dla każdych bloków \(B,C\in\Pi\)
 
 \[
 \boxed{
@@ -50,53 +28,45 @@ B\cap\operatorname{Pre}_R(C)=\varnothing.
 }
 \]
 
-Równoważnie, dla każdego bloku \(C\), zbiór \(\operatorname{Pre}_R(C)\) jest sumą bloków \(\Pi\).
+Równoważnie: \(\operatorname{Pre}_R(C)\) jest sumą bloków \(\Pi\) dla każdego bloku \(C\).
 
-Problem *relational coarsest partition* ma postać:
-
-> znaleźć najgrubszą partycję \(\Pi_*\), która rafinuje \(\Pi_0\) i jest stabilna względem \(R\).
-
-To jest cel matematyczny problemu. Algorytm Paige’a–Tarjana jest sposobem jego efektywnego obliczenia.
-
----
-
-## 2. Porządek rafinacji
-
-Dla partycji \(\Pi_1,\Pi_2\) piszemy
+Klasyczny problem ma postać:
 
 \[
-\Pi_1\preceq\Pi_2
+\boxed{
+\Pi_*=	ext{najgrubsza }R\text{-stabilna rafinacja }\Pi_0.
+}
 \]
 
-gdy \(\Pi_1\) jest drobniejsza od \(\Pi_2\), tj. każdy blok \(\Pi_1\) zawiera się w pewnym bloku \(\Pi_2\).
+Jeżeli \(\Pi_1\preceq\Pi_2\) oznacza, że \(\Pi_1\) jest drobniejsza od \(\Pi_2\), to:
 
-Szukany wynik spełnia:
+\[
+\Pi_*\preceq\Pi_0,
+\]
 
-1. \(\Pi_*\preceq\Pi_0\);
-2. \(\Pi_*\) jest \(R\)-stabilna;
-3. jeżeli \(\Pi\preceq\Pi_0\) jest \(R\)-stabilna, to
-   \[
-   \Pi\preceq\Pi_*.
-   \]
+\(\Pi_*\) jest stabilna, a każda stabilna \(\Pi\preceq\Pi_0\) spełnia
 
-Zatem \(\Pi_*\) jest **najgrubszą dopuszczalną stabilną rafinacją** partycji początkowej.
+\[
+\Pi\preceq\Pi_*.
+\]
 
 ---
 
-## 3. Rafinacja przez splitter
+## 2. Splittery
 
-Jeżeli dla bloków \(B,C\) zachodzi jednocześnie
+Jeżeli dla bloków \(B,C\) zachodzi
 
 \[
 B\cap\operatorname{Pre}_R(C)\neq\varnothing
 \]
 
-i
+oraz
+
 \[
 B\setminus\operatorname{Pre}_R(C)\neq\varnothing,
 \]
 
-to \(C\) rozdziela \(B\). Naturalny krok rafinacji zastępuje \(B\) dwoma niepustymi blokami
+to \(C\) rozdziela \(B\). Krok rafinacji zastępuje \(B\) blokami
 
 \[
 B\cap\operatorname{Pre}_R(C),
@@ -104,43 +74,47 @@ B\cap\operatorname{Pre}_R(C),
 B\setminus\operatorname{Pre}_R(C).
 \]
 
-Powtarzanie legalnych rozdzieleń prowadzi do partycji stabilnej. Istotą algorytmiki Paige’a–Tarjana nie jest samo istnienie takiej iteracji, lecz organizacja splitterów i struktur danych tak, aby nie płacić kosztu naiwnej wielokrotnej rafinacji.
+Sama idea kolejnych rozdzieleń jest elementarna. Wkład algorytmiczny Paige’a–Tarjana polega na organizacji splitterów i struktur danych tak, aby obliczyć najgrubszą stabilną rafinację efektywnie.
 
 ---
 
-## 4. Klasyczny wynik algorytmiczny
+## 3. Klasyczna złożoność — rygiel modelu kosztowego
 
-Dla
+Niech
 
 \[
 n=|S|,
 \qquad
-m=|R|,
+m=|R|.
 \]
 
-relational coarsest partition może być obliczona w czasie
+Literatura klasyczna i późniejsze zastosowania standardowo podają dla relational coarsest partition granicę
 
 \[
 \boxed{O(m\log n)}
 \]
 
-w klasycznym modelu jawnej reprezentacji relacji.
+oraz pamięć
 
-Wynik ten należy do klasycznej algorytmiki rafinacji partycji. PSI nie rości autorstwa ani problemu, ani algorytmu, ani granicy złożoności.
+\[
+O(n+m).
+\]
 
-Granica \(O(m\log n)\) jest przywoływana wyłącznie dla problemu o powyższym typie wejścia. Nie jest ogólną złożonością „obliczania PSI”.
+Ten zapis należy czytać w standardowym modelu analizy właściwej rafinacji na jawnie przygotowanej strukturze danych. Jeżeli w całkowity koszt wliczamy jawne odczytanie/utworzenie zbioru \(n\) stanów, relacji i partycji początkowej, bezpieczne księgowanie Principiów ma postać
+
+\[
+\boxed{O(n+m\log n)}
+\]
+
+jako „liniowa inicjalizacja + klasyczna rafinacja”. Nie jest to zmiana twierdzenia Paige’a–Tarjana, lecz jawne rozdzielenie modelu kosztowego od skrótu literaturowego.
+
+W szczególności \(O(m\log n)\) nie jest ogólną złożonością „obliczania PSI”.
 
 ---
 
-## 5. Most PSI — kiedy Paige–Tarjan jest legalnym wykonawcą
+## 4. Most PSI — brama PT1–PT4
 
-Niech dany będzie skończony kontrakt PSI z przestrzenią kandydatów
-
-\[
-\Omega_c=S.
-\]
-
-Paige–Tarjan może być użyty do wyznaczania zadaniowej partycji tylko wtedy, gdy jawnie skonstruujemy redukcję problemu PSI do relational coarsest partition:
+Niech skończony kontrakt PSI ma \(\Omega_c=S\). Paige–Tarjan jest legalnym wykonawcą zadaniowego ilorazu dopiero po redukcji do klasycznego typu wejścia:
 
 ### PT1 — skończoność
 
@@ -150,21 +124,21 @@ Paige–Tarjan może być użyty do wyznaczania zadaniowej partycji tylko wtedy,
 
 ### PT2 — partycja początkowa
 
-Istnieje partycja \(\Pi_0\), która dokładnie koduje rozróżnienia bazowe wymagane przez zadanie, np. bieżące etykiety/obserwable.
+Istnieje \(\Pi_0\), która dokładnie koduje bazowe rozróżnienia wymagane przez zadanie.
 
-### PT3 — relacja przejścia
+### PT3 — relacja
 
-Istnieje jawna relacja binarna
+Istnieje jawna relacja
 
 \[
 R\subseteq S\times S
 \]
 
-odpowiadająca tym przyszłym testom, dla których wymagana jest stabilność.
+kodująca przyszłą stabilność istotną dla zadania.
 
 ### PT4 — zgodność celu
 
-Zadaniowa relacja równoważności ma być dokładnie relacją indukowaną przez najgrubszą \(R\)-stabilną rafinację \(\Pi_0\):
+Zadaniowa relacja równoważności jest dokładnie relacją indukowaną przez najgrubszą \(R\)-stabilną rafinację:
 
 \[
 \boxed{
@@ -172,27 +146,25 @@ E_{\mathcal T,c}=E_{\Pi_*}.
 }
 \]
 
-Dopiero po wykazaniu PT1–PT4 algorytm Paige’a–Tarjana oblicza właściwy iloraz zadaniowy dla tego kontraktu.
+Dopiero wtedy klasyczny algorytm oblicza bloki \(S/E_{\mathcal T,c}\).
 
 ---
 
-## 6. Twierdzenie/zasada II.12.A — warunkowa stosowalność
+## 5. Zasada II.12.A — warunkowa stosowalność
 
-Jeżeli skończony kontrakt PSI spełnia PT1–PT4, to algorytm rozwiązujący klasyczny relational coarsest partition dla \((S,R,\Pi_0)\) oblicza partycję klas
+Jeżeli PT1–PT4 zachodzą, algorytm rozwiązujący relational coarsest partition dla \((S,R,\Pi_0)\) oblicza partycję klas
 
 \[
 S/E_{\mathcal T,c}.
 \]
 
-### Dowód
+**Dowód.** Z PT4 zadaniowa relacja jest relacją indukowaną przez klasyczny cel \(\Pi_*\). Paige–Tarjan oblicza \(\Pi_*\), więc jego bloki są dokładnie klasami \(E_{\mathcal T,c}\). \(\square\)
 
-Z PT4 zadaniowa relacja równoważności jest z definicji relacją indukowaną przez klasyczny cel \(\Pi_*\). Algorytm Paige’a–Tarjana oblicza \(\Pi_*\). Zatem jego bloki są dokładnie klasami \(E_{\mathcal T,c}\). \(\square\)
-
-Treść PSI jest tu całkowicie w **bramie redukcji PT1–PT4**. Sam algorytm pozostaje klasyczny.
+Treść PSI leży w bramie PT1–PT4. Algorytm pozostaje klasyczny.
 
 ---
 
-## 7. Matematyczny cel ≠ algorytm
+## 6. Semantyka ≠ cel ilorazowy ≠ algorytm
 
 Należy zachować trzy poziomy:
 
@@ -206,17 +178,15 @@ Należy zachować trzy poziomy:
 }
 \]
 
-PSI definiuje, które rozróżnienia są zadaniowo istotne. To nie wybiera automatycznie algorytmu.
-
-Paige–Tarjan przyjmuje już określony problem skończonej stabilnej rafinacji. Nie decyduje za kontrakt PSI:
+Paige–Tarjan nie rozstrzyga za kontrakt PSI:
 
 - co jest obserwablą;
-- jaka jest rodzina przyszłych testów;
-- czy relacja przejścia ma właściwy typ;
-- czy potrzebna jest jedna relacja, rodzina relacji, prawdopodobieństwa, historia, wyższe dane lub struktura ciągła;
-- czy docelowy iloraz rzeczywiście jest najgrubszą stabilną rafinacją \(\Pi_0\).
+- jaka rodzina przyszłych testów jest wymagana;
+- czy dynamika ma postać jednej relacji binarnej;
+- czy potrzebna jest rodzina relacji, prawdopodobieństwa, historia, wyższa struktura lub przestrzeń ciągła;
+- czy zadaniowy iloraz jest właśnie najgrubszą stabilną rafinacją \(\Pi_0\).
 
-Dlatego:
+Dlatego
 
 \[
 \boxed{
@@ -228,31 +198,41 @@ Dlatego:
 
 ---
 
-## 8. Minimalny kontrprzykład do uniwersalizacji Paige–Tarjan
+## 7. Granica uniwersalizacji
 
-Weźmy skończony problem bez dynamiki, w którym zadanie rozróżnia stany wyłącznie przez jawny odczyt
+### Przypadek statyczny
+
+Jeżeli zadanie rozróżnia skończone stany wyłącznie przez
 
 \[
-R_{task}:S\to\{0,1\}.
+R_{task}:S\to\{0,1\},
 \]
 
-Wtedy
+to
 
 \[
 E_{\mathcal T}=\ker_{eq}R_{task}
 \]
 
-jest już bezpośrednio znane jako partycja poziomicowa odczytu. Nie istnieje żadna potrzeba importowania relacyjnej stabilności ani algorytmu Paige’a–Tarjana.
+jest bezpośrednio znane. Nie ma potrzeby importowania relacyjnej stabilności ani Paige’a–Tarjana.
 
-Jeszcze mocniej: dla problemu stochastycznego z istotnymi wartościami prawdopodobieństw sam warunek egzystencjalny
+### Przypadek probabilistyczny
+
+W II.10 ważne są masy
+
+\[
+P(x,C).
+\]
+
+Sama relacja egzystencjalna
 
 \[
 x\in\operatorname{Pre}_R(C)
 \]
 
-nie zachowuje mas przejścia wymaganych przez II.10. Dwa stany mogą mieć przejścia do tych samych bloków, ale z różnymi prawdopodobieństwami.
+nie zachowuje prawdopodobieństw. Dwa stany mogą mieć krawędzie do tych samych bloków, a różne masy przejścia.
 
-Zatem:
+Zatem
 
 \[
 \boxed{
@@ -264,77 +244,65 @@ Zatem:
 
 ---
 
-## 9. Relacja do II.10 i II.11
+## 8. Relacja do II.10 i II.11
 
-### II.10 — Markowowska lumpowalność
+### II.10 — lumpowalność Markowa
 
-II.10 wymaga równości mas przejścia
+Warunek
 
 \[
-P(x,C)=P(y,C),
+P(x,C)=P(y,C)
 \]
 
-nie tylko zgodności istnienia krawędzi do bloku. Klasyczny relational coarsest partition na zwykłej relacji binarnej nie jest więc automatycznie algorytmem silnej lumpowalności dla ważonego jądra Markowa.
+jest liczbowy. Relacyjna stabilność egzystencjalna nie jest automatycznie testem silnej lumpowalności ważonego jądra Markowa.
 
 ### II.11 — Myhill–Nerode
 
-Dla automatów deterministycznych istnieją wyspecjalizowane algorytmy minimalizacji, a klasyczna minimalność Nerode’a wynika z kontraktu wszystkich kontynuacji. Paige–Tarjan jest szerszym narzędziem rafinacji relacyjnej, ale nie należy utożsamiać go z samym twierdzeniem Myhilla–Nerode’a ani z każdym algorytmem minimalizacji DFA.
+Minimalność Nerode’a wynika z pełnego kontraktu kontynuacji. Paige–Tarjan jest algorytmem rafinacji relacyjnej, nie samym twierdzeniem Myhilla–Nerode’a ani nazwą każdego algorytmu minimalizacji DFA.
 
 ---
 
-## 10. Bisymulacja — poprawny, lecz warunkowy most
+## 9. Bisymulacja — most warunkowy
 
-W skończonych systemach przejść partycyjna rafinacja Paige’a–Tarjana stanowi klasyczny fundament efektywnego wyznaczania bisymulacyjnych/stabilnych klas w odpowiednio otypowanych strukturach.
+W odpowiednio otypowanych skończonych systemach przejść relational coarsest partition wiąże się klasycznie z obliczaniem stabilnych/bisymulacyjnych klas.
 
-Nie wolno jednak odwracać tego związku:
+Nie wynika stąd:
 
 \[
 \boxed{
-\text{Paige–Tarjan computes a coarsest stable partition}
+\text{Paige–Tarjan computes a stable partition}
 \not\Rightarrow
 \text{every PSI task equivalence is a bisimulation}.
 }
 \]
 
-Równoważność PSI może być:
-
-- grubsza od bisymulacji, jeśli zadanie ignoruje część zachowania;
-- drobniejsza, jeśli zawiera dodatkowe obserwable;
-- innego typu, jeśli kandydaci nie tworzą skończonego relacyjnego systemu przejść.
+Równoważność PSI może być grubsza, drobniejsza albo innego typu zależnie od zadania i kontraktu.
 
 ---
 
-## 11. Granice złożoności
+## 10. Granice złożoności
 
-Klasyczne
+Ani klasyczne \(O(m\log n)\), ani konserwatywne pełne księgowanie \(O(n+m\log n)\) nie obejmuje automatycznie:
 
-\[
-O(m\log n)
-\]
+- skonstruowania semantyki zadania;
+- sprawdzenia PT4;
+- rodzin relacji bez uwzględnienia ich kodowania;
+- jąder probabilistycznych;
+- przestrzeni nieskończonych;
+- danych wyższego rzędu;
+- kosztu identyfikacji z obserwacji.
 
-dotyczy relational coarsest partition w jego jawnie skończonym modelu wejścia.
-
-Nie wynika z niego:
-
-- \(O(m\log n)\) dla dowolnego problemu PSI;
-- taki sam koszt dla rodzin relacji bez uwzględnienia kodowania;
-- taki sam koszt dla jąder probabilistycznych;
-- taki sam koszt dla nieskończonych przestrzeni;
-- koszt skonstruowania samego kontraktu, obserwabli lub partycji początkowej;
-- koszt sprawdzenia PT4;
-- koszt wyznaczenia zadaniowej semantyki z danych.
-
-Złożoność algorytmu klasycznego zaczyna się **po legalnej redukcji problemu do jego typu wejścia**.
+Złożoność algorytmu rozpoczyna się po legalnym sprowadzeniu problemu do jego typu wejścia.
 
 ---
 
-## 12. Status źródłowy
+## 11. Status źródłowy
 
-Paige–Tarjan jest klasycznym algorytmem. C14 ma status
+C14 pozostaje
 
 `CLASSICAL / BENCHMARK`.
 
-W PSI nie jest to nowe twierdzenie o identyfikowalności, lecz test poprawnej separacji:
+PSI nie rości nowości dla problemu, algorytmu ani jego złożoności. Rola benchmarku brzmi:
 
 \[
 \boxed{
@@ -344,36 +312,22 @@ W PSI nie jest to nowe twierdzenie o identyfikowalności, lecz test poprawnej se
 }
 \]
 
-To rozdzielenie jest zasadnicze dla całego projektu.
+---
+
+## 12. Lokalny cross-check
+
+- **Typy:** `PASS` — skończony zbiór, relacja, partycja i porządek rafinacji jawne.
+- **Źródło:** `PASS` — Paige–Tarjan 1987 obejmuje relational coarsest partition.
+- **Stabilność:** `PASS` — zgodna ze standardową definicją przez \(R^{-1}(C)\).
+- **Złożoność:** `PASS AFTER SCOPE NORMALIZATION` — literatura: \(O(m\log n)\), pamięć \(O(n+m)\); Principia jawnie oddzielają liniową inicjalizację wejścia.
+- **PSI bridge:** `PASS` — wymagany dowód PT1–PT4.
+- **Boundary:** `PASS` — sama skończoność nie wystarcza.
+- **Originality:** `PASS` — brak klasycznej inflacji do PSI.
+- **Agent impact:** `PASS` — brak Freeze 01 erraty, CORE5 zmiany i Agent v03.
 
 ---
 
-## 13. Lokalny cross-check
-
-### Typy
-`PASS`: skończony zbiór, relacja binarna, partycja początkowa i porządek rafinacji są jawne.
-
-### Źródło
-`PASS`: Paige–Tarjan 1987 obejmuje relational coarsest partition; bibliografia i DOI związane.
-
-### Złożoność
-`PASS WITH SCOPE LOCK`: \(O(m\log n)\) tylko dla klasycznego relational coarsest partition w jawnej reprezentacji.
-
-### PSI bridge
-`PASS`: stosowalność wymaga jawnego dowodu PT1–PT4.
-
-### Boundary
-`PASS`: skończoność samego problemu PSI nie wystarcza; przypadki statyczne i probabilistyczne pokazują brak uniwersalności.
-
-### Originality
-`PASS`: brak przypisania algorytmu lub klasycznego problemu PSI.
-
-### Agent impact
-`PASS`: brak Freeze 01 erraty, brak CORE5 zmiany, brak Agent v03.
-
----
-
-## 14. Werdykt II.12
+## 13. Werdykt II.12
 
 \[
 \boxed{
@@ -382,4 +336,4 @@ To rozdzielenie jest zasadnicze dla całego projektu.
 }
 \]
 
-Klasyczna warstwa mostów II.10–II.12 jest lokalnie kompletna. Następny legalny krok: **cross-check całej warstwy klasycznych mostów przed przejściem do CAT/FACT/FRAME/HIGHER**.
+Klasyczna warstwa II.10–II.12 jest lokalnie kompletna. Następny krok: **whole-layer cross-check klasycznych mostów przed CAT/FACT/FRAME/HIGHER**.
