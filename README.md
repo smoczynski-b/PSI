@@ -27,7 +27,7 @@ F(Y)\times F(Y)\subseteq E_{\mathcal T}.
 - [Physical CANON-03 source bind](docs/canon03-source-bind-01.md)
 - [Core mathematical skeleton](docs/core.md)
 - [Current claim registry v12](docs/claim-registry-12.md)
-- [Current falsifier registry v10](docs/falsifier-registry-10.md)
+- [Current falsifier registry v11](docs/falsifier-registry-11.md)
 - [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Principia V1 I.1 — Contract and semantic roles](docs/principia-v1-01-contract-semantic-roles.md)
 - [Principia V1 I.2 — Observation, compatible fibre and catalog adequacy](docs/principia-v1-02-observation-fibre-catalog-adequacy.md)
@@ -46,6 +46,7 @@ F(Y)\times F(Y)\subseteq E_{\mathcal T}.
 - [Principia V2.7 — Exact history-memory adequacy](docs/principia-v2-07-exact-history-memory-adequacy.md)
 - [Principia V2.8 — Coarsest exact history quotient](docs/principia-v2-08-coarsest-exact-history-quotient.md)
 - [Principia V2.9 — Recursive history quotient update](docs/principia-v2-09-recursive-history-quotient-update.md)
+- [Principia V2.10 — Strong Markov lumpability bridge](docs/principia-v2-10-strong-lumpability-bridge.md)
 - [Principia V2 Spine Cross-Check 01 — early II.1–II.4 audit](docs/principia-v2-spine-crosscheck-01.md)
 - [Principia V2 Own-Layer Cross-Check 02 — independent II.1–II.9 handoff audit](docs/principia-v2-own-layer-crosscheck-02.md)
 - [Current Principia V2 Theorem Map 02](docs/principia-v2-theorem-map-02.md)
@@ -195,8 +196,6 @@ U_{\mathcal T,t}([H],\varepsilon,y)
 
 ### Independent handoff verdict
 
-After the post-history independent Agent audit:
-
 \[
 \boxed{
 \mathrm{V2.1:V2.9\ OWN\ LAYER}
@@ -205,12 +204,7 @@ After the post-history independent Agent audit:
 }
 \]
 
-The audit found no mathematical contradiction and no Freeze 01 erratum. It did require control corrections:
-
-- the II.9 dependency graph was narrowed: strict proof dependency is `II.7 + C59`; II.6 is structural analogy and II.8 is not a proof prerequisite;
-- the classical comparison map was updated from Claim Registry v11 to v12;
-- probabilistic bisimulation is now explicitly comparison-only with no current C-ID required;
-- the Decision/Epistemic Ledger now records V1 normalization, V2 own-layer completion and the independent handoff gate.
+The handoff audit found no mathematical contradiction and no Freeze 01 erratum. It corrected the II.9 dependency graph, classical-comparison status drift and ledger/handoff state.
 
 Permanent Agent-process lesson:
 
@@ -224,21 +218,44 @@ Permanent Agent-process lesson:
 
 This uses existing Agent v02 `IMPACT/HANDOFF` controls; it does not justify Agent v03.
 
-## Classical bridges — released
+## Classical bridges
 
-The next bridge layer starts with strong Markov lumpability. The critical scope lock is:
+### II.10 — strong Markov lumpability
+
+For a finite homogeneous Markov chain with transition matrix `P` and quotient partition `E`, the Kemeny–Snell criterion is
 
 \[
 \boxed{
-E_{\mathcal T}
-\not\Rightarrow
-\text{stochastic lumpability}
+xEy
+\Longrightarrow
+P(x,C)=P(y,C)
+\quad\forall C\in S/E.
 }
 \]
 
-without the classical block-transition stability condition.
+It is equivalent to a well-defined quotient transition law
 
-Next: Myhill–Nerode, then Paige–Tarjan strictly as an algorithmic benchmark.
+\[
+\bar P([x],C)=P(x,C)
+\]
+
+and to strong lumpability / Markovian block dynamics for every initial distribution.
+
+PSI scope lock:
+
+\[
+\boxed{
+\text{task quotient}
+\not\Rightarrow
+\text{Markov lumpability}.
+}
+\]
+
+F61 records the permanent three-state regression against this conflation.
+
+**Status:** `PASS / CLASSICAL THEOREM + PSI BRIDGE`.
+
+Next: **II.11 Myhill–Nerode C18**, then Paige–Tarjan C14 strictly as an algorithmic benchmark.
 
 ## Hardening bank
 
@@ -266,7 +283,11 @@ No Agent v03 is justified by current evidence.
 \to
 \mathrm{V2.1:V2.9\ GLOBAL\ PASS}
 \to
-\mathrm{CLASSICAL\ BRIDGES}
+\mathrm{II.10\ LUMPABILITY\ PASS}
+\to
+\mathrm{II.11\ MYHILL\!\!-\!NERODE\ NEXT}
+\to
+\mathrm{PAIGE\!\!-\!TARJAN}
 \to
 \mathrm{CAT/FACT/FRAME/HIGHER}
 \to
