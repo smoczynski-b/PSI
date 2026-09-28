@@ -1,7 +1,7 @@
 # PRINCIPIA SEMANTICA — TOM II
 ## II.6. Deterministyczna dynamika ilorazowa
 
-**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PENDING`  
+**Status:** `THEOREM PROSE PASS 01 / PROOF PASS / CROSS-CHECK PASS`  
 **Źródło nadrzędne:** `PSI-R3-CONSOLIDATED-CANON-03` v1.0.0  
 **Rejestr tez:** `claim-registry-12.md`, C10 zachowane przez Freeze 01  
 **Mapa twierdzeń:** `principia-v2-theorem-map-02.md`, II.6  
@@ -12,33 +12,19 @@
 
 ## 1. Typy
 
-Niech
-
-\[
-\Omega
-\]
-
-będzie zbiorem, niech
-
-\[
-E\subseteq\Omega\times\Omega
-\]
-
-będzie relacją równoważności, a
+Niech \(\Omega\) będzie zbiorem, \(E\subseteq\Omega\times\Omega\) relacją równoważności,
 
 \[
 q_E:\Omega\to\Omega/E
 \]
 
-projekcją ilorazową.
-
-Niech
+projekcją ilorazową, a
 
 \[
 \delta:\Omega\to\Omega
 \]
 
-będzie całkowitą deterministyczną mapą jednego kroku.
+całkowitą deterministyczną mapą jednego kroku.
 
 Pytamy, kiedy istnieje mapa
 
@@ -46,15 +32,13 @@ Pytamy, kiedy istnieje mapa
 \bar\delta:\Omega/E\to\Omega/E
 \]
 
-spełniająca diagram komutatywny
+spełniająca
 
 \[
-\boxed{
-\bar\delta\circ q_E=q_E\circ\delta.
-}
+\boxed{\bar\delta\circ q_E=q_E\circ\delta.}
 \]
 
-Jeżeli taka mapa istnieje, dynamika \(\delta\) **schodzi na iloraz**.
+Jeżeli taka mapa istnieje, dynamika \(\delta\) schodzi na iloraz.
 
 ---
 
@@ -63,39 +47,21 @@ Jeżeli taka mapa istnieje, dynamika \(\delta\) **schodzi na iloraz**.
 Relację \(E\) nazywamy kongruencją dla \(\delta\), jeżeli
 
 \[
-\boxed{
-xEy\Longrightarrow\delta(x)E\delta(y).}
+\boxed{xEy\Longrightarrow\delta(x)E\delta(y).}
 \]
 
-Warunek mówi dokładnie, że wybór reprezentanta klasy \([x]_E\) nie może zmienić klasy następnego stanu.
-
-Jest to warunek dynamiczny. Nie wynika z samego faktu, że \(E\) jest rozsądną lub zadaniowo adekwatną relacją statyczną.
+Warunek mówi dokładnie, że wybór reprezentanta klasy \([x]_E\) nie może zmienić klasy następnego stanu. Jest to bramka dynamiczna; nie wynika z samej statycznej adekwatności ilorazu.
 
 ---
 
 ## 3. Twierdzenie II.6 — kryterium zejścia dynamiki na iloraz
 
-### Twierdzenie
+Dla \(E\), \(q_E\) i \(\delta\) jak wyżej następujące warunki są równoważne:
 
-Dla relacji równoważności \(E\) na \(\Omega\), projekcji
-
-\[
-q_E:\Omega\to\Omega/E
-\]
-
-i deterministycznej mapy
-
-\[
-\delta:\Omega\to\Omega
-\]
-
-następujące warunki są równoważne:
-
-1. zachodzi kongruencja
+1. \(E\) jest kongruencją dla \(\delta\):
    \[
    xEy\Longrightarrow\delta(x)E\delta(y);
    \]
-
 2. istnieje dokładnie jedna mapa
    \[
    \bar\delta:\Omega/E\to\Omega/E
@@ -108,22 +74,14 @@ następujące warunki są równoważne:
 W takim przypadku
 
 \[
-\boxed{
-\bar\delta([x]_E)=[\delta(x)]_E.
-}
+\boxed{\bar\delta([x]_E)=[\delta(x)]_E.}
 \]
 
 ---
 
 ## 4. Dowód
 
-### Kierunek \(1\Rightarrow2\)
-
-Załóżmy
-
-\[
-xEy\Longrightarrow\delta(x)E\delta(y).
-\]
+### \(1\Rightarrow2\)
 
 Definiujemy
 
@@ -131,107 +89,38 @@ Definiujemy
 \bar\delta([x]_E):=[\delta(x)]_E.
 \]
 
-Musimy sprawdzić dobrą określoność.
-
-Jeżeli
-
-\[
-[x]_E=[y]_E,
-\]
-
-to
-
-\[
-xEy.
-\]
-
-Z kongruencji wynika
+Jeżeli \([x]_E=[y]_E\), to \(xEy\), a więc z kongruencji
 
 \[
 \delta(x)E\delta(y),
 \]
 
-a więc
+czyli
 
 \[
 [\delta(x)]_E=[\delta(y)]_E.
 \]
 
-Definicja \(\bar\delta\) nie zależy zatem od wyboru reprezentanta.
-
-Dla każdego \(x\in\Omega\):
+Mapa jest dobrze określona. Ponadto
 
 \[
 (\bar\delta\circ q_E)(x)
-=
-\bar\delta([x]_E)
-=
-[\delta(x)]_E
-=
-(q_E\circ\delta)(x).
-\]
-
-Stąd
-
-\[
-\bar\delta\circ q_E=q_E\circ\delta.
-\]
-
-Pozostaje unikalność. Jeżeli
-
-\[
-h:\Omega/E\to\Omega/E
-\]
-
-również spełnia
-
-\[
-h\circ q_E=q_E\circ\delta,
-\]
-
-to dla każdej klasy \([x]_E\):
-
-\[
-h([x]_E)
-=h(q_E(x))
-=q_E(\delta(x))
+=\bar\delta([x]_E)
 =[\delta(x)]_E
-=\bar\delta([x]_E).
+=(q_E\circ\delta)(x).
 \]
 
-Zatem
+Jeżeli \(h:\Omega/E\to\Omega/E\) również spełnia \(h\circ q_E=q_E\circ\delta\), to dla każdej klasy
 
 \[
-h=\bar\delta.
+h([x]_E)=h(q_E(x))=q_E(\delta(x))=[\delta(x)]_E=\bar\delta([x]_E),
 \]
 
-### Kierunek \(2\Rightarrow1\)
+więc \(h=\bar\delta\).
 
-Załóżmy, że istnieje
+### \(2\Rightarrow1\)
 
-\[
-\bar\delta:\Omega/E\to\Omega/E
-\]
-
-taka, że
-
-\[
-\bar\delta\circ q_E=q_E\circ\delta.
-\]
-
-Niech
-
-\[
-xEy.
-\]
-
-Wtedy
-
-\[
-q_E(x)=q_E(y).
-\]
-
-Stąd
+Jeżeli \(xEy\), to \(q_E(x)=q_E(y)\). Z komutatywności:
 
 \[
 q_E(\delta(x))
@@ -240,33 +129,25 @@ q_E(\delta(x))
 =q_E(\delta(y)).
 \]
 
-Równość klas ilorazowych oznacza
+Zatem
 
 \[
 \delta(x)E\delta(y).
 \]
 
-Zatem \(E\) jest kongruencją dla \(\delta\). \(\square\)
+To kończy dowód. \(\square\)
 
 ---
 
 ## 5. Statyczna adekwatność nie wystarcza
 
-II.5 odpowiadało na pytanie, czy sklejenie zachowuje dokładną informację zadaniową. II.6 odpowiada na inne pytanie:
+II.5 odpowiada na pytanie, czy sklejenie zachowuje dokładną informację zadaniową. II.6 odpowiada na inne pytanie:
 
 \[
-\boxed{
-\text{czy dynamika jest zgodna z tym sklejeniem?}
-}
+\boxed{\text{czy dynamika jest zgodna z tym sklejeniem?}}
 \]
 
-Może więc zachodzić
-
-\[
-E\subseteq E_{\mathcal T,c}
-\]
-
-— nawet z równością \(E=E_{\mathcal T,c}\) — a mimo to \(\delta\) nie musi schodzić na \(\Omega/E\).
+Może zachodzić \(E\subseteq E_{\mathcal T,c}\), nawet \(E=E_{\mathcal T,c}\), a mimo to \(\delta\) nie musi schodzić na \(\Omega/E\).
 
 ### Kontrprzykład
 
@@ -276,7 +157,7 @@ Niech
 \Omega=\{a,b,c\},
 \]
 
-a klasy relacji \(E\) będą
+z klasami \(E\):
 
 \[
 \{a,b\},\qquad\{c\}.
@@ -285,36 +166,16 @@ a klasy relacji \(E\) będą
 Niech
 
 \[
-\delta(a)=a,
-\qquad
-\delta(b)=c,
-\qquad
-\delta(c)=c.
+\delta(a)=a,\qquad\delta(b)=c,\qquad\delta(c)=c.
 \]
 
-Mamy
+Mamy \(aEb\), ale
 
 \[
-aEb,
+\delta(a)=a\not E c=\delta(b).
 \]
 
-ale
-
-\[
-\delta(a)=a
-\not E
-c=\delta(b).
-\]
-
-Zatem \(E\) nie jest kongruencją dla \(\delta\).
-
-Próba zdefiniowania
-
-\[
-\bar\delta([a]_E)
-\]
-
-zależy od reprezentanta:
+Zatem \(E\) nie jest kongruencją. Próba zdefiniowania \(\bar\delta([a]_E)\) zależy od reprezentanta, ponieważ
 
 \[
 [a]_E=[b]_E,
@@ -328,9 +189,7 @@ lecz
 [\delta(b)]_E=[c]_E.
 \]
 
-Nie istnieje więc jednoznaczna dynamika ilorazowa.
-
-Ten świadek utrwala rygiel:
+Stąd rygiel:
 
 \[
 \boxed{
@@ -347,13 +206,9 @@ Ten świadek utrwala rygiel:
 Dla
 
 \[
-E=E_{\mathcal T,c}
-\]
-
-i
-
-\[
-M_{\mathcal T,c}=\Omega_c/E_{\mathcal T,c}
+E=E_{\mathcal T,c},
+\qquad
+M_{\mathcal T,c}=\Omega_c/E_{\mathcal T,c},
 \]
 
 dynamika
@@ -362,13 +217,19 @@ dynamika
 \delta_c:\Omega_c\to\Omega_c
 \]
 
-schodzi do jednoznacznej mapy
+schodzi do jednoznacznej
 
 \[
 \bar\delta_{\mathcal T,c}:M_{\mathcal T,c}\to M_{\mathcal T,c}
 \]
 
-takiej, że
+wtedy i tylko wtedy, gdy
+
+\[
+\boxed{xE_{\mathcal T,c}y\Longrightarrow\delta_c(x)E_{\mathcal T,c}\delta_c(y).}
+\]
+
+Wtedy
 
 \[
 \boxed{
@@ -378,65 +239,86 @@ q_{\mathcal T,c}\circ\delta_c
 }
 \]
 
-wtedy i tylko wtedy, gdy
-
-\[
-\boxed{
-xE_{\mathcal T,c}y
-\Longrightarrow
-\delta_c(x)E_{\mathcal T,c}\delta_c(y).}
-\]
-
-Wtedy
+i
 
 \[
 \bar\delta_{\mathcal T,c}([x]_{\mathcal T,c})
-=
-[\delta_c(x)]_{\mathcal T,c}.
+=[\delta_c(x)]_{\mathcal T,c}.
 \]
 
-Warunek ten nie wynika automatycznie z definicji \(E_{\mathcal T,c}\), chyba że użyte domknięcie zadaniowe i kontrakt zostały skonstruowane tak, by zapewnić odpowiednią stabilność transportu. W każdym konkretnym zastosowaniu należy sprawdzić hipotezy, a nie zakładać zejścia dynamiki przez sam zapis ilorazu.
+Publiczny rdzeń definiuje
+
+\[
+\mathscr R_{\mathcal T,c}
+=
+\operatorname{Cl}^{\mathcal T}_{\delta_c}(\mathscr O_{\mathcal T,c})
+\]
+
+jako domknięcie zawierające te transporty przez \(\delta_c\), których wymaga kontrakt. Nie oznacza to bez dodatkowego zapisu automatycznie pełnej stabilności względem prekompozycji przez \(\delta_c\).
+
+### Warunek wystarczający wynikający z domknięcia
+
+Jeżeli kontrakt zapewnia
+
+\[
+\boxed{
+R\in\mathscr R_{\mathcal T,c}
+\Longrightarrow
+R\circ\delta_c\in\mathscr R_{\mathcal T,c}
+}
+\]
+
+dla każdego \(R\in\mathscr R_{\mathcal T,c}\), to \(E_{\mathcal T,c}\) jest automatycznie kongruencją dla \(\delta_c\).
+
+Istotnie, jeśli \(xE_{\mathcal T,c}y\), to dla każdego \(R\in\mathscr R_{\mathcal T,c}\)
+
+\[
+(R\circ\delta_c)(x)=(R\circ\delta_c)(y),
+\]
+
+bo \(R\circ\delta_c\in\mathscr R_{\mathcal T,c}\). Stąd
+
+\[
+R(\delta_c(x))=R(\delta_c(y))
+\]
+
+dla każdego \(R\), a więc
+
+\[
+\delta_c(x)E_{\mathcal T,c}\delta_c(y).
+\]
+
+Jest to konsekwencja definicji domknięcia przy tej dodatkowej własności, nie nowy prymityw PSI.
 
 ---
 
 ## 7. Dowolny iloraz pośredni
 
-Niech
+Dla relacji równoważności \(Q\) i projekcji
 
 \[
-Q\subseteq\Omega\times\Omega
+q_Q:\Omega\to\Omega/Q
 \]
 
-będzie dowolną relacją równoważności i
+zadaniowa legalność informacyjna
 
 \[
-q_Q:\Omega\to\Omega/Q.
+Q\subseteq E_{\mathcal T}
 \]
 
-Jeżeli \(Q\) jest zadaniowo legalna informacyjnie,
+nie wystarcza do zdefiniowania dynamiki na \(\Omega/Q\). Osobno trzeba sprawdzić
 
 \[
-Q\subseteq E_{\mathcal T},
+\boxed{xQy\Longrightarrow\delta(x)Q\delta(y).}
 \]
 
-to nadal osobno trzeba sprawdzić
-
-\[
-\boxed{
-xQy\Longrightarrow\delta(x)Q\delta(y).}
-\]
-
-Pierwszy warunek kontroluje **utrzymanie rozróżnień zadaniowych**. Drugi kontroluje **dobrą określoność dynamiki zredukowanej**.
-
-Są to odrębne bramki.
+Pierwszy warunek kontroluje utrzymanie rozróżnień zadaniowych. Drugi kontroluje dobrą określoność dynamiki zredukowanej. Są to odrębne bramki.
 
 ---
 
 ## 8. Status źródłowy
 
 Twierdzenie II.6 jest elementarnym klasycznym kryterium projektowalności mapy na iloraz przez relację kongruencji.
-
-Status:
 
 \[
 \boxed{
@@ -446,7 +328,7 @@ Status:
 }
 \]
 
-PSI nie rości sobie autorstwa ogólnego twierdzenia o funkcji indukowanej na ilorazie. Rola PSI polega na związaniu tego kryterium z zadaniową relacją równoważności oraz z obowiązkiem oddzielenia statycznej adekwatności reprezentacji od dynamicznej projektowalności.
+PSI nie rości sobie autorstwa ogólnego twierdzenia o funkcji indukowanej na ilorazie. Rola PSI polega na związaniu tego kryterium z zadaniową relacją równoważności oraz na oddzieleniu statycznej adekwatności reprezentacji od dynamicznej projektowalności.
 
 ---
 
@@ -458,11 +340,7 @@ Twierdzenie II.6 dotyczy mapy
 \delta:\Omega\to\Omega.
 \]
 
-Nie wolno automatycznie zastępować \(\delta\) przez kernel przejścia Markowa i zachować tego samego twierdzenia słowo w słowo.
-
-Dla procesów stochastycznych właściwym klasycznym warunkiem jest odpowiednia lumpowalność: rozkład masy przejścia do każdego bloku musi być zgodny między reprezentantami. Ta warstwa zostanie omówiona później jako klasyczny most, nie jako część dowodu II.6.
-
-W szczególności:
+Nie wolno automatycznie zastępować \(\delta\) przez kernel przejścia Markowa i zachować tego samego kryterium słowo w słowo. Dla procesów stochastycznych właściwą klasyczną warstwą jest lumpowalność.
 
 \[
 \boxed{
@@ -493,13 +371,7 @@ Każda z tych własności wymaga dodatkowych hipotez.
 
 ## 11. Przejście do historii i pamięci
 
-W warstwie historii obiektami będą
-
-\[
-H_t\in\mathcal H_t,
-\]
-
-a równoważność
+W warstwie historii obiektami będą \(H_t\in\mathcal H_t\), a równoważność
 
 \[
 \equiv_{\mathcal T,t}
@@ -507,7 +379,7 @@ a równoważność
 
 będzie kodować zgodność przyszłej semantyki zadania.
 
-Najpierw zastosujemy kryterium reprezentacji II.4 do pamięci
+Najpierw zastosujemy II.4 do pamięci
 
 \[
 \rho_t:\mathcal H_t\to Z_t,
@@ -523,6 +395,4 @@ otrzymując
 }
 \]
 
-Dopiero potem wrócimy do warunku kongruencji, aby zbudować dobrze określoną aktualizację ilorazową historii.
-
-To będzie warstwa II.7–II.9.
+Dopiero potem wrócimy do kongruencji, aby zbudować dobrze określoną aktualizację ilorazową historii. To będzie warstwa II.7–II.9.
