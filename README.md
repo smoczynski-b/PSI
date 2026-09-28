@@ -28,19 +28,19 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Core mathematical skeleton](docs/core.md)
 - [Current claim registry v13](docs/claim-registry-13.md)
 - [Current falsifier registry v12](docs/falsifier-registry-12.md)
-- [Principia V1/V2 First Freeze 01](docs/principia-v1-v2-freeze-01.md)
+- [Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Freeze 01 Errata 01](docs/principia-v1-v2-freeze-01-errata-01.md)
-- [Current V2 Theorem Map 03](docs/principia-v2-theorem-map-03.md)
-- [V2 own-layer cross-check](docs/principia-v2-own-layer-crosscheck-02.md)
-- [V2 handoff errata](docs/principia-v2-own-layer-crosscheck-02-errata-01.md)
-- [V2 classical bridge cross-check](docs/principia-v2-classical-bridges-crosscheck-01.md)
-- [V2 CAT/FACT/NORM cross-check](docs/principia-v2-cat-fact-norm-crosscheck-01.md)
+- [Current Volume Skeleton 03](docs/principia-volume-skeleton-03.md)
+- [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
+- [Whole-V2 Cross-Check 01](docs/principia-v2-whole-crosscheck-01.md)
 - [Corrected CAT–FACT–NORM–MINI 02](docs/cat-fact-norm-mini-02.md)
+- [V2 FRAME — II.15](docs/principia-v2-15-closed-frame-holonomy.md)
+- [V2 HIGHER — II.16](docs/principia-v2-16-higher-compatibility-truncation.md)
 - [Decision / Epistemic Ledger](docs/psi-ledger-01.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
 - [Sector work map](docs/work-map-01.md)
 
-Historical versions remain for provenance.
+Historical maps, skeletons and MINI-01 remain for provenance.
 
 ## Core status
 
@@ -74,40 +74,29 @@ Inference discipline:
 
 \[
 \boxed{
-\mathrm{V1\ FIRST\ PROSE\ PASS}=\mathrm{NORMALIZED\ PASS}.
+\mathrm{V1\ FIRST\ PROSE\ PASS}
+=\mathrm{NORMALIZED\ PASS}.
 }
 \]
 
-### Volume II — own quotient/history layer
+### Volume II
+
+After the own-layer, classical-bridge, CAT/FACT/NORM, FRAME, HIGHER and whole-volume cross-checks:
 
 \[
 \boxed{
-\mathrm{II.1:II.9}=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
+\mathrm{PRINCIPIA\ V2\ II.1:II.16}
+=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
 }
 \]
 
-### Volume II — classical bridges
+The control layer is normalized through Volume Skeleton 03 and V2 Theorem Map 04.
 
-\[
-\boxed{
-\mathrm{II.10:II.12}=\mathrm{GLOBAL\ CROSSCHECK\ PASS}.
-}
-\]
+### Freeze Errata 01
 
-### Volume II — CAT / FACT / NORM
+The former C19-v2 singleton statement for the gauge-only factorization fibre is withdrawn.
 
-\[
-\boxed{
-\mathrm{II.13:II.14}
-=\mathrm{GLOBAL\ PASS\ AFTER\ FREEZE\ ERRATA\ 01}.
-}
-\]
-
-The current canonical CAT/FACT definitions remain C62/C63.
-
-The former MINI C19-v2 statement that the gauge-only factorization fibre is a singleton has been withdrawn.
-
-Correct MINI result:
+Current MINI result:
 
 \[
 \mathfrak F^{0}_{FB,P}(Y)
@@ -115,21 +104,19 @@ Correct MINI result:
 \operatorname{RawFact}^{0}_{FB,P}(Y)/G_P
 \]
 
-may be non-singleton, while the normalization map satisfies
+may be non-singleton, while
 
 \[
-\boxed{|\operatorname{im}\operatorname{NF}|=1.}
+\boxed{|\operatorname{im}NF|=1}
 \]
 
-Equivalently, for equality of normal form,
+and equivalently
 
 \[
-\boxed{
-|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.
-}
+\boxed{|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.}
 \]
 
-Permanent regression F62:
+Permanent F62:
 
 \[
 \boxed{
@@ -139,29 +126,47 @@ Permanent regression F62:
 }
 \]
 
-This correction changes no CORE role and does not justify Agent v03.
+No CORE role changed and no Agent v03 is justified.
+
+## V2 layer summary
+
+- **II.1–II.9:** quotient/history layer — global PASS;
+- **II.10–II.12:** classical bridges — global PASS;
+- **II.13–II.14:** CAT/FACT/NORM — global PASS after Errata 01;
+- **II.15:** closed-frame holonomy — global PASS;
+- **II.16:** higher compatibility/truncation — global PASS.
+
+Permanent boundaries include:
+
+\[
+\text{task quotient}\not\Rightarrow\text{Markov lumpability},
+\]
+
+\[
+\text{interval normal form}\not\Rightarrow\text{periodic closed-loop RMF},
+\]
+
+and
+
+\[
+\text{richer representation}\not\Rightarrow\text{new CORE primitive}.
+\]
 
 ## Current phase
 
 \[
 \boxed{
-\mathrm{V1\ NORMALIZED}
+\mathrm{V1\ NORMALIZED\ PASS}
 \to
-\mathrm{II.1:II.9\ GLOBAL\ PASS}
+\mathrm{V2\ MATHEMATICAL\ GLOBAL\ PASS}
 \to
-\mathrm{II.10:II.12\ CLASSICAL\ GLOBAL\ PASS}
+\mathrm{V2\ CONTROL\ NORMALIZED}
 \to
-\mathrm{II.13:II.14\ CAT/FACT/NORM\ PASS}
-\to
-\mathrm{FRAME\ NEXT}
-\to
-\mathrm{HIGHER}
-\to
-\mathrm{V2\ WHOLE\ CROSSCHECK}.
+\mathrm{VOLUME\ III/PHISICA\!\!-\!LOGOS\ MIGRATION}.
 }
 \]
 
-No Agent v03 is justified by current evidence.
+Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
 
 ## Publications / Zenodo
 
