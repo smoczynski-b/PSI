@@ -6,63 +6,52 @@
 
 ## S0 — CANON / PRINCIPIA
 
-**State:** `V1/V2 FIRST FREEZE PASS / WHOLE-V1 CROSS-CHECK PASS WITH REQUIRED NORMALIZATION`.
+**State:** `V1 NORMALIZED PASS / V2 PROSE RELEASED`.
 
-### Canonical/control pointers
+Done:
+- physical CANON-03 bound to `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
+- claim registry v12;
+- falsifier registry v10;
+- Regression Bank 01;
+- V1 Unit Map 01;
+- V2 Theorem Map 01;
+- Proof/Source/Migration Audit 01;
+- CANON03 Source Bind 01;
+- CAT/ADEQ/FACT Migration 01;
+- corrected CAT–FACT–NORM–MINI contract;
+- RED-1 history definitions C57–C59;
+- current CAT/FACT definitions C62/C63;
+- V1/V2 First Freeze 01 — PASS;
+- V1 I.1–I.6 first prose pass — local cross-check PASS;
+- WHOLE-V1 CROSS-CHECK 01 — PASS WITH REQUIRED NONSEMANTIC NORMALIZATION;
+- V1 NORMALIZATION 01 — PASS;
+- I.2 normalized: `P0 -> diagnosis -> P1` protocol redesign semantics;
+- I.4 normalized: contract-index suppression declared, memory codomain `Z_t`, Go/LAZARUS symbols locally typed;
+- I.5 normalized: inference gates `G_EX/G_ST/G_PR` instead of collision with `E_T`;
+- I.6 normalized: no chained untyped `!=`; pressure-court genealogy removed from foundation prose.
 
-- physical CANON-03: `psi-model@7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
-- Claim Registry: `v12`;
-- Falsifier Registry: `v10`;
-- Regression Bank: `01`;
-- Agent: `v02`;
-- V1/V2 First Freeze 01: `PASS`;
-- Whole-V1 Cross-Check 01: `PASS WITH REQUIRED NORMALIZATION / NO FREEZE ERRATA`.
-
-### V1 prose status
-
-\[
-\boxed{
-I.1=I.2=I.3=I.4=I.5=I.6
-=\mathrm{LOCAL\ CROSS\!-
-CHECK\ PASS}.
-}
-\]
-
-Whole-volume audit found no CORE contradiction and no semantic freeze defect, but found seven nonsemantic normalization items:
-
-1. clarify that final `protocol design` in the catalog→fibre→ID sequence means redesign/refinement after diagnosis;
-2. make the suppressed contract index in I.4 explicit by convention;
-3. remove `R`-notation collisions in memory/LAZARUS prose;
-4. type Go/LAZARUS witness symbols locally or reduce them to cross-references;
-5. replace I.5 gate labels `E,S,P` by non-colliding symbols;
-6. remove chained `!=` shorthand for differently typed inference questions;
-7. reduce R4 pressure-court history in I.6 to a short project-status note; detailed history belongs to V4/project docs.
-
-Additional bridge requirement: I.4 is a history specialization of the generic representation-adequacy logic from I.3, not a second independent task-equivalence ontology.
-
-### Current execution graph
+### Current Volume-I verdict
 
 \[
 \boxed{
-\mathrm{FREEZE\ 01=PASS}
-\to
-\mathrm{V1\ PROSE\ I.1-I.6}
-\to
-\mathrm{WHOLE\!-
-V1\ CROSS\!-
-CHECK\ 01}
-\to
-\mathrm{V1\!-
-NORMALIZATION\!-
-01}
-\to
-\mathrm{V2\ PROSE}.
+\mathrm{PRINCIPIA\ V1\ FIRST\ PROSE\ PASS}
+=
+\mathrm{NORMALIZED\ PASS}.
 }
 \]
 
-**NEXT:** `V1-NORMALIZATION-01`.
+No Freeze 01 erratum was required.
 
-**STOP:** V2 prose does not start until N1–N7 and the I.3/I.4 bridge are applied and mechanically rechecked.
+### Next
+
+1. write **V2.1 — Exact task-level decidability**;
+2. include types/hypotheses, direct proof, scope, source status, falsifier/regression binding;
+3. then V2.2 kernel factorization;
+4. V2.3 global sufficiency;
+5. V2.4 representation adequacy;
+6. cross-check the V2 theorem spine before classical bridges and laboratories.
+
+STOP condition: V2 prose may expose proofs already frozen, but must not silently strengthen theorem scope or promote benchmark/classical comparison into PSI novelty.
 
 ---
 
@@ -71,7 +60,9 @@ NORMALIZATION\!-
 **State:** `CORE5 FROZEN / R4 CLOSED UNTIL NEW TYPED COUNTEREXAMPLE`.
 
 \[
-\boxed{\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).}
+\boxed{
+\mathfrak P_c=(\Omega_c,\Psi_c,\mathcal K_c,\mathscr O_{\mathcal T,c},\delta_c).
+}
 \]
 
 Exact task-information adequacy:
@@ -86,43 +77,34 @@ History specialization:
 \boxed{\ker_{eq}\rho_t\subseteq\equiv_{\mathcal T,t}.}
 \]
 
-Scope correction:
+Inference discipline:
 
 \[
 \boxed{
-\text{task-adequate reduction}
-\neq
-\text{fully contract-legal reduction}
+\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
+\qquad
+\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
 }
 \]
 
-in general.
-
-Primitive-growth policy:
-
-\[
-\boxed{\mathrm{NO\ R4\ WITHOUT\ NEW\ TYPED\ COUNTEREXAMPLE}.}
-\]
-
-This is project governance after current pressure tests, not a universal completeness theorem.
+Task adequacy and full contract legality remain distinct.
 
 ---
 
 ## S2 — FALSIFICATION / REGRESSION
 
-**State:** `FALSIFIER v10 ACTIVE / REGRESSION BANK 01 ACTIVE`.
+**State:** `falsifier-registry-10 ACTIVE / REGRESSION-BANK-01 ACTIVE`.
 
-- R01 HCube → coarse-representation adequacy;
-- R02 Go → history/memory adequacy;
-- R03 FS-STAT → exact/stable/confidence boundary;
-- F55 → gauge/observation mismatch;
-- F56 → quotient rewrite well-definedness before confluence;
-- F57 → task adequacy vs full contract legality;
-- F58 → old-source auto-promotion;
-- F59 → MINI vs general FACT conflation;
-- F60 → factorization uniqueness only on `im rho`.
-
-No new regression entry without a fixed witness required by an actual theorem boundary.
+Mandatory boundaries:
+- R01 HCube — coarse representation;
+- R02 Go — history/memory compression;
+- R03 FS-STAT — exact→stable/confidence;
+- F55 gauge/observation mismatch;
+- F56 quotient rewrite well-definedness before confluence;
+- F57 task adequacy vs full contract legality;
+- F58 old-source automatic promotion;
+- F59 MINI vs general FACT;
+- F60 factorization uniqueness only on `im rho`.
 
 ---
 
@@ -130,21 +112,20 @@ No new regression entry without a fixed witness required by an actual theorem bo
 
 **State:** `AGENT-PSI-ARCHITECTURE-02 CURRENT`.
 
-Current role: prose-fidelity and cross-chapter semantic/type audit.
-
-The whole-V1 run found cross-chapter defects that all six local checks missed, especially notation collisions and project-governance overgrowth. No missing Agent control primitive was exposed.
-
-**STOP:** no Agent v03 without a concrete missing-control regression.
+Current role:
+- semantic fidelity to freeze;
+- type/scope cross-check of theorem prose;
+- source/classical-status control;
+- regression binding;
+- no Agent v03 without a missing-control witness.
 
 ---
 
 ## S4 — REALIZATIONS / LABORATORIES
 
-**State:** `FIRST HARDENING TRIAD COMPLETE / DEFERRED DURING V1 NORMALIZATION`.
+**State:** `HARDENING TRIAD COMPLETE / DEFERRED DURING V2 THEOREM SPINE`.
 
-HCube, Go, FS-STAT and LAZARUS remain regressions/examples, not theorem substitutes.
-
-PHISICA/LOGOS/SOP broad migration resumes only after first V1/V2 prose pass unless a V2 theorem requires a precise source bridge.
+HCube, Go, FS-STAT, LAZARUS remain benchmark/boundary material, not theorem substitutes.
 
 ---
 
@@ -173,7 +154,7 @@ Success event:
 
 **State:** `VISUAL GRAMMAR FROZEN`.
 
-No global redesign during V1/V2 prose normalization.
+No global redesign during V2 theorem-spine prose.
 
 ---
 
@@ -182,10 +163,47 @@ No global redesign during V1/V2 prose normalization.
 **State:** `PHYSICAL CURRENT CANON BOUND / GENEALOGY OPEN`.
 
 Current physical source:
-
 - repo `smoczynski-b/psi-model`;
 - commit `7e64ec8ad766623ffeede3daa4bb68dee15135c1`;
 - path `psi-agent/canon/PSI-R3-CONSOLIDATED-CANON-03.md`;
 - blob `72d711a40c65376ee932809802622f3985ecb02a`.
 
-Historical missing originals remain genealogy gaps only.
+---
+
+# Current execution graph
+
+\[
+\boxed{
+\mathrm{FREEZE\ 01=PASS}
+\to
+\mathrm{V1\ LOCAL\ PASS}
+\to
+\mathrm{WHOLE\!-\!V1\ CROSSCHECK}
+\to
+\mathrm{V1\ NORMALIZED\ PASS}
+\to
+\mathrm{V2.1\ NEXT}.
+}
+\]
+
+Current legal phase:
+
+\[
+\boxed{
+\mathrm{V2\ THEOREM\ PROSE}
+\to
+\mathrm{V2\ SPINE\ CROSSCHECK}
+\to
+\mathrm{CLASSICAL\ BRIDGES}
+\to
+\mathrm{V2\ WHOLE\ CROSSCHECK}.
+}
+\]
+
+In parallel:
+
+\[
+S5=\mathrm{WAIT},
+\qquad
+S6=\mathrm{WATCH}.
+\]
