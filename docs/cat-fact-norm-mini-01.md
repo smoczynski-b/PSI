@@ -1,20 +1,17 @@
 # PSI — CAT–FACT–NORM–MINI 01
 
-**Status:** `BRIDGE / EXACT-NOISELESS MINI / FIRST DUAL-OPERATOR RUN`  
+**Status:** `BRIDGE / EXACT-NOISELESS MINI / AUDITED WITH CONTRACT ERRATA`  
 **Scope:** `C^3` regular curves on the compact interval `[0,T]`; exact observation; time parameter preserved.  
-**Does not claim:** statistical stability, noisy-data recovery, closed-curve periodic normalization, or a new theorem of differential geometry.
+**Audit:** `PROOF-SOURCE-MIGRATION-AUDIT-01`  
+**Does not claim:** statistical stability, noisy-data recovery, closed-curve periodic normalization, general PSI-FACT equivalence, or a new theorem of differential geometry.
 
-This document records the first full PSI dual-operator run
-
-\[
-\mathsf E\to\mathsf A\to\mathsf E_{\rm fals}\to\mathsf A_{\rm freeze}.
-\]
+This document records the first full PSI dual-operator run and its later proof/source audit.
 
 The result is intentionally small. Its role is to test whether PSI can distinguish catalogue change, representation repair, factorization gauge and normal form without promoting classical Frenet/Bishop geometry into a new core primitive.
 
 ---
 
-## 1. Contract snapshot
+## 1. Contract snapshot — corrected observation/gauge typing
 
 Let
 
@@ -28,21 +25,7 @@ be `C^3` and regular:
 v(t)=\|\dot\gamma(t)\|>0\qquad\forall t\in[0,T].
 \]
 
-The exact protocol `P_0` observes the full time-parametrized trajectory
-
-\[
-Y=\gamma(t),\qquad t\in[0,T].
-\]
-
-Time reparameterization is **not** part of the gauge in MINI-01.
-
-The external geometric gauge acts on the curve:
-
-\[
-G_{\rm ext}=SE(3),
-\qquad
-\gamma\sim g\gamma.
-\]
+Time reparameterization is **not** part of either MINI gauge.
 
 Define arc length
 
@@ -51,13 +34,63 @@ s(t)=\int_0^t v(u)\,du,
 \qquad L=s(T).
 \]
 
-The internal frame gauge acts on an oriented Bishop normal pair by one constant rotation
+The internal Bishop-frame presentation gauge acts on an oriented normal pair by one constant rotation:
 
 \[
 G_{\rm normal}=SO(2).
 \]
 
-These two actions must not be confused: `SE(3)` acts on the embedded curve/frame, while `SO(2)` acts on the choice of oriented basis in the normal plane.
+This gauge leaves the embedded curve unchanged and therefore preserves both exact protocols below.
+
+The earlier MINI text mixed fixed-coordinate observation with an external `SE(3)` quotient. That is not automatically legal: a nontrivial Euclidean motion generally changes the observed coordinate curve. The corrected theorem therefore has two separately typed variants.
+
+### 1.1. Absolute-coordinate protocol
+
+\[
+\boxed{P_0^{\rm abs}:\quad Y_{\rm abs}=\gamma(t),\quad t\in[0,T].}
+\]
+
+The observation is the full time-parametrized curve in the declared Euclidean coordinate system.
+
+For this protocol, a nontrivial
+
+\[
+g\in SE(3)
+\]
+
+generally satisfies
+
+\[
+g\gamma(t)\neq\gamma(t),
+\]
+
+so external `SE(3)` is **not** a gauge acting inside the compatible fibre over the same `Y_abs`.
+
+The relevant presentation gauge for the Frenet/Bishop factorization is only
+
+\[
+SO(2)_{\rm normal}.
+\]
+
+### 1.2. Shape protocol
+
+\[
+\boxed{P_0^{\rm shape}:\quad Y_{\rm shape}=[\gamma]_{SE(3)}}
+\]
+
+or, equivalently, an explicitly `SE(3)`-invariant observation carrying the same exact shape information and time parameter.
+
+Under this protocol the observation descends through external Euclidean gauge, so the legal realization gauge is
+
+\[
+\boxed{G_{\rm shape}=SE(3)\times SO(2)_{\rm normal}.}
+\]
+
+This is the variant in which Euclidean realization classes are quotiented inside the compatible factorization fibre.
+
+### 1.3. Standing distinction
+
+`SE(3)` acts on the embedded realization. `SO(2)_{normal}` acts on the choice of oriented basis in the normal plane. They are different actions and must not be compressed into one untyped notion of gauge.
 
 ---
 
@@ -119,7 +152,7 @@ not a preferred ordered pair `(k_1,k_2)`.
 
 ---
 
-## 3. Finite grammar
+## 3. Finite grammar and quotient domain
 
 Let
 
@@ -135,7 +168,9 @@ X=X_1\oplus\cdots\oplus X_n
 
 of legal Frenet or Bishop atoms on consecutive subintervals covering `[0,L]` and reconstructing one regular curve with matching position and tangent at shared boundaries.
 
-Gauge is an isomorphism relation on realizations; it is not a catalogue-changing rewrite.
+The rewrite theorem is formulated on **normal-frame gauge classes** of such grammar terms. Equivalently, one may first prove equivariance of the raw rewrite under constant normal `SO(2)` and then pass to the quotient.
+
+Gauge is an isomorphism/presentation relation; it is not a catalogue-changing rewrite.
 
 ---
 
@@ -196,23 +231,31 @@ Define
 with lexicographic order.
 
 - `R_F` strictly decreases `n_F`;
-- once no Frenet atoms remain, `R_M` strictly decreases `n_seg`.
+- every legal `R_M` leaves `n_F` unchanged and strictly decreases `n_seg`.
+
+Thus **every** rewrite step strictly decreases `mu`; it is not necessary to postpone the termination argument for `R_M` until all Frenet atoms have disappeared.
 
 Therefore there is no infinite rewrite chain.
 
 ---
 
-## 7. Confluence modulo gauge
+## 7. Local confluence and confluence modulo gauge
 
-The rewrite rules respect the declared gauge, so they induce a rewrite relation on gauge classes.
+Work with the induced rewrite on constant-normal-`SO(2)` gauge classes.
 
-The relevant critical configurations are:
+The relevant overlap analysis is:
 
-1. independent Frenet recodes — they commute modulo local `SO(2)` choices;
-2. triple Bishop merge — either merge order gives the same transported frame class after fixing the first segment presentation;
-3. recode/merge — the redex types are distinct; after the required recodes only Bishop merges remain.
+1. **disjoint Frenet recodes** — disjoint unary steps commute modulo their local presentation choices;
+2. **triple Bishop merge** — for
+   \[
+   B_1\oplus B_2\oplus B_3,
+   \]
+   the two adjacent merge orders produce the same globally transported Bishop-frame class after gauge alignment;
+3. **Frenet recode versus Bishop merge** — the unary `F→B` redex and the binary `B⊕B→B` redex do not overlap at the same initial location; disjoint redexes commute.
 
-Thus the induced quotient rewrite is locally confluent. Together with termination, Newman's lemma gives confluence of the induced rewrite system on gauge classes.
+Hence the quotient rewrite is locally confluent.
+
+Together with termination, Newman's lemma yields confluence of the induced rewrite system on gauge classes.
 
 The conclusion is a unique **normal class**, not a canonical frame representative.
 
@@ -220,7 +263,7 @@ The conclusion is a unique **normal class**, not a canonical frame representativ
 
 ## 8. Normal datum
 
-For the exact interval contract define
+For either corrected exact interval protocol define
 
 \[
 \boxed{
@@ -228,68 +271,93 @@ N_{FB}(\gamma)=\bigl(v(t),[k_1(s),k_2(s)]_{SO(2)}\bigr).
 }
 \]
 
-`SE(3)` does not act on these scalar functions; it acts on the reconstructed embedded curve and initial Euclidean frame. The relation is:
+These scalar data determine the curve after supplying one initial Euclidean position/frame; changing that initial Euclidean frame changes the embedded representative by an element of `SE(3)`.
 
-\[
-N_{FB}(\gamma)
-+\text{one initial Euclidean frame}
-\Longrightarrow
-\gamma,
-\]
+Thus:
 
-and changing that initial Euclidean frame changes only the reconstructed representative in `[\gamma]_{SE(3)}`.
+- under `P_0^{abs}`, the actual observed coordinates fix the Euclidean placement;
+- under `P_0^{shape}`, only the Euclidean realization class is observed/identified.
 
-Therefore every legal finite Frenet/Bishop segmentation of one exact regular interval curve reduces to the same datum `N_FB(γ)` modulo the one constant normal-plane rotation.
+In either variant every legal finite Frenet/Bishop segmentation reduces to the same Bishop normal datum modulo one constant normal-plane rotation.
 
 ---
 
-## 9. Factorization fibre: raw versus quotiented
+## 9. Factorization fibres — restricted MINI objects
 
-To avoid double quotienting, distinguish the raw realization set
+The objects below are **grammar-specific set-level MINI models**. They are not definitions of the general PSI-FACT groupoid/homotopy fibre and do not erase stabilizers or compatibility witnesses in other contracts.
+
+### 9.1. Absolute-coordinate factorization fibre
+
+Let
 
 \[
-\operatorname{RawFact}^{0}_{FB,P_0}(Y)
+\operatorname{RawFact}^{0,\rm abs}_{FB,P_0}(Y_{\rm abs})
 \]
 
-from the factorization fibre after the declared realization gauge:
+be the raw set of legal finite `{F,B}` segmentations/realizations reconstructing the exactly observed coordinate trajectory.
+
+Define
 
 \[
 \boxed{
-\operatorname{Fact}^{0}_{FB,P_0}(Y)
+\operatorname{Fact}^{0,\rm abs}_{FB,P_0}(Y_{\rm abs})
 :=
-\operatorname{RawFact}^{0}_{FB,P_0}(Y)
+\operatorname{RawFact}^{0,\rm abs}_{FB,P_0}(Y_{\rm abs})
+/SO(2)_{\rm normal}.
+}
+\]
+
+Then
+
+\[
+\boxed{
+\left|\operatorname{Fact}^{0,\rm abs}_{FB,P_0}(Y_{\rm abs})\right|=1.
+}
+\]
+
+No external Euclidean quotient is taken inside this fixed-coordinate compatible fibre.
+
+### 9.2. Shape factorization fibre
+
+Let
+
+\[
+\operatorname{RawFact}^{0,\rm shape}_{FB,P_0}(Y_{\rm shape})
+\]
+
+be the corresponding raw family for the exact shape observation modulo Euclidean realization.
+
+Define
+
+\[
+\boxed{
+\operatorname{Fact}^{0,\rm shape}_{FB,P_0}(Y_{\rm shape})
+:=
+\operatorname{RawFact}^{0,\rm shape}_{FB,P_0}(Y_{\rm shape})
 /\bigl(SE(3)\times SO(2)_{\rm normal}\bigr).
 }
 \]
 
-Here `SE(3)` refers to the external Euclidean realization and `SO(2)` to the Bishop normal presentation. With this convention **no further quotient is applied to `Fact`**.
-
-Exact observation determines
-
-\[
-v(t)=\|\dot\gamma(t)\|,
-\]
-
-then arc length and the tangent. A Bishop frame is determined by one initial oriented normal pair, and any two such choices differ by one constant `SO(2)` rotation. Conversely, `v`, the Bishop curvature vector modulo that rotation, and one initial Euclidean frame reconstruct the trajectory.
-
-Hence
+Then
 
 \[
 \boxed{
-\left|\operatorname{Fact}^{0}_{FB,P_0}(Y)\right|=1.
+\left|\operatorname{Fact}^{0,\rm shape}_{FB,P_0}(Y_{\rm shape})\right|=1.
 }
 \]
 
-This is the MINI factorization-identifiability result.
+### 9.3. Reconstruction logic
 
-Its geometric ingredients are classical. The PSI content is the explicit separation
+Exact observation determines the speed, arc length and tangent in the corresponding observation class. A Bishop frame is determined by one initial oriented normal pair, and any two such choices differ by one constant `SO(2)` rotation. Conversely, the Bishop normal datum plus the appropriately typed Euclidean initial data reconstructs the realization.
+
+The PSI content is the explicit separation
 
 \[
 \text{catalogue}
 \mid
-\text{raw realization}
+\text{raw grammar realization}
 \mid
-\text{gauge}
+\text{observation-compatible gauge}
 \mid
 \text{recode}
 \mid
@@ -310,9 +378,9 @@ Suppose
 
 while the curve remains regular.
 
-The Frenet representation ceases to be legal at the singular point, whereas a Bishop representation remains legal for the regular curve. No new external behavioural sector is introduced; the same observed curve admits a legal representation repair.
+The Frenet representation ceases to be legal at the singular point, whereas a Bishop representation remains legal for the same regular curve/shape observation. No new external behavioural sector is introduced; the compatible object admits a legal representation repair.
 
-Therefore, under MINI-01,
+Therefore, under either corrected MINI contract,
 
 \[
 \boxed{
@@ -325,8 +393,6 @@ This is contract-relative and is not a universal statement about representation 
 ---
 
 ## 11. Falsification boundary
-
-The stronger exploratory proposal fails outside the frozen contract.
 
 ### X1 — loss of regularity
 
@@ -352,19 +418,23 @@ Exact identifiability does not imply stable derivative, curvature or frame recov
 
 ### X5 — reflections
 
-`SE(3)` distinguishes mirror images. If the intended gauge is `E(3)` or `O(3)`, the contract must state this separately.
+`SE(3)` distinguishes mirror images. If the intended shape gauge is `E(3)` or `O(3)`, the contract must state this separately.
+
+### X6 — gauge/observation mismatch
+
+A transformation cannot be quotiented inside a fixed observation fibre merely because it is geometrically natural. The observation/compatibility contract must be invariant/equivariant so that the action descends.
 
 ---
 
-## 12. What MINI-01 establishes
+## 12. What MINI-01 establishes after errata
 
-Under the frozen exact contract:
+Under either of the two corrected exact contracts:
 
 1. the grammar `{F,B}` is finite;
-2. the induced rewrite on gauge classes terminates;
+2. the induced rewrite on normal-frame gauge classes terminates;
 3. it is locally confluent and therefore confluent;
 4. every legal finite Frenet/Bishop segmentation reduces to one Bishop normal class;
-5. the raw compatible realization family has one class after the declared realization gauge;
+5. the corresponding restricted MINI factorization set has one class after the **observation-compatible** declared gauge;
 6. a zero-curvature Frenet failure of an otherwise regular curve is a representation/domain event, not evidence for catalogue birth.
 
 ---
@@ -380,46 +450,66 @@ It does not establish:
 - uniqueness modulo arbitrary time reparameterization;
 - general confluence of PSI-CAT;
 - general identifiability of arbitrary system factorizations;
+- equivalence of the restricted set-level MINI object with the full PSI-FACT groupoid/homotopy fibre in arbitrary contracts;
 - a new Frenet/Bishop theorem;
 - universal sufficiency of CORE5.
 
 ---
 
-## 14. Dual-operator audit record
+## 14. Audit record
 
-### `E`
+### Initial exploration
 
 Strong proposal: every admissible Frenet/Bishop realization of a regular trajectory normalizes to one canonical decomposition.
 
-### `A0` — semantic/source audit
+### First semantic audit
 
-Downgrade `canonical decomposition` to a normal equivalence class; separate external Euclidean gauge from internal normal-frame gauge; distinguish raw factorization realizations from their quotient.
+Downgrade `canonical decomposition` to a normal equivalence class; separate external Euclidean geometry from internal normal-frame presentation; distinguish raw realizations from their quotient.
 
-### `A1` — mathematical audit
+### Proof/source audit 01
 
-Freeze the domain `C^3`, regular interval curve, fixed time parameter and exact observation. Establish termination and confluence only for the finite `{F,B}` rewrite under these hypotheses.
+The later audit found an additional typing defect: fixed-coordinate exact observation and external `SE(3)` quotient had been combined without showing that `SE(3)` preserves the same observation fibre.
 
-### `E_fals`
-
-Regularity failure, reparameterization, closed-loop return rotation, reflections and noisy derivative recovery defeat the unrestricted proposal.
-
-### freeze
+Correction:
 
 \[
-\boxed{
-\begin{minipage}{0.88\linewidth}
-For an exactly observed, time-parametrized `C^3` regular curve on a compact interval, every finite legal Frenet/Bishop segmentation reduces to one Bishop normal class modulo constant normal-plane rotation; the corresponding raw realization family has one factorization class after the declared Euclidean and normal-frame gauge. In this contract, vanishing curvature that only invalidates the Frenet frame is a recode/domain event, not evidence for catalogue birth.
-\end{minipage}
-}
+P_0^{abs}\quad\text{or}\quad P_0^{shape},
 \]
+
+with different legal quotient groups as specified above.
+
+It also strengthened the confluence proof by placing the rewrite explicitly on gauge classes and corrected the termination wording.
+
+---
+
+## 15. Freeze statement after errata
+
+### Absolute-coordinate form
+
+For an exactly observed, time-parametrized `C^3` regular coordinate curve on a compact interval, every finite legal Frenet/Bishop segmentation reduces to one Bishop normal class modulo constant normal-plane rotation, and
+
+\[
+\left|\operatorname{Fact}^{0,\rm abs}_{FB,P_0}(Y_{\rm abs})\right|=1.
+\]
+
+### Shape form
+
+For an exactly observed, time-parametrized regular curve **modulo `SE(3)`**, every finite legal Frenet/Bishop segmentation reduces to one Bishop normal class, and
+
+\[
+\left|\operatorname{Fact}^{0,\rm shape}_{FB,P_0}(Y_{\rm shape})\right|=1.
+\]
+
+In either contract, vanishing curvature that only invalidates the Frenet frame is a recode/domain event rather than evidence for catalogue birth.
 
 **Freeze level:** `BRIDGE / MINI`, not CORE theorem.
 
 ---
 
-## 15. Next legal attacks
+## 16. Subsequent attacks already completed
 
-1. `CLOSED-FRAME-01` — closed-loop return rotation / holonomy and its correct role in FRAME/CORE5;
-2. `FS-STAT-01` — finite sampling, noise and low-curvature conditioning.
+- `CLOSED-FRAME-01` — global return holonomy / periodicity;
+- `FS-STAT-01` — finite sampling, noise and low-curvature conditioning;
+- `PROOF-SOURCE-MIGRATION-AUDIT-01` — observation/gauge typing, proof placement and source migration.
 
-Only after those attacks may CAT–FACT–NORM be generalized beyond MINI-01.
+General CAT/FACT migration remains a separate freeze gate.
