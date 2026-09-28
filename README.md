@@ -46,6 +46,7 @@ This repository is a **public entry point** to the PSI project. It is intentiona
 - [Method and working discipline](docs/method.md)
 - [Minimal separating-test example](examples/separating-test.md)
 - [Experimental PSI–Jev adapter](docs/jev-adapter.md)
+- [Controlled experiments and falsification runs](experiments/README.md)
 - [Publications and archived research objects](docs/publications.md)
 - Public project page: https://omni-artificial-intelligence-lab-sc4ilj.v2.appdeploy.ai/
 
