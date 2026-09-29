@@ -1,0 +1,7 @@
+language	token	candidate_world_ids
+PL	zegarek	OBJ-WRIST
+PL	zegar	OBJ-WALL
+EN	watch	OBJ-WRIST
+EN	clock	OBJ-WALL
+DE	Uhr	OBJ-WRIST,OBJ-WALL
+DE	Armbanduhr	OBJ-WRIST
