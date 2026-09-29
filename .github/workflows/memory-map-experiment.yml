@@ -8,8 +8,10 @@ on:
       - 'experiments/PSI-MEMORY-M4-01.md'
       - 'experiments/PSI-MEMORY-M6-REL-01.md'
       - 'experiments/PSI-MEMORY-M7-EDGE-CERT-01.md'
+      - 'experiments/PSI-MEMORY-M8-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
+      - 'experiments/m8-generated-context.json'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -17,6 +19,8 @@ on:
       - 'scripts/test_relation_description.py'
       - 'scripts/build_edge_provenance.py'
       - 'scripts/test_edge_provenance.py'
+      - 'scripts/build_m8_context.py'
+      - 'scripts/test_m8_context.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -43,3 +47,12 @@ jobs:
         run: python3 scripts/build_edge_provenance.py --emit
       - name: Run M7 certified-edge regression
         run: python3 scripts/test_edge_provenance.py
+      - name: Emit M8 bridge candidate hashes
+        run: python3 scripts/build_m8_context.py --emit-bridge-hashes
+      - name: Run M8 end-to-end context regression if frozen
+        run: |
+          if [ -f docs/memory/psi-memory-edge-evidence-m8-bridge-01.tsv ]; then
+            python3 scripts/test_m8_context.py
+          else
+            echo 'M8 context regression pending bridge certificate freeze'
+          fi
