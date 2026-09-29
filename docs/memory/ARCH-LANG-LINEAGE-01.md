@@ -1,6 +1,6 @@
 # ARCH-LANG-LINEAGE-01
 
-**Status:** EXPERIMENTAL GENEALOGY  
+**Status:** EXPERIMENTAL GENEALOGY / SOURCE RECOVERY CLOSED FOR TARGET THREE  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-29
 
@@ -8,80 +8,113 @@
 
 This registry links archived language/representation ideas to the current executable memory results M15–M19 without rewriting older formulations as if they already contained the present formalism.
 
-The genealogy uses three active relations:
+The genealogy uses semantic relations such as:
 
-- `PRECURSOR_OF` — earlier idea anticipated a later role;
+- `PRECURSOR_OF` — an earlier idea anticipated a later role;
 - `SURVIVES_AS` — a structural principle remains in the current architecture;
-- `SUPERSEDED_AS_FORMALISM` — the old mathematical/metaphorical apparatus is no longer needed for that role.
+- `SUPERSEDED_AS_FORMALISM` — an old mathematical/metaphorical apparatus is no longer required for that role.
 
-Entries whose exact archived source has not been recovered in this pass remain `NEEDS_SOURCE_RECOVERY` and cannot generate active lineage edges.
+Genealogical edges are not proof dependencies.
 
-## 2. Recovered line
+## 2. Provenance tiers
+
+The source-recovery register distinguishes:
+
+1. `RAW_ARCHIVE_HASHED` — raw archived export recovered and hashed;
+2. `RAW_ARCHIVE_RECOVERED` — raw archived export recovered, but no fragment hash frozen in this pass;
+3. `LIBRARY_RECOVERED` — archived project corpus recovered through the project/library surface;
+4. `CONVERSATION_RECOVERED` — the exact archived conversation content/date was recovered, but no immutable raw-export hash is available in this pass;
+5. `REPO_VERIFIED` — current executable result stored in the repository.
+
+These tiers establish provenance of the historical statement, not mathematical truth. They remain weaker than M7/M8 fragment-addressable evidence certificates unless an equivalent frozen fragment certificate is explicitly created.
+
+## 3. Recovered genealogy
+
+### 2025-11-25 — denotation above manifestations
+
+The archived conversation explicitly used a top-level **denotatum `author/book`**. Under it were title editions and source manifestations such as scans, TXT and other languages. The contemporary assistant mapped this to an FRBR-like chain:
+
+\[
+\text{work}\to\text{expression}\to\text{manifestation}\to\text{item}\to\text{chunk}.
+\]
+
+This is an actual precursor of M15's separation between world/memory identity and language/file manifestation. It is not treated as a universal ontology.
+
+Status: `CONVERSATION_RECOVERED`.
 
 ### 2026-04-27 — language surface versus structure
 
-Archived formulation:
+The raw MHTML archive recovers the multilingual-proverb test and the phrase **semantic invariant under change of representation**. The old pipeline used language-dependent representations and an operator/spectral invariant. The structural question survives:
 
 \[
-Y^{(l)}\to\psi\to\Lambda.
+\boxed{\text{does the identified structure survive a change of language?}}
 \]
 
-Mathematics was treated as a language-independent structure, while translation could deform the represented structure by a residual term `delta-Lambda`.
+M15-LANG answers this operationally through contract/retrieval invariance; M16 replaces the old spectral formalism for this role with explicit candidate fibres and relational refinement.
 
-Current descendant:
-
-\[
-M15\text{-LANG}:\quad
-\text{language surface}\neq\text{memory identity},
-\]
-
-followed by
-
-\[
-M16:\quad \lambda_L:s\mapsto F_L(s),
-\]
-
-with relational refinement of the candidate fibre.
-
-The language/structure separation survives; the old spectral/field apparatus is not required by the current memory implementation.
+Status: `RAW_ARCHIVE_HASHED` in the source-recovery register.
 
 ### 2026-05-16 — response as secondary representation
 
-The archived line treated language output as a secondary representation/linearization over an already reconstructed state. The surviving principle is weaker and cleaner:
+The archived line described controlled translation between representations of the same information base and multiple interpretation levels.
+
+The surviving principle is:
 
 \[
 \boxed{\text{interface representation}\neq\text{identity of stored object}.}
 \]
 
-This is now operational in M15-LANG.
+Status: raw MHTML recovered.
 
-### 2026-05-20 — local semantic atlases without global gluing
+### 2026-05-20/21 — local semantic atlases without global gluing
 
-The archived discussion allowed local semantic sectors/atlases to remain coherent while a single global semantic gluing failed.
-
-M17 gives a discrete executable descendant: language-relative lexical fibres may cross without inclusion,
+The raw archive contains the stronger formulation:
 
 \[
-A\cap B\neq\varnothing,\qquad A\not\subseteq B,\qquad B\not\subseteq A,
+\boxed{\text{text may mean locally without possessing one global representation of meaning}.}
 \]
 
-while all are refined against one relational world.
+and the language of a locally representable semantic atlas without global trivialization/global section.
 
-For this role, the atlas/pseudospectral metaphor is superseded by explicit candidate fibres and set intersections.
-
-### 2026-07-12 — edges as operators of structural transport
-
-The archived line used:
+M17 gives a discrete executable descendant: lexical fibres may cross without inclusion,
 
 \[
-\text{vertex}=\text{local state},\quad
-\text{edge}=\text{transition operator},\quad
-\text{flow}=\text{path},
+A\cap B\neq\varnothing,
+\qquad A\not\subseteq B,
+\qquad B\not\subseteq A,
 \]
 
-with cycles/holonomy as a consistency probe.
+while all are refined against one relational world. The old atlas/pseudospectral formalism is superseded for this role by explicit fibres and intersections.
 
-M19 preserves the first-class role of relations but changes the readout:
+Status: `RAW_ARCHIVE_HASHED`.
+
+### 2026-06-01 — relational identity of an object
+
+The archived conversation contains the user's explicit *Pulp Fiction* watch example. The response formulated:
+
+\[
+\boxed{\text{object}=\text{matter}+\text{history}+\text{relations}+\text{meaning}}
+\]
+
+and emphasized that two materially identical objects need not be interchangeable.
+
+M19 does **not** canonize this four-term identity formula. What survives is the narrower structural role: relations are first-class descriptors of an object and may also be inspected across families of objects.
+
+Status: `CONVERSATION_RECOVERED`.
+
+### 2026-07-12 — relations as structure
+
+The archived project corpus records the transition from a list of modes to a relational object and states explicitly that modes alone are a list whereas **relations between modes are already structure**. It also contains the graph reading:
+
+\[
+\text{nodes}=\text{modes},
+\qquad
+\text{edges}=\text{relations},
+\qquad
+\text{paths}=\text{survivable trajectories}.
+\]
+
+M19 retains the first-class relation but adds the dual readout:
 
 \[
 \operatorname{Profile}_{R}(x)=\{(r,y):x\xrightarrow r y\},
@@ -91,11 +124,35 @@ M19 preserves the first-class role of relations but changes the readout:
 \operatorname{Dist}_{r,X}(y)=\{x\in X:x\xrightarrow r y\}.
 \]
 
-Thus a relation is no longer only part of a node-local description; it can also be inspected as a distribution across objects.
+Status: `LIBRARY_RECOVERED` for the recovered corpus witness.
 
-## 3. Current executable chain
+### 2026-09-06 — PSI-LANG
 
-The present line is:
+The archived conversation explicitly placed PSI between knowledge encoded in natural language and a formal/computational representation. The proposed chain was:
+
+\[
+\text{natural language}
+\to
+\text{formal task representation}
+\to
+\text{identifiability control}.
+\]
+
+A second formulation stated that natural language should be an **interface, not the inference space**, and that ambiguity should remain an **explicit multiplicity of formalizations**.
+
+This point is intentionally not rewritten as if the 2026-09-06 conversation already used the later M16 fibre calculus. M16 is the later refinement:
+
+\[
+\text{explicit multiplicity}
+\rightsquigarrow
+F_L(s)\subseteq W.
+\]
+
+Status: `CONVERSATION_RECOVERED`.
+
+## 4. Current executable chain
+
+The present executable line remains:
 
 \[
 \boxed{
@@ -109,52 +166,56 @@ M15\text{-LANG}
 with meanings:
 
 1. **M15-LANG** — language variation can be outside memory identity;
-2. **M16** — language adapter returns an explicit candidate fibre;
-3. **M17** — many crossing lexical partitions can coexist over one relational world;
-4. **M19-CROSSVIEW** — the same stored relations can be read object-first or relation-first across many objects.
+2. **M16** — a language adapter returns an explicit candidate fibre;
+3. **M17** — crossing lexical partitions coexist over one relational world;
+4. **M19-CROSSVIEW** — stored relations can be read object-first or relation-first across many objects.
 
-This is not a claim that the old discussions already contained M15–M19. The edge type is genealogical, not proof-theoretic.
+The historical nodes now add genealogy around this chain; they do not enter theorem validity or ordinary task retrieval.
 
-## 4. Candidate older line requiring source recovery
+## 5. Source-recovery result
 
-Three motifs are retained only as candidates until their exact archived source is recovered:
+The three nodes previously marked `NEEDS_SOURCE_RECOVERY` are now recovered:
 
-- `ARCH-2025-11-25-DENOTATION-LAYERS` — denotatum above editions/scans/text/language manifestations;
-- `ARCH-2026-06-01-OBJECT-RELATIONAL-IDENTITY` — object identity involving history/relations, with the watch example;
-- `ARCH-2026-09-06-PSI-LANG` — ambiguity as fibre and PSI-style translation.
+\[
+\boxed{
+\begin{aligned}
+&2025\text{-}11\text{-}25 &&\text{denotation layers},\\
+&2026\text{-}06\text{-}01 &&\text{watch / relational object identity},\\
+&2026\text{-}09\text{-}06 &&\text{PSI-LANG}.
+\end{aligned}}
+\]
 
-They have **no active genealogy edges** in `arch-lang-lineage-edges-01.tsv`.
+They now carry active genealogy edges with `CONVERSATION_RECOVERED` provenance.
 
-## 5. Genealogical invariant
+## 6. Genealogical invariants
 
 The registry enforces:
 
 \[
-\boxed{
-\text{historical resemblance}\neq\text{proof dependency}.
-}
+\boxed{\text{historical resemblance}\neq\text{proof dependency}},
 \]
-
-and
 
 \[
-\boxed{
-\text{surviving role}\neq\text{surviving formalism}.
-}
+\boxed{\text{surviving role}\neq\text{surviving formalism}},
 \]
 
-An old metaphor may be historically important while its mathematics is replaced. Conversely, a structural principle may survive after its original notation disappears.
+and now additionally:
 
-## 6. Files
+\[
+\boxed{\text{later vocabulary must not be projected backward into an older source}.}
+\]
+
+Thus the September source says **explicit multiplicity of formalizations**; `candidate fibre` belongs to M16.
+
+## 7. Files
 
 - `docs/memory/arch-lang-lineage-nodes-01.tsv`
 - `docs/memory/arch-lang-lineage-edges-01.tsv`
+- `docs/memory/arch-lang-source-recovery-01.tsv`
 - `scripts/test_arch_lang_lineage.py`
 
-## 7. Boundary
+## 8. Boundary
 
-`ARCHIVE_ATTESTED` means the archived conversation was recovered sufficiently to establish the stated motif/date in this pass. It is weaker than fragment-addressable repository provenance used by M7/M8.
-
-`NEEDS_SOURCE_RECOVERY` means the motif is remembered/reconstructed but is intentionally excluded from active lineage until the exact archived conversation is recovered.
+The recovery closes the three targeted source gaps, but `CONVERSATION_RECOVERED` is still not an M7/M8-style fragment certificate with a Git blob identity and frozen selector. A future provenance-hardening pass may materialize selected archived chat fragments and hash them independently.
 
 The genealogy does not modify PSI core, current theorem validity, or the M1–M19 memory graph used for ordinary retrieval.
