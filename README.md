@@ -34,7 +34,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III Addendum 01](docs/principia-volume-skeleton-03-v3-addendum-01.md)
 - [Volume III Addendum 02 — PHISICA closure / MOST handoff](docs/principia-volume-skeleton-03-v3-addendum-02.md)
 - [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Current V3 Theorem Map 04](docs/principia-v3-theorem-map-04.md)
+- [Current V3 Theorem Map 05](docs/principia-v3-theorem-map-05.md)
 - [PHISICA Operator Migration 01](docs/phisica-operator-migration-01.md)
 - [PHISICA Operator Migration 01 — Errata 01](docs/phisica-operator-migration-01-errata-01.md)
 - [PHISICA Whole-Block Crosscheck 01](docs/principia-v3-phisica-whole-crosscheck-01.md)
@@ -48,14 +48,18 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III.7 — MOST spectral information hierarchy](docs/principia-v3-07-spectral-information-hierarchy-most.md)
 - [Volume III.8 — HCube MOST laboratory](docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md)
 - [MOST/HCube Whole-Layer Crosscheck 01](docs/principia-v3-most-hcube-whole-crosscheck-01.md)
+- [DOM-LOGOS Source Bind 01](docs/dom-logos-source-bind-01.md)
+- [Volume III.9 — semigroup projectability / DOM-LOGOS](docs/principia-v3-09-semigroup-projectability-dom-logos.md)
+- [DOM-LOGOS Crosscheck 01](docs/principia-v3-dom-logos-crosscheck-01.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
 - [Ledger Addendum 04 — PHISICA whole-block handoff](docs/psi-ledger-01-addendum-04.md)
 - [Ledger Addendum 05 — MOST / HCube handoff](docs/psi-ledger-01-addendum-05.md)
 - [Ledger Addendum 06 — MOST/HCube closure / DOM-LOGOS source gate](docs/psi-ledger-01-addendum-06.md)
+- [Ledger Addendum 07 — DOM-LOGOS closure / SOP-11E handoff](docs/psi-ledger-01-addendum-07.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
-- [Current Sector Work Map 05](docs/work-map-05.md)
+- [Current Sector Work Map 06](docs/work-map-06.md)
 
 Historical maps, skeletons and pre-repair material remain for provenance.
 
@@ -146,9 +150,7 @@ Key repaired results include
 
 \[
 \boxed{(\rho B)'=\rho C},
-\]
-
-\[
+\qquad
 \boxed{H_{\min}^*=H_{\max}},
 \]
 
@@ -170,7 +172,7 @@ and, after legal fixed-space/domain trivialization,
 
 for a simple isolated differentiable eigenbranch.
 
-The PHISICA whole-block audit corrected one inner-product/boundary-form convention defect in III.3 and then granted
+The PHISICA whole-block audit granted
 
 \[
 \boxed{
@@ -179,11 +181,9 @@ The PHISICA whole-block audit corrected one inner-product/boundary-form conventi
 }
 \]
 
-The PHISICA arrows must be read as progressively stronger typed contracts, not as one blanket implication chain.
+The PHISICA arrows denote progressively stronger typed contracts, not one blanket implication chain.
 
 ## Volume III — MOST / HCube operator-information layer
-
-III.7 changes the question from operator existence to representation adequacy.
 
 For finite-dimensional operators with fixed norm:
 
@@ -196,8 +196,6 @@ For finite-dimensional operators with fixed norm:
 \ker_{eq}\rho_\sigma.
 }
 \]
-
-Thus the full resolvent-norm profile and the full pseudospectral family are equivalent representations under the declared convention, while the spectrum is a coarser factor.
 
 The operator-valued branch is
 
@@ -214,33 +212,7 @@ and transient dynamics remain a separate branch
 \boxed{A\to e^{tA}\to\|e^{tA}\|.}
 \]
 
-The frozen HCube pair
-
-\[
-A=\operatorname{diag}(2,1,0),
-\qquad
-B=\begin{pmatrix}2&0&0\\0&1&1\\0&0&0\end{pmatrix}
-\]
-
-has equal spectrum and equal operator norm but
-
-\[
-\boxed{
-r_A(1/2)=2,
-\qquad
-r_B(1/2)=2(1+\sqrt2).
-}
-\]
-
-At \(\varepsilon=1/3\),
-
-\[
-1/2\notin\sigma_{1/3}(A),
-\qquad
-1/2\in\sigma_{1/3}(B).
-\]
-
-III.8 further proves
+The frozen HCube pair has equal spectrum and equal operator norm but different resolvent response. III.8 also proves
 
 \[
 \boxed{
@@ -260,8 +232,6 @@ while their resolvent-norm profiles differ. Therefore
 
 The converse non-factorization is not claimed.
 
-The HCube PASS/FAIL matrix is explicitly catalog-relative to \(\Omega_H=\{A,B\}\). Separation on this two-point catalog is not promoted to global representation faithfulness.
-
 Whole-layer result:
 
 \[
@@ -271,10 +241,57 @@ Whole-layer result:
 }
 \]
 
-The controlling rule throughout remains
+## Volume III — DOM-LOGOS dynamic projectability
+
+The physical source gate is closed. The primary recovered historical source is `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A.tex`; the 2026-07-16 strict mathematical canon is genealogical predecessor.
+
+III.9 proves the semigroup projectability criterion:
 
 \[
-\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
+\boxed{
+\Lambda x=\Lambda y
+\Rightarrow
+\Lambda S(t)x=\Lambda S(t)y
+\quad\forall t\ge0
+}
+\]
+
+iff there exists a unique reduced semigroup on \(\operatorname{im}\Lambda\) satisfying
+
+\[
+\boxed{
+\Lambda S(t)=\widetilde S(t)\Lambda.
+}
+\]
+
+For bounded linear \(T\) between \(C_0\)-semigroups with generators \(A\) and \(\bar A\):
+
+\[
+\boxed{
+TS(t)=\bar S(t)T\ \forall t\ge0
+\iff
+T(D(A))\subseteq D(\bar A)
+\land
+\bar AT=TA\text{ on }D(A).
+}
+\]
+
+For nonlinear \(\Lambda\), semigroup intertwining implies the derivative identity
+
+\[
+D\Lambda(x)Ax=\bar A\Lambda(x)
+\]
+
+only under the declared Fréchet/domain hypotheses. No nonlinear converse is asserted without a well-posedness and uniqueness theorem.
+
+III.9 therefore realizes the Volume II dynamic-congruence principle in continuous time; it does not restore LOGOS as a CORE primitive.
+
+\[
+\boxed{
+\mathrm{III.9\ DOM\!-
+LOGOS}
+=\mathrm{PASS / COMPOSITION\ PASS}.
+}
 \]
 
 ## Permanent distinctions
@@ -311,25 +328,35 @@ The controlling rule throughout remains
 \boxed{\text{two-point separation}\not\Rightarrow\text{global faithfulness}},
 \]
 
+\[
+\boxed{\text{static task adequacy}\not\Rightarrow\text{dynamic projectability}},
+\]
+
+\[
+\boxed{\text{operator-on-observables projectability}\neq\text{state-semigroup projectability}},
+\]
+
 and
 
 \[
-\boxed{\text{nonnormality}\not\Rightarrow\text{one universal transient-growth magnitude}}.
+\boxed{\text{infinitesimal nonlinear compatibility}\not\Rightarrow\text{global nonlinear reduction without well-posedness}}.
 \]
 
 ## Current phase
 
-The next candidate Volume III layer is historical `DOM-LOGOS`, concerning semigroup/projectability discipline for unbounded dynamics. Current searches of the active `PSI` and `psi-model` repositories did not recover the exact physical DOM-LOGOS formulation.
+The next candidate Volume III layer is SOP-11E well-posed dynamics. The recovered project source classifies this layer as `PARTIAL`, requiring existence, uniqueness, continuous dependence, semigroup estimates and explicit operator domains.
 
 Therefore the current legal state is
 
 \[
 \boxed{
-\mathrm{DOM\!-\!LOGOS\ SOURCE\ RECOVERY\ GATE\ NEXT},
+\mathrm{SOP\!-
+11E\ WELL\!-
+POSEDNESS\ MIGRATION\ GATE\ NEXT},
 }
 \]
 
-not immediate theorem prose reconstructed from memory.
+not immediate III.10 theorem prose.
 
 Current execution graph:
 
@@ -343,8 +370,12 @@ Current execution graph:
 \to
 \mathrm{MOST/HCUBE\ GLOBAL\ PASS}
 \to
-\mathrm{DOM\!-\!LOGOS\ SOURCE\ RECOVERY\ NEXT}.
-}
+\mathrm{III.9\ DOM\!-
+LOGOS\ PASS}
+\to
+\mathrm{SOP\!-
+11E\ WELL\!-
+POSEDNESS\ GATE\ NEXT}.
 \]
 
 Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
