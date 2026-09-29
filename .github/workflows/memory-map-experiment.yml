@@ -21,7 +21,9 @@ on:
       - 'experiments/PSI-MEMORY-M18-UNCERTAIN-OBSERVATION-01.md'
       - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
       - 'experiments/PSI-CHEM-VISION-LAB-01.md'
+      - 'experiments/PSI-CHEM-VISION-REAL-01.md'
       - 'experiments/chem-vision-worlds-01.tsv'
+      - 'experiments/chem-vision-real-images-01.tsv'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -69,6 +71,7 @@ on:
       - 'scripts/multi_anchor_retrieval.py'
       - 'scripts/test_multi_anchor_retrieval.py'
       - 'scripts/test_chem_vision_lab.py'
+      - 'scripts/test_chem_vision_real_images.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -136,3 +139,5 @@ jobs:
         run: python3 scripts/test_multi_anchor_retrieval.py
       - name: Run chemistry vision reaction-language regression
         run: python3 scripts/test_chem_vision_lab.py
+      - name: Run real-image chemistry geometry regression
+        run: python3 scripts/test_chem_vision_real_images.py
