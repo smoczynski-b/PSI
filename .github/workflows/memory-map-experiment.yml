@@ -20,6 +20,8 @@ on:
       - 'experiments/PSI-MEMORY-M17-CROSS-PARTITION-01.md'
       - 'experiments/PSI-MEMORY-M18-UNCERTAIN-OBSERVATION-01.md'
       - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
+      - 'experiments/PSI-CHEM-VISION-LAB-01.md'
+      - 'experiments/chem-vision-worlds-01.tsv'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -66,6 +68,7 @@ on:
       - 'scripts/verify_arch_lang_cert.py'
       - 'scripts/multi_anchor_retrieval.py'
       - 'scripts/test_multi_anchor_retrieval.py'
+      - 'scripts/test_chem_vision_lab.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -131,3 +134,5 @@ jobs:
         run: python3 scripts/test_memory_audit.py
       - name: Run explicit multi-anchor retrieval regressions
         run: python3 scripts/test_multi_anchor_retrieval.py
+      - name: Run chemistry vision reaction-language regression
+        run: python3 scripts/test_chem_vision_lab.py
