@@ -1,0 +1,51 @@
+id	kind	status	source	label
+CONTROL-STATE	CONTROL	CURRENT	docs/control-state.json	Current PSI control state
+CLAIM-REGISTRY	REGISTRY	CURRENT	docs/claim-registry.md	Current claim registry
+FALSIFIER-REGISTRY	REGISTRY	CURRENT	docs/falsifier-registry.md	Current falsifier registry
+THEOREM-MAP-V2	CONTROL_MAP	CURRENT	docs/theorem-map-v2.md	Current Volume II theorem map
+THEOREM-MAP-V3	CONTROL_MAP	CURRENT	docs/theorem-map-v3.md	Current Volume III theorem map
+WORK-MAP	CONTROL_MAP	CURRENT	docs/work-map.md	Current work selection map
+WORK-ROUTINE	CONTROL	CURRENT	docs/work-routine.md	Current bounded work routine
+AGENT-SPEC	SPEC	CURRENT	docs/agent-psi-architecture-02.md	Current PSI agent architecture
+CANON-03	CANON	FROZEN	PSI-R3-CONSOLIDATED-CANON-03 v1.0.0	Current physical PSI canon
+CORE5	CORE	FROZEN	PSI-R3-CONSOLIDATED-CANON-03 v1.0.0	Contract-relative CORE5
+AUDIT-V2	AUDIT	PASS	docs/principia-v2-whole-crosscheck-01.md	Whole Volume II crosscheck
+AUDIT-P9H	AUDIT	PASS	docs/principia-v3-p9h-composition-crosscheck-01.md	III.7-III.12 composition crosscheck
+REPAIR-AUDIT	AUDIT	PASS	docs/repair-audit.md	Targeted repair evidence
+PSI-CAT	MODULE	CURRENT	docs/principia-v2-13-cat-fact-canonical-scope.md	Catalog meta-identifiability module
+PSI-FACT	MODULE	CURRENT	docs/principia-v2-13-cat-fact-canonical-scope.md	Factorization fibre module
+FRAME	MODULE	CURRENT	docs/principia-v2-15-closed-frame-holonomy.md	Frame/holonomy module
+HIGHER	MODULE	CURRENT	docs/principia-v2-16-higher-compatibility-truncation.md	Higher compatibility/truncation module
+P9-G	SECTOR	CLOSED	docs/principia-v3-p9h-composition-crosscheck-01.md	Metric-gradient P9 sector
+P9-H	SECTOR	CLOSED_CONDITIONALLY	docs/principia-v3-p9h-composition-crosscheck-01.md	Hypocoercive/Lyapunov-metric P9 sector
+P9-GENERAL	PROBLEM	OPEN_CENTRAL	docs/theorem-map-v3.md	General P9 problem
+P9-I	GATE	OPEN	docs/control-state.json	Infinite-dimensional resolvent/growth source-contract gate
+III.13	THEOREM_SLOT	UNAUTHORIZED	docs/control-state.json	Reserved next theorem slot, gated by P9-I
+II.1	THEOREM	PASS	docs/principia-v2-01-exact-task-decidability.md	Exact task decidability
+II.2	THEOREM	PASS	docs/principia-v2-02-kernel-factorization.md	Kernel factorization
+II.3	THEOREM	PASS	docs/principia-v2-03-global-observer-sufficiency.md	Global observer sufficiency
+II.4	THEOREM	PASS	docs/principia-v2-04-representation-adequacy.md	Representation adequacy
+II.5	THEOREM	PASS	docs/principia-v2-05-task-information-legality-of-reduction.md	Task information and legality of reduction
+II.6	THEOREM	PASS	docs/principia-v2-06-deterministic-quotient-dynamics.md	Deterministic quotient dynamics
+II.7	THEOREM	PASS	docs/principia-v2-07-exact-history-memory-adequacy.md	Exact history memory adequacy
+II.8	THEOREM	PASS	docs/principia-v2-08-coarsest-exact-history-quotient.md	Coarsest exact history quotient
+II.9	THEOREM	PASS	docs/principia-v2-09-recursive-history-quotient-update.md	Recursive history quotient update
+II.10	BRIDGE	PASS	docs/principia-v2-10-strong-lumpability-bridge.md	Strong lumpability bridge
+II.11	BRIDGE	PASS	docs/principia-v2-11-myhill-nerode-bridge.md	Myhill-Nerode bridge
+II.12	BENCHMARK	PASS	docs/principia-v2-12-paige-tarjan-benchmark.md	Paige-Tarjan benchmark
+II.13	SCOPE_BRIDGE	PASS_AFTER_ERRATA	docs/principia-v2-13-cat-fact-canonical-scope.md	Canonical CAT/FACT scope
+II.14	THEOREM_MINI	PASS_AFTER_ERRATA	docs/principia-v2-14-cat-fact-norm-mini.md	CAT-FACT-NORM-MINI normal-class identifiability
+II.15	THEOREM	PASS	docs/principia-v2-15-closed-frame-holonomy.md	Closed frame holonomy
+II.16	THEOREM	PASS	docs/principia-v2-16-higher-compatibility-truncation.md	Higher compatibility truncation
+III.1	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-01-lambda-operator-projectability.md	Lambda operator projectability
+III.2	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-02-weight-sturm-liouville.md	Weighted Sturm-Liouville reduction
+III.3	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-03-domain-selfadjoint.md	Domain/selfadjointness control
+III.4	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-04-compact-resolvent-spectrum.md	Compact resolvent/spectrum
+III.5	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-05-liouville-normal-form.md	Liouville normal form
+III.6	THEOREM	PASS_AFTER_ERRATA	docs/principia-v3-06-perturbation-hellmann-feynman.md	Perturbation/Hellmann-Feynman
+III.7	THEOREM	PASS	docs/principia-v3-07-spectral-information-hierarchy-most.md	Spectral information hierarchy / MOST
+III.8	LAB	PASS	docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md	HCube nonnormal resolvent laboratory
+III.9	THEOREM	PASS	docs/principia-v3-09-semigroup-projectability-dom-logos.md	Semigroup projectability / DOM-LOGOS
+III.10	THEOREM	SECTOR_PASS	docs/principia-v3-10-sop11e-wellposedness-sectors.md	SOP-11E well-posedness sectors
+III.11	THEOREM	PASS	docs/principia-v3-11-p9-metric-gradient-bridge.md	P9 metric-gradient bridge
+III.12	THEOREM	CONDITIONAL_PASS	docs/principia-v3-12-hypocoercive-modified-energy-bridge.md	P9 hypocoercive modified-energy bridge

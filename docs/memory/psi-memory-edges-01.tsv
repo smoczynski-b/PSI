@@ -1,0 +1,81 @@
+from	relation	to	layer	source	note
+CONTROL-STATE	CURRENT_POINTER	CLAIM-REGISTRY	CONTROL	docs/control-state.json	Current claim registry pointer
+CONTROL-STATE	CURRENT_POINTER	FALSIFIER-REGISTRY	CONTROL	docs/control-state.json	Current falsifier registry pointer
+CONTROL-STATE	CURRENT_POINTER	THEOREM-MAP-V2	CONTROL	docs/control-state.json	Current Volume II map pointer
+CONTROL-STATE	CURRENT_POINTER	THEOREM-MAP-V3	CONTROL	docs/control-state.json	Current Volume III map pointer
+CONTROL-STATE	CURRENT_POINTER	WORK-MAP	CONTROL	docs/control-state.json	Current work map pointer
+CONTROL-STATE	CURRENT_POINTER	WORK-ROUTINE	CONTROL	docs/control-state.json	Current work routine pointer
+CONTROL-STATE	CURRENT_POINTER	AGENT-SPEC	CONTROL	docs/control-state.json	Current agent spec pointer
+THEOREM-MAP-V2	SOURCE_CANON	CANON-03	PROVENANCE	docs/theorem-map-v2.md	Declares physical CANON-03 as canonical source
+THEOREM-MAP-V3	SOURCE_CANON	CANON-03	PROVENANCE	docs/theorem-map-v3.md	Current Volume III map remains under frozen core
+CANON-03	DEFINES	CORE5	CANON	PSI-R3-CONSOLIDATED-CANON-03 v1.0.0	Frozen contract-relative core
+CLAIM-REGISTRY	CLAIM_SOURCE_FOR	THEOREM-MAP-V2	PROVENANCE	docs/theorem-map-v2.md	Declared claim source
+FALSIFIER-REGISTRY	FALSIFIER_SOURCE_FOR	THEOREM-MAP-V2	PROVENANCE	docs/theorem-map-v2.md	Declared falsifier source
+THEOREM-MAP-V2	INDEXES	II.1	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.2	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.3	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.4	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.5	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.6	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.7	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.8	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.9	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.10	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.11	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.12	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.13	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.14	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.15	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V2	INDEXES	II.16	INDEX	docs/theorem-map-v2.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.1	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.2	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.3	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.4	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.5	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.6	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.7	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.8	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.9	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.10	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.11	INDEX	docs/theorem-map-v3.md	Recorded unit status
+THEOREM-MAP-V3	INDEXES	III.12	INDEX	docs/theorem-map-v3.md	Recorded unit status
+II.9	DEPENDS_ON	II.7	PROOF	docs/theorem-map-v2.md	Explicit proof dependency: II.7/C57-C58 plus typed extension definitions
+II.9	ANALOGY_TO	II.6	STRUCTURAL	docs/theorem-map-v2.md	Explicit structural analogy only
+II.9	NOT_DEPENDS_ON	II.8	NEGATIVE	docs/theorem-map-v2.md	II.8 explicitly not a proof prerequisite
+II.13	DEFINES	PSI-CAT	SEMANTIC	docs/principia-v2-13-cat-fact-canonical-scope.md	Canonical CAT scope
+II.13	DEFINES	PSI-FACT	SEMANTIC	docs/principia-v2-13-cat-fact-canonical-scope.md	Canonical FACT scope
+II.14	SCOPE_FROM	II.13	SCOPE	docs/principia-v2-13-cat-fact-canonical-scope.md	II.13 explicitly sets constraints for the II.14 MINI step
+II.14	REALIZES	PSI-FACT	MODEL	docs/principia-v2-14-cat-fact-norm-mini.md	Bounded exact-noiseless finite Frenet/Bishop realization; not general FACT
+II.15	REALIZES	FRAME	MODEL	docs/theorem-map-v2.md	FRAME block
+II.16	REALIZES	HIGHER	MODEL	docs/theorem-map-v2.md	HIGHER block
+III.11	CLASSIFIES_AS	P9-G	TAXONOMY	docs/principia-v3-p9h-composition-crosscheck-01.md	Metric-gradient sector closed as III.11
+III.12	CLASSIFIES_AS	P9-H	TAXONOMY	docs/principia-v3-p9h-composition-crosscheck-01.md	Hypocoercive/Lyapunov-metric sector closed conditionally as III.12
+III.11	SPECIAL_CASE_OF	III.12	MATHEMATICAL	docs/principia-v3-p9h-composition-crosscheck-01.md	Q=G and lambda=mu_G
+III.12	COMPATIBLE_WITH	III.7	CONTRACT	docs/principia-v3-p9h-composition-crosscheck-01.md	Norm-sensitive representation remains compatible with MOST
+P9-GENERAL	HAS_CLOSED_SECTOR	P9-G	TAXONOMY	docs/principia-v3-p9h-composition-crosscheck-01.md	Closed subclass does not close general P9
+P9-GENERAL	HAS_CONDITIONAL_SECTOR	P9-H	TAXONOMY	docs/principia-v3-p9h-composition-crosscheck-01.md	Conditional closed subclass does not close general P9
+P9-I	NEXT_GATE_AFTER	III.12	SCHEDULING	docs/theorem-map-v3.md	Next admissible mathematical gate; not theorem implication
+P9-I	GATE_FOR	III.13	CONTROL	docs/control-state.json	No III.13 theorem or numbering before passed P9-I source/contract gate
+AUDIT-V2	EVIDENCE_FOR	II.1	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.2	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.3	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.4	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.5	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.6	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.7	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.8	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.9	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.10	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.11	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.12	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.13	EVIDENCE	docs/control-state.json	Recorded audit evidence
+REPAIR-AUDIT	EVIDENCE_FOR	II.14	EVIDENCE	docs/control-state.json	Current targeted evidence after errata
+AUDIT-V2	EVIDENCE_FOR	II.15	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-V2	EVIDENCE_FOR	II.16	EVIDENCE	docs/control-state.json	Recorded audit evidence
+AUDIT-P9H	EVIDENCE_FOR	III.7	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+AUDIT-P9H	EVIDENCE_FOR	III.8	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+AUDIT-P9H	EVIDENCE_FOR	III.9	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+AUDIT-P9H	EVIDENCE_FOR	III.10	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+AUDIT-P9H	EVIDENCE_FOR	III.11	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+AUDIT-P9H	EVIDENCE_FOR	III.12	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Composition evidence
+REPAIR-AUDIT	EVIDENCE_FOR	III.12	EVIDENCE	docs/principia-v3-p9h-composition-crosscheck-01.md	Sharp metric/certificate-bound correction supersedes part of earlier composition check
