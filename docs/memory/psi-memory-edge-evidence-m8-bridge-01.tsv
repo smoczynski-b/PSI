@@ -1,0 +1,3 @@
+evidence_id	path	selector_type	selector	verified_git_blob_sha	fragment_sha256	fragment_bytes	certified_at	status
+EV-GO-II7	docs/principia-v2-07-exact-history-memory-adequacy.md	heading	## 9. R02 — Go jako regres pamięci	bffbd1d40e8cba39b8f8a9a2c4112150a857183c	ac9b771c8caa4b114cf35ca03f91d626e2504c565668866f48270a2b9afe7f5c	652	f8f84b546fc9bab7c200560b2f4ec9e13d552b51	VALID
+EV-GO-II9	docs/principia-v2-09-recursive-history-quotient-update.md	heading	## 10. Go jako regres kongruencji	bfcd6833c69e541447bad7a2b71cb3167acd947f	972975784046527917d4c20a545b2218dd046b75edbc2f28947db0d0a1193105	538	f8f84b546fc9bab7c200560b2f4ec9e13d552b51	VALID
