@@ -118,7 +118,7 @@ H_0+W(t)=H(t)^*
 
 on the unchanged domain \(D(H_0)\).
 
-Fix \(z\) in the common resolvent set locally, or equivalently choose a sufficiently negative real \(z\). The resolvent identity gives
+Fix \(z\) in a common resolvent set, for example a sufficiently negative real point below the lower bounds of the two operators being compared. The resolvent identity gives
 
 \[
 (H(t)-z)^{-1}
@@ -230,7 +230,7 @@ E_*(t_*)
 
 is a simple isolated eigenvalue of \(H(t_*)\).
 
-Then there exists a neighbourhood of \(t_*\) and \(C^1\) functions
+Equip the common domain \(D(H_0)\) with the graph norm of \(H_0\). Then there exists a neighbourhood of \(t_*\) and functions
 
 \[
 E(t)\in\mathbb R,
@@ -240,7 +240,7 @@ E(t)\in\mathbb R,
 \|\phi(t)\|=1,
 \]
 
-such that
+such that \(E(t)\) is \(C^1\) and \(\phi(t)\) is \(C^1\) as a map into \(D(H_0)\) with its graph norm, with
 
 \[
 H(t)\phi(t)=E(t)\phi(t),
@@ -250,7 +250,9 @@ E(t_*)=E_*(t_*).
 
 ## Proof sketch
 
-Because \(t\mapsto W(t)\) is norm-\(C^1\), the resolvent depends \(C^1\) on \(t\) near a contour enclosing only \(E_*(t_*)\). The associated Riesz projection
+Because \(t\mapsto W(t)\) is norm-\(C^1\), the resolvent depends \(C^1\) on \(t\) near a contour enclosing only \(E_*(t_*)\). Moreover, because the domain is fixed and the perturbation is bounded, the resolvent may be viewed as a bounded map from \(\mathcal H\) into \(D(H_0)\) equipped with the graph norm; the same is true for its parameter derivative.
+
+The associated Riesz projection
 
 \[
 P(t)
@@ -260,9 +262,9 @@ P(t)
 (z-H(t))^{-1}\,dz
 \]
 
-is therefore \(C^1\) and has rank one for \(t\) sufficiently close to \(t_*\). A normalized \(C^1\) vector may be chosen in \(\operatorname{Ran}P(t)\), yielding the branch above.
+is therefore \(C^1\) also as an operator into the graph-norm domain and has rank one for \(t\) sufficiently close to \(t_*\). A normalized \(C^1\) vector may be chosen in \(\operatorname{Ran}P(t)\), yielding the branch above.
 
-This is the precise local content behind the scalar first-order perturbation formula.
+This graph-norm statement is what licenses differentiation of the unbounded-operator eigenvalue equation in III.6.D.
 
 ---
 
@@ -290,13 +292,13 @@ E'(t)
 
 ## Proof
 
-Differentiate
+Differentiate in \(\mathcal H\)
 
 \[
 H(t)\phi(t)=E(t)\phi(t).
 \]
 
-This gives
+The graph-norm differentiability from III.6.C ensures that \(H_0\phi'(t)\) is defined and that differentiation through the fixed-domain operator is legitimate. We obtain
 
 \[
 H'(t)\phi(t)+H(t)\phi'(t)
@@ -626,4 +628,3 @@ Next mandatory gate:
 \boxed{
 \mathrm{PHISICA\ WHOLE\!\!-\!BLOCK\ CROSSCHECK\ 01}.
 }
-\]
