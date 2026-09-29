@@ -9,9 +9,11 @@ on:
       - 'experiments/PSI-MEMORY-M6-REL-01.md'
       - 'experiments/PSI-MEMORY-M7-EDGE-CERT-01.md'
       - 'experiments/PSI-MEMORY-M8-01.md'
+      - 'experiments/PSI-MEMORY-M9-WRITE-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
+      - 'experiments/m9-agent-*-delta.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -21,6 +23,7 @@ on:
       - 'scripts/test_edge_provenance.py'
       - 'scripts/build_m8_context.py'
       - 'scripts/test_m8_context.py'
+      - 'scripts/test_m9_write_admission.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -56,3 +59,5 @@ jobs:
           else
             echo 'M8 context regression pending bridge certificate freeze'
           fi
+      - name: Run M9 multi-agent write admission regression
+        run: python3 scripts/test_m9_write_admission.py
