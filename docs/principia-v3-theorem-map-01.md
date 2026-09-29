@@ -178,27 +178,91 @@ Permanent distinctions:
 
 # 4. III.3 — Domain and self-adjoint realization
 
-Target objects:
+On a finite regular interval \(I=(a,b)\), let
 
 \[
-\tau u=-\frac1{2\rho}(\rho Bu')'+Vu,
+p=\rho B,
+\qquad
+\tau u=-\frac1{2\rho}(pu')'+Vu,
 \]
 
-maximal/minimal domains, boundary form, regular self-adjoint boundary conditions.
+with positive regular \(B,\rho\) and real regular \(V\).
 
-No self-adjoint theorem before the domain is explicit.
+The maximal domain is
 
-**STATUS:** `NEXT`.
+\[
+D(H_{\max})
+=
+\{u\in L^2(I,\rho d\lambda):u,pu'\in AC([a,b]),\ \tau u\in L^2(I,\rho d\lambda)\}.
+\]
+
+The Green–Lagrange boundary form is
+
+\[
+\boxed{
+\mathfrak b(u,v)
+=
+\frac12
+\left[
+ u\overline{pv'}-(pu')\overline v
+\right]_a^b.
+}
+\]
+
+For the minimal realization,
+
+\[
+\boxed{H_{\min}^*=H_{\max}.}
+\]
+
+Separated Robin boundary conditions
+
+\[
+\cos\alpha\,u(a)+\sin\alpha\,(pu')(a)=0,
+\]
+
+\[
+\cos\beta\,u(b)+\sin\beta\,(pu')(b)=0
+\]
+
+define maximal isotropic boundary subspaces and therefore self-adjoint realizations
+
+\[
+\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
+\]
+
+Dirichlet, Neumann/quasi-Neumann and mixed separated conditions are special cases.
+
+Permanent distinction:
+
+\[
+\boxed{
+\text{formal symmetry or vanishing boundary form}
+\not\Rightarrow
+\text{self-adjointness without maximality/adjoint-domain equality}.
+}
+\]
+
+**STATUS:** `PASS`  
+**SOURCE:** `principia-v3-03-domain-selfadjoint.md`  
+**FALSIFIERS:** PF04, PF06, PF12.
 
 ---
 
 # 5. III.4 — Compact resolvent and discrete spectrum
 
-Only after III.3.
+Now released after III.3.
 
-Regular bounded interval + positive regular coefficients + real lower-bounded potential + self-adjoint boundary realization.
+Target contract:
 
-**STATUS:** `QUEUED`.
+- regular bounded interval;
+- positive regular coefficients;
+- real lower-bounded potential;
+- one of the self-adjoint boundary realizations established in III.3.
+
+Target result: compact resolvent, purely discrete real spectrum with finite multiplicities and eigenvalue accumulation only at \(+\infty\); completeness in the weighted Hilbert space.
+
+**STATUS:** `NEXT`.
 
 ---
 
@@ -252,9 +316,9 @@ These remain source material/genealogy, not current V3 theorem units.
 \to
 \mathrm{III.2\ PASS}
 \to
-\mathrm{III.3\ NEXT}
+\mathrm{III.3\ PASS}
 \to
-\mathrm{III.4}
+\mathrm{III.4\ NEXT}
 \to
 \mathrm{III.5}
 \to
