@@ -9,7 +9,7 @@
 
 # S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.2 PASS / III.3 NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.3 PASS / III.4 NEXT`.
 
 Current control stack:
 - physical CANON-03 bound;
@@ -20,7 +20,7 @@ Current control stack:
 - V2 Theorem Map 04 — frozen current map for Volume II;
 - V3 Theorem Map 01 — current Volume III map;
 - PHISICA Operator Migration 01 — current source audit;
-- PHISICA Falsifier Registry 01 — PF01–PF11;
+- PHISICA Falsifier Registry 01 — PF01–PF12;
 - Agent PSI Architecture v02 — current.
 
 ### Volume I
@@ -57,22 +57,13 @@ For Schrödinger reduction additionally:
 \boxed{V=V_\Lambda\circ\Lambda.}
 \]
 
-III.2 establishes the canonical positive weight:
+III.2 established the canonical positive weight
 
 \[
 \boxed{(\rho B)'=\rho C}
 \]
 
-and divergence form
-
-\[
-\boxed{
-L_\Lambda
-=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).
-}
-\]
-
-Under the proper-submersion/coarea contract:
+and, under the proper-submersion/coarea contract,
 
 \[
 \boxed{
@@ -81,19 +72,61 @@ Under the proper-submersion/coarea contract:
 }
 \]
 
-after normalization, and \(T_\Lambda\) becomes an isometry onto the fibre-constant Hilbert subspace.
+after normalization.
 
-Permanent distinction:
+III.3 now fixes the operator layer. With
+
+\[
+p=\rho B,
+\qquad
+\tau u=-\frac1{2\rho}(pu')'+Vu,
+\]
+
+one has the regular Green form
 
 \[
 \boxed{
-\text{Hilbert weight}\neq\text{spectral measure}.
+\mathfrak b(u,v)
+=\frac12[u\overline{pv'}-(pu')\overline v]_a^b
+}
+\]
+
+and
+
+\[
+\boxed{H_{\min}^*=H_{\max}.}
+\]
+
+Separated Robin boundary conditions define self-adjoint realizations
+
+\[
+\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
+\]
+
+Permanent distinctions:
+
+\[
+\boxed{
+\text{Hilbert weight}\neq\text{spectral measure},
+}
+\]
+
+\[
+\boxed{
+\text{formal symmetry}\not\Rightarrow\text{self-adjointness},
+}
+\]
+
+\[
+\boxed{
+\text{one self-adjoint realization}\not\Rightarrow\text{unique self-adjoint realization}.
 }
 \]
 
 **III.1:** `PASS`  
 **III.2:** `PASS`  
-**III.3:** `NEXT — domain and self-adjoint realization`.
+**III.3:** `PASS`  
+**III.4:** `NEXT — compact resolvent and discrete spectrum`.
 
 ---
 
@@ -107,7 +140,7 @@ No PHISICA repair changes a CORE semantic role.
 
 # S2 — FALSIFICATION / REGRESSION
 
-**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF11 ACTIVE`.
+**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF12 ACTIVE`.
 
 High-value PHISICA locks:
 
@@ -121,7 +154,8 @@ High-value PHISICA locks:
 - PF08: Hellmann–Feynman requires a perturbation contract;
 - PF09: small coefficient change != automatic spectral stability;
 - PF10: historical PSI-13 conditions do not replace III.1;
-- PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract.
+- PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract;
+- PF12: vanishing boundary form/formal symmetry != self-adjointness without maximality/adjoint-domain equality.
 
 ---
 
@@ -157,8 +191,8 @@ Execution order:
 
 1. III.1 projectability — PASS;
 2. III.2 weight/Sturm–Liouville/pushforward — PASS;
-3. III.3 domain/self-adjointness — NEXT;
-4. III.4 discrete spectrum;
+3. III.3 domain/self-adjointness — PASS;
+4. III.4 compact resolvent/discrete spectrum — NEXT;
 5. III.5 Liouville/normal form;
 6. III.6 perturbation/Hellmann–Feynman;
 7. PHISICA whole-block cross-check;
@@ -200,9 +234,11 @@ Do not promote historical spectral-completeness or domain-free self-adjointness 
 \to
 \mathrm{III.2\ PASS}
 \to
-\mathrm{III.3\ NEXT}
+\mathrm{III.3\ PASS}
 \to
-\mathrm{III.4:III.6}
+\mathrm{III.4\ NEXT}
+\to
+\mathrm{III.5:III.6}
 \to
 \mathrm{PHISICA\ WHOLE\ CROSSCHECK}.
 }
