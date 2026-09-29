@@ -14,6 +14,8 @@ on:
       - 'scripts/build_memory_pack.py'
       - 'scripts/test_memory_pack.py'
       - 'scripts/test_relation_description.py'
+      - 'scripts/build_edge_provenance.py'
+      - 'scripts/test_edge_provenance.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -36,3 +38,5 @@ jobs:
         run: python3 scripts/test_memory_pack.py
       - name: Run M6 relational-description regression
         run: python3 scripts/test_relation_description.py
+      - name: Emit M7 candidate edge-evidence hashes
+        run: python3 scripts/build_edge_provenance.py --emit
