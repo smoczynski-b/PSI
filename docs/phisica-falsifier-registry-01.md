@@ -212,3 +212,31 @@ H_D=H_D^*
 without the maximality/adjoint-domain check.
 
 III.3 supplies this check for the regular separated Robin family.
+
+---
+
+## PF13 — self-adjointness does not imply compact resolvent or discrete spectrum
+
+A self-adjoint operator may have continuous or essential spectrum. For example, the free Laplacian on \(L^2(\mathbb R)\) is self-adjoint but does not have compact resolvent.
+
+Thus:
+
+\[
+\boxed{
+H=H^*
+\not\Rightarrow
+(H-z)^{-1}\text{ compact}
+}
+\]
+
+and therefore
+
+\[
+\boxed{
+\text{self-adjointness}
+\not\Rightarrow
+\text{purely discrete spectrum}.
+}
+\]
+
+III.4 obtains compact resolvent only from the additional finite regular interval/form-domain compactness mechanism.
