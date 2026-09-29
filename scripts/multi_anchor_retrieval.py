@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from collections import defaultdict, deque
 import json
-import re
 import sys
 
 from compile_task_contract import detect_intents, unsupported_exclusion
@@ -153,6 +152,29 @@ def execute_multi_anchor(contract: dict) -> dict:
 
     a, b = anchors
     operator = contract["operator"]
+
+    if operator == "TRANSFER":
+        route = _directed_route(contract, a, b)
+        if route is None:
+            return {
+                "status": "NO_ROUTE",
+                "operator": operator,
+                "source": a,
+                "target": b,
+                "route_budget": contract["route_budget"],
+                "transferred_view": None,
+            }
+        target_view = memory.retrieve(_single_contract(contract, b))
+        return {
+            "status": "RETRIEVED",
+            "operator": operator,
+            "source": a,
+            "target": b,
+            "route_budget": contract["route_budget"],
+            "route": route,
+            "transferred_view": target_view,
+        }
+
     views = {
         a: memory.retrieve(_single_contract(contract, a)),
         b: memory.retrieve(_single_contract(contract, b)),
@@ -183,27 +205,6 @@ def execute_multi_anchor(contract: dict) -> dict:
             "views": views,
             "common_edges": [by_a[t] for t in common],
             "common_nodes": common_nodes,
-        }
-
-    if operator == "TRANSFER":
-        route = _directed_route(contract, a, b)
-        if route is None:
-            return {
-                "status": "NO_ROUTE",
-                "operator": operator,
-                "source": a,
-                "target": b,
-                "route_budget": contract["route_budget"],
-                "transferred_view": None,
-            }
-        return {
-            "status": "RETRIEVED",
-            "operator": operator,
-            "source": a,
-            "target": b,
-            "route_budget": contract["route_budget"],
-            "route": route,
-            "transferred_view": views[b],
         }
 
     raise ValueError("unknown multi-anchor operator")
