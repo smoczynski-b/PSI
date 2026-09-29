@@ -9,7 +9,7 @@
 
 # S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.5 PASS / III.6 NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.6 LOCAL PASS / PHISICA WHOLE-BLOCK CROSSCHECK NEXT`.
 
 Current control stack:
 - physical CANON-03 bound;
@@ -20,7 +20,7 @@ Current control stack:
 - V2 Theorem Map 04 — frozen current map for Volume II;
 - V3 Theorem Map 01 — current Volume III map;
 - PHISICA Operator Migration 01 — current source audit;
-- PHISICA Falsifier Registry 01 — PF01–PF13;
+- PHISICA Falsifier Registry 01 — PF01–PF14;
 - Agent PSI Architecture v02 — current.
 
 ### Volume I
@@ -37,7 +37,7 @@ Current control stack:
 
 ### Volume III / PHISICA
 
-The repaired operator chain is now
+The repaired local operator chain is now
 
 \[
 \boxed{
@@ -49,66 +49,39 @@ The repaired operator chain is now
 \to
 \mathrm{COMPACT\ SPECTRAL\ THEORY}
 \to
-\mathrm{UNITARY\ LIOUVILLE\ NORMAL\ FORM}.
+\mathrm{UNITARY\ LIOUVILLE\ NORMAL\ FORM}
+\to
+\mathrm{PERTURBATION/HELLMANN\!\!-\!FEYNMAN}.
 }
 \]
 
-III.1 establishes exact operator projectability:
+III.1 establishes exact operator projectability.
+
+III.2 establishes the positive Hilbert/Sturm–Liouville weight and, under the additional coarea contract, its geometric pushforward interpretation.
+
+III.3 fixes the operator domain and separated self-adjoint boundary realizations.
+
+III.4 derives compact resolvent, discrete real spectrum and a complete orthonormal eigenbasis from compact form-domain embedding.
+
+III.5 gives the canonical unitary Liouville normal form and separates bounded similarity from unitary equivalence.
+
+III.6 now repairs perturbation theory. In the fixed-space/fixed-domain bounded sector,
 
 \[
 \boxed{
-\Delta_g\operatorname{im}T_\Lambda
-\subseteq
-\operatorname{im}T_\Lambda
-\iff
-|\nabla\Lambda|^2=B\circ\Lambda
-\land
-\Delta_g\Lambda=C\circ\Lambda.
+|E_n(t)-E_n(s)|\le \|W(t)-W(s)\|
 }
 \]
 
-III.2 establishes
-
-\[
-\boxed{(\rho B)'=\rho C}
-\]
-
-and, under the additional proper-submersion/coarea contract,
+and for a simple isolated eigenvalue branch
 
 \[
 \boxed{
-\rho d\lambda=\Lambda_*(d\mathrm{vol}_g)
+E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle.
 }
 \]
 
-after normalization.
-
-III.3 fixes a concrete self-adjoint realization through the regular boundary form and maximal isotropic separated Robin data.
-
-III.4 derives compact resolvent from compact form-domain embedding, giving discrete real spectrum and a complete orthonormal eigenbasis.
-
-III.5 replaces the historical formal drift-removal claim by a two-level repair:
-
-1. the historical multiplier becomes a bounded similarity only after domain transport;
-2. the canonical Liouville map
-
-\[
-\boxed{
-x'=B^{-1/2},
-\qquad
-(Uu)(x)=\rho^{1/2}B^{1/4}u
-}
-\]
-
-is unitary and gives
-
-\[
-\boxed{
-UHU^{-1}
-=-\frac12\partial_x^2
-+V(\lambda(x))+rac{s_{xx}}{2s}.
-}
-\]
+Degenerate first-order splitting is governed by the compressed perturbation on the eigenspace, and geometric/LOGOS deformations require a prior unitary or closed-form trivialization before Hellmann–Feynman is licensed.
 
 Permanent distinctions now include:
 
@@ -136,6 +109,18 @@ Permanent distinctions now include:
 }
 \]
 
+\[
+\boxed{
+\text{small coefficient change}\not\Rightarrow\text{spectral stability without a topology},
+}
+\]
+
+\[
+\boxed{
+\text{stable eigenvalues}\not\Rightarrow\text{stable eigenvectors / DNA labels},
+}
+\]
+
 and
 
 \[
@@ -144,8 +129,10 @@ and
 }
 \]
 
-**III.1–III.5:** `PASS`  
-**III.6:** `NEXT — perturbation / Hellmann–Feynman`.
+**III.1–III.6:** `LOCAL PASS`  
+**NEXT:** `PHISICA WHOLE-BLOCK CROSSCHECK 01`.
+
+No global PHISICA PASS is granted before that gate.
 
 ---
 
@@ -159,7 +146,7 @@ No PHISICA repair changes a CORE semantic role.
 
 # S2 — FALSIFICATION / REGRESSION
 
-**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF13 ACTIVE`.
+**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF14 ACTIVE`.
 
 High-value PHISICA locks:
 
@@ -175,7 +162,8 @@ High-value PHISICA locks:
 - PF10: historical PSI-13 conditions do not replace III.1;
 - PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract;
 - PF12: formal symmetry != self-adjointness without maximality/adjoint-domain equality;
-- PF13: self-adjointness != compact resolvent/discrete spectrum.
+- PF13: self-adjointness != compact resolvent/discrete spectrum;
+- PF14: stable eigenvalues != stable eigenvectors / stable spectral-DNA labels.
 
 ---
 
@@ -197,7 +185,9 @@ Current operator discipline:
 \neq
 \text{compact-resolvent spectral theorem}
 \neq
-\text{unitary normal form}.
+\text{unitary normal form}
+\neq
+\text{licensed perturbation theory}.
 }
 \]
 
@@ -216,8 +206,8 @@ Execution order:
 3. III.3 domain/self-adjointness — PASS;
 4. III.4 compact resolvent/discrete spectrum — PASS;
 5. III.5 Liouville/normal form — PASS;
-6. III.6 perturbation/Hellmann–Feynman — NEXT;
-7. PHISICA whole-block cross-check;
+6. III.6 perturbation/Hellmann–Feynman — PASS;
+7. PHISICA whole-block cross-check — NEXT;
 8. then HCube/MOST/other laboratories.
 
 ---
@@ -238,7 +228,7 @@ Execution order:
 
 Historical `PHISICA — NEW.pdf`, PSI-13, DNA and old broad LOGOS claims remain source/genealogy unless rebuilt under the V3 gates.
 
-Do not promote historical spectral-completeness, domain-free self-adjointness, automatic isospectral drift-removal or coefficient-smallness stability claims.
+Do not promote historical spectral-completeness, domain-free self-adjointness, automatic isospectral drift-removal, coefficient-smallness stability or full-DNA stability claims.
 
 ---
 
@@ -252,10 +242,8 @@ Do not promote historical spectral-completeness, domain-free self-adjointness, a
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1:III.5\ PASS}
+\mathrm{III.1:III.6\ LOCAL\ PASS}
 \to
-\mathrm{III.6\ NEXT}
-\to
-\mathrm{PHISICA\ WHOLE\ CROSSCHECK}.
+\mathrm{PHISICA\ WHOLE\!\!-\!BLOCK\ CROSSCHECK\ 01\ NEXT}.
 }
 \]
