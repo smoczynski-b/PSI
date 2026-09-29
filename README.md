@@ -38,6 +38,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [PHISICA Falsifier Registry 01](docs/phisica-falsifier-registry-01.md)
 - [Volume III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
 - [Volume III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
+- [Volume III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
@@ -137,37 +138,19 @@ Historical PHISICA is being rebuilt by operator legality rather than copied chap
 }
 \]
 
-For a Schrödinger-type reduction
-
-\[
-H=-\frac12\Delta_g+V,
-\]
-
-one additionally requires
+For a Schrödinger-type reduction one additionally requires
 
 \[
 \boxed{V=V_\Lambda\circ\Lambda.}
 \]
 
-Therefore
-
-\[
-\boxed{
-d\Lambda\neq0
-\not\Rightarrow
-\text{one-dimensional operator reduction}.
-}
-\]
-
 ### III.2 — weight, Sturm–Liouville form and geometric pushforward
-
-For \(B>0\), the canonical positive weight satisfies
 
 \[
 \boxed{(\rho B)'=\rho C}
 \]
 
-and hence
+and
 
 \[
 \boxed{
@@ -176,7 +159,7 @@ L_\Lambda
 }
 \]
 
-Under the additional proper-submersion/coarea contract, the pushforward of Riemannian volume has density satisfying the same equation; after normalization,
+Under the additional proper-submersion/coarea contract, after normalization,
 
 \[
 \boxed{
@@ -185,31 +168,60 @@ Under the additional proper-submersion/coarea contract, the pushforward of Riema
 }
 \]
 
-Thus the pullback map \(T_\Lambda\Phi=\Phi\circ\Lambda\) is an isometry from \(L^2(I,\rho d\lambda)\) onto the fibre-constant Hilbert subspace.
+### III.3 — operator domain and self-adjoint realization
 
-Permanent distinctions:
+For
+
+\[
+p=\rho B,
+\qquad
+\tau u=-\frac1{2\rho}(pu')'+Vu,
+\]
+
+the regular Green–Lagrange form is
+
+\[
+\boxed{
+\mathfrak b(u,v)
+=\frac12[u\overline{pv'}-(pu')\overline v]_a^b.
+}
+\]
+
+The minimal and maximal regular realizations satisfy
+
+\[
+\boxed{H_{\min}^*=H_{\max}.}
+\]
+
+Separated Robin boundary conditions define self-adjoint realizations
+
+\[
+\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
+\]
+
+Dirichlet, Neumann/quasi-Neumann and mixed separated boundary conditions are special cases.
+
+Permanent distinctions now include
 
 \[
 \boxed{
 \text{Hilbert weight}\neq\text{spectral measure},
 }
-\]
 
 \[
 \boxed{
-\text{integrating factor}\not\Rightarrow\text{geometric pushforward measure},
+\text{formal symmetry}\not\Rightarrow\text{self-adjointness},
 }
-\]
 
 and
 
 \[
 \boxed{
-\text{formal symmetry}\not\Rightarrow\text{self-adjoint realization}.
+\text{one self-adjoint realization}\not\Rightarrow\text{unique self-adjoint realization}.
 }
 \]
 
-`III.1` and `III.2` are PASS. The next unit is `III.3 — domain and self-adjoint realization`.
+`III.1–III.3` are PASS. The next unit is `III.4 — compact resolvent and discrete spectrum`.
 
 ## Current phase
 
@@ -225,7 +237,9 @@ and
 \to
 \mathrm{III.2\ PASS}
 \to
-\mathrm{III.3\ NEXT}.
+\mathrm{III.3\ PASS}
+\to
+\mathrm{III.4\ NEXT}.
 }
 \]
 
