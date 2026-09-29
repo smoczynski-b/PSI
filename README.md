@@ -6,62 +6,43 @@ It asks:
 
 > What are we entitled to conclude from what we can actually observe?
 
-The central compatible set is
+For a task \(\mathcal T\), exact resolution is controlled by the compatible fibre
 
 \[
-F(Y)=\Psi^{-1}(\mathcal K^Y).
+F(Y)=\Psi^{-1}(\mathcal K^Y)
 \]
 
-For a task \(\mathcal T\), exact resolution means
+and the task quotient:
 
 \[
+\boxed{
 |q_{\mathcal T}(F(Y))|=1
 \iff
 F(Y)\neq\varnothing
 \land
 F(Y)^2\subseteq E_{\mathcal T}.
+}
 \]
+
+---
 
 ## Current control pointers
 
 - [Physical CANON-03 source bind](docs/canon03-source-bind-01.md)
 - [Core mathematical skeleton](docs/core.md)
-- [Current claim registry v13](docs/claim-registry-13.md)
-- [Current falsifier registry v12](docs/falsifier-registry-12.md)
+- [Current Claim Registry v13](docs/claim-registry-13.md)
+- [Current Falsifier Registry v12](docs/falsifier-registry-12.md)
 - [Freeze 01](docs/principia-v1-v2-freeze-01.md)
 - [Freeze 01 Errata 01](docs/principia-v1-v2-freeze-01-errata-01.md)
 - [Current Volume Skeleton 03](docs/principia-volume-skeleton-03.md)
-- [Volume III Addendum 01](docs/principia-volume-skeleton-03-v3-addendum-01.md)
-- [Volume III Addendum 02 — PHISICA closure / MOST handoff](docs/principia-volume-skeleton-03-v3-addendum-02.md)
 - [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Current V3 Theorem Map 05](docs/principia-v3-theorem-map-05.md)
-- [PHISICA Operator Migration 01](docs/phisica-operator-migration-01.md)
-- [PHISICA Operator Migration 01 — Errata 01](docs/phisica-operator-migration-01-errata-01.md)
-- [PHISICA Whole-Block Crosscheck 01](docs/principia-v3-phisica-whole-crosscheck-01.md)
-- [PHISICA Falsifier Registry 01](docs/phisica-falsifier-registry-01.md)
-- [Volume III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
-- [Volume III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
-- [Volume III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
-- [Volume III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
-- [Volume III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
-- [Volume III.6 — perturbation and Hellmann–Feynman](docs/principia-v3-06-perturbation-hellmann-feynman.md)
-- [Volume III.7 — MOST spectral information hierarchy](docs/principia-v3-07-spectral-information-hierarchy-most.md)
-- [Volume III.8 — HCube MOST laboratory](docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md)
-- [MOST/HCube Whole-Layer Crosscheck 01](docs/principia-v3-most-hcube-whole-crosscheck-01.md)
-- [DOM-LOGOS Source Bind 01](docs/dom-logos-source-bind-01.md)
-- [Volume III.9 — semigroup projectability / DOM-LOGOS](docs/principia-v3-09-semigroup-projectability-dom-logos.md)
-- [DOM-LOGOS Crosscheck 01](docs/principia-v3-dom-logos-crosscheck-01.md)
-- [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
-- [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
-- [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
-- [Ledger Addendum 04 — PHISICA whole-block handoff](docs/psi-ledger-01-addendum-04.md)
-- [Ledger Addendum 05 — MOST / HCube handoff](docs/psi-ledger-01-addendum-05.md)
-- [Ledger Addendum 06 — MOST/HCube closure / DOM-LOGOS source gate](docs/psi-ledger-01-addendum-06.md)
-- [Ledger Addendum 07 — DOM-LOGOS closure / SOP-11E handoff](docs/psi-ledger-01-addendum-07.md)
+- [Current V3 Theorem Map 06](docs/principia-v3-theorem-map-06.md)
+- [Current Sector Work Map 07](docs/work-map-07.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
-- [Current Sector Work Map 06](docs/work-map-06.md)
 
-Historical maps, skeletons and pre-repair material remain for provenance.
+Historical maps, older theorem maps and superseded source artefacts remain in the repository for provenance.
+
+---
 
 ## Core status
 
@@ -71,15 +52,17 @@ Historical maps, skeletons and pre-repair material remain for provenance.
 }
 \]
 
-CORE5 remains frozen. Current pressure evidence does not force R4; this is not a universal completeness theorem.
+CORE5 remains frozen.
 
 Exact task-information adequacy:
 
 \[
-\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
+\boxed{
+\ker_{eq}\rho\subseteq E_{\mathcal T}.
+}
 \]
 
-Inference discipline:
+Permanent inference discipline:
 
 \[
 \boxed{
@@ -89,34 +72,43 @@ Inference discipline:
 }
 \]
 
-## Principia status
+No current typed counterexample forces R4.
 
-### Volume I
+---
 
-\[
-\boxed{\mathrm{V1}=\mathrm{NORMALIZED\ PASS}.}
-\]
+# Principia status
 
-### Volume II
+## Volume I
 
 \[
 \boxed{
-\mathrm{PRINCIPIA\ V2\ II.1:II.16}
-=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
+\mathrm{V1}=\mathrm{NORMALIZED\ PASS}.
 }
 \]
 
-The V2 control layer is normalized through Volume Skeleton 03 and V2 Theorem Map 04.
+## Volume II
 
-### Freeze Errata 01
+\[
+\boxed{
+\mathrm{II.1:II.16}=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
+}
+\]
 
-The former C19-v2 singleton statement for the gauge-only factorization fibre is withdrawn. Current MINI keeps unique normal-form class rather than literal gauge-only factorization uniqueness. No CORE role changed and no Agent v03 is justified.
+The Volume II control layer is frozen through V2 Theorem Map 04.
 
-## Volume III — PHISICA operator block
+## Freeze Errata 01
 
-Historical PHISICA was rebuilt by operator legality rather than copied chapter-by-chapter.
+The former C19-v2 singleton claim for the gauge-only factorization fibre is withdrawn. Current MINI keeps uniqueness of the normal-form class rather than literal uniqueness of the gauge-only factorization fibre.
 
-The certified chain is
+No CORE role changed.
+
+---
+
+# Volume III — PHISICA operator block
+
+PHISICA was rebuilt by operator legality rather than copied from the historical text.
+
+Certified chain:
 
 \[
 \boxed{
@@ -124,68 +116,44 @@ The certified chain is
 \to
 \mathrm{WEIGHTED\ REALIZATION}
 \to
-\mathrm{SELF\!\!-\!ADJOINT\ REALIZATION}
+\mathrm{SELF\!-
+ADJOINT\ REALIZATION}
 \to
 \mathrm{COMPACT\ SPECTRAL\ THEORY}
 \to
-\mathrm{UNITARY\ LIOUVILLE\ NORMAL\ FORM}
+\mathrm{UNITARY\ LIOUVILLE\ FORM}
 \to
-\mathrm{PERTURBATION/HELLMANN\!\!-\!FEYNMAN}.
+\mathrm{PERTURBATION/HF}.
 }
 \]
 
-Key repaired results include
-
-\[
-\boxed{
-\Delta_g\operatorname{im}T_\Lambda
-\subseteq
-\operatorname{im}T_\Lambda
-\iff
-|\nabla\Lambda|^2=B\circ\Lambda
-\land
-\Delta_g\Lambda=C\circ\Lambda,
-}
-\]
-
-\[
-\boxed{(\rho B)'=\rho C},
-\qquad
-\boxed{H_{\min}^*=H_{\max}},
-\]
-
-\[
-\boxed{(H-z)^{-1}\text{ compact}}
-\]
-
-for the regular finite-interval realization,
-
-\[
-\boxed{UHU^{-1}=-\frac12\partial_x^2+V(\lambda(x))+\frac{s_{xx}}{2s}},
-\]
-
-and, after legal fixed-space/domain trivialization,
-
-\[
-\boxed{E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle}
-\]
-
-for a simple isolated differentiable eigenbranch.
-
-The PHISICA whole-block audit granted
+Current result:
 
 \[
 \boxed{
 \mathrm{PHISICA\ III.1:III.6}
-=\mathrm{MATHEMATICAL\ GLOBAL\ PASS\ AFTER\ LOCAL\ ERRATA\ 01}.
+=
+\mathrm{MATHEMATICAL\ GLOBAL\ PASS\ AFTER\ LOCAL\ ERRATA\ 01}.
 }
 \]
 
-The PHISICA arrows denote progressively stronger typed contracts, not one blanket implication chain.
+Main files:
 
-## Volume III — MOST / HCube operator-information layer
+- [III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
+- [III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
+- [III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
+- [III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
+- [III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
+- [III.6 — perturbation and Hellmann–Feynman](docs/principia-v3-06-perturbation-hellmann-feynman.md)
+- [PHISICA Whole-Block Crosscheck 01](docs/principia-v3-phisica-whole-crosscheck-01.md)
 
-For finite-dimensional operators with fixed norm:
+The arrows above mean progressively stronger typed contracts, not one blanket implication chain.
+
+---
+
+# Volume III — MOST / HCube
+
+For finite-dimensional operators under a fixed norm:
 
 \[
 \boxed{
@@ -197,31 +165,26 @@ For finite-dimensional operators with fixed norm:
 }
 \]
 
-The operator-valued branch is
+Operator-information graph:
 
 \[
 \boxed{
-A\to\mathcal R_A(\cdot)\to r_A(\cdot)
-\leftrightarrow\rho_{ps}(A)\to\rho_\sigma(A),
+A\to\mathcal R_A(\cdot)
+\to r_A(\cdot)
+\leftrightarrow\rho_{ps}(A)
+\to\rho_\sigma(A).
 }
 \]
 
-and transient dynamics remain a separate branch
-
-\[
-\boxed{A\to e^{tA}\to\|e^{tA}\|.}
-\]
-
-The frozen HCube pair has equal spectrum and equal operator norm but different resolvent response. III.8 also proves
+Transient dynamics form a separate branch:
 
 \[
 \boxed{
-\|e^{tA}\|_2=\|e^{tB}\|_2=e^{2t}
-\quad\forall t\ge0,
+A\to e^{tA}\to\|e^{tA}\|.
 }
 \]
 
-while their resolvent-norm profiles differ. Therefore
+HCube proves that equal spectrum and equal operator norm can still fail a resolvent-sensitive task. It also gives a pair with identical scalar semigroup-norm profiles but different resolvent-norm profiles, so
 
 \[
 \boxed{
@@ -232,20 +195,29 @@ while their resolvent-norm profiles differ. Therefore
 
 The converse non-factorization is not claimed.
 
-Whole-layer result:
+Current result:
 
 \[
 \boxed{
 \mathrm{MOST/HCUBE\ III.7:III.8}
-=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
+=
+\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
 }
 \]
 
-## Volume III — DOM-LOGOS dynamic projectability
+Main files:
 
-The physical source gate is closed. The primary recovered historical source is `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A.tex`; the 2026-07-16 strict mathematical canon is genealogical predecessor.
+- [III.7 — MOST spectral information hierarchy](docs/principia-v3-07-spectral-information-hierarchy-most.md)
+- [III.8 — HCube MOST laboratory](docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md)
+- [MOST/HCube Whole-Layer Crosscheck 01](docs/principia-v3-most-hcube-whole-crosscheck-01.md)
 
-III.9 proves the semigroup projectability criterion:
+---
+
+# Volume III — DOM-LOGOS
+
+The historical source gate recovered the semigroup formulation from `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A.tex`.
+
+III.9 proves:
 
 \[
 \boxed{
@@ -264,11 +236,11 @@ iff there exists a unique reduced semigroup on \(\operatorname{im}\Lambda\) sati
 }
 \]
 
-For bounded linear \(T\) between \(C_0\)-semigroups with generators \(A\) and \(\bar A\):
+For bounded linear intertwiners between linear \(C_0\)-semigroups:
 
 \[
 \boxed{
-TS(t)=\bar S(t)T\ \forall t\ge0
+TS(t)=\bar S(t)T
 \iff
 T(D(A))\subseteq D(\bar A)
 \land
@@ -276,25 +248,87 @@ T(D(A))\subseteq D(\bar A)
 }
 \]
 
-For nonlinear \(\Lambda\), semigroup intertwining implies the derivative identity
-
-\[
-D\Lambda(x)Ax=\bar A\Lambda(x)
-\]
-
-only under the declared Fréchet/domain hypotheses. No nonlinear converse is asserted without a well-posedness and uniqueness theorem.
-
-III.9 therefore realizes the Volume II dynamic-congruence principle in continuous time; it does not restore LOGOS as a CORE primitive.
+For nonlinear \(\Lambda\), the generator identity is retained only as a derivative consequence unless a separate well-posedness theorem closes the converse.
 
 \[
 \boxed{
 \mathrm{III.9\ DOM\!-
-LOGOS}
-=\mathrm{PASS / COMPOSITION\ PASS}.
+LOGOS}=\mathrm{PASS/COMPOSITION\ PASS}.
 }
 \]
 
-## Permanent distinctions
+Main files:
+
+- [DOM-LOGOS Source Bind 01](docs/dom-logos-source-bind-01.md)
+- [III.9 — semigroup projectability / DOM-LOGOS](docs/principia-v3-09-semigroup-projectability-dom-logos.md)
+- [DOM-LOGOS Crosscheck 01](docs/principia-v3-dom-logos-crosscheck-01.md)
+
+---
+
+# Volume III — SOP-11E well-posedness
+
+The general historical equation
+
+\[
+D_t\psi=-\nabla_{G(\psi)}L(\psi)+Z
+\]
+
+remains too broad for a universal theorem.
+
+Project-level status:
+
+\[
+\boxed{
+P2_{\mathrm{general}}=PARTIAL.
+}
+\]
+
+III.10 closes two typed sectors.
+
+## Smooth forced Hilbert sector
+
+For fixed bounded coercive \(G\), globally Lipschitz \(\nabla L\), and \(Z\in L^1_{loc}\), the evolution has a unique global absolutely continuous solution with quantitative continuous dependence.
+
+Bare \(L\in C^2\) does not imply global existence.
+
+## Convex subdifferential sector
+
+For proper lsc convex \(L\) and constant forcing \(z\),
+
+\[
+\dot u\in-\partial L(u)+z
+\]
+
+is generated by a nonlinear contraction semigroup through maximal-monotone / Crandall–Liggett theory.
+
+Time-dependent forcing yields an evolution family \(U(t,s)\), not automatically an autonomous semigroup.
+
+Current result:
+
+\[
+\boxed{
+\mathrm{III.10\ SOP\!-
+11E}=\mathrm{SECTOR\ PASS}.
+}
+\]
+
+and
+
+\[
+\boxed{
+\mathrm{III.9:III.10}=\mathrm{COMPOSITION\ PASS}.
+}
+\]
+
+Main files:
+
+- [SOP-11E Well-Posedness Migration 01](docs/sop11e-wellposedness-migration-01.md)
+- [III.10 — typed well-posedness sectors](docs/principia-v3-10-sop11e-wellposedness-sectors.md)
+- [III.9–III.10 Composition Crosscheck 01](docs/principia-v3-sop11e-dom-logos-crosscheck-01.md)
+
+---
+
+# Permanent distinctions
 
 \[
 \boxed{\text{Hilbert weight}\neq\text{spectral measure}},
@@ -317,46 +351,57 @@ LOGOS}
 \]
 
 \[
-\boxed{\text{spectrum as invariant}\neq\text{spectrum as task-sufficient representation}},
-\]
-
-\[
-\boxed{\text{scalar semigroup-norm profile}\not\Rightarrow\text{scalar resolvent-norm profile}},
-\]
-
-\[
-\boxed{\text{two-point separation}\not\Rightarrow\text{global faithfulness}},
-\]
-
-\[
 \boxed{\text{static task adequacy}\not\Rightarrow\text{dynamic projectability}},
 \]
 
 \[
-\boxed{\text{operator-on-observables projectability}\neq\text{state-semigroup projectability}},
+\boxed{\text{well-posedness}\neq\text{projectability}},
 \]
-
-and
 
 \[
-\boxed{\text{infinitesimal nonlinear compatibility}\not\Rightarrow\text{global nonlinear reduction without well-posedness}}.
+\boxed{\text{time-dependent forcing}\not\Rightarrow\text{autonomous semigroup}},
 \]
 
-## Current phase
+\[
+\boxed{L\in C^2\not\Rightarrow\text{global well-posedness}},
+\]
 
-The next candidate Volume III layer is SOP-11E well-posed dynamics. The recovered project source classifies this layer as `PARTIAL`, requiring existence, uniqueness, continuous dependence, semigroup estimates and explicit operator domains.
+\[
+\boxed{\text{coercivity}\not\Rightarrow\text{compact global attractor}},
+\]
 
-Therefore the current legal state is
+\[
+\boxed{\text{linearized stability}\not\Rightarrow\text{global nonlinear dynamics}}.
+\]
+
+---
+
+# Current phase
+
+The next unresolved operator-dynamic front is the historical P9 bridge:
 
 \[
 \boxed{
-\mathrm{SOP\!-
-11E\ WELL\!-
-POSEDNESS\ MIGRATION\ GATE\ NEXT},
+H
+\longleftrightarrow
+(zI-A)^{-1}
+\longleftrightarrow
+e^{tA}.
 }
 \]
 
-not immediate III.10 theorem prose.
+`KANON2.txt` classifies this as `OPEN / CENTRAL`.
+
+MOST/HCube has clarified the information structure but has not proved a universal Hessian-to-transient theorem.
+
+Therefore:
+
+\[
+\boxed{
+\mathrm{P9\ HESSIAN\!-
+TRANSIENT\ MIGRATION\ GATE\ NEXT}.
+}
+\]
 
 Current execution graph:
 
@@ -373,12 +418,24 @@ Current execution graph:
 \mathrm{III.9\ DOM\!-
 LOGOS\ PASS}
 \to
-\mathrm{SOP\!-
-11E\ WELL\!-
-POSEDNESS\ GATE\ NEXT}.
+\mathrm{III.10\ SOP\!-
+11E\ SECTOR\ PASS}
+\to
+\mathrm{P9\ MIGRATION\ GATE\ NEXT}.
+}
 \]
 
-Primitive growth remains stopped until a new typed counterexample forces a genuinely new semantic role.
+Primitive growth remains frozen until a new typed counterexample forces a genuinely new semantic role.
+
+---
+
+## Decision / epistemic ledger
+
+- [Ledger base](docs/psi-ledger-01.md)
+- [Ledger Addendum 07 — DOM-LOGOS closure / SOP-11E handoff](docs/psi-ledger-01-addendum-07.md)
+- [Ledger Addendum 08 — SOP-11E sector closure / P9 handoff](docs/psi-ledger-01-addendum-08.md)
+
+---
 
 ## Publications / Zenodo
 
@@ -389,7 +446,7 @@ Primitive growth remains stopped until a new typed counterexample forces a genui
 
 ## Language
 
-Internal theoretical development is primarily in Polish. Public interoperability and repository-facing material are written in English.
+Internal theoretical development is primarily in Polish. Public repository-facing material is written primarily in English.
 
 ## License
 
