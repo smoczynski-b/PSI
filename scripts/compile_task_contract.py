@@ -36,8 +36,16 @@ BOUNDARY_MARKERS = (
     "ograniczenia twierdzenia",
 )
 
+POLISH_ASCII = str.maketrans({
+    "ł": "l",
+    "Ł": "L",
+})
+
 
 def ascii_fold(text: str) -> str:
+    # NFKD removes combining accents but Polish l-stroke is not decomposed,
+    # so normalize that character explicitly before stripping marks.
+    text = text.translate(POLISH_ASCII)
     text = unicodedata.normalize("NFKD", text)
     return "".join(ch for ch in text if not unicodedata.combining(ch)).lower()
 
