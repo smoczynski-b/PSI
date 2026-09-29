@@ -5,7 +5,10 @@ on:
     branches: [psi-memory-map-01]
     paths:
       - 'docs/memory/**'
+      - 'experiments/PSI-MEMORY-M4-01.md'
+      - 'experiments/m4-*-manifest.txt'
       - 'scripts/test_memory_map.py'
+      - 'scripts/test_memory_economy.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -18,5 +21,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - name: Run M1/M2 dependency-memory regressions
+      - name: Run M1-M3 dependency and bridge regressions
         run: python3 scripts/test_memory_map.py
+      - name: Run M4a context economy measurement
+        run: python3 scripts/test_memory_economy.py
