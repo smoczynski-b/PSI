@@ -6,6 +6,8 @@ This note defines how important PSI material should be written when it may be co
 
 The aim is not to invent a special machine dialect. The aim is to make the text self-sufficient, status-explicit and resistant to inferential drift.
 
+For a working handoff, begin with [current work map](work-map.md), [routine](work-routine.md) and [control pointers](control-state.json). Preserve source commit, observation window, blocker/release condition and next executable unit. Numbered historical maps do not override these pointers.
+
 ## 1. Principle
 
 A portable PSI note should be readable by both a human and another model without requiring reconstruction of the missing conversation.

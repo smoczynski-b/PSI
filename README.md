@@ -26,14 +26,19 @@ F(Y)^2\subseteq E_{\mathcal T}.
 
 - [Physical CANON-03 source bind](docs/canon03-source-bind-01.md)
 - [Core mathematical skeleton](docs/core.md)
-- [Current Claim Registry v13](docs/claim-registry-13.md)
-- [Current Falsifier Registry v12](docs/falsifier-registry-12.md)
-- [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Current V3 Theorem Map 08](docs/principia-v3-theorem-map-08.md)
-- [Current Sector Work Map 09](docs/work-map-09.md)
+- [Current Claim Registry — C01–C67](docs/claim-registry.md)
+- [Current Falsifier Registry — F01–F62](docs/falsifier-registry.md)
+- [Current V2 Theorem Map](docs/theorem-map-v2.md)
+- [Current V3 Theorem Map](docs/theorem-map-v3.md)
+- [Current Work Map](docs/work-map.md)
+- [Proportional working routine](docs/work-routine.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
+- [Machine-readable control state](docs/control-state.json)
 
-Historical maps and superseded artefacts remain in the repository for provenance.
+Stable current files are updated in place. Numbered maps and registries remain
+historical provenance; their old CURRENT labels do not confer current authority.
+Run `python scripts/check_control.py` to check organizational consistency.
+This check does not verify mathematical proofs or live deployments.
 
 ---
 
@@ -349,7 +354,7 @@ Therefore
 
 # Current phase
 
-The next unresolved front is the genuinely infinite-dimensional relation between resolvent and semigroup growth:
+Subject to [global work selection](docs/work-map.md), the next mathematical source gate concerns the genuinely infinite-dimensional relation between resolvent and semigroup growth:
 
 - unbounded generators;
 - continuous spectrum;
@@ -359,7 +364,7 @@ The next unresolved front is the genuinely infinite-dimensional relation between
 
 No III.13 theorem is authorized yet.
 
-Current legal state:
+Current admissible mathematical state (not an unconditional global priority):
 
 \[
 \boxed{
@@ -369,7 +374,7 @@ DIMENSIONAL\ RESOLVENT/GROWTH\ SOURCE\ GATE\ NEXT}.
 }
 \]
 
-Execution graph:
+Mathematical dependency history:
 
 \[
 \boxed{
@@ -397,6 +402,8 @@ H\ PASS}
 I\ SOURCE\ GATE\ NEXT}.
 }
 \]
+
+Traffic instrumentation is intentionally WAIT under [the frozen protocol](experiments/PSI-TRAFFIC-EST-01.md); prospective observation continues. Read the [work map](docs/work-map.md) for release conditions and regular checks.
 
 Primitive growth remains frozen until a new typed counterexample forces a new semantic role.
 

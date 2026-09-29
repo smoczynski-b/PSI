@@ -1,5 +1,6 @@
 # PSI AGENT — architecture 02
 
+**Control role:** `agent-spec`
 **Status:** CURRENT AGENT SPEC  
 **Supersedes operationally:** `agent-psi-dual-operator-01.md`  
 **Reason for revision:** the first full `CAT–FACT–NORM–MINI` run showed that the dual operator was useful but too coarse. The agent needs explicit routing, contract freeze, split audit, impact control and regression after freeze.
@@ -562,3 +563,7 @@ The compact form is
 \]
 
 The goal is not to make every model reason identically. The goal is to make differing strengths and error profiles pass through one recoverable, falsifiable and contract-stable apparatus.
+
+## 22. Proportional execution and current control
+
+The operational refinement is [work-routine.md](work-routine.md). Read the stable [work map](work-map.md) before selecting a branch. [control-state.json](control-state.json) declares current control roles; numbered maps and registries are historical snapshots. This adds no mathematical primitive or new agent architecture version. WAIT requires a source, reason, release condition, next check and allowed work. Apply the full cycle to substantial claims; use targeted checks for low-impact edits.

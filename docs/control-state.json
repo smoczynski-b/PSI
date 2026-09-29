@@ -1,0 +1,271 @@
+{
+  "schema": 1,
+  "as_of": "2026-09-29",
+  "source_commit": "d9a1dd0a1a7a4d159dce6193761c9d6203df0051",
+  "current": {
+    "claim-registry": "docs/claim-registry.md",
+    "falsifier-registry": "docs/falsifier-registry.md",
+    "theorem-map-v2": "docs/theorem-map-v2.md",
+    "theorem-map-v3": "docs/theorem-map-v3.md",
+    "work-map": "docs/work-map.md",
+    "work-routine": "docs/work-routine.md",
+    "agent-spec": "docs/agent-psi-architecture-02.md"
+  },
+  "registry_counts": {
+    "C": 67,
+    "F": 62
+  },
+  "selection": {
+    "primary": "P9-I",
+    "rule": "First check external deltas and blockers. A repair or newly available separating observation preempts continuation. User instructions take precedence."
+  },
+  "tasks": [
+    {
+      "id": "TRAFFIC-INSTRUMENTATION",
+      "state": "WAIT",
+      "reason": "The current aggregate experiment intentionally stops instrumentation at G0A/G0D; no session/person identifier is collected.",
+      "source": "experiments/PSI-TRAFFIC-EST-01.md",
+      "release": "Observed censoring, a supported breakout, actual instrumentation failure, or an explicitly revised measurement contract.",
+      "next_check": "First active session of each Warsaw calendar day, or after an observed failure/censoring/breakout.",
+      "allowed": "Read existing summaries; accumulate prospective pageview and outbound-click counts; preserve publication sequence."
+    },
+    {
+      "id": "TRAFFIC-OBSERVATION",
+      "state": "READY",
+      "action": "At the first active session of the day obtain one bounded summary for a completed window using an authorized endpoint; otherwise record access BLOCKED without inventing counts.",
+      "source": "experiments/PSI-TRAFFIC-EST-01.md",
+      "evidence": "Protocol inspected; no live counts collected in this control repair. G0A/G0D PASS is inherited instrumentation status, not a fresh deployment check."
+    },
+    {
+      "id": "FORUM",
+      "state": "WATCH",
+      "action": "Reuse the existing hourly monitor. Inspect only changed OIDs or anomalies, dereferencing the exact objects before semantic claims.",
+      "source": "docs/work-map-09.md",
+      "evidence": "Automation enabled at inspection on 2026-09-29. No fresh T3/T4 evidence retrieved; neither confirmed nor disproved by this repair."
+    },
+    {
+      "id": "P9-I",
+      "state": "READY",
+      "action": "Run the source/contract gate for infinite-dimensional resolvent/growth. No III.13 theorem or numbering before a passed gate.",
+      "source": "docs/theorem-map-v3.md",
+      "evidence": "Next mathematical gate inherited; selected only after the bounded external delta/STOP check."
+    },
+    {
+      "id": "MODEL-ADAPTER",
+      "state": "BLOCKED",
+      "reason": "The supplied session handoff reports RUN-01 blocked by missing TYPESAFE_API_KEY. This is inherited operational status; current secret availability was not verified here.",
+      "source": ".github/workflows/psi-jev-run-01.yml",
+      "release": "Verify authorized secret configuration without exposing its value, then apply the pre-registered run gate.",
+      "next_check": "When integration configuration changes or this task is explicitly selected.",
+      "allowed": "Inspect adapter and contract; do not represent a missing credential as a falsification of PSI."
+    },
+    {
+      "id": "PSI-VIZ",
+      "state": "BACKLOG",
+      "action": "LAB realization: test identifiability of the fibre after selection against current priorities.",
+      "source": "docs/work-routine.md",
+      "evidence": "Design inherited from supplied conversation; no implementation verified in this repository."
+    },
+    {
+      "id": "AGENT-COMPARISON",
+      "state": "BACKLOG",
+      "action": "Prepare a controlled comparison only when selected; do not report conceptual abilities as measured improvements.",
+      "source": "docs/agent-psi-architecture-02.md",
+      "evidence": "Architecture is procedural; comparative efficacy remains unverified."
+    }
+  ],
+  "units": [
+    {
+      "id": "II.1",
+      "state": "PASS",
+      "path": "docs/principia-v2-01-exact-task-decidability.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.2",
+      "state": "PASS",
+      "path": "docs/principia-v2-02-kernel-factorization.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.3",
+      "state": "PASS",
+      "path": "docs/principia-v2-03-global-observer-sufficiency.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.4",
+      "state": "PASS",
+      "path": "docs/principia-v2-04-representation-adequacy.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.5",
+      "state": "PASS",
+      "path": "docs/principia-v2-05-task-information-legality-of-reduction.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.6",
+      "state": "PASS",
+      "path": "docs/principia-v2-06-deterministic-quotient-dynamics.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.7",
+      "state": "PASS",
+      "path": "docs/principia-v2-07-exact-history-memory-adequacy.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.8",
+      "state": "PASS",
+      "path": "docs/principia-v2-08-coarsest-exact-history-quotient.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.9",
+      "state": "PASS",
+      "path": "docs/principia-v2-09-recursive-history-quotient-update.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.10",
+      "state": "PASS",
+      "path": "docs/principia-v2-10-strong-lumpability-bridge.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.11",
+      "state": "PASS",
+      "path": "docs/principia-v2-11-myhill-nerode-bridge.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.12",
+      "state": "PASS",
+      "path": "docs/principia-v2-12-paige-tarjan-benchmark.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.13",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v2-13-cat-fact-canonical-scope.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.14",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v2-14-cat-fact-norm-mini.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.15",
+      "state": "PASS",
+      "path": "docs/principia-v2-15-closed-frame-holonomy.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "II.16",
+      "state": "PASS",
+      "path": "docs/principia-v2-16-higher-compatibility-truncation.md",
+      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.1",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-01-lambda-operator-projectability.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.2",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-02-weight-sturm-liouville.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.3",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-03-domain-selfadjoint.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.4",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-04-compact-resolvent-spectrum.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.5",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-05-liouville-normal-form.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.6",
+      "state": "PASS_AFTER_ERRATA",
+      "path": "docs/principia-v3-06-perturbation-hellmann-feynman.md",
+      "evidence": "docs/principia-v3-phisica-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.7",
+      "state": "PASS",
+      "path": "docs/principia-v3-07-spectral-information-hierarchy-most.md",
+      "evidence": "docs/principia-v3-most-hcube-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.8",
+      "state": "PASS",
+      "path": "docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md",
+      "evidence": "docs/principia-v3-most-hcube-whole-crosscheck-01.md"
+    },
+    {
+      "id": "III.9",
+      "state": "PASS",
+      "path": "docs/principia-v3-09-semigroup-projectability-dom-logos.md",
+      "evidence": "docs/principia-v3-dom-logos-crosscheck-01.md"
+    },
+    {
+      "id": "III.10",
+      "state": "SECTOR_PASS",
+      "path": "docs/principia-v3-10-sop11e-wellposedness-sectors.md",
+      "evidence": "docs/principia-v3-sop11e-dom-logos-crosscheck-01.md"
+    },
+    {
+      "id": "III.11",
+      "state": "PASS",
+      "path": "docs/principia-v3-11-p9-metric-gradient-bridge.md",
+      "evidence": "docs/principia-v3-p9-composition-crosscheck-01.md"
+    },
+    {
+      "id": "III.12",
+      "state": "CONDITIONAL_PASS",
+      "path": "docs/principia-v3-12-hypocoercive-modified-energy-bridge.md",
+      "evidence": "docs/principia-v3-p9h-composition-crosscheck-01.md"
+    }
+  ],
+  "gates": {
+    "III.13": {
+      "state": "OPEN",
+      "path": null,
+      "reason": "P9-I source/contract gate has not been completed."
+    }
+  },
+  "supersedes": {
+    "docs/claim-registry.md": [
+      "docs/claim-registry-13.md"
+    ],
+    "docs/falsifier-registry.md": [
+      "docs/falsifier-registry-12.md"
+    ],
+    "docs/theorem-map-v2.md": [
+      "docs/principia-v2-theorem-map-04.md"
+    ],
+    "docs/theorem-map-v3.md": [
+      "docs/principia-v3-theorem-map-08.md"
+    ],
+    "docs/work-map.md": [
+      "docs/work-map-09.md"
+    ]
+  }
+}

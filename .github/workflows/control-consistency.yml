@@ -1,0 +1,21 @@
+name: PSI control consistency
+
+on:
+  push:
+    paths: ['README.md', 'AGENTS.md', 'docs/**', 'scripts/check_control.py', 'scripts/test_control.py', '.github/workflows/control-consistency.yml']
+  pull_request:
+    paths: ['README.md', 'AGENTS.md', 'docs/**', 'scripts/check_control.py', 'scripts/test_control.py', '.github/workflows/control-consistency.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate current control records
+        run: python3 scripts/check_control.py
+      - name: Verify negative controls
+        run: python3 scripts/test_control.py
