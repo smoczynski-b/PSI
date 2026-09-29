@@ -200,7 +200,7 @@ A:=H_{\alpha,\beta}+cI
 
 is strictly positive.
 
-The form domain of \(A\) is \(\mathcal Q_{\alpha,\beta}\), and the map
+The form domain of \(A\) is \(\mathcal Q_{\alpha,\beta}\). By functional calculus,
 
 \[
 A^{-1/2}:\mathcal H_\rho\to\mathcal Q_{\alpha,\beta}
@@ -208,23 +208,16 @@ A^{-1/2}:\mathcal H_\rho\to\mathcal Q_{\alpha,\beta}
 
 is bounded when the target is equipped with the form norm.
 
-Composing with the compact embedding
+Since the embedding
 
 \[
-J:\mathcal Q_{\alpha,\beta}\hookrightarrow\mathcal H_\rho
+\mathcal Q_{\alpha,\beta}\hookrightarrow\mathcal H_\rho
 \]
 
-gives a compact operator
+is compact by III.4.A, the operator \(A^{-1/2}\), viewed as an operator from \(\mathcal H_\rho\) back into \(\mathcal H_\rho\), is compact. Therefore
 
 \[
-J A^{-1/2}:\mathcal H_\rho\to\mathcal H_\rho.
-\]
-
-Hence
-
-\[
-A^{-1}
-=(J A^{-1/2})(J A^{-1/2})^*
+A^{-1}=A^{-1/2}A^{-1/2}
 \]
 
 is compact.
