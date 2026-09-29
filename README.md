@@ -41,6 +41,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
 - [Volume III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
 - [Volume III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
+- [Volume III.6 — perturbation and Hellmann–Feynman](docs/principia-v3-06-perturbation-hellmann-feynman.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
@@ -116,7 +117,7 @@ Historical PHISICA is being rebuilt by operator legality rather than copied chap
 }
 \]
 
-For a Schrödinger-type reduction one additionally requires
+For Schrödinger reduction one additionally requires
 
 \[
 \boxed{V=V_\Lambda\circ\Lambda.}
@@ -127,138 +128,114 @@ For a Schrödinger-type reduction one additionally requires
 \[
 \boxed{(\rho B)'=\rho C},
 \qquad
-\boxed{
-L_\Lambda=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).
-}
+\boxed{L_\Lambda=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).}
 \]
 
 Under the additional proper-submersion/coarea contract, after normalization,
 
 \[
-\boxed{
-\rho(\lambda)d\lambda
-=\Lambda_*(d\mathrm{vol}_g).
-}
+\boxed{\rho d\lambda=\Lambda_*(d\mathrm{vol}_g).}
 \]
 
-### III.3 — operator domain and self-adjoint realization
+### III.3 — domain and self-adjoint realization
 
-For
+The regular minimal/maximal realizations satisfy
 
 \[
-p=\rho B,
-\qquad
-\tau u=-\frac1{2\rho}(pu')'+Vu,
+\boxed{H_{\min}^*=H_{\max}},
 \]
 
-one has
-
-\[
-\boxed{H_{\min}^*=H_{\max}}
-\]
-
-and separated Robin conditions define self-adjoint realizations.
+and separated real Robin data give self-adjoint operators.
 
 ### III.4 — compact resolvent and discrete spectrum
 
-For the regular finite-interval realizations from III.3,
+For the regular finite-interval realizations,
 
 \[
-\boxed{(H-z)^{-1}\text{ compact}}
+\boxed{(H-z)^{-1}\text{ compact}},
 \]
 
-for every resolvent point, hence
+hence
 
 \[
-\boxed{
-\sigma(H)=\{E_n\},
-\qquad
-E_n\to+\infty,
-}
+\boxed{\sigma(H)=\{E_n\},\qquad E_n\to+\infty}
 \]
 
-with finite multiplicities and a complete orthonormal eigenbasis.
+with a complete orthonormal eigenbasis.
 
 ### III.5 — unitary Liouville normal form
 
-Historical PHISICA used the multiplier
+The canonical Liouville transform
 
 \[
-\psi=e^\beta\phi,
-\qquad
-\beta'=-\frac{C}{2B},
-\]
-
-which correctly removes the first derivative algebraically. Under the regular compact contract it becomes a bounded similarity only after exact domain transport; it is not generally unitary.
-
-The canonical Liouville transform is
-
-\[
-\boxed{
-x(\lambda)=\int_a^\lambda B(\mu)^{-1/2}d\mu,
-}
+\boxed{x(\lambda)=\int_a^\lambda B(\mu)^{-1/2}d\mu},
 \]
 
 \[
-\boxed{
-(Uu)(x)=\rho(\lambda(x))^{1/2}B(\lambda(x))^{1/4}u(\lambda(x)).
-}
+\boxed{(Uu)(x)=\rho^{1/2}B^{1/4}u}
 \]
 
-Then
+is unitary and yields
 
 \[
-\boxed{
-U:L^2(I,\rho d\lambda)\to L^2(J,dx)
-\text{ is unitary}
-}
+\boxed{UHU^{-1}=-\frac12\partial_x^2+V(\lambda(x))+\frac{s_{xx}}{2s}.}
 \]
 
-and
+### III.6 — perturbation and Hellmann–Feynman
+
+After legal reduction to one fixed Hilbert space/domain, let
 
 \[
-\boxed{
-UHU^{-1}
-=-\frac12\frac{d^2}{dx^2}
-+V(\lambda(x))+rac{s_{xx}}{2s}.
-}
+H(t)=H_0+W(t),
 \]
 
-Thus self-adjointness, spectrum, multiplicities, compact resolvent and the eigenbasis are preserved by a genuine unitary equivalence.
+with bounded self-adjoint norm-\(C^1\) perturbation. Then self-adjointness and compact resolvent persist, and
+
+\[
+\boxed{|E_n(t)-E_n(s)|\le\|W(t)-W(s)\|.}
+\]
+
+For a simple isolated branch, with graph-norm differentiable eigenvector,
+
+\[
+\boxed{E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle.}
+\]
+
+At a degeneracy the first-order splitting is governed by the compressed perturbation on the eigenspace, not by one arbitrary scalar expectation value. Geometric/LOGOS deformations require a prior unitary or closed-form trivialization if their Hilbert spaces, intervals or domains vary.
 
 Permanent distinctions now include
 
 \[
-\boxed{
-\text{Hilbert weight}\neq\text{spectral measure},
-}
-
-\[
-\boxed{
-\text{formal symmetry}\not\Rightarrow\text{self-adjointness},
-}
-
-\[
-\boxed{
-\text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum},
-}
+\boxed{\text{Hilbert weight}\neq\text{spectral measure}},
 \]
 
 \[
-\boxed{
-\text{bounded similarity}\neq\text{unitary equivalence},
-}
+\boxed{\text{formal symmetry}\not\Rightarrow\text{self-adjointness}},
+\]
+
+\[
+\boxed{\text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum}},
+\]
+
+\[
+\boxed{\text{bounded similarity}\neq\text{unitary equivalence}},
+\]
+
+\[
+\boxed{\text{small coefficient change}\not\Rightarrow\text{spectral stability without a topology}},
+\]
+
+\[
+\boxed{\text{stable eigenvalues}\not\Rightarrow\text{stable eigenvectors / DNA labels}},
 \]
 
 and
 
 \[
-\boxed{
-\{E_n\}\not\Rightarrow\text{complete model identification}.
-}
+\boxed{\{E_n\}\not\Rightarrow\text{complete model identification}.}
 \]
 
-`III.1–III.5` are PASS. The next unit is `III.6 — perturbation / Hellmann–Feynman`.
+`III.1–III.6` are now **LOCAL PASS** only. The next mandatory gate is `PHISICA WHOLE-BLOCK CROSSCHECK 01`; no global PHISICA PASS is asserted before it.
 
 ## Current phase
 
@@ -270,9 +247,9 @@ and
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1:III.5\ PASS}
+\mathrm{III.1:III.6\ LOCAL\ PASS}
 \to
-\mathrm{III.6\ NEXT}.
+\mathrm{PHISICA\ WHOLE\!\!-\!BLOCK\ CROSSCHECK\ 01\ NEXT}.
 }
 \]
 
