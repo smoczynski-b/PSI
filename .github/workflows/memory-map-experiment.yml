@@ -1,0 +1,22 @@
+name: PSI memory map experiment
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/**'
+      - 'scripts/test_memory_map.py'
+      - '.github/workflows/memory-map-experiment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run M1/M2 dependency-memory regressions
+        run: python3 scripts/test_memory_map.py
