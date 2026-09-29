@@ -45,13 +45,14 @@ def current_record(row):
 
 
 def emit_bridge():
+    rows = read_tsv(BRIDGE_SPEC)
     print("PSI-MEMORY M8 BRIDGE CANDIDATE EVIDENCE")
     total = 0
-    for row in read_tsv(BRIDGE_SPEC):
+    for row in rows:
         r = current_record(row)
         total += r["fragment_bytes"]
         print("\t".join([r["evidence_id"], r["git_blob_sha"], r["fragment_sha256"], str(r["fragment_bytes"])]))
-    print(f"bridge_fragments={len(read_tsv(BRIDGE_SPEC))} bytes={total}")
+    print(f"bridge_fragments={len(rows)} bytes={total}")
 
 
 def validated_evidence():
@@ -70,8 +71,8 @@ def validated_evidence():
     return out
 
 
-def build_context(start: str, radius: int):
-    evidence = validated_evidence()
+def build_context(start: str, radius: int, evidence_override=None):
+    evidence = evidence_override if evidence_override is not None else validated_evidence()
     prov = read_tsv(BASE_PROV) + read_tsv(BRIDGE_PROV)
     adjacency = defaultdict(list)
     for edge in prov:
@@ -115,6 +116,10 @@ def build_context(start: str, radius: int):
     }
 
 
+def render_context(ctx) -> str:
+    return json.dumps(ctx, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--emit-bridge-hashes", action="store_true")
@@ -127,8 +132,7 @@ def main():
         return
     if not BRIDGE_CERT.exists():
         raise SystemExit("M8 bridge certificates not frozen yet")
-    ctx = build_context(args.start, args.radius)
-    text = json.dumps(ctx, ensure_ascii=False, indent=2, sort_keys=False) + "\n"
+    text = render_context(build_context(args.start, args.radius))
     if args.out:
         (ROOT / args.out).write_text(text, encoding="utf-8")
     else:
