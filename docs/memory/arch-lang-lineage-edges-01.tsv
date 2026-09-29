@@ -1,0 +1,11 @@
+from	relation	to	source_status	note
+ARCH-2026-04-27-LANGUAGE-STRUCTURE	PRECURSOR_OF	M15-LANG	ARCHIVE_ATTESTED	Language surface separated from underlying structure before current executable language-invariance test
+ARCH-2026-04-27-LANGUAGE-STRUCTURE	SURVIVES_AS	M16	ARCHIVE_ATTESTED	Old language-to-structure intuition survives as explicit lexical-fibre-to-world refinement
+ARCH-2026-05-16-REPRESENTATION-LINEARIZATION	PRECURSOR_OF	M15-LANG	ARCHIVE_ATTESTED	Response representation treated as secondary to underlying reconstructed structure
+ARCH-2026-05-20-LOCAL-ATLASES	PRECURSOR_OF	M17	ARCHIVE_ATTESTED	Plural local semantic sectors anticipate non-nested crossing language partitions
+ARCH-2026-05-20-LOCAL-ATLASES	SUPERSEDED_AS_FORMALISM	M17	ARCHIVE_ATTESTED	Atlas/pseudospectral language is replaced here by exact finite candidate fibres and intersections
+ARCH-2026-07-12-EDGE-TRANSPORT	PRECURSOR_OF	M19-CROSSVIEW	ARCHIVE_ATTESTED	Edges/relations already carried structural information; M19 adds explicit relation-first projection across objects
+ARCH-2026-07-12-EDGE-TRANSPORT	SURVIVES_AS	M19-CROSSVIEW	ARCHIVE_ATTESTED	Typed relation remains first-class; CrossView changes orientation of readout rather than fact storage
+M15-LANG	REFINED_BY	M16	REPO_VERIFIED	M16 turns lexical mismatch from fixture into explicit working fibre
+M16	SCALED_BY	M17	REPO_VERIFIED	M17 replaces two-object witness with crossing partitions over 24 objects
+M17	ORTHOGONAL_VIEW_EXTENDED_BY	M19-CROSSVIEW	REPO_VERIFIED	M19 adds cross-object distribution view without altering M17 world facts
