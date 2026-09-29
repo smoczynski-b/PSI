@@ -1,0 +1,7 @@
+evidence_id	path	selector_type	selector
+EV-C58-C57	docs/claim-registry.md	heading	## C58 — history equivalence is an equivalence relation
+EV-II9-DEP	docs/principia-v2-09-recursive-history-quotient-update.md	exact_line	**Ścisła zależność dowodowa:** II.7, w szczególności C57/C58 i literalnie etykietowana przyszłościowa równoważność historii.  
+EV-II9-NOTDEP	docs/principia-v2-09-recursive-history-quotient-update.md	exact_line	**Nie jest przesłanką dowodu:** II.8 — najgrubszość/minimalność ilorazu historii.  
+EV-II9-LIMIT	docs/principia-v2-09-recursive-history-quotient-update.md	exact_line	**Granica:** dobrze określona rekurencja matematyczna nie implikuje skończonej pamięci, obliczalności ani efektywności.
+EV-G4	docs/go-memory-regression-01.md	heading	### G4 — situational superko
+EV-NERODE-ID	docs/principia-v2-11-myhill-nerode-bridge.md	heading	## 3. Twierdzenie II.11.A — dokładna identyczność PSI/Nerode
