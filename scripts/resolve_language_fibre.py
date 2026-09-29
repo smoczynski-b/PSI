@@ -24,10 +24,10 @@ def lexical_fibre(language: str, token: str) -> set[str] | None:
     return None
 
 
-def support(relation: str, obj: str) -> set[str]:
+def support(relation: str, obj: str, rows=None) -> set[str]:
     return {
         row["subject"]
-        for row in read_tsv(WORLD)
+        for row in (read_tsv(WORLD) if rows is None else rows)
         if row["relation"] == relation and row["object"] == obj
     }
 
@@ -53,6 +53,13 @@ def resolve(language: str, token: str, constraints: list[tuple[str, str]]) -> di
         }
 
     fibre = set(initial)
+    world = read_tsv(WORLD)
+    known_relations = {row['relation'] for row in world}
+    unknown = sorted({relation for relation, _ in constraints} - known_relations)
+    if unknown:
+        return {'status': 'NO_RELATION_CONTRACT', 'language': language, 'token': token,
+                'initial_fibre': sorted(initial), 'final_fibre': None, 'trace': [],
+                'unknown_relations': unknown}
     trace = [{
         "step": 0,
         "relation": None,
@@ -64,7 +71,7 @@ def resolve(language: str, token: str, constraints: list[tuple[str, str]]) -> di
 
     for i, (relation, obj) in enumerate(constraints, start=1):
         before = set(fibre)
-        fibre &= support(relation, obj)
+        fibre &= support(relation, obj, world)
         assert fibre <= before, "relational refinement must never enlarge the fibre"
         trace.append({
             "step": i,

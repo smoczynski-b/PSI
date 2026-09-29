@@ -70,13 +70,28 @@ def known_node_ids() -> list[str]:
 
 
 def detect_anchor(task: str) -> str | None:
+    anchors = detect_anchors(task)
+    return anchors[0] if len(anchors) == 1 else None
+
+
+def detect_anchors(task: str) -> list[str]:
     folded = ascii_fold(task)
+    hits = []
     for node_id in known_node_ids():
         nid = ascii_fold(node_id)
         pattern = rf"(?<![A-Za-z0-9_.-]){re.escape(nid)}(?![A-Za-z0-9_.-])"
-        if re.search(pattern, folded):
-            return node_id
-    return None
+        match = re.search(pattern, folded)
+        if match:
+            hits.append((match.start(), -len(nid), node_id))
+    return [node_id for _, _, node_id in sorted(hits)]
+
+
+def unsupported_exclusion(task: str) -> bool:
+    # These adapters have no negation-scope grammar. Do not invert a prohibition
+    # by recognizing only a positive keyword inside it. 'does not imply' remains
+    # a supported boundary intent, not an exclusion command.
+    return bool(re.search(r"\b(?:pomin|bez|nie\s+(?:pokazuj|pobieraj|szukaj|uwzgledniaj)|"
+                          r"do\s+not|don't|exclude|without|ohne|keine)\b", ascii_fold(task)))
 
 
 def detect_intents(task: str) -> list[str]:
@@ -90,8 +105,16 @@ def detect_intents(task: str) -> list[str]:
 
 
 def compile_task(task: str) -> dict:
+    anchors = detect_anchors(task)
     anchor = detect_anchor(task)
     intents = detect_intents(task)
+
+    if len(anchors) > 1 or unsupported_exclusion(task):
+        status = 'NEEDS_ANCHOR_POLICY' if len(anchors) > 1 else 'NEEDS_CONTRACT'
+        return {'status': status, 'task': task, 'anchor': None if len(anchors) > 1 else anchor,
+                'anchors': anchors, 'intents': intents, 'relation_policy': [],
+                'local_radius': None, 'edge_budget': None, 'stop_condition': 'NO_RETRIEVAL',
+                'conflicts': ['MULTIPLE_ANCHORS_WITHOUT_POLICY' if len(anchors) > 1 else 'UNSUPPORTED_EXCLUSION']}
 
     if not anchor:
         return {

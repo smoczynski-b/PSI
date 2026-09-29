@@ -6,6 +6,7 @@ from pathlib import Path
 
 from compile_multilingual_contract import compile_multilingual_task, executable_signature
 from compose_task_contract import certified_triples
+from memory_retrieval import retrieve
 from test_m12_local_competition import load_attested_edges, local_pool, select, triples
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,12 +32,7 @@ def selector_policy(contract: dict):
 
 
 def selected_for(contract: dict):
-    edges = load_attested_edges()
-    _, pool, _ = local_pool(edges, anchor=contract["anchor"], radius=contract["local_radius"])
-    if contract["attestation_mode"] == "VALID_FRAGMENT_CERT_ONLY":
-        cert = certified_triples()
-        pool = [e for e in pool if (e["from"], e["relation"], e["to"]) in cert]
-    return select(pool, selector_policy(contract), budget=contract["edge_budget"])
+    return retrieve(contract)['edges']
 
 
 def lexical_candidates(language: str, token: str) -> set[str]:

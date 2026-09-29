@@ -102,7 +102,7 @@ def main() -> None:
     raw_hashed = sum(r["provenance_level"] == "RAW_ARCHIVE_HASHED" for r in recovery)
     conv_recovered = sum(r["provenance_level"] == "CONVERSATION_RECOVERED" for r in recovery)
 
-    print("ARCH-LANG-LINEAGE-01 PASS_WITH_BOUNDARY")
+    print("ARCH-LANG-LINEAGE-01 REGISTRY_CONSISTENCY_PASS")
     print(f"nodes={len(nodes)} edges={len(edges)} recovery_rows={len(recovery)}")
     print(f"raw_archive_hashed={raw_hashed} conversation_recovered={conv_recovered}")
     print(f"source_recovery_candidates={len(candidates)} active_candidate_edges=0")
@@ -112,6 +112,7 @@ def main() -> None:
     print("historical resemblance != proof dependency=PASS")
     print("surviving role != surviving formalism=PASS")
     print("BOUNDARY: recovered conversation provenance remains weaker than fragment-addressable repository certificates")
+    print("NOT_CHECKED: archived source bytes, speaker attribution, exact quotations, historical precedence")
 
 
 if __name__ == "__main__":

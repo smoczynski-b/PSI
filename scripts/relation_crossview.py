@@ -34,7 +34,11 @@ def load_memory_edges() -> list[dict]:
 
 
 def graph_crossview(relations: set[str], subjects: set[str] | None = None) -> dict:
-    edges = [e for e in load_memory_edges() if e["relation"] in relations]
+    all_edges = load_memory_edges()
+    unknown = relations - {e['relation'] for e in all_edges}
+    if unknown:
+        raise ValueError('unknown graph relation(s): ' + ','.join(sorted(unknown)))
+    edges = [e for e in all_edges if e["relation"] in relations]
     if subjects is not None:
         edges = [e for e in edges if e["from"] in subjects]
 
@@ -61,6 +65,7 @@ def graph_crossview(relations: set[str], subjects: set[str] | None = None) -> di
     }
     return {
         "mode": "graph",
+        "evidence_mode": "DECLARED_RELATIONS_NOT_REVALIDATED",
         "relations": sorted(relations),
         "subjects": sorted(matrix_out),
         "edge_count": len(edges),
@@ -71,13 +76,15 @@ def graph_crossview(relations: set[str], subjects: set[str] | None = None) -> di
 
 def world_crossview(relations: set[str], object_ids: set[str] | None = None) -> dict:
     rows = read_tsv(WORLD)
-    if object_ids is not None:
-        rows = [row for row in rows if row["object_id"] in object_ids]
-
     if rows:
         unknown = relations - (set(rows[0]) - {"object_id"})
         if unknown:
             raise ValueError("unknown world relation(s): " + ",".join(sorted(unknown)))
+    if object_ids is not None:
+        unknown_ids = object_ids - {row['object_id'] for row in rows}
+        if unknown_ids:
+            raise ValueError('unknown world object(s): ' + ','.join(sorted(unknown_ids)))
+        rows = [row for row in rows if row["object_id"] in object_ids]
 
     matrix = {}
     inverted = defaultdict(lambda: defaultdict(list))

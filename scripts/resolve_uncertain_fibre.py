@@ -25,10 +25,10 @@ def lexical_fibre(language: str, token: str) -> set[str] | None:
     return None
 
 
-def support(relation: str, allowed_values: set[str]) -> set[str]:
-    rows = world_rows()
+def support(relation: str, allowed_values: set[str], rows=None) -> set[str]:
+    rows = world_rows() if rows is None else rows
     if not rows or relation not in rows[0] or relation == "object_id":
-        return set()
+        raise ValueError('unknown relation contract: ' + relation)
     return {
         row["object_id"]
         for row in rows
@@ -42,8 +42,8 @@ def resolve_uncertain(
     observations: list[dict],
     max_conflicts: int = 0,
 ) -> dict:
-    if max_conflicts < 0:
-        raise ValueError("max_conflicts must be >= 0")
+    if type(max_conflicts) is not int or max_conflicts < 0:
+        raise ValueError("max_conflicts must be a nonnegative integer")
 
     initial = lexical_fibre(language, token)
     if initial is None:
@@ -58,22 +58,40 @@ def resolve_uncertain(
             "violations": {},
         }
 
+    world = world_rows()
+    known_relations = set(world[0]) - {'object_id'} if world else set()
+    unknown = set()
     seen_ids = set()
     normalized = []
     for obs in observations:
         obs_id = obs["observation_id"]
+        if not isinstance(obs_id, str) or not obs_id:
+            raise ValueError('observation_id must be a nonempty string')
         if obs_id in seen_ids:
             raise ValueError(f"duplicate observation_id: {obs_id}")
         seen_ids.add(obs_id)
-        allowed = set(obs["allowed_values"])
+        values = obs['allowed_values']
+        if not isinstance(values, (list, tuple, set, frozenset)) or not all(isinstance(v, str) and v for v in values):
+            raise ValueError('allowed_values must be a finite collection of nonempty strings')
+        allowed = set(values)
         if not allowed:
             raise ValueError(f"empty allowed_values: {obs_id}")
+        relation = obs['relation']
+        if not isinstance(relation, str) or not relation:
+            raise ValueError('relation must be a nonempty string')
+        if relation not in known_relations:
+            unknown.add(relation)
         normalized.append({
             "observation_id": obs_id,
             "relation": obs["relation"],
             "allowed_values": allowed,
-            "support": support(obs["relation"], allowed),
+            "support": support(relation, allowed, world) if relation in known_relations else None,
         })
+
+    if unknown:
+        return {'status': 'NO_RELATION_CONTRACT', 'language': language, 'token': token,
+                'max_conflicts': max_conflicts, 'initial_fibre': sorted(initial),
+                'final_fibre': None, 'trace': [], 'violations': {}, 'unknown_relations': sorted(unknown)}
 
     violations = {x: [] for x in initial}
     active = set(initial)

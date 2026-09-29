@@ -12,8 +12,9 @@ from compile_task_contract import (
     ascii_fold,
     detect_intents,
     known_node_ids,
+    unsupported_exclusion,
 )
-from test_m12_local_competition import load_attested_edges, local_pool
+from memory_retrieval import load_attested_edges, local_pool, certified_triples
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -66,29 +67,6 @@ def detect_composed_intents(task: str) -> list[str]:
 def strict_cert_mode(task: str) -> bool:
     folded = ascii_fold(task)
     return any(marker in folded for marker in STRICT_CERT_MARKERS)
-
-
-def certified_triples() -> set[tuple[str, str, str]]:
-    valid_evidence = set()
-    evidence = ROOT / "docs/memory/psi-memory-edge-evidence-01.tsv"
-    if evidence.exists():
-        for row in read_tsv(evidence):
-            if row.get("status") == "VALID":
-                valid_evidence.add(row["evidence_id"])
-
-    out = set()
-    provenance = ROOT / "docs/memory/psi-memory-edge-provenance-spec-01.tsv"
-    if provenance.exists():
-        for row in read_tsv(provenance):
-            if row.get("evidence_id") in valid_evidence:
-                out.add((row["from"], row["relation"], row["to"]))
-
-    m9 = ROOT / "docs/memory/psi-memory-m9-verified-delta-01.tsv"
-    if m9.exists():
-        for row in read_tsv(m9):
-            if row.get("object_kind") == "EDGE" and row.get("status") == "VERIFIED":
-                out.add((row["id_or_from"], row["relation_or_kind"], row["to_or_label"]))
-    return out
 
 
 def build_policy(intents: list[str]) -> list[dict]:
@@ -152,6 +130,8 @@ def compile_composed_task(task: str) -> dict:
     if len(anchors) > 1:
         return {**base, "status": "NEEDS_ANCHOR_POLICY", "anchor": None, "conflicts": ["MULTIPLE_ANCHORS_WITHOUT_POLICY"]}
     anchor = anchors[0]
+    if unsupported_exclusion(task):
+        return {**base, 'status': 'NEEDS_CONTRACT', 'anchor': anchor, 'conflicts': ['UNSUPPORTED_EXCLUSION']}
     if not intents:
         return {**base, "status": "NEEDS_CONTRACT", "anchor": anchor, "conflicts": ["MISSING_TASK_INTENT"]}
 

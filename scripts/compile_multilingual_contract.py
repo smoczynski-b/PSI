@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import sys
 
-from compile_task_contract import ascii_fold
+from compile_task_contract import ascii_fold, unsupported_exclusion
 from compose_task_contract import (
     build_policy,
     detect_anchors,
@@ -68,6 +68,8 @@ def compile_multilingual_task(task: str, language: str) -> dict:
     if len(anchors) > 1:
         return {**base, "status": "NEEDS_ANCHOR_POLICY", "anchor": None, "conflicts": ["MULTIPLE_ANCHORS_WITHOUT_POLICY"]}
     anchor = anchors[0]
+    if unsupported_exclusion(task):
+        return {**base, 'status': 'NEEDS_CONTRACT', 'anchor': anchor, 'conflicts': ['UNSUPPORTED_EXCLUSION']}
     if not intents:
         return {**base, "status": "NEEDS_CONTRACT", "anchor": anchor, "conflicts": ["MISSING_TASK_INTENT"]}
 

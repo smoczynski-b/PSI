@@ -5,6 +5,7 @@ import csv
 from pathlib import Path
 
 from compile_task_contract import compile_task
+from memory_retrieval import retrieve
 from test_m12_local_competition import load_attested_edges, local_pool, select, triples
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,14 +64,14 @@ def main():
     edges = load_attested_edges()
     _, pool, _ = local_pool(edges, anchor=c1["anchor"], radius=c1["local_radius"])
     selected_manual = select(pool, manual_policy(), budget=12)
-    selected_compiled = select(pool, policy_for_selector(c1), budget=c1["edge_budget"])
+    selected_compiled = retrieve(c1)['edges']
     assert triples(selected_manual) == triples(selected_compiled)
     assert len(selected_compiled) == 12
 
     # Narrower task -> narrower executable projection, without boundary relations.
     c3 = compiled["T3"]
     p3 = policy_for_selector(c3)
-    selected_proof = select(pool, p3, budget=c3["edge_budget"])
+    selected_proof = retrieve(c3)['edges']
     selected_proof_t = triples(selected_proof)
     assert set(p3) == {"HARD_DEPENDS_ON", "USES_DEFINITION", "USES_LEMMA"}
     assert len(selected_proof) == 7

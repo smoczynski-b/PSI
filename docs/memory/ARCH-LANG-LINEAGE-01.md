@@ -219,3 +219,10 @@ Thus the September source says **explicit multiplicity of formalizations**; `can
 The recovery closes the three targeted source gaps, but `CONVERSATION_RECOVERED` is still not an M7/M8-style fragment certificate with a Git blob identity and frozen selector. A future provenance-hardening pass may materialize selected archived chat fragments and hash them independently.
 
 The genealogy does not modify PSI core, current theorem validity, or the M1–M19 memory graph used for ordinary retrieval.
+
+Audit clarification, 2026-09-30: `test_arch_lang_lineage.py` checks registry
+consistency, not recovery of raw conversation bytes. The audit independently
+matched the two declared whole-MHTML hashes against the supplied ZIP; it did
+not independently certify all quoted/paraphrased turns. Three
+`CONVERSATION_RECOVERED` records remain reported recovery with no immutable
+raw-export certificate. See [conversation-04 audit](AUDIT-ROZMOWY-04.md).

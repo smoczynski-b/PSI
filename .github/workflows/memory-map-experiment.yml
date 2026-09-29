@@ -35,6 +35,8 @@ on:
       - 'experiments/m17-lexical-partitions.tsv'
       - 'experiments/m18-observation-contracts.tsv'
       - 'scripts/test_memory_map.py'
+      - 'scripts/memory_retrieval.py'
+      - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
       - 'scripts/test_memory_pack.py'
@@ -120,3 +122,5 @@ jobs:
         run: python3 scripts/test_m19_relation_crossview.py
       - name: Run archived language lineage regression
         run: python3 scripts/test_arch_lang_lineage.py
+      - name: Run adversarial conversation-04 regressions
+        run: python3 scripts/test_memory_audit.py

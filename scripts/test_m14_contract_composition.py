@@ -5,6 +5,7 @@ import csv
 from pathlib import Path
 
 from compose_task_contract import compile_composed_task, certified_triples
+from memory_retrieval import retrieve
 from test_m12_local_competition import load_attested_edges, local_pool, select, triples
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,12 +29,9 @@ def policy_for_selector(contract: dict):
 
 
 def selected_for(contract: dict, strict=False):
-    edges = load_attested_edges()
-    _, pool, _ = local_pool(edges, anchor=contract["anchor"], radius=contract["local_radius"])
-    if strict:
-        cert = certified_triples()
-        pool = [e for e in pool if (e["from"], e["relation"], e["to"]) in cert]
-    return select(pool, policy_for_selector(contract), budget=contract["edge_budget"])
+    if strict and contract['attestation_mode'] != 'VALID_FRAGMENT_CERT_ONLY':
+        raise ValueError('strict mode must be declared in the contract')
+    return retrieve(contract)['edges']
 
 
 def main():
