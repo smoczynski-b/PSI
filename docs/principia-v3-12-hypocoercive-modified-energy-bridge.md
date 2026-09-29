@@ -12,7 +12,7 @@
 
 # 1. Contract
 
-Let \(\mathcal H\) be a complex Hilbert space and let
+Let \(\mathcal H\ne\{0\}\) be a complex Hilbert space and let
 
 \[
 A:D(A)\subset\mathcal H\to\mathcal H
@@ -63,11 +63,21 @@ Equivalently, in quadratic-form notation,
 A^*Q+QA\le-2\lambda Q.
 \]
 
-Let
+Define the sharp metric constants by
 
 \[
-c_Q:=\sqrt{M/m}=\sqrt{\kappa(Q)}.
+m_*:=\|Q^{-1}\|^{-1},\qquad M_*:=\|Q\|,
+\qquad
+\kappa(Q):=\|Q\|\|Q^{-1}\|,
+\qquad
+c_Q:=\sqrt{M_*/m_*}=\sqrt{\kappa(Q)}.
 \]
+
+The supplied certificate bounds need not be sharp. They give the possibly
+larger constant \(c_{m,M}:=\sqrt{M/m}\ge c_Q\). All bounds below remain valid
+with \(c_{m,M}\) substituted for \(c_Q\), but equality between these constants
+is not assumed. For example, \(Q=I\), \(m=1\), \(M=4\) gives
+\(c_Q=1\) and \(c_{m,M}=2\).
 
 ---
 
@@ -114,7 +124,7 @@ Density of \(D(A)\) and strong continuity extend the estimate to all \(x\in\math
 Since
 
 \[
-\sqrt m\|x\|\le\|x\|_Q\le\sqrt M\|x\|,
+\sqrt {m_*}\|x\|\le\|x\|_Q\le\sqrt {M_*}\|x\|,
 \]
 
 we obtain
@@ -122,9 +132,9 @@ we obtain
 \[
 \|S(t)x\|
 \le
-m^{-1/2}\|S(t)x\|_Q
+m_*^{-1/2}\|S(t)x\|_Q
 \le
-\sqrt{M/m}\,e^{-\lambda t}\|x\|.
+c_Q e^{-\lambda t}\|x\|.
 \]
 
 \(\square\)
@@ -569,6 +579,12 @@ P9_{\rm general}=OPEN/CENTRAL.
 
 ### Semigroup
 `PASS`: exact modified-norm decay follows by Gronwall.
+
+### Metric constants — correction, 2026-09-29
+`PASS AFTER CORRECTION`: \(c_Q\) uses sharp operator-norm bounds;
+arbitrary certificate bounds supply only \(c_{m,M}\ge c_Q\).
+The nonzero-space assumption also makes the Kreiss lower bound meaningful.
+See [targeted repair evidence](repair-audit.md).
 
 ### Resolvent
 `PASS`: half-plane estimate follows by the Laplace representation.

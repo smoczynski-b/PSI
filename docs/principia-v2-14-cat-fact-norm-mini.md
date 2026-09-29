@@ -55,6 +55,12 @@ Używamy skończonej gramatyki
 \mathcal L_{FB}=\{F,B\}.
 \]
 
+Terminy zawierają dane realizacji na kolejnych przedziałach jednej dokładnej
+krzywej: położenie, styczną i, dla atomu Bishopa, zorientowaną ramę normalną.
+Same trójki skalarów wymagają tych danych początkowych do rekonstrukcji.
+W kontrakcie kształtu najpierw wybieramy wspólny reprezentant przez `SE(3)`.
+Stosujemy długość łuku \(s\); znana prędkość zachowuje zadany parametr czasu.
+
 Na przedziale Frenet-legalnym:
 
 \[
@@ -63,7 +69,8 @@ F_I=(v,\kappa,\tau)_I
 B_I=(v,k_1,k_2)_I,
 \]
 
-przy czym zmiana stałej całkowania odpowiada stałemu gauge `SO(2)_{normal}`.
+przy czym wszystkie wybory stałej całkowania są dozwolonymi wynikami recode.
+Obrót nowej ramy tylko na tym atomie nie jest globalnym gauge całego terminu.
 
 Dla sąsiednich atomów Bishopa:
 
@@ -73,7 +80,16 @@ B_{I_1}\oplus B_{I_2}
 B_{I_1\cup I_2}
 \]
 
-po wyrównaniu normal-frame gauge.
+Łączenie zachowuje ramę lewego atomu. Jedyny stały obrót `SO(2)` wyrównujący
+ramę prawego atomu na wspólnym końcu stosujemy do całego prawego atomu i jego
+współrzędnych krzywizny. Jest to krok normalizacji. Zbieżność położenia i
+stycznej wynika z kompatybilności z tą samą dokładną krzywą; samo dopasowanie
+końców dwóch dowolnych krzywych nie jest wystarczającą przesłanką.
+
+Globalny `SO(2)` działa jednym obrotem na wszystkie ramy Bishopa terminu;
+nie dodajemy iloczynu niezależnych obrotów segmentów do relacji gauge.
+Relacja recode jest ekwiwariantna: globalny obrót danych i wybranego wyniku
+daje ponownie legalny krok. Dlatego schodzi na zadeklarowane klasy gauge.
 
 Rewrite jest formułowany na legalnych klasach gauge; gauge i rewrite nie są tą samą relacją.
 
@@ -91,13 +107,11 @@ z porządkiem leksykograficznym.
 
 `F→B` zmniejsza `n_F`, a merge Bishopa zmniejsza `n_seg` bez zwiększania `n_F`. Zatem rewrite terminates.
 
-Lokalne interakcje są następujące:
-
-1. rozłączne recode Freneta komutują;
-2. dwa merge w potrójnym ciągu Bishopa prowadzą do tej samej globalnej klasy po wyrównaniu gauge;
-3. rozłączne recode/merge komutują.
-
-Zatem rewrite jest lokalnie konfluentny. Z lematu Newmana:
+Każdy termin nieredukowalny jest jednym globalnym atomem Bishopa: atom
+Freneta dopuszcza recode, a dwa sąsiednie atomy Bishopa dopuszczają merge.
+Lemat geometryczny i dowód w §5 pokazują, że każde dwa takie wyniki nad
+ustalonym `Y` różnią się jednym globalnym obrotem. Zatem dowolne dwie
+redukcje można doprowadzić do tej samej klasy normalnej. To dowodzi:
 
 \[
 \boxed{
@@ -151,7 +165,37 @@ To jest F62.
 
 ## 5. Twierdzenie II.14.A — jednoznaczna klasa normalna
 
-Konfluencja definiuje mapę normalizacji
+### Lemat — jednoznaczność między różnymi terminami wejściowymi
+
+Niech \(T(s)\) będzie styczną jednostkową dokładnej regularnej krzywej.
+Rama Bishopa spełnia liniowe równanie
+
+\[
+N_i'(s)=-\langle T'(s),N_i(s)\rangle T(s),\qquad i=1,2.
+\]
+
+Ciągłe współczynniki dają istnienie i jednoznaczność na całym zwartym
+przedziale dla każdej początkowej zorientowanej pary normalnej. Równanie
+zachowuje \(\langle N_i,T\rangle=0\) i \(\langle N_i,N_j\rangle=\delta_{ij}\),
+co wynika przez różniczkowanie. Dwie początkowe pary różnią się jednym
+\(R\in SO(2)\). Stała kombinacja \((N_1,N_2)R\) spełnia to samo równanie
+i drugie dane początkowe, więc przez jednoznaczność zgadza się z drugą
+ramą na całym przedziale. Współrzędne \(k_i=\langle T',N_i\rangle\)
+transformują się odpowiednio tym samym stałym wyborem bazy.
+
+W merge wyrównane rozwiązania mają te same dane na wspólnym końcu,
+więc są ograniczeniami jednego rozwiązania globalnego. Wynik kolejnych
+merge nie zależy od nawiasowania. W kontrakcie kształtu argument stosujemy
+po wyrównaniu realizacji przez jeden element `SE(3)`; dla obserwacji
+absolutnej położenie jest już ustalone i nie bierzemy tego ilorazu.
+
+W szczególności porównanie dotyczy także ram otrzymanych z **różnych**
+segmentacji i różnych terminów wejściowych, nie tylko dwóch redukcji
+tego samego terminu. Globalny atom Bishopa istnieje, więc włókno nie jest puste.
+
+### Mapa normalizacji
+
+Terminacja i powyższa jednoznaczność definiują mapę normalizacji
 
 \[
 \operatorname{NF}_{FB,P,Y}:
@@ -170,7 +214,12 @@ Dla dokładnego interwałowego kontraktu:
 
 ### Dowód
 
-Każdy legalny termin redukuje się, przez terminację, do terminu normalnego. Terminu normalnego nie może zawierać atomu Freneta ani dwóch sąsiednich atomów Bishopa. Jest więc pojedynczym globalnym atomem Bishopa. Konfluencja gwarantuje, że wszystkie ciągi redukcji prowadzą do tej samej klasy normalnej. `\square`
+Każdy legalny termin redukuje się do pojedynczego globalnego atomu Bishopa.
+Lemat porównuje wyniki dowolnych dwóch terminów nad tym samym `Y` i daje
+ich równoważność modulo zadeklarowany globalny gauge. Obraz `NF` jest więc
+niepusty i ma jeden element. Sama terminacja i konfluencja nie wystarczyłyby:
+zbiór dwóch nieredukowalnych symboli bez reguł jest terminujący i konfluentny,
+ale ma dwie postacie normalne. `\square`
 
 ---
 
@@ -269,7 +318,9 @@ II.14 nie ustanawia:
 `PASS`: kontrakt absolutny i kształtu pozostają rozdzielone.
 
 ### F56
-`PASS`: confluence jest stosowana dopiero po zejściu rewrite na klasy gauge.
+`PASS AFTER CORRECTION`: recode jest ekwiwariantny; lokalne wyrównanie ram
+pozostaje normalizacją, a lemat ODE porównuje różne terminy wejściowe.
+Dowód i zakres korekty: [targeted repair evidence](repair-audit.md).
 
 ### F59
 `PASS`: MINI nie redefiniuje generalnego PSI-FACT.

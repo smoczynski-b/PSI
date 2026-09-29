@@ -97,7 +97,7 @@ One active primary unit. [Regular checks and effort budget](work-routine.md).
 | II.11 | PASS | [unit](principia-v2-11-myhill-nerode-bridge.md) / [audit](principia-v2-whole-crosscheck-01.md) |
 | II.12 | PASS | [unit](principia-v2-12-paige-tarjan-benchmark.md) / [audit](principia-v2-whole-crosscheck-01.md) |
 | II.13 | PASS_AFTER_ERRATA | [unit](principia-v2-13-cat-fact-canonical-scope.md) / [audit](principia-v2-whole-crosscheck-01.md) |
-| II.14 | PASS_AFTER_ERRATA | [unit](principia-v2-14-cat-fact-norm-mini.md) / [audit](principia-v2-whole-crosscheck-01.md) |
+| II.14 | PASS_AFTER_ERRATA | [unit](principia-v2-14-cat-fact-norm-mini.md) / [audit](repair-audit.md) |
 | II.15 | PASS | [unit](principia-v2-15-closed-frame-holonomy.md) / [audit](principia-v2-whole-crosscheck-01.md) |
 | II.16 | PASS | [unit](principia-v2-16-higher-compatibility-truncation.md) / [audit](principia-v2-whole-crosscheck-01.md) |
 | III.1 | PASS_AFTER_ERRATA | [unit](principia-v3-01-lambda-operator-projectability.md) / [audit](principia-v3-phisica-whole-crosscheck-01.md) |

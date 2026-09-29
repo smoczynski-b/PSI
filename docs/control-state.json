@@ -1,7 +1,7 @@
 {
-  "schema": 1,
+  "schema": 2,
   "as_of": "2026-09-29",
-  "source_commit": "d9a1dd0a1a7a4d159dce6193761c9d6203df0051",
+  "source_commit": "f9026cbc7d3f475058747082230fb504439db91f",
   "current": {
     "claim-registry": "docs/claim-registry.md",
     "falsifier-registry": "docs/falsifier-registry.md",
@@ -157,7 +157,7 @@
       "id": "II.14",
       "state": "PASS_AFTER_ERRATA",
       "path": "docs/principia-v2-14-cat-fact-norm-mini.md",
-      "evidence": "docs/principia-v2-whole-crosscheck-01.md"
+      "evidence": "docs/repair-audit.md"
     },
     {
       "id": "II.15",
@@ -247,6 +247,7 @@
   "gates": {
     "III.13": {
       "state": "OPEN",
+      "task_id": "P9-I",
       "path": null,
       "reason": "P9-I source/contract gate has not been completed."
     }

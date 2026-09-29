@@ -5,6 +5,8 @@
 **Scope:** `C^3` regular curves on `[0,T]`; exact observation; fixed time parameter; finite `{F,B}` grammar  
 **Reason for v02:** unique normal form was previously conflated with singleton gauge-only factorization fibre.
 
+**Proof clarification, 2026-09-29:** [II.14 §§2–5](principia-v2-14-cat-fact-norm-mini.md) supplies the typed gluing operation and cross-start Bishop uniqueness lemma.
+
 ---
 
 ## 1. Contract
@@ -55,7 +57,8 @@ F_I=(v,\kappa,\tau)_I
 B_I=(v,k_1,k_2)_I
 \]
 
-through the usual relatively-parallel recode, with the integration constant absorbed by constant normal `SO(2)` gauge.
+through relatively-parallel recode. Its integration constant is a local output
+choice; rotating just that atom is not global gauge of the whole term.
 
 Adjacent Bishop atoms admit the merge
 
@@ -65,7 +68,10 @@ B_{I_1}\oplus B_{I_2}
 B_{I_1\cup I_2}
 \]
 
-after normal-frame gauge alignment.
+after rotating the right atom to match the left endpoint frame. This local
+alignment is normalization, not an enlargement of the global gauge. Atoms
+carry compatible realizations of the same exact curve, including the initial
+frame needed to reconstruct it from scalar data.
 
 The rewrite is formulated on legal gauge classes.
 
@@ -83,13 +89,10 @@ with lexicographic order.
 
 `F→B` decreases `n_F`; Bishop merge decreases `n_seg` without increasing `n_F`. Hence every rewrite step strictly decreases `\mu`.
 
-The same overlap analysis as MINI-01 gives local confluence on gauge classes:
-
-- disjoint Frenet recodes commute;
-- the two merge orders for three adjacent Bishop atoms agree modulo gauge;
-- disjoint recode/merge steps commute.
-
-By Newman's lemma:
+Every irreducible output is one global Bishop atom. The ODE uniqueness lemma
+in II.14 §5 shows that any two such outputs over the same exact observation
+differ by one constant normal rotation (after `SE(3)` alignment only in the
+shape contract). Thus all branches can be completed to the same normal class:
 
 \[
 \boxed{\text{the rewrite is confluent on legal gauge classes}.}
@@ -125,7 +128,7 @@ In general:
 
 \[
 \boxed{
-|\mathfrak F^{0}_{FB,P}(Y)|\neq 1
+|\mathfrak F^{0}_{FB,P}(Y)|=1
 \text{ need not hold}.}
 \]
 
@@ -145,7 +148,7 @@ This is the fixed counterexample to the former MINI-01 singleton-fibre claim.
 
 ## 5. Normalization map
 
-Confluence defines a normalization map
+Termination and uniqueness define a normalization map
 
 \[
 \boxed{
@@ -166,7 +169,10 @@ For the exact interval contract:
 }
 \]
 
-Thus every legal finite Frenet/Bishop factorization of the observed regular curve has the same normal class, although the gauge-only factorization candidate space may contain multiple elements.
+The singleton-image conclusion additionally uses the cross-start geometric
+lemma, not confluence alone. Thus every legal finite Frenet/Bishop factorization
+of the observed regular curve has the same normal class, although the gauge-only
+factorization candidate space may contain multiple elements.
 
 ---
 

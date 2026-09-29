@@ -16,7 +16,10 @@
 }
 \]
 
-No theorem-level errata are required.
+The original composition check missed the distinction between arbitrary
+certificate bounds and the sharp metric constant. The 2026-09-29 correction
+in III.12 and [targeted repair evidence](repair-audit.md) supersedes that
+part of this check; the conditional composition conclusions are unchanged.
 
 The unrestricted P9 problem remains
 
@@ -91,6 +94,9 @@ The bounds are connected only through the norm-equivalence constant
 \[
 c_Q=\sqrt{\kappa(Q)}.
 \]
+
+Here \(\kappa(Q)=\|Q\|\|Q^{-1}\|\). For supplied, possibly loose bounds
+\(mI\le Q\le MI\), only \(c_Q\le\sqrt{M/m}\) is guaranteed.
 
 This is compatible with III.7 MOST: changing the norm changes the representation contract. No statement identifies pseudospectra computed in inequivalent declared norms.
 

@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Mutation regressions for the control checker; no network or theorem tests."""
 import json
+import hashlib
 from pathlib import Path
 import shutil
 import tempfile
 import unittest
 
-from check_control import ROOT, validate, write_views
+from check_control import ROOT, CONTRACT_FIELDS, digest_json, validate, write_views
 
 
 class ControlRegression(unittest.TestCase):
@@ -40,8 +41,105 @@ class ControlRegression(unittest.TestCase):
         failures = validate(self.root)
         self.assertTrue(any(fragment in f for f in failures), failures)
 
+    def gate_fixture(self):
+        """Synthetic record-format fixture, explicitly not mathematical evidence."""
+        unit_path = 'docs/principia-v3-13-fixture.md'
+        review_path = 'docs/source-review-fixture.json'
+        gate_path = 'docs/source-gate-fixture.json'
+        (self.root / unit_path).write_text('# Synthetic III.13 fixture\n', encoding='utf-8')
+        sha = lambda path: hashlib.sha256((self.root / path).read_bytes()).hexdigest()
+        contract = {key: 'Test-only ' + key for key in CONTRACT_FIELDS}
+        sources = [{'url': 'https://example.org/test-only', 'locator': 'fixture §1', 'supports': ['claim']}]
+        review = {'schema': 1, 'kind': 'SOURCE_CONTRACT_REVIEW', 'unit_id': 'III.13',
+                  'task_id': 'P9-I', 'unit_sha256': sha(unit_path),
+                  'contract_sha256': digest_json(contract), 'sources_sha256': digest_json(sources),
+                  'verdict': 'PASS', 'reviewer': 'synthetic test',
+                  'checks': {key: True for key in CONTRACT_FIELDS}, 'scope': 'Format test only; no theorem review.'}
+        (self.root / review_path).write_text(json.dumps(review), encoding='utf-8')
+        gate = {'schema': 1, 'kind': 'SOURCE_CONTRACT_GATE', 'unit_id': 'III.13', 'task_id': 'P9-I',
+                'unit': {'path': unit_path, 'sha256': sha(unit_path)},
+                'evidence': {'path': review_path, 'sha256': sha(review_path)},
+                'contract': contract, 'sources': sources}
+        (self.root / gate_path).write_text(json.dumps(gate), encoding='utf-8')
+
+        def edit(state):
+            state['units'].append({'id': 'III.13', 'state': 'CONDITIONAL_PASS',
+                                   'path': unit_path, 'evidence': review_path})
+            state['gates']['III.13'] = {'state': 'PASS', 'task_id': 'P9-I', 'path': gate_path}
+        self.state_edit(edit, regenerate=True)
+        return gate_path, gate
+
+    def gate_edit(self, edit):
+        path, gate = self.gate_fixture()
+        edit(gate)
+        (self.root / path).write_text(json.dumps(gate), encoding='utf-8')
+
     def test_clean(self):
         self.assertEqual(validate(self.root), [])
+
+    def test_unknown_unit_state_survives_regeneration_but_is_rejected(self):
+        self.state_edit(lambda s: s['units'][0].update(state='PSSA'), regenerate=True)
+        self.detects('invalid unit state')
+
+    def test_unknown_task_state(self):
+        self.state_edit(lambda s: s['tasks'][-1].update(state='PSSA'), regenerate=True)
+        self.detects('invalid task state')
+
+    def test_unknown_gate_state(self):
+        self.state_edit(lambda s: s['gates']['III.13'].update(state='PSSA'))
+        self.detects('invalid gate state')
+
+    def test_unknown_schema(self):
+        self.state_edit(lambda s: s.update(schema=99))
+        self.detects('unsupported control schema')
+
+    def test_valid_typed_gate_format(self):
+        self.gate_fixture()
+        self.assertEqual(validate(self.root), [])
+
+    def test_readme_cannot_pass_as_source_gate(self):
+        self.gate_fixture()
+        self.state_edit(lambda s: s['gates']['III.13'].update(path='README.md'))
+        self.detects('invalid typed gate')
+
+    def test_gate_of_another_task(self):
+        self.gate_edit(lambda g: g.update(task_id='TRAFFIC-OBSERVATION'))
+        self.detects('wrong target task')
+
+    def test_gate_of_another_unit(self):
+        self.gate_edit(lambda g: g.update(unit_id='III.12'))
+        self.detects('wrong target unit')
+
+    def test_edited_unit_invalidates_review(self):
+        _, gate = self.gate_fixture()
+        (self.root / gate['unit']['path']).write_text('Changed theorem', encoding='utf-8')
+        self.detects('artifact digest mismatch')
+
+    def test_rehashed_unit_still_needs_new_review(self):
+        path, gate = self.gate_fixture()
+        (self.root / gate['unit']['path']).write_text('Changed theorem', encoding='utf-8')
+        gate['unit']['sha256'] = hashlib.sha256(b'Changed theorem').hexdigest()
+        (self.root / path).write_text(json.dumps(gate), encoding='utf-8')
+        self.detects('reviewed unit digest mismatch')
+
+    def test_edited_contract_invalidates_review(self):
+        self.gate_edit(lambda g: g['contract'].update(conditions='Removed important hypothesis'))
+        self.detects('reviewed contract digest mismatch')
+
+    def test_missing_source_locator(self):
+        self.gate_edit(lambda g: g['sources'][0].pop('locator'))
+        self.detects('invalid source locator')
+
+    def test_unrelated_evidence_with_correct_hash_is_rejected(self):
+        def change(gate):
+            path = 'docs/principia-v3-p9h-composition-crosscheck-01.md'
+            gate['evidence'] = {'path': path, 'sha256': hashlib.sha256((self.root / path).read_bytes()).hexdigest()}
+        self.gate_edit(change)
+        self.detects('artifact belongs to a different unit/evidence')
+
+    def test_artifact_cannot_escape_repository(self):
+        self.gate_edit(lambda g: g['unit'].update(path=str(ROOT / 'README.md')))
+        self.detects('missing/local artifact path')
 
     def test_duplicate_current(self):
         (self.root / 'docs/duplicate.md').write_text('**Control role:** `claim-registry`', encoding='utf-8')

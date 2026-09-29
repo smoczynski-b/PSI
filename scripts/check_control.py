@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check PSI control records. No mathematical or live-system certification."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -10,6 +11,88 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 BEGIN = '<!-- BEGIN CONTROL STATUS -->'
 END = '<!-- END CONTROL STATUS -->'
+TASK_STATES = {'READY', 'WAIT', 'BLOCKED', 'WATCH', 'BACKLOG', 'DONE'}
+UNIT_STATES = {'OPEN', 'PARTIAL', 'FAIL', 'PASS', 'PASS_AFTER_ERRATA',
+               'CONDITIONAL_PASS', 'SECTOR_PASS'}
+GATE_STATES = {'OPEN', 'WAIT', 'BLOCKED', 'FAIL', 'PASS'}
+CONTRACT_FIELDS = {'object', 'type_domain', 'conditions', 'quantity', 'claim', 'limits'}
+
+
+def digest_json(value):
+    """Hash structured data independently of whitespace and dictionary order."""
+    raw = json.dumps(value, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    return hashlib.sha256(raw.encode('utf-8')).hexdigest()
+
+
+def local_file(root, path):
+    if not isinstance(path, str) or not path or Path(path).is_absolute():
+        return False
+    resolved = (root / path).resolve()
+    return resolved.is_relative_to(root.resolve()) and resolved.is_file()
+
+
+def validate_gate(root, unit, gate, tasks):
+    """Bind a declared source review to exact artifacts; never prove a theorem."""
+    label = f"source gate {unit['id']}"
+    errors = []
+
+    def require(ok, detail):
+        if not ok:
+            errors.append(f'{label}: {detail}')
+
+    def artifact(record, expected=None):
+        if not isinstance(record, dict) or not local_file(root, record.get('path')):
+            require(False, 'missing/local artifact path')
+            return None
+        path = record['path']
+        require(expected is None or path == expected, 'artifact belongs to a different unit/evidence')
+        data = (root / path).read_bytes()
+        require(record.get('sha256') == hashlib.sha256(data).hexdigest(), 'artifact digest mismatch')
+        return data
+
+    if gate.get('state') != 'PASS' or not local_file(root, gate.get('path')):
+        return [f'unpassed source gate: {unit["id"]}']
+    try:
+        record = json.loads((root / gate['path']).read_text(encoding='utf-8'))
+        require(record['schema'] == 1 and record['kind'] == 'SOURCE_CONTRACT_GATE', 'invalid gate schema/kind')
+        require(record['unit_id'] == unit['id'], 'wrong target unit')
+        task = record['task_id']
+        require(task == gate.get('task_id') and task in tasks, 'wrong target task')
+        if unit['id'] == 'III.13':
+            require(task == 'P9-I', 'III.13 requires P9-I')
+        artifact(record['unit'], unit['path'])
+        review_bytes = artifact(record['evidence'], unit['evidence'])
+        require(record['unit']['path'] != record['evidence']['path'], 'unit cannot review itself')
+        contract = record['contract']
+        require(isinstance(contract, dict) and set(contract) == CONTRACT_FIELDS,
+                'contract must declare object/type/conditions/quantity/claim/limits')
+        require(isinstance(contract, dict) and all(isinstance(v, str) and v.strip() for v in contract.values()),
+                'empty contract field')
+        sources = record['sources']
+        require(isinstance(sources, list) and len(sources) > 0, 'missing precise sources')
+        if isinstance(sources, list):
+            for source in sources:
+                require(isinstance(source, dict) and
+                        isinstance(source.get('url'), str) and
+                        urlsplit(source['url']).scheme == 'https' and bool(urlsplit(source['url']).netloc) and
+                        isinstance(source.get('locator'), str) and bool(source['locator'].strip()) and
+                        isinstance(source.get('supports'), list) and len(source['supports']) > 0 and
+                        set(source['supports']) <= CONTRACT_FIELDS, 'invalid source locator/contract binding')
+        if review_bytes is not None:
+            review = json.loads(review_bytes)
+            require(review['schema'] == 1 and review['kind'] == 'SOURCE_CONTRACT_REVIEW', 'invalid review schema/kind')
+            require(review['unit_id'] == unit['id'] and review['task_id'] == task, 'review target mismatch')
+            require(review['unit_sha256'] == record['unit']['sha256'], 'reviewed unit digest mismatch')
+            require(review['contract_sha256'] == digest_json(contract), 'reviewed contract digest mismatch')
+            require(review['sources_sha256'] == digest_json(sources), 'reviewed sources digest mismatch')
+            require(review['verdict'] == 'PASS', 'review not passed')
+            require(isinstance(review['reviewer'], str) and bool(review['reviewer'].strip()), 'reviewer missing')
+            require(isinstance(review['checks'], dict) and set(review['checks']) == CONTRACT_FIELDS and
+                    all(v is True for v in review['checks'].values()), 'review checks incomplete')
+            require(isinstance(review['scope'], str) and bool(review['scope'].strip()), 'review scope missing')
+    except (KeyError, TypeError, ValueError, OSError, AttributeError) as exc:
+        require(False, f'invalid typed gate/review: {type(exc).__name__}')
+    return errors
 
 
 def status_table(state, volume=None):
@@ -75,7 +158,9 @@ def validate(root):
             errors.append(message)
 
     def exists(path):
-        return bool(path) and (root / path).is_file()
+        return local_file(root, path)
+
+    require(state.get('schema') == 2, 'unsupported control schema')
 
     current = state['current']
     require(len(set(current.values())) == len(current), 'duplicate current paths')
@@ -128,6 +213,7 @@ def validate(root):
     require(task_map.get(state['selection']['primary'], {}).get('state') == 'READY',
             'primary task is not executable')
     for task in state['tasks']:
+        require(task.get('state') in TASK_STATES, f"invalid task state: {task['id']}")
         require(exists(task['source']), f"missing task source: {task['id']}")
         if task['state'] in ('WAIT', 'BLOCKED'):
             for key in ('reason', 'source', 'release', 'next_check', 'allowed'):
@@ -136,11 +222,18 @@ def validate(root):
     units = state['units']
     require(len({u['id'] for u in units}) == len(units), 'duplicate theorem unit')
     declared = {u['path'] for u in units}
+    for target, gate in state['gates'].items():
+        require(gate.get('state') in GATE_STATES, f'invalid gate state: {target}')
+        require(gate.get('task_id') in task_map, f'unknown gate task: {target}')
+        if gate.get('state') == 'PASS':
+            require(any(u['id'] == target for u in units), f'passed gate has no reviewed unit: {target}')
     for unit in units:
+        require(unit.get('state') in UNIT_STATES, f"invalid unit state: {unit['id']}")
+        require(bool(re.fullmatch(r'(II|III)\.[1-9][0-9]*', unit['id'])), 'invalid theorem ID')
         require(exists(unit['path']) and exists(unit['evidence']), f"unit/evidence missing: {unit['id']}")
         if unit['id'].startswith('III.') and int(unit['id'].split('.')[1]) > 12:
             gate = state['gates'].get(unit['id'], {})
-            require(gate.get('state') == 'PASS' and exists(gate.get('path')), f"unpassed source gate: {unit['id']}")
+            errors.extend(validate_gate(root, unit, gate, task_map))
     for path in (root / 'docs').glob('principia-v[23]-[0-9][0-9]-*.md'):
         require(str(path.relative_to(root)) in declared, f'unregistered theorem unit: {path.name}')
     require((root / current['work-map']).read_text(encoding='utf-8') == work_map(state),
