@@ -60,6 +60,7 @@ on:
       - 'scripts/test_m18_uncertain_observation.py'
       - 'scripts/relation_crossview.py'
       - 'scripts/test_m19_relation_crossview.py'
+      - 'scripts/test_arch_lang_lineage.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -117,3 +118,5 @@ jobs:
         run: python3 scripts/test_m18_uncertain_observation.py
       - name: Run M19 cross-object relation distribution regression
         run: python3 scripts/test_m19_relation_crossview.py
+      - name: Run archived language lineage regression
+        run: python3 scripts/test_arch_lang_lineage.py
