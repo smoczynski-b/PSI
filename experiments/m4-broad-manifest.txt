@@ -1,0 +1,17 @@
+# M4 condition A — declared broad repository reconstruction pack
+AGENTS.md
+docs/work-map.md
+docs/work-routine.md
+docs/control-state.json
+docs/core.md
+docs/source-governance-01.md
+docs/claim-registry.md
+docs/falsifier-registry.md
+docs/regression-bank-01.md
+docs/principia-v1-04-history-memory-future-semantics.md
+docs/principia-v2-04-representation-adequacy.md
+docs/principia-v2-07-exact-history-memory-adequacy.md
+docs/principia-v2-08-coarsest-exact-history-quotient.md
+docs/principia-v2-09-recursive-history-quotient-update.md
+docs/principia-v2-theorem-map-01.md
+docs/go-memory-regression-01.md
