@@ -215,17 +215,7 @@ For the minimal realization,
 \boxed{H_{\min}^*=H_{\max}.}
 \]
 
-Separated Robin boundary conditions
-
-\[
-\cos\alpha\,u(a)+\sin\alpha\,(pu')(a)=0,
-\]
-
-\[
-\cos\beta\,u(b)+\sin\beta\,(pu')(b)=0
-\]
-
-define maximal isotropic boundary subspaces and therefore self-adjoint realizations
+Separated Robin boundary conditions define maximal isotropic boundary subspaces and therefore self-adjoint realizations
 
 \[
 \boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
@@ -251,18 +241,43 @@ Permanent distinction:
 
 # 5. III.4 — Compact resolvent and discrete spectrum
 
-Now released after III.3.
+For the regular bounded-interval self-adjoint realizations from III.3, the quadratic-form domain is a closed subspace of \(H^1(I)\), with form norm equivalent to an \(H^1\)-type norm. Rellich compactness therefore yields
 
-Target contract:
+\[
+\boxed{
+\mathcal Q_{\alpha,\beta}\hookrightarrow L^2(I,\rho d\lambda)
+\text{ compactly}.
+}
+\]
 
-- regular bounded interval;
-- positive regular coefficients;
-- real lower-bounded potential;
-- one of the self-adjoint boundary realizations established in III.3.
+Hence
 
-Target result: compact resolvent, purely discrete real spectrum with finite multiplicities and eigenvalue accumulation only at \(+\infty\); completeness in the weighted Hilbert space.
+\[
+\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ is compact}}
+\]
 
-**STATUS:** `NEXT`.
+for every resolvent point \(z\). Consequently
+
+\[
+\boxed{
+\sigma(H_{\alpha,\beta})
+=\{E_n\}_{n\ge0},
+\qquad
+E_n\to+\infty,
+}
+\]
+
+with real eigenvalues of finite multiplicity, and the eigenfunctions form a complete orthonormal basis of \(L^2(I,\rho d\lambda)\).
+
+Permanent distinctions:
+
+- self-adjointness != compact resolvent/discrete spectrum (PF13);
+- eigenvalue sequence != complete model invariant (PF07);
+- no singular-endpoint/noncompact claim is made.
+
+**STATUS:** `PASS`  
+**SOURCE:** `principia-v3-04-compact-resolvent-spectrum.md`  
+**FALSIFIERS:** PF07, PF13.
 
 ---
 
@@ -276,7 +291,7 @@ Canonical target: an explicitly unitary or bounded-invertible transport with dom
 
 No automatic isospectrality from formal first-derivative elimination.
 
-**STATUS:** `QUEUED / REPAIR REQUIRED`.
+**STATUS:** `NEXT / REPAIR REQUIRED`.
 
 ---
 
@@ -318,9 +333,9 @@ These remain source material/genealogy, not current V3 theorem units.
 \to
 \mathrm{III.3\ PASS}
 \to
-\mathrm{III.4\ NEXT}
+\mathrm{III.4\ PASS}
 \to
-\mathrm{III.5}
+\mathrm{III.5\ NEXT}
 \to
 \mathrm{III.6}
 \to
