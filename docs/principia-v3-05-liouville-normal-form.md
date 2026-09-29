@@ -85,13 +85,13 @@ p=\rho B.
 Let
 
 \[
-H_{\alpha,\beta}
+H_{\theta_a,\theta_b}
 \]
 
-be one of the separated self-adjoint realizations from III.3:
+be one of the separated self-adjoint realizations from III.3, with the former boundary parameters \(\alpha,\beta\) renamed here to \(\theta_a,\theta_b\) so that \(\beta(\lambda)\) is reserved exclusively for the historical multiplier:
 
 \[
-H_{\alpha,\beta}u
+H_{\theta_a,\theta_b}u
 =-\frac1{2\rho}(pu')'+Vu.
 \]
 
@@ -149,22 +149,23 @@ M_\beta\phi=e^\beta\phi.
 If one transports the domain exactly,
 
 \[
-D(H_\beta)=M_\beta^{-1}D(H_{\alpha,\beta}),
+D(\widehat H_\beta)
+=M_\beta^{-1}D(H_{\theta_a,\theta_b}),
 \]
 
 and defines
 
 \[
-H_\beta
-=M_\beta^{-1}H_{\alpha,\beta}M_\beta,
+\widehat H_\beta
+=M_\beta^{-1}H_{\theta_a,\theta_b}M_\beta,
 \]
 
-then \(H_\beta\) is boundedly similar to \(H_{\alpha,\beta}\) and therefore has the same spectrum.
+then \(\widehat H_\beta\) is boundedly similar to \(H_{\theta_a,\theta_b}\) and therefore has the same spectrum.
 
 At the level of differential expressions,
 
 \[
-H_\beta
+\widehat H_\beta
 =-\frac12 B(\lambda)\partial_\lambda^2
 +V_{\mathrm{hist}}(\lambda),
 \]
@@ -311,23 +312,23 @@ Surjectivity follows from the inverse formula
 Let
 
 \[
-\widetilde H_{\alpha,\beta}
+\widetilde H_{\theta_a,\theta_b}
 :=
-U H_{\alpha,\beta}U^{-1}
+U H_{\theta_a,\theta_b}U^{-1}
 \]
 
 with domain
 
 \[
-D(\widetilde H_{\alpha,\beta})
-=U D(H_{\alpha,\beta}).
+D(\widetilde H_{\theta_a,\theta_b})
+=U D(H_{\theta_a,\theta_b}).
 \]
 
 Then
 
 \[
 \boxed{
-\widetilde H_{\alpha,\beta}
+\widetilde H_{\theta_a,\theta_b}
 =-\frac12\frac{d^2}{dx^2}
 +Q(x)
 }
@@ -354,7 +355,7 @@ Write
 \[
 \phi=Uu=su,
 \qquad
-u:=u=\frac{\phi}{s}.
+u=\frac{\phi}{s}.
 \]
 
 Using
@@ -443,9 +444,9 @@ Hence the asserted formula follows.
 The original separated condition at \(a\) is
 
 \[
-\cos\alpha\,u(a)
+\cos\theta_a\,u(a)
 +
-\sin\alpha\,(pu')(a)=0.
+\sin\theta_a\,(pu')(a)=0.
 \]
 
 Since
@@ -460,14 +461,23 @@ this becomes, at \(x=0\),
 
 \[
 \boxed{
-\bigl(\cos\alpha-\sin\alpha\,s s_x\bigr)\phi
+\bigl(\cos\theta_a-\sin\theta_a\,s s_x\bigr)\phi
 +
-\sin\alpha\,s^2\phi_x
+\sin\theta_a\,s^2\phi_x
 =0.
 }
 \]
 
-The analogous transformed condition holds at \(x=L\) with \(\beta\).
+At \(x=L\), the corresponding condition is
+
+\[
+\boxed{
+\bigl(\cos\theta_b-\sin\theta_b\,s s_x\bigr)\phi
++
+\sin\theta_b\,s^2\phi_x
+=0.
+}
+\]
 
 Thus separated real boundary conditions remain separated real boundary conditions after the Liouville transport.
 
@@ -475,12 +485,12 @@ More importantly, self-adjointness does not need to be re-proved from the differ
 
 \[
 \boxed{
-\widetilde H_{\alpha,\beta}
-=U H_{\alpha,\beta}U^{-1}
+\widetilde H_{\theta_a,\theta_b}
+=U H_{\theta_a,\theta_b}U^{-1}
 }
 \]
 
-is self-adjoint because \(U\) is unitary and \(H_{\alpha,\beta}\) is self-adjoint.
+is self-adjoint because \(U\) is unitary and \(H_{\theta_a,\theta_b}\) is self-adjoint.
 
 ---
 
@@ -490,9 +500,9 @@ Unitary equivalence gives
 
 \[
 \boxed{
-\sigma(\widetilde H_{\alpha,\beta})
+\sigma(\widetilde H_{\theta_a,\theta_b})
 =
-\sigma(H_{\alpha,\beta}).
+\sigma(H_{\theta_a,\theta_b}).
 }
 \]
 
@@ -501,7 +511,7 @@ The spectral type, multiplicities, compact-resolvent property and orthonormal ei
 If
 
 \[
-H_{\alpha,\beta}u_n=E_nu_n,
+H_{\theta_a,\theta_b}u_n=E_nu_n,
 \]
 
 then
@@ -513,7 +523,7 @@ then
 satisfies
 
 \[
-\widetilde H_{\alpha,\beta}\phi_n=E_n\phi_n.
+\widetilde H_{\theta_a,\theta_b}\phi_n=E_n\phi_n.
 \]
 
 Thus III.4 passes unchanged to the Liouville normal form.
