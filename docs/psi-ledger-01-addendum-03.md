@@ -60,8 +60,6 @@ For `H=-1/2 Delta + V`, exact reduction additionally requires
 V=V_\Lambda\circ\Lambda.
 \]
 
-This closes the old hidden jump from pointwise `B(x),C(x)` to one-dimensional `B(lambda),C(lambda)`.
-
 Permanent witness:
 
 \[
@@ -74,14 +72,15 @@ Result: `III.1 PASS`.
 
 ## E035 — PHISICA local falsifier bank
 
-`phisica-falsifier-registry-01.md` freezes PF01–PF11, including:
+`phisica-falsifier-registry-01.md` now freezes PF01–PF12, including:
 
 - regular coordinate != projectable operator;
 - formal expression != self-adjoint realization;
 - weight measure != spectral measure;
 - eigenvalues alone != complete representation;
 - Hellmann–Feynman requires perturbation hypotheses;
-- integrating-factor weight != geometric pushforward without an additional coarea/integration contract.
+- integrating-factor weight != geometric pushforward without an additional coarea/integration contract;
+- vanishing Green boundary form != self-adjointness without maximal boundary/adjoint-domain control.
 
 These are migration guards, not new PSI primitives.
 
@@ -104,28 +103,19 @@ L_\Lambda
 }
 \]
 
-This gives formal symmetry on compactly supported test functions but not self-adjointness.
-
 Second, under a proper-submersion/coarea contract, the geometric pushforward
 
 \[
 \Lambda_*(d\mathrm{vol}_g)=m(\lambda)d\lambda
 \]
 
-has density
-
-\[
-m(\lambda)
-=\int_{\Lambda^{-1}(\lambda)}|\nabla\Lambda|^{-1}dA_\lambda
-\]
-
-and Green's identity plus III.1 projectability gives
+has density satisfying
 
 \[
 \boxed{(mB)'=mC.}
 \]
 
-Hence on connected `I`, `m=K rho`; after normalization,
+Hence after normalization,
 
 \[
 \boxed{
@@ -133,27 +123,66 @@ Hence on connected `I`, `m=K rho`; after normalization,
 }
 \]
 
-This fixes the geometric normalization and makes `T_Lambda` an isometry onto the fibre-constant Hilbert subspace.
+Result: `III.2 PASS`.
+
+## E037 — domain and self-adjoint realization
+
+III.3 replaces the historical domain-free self-adjointness statement by a regular finite-interval operator theorem.
+
+For
+
+\[
+p=\rho B,
+\qquad
+\tau u=-\frac1{2\rho}(pu')'+Vu,
+\]
+
+one defines the maximal domain by
+
+\[
+u,pu'\in AC([a,b]),
+\qquad
+\tau u\in L^2(I,\rho d\lambda).
+\]
+
+The Green–Lagrange boundary form is
+
+\[
+\boxed{
+\mathfrak b(u,v)
+=\frac12[u\overline{pv'}-(pu')\overline v]_a^b.
+}
+\]
+
+The regular minimal/maximal pair satisfies
+
+\[
+\boxed{H_{\min}^*=H_{\max}.}
+\]
+
+Separated Robin boundary conditions select maximal isotropic boundary trace subspaces and yield
+
+\[
+\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
+\]
+
+Dirichlet, Neumann/quasi-Neumann and mixed separated cases are recovered as special cases.
 
 Permanent boundary:
 
 \[
 \boxed{
-\text{Hilbert weight}\neq\text{spectral measure}.
+\text{formal symmetry}\not\Rightarrow\text{self-adjointness}.
 }
 \]
 
-Result: `III.2 PASS`.
+Result: `III.3 PASS`.
 
 ---
 
 # B. Decision updates
 
 ## D015 — do not migrate PHISICA chapter order directly
-
-**Observation:** historical PHISICA mixes pointwise differential identities, formal one-dimensional reductions, operator domains, spectral claims and perturbation claims without always separating their hypotheses.
-
-**Alternatives:** copy old chapter sequence / rebuild by operator legality.
 
 **Action:** rebuild Volume III PHISICA in the order
 
@@ -173,7 +202,7 @@ Result: `III.2 PASS`.
 }
 \]
 
-**Result:** III.1 and III.2 pass; III.3 released.
+**Result:** III.1–III.3 pass; III.4 released.
 
 ## D016 — keep historical PSI-13 / DNA / broad LOGOS claims in genealogy
 
@@ -188,15 +217,19 @@ These remain Volume IV/source genealogy or unresolved Volume III material.
 
 ## D017 — separate weight construction from geometric and spectral measures
 
-**Observation:** the historical source uses the same `rho` language for the integrating factor, Hilbert weight and a claimed spectral measure.
-
-**Action:** keep three levels separate:
+Keep three levels separate:
 
 1. integrating-factor/Hilbert weight from `(rho B)'=rho C`;
 2. geometric pushforward only after coarea/integration hypotheses;
 3. spectral measure only after a specified self-adjoint realization and the spectral theorem.
 
-**Result:** III.2 passes without promoting any spectral-measure claim. PF11 added.
+## D018 — self-adjointness requires a boundary realization, not only a formal expression
+
+**Observation:** the historical source listed candidate domains and boundary conditions after a general statement of self-adjoint extension existence.
+
+**Action:** rebuild the regular operator through `H_min`, `H_max`, Green boundary form and maximal isotropic boundary subspaces. Use separated Robin conditions as the current canonical regular family.
+
+**Result:** III.3 passes; compact-resolvent/discrete-spectrum claims are now legally released for III.4.
 
 ---
 
@@ -208,7 +241,9 @@ These remain Volume IV/source genealogy or unresolved Volume III material.
 \to
 \mathrm{III.2\ PASS}
 \to
-\mathrm{III.3\ DOMAIN/SELF\!\!-\!ADJOINT\ NEXT}.
+\mathrm{III.3\ PASS}
+\to
+\mathrm{III.4\ COMPACT\ RESOLVENT/SPECTRUM\ NEXT}.
 }
 \]
 
