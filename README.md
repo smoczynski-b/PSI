@@ -6,13 +6,13 @@ It asks:
 
 > What are we entitled to conclude from what we can actually observe?
 
-For a task \(\mathcal T\), exact resolution is controlled by the compatible fibre
+For a task \(\mathcal T\), exact resolution is controlled by
 
 \[
 F(Y)=\Psi^{-1}(\mathcal K^Y)
 \]
 
-and the task quotient:
+and
 
 \[
 \boxed{
@@ -36,15 +36,15 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Freeze 01 Errata 01](docs/principia-v1-v2-freeze-01-errata-01.md)
 - [Current Volume Skeleton 03](docs/principia-volume-skeleton-03.md)
 - [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Current V3 Theorem Map 06](docs/principia-v3-theorem-map-06.md)
-- [Current Sector Work Map 07](docs/work-map-07.md)
+- [Current V3 Theorem Map 07](docs/principia-v3-theorem-map-07.md)
+- [Current Sector Work Map 08](docs/work-map-08.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
 
-Historical maps, older theorem maps and superseded source artefacts remain in the repository for provenance.
+Historical maps and superseded source artefacts remain in the repository for provenance.
 
 ---
 
-## Core status
+# Core status
 
 \[
 \boxed{
@@ -57,19 +57,7 @@ CORE5 remains frozen.
 Exact task-information adequacy:
 
 \[
-\boxed{
-\ker_{eq}\rho\subseteq E_{\mathcal T}.
-}
-\]
-
-Permanent inference discipline:
-
-\[
-\boxed{
-\mathrm{ID}_{exact}\not\Rightarrow\mathrm{ID}_{stable},
-\qquad
-\mathrm{ID}_{stable}\not\Rightarrow\mathrm{CONF}_{1-\alpha}.
-}
+\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
 \]
 
 No current typed counterexample forces R4.
@@ -81,77 +69,49 @@ No current typed counterexample forces R4.
 ## Volume I
 
 \[
-\boxed{
-\mathrm{V1}=\mathrm{NORMALIZED\ PASS}.
-}
+\boxed{\mathrm{V1}=\mathrm{NORMALIZED\ PASS}.}
 \]
 
 ## Volume II
 
 \[
-\boxed{
-\mathrm{II.1:II.16}=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
-}
+\boxed{\mathrm{II.1:II.16}=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.}
 \]
 
-The Volume II control layer is frozen through V2 Theorem Map 04.
-
-## Freeze Errata 01
-
-The former C19-v2 singleton claim for the gauge-only factorization fibre is withdrawn. Current MINI keeps uniqueness of the normal-form class rather than literal uniqueness of the gauge-only factorization fibre.
-
-No CORE role changed.
-
----
-
-# Volume III — PHISICA operator block
-
-PHISICA was rebuilt by operator legality rather than copied from the historical text.
-
-Certified chain:
+## Volume III — PHISICA
 
 \[
 \boxed{
+\mathrm{III.1:III.6}
+=\mathrm{MATHEMATICAL\ GLOBAL\ PASS\ AFTER\ LOCAL\ ERRATA\ 01}.
+}
+\]
+
+The operator chain is typed as progressively stronger contracts:
+
+\[
 \mathrm{PROJECTABILITY}
 \to
 \mathrm{WEIGHTED\ REALIZATION}
 \to
 \mathrm{SELF\!-
-ADJOINT\ REALIZATION}
+ADJOINTNESS}
 \to
 \mathrm{COMPACT\ SPECTRAL\ THEORY}
 \to
-\mathrm{UNITARY\ LIOUVILLE\ FORM}
+\mathrm{LIOUVILLE}
 \to
 \mathrm{PERTURBATION/HF}.
-}
 \]
 
-Current result:
+## Volume III — MOST / HCube
 
 \[
 \boxed{
-\mathrm{PHISICA\ III.1:III.6}
-=
-\mathrm{MATHEMATICAL\ GLOBAL\ PASS\ AFTER\ LOCAL\ ERRATA\ 01}.
+\mathrm{III.7:III.8}
+=\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
 }
 \]
-
-Main files:
-
-- [III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
-- [III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
-- [III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
-- [III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
-- [III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
-- [III.6 — perturbation and Hellmann–Feynman](docs/principia-v3-06-perturbation-hellmann-feynman.md)
-- [PHISICA Whole-Block Crosscheck 01](docs/principia-v3-phisica-whole-crosscheck-01.md)
-
-The arrows above mean progressively stronger typed contracts, not one blanket implication chain.
-
----
-
-# Volume III — MOST / HCube
 
 For finite-dimensional operators under a fixed norm:
 
@@ -165,177 +125,192 @@ For finite-dimensional operators under a fixed norm:
 }
 \]
 
-Operator-information graph:
+The resolvent-information and semigroup-norm branches are not universally interchangeable. HCube supplies a frozen witness.
+
+## Volume III — DOM-LOGOS
 
 \[
 \boxed{
-A\to\mathcal R_A(\cdot)
-\to r_A(\cdot)
-\leftrightarrow\rho_{ps}(A)
-\to\rho_\sigma(A).
+\mathrm{III.9}=\mathrm{PASS/COMPOSITION\ PASS}.
 }
 \]
 
-Transient dynamics form a separate branch:
+Semigroup projectability is
 
 \[
-\boxed{
-A\to e^{tA}\to\|e^{tA}\|.
-}
-\]
-
-HCube proves that equal spectrum and equal operator norm can still fail a resolvent-sensitive task. It also gives a pair with identical scalar semigroup-norm profiles but different resolvent-norm profiles, so
-
-\[
-\boxed{
-\rho_r\neq F\circ\rho_g
-\text{ universally}.
-}
-\]
-
-The converse non-factorization is not claimed.
-
-Current result:
-
-\[
-\boxed{
-\mathrm{MOST/HCUBE\ III.7:III.8}
-=
-\mathrm{MATHEMATICAL\ GLOBAL\ PASS}.
-}
-\]
-
-Main files:
-
-- [III.7 — MOST spectral information hierarchy](docs/principia-v3-07-spectral-information-hierarchy-most.md)
-- [III.8 — HCube MOST laboratory](docs/principia-v3-08-hcube-nonnormal-resolvent-lab.md)
-- [MOST/HCube Whole-Layer Crosscheck 01](docs/principia-v3-most-hcube-whole-crosscheck-01.md)
-
----
-
-# Volume III — DOM-LOGOS
-
-The historical source gate recovered the semigroup formulation from `PRINCIPIA_SEMANTICA_KANON_SCALONY_2026-07-26A.tex`.
-
-III.9 proves:
-
-\[
-\boxed{
 \Lambda x=\Lambda y
 \Rightarrow
 \Lambda S(t)x=\Lambda S(t)y
 \quad\forall t\ge0
-}
 \]
 
-iff there exists a unique reduced semigroup on \(\operatorname{im}\Lambda\) satisfying
+iff a unique reduced semigroup exists on \(\operatorname{im}\Lambda\).
+
+For linear \(C_0\)-semigroups, generator intertwining additionally requires explicit domains.
+
+## Volume III — SOP-11E
+
+The general historical SOP-11E well-posedness problem remains
+
+\[
+\boxed{P2_{\rm general}=PARTIAL}.
+\]
+
+III.10 closes two typed sectors:
+
+- globally Lipschitz smooth Hilbert flows with controlled forcing;
+- autonomous convex subdifferential flows generated by maximal-monotone theory.
 
 \[
 \boxed{
-\Lambda S(t)=\widetilde S(t)\Lambda.
+\mathrm{III.10}=\mathrm{SECTOR\ PASS},
+\qquad
+\mathrm{III.9:III.10}=\mathrm{COMPOSITION\ PASS}.
 }
 \]
-
-For bounded linear intertwiners between linear \(C_0\)-semigroups:
-
-\[
-\boxed{
-TS(t)=\bar S(t)T
-\iff
-T(D(A))\subseteq D(\bar A)
-\land
-\bar AT=TA\text{ on }D(A).
-}
-\]
-
-For nonlinear \(\Lambda\), the generator identity is retained only as a derivative consequence unless a separate well-posedness theorem closes the converse.
-
-\[
-\boxed{
-\mathrm{III.9\ DOM\!-
-LOGOS}=\mathrm{PASS/COMPOSITION\ PASS}.
-}
-\]
-
-Main files:
-
-- [DOM-LOGOS Source Bind 01](docs/dom-logos-source-bind-01.md)
-- [III.9 — semigroup projectability / DOM-LOGOS](docs/principia-v3-09-semigroup-projectability-dom-logos.md)
-- [DOM-LOGOS Crosscheck 01](docs/principia-v3-dom-logos-crosscheck-01.md)
 
 ---
 
-# Volume III — SOP-11E well-posedness
+# Volume III — P9 Hessian / resolvent / transient layer
 
-The general historical equation
+The P9 migration gate repaired a structural conflation in older working material.
+
+The energy Hessian
 
 \[
-D_t\psi=-\nabla_{G(\psi)}L(\psi)+Z
+H_L=D^2L(x_*)
 \]
 
-remains too broad for a universal theorem.
+must be distinguished from the dissipative Hermitian part
 
-Project-level status:
+\[
+H_{\rm diss}
+=-\frac{A+A^*}{2}.
+\]
+
+Likewise, raw resolvent sensitivity
+
+\[
+\mathcal R_0(A)
+=
+\sup_{\Re z\ge0}\|(zI-A)^{-1}\|
+\]
+
+must be distinguished from the continuous-time Kreiss constant
+
+\[
+\mathcal K(A)
+=
+\sup_{\Re z>0}
+\Re z\,\|(zI-A)^{-1}\|.
+\]
+
+For \(A=-\mu I\):
 
 \[
 \boxed{
-P2_{\mathrm{general}}=PARTIAL.
+\mathcal R_0(A)=1/\mu,
+\qquad
+\mathcal K(A)=1.
 }
 \]
 
-III.10 closes two typed sectors.
+Thus closing a spectral gap does not by itself imply transient amplification.
 
-## Smooth forced Hilbert sector
+## III.11 — P9-G metric-gradient bridge
 
-For fixed bounded coercive \(G\), globally Lipschitz \(\nabla L\), and \(Z\in L^1_{loc}\), the evolution has a unique global absolutely continuous solution with quantitative continuous dependence.
-
-Bare \(L\in C^2\) does not imply global existence.
-
-## Convex subdifferential sector
-
-For proper lsc convex \(L\) and constant forcing \(z\),
+For
 
 \[
-\dot u\in-\partial L(u)+z
+A=-G^{-1}H,
+\qquad
+G=G^*>0,
+\quad
+H=H^*>0,
 \]
 
-is generated by a nonlinear contraction semigroup through maximal-monotone / Crandall–Liggett theory.
+define
 
-Time-dependent forcing yields an evolution family \(U(t,s)\), not automatically an autonomous semigroup.
+\[
+B=G^{-1/2}HG^{-1/2},
+\qquad
+\mu_G=\lambda_{\min}(B).
+\]
 
-Current result:
+Then in the energy metric:
 
 \[
 \boxed{
-\mathrm{III.10\ SOP\!-
-11E}=\mathrm{SECTOR\ PASS}.
+\|e^{tA}\|_G=e^{-\mu_Gt},
+}
+\]
+
+\[
+\boxed{
+\|(zI-A)^{-1}\|_G
+=
+\frac1{\operatorname{dist}(z,-\sigma(B))},
 }
 \]
 
 and
 
 \[
+\boxed{\mathcal K_G(A)=1.}
+\]
+
+In Euclidean norm:
+
+\[
 \boxed{
-\mathrm{III.9:III.10}=\mathrm{COMPOSITION\ PASS}.
+\|e^{tA}\|_2
+\le
+\sqrt{\kappa_2(G)}e^{-\mu_Gt},
 }
+\]
+
+\[
+\boxed{
+1\le\mathcal K_2(A)
+\le\sqrt{\kappa_2(G)}.
+}
+\]
+
+III.11 also contains an explicit positive-definite \(G,H\) example with contraction in the energy norm but positive Euclidean numerical abscissa, showing that transient growth is metric-relative.
+
+Current status:
+
+\[
+\boxed{
+\mathrm{III.11\ P9\!-
+G}=\mathrm{PASS},
+\qquad
+\mathrm{III.7:III.11}=\mathrm{COMPOSITION\ PASS}.
+}
+\]
+
+The general P9 problem remains
+
+\[
+\boxed{P9_{\rm general}=OPEN/CENTRAL}.
 \]
 
 Main files:
 
-- [SOP-11E Well-Posedness Migration 01](docs/sop11e-wellposedness-migration-01.md)
-- [III.10 — typed well-posedness sectors](docs/principia-v3-10-sop11e-wellposedness-sectors.md)
-- [III.9–III.10 Composition Crosscheck 01](docs/principia-v3-sop11e-dom-logos-crosscheck-01.md)
+- [P9 Hessian–Transient Migration 01](docs/p9-hessian-transient-migration-01.md)
+- [III.11 — P9 metric-gradient bridge](docs/principia-v3-11-p9-metric-gradient-bridge.md)
+- [P9 Composition Crosscheck 01](docs/principia-v3-p9-composition-crosscheck-01.md)
 
 ---
 
 # Permanent distinctions
 
 \[
-\boxed{\text{Hilbert weight}\neq\text{spectral measure}},
+\boxed{\text{static task adequacy}\not\Rightarrow\text{dynamic projectability}},
 \]
 
 \[
-\boxed{\text{formal expression}\neq\text{self-adjoint operator}},
+\boxed{\text{well-posedness}\neq\text{projectability}},
 \]
 
 \[
@@ -347,63 +322,41 @@ Main files:
 \]
 
 \[
-\boxed{\{E_n\}\not\Rightarrow\text{complete model identification}},
+\boxed{\text{raw resolvent sensitivity}\neq\text{Kreiss/transient amplification}},
 \]
 
 \[
-\boxed{\text{static task adequacy}\not\Rightarrow\text{dynamic projectability}},
+\boxed{H_L\neq H_{\rm diss}\text{ in general}},
 \]
 
 \[
-\boxed{\text{well-posedness}\neq\text{projectability}},
-\]
-
-\[
-\boxed{\text{time-dependent forcing}\not\Rightarrow\text{autonomous semigroup}},
-\]
-
-\[
-\boxed{L\in C^2\not\Rightarrow\text{global well-posedness}},
-\]
-
-\[
-\boxed{\text{coercivity}\not\Rightarrow\text{compact global attractor}},
-\]
-
-\[
-\boxed{\text{linearized stability}\not\Rightarrow\text{global nonlinear dynamics}}.
+\boxed{\text{general MOST non-factorization}\not\Rightarrow\text{no typed subclass bridge}}.
 \]
 
 ---
 
 # Current phase
 
-The next unresolved operator-dynamic front is the historical P9 bridge:
+The remaining unrestricted P9 sector contains:
+
+- degenerate/hypocoercive symmetric parts;
+- unbounded nonnormal generators;
+- continuous spectrum;
+- infinite-dimensional resolvent-to-growth estimates;
+- minimal sufficient commutator/structural data.
+
+No III.12 theorem is authorized yet.
+
+Current legal state:
 
 \[
 \boxed{
-H
-\longleftrightarrow
-(zI-A)^{-1}
-\longleftrightarrow
-e^{tA}.
+\mathrm{P9\!-
+U\ SOURCE/CONTRACT\ GATE\ NEXT}.
 }
 \]
 
-`KANON2.txt` classifies this as `OPEN / CENTRAL`.
-
-MOST/HCube has clarified the information structure but has not proved a universal Hessian-to-transient theorem.
-
-Therefore:
-
-\[
-\boxed{
-\mathrm{P9\ HESSIAN\!-
-TRANSIENT\ MIGRATION\ GATE\ NEXT}.
-}
-\]
-
-Current execution graph:
+Execution graph:
 
 \[
 \boxed{
@@ -419,21 +372,25 @@ Current execution graph:
 LOGOS\ PASS}
 \to
 \mathrm{III.10\ SOP\!-
-11E\ SECTOR\ PASS}
+11E\ PASS}
 \to
-\mathrm{P9\ MIGRATION\ GATE\ NEXT}.
+\mathrm{III.11\ P9\!-
+G\ PASS}
+\to
+\mathrm{P9\!-
+U\ GATE\ NEXT}.
 }
 \]
 
-Primitive growth remains frozen until a new typed counterexample forces a genuinely new semantic role.
+Primitive growth remains frozen until a new typed counterexample forces a new semantic role.
 
 ---
 
 ## Decision / epistemic ledger
 
 - [Ledger base](docs/psi-ledger-01.md)
-- [Ledger Addendum 07 — DOM-LOGOS closure / SOP-11E handoff](docs/psi-ledger-01-addendum-07.md)
-- [Ledger Addendum 08 — SOP-11E sector closure / P9 handoff](docs/psi-ledger-01-addendum-08.md)
+- [Ledger Addendum 08 — SOP-11E closure / P9 handoff](docs/psi-ledger-01-addendum-08.md)
+- [Ledger Addendum 09 — P9 repair / P9-U handoff](docs/psi-ledger-01-addendum-09.md)
 
 ---
 
