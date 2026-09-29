@@ -9,7 +9,7 @@
 
 # S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.4 PASS / III.5 NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.5 PASS / III.6 NEXT`.
 
 Current control stack:
 - physical CANON-03 bound;
@@ -37,7 +37,23 @@ Current control stack:
 
 ### Volume III / PHISICA
 
-III.1 established exact operator projectability:
+The repaired operator chain is now
+
+\[
+\boxed{
+\mathrm{PROJECTABILITY}
+\to
+\mathrm{WEIGHTED\ REALIZATION}
+\to
+\mathrm{SELF\!\!-\!ADJOINT\ REALIZATION}
+\to
+\mathrm{COMPACT\ SPECTRAL\ THEORY}
+\to
+\mathrm{UNITARY\ LIOUVILLE\ NORMAL\ FORM}.
+}
+\]
+
+III.1 establishes exact operator projectability:
 
 \[
 \boxed{
@@ -51,56 +67,50 @@ III.1 established exact operator projectability:
 }
 \]
 
-For Schrödinger reduction additionally:
-
-\[
-\boxed{V=V_\Lambda\circ\Lambda.}
-\]
-
-III.2 established the canonical positive weight
+III.2 establishes
 
 \[
 \boxed{(\rho B)'=\rho C}
 \]
 
-and, under the proper-submersion/coarea contract,
+and, under the additional proper-submersion/coarea contract,
 
 \[
 \boxed{
-\rho(\lambda)d\lambda
-=\Lambda_*(d\mathrm{vol}_g)
+\rho d\lambda=\Lambda_*(d\mathrm{vol}_g)
 }
 \]
 
 after normalization.
 
-III.3 fixes the operator realization through the Green boundary form and separated self-adjoint Robin domains:
+III.3 fixes a concrete self-adjoint realization through the regular boundary form and maximal isotropic separated Robin data.
 
-\[
-\boxed{H_{\min}^*=H_{\max}},
-\qquad
-\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*}.
-\]
+III.4 derives compact resolvent from compact form-domain embedding, giving discrete real spectrum and a complete orthonormal eigenbasis.
 
-III.4 uses the regular finite-interval form domain and Rellich compactness to obtain
+III.5 replaces the historical formal drift-removal claim by a two-level repair:
 
-\[
-\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ compact}}
-\]
-
-for all resolvent points, and hence
+1. the historical multiplier becomes a bounded similarity only after domain transport;
+2. the canonical Liouville map
 
 \[
 \boxed{
-\sigma(H_{\alpha,\beta})=\{E_n\},
+x'=B^{-1/2},
 \qquad
-E_n\to+\infty,
+(Uu)(x)=\rho^{1/2}B^{1/4}u
 }
 \]
 
-with a complete orthonormal eigenbasis in \(L^2(I,\rho d\lambda)\).
+is unitary and gives
 
-Permanent distinctions:
+\[
+\boxed{
+UHU^{-1}
+=-\frac12\partial_x^2
++V(\lambda(x))+rac{s_{xx}}{2s}.
+}
+\]
+
+Permanent distinctions now include:
 
 \[
 \boxed{
@@ -122,12 +132,20 @@ Permanent distinctions:
 
 \[
 \boxed{
+\text{bounded similarity}\neq\text{unitary equivalence},
+}
+\]
+
+and
+
+\[
+\boxed{
 \{E_n\}\not\Rightarrow\text{complete model identification}.
 }
 \]
 
-**III.1–III.4:** `PASS`  
-**III.5:** `NEXT — Liouville / normal-form transform`.
+**III.1–III.5:** `PASS`  
+**III.6:** `NEXT — perturbation / Hellmann–Feynman`.
 
 ---
 
@@ -146,17 +164,17 @@ No PHISICA repair changes a CORE semantic role.
 High-value PHISICA locks:
 
 - PF01: regular scalar field != operator projectability;
-- PF02: writing `B(lambda),C(lambda)` != proof of factorization through Lambda;
+- PF02: coefficient notation != proof of factorization through Lambda;
 - PF03: Hilbert weight != spectral measure;
 - PF04: differential expression != unbounded operator;
-- PF05: formal drift removal != unitary/isospectral equivalence;
+- PF05: formal drift removal != operator similarity/unitarity; bounded similarity != unitary equivalence;
 - PF06: `(B,C,rho)` != full self-adjoint dynamics;
 - PF07: eigenvalues alone != complete model invariant;
 - PF08: Hellmann–Feynman requires a perturbation contract;
-- PF09: small coefficient change != automatic spectral stability;
+- PF09: small coefficient deformation != automatic spectral stability;
 - PF10: historical PSI-13 conditions do not replace III.1;
 - PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract;
-- PF12: vanishing boundary form/formal symmetry != self-adjointness without maximality/adjoint-domain equality;
+- PF12: formal symmetry != self-adjointness without maximality/adjoint-domain equality;
 - PF13: self-adjointness != compact resolvent/discrete spectrum.
 
 ---
@@ -177,7 +195,9 @@ Current operator discipline:
 \neq
 \text{self-adjoint realization}
 \neq
-\text{compact-resolvent spectral theorem}.
+\text{compact-resolvent spectral theorem}
+\neq
+\text{unitary normal form}.
 }
 \]
 
@@ -195,8 +215,8 @@ Execution order:
 2. III.2 weight/Sturm–Liouville/pushforward — PASS;
 3. III.3 domain/self-adjointness — PASS;
 4. III.4 compact resolvent/discrete spectrum — PASS;
-5. III.5 Liouville/normal form — NEXT;
-6. III.6 perturbation/Hellmann–Feynman;
+5. III.5 Liouville/normal form — PASS;
+6. III.6 perturbation/Hellmann–Feynman — NEXT;
 7. PHISICA whole-block cross-check;
 8. then HCube/MOST/other laboratories.
 
@@ -216,9 +236,9 @@ Execution order:
 
 # S8 — SOURCES / GENEALOGY
 
-Historical `PHISICA — NEW.pdf`, PSI-13, DNA and old LOGOS claims are source/genealogy until rebuilt under V3 gates.
+Historical `PHISICA — NEW.pdf`, PSI-13, DNA and old broad LOGOS claims remain source/genealogy unless rebuilt under the V3 gates.
 
-Do not promote historical spectral-completeness, domain-free self-adjointness or automatic isospectral drift-removal claims.
+Do not promote historical spectral-completeness, domain-free self-adjointness, automatic isospectral drift-removal or coefficient-smallness stability claims.
 
 ---
 
@@ -232,11 +252,9 @@ Do not promote historical spectral-completeness, domain-free self-adjointness or
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1:III.4\ PASS}
+\mathrm{III.1:III.5\ PASS}
 \to
-\mathrm{III.5\ NEXT}
-\to
-\mathrm{III.6}
+\mathrm{III.6\ NEXT}
 \to
 \mathrm{PHISICA\ WHOLE\ CROSSCHECK}.
 }
