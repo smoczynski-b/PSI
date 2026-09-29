@@ -11,10 +11,12 @@ on:
       - 'experiments/PSI-MEMORY-M8-01.md'
       - 'experiments/PSI-MEMORY-M9-WRITE-01.md'
       - 'experiments/PSI-MEMORY-M10-CYCLE-01.md'
+      - 'experiments/PSI-MEMORY-M11-GROWTH-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
       - 'experiments/m9-agent-*-delta.tsv'
+      - 'experiments/m11-record-sequence.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -26,6 +28,7 @@ on:
       - 'scripts/test_m8_context.py'
       - 'scripts/test_m9_write_admission.py'
       - 'scripts/test_m10_read_write_cycle.py'
+      - 'scripts/test_m11_growth_supersession.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -65,3 +68,5 @@ jobs:
         run: python3 scripts/test_m9_write_admission.py
       - name: Run M10 read-write-read cycle regression
         run: python3 scripts/test_m10_read_write_cycle.py
+      - name: Run M11 growth and supersession regression
+        run: python3 scripts/test_m11_growth_supersession.py
