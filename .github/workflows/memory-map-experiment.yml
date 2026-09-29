@@ -63,6 +63,7 @@ on:
       - 'scripts/relation_crossview.py'
       - 'scripts/test_m19_relation_crossview.py'
       - 'scripts/test_arch_lang_lineage.py'
+      - 'scripts/verify_arch_lang_cert.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -122,5 +123,7 @@ jobs:
         run: python3 scripts/test_m19_relation_crossview.py
       - name: Run archived language lineage regression
         run: python3 scripts/test_arch_lang_lineage.py
+      - name: Verify archived language fragment certificate registry
+        run: python3 scripts/verify_arch_lang_cert.py
       - name: Run adversarial conversation-04 regressions
         run: python3 scripts/test_memory_audit.py
