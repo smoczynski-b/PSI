@@ -1,0 +1,32 @@
+from	relation	to	effect	source	note
+II.7	HARD_DEPENDS_ON	II.4	VALIDITY	docs/principia-v2-07-exact-history-memory-adequacy.md	II.7 is a specialization of II.4 to history space
+II.7	USES_DEFINITION	C57	VALIDITY	docs/principia-v2-07-exact-history-memory-adequacy.md	Future task tree/history equivalence definition is required
+II.7	USES_LEMMA	C58	VALIDITY	docs/principia-v2-07-exact-history-memory-adequacy.md	Equivalence relation property is required for quotient/factorization
+C58	HARD_DEPENDS_ON	C57	VALIDITY	docs/claim-registry.md	C58 proves that the relation defined in C57 is an equivalence relation
+II.7	EVIDENCE_FOR	C42	NONE	docs/principia-v2-07-exact-history-memory-adequacy.md	Materializes the current exact memory-adequacy criterion
+II.8	HARD_DEPENDS_ON	II.2	VALIDITY	docs/principia-v2-08-coarsest-exact-history-quotient.md	Uses factorization criterion
+II.8	HARD_DEPENDS_ON	II.7	VALIDITY	docs/principia-v2-08-coarsest-exact-history-quotient.md	Uses future equivalence and exact-memory criterion
+II.8	EVIDENCE_FOR	C44	NONE	docs/principia-v2-08-coarsest-exact-history-quotient.md	Materializes canonical history quotient claim
+II.9	HARD_DEPENDS_ON	II.7	VALIDITY	docs/principia-v2-09-recursive-history-quotient-update.md	Strict proof dependency
+II.9	USES_DEFINITION	C57	VALIDITY	docs/principia-v2-09-recursive-history-quotient-update.md	Literal future-tree semantics used in congruence proof
+II.9	USES_LEMMA	C58	VALIDITY	docs/principia-v2-09-recursive-history-quotient-update.md	Equivalence relation required
+II.9	ANALOGY_TO	II.6	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	Structural analogy only
+II.9	NOT_DEPENDS_ON	II.8	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	II.8 minimality is explicitly not a proof prerequisite
+II.9	EVIDENCE_FOR	C45	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	Materializes mathematical recursive-update claim
+II.9	EVIDENCE_FOR	C59	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	C59 is rederived here; it is not an earlier premise
+II.10	CONTAINS	II.10.CLASSICAL	NONE	docs/principia-v2-10-strong-lumpability-bridge.md	Document contains classical theorem aspect
+II.10	CONTAINS	II.10.PSI-BRIDGE	NONE	docs/principia-v2-10-strong-lumpability-bridge.md	Document contains PSI bridge aspect
+II.10.PSI-BRIDGE	DISTINGUISHES_FROM	II.5	NONE	docs/principia-v2-10-strong-lumpability-bridge.md	Static adequacy does not imply stochastic autonomy
+II.10.PSI-BRIDGE	ANALOGY_TO	II.6	NONE	docs/principia-v2-10-strong-lumpability-bridge.md	Stochastic quotient descent is analogous but typed differently
+II.10.PSI-BRIDGE	EVIDENCE_FOR	C13	NONE	docs/principia-v2-10-strong-lumpability-bridge.md	Task equivalence alone is not lumpability
+II.11	CONTAINS	II.11.CLASSICAL	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Document contains classical theorem aspect
+II.11	CONTAINS	II.11.PSI-BRIDGE	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Document contains exact PSI realization aspect
+II.11.PSI-BRIDGE	BRIDGE_DEPENDS_ON	II.7	BRIDGE_VALIDITY	docs/principia-v2-11-myhill-nerode-bridge.md	General future-test architecture used by PSI reading
+II.11.PSI-BRIDGE	BRIDGE_DEPENDS_ON	II.8	BRIDGE_VALIDITY	docs/principia-v2-11-myhill-nerode-bridge.md	Coarsest exact quotient architecture used by PSI reading
+II.11.PSI-BRIDGE	EXEMPLIFIES	II.9	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Right congruence is a concrete example of recursive history update
+II.11.PSI-BRIDGE	EVIDENCE_FOR	C18	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Exact Nerode realization claim
+II.12	CONTAINS	II.12.CLASSICAL	NONE	docs/principia-v2-12-paige-tarjan-benchmark.md	Document contains classical algorithm aspect
+II.12	CONTAINS	II.12.PSI-GATE	NONE	docs/principia-v2-12-paige-tarjan-benchmark.md	Document contains PSI applicability gate
+II.12.PSI-GATE	CONTRASTS_WITH	II.10.PSI-BRIDGE	NONE	docs/principia-v2-12-paige-tarjan-benchmark.md	Probabilistic lumpability is numeric and not captured by bare relational stability
+II.12.PSI-GATE	CONTRASTS_WITH	II.11.PSI-BRIDGE	NONE	docs/principia-v2-12-paige-tarjan-benchmark.md	Paige-Tarjan is not the Myhill-Nerode theorem or every DFA minimizer
+II.12.PSI-GATE	EVIDENCE_FOR	C14	NONE	docs/principia-v2-12-paige-tarjan-benchmark.md	Finite partition-refinement benchmark under PT1-PT4
