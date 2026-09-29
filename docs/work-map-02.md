@@ -9,7 +9,7 @@
 
 # S0 — CANON / PRINCIPIA
 
-**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.3 PASS / III.4 NEXT`.
+**State:** `V1 NORMALIZED PASS / V2 GLOBAL PASS / V3 PHISICA OPERATOR MIGRATION ACTIVE / III.1–III.4 PASS / III.5 NEXT`.
 
 Current control stack:
 - physical CANON-03 bound;
@@ -20,7 +20,7 @@ Current control stack:
 - V2 Theorem Map 04 — frozen current map for Volume II;
 - V3 Theorem Map 01 — current Volume III map;
 - PHISICA Operator Migration 01 — current source audit;
-- PHISICA Falsifier Registry 01 — PF01–PF12;
+- PHISICA Falsifier Registry 01 — PF01–PF13;
 - Agent PSI Architecture v02 — current.
 
 ### Volume I
@@ -74,34 +74,31 @@ and, under the proper-submersion/coarea contract,
 
 after normalization.
 
-III.3 now fixes the operator layer. With
+III.3 fixes the operator realization through the Green boundary form and separated self-adjoint Robin domains:
 
 \[
-p=\rho B,
+\boxed{H_{\min}^*=H_{\max}},
 \qquad
-\tau u=-\frac1{2\rho}(pu')'+Vu,
+\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*}.
 \]
 
-one has the regular Green form
+III.4 uses the regular finite-interval form domain and Rellich compactness to obtain
+
+\[
+\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ compact}}
+\]
+
+for all resolvent points, and hence
 
 \[
 \boxed{
-\mathfrak b(u,v)
-=\frac12[u\overline{pv'}-(pu')\overline v]_a^b
+\sigma(H_{\alpha,\beta})=\{E_n\},
+\qquad
+E_n\to+\infty,
 }
 \]
 
-and
-
-\[
-\boxed{H_{\min}^*=H_{\max}.}
-\]
-
-Separated Robin boundary conditions define self-adjoint realizations
-
-\[
-\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
-\]
+with a complete orthonormal eigenbasis in \(L^2(I,\rho d\lambda)\).
 
 Permanent distinctions:
 
@@ -119,14 +116,18 @@ Permanent distinctions:
 
 \[
 \boxed{
-\text{one self-adjoint realization}\not\Rightarrow\text{unique self-adjoint realization}.
+\text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum},
 }
 \]
 
-**III.1:** `PASS`  
-**III.2:** `PASS`  
-**III.3:** `PASS`  
-**III.4:** `NEXT — compact resolvent and discrete spectrum`.
+\[
+\boxed{
+\{E_n\}\not\Rightarrow\text{complete model identification}.
+}
+\]
+
+**III.1–III.4:** `PASS`  
+**III.5:** `NEXT — Liouville / normal-form transform`.
 
 ---
 
@@ -140,7 +141,7 @@ No PHISICA repair changes a CORE semantic role.
 
 # S2 — FALSIFICATION / REGRESSION
 
-**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF12 ACTIVE`.
+**State:** `GLOBAL FALSIFIER v12 ACTIVE + PHISICA PF01–PF13 ACTIVE`.
 
 High-value PHISICA locks:
 
@@ -155,7 +156,8 @@ High-value PHISICA locks:
 - PF09: small coefficient change != automatic spectral stability;
 - PF10: historical PSI-13 conditions do not replace III.1;
 - PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract;
-- PF12: vanishing boundary form/formal symmetry != self-adjointness without maximality/adjoint-domain equality.
+- PF12: vanishing boundary form/formal symmetry != self-adjointness without maximality/adjoint-domain equality;
+- PF13: self-adjointness != compact resolvent/discrete spectrum.
 
 ---
 
@@ -175,7 +177,7 @@ Current operator discipline:
 \neq
 \text{self-adjoint realization}
 \neq
-\text{spectral identification}.
+\text{compact-resolvent spectral theorem}.
 }
 \]
 
@@ -192,8 +194,8 @@ Execution order:
 1. III.1 projectability — PASS;
 2. III.2 weight/Sturm–Liouville/pushforward — PASS;
 3. III.3 domain/self-adjointness — PASS;
-4. III.4 compact resolvent/discrete spectrum — NEXT;
-5. III.5 Liouville/normal form;
+4. III.4 compact resolvent/discrete spectrum — PASS;
+5. III.5 Liouville/normal form — NEXT;
 6. III.6 perturbation/Hellmann–Feynman;
 7. PHISICA whole-block cross-check;
 8. then HCube/MOST/other laboratories.
@@ -216,7 +218,7 @@ Execution order:
 
 Historical `PHISICA — NEW.pdf`, PSI-13, DNA and old LOGOS claims are source/genealogy until rebuilt under V3 gates.
 
-Do not promote historical spectral-completeness or domain-free self-adjointness claims.
+Do not promote historical spectral-completeness, domain-free self-adjointness or automatic isospectral drift-removal claims.
 
 ---
 
@@ -230,15 +232,11 @@ Do not promote historical spectral-completeness or domain-free self-adjointness 
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1\ PASS}
+\mathrm{III.1:III.4\ PASS}
 \to
-\mathrm{III.2\ PASS}
+\mathrm{III.5\ NEXT}
 \to
-\mathrm{III.3\ PASS}
-\to
-\mathrm{III.4\ NEXT}
-\to
-\mathrm{III.5:III.6}
+\mathrm{III.6}
 \to
 \mathrm{PHISICA\ WHOLE\ CROSSCHECK}.
 }
