@@ -42,13 +42,15 @@ Result: `III.1 PASS`.
 
 ## E035 — PHISICA local falsifier bank
 
-`phisica-falsifier-registry-01.md` currently freezes PF01–PF13. PF05 has been strengthened after III.5:
+`phisica-falsifier-registry-01.md` currently freezes PF01–PF14. New high-value locks include:
 
-\[
-\boxed{
-\text{bounded similarity}\not\Rightarrow\text{unitary equivalence}.
-}
-\]
+- PF05: bounded similarity != unitary equivalence;
+- PF08: Hellmann–Feynman requires a perturbation contract;
+- PF09: small coefficient deformation != automatic spectral stability;
+- PF11: integrating-factor weight != geometric pushforward without an integration/coarea contract;
+- PF12: vanishing Green boundary form != self-adjointness without maximal boundary/adjoint-domain control;
+- PF13: self-adjointness != compact resolvent/discrete spectrum;
+- PF14: stable eigenvalues != stable eigenvectors / stable spectral-DNA labels.
 
 These are migration guards, not new PSI primitives.
 
@@ -102,17 +104,9 @@ The historical substitution
 \beta'=-\frac{C}{2B}
 \]
 
-is algebraically correct and, because
+is algebraically correct but is not automatically a unitary equivalence.
 
-\[
-\beta=-\frac12\log(\rho B)+\mathrm{const},
-\]
-
-its multiplier is bounded and boundedly invertible in the regular compact sector.
-
-However, spectral invariance is licensed only after the domain is transported and the transformed operator is defined by similarity.
-
-The canonical operator repair is the unitary Liouville transform
+The canonical repair is the unitary Liouville transform
 
 \[
 \boxed{
@@ -132,24 +126,53 @@ Then
 
 \[
 \boxed{
-U:L^2(I,\rho d\lambda)\to L^2(J,dx)
-\text{ is unitary}
-}
-\]
-
-and
-
-\[
-\boxed{
 UHU^{-1}
 =-\frac12\partial_x^2
 +V(\lambda(x))+\frac{s_{xx}}{2s}.
 }
 \]
 
-The domain and separated boundary conditions are transported explicitly; self-adjointness and all spectral data from III.4 are therefore preserved by unitary equivalence.
-
 Result: `III.5 PASS`.
+
+## E040 — perturbation theory and Hellmann–Feynman repaired by a fixed-space contract
+
+Historical PHISICA writes a coefficient-level deformation and then applies
+
+\[
+\delta E_n=\langle\phi_n,W\phi_n\rangle
+\]
+
+without first fixing the Hilbert space, operator domain, branch regularity or degeneracy structure.
+
+III.6 introduces the canonical sector
+
+\[
+H(t)=H_0+W(t),
+\qquad
+D(H(t))=D(H_0),
+\]
+
+with bounded self-adjoint norm-`C^1` perturbation on a fixed Hilbert space after legal unitary trivialization.
+
+Self-adjointness and compact resolvent persist. Ordered eigenvalues satisfy
+
+\[
+\boxed{
+|E_n(t)-E_n(s)|\le\|W(t)-W(s)\|.
+}
+\]
+
+For a simple isolated eigenvalue branch, the eigenvector is taken `C^1` in the graph norm of the common domain and
+
+\[
+\boxed{
+E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle.
+}
+\]
+
+At a degenerate eigenvalue, first-order splitting is governed by the compressed perturbation on the eigenspace. Raw structural deformations of `Lambda` require a prior unitary/fixed-form trivialization because `B`, `rho`, the Liouville coordinate, interval and boundary domain may all vary.
+
+Result: `III.6 LOCAL PASS`.
 
 ---
 
@@ -175,11 +198,11 @@ Rebuild Volume III PHISICA in the order
 }
 \]
 
-**Result:** III.1–III.5 pass; III.6 released.
+**Result:** III.1–III.6 have local PASS; whole-block cross-check is mandatory before global PASS.
 
 ## D016 — keep historical PSI-13 / DNA / broad LOGOS claims in genealogy
 
-Until they pass the new gates, do not promote historical PSI-13 central theorem, LOGOS as complete dynamics, eigenvalue sequence as complete model signature, or domain-free perturbative stability.
+Until they pass the repaired gates, do not promote historical PSI-13 central theorem, LOGOS as complete dynamics, eigenvalue sequence as complete model signature, or domain-free perturbative stability.
 
 ## D017 — separate weight construction from geometric and spectral measures
 
@@ -195,14 +218,15 @@ Derive compact resolvent from compact form-domain embedding after III.3; do not 
 
 ## D020 — replace formal gauge rhetoric by two explicit operator transports
 
-**Observation:** the historical multiplier removes drift but does not by itself define a unitary transformation of the self-adjoint problem.
+Distinguish bounded similarity with exact domain transport from the unitary Liouville transformation with coordinate change, amplitude and transported domain.
 
-**Action:** distinguish:
+## D021 — perturb only after fixing the operator comparison space
 
-1. bounded similarity under `M_beta` with exact domain transport;
-2. unitary Liouville transformation with coordinate change, amplitude and transported domain.
+**Observation:** a deformation of `Lambda` changes coefficient data and may also change Hilbert measure, Liouville coordinate, interval length and boundary realization.
 
-**Result:** the historical effective-potential algebra is retained, but the canonical spectral statement is attached to the unitary Liouville operator. III.5 passes and III.6 may work on a fixed standard Hilbert space.
+**Action:** require a fixed Hilbert/domain perturbation family or a controlled closed-form/unitary trivialization before applying perturbation theory. Use scalar Hellmann–Feynman only on a differentiable simple isolated branch; use compressed matrix perturbation at degeneracy.
+
+**Result:** III.6 passes locally. The old blanket statement “small LOGOS deformation => stable spectral DNA” is not retained. PF14 added.
 
 ---
 
@@ -210,10 +234,12 @@ Derive compact resolvent from compact form-domain embedding after III.3; do not 
 
 \[
 \boxed{
-\mathrm{III.1:III.5\ PASS}
+\mathrm{III.1:III.6\ LOCAL\ PASS}
 \to
-\mathrm{III.6\ PERTURBATION/HELLMANN\!-\!FEYNMAN\ NEXT}.
+\mathrm{PHISICA\ WHOLE\!\!-\!BLOCK\ CROSSCHECK\ 01\ NEXT}.
 }
 \]
+
+A sequence of local PASS results is not a global PHISICA PASS.
 
 No CORE5 change and no Agent v03.
