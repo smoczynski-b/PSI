@@ -7,6 +7,7 @@ on:
       - 'docs/memory/**'
       - 'experiments/PSI-MEMORY-M4-01.md'
       - 'experiments/PSI-MEMORY-M6-REL-01.md'
+      - 'experiments/PSI-MEMORY-M7-EDGE-CERT-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'scripts/test_memory_map.py'
@@ -38,5 +39,7 @@ jobs:
         run: python3 scripts/test_memory_pack.py
       - name: Run M6 relational-description regression
         run: python3 scripts/test_relation_description.py
-      - name: Emit M7 candidate edge-evidence hashes
+      - name: Emit M7 certified edge-evidence hashes
         run: python3 scripts/build_edge_provenance.py --emit
+      - name: Run M7 certified-edge regression
+        run: python3 scripts/test_edge_provenance.py
