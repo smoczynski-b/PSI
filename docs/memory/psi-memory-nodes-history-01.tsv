@@ -1,0 +1,16 @@
+id	kind	status	source	label
+C13	CLAIM	CURRENT	docs/claim-registry.md	Lumpability refinement
+C14	CLAIM	CURRENT	docs/claim-registry.md	Finite partition-refinement bridge
+C18	CLAIM	CURRENT	docs/claim-registry.md	Nerode realization
+C42	CLAIM	CURRENT	docs/claim-registry.md	Exact memory adequacy criterion
+C44	CLAIM	CURRENT	docs/claim-registry.md	Canonical history quotient
+C45	CLAIM	CURRENT	docs/claim-registry.md	Mathematical recursive update
+C57	DEFINITION	CURRENT	docs/claim-registry.md	Future task tree and history equivalence
+C58	LEMMA	CURRENT	docs/claim-registry.md	History equivalence is an equivalence relation
+C59	THEOREM_CLAIM	CURRENT	docs/claim-registry.md	Congruence and recursive task-state update
+II.10.CLASSICAL	THEOREM_ASPECT	CLASSICAL	docs/principia-v2-10-strong-lumpability-bridge.md	Kemeny-Snell strong lumpability theorem
+II.10.PSI-BRIDGE	BRIDGE_ASPECT	PASS	docs/principia-v2-10-strong-lumpability-bridge.md	PSI task-quotient/lumpability bridge
+II.11.CLASSICAL	THEOREM_ASPECT	CLASSICAL	docs/principia-v2-11-myhill-nerode-bridge.md	Classical Myhill-Nerode theorem
+II.11.PSI-BRIDGE	BRIDGE_ASPECT	PASS	docs/principia-v2-11-myhill-nerode-bridge.md	Exact PSI/Nerode realization
+II.12.CLASSICAL	ALGORITHM_ASPECT	CLASSICAL	docs/principia-v2-12-paige-tarjan-benchmark.md	Classical Paige-Tarjan partition refinement
+II.12.PSI-GATE	BENCHMARK_ASPECT	PASS	docs/principia-v2-12-paige-tarjan-benchmark.md	PSI applicability gate PT1-PT4
