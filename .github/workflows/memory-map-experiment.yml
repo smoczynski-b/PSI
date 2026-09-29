@@ -19,6 +19,7 @@ on:
       - 'experiments/PSI-MEMORY-M16-LANGUAGE-FIBRE-01.md'
       - 'experiments/PSI-MEMORY-M17-CROSS-PARTITION-01.md'
       - 'experiments/PSI-MEMORY-M18-UNCERTAIN-OBSERVATION-01.md'
+      - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -57,6 +58,8 @@ on:
       - 'scripts/test_m17_cross_partition_domain.py'
       - 'scripts/resolve_uncertain_fibre.py'
       - 'scripts/test_m18_uncertain_observation.py'
+      - 'scripts/relation_crossview.py'
+      - 'scripts/test_m19_relation_crossview.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -112,3 +115,5 @@ jobs:
         run: python3 scripts/test_m17_cross_partition_domain.py
       - name: Run M18 uncertain-observation regression
         run: python3 scripts/test_m18_uncertain_observation.py
+      - name: Run M19 cross-object relation distribution regression
+        run: python3 scripts/test_m19_relation_crossview.py
