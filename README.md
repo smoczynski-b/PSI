@@ -40,6 +40,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
 - [Volume III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
 - [Volume III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
+- [Volume III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
@@ -156,31 +157,74 @@ one has
 \boxed{H_{\min}^*=H_{\max}}
 \]
 
-and separated Robin boundary conditions define self-adjoint realizations
-
-\[
-\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
-\]
+and separated Robin conditions define self-adjoint realizations.
 
 ### III.4 — compact resolvent and discrete spectrum
 
-For the regular finite-interval realizations from III.3, compactness of the form-domain embedding gives
+For the regular finite-interval realizations from III.3,
 
 \[
-\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ compact}}
+\boxed{(H-z)^{-1}\text{ compact}}
 \]
 
-for every resolvent point. Hence
+for every resolvent point, hence
 
 \[
 \boxed{
-\sigma(H_{\alpha,\beta})=\{E_n\},
+\sigma(H)=\{E_n\},
 \qquad
 E_n\to+\infty,
 }
 \]
 
-with finite multiplicities and a complete orthonormal eigenbasis of \(L^2(I,\rho d\lambda)\).
+with finite multiplicities and a complete orthonormal eigenbasis.
+
+### III.5 — unitary Liouville normal form
+
+Historical PHISICA used the multiplier
+
+\[
+\psi=e^\beta\phi,
+\qquad
+\beta'=-\frac{C}{2B},
+\]
+
+which correctly removes the first derivative algebraically. Under the regular compact contract it becomes a bounded similarity only after exact domain transport; it is not generally unitary.
+
+The canonical Liouville transform is
+
+\[
+\boxed{
+x(\lambda)=\int_a^\lambda B(\mu)^{-1/2}d\mu,
+}
+\]
+
+\[
+\boxed{
+(Uu)(x)=\rho(\lambda(x))^{1/2}B(\lambda(x))^{1/4}u(\lambda(x)).
+}
+\]
+
+Then
+
+\[
+\boxed{
+U:L^2(I,\rho d\lambda)\to L^2(J,dx)
+\text{ is unitary}
+}
+\]
+
+and
+
+\[
+\boxed{
+UHU^{-1}
+=-\frac12\frac{d^2}{dx^2}
++V(\lambda(x))+rac{s_{xx}}{2s}.
+}
+\]
+
+Thus self-adjointness, spectrum, multiplicities, compact resolvent and the eigenbasis are preserved by a genuine unitary equivalence.
 
 Permanent distinctions now include
 
@@ -188,17 +232,21 @@ Permanent distinctions now include
 \boxed{
 \text{Hilbert weight}\neq\text{spectral measure},
 }
-\]
 
 \[
 \boxed{
 \text{formal symmetry}\not\Rightarrow\text{self-adjointness},
 }
-\]
 
 \[
 \boxed{
 \text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum},
+}
+\]
+
+\[
+\boxed{
+\text{bounded similarity}\neq\text{unitary equivalence},
 }
 \]
 
@@ -210,7 +258,7 @@ and
 }
 \]
 
-`III.1–III.4` are PASS. The next unit is `III.5 — Liouville / normal-form transform`.
+`III.1–III.5` are PASS. The next unit is `III.6 — perturbation / Hellmann–Feynman`.
 
 ## Current phase
 
@@ -222,9 +270,9 @@ and
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1:III.4\ PASS}
+\mathrm{III.1:III.5\ PASS}
 \to
-\mathrm{III.5\ NEXT}.
+\mathrm{III.6\ NEXT}.
 }
 \]
 
