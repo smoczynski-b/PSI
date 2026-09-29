@@ -254,3 +254,29 @@ and therefore
 \]
 
 III.4 obtains compact resolvent only from the additional finite regular interval/form-domain compactness mechanism.
+
+---
+
+## PF14 — stable eigenvalues do not imply stable eigenvectors or spectral-DNA labels
+
+Even under a bounded self-adjoint perturbation for which ordered eigenvalues satisfy a Lipschitz bound,
+
+\[
+|E_n(t)-E_n(s)|\le \|H(t)-H(s)\|,
+\]
+
+individual eigenvectors and branch labels may fail to vary smoothly at degeneracies or crossings.
+
+For a degenerate eigenspace, first-order behaviour is controlled by the compressed perturbation on that eigenspace, and a basis may rotate under arbitrarily small perturbations.
+
+Therefore:
+
+\[
+\boxed{
+\text{stable eigenvalue sequence}
+\not\Rightarrow
+\text{stable eigenvectors / stable DNA labels}.
+}
+\]
+
+This blocks the historical promotion from first-order eigenvalue perturbation directly to stability of the full spectral-DNA package.
