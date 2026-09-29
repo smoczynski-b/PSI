@@ -117,11 +117,7 @@ one has
 \boxed{H_{\min}^*=H_{\max}.}
 \]
 
-Separated real Robin conditions select maximal isotropic boundary subspaces and define self-adjoint realizations
-
-\[
-\boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
-\]
+Separated real Robin conditions select maximal isotropic boundary subspaces and define self-adjoint realizations.
 
 **STATUS:** `PASS`  
 **SOURCE:** `principia-v3-03-domain-selfadjoint.md`  
@@ -135,7 +131,7 @@ For the regular bounded-interval self-adjoint realizations from III.3,
 
 \[
 \boxed{
-\mathcal Q_{\alpha,\beta}\hookrightarrow L^2(I,\rho d\lambda)
+\mathcal Q\hookrightarrow L^2(I,\rho d\lambda)
 \text{ compactly}
 }
 \]
@@ -143,14 +139,14 @@ For the regular bounded-interval self-adjoint realizations from III.3,
 and therefore
 
 \[
-\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ is compact}.}
+\boxed{(H-z)^{-1}\text{ is compact}.}
 \]
 
 Hence
 
 \[
 \boxed{
-\sigma(H_{\alpha,\beta})=\{E_n\}_{n\ge0},
+\sigma(H)=\{E_n\}_{n\ge0},
 \qquad E_n\to+\infty,
 }
 \]
@@ -211,7 +207,7 @@ and, with the transported domain,
 
 \[
 \boxed{
-U H_{\theta_a,\theta_b}U^{-1}
+U H U^{-1}
 =-\frac12\frac{d^2}{dx^2}
 +Q(x),
 }
@@ -224,8 +220,6 @@ where
 Q(x)=V(\lambda(x))+\frac{s_{xx}}{2s}.
 }
 \]
-
-The transformed boundary conditions remain separated real conditions, and self-adjointness, spectrum, multiplicities and compact-resolvent structure are preserved by unitary equivalence.
 
 Permanent distinction:
 
@@ -243,30 +237,75 @@ Permanent distinction:
 
 # 7. III.6 — Perturbation / Hellmann–Feynman
 
-Target clean contract:
+On a fixed Hilbert space after legal unitary trivialization, let
 
-- fixed Hilbert space after the unitary Liouville trivialization;
-- differentiable self-adjoint operator or closed-form family;
-- simple isolated eigenvalue for the scalar Hellmann–Feynman formula;
-- explicit treatment of degeneracy and varying domains;
-- no automatic spectral stability from coefficient-smallness without a topology/resolvent or form theorem.
+\[
+H(t)=H_0+W(t),
+\qquad
+D(H(t))=D(H_0),
+\]
 
-**STATUS:** `NEXT / REPAIR REQUIRED`.
+with bounded self-adjoint norm-\(C^1\) perturbation \(W(t)\).
+
+Then self-adjointness and compact resolvent persist, and ordered eigenvalues satisfy
+
+\[
+\boxed{
+|E_n(t)-E_n(s)|
+\le
+\|W(t)-W(s)\|.
+}
+\]
+
+For a simple isolated eigenvalue branch, the eigenvector may be chosen \(C^1\) in the graph norm of the common domain and
+
+\[
+\boxed{
+E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle.
+}
+\]
+
+For a bounded potential perturbation this becomes
+
+\[
+\boxed{
+E'(t)=\int_J|\phi(t,x)|^2\,\partial_tQ(t,x)\,dx.
+}
+\]
+
+At a degenerate eigenvalue the first-order splitting is governed by the compressed perturbation
+
+\[
+\boxed{PWP|_{\ker(H_0-E)},}
+\]
+
+not by a naive scalar expectation value.
+
+A geometric deformation of \(\Lambda\) is not automatically a fixed-space perturbation: changing \(B,\rho\), the Liouville coordinate, interval or boundary realization requires a prior unitary/fixed-form trivialization before Hellmann–Feynman is licensed.
+
+Permanent distinctions:
+
+- small coefficient change != perturbation theorem without a topology;
+- scalar HF requires a simple isolated branch or an appropriate branchwise treatment;
+- stable eigenvalues != stable eigenvectors / spectral-DNA labels;
+- variable-domain families require an additional perturbation framework.
+
+**STATUS:** `PASS`  
+**SOURCE:** `principia-v3-06-perturbation-hellmann-feynman.md`  
+**FALSIFIERS:** PF08, PF09, PF14.
 
 ---
 
 # 8. Historical claims held in genealogy
 
-Until rebuilt, do not promote:
+Do not promote without the repaired gates:
 
-- `LOGOS=(B,C,rho)` as three independent data;
-- `LOGOS` alone determines full self-adjoint dynamics;
+- `LOGOS=(B,C,rho)` as three independent or complete dynamical data;
 - `rho dlambda` as spectral measure;
 - eigenvalue sequence alone as complete model information;
-- arbitrary small coefficient deformation implies small spectral change;
+- formal drift removal as automatic unitary equivalence;
+- arbitrary small coefficient deformation as automatic spectral or DNA stability;
 - historical `PSI-13` central theorem without III.1–III.3 gates.
-
-The old drift-removal algebra survives only inside the repaired III.5 operator contract.
 
 ---
 
@@ -274,12 +313,12 @@ The old drift-removal algebra survives only inside the repaired III.5 operator c
 
 \[
 \boxed{
-\mathrm{III.1:III.5\ PASS}
+\mathrm{III.1:III.6\ LOCAL\ PASS}
 \to
-\mathrm{III.6\ NEXT}
-\to
-\mathrm{PHISICA\ WHOLE\ CROSSCHECK}.
+\mathrm{PHISICA\ WHOLE\!\!-\!BLOCK\ CROSSCHECK\ 01\ NEXT}.
 }
 \]
+
+A sequence of local PASS results is not itself a global PHISICA PASS.
 
 No CORE5 or Agent v03 change is licensed.
