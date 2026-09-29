@@ -50,6 +50,8 @@ class MultiAnchorRetrievalRegression(unittest.TestCase):
     def test_transfer_is_directional_and_does_not_invert_dependency(self):
         forward = compile_multi_anchor_task('przenieś kontekst przesłanek dowodu z II.9 do II.7')
         backward = compile_multi_anchor_task('przenieś kontekst przesłanek dowodu z II.7 do II.9')
+        self.assertEqual(forward['status'], 'COMPILED')
+        self.assertEqual(backward['status'], 'COMPILED')
         out_forward = execute_multi_anchor(forward)
         out_backward = execute_multi_anchor(backward)
         self.assertEqual(out_forward['status'], 'RETRIEVED')
@@ -59,20 +61,24 @@ class MultiAnchorRetrievalRegression(unittest.TestCase):
         self.assertEqual(out_backward['status'], 'NO_ROUTE')
         self.assertIsNone(out_backward['transferred_view'])
 
-    def test_strict_evidence_mode_propagates_to_each_operand_and_route(self):
-        compare = compile_multi_anchor_task('porównaj przesłanki dowodu II.9 i II.7, tylko pełne certyfikaty')
-        out = execute_multi_anchor(compare)
-        self.assertEqual(compare['attestation_mode'], 'VALID_FRAGMENT_CERT_ONLY')
+    def test_strict_evidence_mode_fails_closed_on_uncovered_operand(self):
+        contract = compile_multi_anchor_task('porównaj przesłanki dowodu II.9 i II.7, tylko pełne certyfikaty')
+        self.assertEqual(contract['attestation_mode'], 'VALID_FRAGMENT_CERT_ONLY')
+        self.assertEqual(contract['status'], 'CONTRACT_CONFLICT')
+        self.assertEqual(contract['strict_coverage']['II.7']['status'], 'UNCOVERED')
+        self.assertIn('STRICT_CERT_NO_EXECUTABLE_VIEW:II.7', contract['conflicts'])
+        self.assertEqual(execute_multi_anchor(contract)['status'], 'NO_RETRIEVAL')
+
+    def test_strict_evidence_mode_propagates_when_both_views_are_covered(self):
+        contract = compile_multi_anchor_task('porównaj przesłanki dowodu II.9 i C58, tylko pełne certyfikaty')
+        self.assertEqual(contract['status'], 'COMPILED')
+        self.assertEqual(contract['strict_coverage']['II.9']['status'], 'COVERED')
+        self.assertEqual(contract['strict_coverage']['C58']['status'], 'COVERED')
+        out = execute_multi_anchor(contract)
         for view in out['views'].values():
             self.assertTrue(view['edges'])
             self.assertTrue(all(e['attestation'] == 'VALID_FRAGMENT_CERT' for e in view['edges']))
         self.assertTrue(all(e['attestation'] == 'VALID_FRAGMENT_CERT' for e in out['cross_edges']))
-
-        transfer = compile_multi_anchor_task('przenieś kontekst przesłanek dowodu z II.9 do II.7, tylko pełne certyfikaty')
-        moved = execute_multi_anchor(transfer)
-        self.assertEqual(moved['status'], 'RETRIEVED')
-        self.assertTrue(all(e['attestation'] == 'VALID_FRAGMENT_CERT' for e in moved['route']))
-        self.assertTrue(all(e['attestation'] == 'VALID_FRAGMENT_CERT' for e in moved['transferred_view']['edges']))
 
     def test_operators_are_not_aliases_for_one_merged_neighbourhood(self):
         compare = execute_multi_anchor(compile_multi_anchor_task('porównaj przesłanki dowodu II.9 i II.7'))
