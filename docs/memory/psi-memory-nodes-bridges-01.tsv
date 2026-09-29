@@ -1,0 +1,3 @@
+id	kind	status	source	label
+GO-MEMORY-REGRESSION	LAB	PASS	docs/go-memory-regression-01.md	Frozen Go memory-representation regression bank
+GO-G4	REGRESSION_CASE	PASS	docs/go-memory-regression-01.md	Situational-superko memory regression

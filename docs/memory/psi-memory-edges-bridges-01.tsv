@@ -1,0 +1,4 @@
+from	relation	to	effect	source	note
+GO-G4	MEMBER_OF	GO-MEMORY-REGRESSION	NONE	docs/go-memory-regression-01.md	G4 is the situational-superko case in the frozen Go memory ladder
+GO-MEMORY-REGRESSION	REGRESSION_FOR	II.7	NONE	docs/go-memory-regression-01.md	The Go ladder instantiates exact task-relative memory adequacy
+GO-MEMORY-REGRESSION	REGRESSION_FOR	II.9	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	R02 Go tests class-invariant legality and successor class conditions needed for recursive quotient update
