@@ -1,0 +1,10 @@
+# M4 condition B — memory-guided task pack
+# navigation/provenance layer
+docs/memory/PSI-MEMORY-M3-01.md
+docs/memory/psi-memory-nodes-bridges-01.tsv
+docs/memory/psi-memory-edges-bridges-01.tsv
+# source material reached by the M3 view
+docs/go-memory-regression-01.md
+docs/principia-v2-04-representation-adequacy.md
+docs/principia-v2-07-exact-history-memory-adequacy.md
+docs/principia-v2-09-recursive-history-quotient-update.md
