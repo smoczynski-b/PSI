@@ -39,6 +39,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III.1 — Lambda operator projectability](docs/principia-v3-01-lambda-operator-projectability.md)
 - [Volume III.2 — weighted Sturm–Liouville / pushforward measure](docs/principia-v3-02-weight-sturm-liouville.md)
 - [Volume III.3 — domain and self-adjoint realization](docs/principia-v3-03-domain-selfadjoint.md)
+- [Volume III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
@@ -78,9 +79,7 @@ Inference discipline:
 ### Volume I
 
 \[
-\boxed{
-\mathrm{V1\ FIRST\ PROSE\ PASS}=\mathrm{NORMALIZED\ PASS}.
-}
+\boxed{\mathrm{V1\ FIRST\ PROSE\ PASS}=\mathrm{NORMALIZED\ PASS}.}
 \]
 
 ### Volume II
@@ -96,29 +95,7 @@ The V2 control layer is normalized through Volume Skeleton 03 and V2 Theorem Map
 
 ### Freeze Errata 01
 
-The former C19-v2 singleton statement for the gauge-only factorization fibre is withdrawn.
-
-Current MINI result:
-
-\[
-\mathfrak F^{0}_{FB,P}(Y)
-=
-\operatorname{RawFact}^{0}_{FB,P}(Y)/G_P
-\]
-
-may be non-singleton, while
-
-\[
-\boxed{|\operatorname{im}NF|=1}
-\]
-
-and equivalently
-
-\[
-\boxed{|\mathfrak F^{0}_{FB,P}(Y)/\!\equiv_{NF}|=1.}
-\]
-
-No CORE role changed and no Agent v03 is justified.
+The former C19-v2 singleton statement for the gauge-only factorization fibre is withdrawn. Current MINI keeps unique normal-form class rather than literal gauge-only factorization uniqueness. No CORE role changed and no Agent v03 is justified.
 
 ## Volume III — PHISICA operator migration
 
@@ -147,15 +124,10 @@ For a Schrödinger-type reduction one additionally requires
 ### III.2 — weight, Sturm–Liouville form and geometric pushforward
 
 \[
-\boxed{(\rho B)'=\rho C}
-\]
-
-and
-
-\[
+\boxed{(\rho B)'=\rho C},
+\qquad
 \boxed{
-L_\Lambda
-=\frac1\rho\partial_\lambda(\rho B\partial_\lambda).
+L_\Lambda=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).
 }
 \]
 
@@ -178,28 +150,37 @@ p=\rho B,
 \tau u=-\frac1{2\rho}(pu')'+Vu,
 \]
 
-the regular Green–Lagrange form is
+one has
 
 \[
-\boxed{
-\mathfrak b(u,v)
-=\frac12[u\overline{pv'}-(pu')\overline v]_a^b.
-}
+\boxed{H_{\min}^*=H_{\max}}
 \]
 
-The minimal and maximal regular realizations satisfy
-
-\[
-\boxed{H_{\min}^*=H_{\max}.}
-\]
-
-Separated Robin boundary conditions define self-adjoint realizations
+and separated Robin boundary conditions define self-adjoint realizations
 
 \[
 \boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
 \]
 
-Dirichlet, Neumann/quasi-Neumann and mixed separated boundary conditions are special cases.
+### III.4 — compact resolvent and discrete spectrum
+
+For the regular finite-interval realizations from III.3, compactness of the form-domain embedding gives
+
+\[
+\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ compact}}
+\]
+
+for every resolvent point. Hence
+
+\[
+\boxed{
+\sigma(H_{\alpha,\beta})=\{E_n\},
+\qquad
+E_n\to+\infty,
+}
+\]
+
+with finite multiplicities and a complete orthonormal eigenbasis of \(L^2(I,\rho d\lambda)\).
 
 Permanent distinctions now include
 
@@ -207,21 +188,29 @@ Permanent distinctions now include
 \boxed{
 \text{Hilbert weight}\neq\text{spectral measure},
 }
+\]
 
 \[
 \boxed{
 \text{formal symmetry}\not\Rightarrow\text{self-adjointness},
 }
+\]
+
+\[
+\boxed{
+\text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum},
+}
+\]
 
 and
 
 \[
 \boxed{
-\text{one self-adjoint realization}\not\Rightarrow\text{unique self-adjoint realization}.
+\{E_n\}\not\Rightarrow\text{complete model identification}.
 }
 \]
 
-`III.1–III.3` are PASS. The next unit is `III.4 — compact resolvent and discrete spectrum`.
+`III.1–III.4` are PASS. The next unit is `III.5 — Liouville / normal-form transform`.
 
 ## Current phase
 
@@ -233,13 +222,9 @@ and
 \to
 \mathrm{PHISICA\ SOURCE\ AUDIT}
 \to
-\mathrm{III.1\ PASS}
+\mathrm{III.1:III.4\ PASS}
 \to
-\mathrm{III.2\ PASS}
-\to
-\mathrm{III.3\ PASS}
-\to
-\mathrm{III.4\ NEXT}.
+\mathrm{III.5\ NEXT}.
 }
 \]
 
