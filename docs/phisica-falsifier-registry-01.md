@@ -83,7 +83,7 @@ does not determine an operator until the Hilbert space and domain/boundary reali
 
 ---
 
-## PF05 — formal drift removal is not automatic isospectral unitary equivalence
+## PF05 — formal drift removal is not automatic unitary/isospectral equivalence
 
 A multiplicative substitution
 
@@ -91,7 +91,21 @@ A multiplicative substitution
 \psi=e^\beta\phi
 \]
 
-that removes a first-derivative coefficient algebraically does not by itself establish a bounded/unitary equivalence of closed operators or preservation of spectrum.
+that removes a first-derivative coefficient algebraically does not by itself establish an operator similarity, unitary equivalence or preservation of spectrum.
+
+On the regular compact interval of III.5 the historical multiplier can be promoted to a bounded invertible similarity **only after the operator domain is transported explicitly**. Even then,
+
+\[
+\boxed{
+\text{bounded similarity}
+\not\Rightarrow
+\text{unitary equivalence}
+}
+\]
+
+and self-adjointness need not be preserved in the unchanged Hilbert metric.
+
+The canonical unitary Liouville transform additionally requires the Liouville coordinate change and the Hilbert-Jacobian amplitude.
 
 ---
 
