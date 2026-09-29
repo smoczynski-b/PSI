@@ -34,7 +34,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III Addendum 01](docs/principia-volume-skeleton-03-v3-addendum-01.md)
 - [Volume III Addendum 02 — PHISICA closure / MOST handoff](docs/principia-volume-skeleton-03-v3-addendum-02.md)
 - [Current V2 Theorem Map 04](docs/principia-v2-theorem-map-04.md)
-- [Current V3 Theorem Map 02](docs/principia-v3-theorem-map-02.md)
+- [Current V3 Theorem Map 03](docs/principia-v3-theorem-map-03.md)
 - [PHISICA Operator Migration 01](docs/phisica-operator-migration-01.md)
 - [PHISICA Operator Migration 01 — Errata 01](docs/phisica-operator-migration-01-errata-01.md)
 - [PHISICA Whole-Block Crosscheck 01](docs/principia-v3-phisica-whole-crosscheck-01.md)
@@ -45,12 +45,14 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Volume III.4 — compact resolvent and discrete spectrum](docs/principia-v3-04-compact-resolvent-spectrum.md)
 - [Volume III.5 — unitary Liouville normal form](docs/principia-v3-05-liouville-normal-form.md)
 - [Volume III.6 — perturbation and Hellmann–Feynman](docs/principia-v3-06-perturbation-hellmann-feynman.md)
+- [Volume III.7 — MOST spectral information hierarchy](docs/principia-v3-07-spectral-information-hierarchy-most.md)
 - [Decision / Epistemic Ledger base](docs/psi-ledger-01.md)
 - [Ledger Addendum 02](docs/psi-ledger-01-addendum-02.md)
 - [Ledger Addendum 03 — PHISICA migration](docs/psi-ledger-01-addendum-03.md)
 - [Ledger Addendum 04 — PHISICA whole-block handoff](docs/psi-ledger-01-addendum-04.md)
+- [Ledger Addendum 05 — MOST / HCube handoff](docs/psi-ledger-01-addendum-05.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
-- [Current Sector Work Map 03](docs/work-map-03.md)
+- [Current Sector Work Map 04](docs/work-map-04.md)
 
 Historical maps, skeletons and pre-repair PHISICA material remain for provenance.
 
@@ -169,13 +171,13 @@ The regular minimal/maximal realizations satisfy
 \boxed{H_{\min}^*=H_{\max}}.
 \]
 
-The whole-block audit corrected the inner-product/boundary-form convention. With
+With
 
 \[
 \langle f,g\rangle_\rho=\int\overline f g\rho,
 \]
 
-the Green–Lagrange form is
+the corrected Green–Lagrange form is
 
 \[
 \boxed{
@@ -218,8 +220,6 @@ defines a unitary map to ordinary \(L^2(J,dx)\), with
 \boxed{UHU^{-1}=-\frac12\partial_x^2+V(\lambda(x))+\frac{s_{xx}}{2s}.}
 \]
 
-The historical drift-killing multiplier survives only as a bounded similarity after exact domain transport; bounded similarity is not unitary equivalence.
-
 ### III.6 — perturbation and Hellmann–Feynman
 
 After legal trivialization to one fixed Hilbert space/domain,
@@ -234,17 +234,13 @@ with bounded self-adjoint norm-\(C^1\) perturbation. Then
 \boxed{|E_n(t)-E_n(s)|\le\|W(t)-W(s)\|.}
 \]
 
-For a simple isolated branch, with graph-norm differentiable eigenvector,
+For a simple isolated branch,
 
 \[
 \boxed{E'(t)=\langle\phi(t),W'(t)\phi(t)\rangle.}
 \]
 
-Degenerate first-order splitting is governed by the compressed perturbation on the eigenspace. Raw geometric/LOGOS deformations require an additional fixed-space or closed-form trivialization when spaces, intervals or domains vary.
-
 ### PHISICA whole-block result
-
-Local PASS results were not promoted automatically. `PHISICA Whole-Block Crosscheck 01` audited the six units together, found the III.3 boundary-form convention defect, applied the local errata and then granted:
 
 \[
 \boxed{
@@ -253,9 +249,79 @@ Local PASS results were not promoted automatically. `PHISICA Whole-Block Crossch
 }
 \]
 
-The arrows above must be read as **progressively stronger typed contracts**, not as a blanket implication that every III.1 model satisfies III.2–III.6.
+The arrows above must be read as progressively stronger typed contracts, not as a blanket implication that every III.1 model satisfies III.2–III.6.
 
-Permanent distinctions include
+## Volume III — MOST operator-information layer
+
+III.7 changes the question from operator existence to representation adequacy.
+
+For finite-dimensional operators with a fixed norm define
+
+\[
+\rho_\sigma(A)=\sigma(A),
+\]
+
+\[
+r_A(z)=
+\begin{cases}
+\|(zI-A)^{-1}\|,&z\notin\sigma(A),\\
++\infty,&z\in\sigma(A),
+\end{cases}
+\]
+
+and the full pseudospectral family
+
+\[
+\rho_{ps}(A)=\bigl(\sigma_\varepsilon(A)\bigr)_{\varepsilon>0}.
+\]
+
+Then
+
+\[
+\boxed{
+\ker_{eq}\rho_r
+=
+\ker_{eq}\rho_{ps}
+\subseteq
+\ker_{eq}\rho_\sigma.
+}
+\]
+
+Thus the full pseudospectral family and complete resolvent-norm profile are equivalent representations under the declared convention, while the spectrum is a coarser factor.
+
+The operator-valued resolvent sits above the scalar profile:
+
+\[
+\boxed{
+\mathcal R_A(\cdot)
+\to
+r_A(\cdot)
+\leftrightarrow
+\rho_{ps}(A)
+\to
+\rho_\sigma(A).
+}
+\]
+
+A separate branch records transient dynamics:
+
+\[
+\boxed{A\to e^{tA}\to\|e^{tA}\|.}
+\]
+
+No unproved scalar resolvent-to-semigroup factorization is asserted.
+
+HCube proves that equal spectrum and equal operator norm can still fail a resolvent-sensitive task. A second basis-sensitive witness shows that equal full resolvent-norm profiles can still fail a directional resolvent task when unitary similarity is not gauge.
+
+The MOST rule is not a privileged representation but the existing PSI criterion
+
+\[
+\boxed{\ker_{eq}\rho\subseteq E_{\mathcal T}.}
+\]
+
+`III.7` is `PROOF PASS / LOCAL CROSS-CHECK PASS`.
+
+## Permanent distinctions
 
 \[
 \boxed{\text{Hilbert weight}\neq\text{spectral measure}},
@@ -278,20 +344,14 @@ Permanent distinctions include
 \]
 
 \[
-\boxed{\text{small coefficient change}\not\Rightarrow\text{spectral stability without a topology}},
+\boxed{\text{spectrum as invariant}\neq\text{spectrum as task-sufficient representation}},
 \]
 
-and
-
 \[
-\boxed{\text{stable eigenvalues}\not\Rightarrow\text{stable eigenvectors / DNA labels}.}
+\boxed{\text{resolvent-sensitive adequacy}\neq\text{automatic transient-growth adequacy}}.
 \]
 
 ## Current phase
-
-The PHISICA operator migration block is closed. The next Volume III question is informational rather than existential:
-
-> Which spectral/operator representation preserves enough distinctions for the declared task?
 
 Current execution graph:
 
@@ -303,9 +363,9 @@ Current execution graph:
 \to
 \mathrm{PHISICA\ III.1:III.6\ GLOBAL\ PASS}
 \to
-\mathrm{III.7\ MOST\ NEXT}
+\mathrm{III.7\ MOST\ PASS}
 \to
-\mathrm{III.8\ HCUBE}.
+\mathrm{III.8\ HCUBE\ NEXT}.
 }
 \]
 
