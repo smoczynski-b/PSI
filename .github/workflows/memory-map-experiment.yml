@@ -14,6 +14,7 @@ on:
       - 'experiments/PSI-MEMORY-M11-GROWTH-01.md'
       - 'experiments/PSI-MEMORY-M12-LOCAL-COMPETITION-01.md'
       - 'experiments/PSI-MEMORY-M13-TASK-CONTRACT-01.md'
+      - 'experiments/PSI-MEMORY-M14-COMPOSITION-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -21,6 +22,7 @@ on:
       - 'experiments/m11-record-sequence.tsv'
       - 'experiments/m12-task-contract.tsv'
       - 'experiments/m13-natural-tasks.tsv'
+      - 'experiments/m14-composition-tasks.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -36,6 +38,8 @@ on:
       - 'scripts/test_m12_local_competition.py'
       - 'scripts/compile_task_contract.py'
       - 'scripts/test_m13_task_to_contract.py'
+      - 'scripts/compose_task_contract.py'
+      - 'scripts/test_m14_contract_composition.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -81,3 +85,5 @@ jobs:
         run: python3 scripts/test_m12_local_competition.py
       - name: Run M13 task-to-contract regression
         run: python3 scripts/test_m13_task_to_contract.py
+      - name: Run M14 contract composition regression
+        run: python3 scripts/test_m14_contract_composition.py
