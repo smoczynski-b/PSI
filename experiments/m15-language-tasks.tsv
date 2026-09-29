@@ -1,0 +1,8 @@
+case_id	group_id	language	task	expected_status
+L1	BROAD	PL	sprawdź przesłanki dowodu II.9 i jego granice	COMPILED
+L2	BROAD	EN	check the proof prerequisites of II.9 and its boundaries	COMPILED
+L3	BROAD	DE	prüfe die Beweisvoraussetzungen von II.9 und seine Grenzen	COMPILED
+L4	STRICT_BOUNDARY	PL	dla II.9 pokaż granice, tylko pełne certyfikaty	COMPILED
+L5	STRICT_BOUNDARY	EN	for II.9 show boundaries, only full certificates	COMPILED
+L6	STRICT_BOUNDARY	DE	für II.9 zeige Grenzen, nur vollständige Zertifikate	COMPILED
+L7	UNKNOWN	FR	vérifie les prémisses de la preuve II.9 et ses limites	NEEDS_LANGUAGE_ADAPTER
