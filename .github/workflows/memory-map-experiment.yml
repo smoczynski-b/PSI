@@ -6,12 +6,14 @@ on:
     paths:
       - 'docs/memory/**'
       - 'experiments/PSI-MEMORY-M4-01.md'
+      - 'experiments/PSI-MEMORY-M6-REL-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
       - 'scripts/test_memory_pack.py'
+      - 'scripts/test_relation_description.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -32,3 +34,5 @@ jobs:
         run: python3 scripts/build_memory_pack.py --start GO-G4 --radius 3 --check experiments/m5-generated-manifest.txt
       - name: Run M5 automatic pack regression
         run: python3 scripts/test_memory_pack.py
+      - name: Run M6 relational-description regression
+        run: python3 scripts/test_relation_description.py
