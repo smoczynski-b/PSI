@@ -36,6 +36,33 @@ def detect_operator(task: str) -> str | None:
     return hits[0] if len(hits) == 1 else None
 
 
+def _single_contract(contract: dict, anchor: str) -> dict:
+    return {
+        "status": "COMPILED",
+        "task": contract["task"],
+        "anchor": anchor,
+        "intents": contract["intents"],
+        "relation_policy": contract["relation_policy"],
+        "local_radius": contract["local_radius"],
+        "edge_budget": contract["per_anchor_edge_budget"],
+        "stop_condition": "EDGE_BUDGET_OR_FRONTIER_EXHAUSTED",
+        "attestation_mode": contract["attestation_mode"],
+        "compiler": contract["compiler"],
+    }
+
+
+def _strict_operand_coverage(compiled: dict) -> dict:
+    coverage = {}
+    for anchor in compiled["anchors"]:
+        out = memory.retrieve(_single_contract(compiled, anchor))
+        count = len(out.get("edges", []))
+        coverage[anchor] = {
+            "selected_edges": count,
+            "status": "COVERED" if count else "UNCOVERED",
+        }
+    return coverage
+
+
 def compile_multi_anchor_task(task: str) -> dict:
     anchors = detect_anchors(task)
     intents = detect_intents(task)
@@ -63,8 +90,9 @@ def compile_multi_anchor_task(task: str) -> dict:
         return {**base, "status": "NEEDS_ANCHOR_POLICY", "conflicts": ["MULTIPLE_ANCHORS_WITHOUT_OPERATOR"]}
     if not intents:
         return {**base, "status": "NEEDS_CONTRACT", "conflicts": ["MISSING_TASK_INTENT"]}
+
     budget = intent_budget(intents)
-    return {
+    compiled = {
         **base,
         "status": "COMPILED",
         "relation_policy": build_policy(intents),
@@ -75,20 +103,20 @@ def compile_multi_anchor_task(task: str) -> dict:
         "conflicts": [],
     }
 
+    if strict:
+        coverage = _strict_operand_coverage(compiled)
+        uncovered = [anchor for anchor, info in coverage.items() if info["status"] == "UNCOVERED"]
+        if uncovered:
+            return {
+                **compiled,
+                "status": "CONTRACT_CONFLICT",
+                "stop_condition": "NO_RETRIEVAL",
+                "strict_coverage": coverage,
+                "conflicts": [f"STRICT_CERT_NO_EXECUTABLE_VIEW:{anchor}" for anchor in uncovered],
+            }
+        compiled["strict_coverage"] = coverage
 
-def _single_contract(contract: dict, anchor: str) -> dict:
-    return {
-        "status": "COMPILED",
-        "task": contract["task"],
-        "anchor": anchor,
-        "intents": contract["intents"],
-        "relation_policy": contract["relation_policy"],
-        "local_radius": contract["local_radius"],
-        "edge_budget": contract["per_anchor_edge_budget"],
-        "stop_condition": "EDGE_BUDGET_OR_FRONTIER_EXHAUSTED",
-        "attestation_mode": contract["attestation_mode"],
-        "compiler": contract["compiler"],
-    }
+    return compiled
 
 
 def _edge_key(edge: dict) -> tuple[str, str, str]:
