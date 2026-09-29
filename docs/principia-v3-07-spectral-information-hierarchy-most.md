@@ -372,6 +372,67 @@ Hence the full operator-valued resolvent at one common legal point is faithful o
 
 This does **not** imply that its norm is faithful, nor that a basis-sensitive task may quotient by unitary similarity unless the contract declares that similarity as gauge.
 
+## Directional witness III.7-X2
+
+Fix the standard basis of \(\mathbb C^2\), do **not** quotient by unitary change of basis, and set
+
+\[
+A=\operatorname{diag}(0,1),
+\qquad
+B=\operatorname{diag}(1,0).
+\]
+
+The two matrices are unitarily similar, so for every legal \(z\),
+
+\[
+\boxed{
+r_A(z)=r_B(z).}
+\]
+
+Thus
+
+\[
+\rho_r(A)=\rho_r(B)
+\]
+
+and likewise their full pseudospectral families agree.
+
+However, at \(z=2\),
+
+\[
+(2I-A)^{-1}=\operatorname{diag}(1/2,1),
+\]
+
+\[
+(2I-B)^{-1}=\operatorname{diag}(1,1/2).
+\]
+
+For the basis-sensitive task
+
+\[
+T(X):=\langle e_1,(2I-X)^{-1}e_1\rangle,
+\]
+
+we get
+
+\[
+\boxed{T(A)=1/2,\qquad T(B)=1.}
+\]
+
+Therefore
+
+\[
+\boxed{
+\ker_{eq}\rho_r
+\not\subseteq
+\ker_{eq}T
+}
+\]
+
+for this declared contract.
+
+This witness is intentionally contract-relative. If unitary similarity is declared gauge and the task is required to be gauge-invariant, the task above is not legal on the quotient. Thus the example does not privilege basis-sensitive information universally; it proves only that scalar resolvent norms can lose directional information.
+
 ---
 
 # 7. Semigroup / transient-growth branch
@@ -473,13 +534,13 @@ or an \(\varepsilon\)-pseudospectral query, \(\rho_\sigma\) must be tested and c
 
 ### Operator-response task
 
-If the task depends on directions or vectors of
+If the task depends on directional/vector-valued information in
 
 \[
 (zI-A)^{-1},
 \]
 
-the scalar norm profile can itself be too coarse.
+the scalar norm profile must itself be tested; III.7-X2 gives an explicit failure in a basis-sensitive contract.
 
 ### Transient-growth task
 
@@ -562,8 +623,14 @@ Those statuses remain historical/open according to the source audit.
 ### Factorization
 `PASS`: \(\rho_r\leftrightarrow\rho_{ps}\to\rho_\sigma\) is proved under a fixed norm and explicit pseudospectrum convention.
 
-### Strictness
+### Strictness I
 `PASS`: Regression Bank R01 / HCube shows spectrum+norm can fail a resolvent task.
+
+### Strictness II
+`PASS`: III.7-X2 shows the full scalar resolvent-norm profile can fail a directional resolvent task when basis/unitary equivalence is not gauge.
+
+### Gauge discipline
+`PASS`: III.7-X2 is explicitly contract-relative and is not legal after quotienting by unitary similarity unless the task descends to that quotient.
 
 ### No total-order inflation
 `PASS`: no unproved scalar resolvent-to-semigroup factorization is asserted.
