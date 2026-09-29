@@ -24,9 +24,11 @@ INTENT_POLICIES = {
 
 PROOF_MARKERS = (
     "przeslanki dowodu",
+    "przeslanek dowodu",
     "zaleznosci dowodowe",
     "zaleznosci dowodu",
     "przeslanki dowodowe",
+    "przeslanek dowodowych",
 )
 BOUNDARY_MARKERS = (
     "granice",
