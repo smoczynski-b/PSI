@@ -15,6 +15,7 @@ on:
       - 'experiments/PSI-MEMORY-M12-LOCAL-COMPETITION-01.md'
       - 'experiments/PSI-MEMORY-M13-TASK-CONTRACT-01.md'
       - 'experiments/PSI-MEMORY-M14-COMPOSITION-01.md'
+      - 'experiments/PSI-MEMORY-M15-LANG-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -23,6 +24,9 @@ on:
       - 'experiments/m12-task-contract.tsv'
       - 'experiments/m13-natural-tasks.tsv'
       - 'experiments/m14-composition-tasks.tsv'
+      - 'experiments/m15-language-tasks.tsv'
+      - 'experiments/m15-denotation-lexicon.tsv'
+      - 'experiments/m15-world-relations.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -40,6 +44,8 @@ on:
       - 'scripts/test_m13_task_to_contract.py'
       - 'scripts/compose_task_contract.py'
       - 'scripts/test_m14_contract_composition.py'
+      - 'scripts/compile_multilingual_contract.py'
+      - 'scripts/test_m15_language_invariance.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -87,3 +93,5 @@ jobs:
         run: python3 scripts/test_m13_task_to_contract.py
       - name: Run M14 contract composition regression
         run: python3 scripts/test_m14_contract_composition.py
+      - name: Run M15 language invariance regression
+        run: python3 scripts/test_m15_language_invariance.py
