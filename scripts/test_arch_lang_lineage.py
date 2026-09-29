@@ -36,6 +36,11 @@ RECOVERED_THREE = {
     "ARCH-2026-09-06-PSI-LANG",
 }
 
+FRAGMENT_CERTIFIED = {
+    "ARCH-2026-04-27-LANGUAGE-STRUCTURE",
+    "ARCH-2026-05-20-LOCAL-ATLASES",
+}
+
 
 def read_tsv(path: Path):
     with path.open("r", encoding="utf-8", newline="") as f:
@@ -67,6 +72,10 @@ def main() -> None:
         assert archive_id in recovered_by_id, f"missing source recovery row: {archive_id}"
         assert recovered_by_id[archive_id]["provenance_level"] == "CONVERSATION_RECOVERED"
 
+    for archive_id in FRAGMENT_CERTIFIED:
+        assert archive_id in recovered_by_id
+        assert recovered_by_id[archive_id]["provenance_level"] == "RAW_FRAGMENT_CERTIFIED"
+
     for edge in edges:
         assert edge["from"] in by_id, f"unknown edge source: {edge['from']}"
         assert edge["to"] in by_id, f"unknown edge target: {edge['to']}"
@@ -85,33 +94,30 @@ def main() -> None:
     assert all(row["id"] not in active_sources for row in candidates)
     assert not (RECOVERED_THREE & {row["id"] for row in candidates})
 
-    # Exact recovered source roles must now participate in active genealogy.
     assert any(e["from"] == "ARCH-2025-11-25-DENOTATION-LAYERS" and e["to"] == "M15-LANG" for e in edges)
     assert any(e["from"] == "ARCH-2026-06-01-OBJECT-RELATIONAL-IDENTITY" and e["to"] == "M19-CROSSVIEW" for e in edges)
     assert any(e["from"] == "ARCH-2026-09-06-PSI-LANG" and e["to"] == "M15-LANG" for e in edges)
     assert any(e["from"] == "ARCH-2026-09-06-PSI-LANG" and e["to"] == "M16" for e in edges)
 
-    # The genealogy must reach all four current executable stages without
-    # treating historical resemblance as proof dependency.
     assert any(e["to"] == "M15-LANG" and e["relation"] == "PRECURSOR_OF" for e in edges)
     assert any(e["to"] == "M16" and e["relation"] == "SURVIVES_AS" for e in edges)
     assert any(e["to"] == "M17" and e["relation"] == "PRECURSOR_OF" for e in edges)
     assert any(e["to"] == "M19-CROSSVIEW" and e["relation"] == "PRECURSOR_OF" for e in edges)
     assert not any("DEPENDS" in e["relation"] for e in edges)
 
-    raw_hashed = sum(r["provenance_level"] == "RAW_ARCHIVE_HASHED" for r in recovery)
+    fragment_certified = sum(r["provenance_level"] == "RAW_FRAGMENT_CERTIFIED" for r in recovery)
     conv_recovered = sum(r["provenance_level"] == "CONVERSATION_RECOVERED" for r in recovery)
 
     print("ARCH-LANG-LINEAGE-01 REGISTRY_CONSISTENCY_PASS")
     print(f"nodes={len(nodes)} edges={len(edges)} recovery_rows={len(recovery)}")
-    print(f"raw_archive_hashed={raw_hashed} conversation_recovered={conv_recovered}")
+    print(f"raw_fragment_certified={fragment_certified} conversation_recovered={conv_recovered}")
     print(f"source_recovery_candidates={len(candidates)} active_candidate_edges=0")
     print("recovered Nov-2025 denotation lineage=ACTIVE")
     print("recovered Jun-2026 relational-object lineage=ACTIVE")
     print("recovered Sep-2026 PSI-LANG lineage=ACTIVE")
     print("historical resemblance != proof dependency=PASS")
     print("surviving role != surviving formalism=PASS")
-    print("BOUNDARY: recovered conversation provenance remains weaker than fragment-addressable repository certificates")
+    print("BOUNDARY: conversation-recovered provenance remains weaker than fragment-addressable source certificates")
     print("NOT_CHECKED: archived source bytes, speaker attribution, exact quotations, historical precedence")
 
 
