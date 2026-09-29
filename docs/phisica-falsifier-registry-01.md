@@ -190,3 +190,25 @@ Thus:
 \text{geometric pushforward measure}.
 }
 \]
+
+---
+
+## PF12 — formal symmetry or boundary restrictions do not by themselves imply self-adjointness
+
+For a regular Sturm–Liouville expression, the vanishing of the Green boundary form on a proposed domain proves **symmetry**, not automatically self-adjointness.
+
+A self-adjoint realization requires the boundary trace subspace to be maximal isotropic for the Green–Lagrange form, equivalently that the adjoint domain coincide with the proposed domain.
+
+Thus:
+
+\[
+\boxed{
+\mathfrak b|_{D\times D}=0
+\not\Rightarrow
+H_D=H_D^*
+}
+\]
+
+without the maximality/adjoint-domain check.
+
+III.3 supplies this check for the regular separated Robin family.
