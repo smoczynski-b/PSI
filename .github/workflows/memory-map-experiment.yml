@@ -16,6 +16,7 @@ on:
       - 'experiments/PSI-MEMORY-M13-TASK-CONTRACT-01.md'
       - 'experiments/PSI-MEMORY-M14-COMPOSITION-01.md'
       - 'experiments/PSI-MEMORY-M15-LANG-01.md'
+      - 'experiments/PSI-MEMORY-M16-LANGUAGE-FIBRE-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -46,6 +47,8 @@ on:
       - 'scripts/test_m14_contract_composition.py'
       - 'scripts/compile_multilingual_contract.py'
       - 'scripts/test_m15_language_invariance.py'
+      - 'scripts/resolve_language_fibre.py'
+      - 'scripts/test_m16_language_fibre.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -95,3 +98,5 @@ jobs:
         run: python3 scripts/test_m14_contract_composition.py
       - name: Run M15 language invariance regression
         run: python3 scripts/test_m15_language_invariance.py
+      - name: Run M16 language-fibre regression
+        run: python3 scripts/test_m16_language_fibre.py
