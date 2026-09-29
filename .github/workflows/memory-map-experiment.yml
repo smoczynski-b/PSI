@@ -17,6 +17,7 @@ on:
       - 'experiments/PSI-MEMORY-M14-COMPOSITION-01.md'
       - 'experiments/PSI-MEMORY-M15-LANG-01.md'
       - 'experiments/PSI-MEMORY-M16-LANGUAGE-FIBRE-01.md'
+      - 'experiments/PSI-MEMORY-M17-CROSS-PARTITION-01.md'
       - 'experiments/m4-*-manifest.txt'
       - 'experiments/m5-generated-manifest.txt'
       - 'experiments/m8-generated-context.json'
@@ -28,6 +29,8 @@ on:
       - 'experiments/m15-language-tasks.tsv'
       - 'experiments/m15-denotation-lexicon.tsv'
       - 'experiments/m15-world-relations.tsv'
+      - 'experiments/m17-world-objects.tsv'
+      - 'experiments/m17-lexical-partitions.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/build_memory_pack.py'
@@ -49,6 +52,7 @@ on:
       - 'scripts/test_m15_language_invariance.py'
       - 'scripts/resolve_language_fibre.py'
       - 'scripts/test_m16_language_fibre.py'
+      - 'scripts/test_m17_cross_partition_domain.py'
       - '.github/workflows/memory-map-experiment.yml'
   workflow_dispatch:
 
@@ -100,3 +104,5 @@ jobs:
         run: python3 scripts/test_m15_language_invariance.py
       - name: Run M16 language-fibre regression
         run: python3 scripts/test_m16_language_fibre.py
+      - name: Run M17 cross-partition fibre regression
+        run: python3 scripts/test_m17_cross_partition_domain.py
