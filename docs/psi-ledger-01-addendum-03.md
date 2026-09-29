@@ -28,20 +28,11 @@ but several later claims require repairs before migration:
 - eigenvalue sequence was over-promoted as complete model information;
 - perturbation/Hellmann–Feynman claims lacked fixed-space/domain hypotheses.
 
-Outcome:
-
-\[
-\boxed{
-\mathrm{PHISICA\ OPERATOR\ MIGRATION\ 01}
-=\mathrm{REPAIR\ MAP\ ESTABLISHED}.
-}
-\]
-
 No CORE change.
 
 ## E034 — exact Lambda projectability criterion
 
-The first rebuilt PHISICA theorem establishes
+III.1 establishes
 
 \[
 \boxed{
@@ -60,123 +51,95 @@ For `H=-1/2 Delta + V`, exact reduction additionally requires
 V=V_\Lambda\circ\Lambda.
 \]
 
-Permanent witness:
-
-\[
-\Lambda(x,y)=x+y^2
-\]
-
-is a regular submersion but is not operator-projectable.
-
 Result: `III.1 PASS`.
 
 ## E035 — PHISICA local falsifier bank
 
-`phisica-falsifier-registry-01.md` now freezes PF01–PF12, including:
+`phisica-falsifier-registry-01.md` now freezes PF01–PF13. New high-value locks include:
 
-- regular coordinate != projectable operator;
-- formal expression != self-adjoint realization;
-- weight measure != spectral measure;
-- eigenvalues alone != complete representation;
-- Hellmann–Feynman requires perturbation hypotheses;
-- integrating-factor weight != geometric pushforward without an additional coarea/integration contract;
-- vanishing Green boundary form != self-adjointness without maximal boundary/adjoint-domain control.
+- PF11: integrating-factor weight != geometric pushforward without an additional coarea/integration contract;
+- PF12: vanishing Green boundary form != self-adjointness without maximal boundary/adjoint-domain control;
+- PF13: self-adjointness != compact resolvent/discrete spectrum.
 
 These are migration guards, not new PSI primitives.
 
 ## E036 — weighted realization and geometric pushforward
 
-III.2 separates two statements previously conflated in PHISICA.
-
-First, for projectable coefficients with `B>0`,
+III.2 separates the positive integrating-factor/Hilbert weight from the geometric pushforward. For projectable coefficients with `B>0`,
 
 \[
 \boxed{(\rho B)'=\rho C}
 \]
 
-defines a positive Sturm–Liouville/Hilbert weight uniquely up to positive scale and yields
+and under the additional proper-submersion/coarea contract,
 
 \[
 \boxed{
-L_\Lambda
-=\rho^{-1}\partial_\lambda(\rho B\partial_\lambda).
+\rho d\lambda=\Lambda_*(d\mathrm{vol}_g)
 }
 \]
 
-Second, under a proper-submersion/coarea contract, the geometric pushforward
-
-\[
-\Lambda_*(d\mathrm{vol}_g)=m(\lambda)d\lambda
-\]
-
-has density satisfying
-
-\[
-\boxed{(mB)'=mC.}
-\]
-
-Hence after normalization,
-
-\[
-\boxed{
-\rho d\lambda=\Lambda_*(d\mathrm{vol}_g).
-}
-\]
+after normalization.
 
 Result: `III.2 PASS`.
 
 ## E037 — domain and self-adjoint realization
 
-III.3 replaces the historical domain-free self-adjointness statement by a regular finite-interval operator theorem.
-
-For
+III.3 replaces the historical domain-free self-adjointness statement by a regular finite-interval operator theorem. The minimal/maximal pair satisfies
 
 \[
-p=\rho B,
-\qquad
-\tau u=-\frac1{2\rho}(pu')'+Vu,
+\boxed{H_{\min}^*=H_{\max},}
 \]
 
-one defines the maximal domain by
-
-\[
-u,pu'\in AC([a,b]),
-\qquad
-\tau u\in L^2(I,\rho d\lambda).
-\]
-
-The Green–Lagrange boundary form is
-
-\[
-\boxed{
-\mathfrak b(u,v)
-=\frac12[u\overline{pv'}-(pu')\overline v]_a^b.
-}
-\]
-
-The regular minimal/maximal pair satisfies
-
-\[
-\boxed{H_{\min}^*=H_{\max}.}
-\]
-
-Separated Robin boundary conditions select maximal isotropic boundary trace subspaces and yield
+and separated Robin boundary conditions give
 
 \[
 \boxed{H_{\alpha,\beta}=H_{\alpha,\beta}^*.}
 \]
 
-Dirichlet, Neumann/quasi-Neumann and mixed separated cases are recovered as special cases.
+Result: `III.3 PASS`.
+
+## E038 — compact resolvent and recovered discrete spectrum
+
+III.4 recovers the legitimate finite-interval spectral conclusion only after III.3 fixes the self-adjoint realization.
+
+For regular positive coefficients on a bounded interval, the form domain is a closed subspace of `H^1(I)` with equivalent form norm. Rellich compactness gives
+
+\[
+\boxed{
+\mathcal Q_{\alpha,\beta}\hookrightarrow L^2(I,\rho d\lambda)
+\text{ compactly}.
+}
+\]
+
+Hence every separated self-adjoint realization from III.3 has compact resolvent:
+
+\[
+\boxed{(H_{\alpha,\beta}-z)^{-1}\text{ compact}.}
+\]
+
+Therefore
+
+\[
+\boxed{
+\sigma(H_{\alpha,\beta})=\{E_n\},
+\qquad E_n\to+\infty,
+}
+\]
+
+with finite multiplicities and a complete orthonormal eigenbasis.
 
 Permanent boundary:
 
 \[
 \boxed{
-\text{formal symmetry}\not\Rightarrow\text{self-adjointness}.
+\text{self-adjointness}\not\Rightarrow\text{compact resolvent/discrete spectrum}.
 }
 \]
 
-Result: `III.3 PASS`.
+PF07 remains active: the eigenvalue sequence is not a complete model invariant.
+
+Result: `III.4 PASS`.
 
 ---
 
@@ -184,7 +147,7 @@ Result: `III.3 PASS`.
 
 ## D015 — do not migrate PHISICA chapter order directly
 
-**Action:** rebuild Volume III PHISICA in the order
+Rebuild Volume III PHISICA in the order
 
 \[
 \boxed{
@@ -202,7 +165,7 @@ Result: `III.3 PASS`.
 }
 \]
 
-**Result:** III.1–III.3 pass; III.4 released.
+**Result:** III.1–III.4 pass; III.5 released.
 
 ## D016 — keep historical PSI-13 / DNA / broad LOGOS claims in genealogy
 
@@ -213,23 +176,25 @@ Until they pass the new gates, do not promote:
 - eigenvalue sequence as complete model signature;
 - domain-free self-adjointness or perturbative stability.
 
-These remain Volume IV/source genealogy or unresolved Volume III material.
-
 ## D017 — separate weight construction from geometric and spectral measures
 
 Keep three levels separate:
 
-1. integrating-factor/Hilbert weight from `(rho B)'=rho C`;
-2. geometric pushforward only after coarea/integration hypotheses;
-3. spectral measure only after a specified self-adjoint realization and the spectral theorem.
+1. integrating-factor/Hilbert weight;
+2. geometric pushforward after coarea/integration hypotheses;
+3. spectral measure only after a specified self-adjoint realization and spectral theorem.
 
-## D018 — self-adjointness requires a boundary realization, not only a formal expression
+## D018 — self-adjointness requires a boundary realization
 
-**Observation:** the historical source listed candidate domains and boundary conditions after a general statement of self-adjoint extension existence.
+Use `H_min`, `H_max`, Green boundary form and maximal isotropic boundary subspaces. Separated Robin conditions are the current canonical regular family.
 
-**Action:** rebuild the regular operator through `H_min`, `H_max`, Green boundary form and maximal isotropic boundary subspaces. Use separated Robin conditions as the current canonical regular family.
+## D019 — recover discrete spectrum only through compactness
 
-**Result:** III.3 passes; compact-resolvent/discrete-spectrum claims are now legally released for III.4.
+**Observation:** the historical source states discreteness on a bounded interval after only a short Sturm–Liouville appeal.
+
+**Action:** derive compact resolvent from compact form-domain embedding after III.3.
+
+**Result:** discrete spectrum and complete eigenbasis are restored for the regular finite-interval sector without promoting self-adjointness alone to a discreteness criterion. PF13 added.
 
 ---
 
@@ -237,13 +202,9 @@ Keep three levels separate:
 
 \[
 \boxed{
-\mathrm{III.1\ PASS}
+\mathrm{III.1:III.4\ PASS}
 \to
-\mathrm{III.2\ PASS}
-\to
-\mathrm{III.3\ PASS}
-\to
-\mathrm{III.4\ COMPACT\ RESOLVENT/SPECTRUM\ NEXT}.
+\mathrm{III.5\ LIOUVILLE/NORMAL\ FORM\ NEXT}.
 }
 \]
 
