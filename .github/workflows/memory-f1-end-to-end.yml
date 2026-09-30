@@ -1,0 +1,36 @@
+name: PSI memory F1 end-to-end reuse
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/test_f1_end_to_end_reuse.py'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/shared_memory_runtime.py'
+      - 'scripts/multiworkspace_runtime.py'
+      - 'scripts/active_memory_runtime.py'
+      - 'scripts/active_memory.py'
+      - 'scripts/mvcc_workspace.py'
+      - '.github/workflows/memory-f1-end-to-end.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  f1-end-to-end:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run F1 source-bound restart and reuse regression
+        run: python3 scripts/test_f1_end_to_end_reuse.py
+      - name: Re-run servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Re-run servant restart/collision regression
+        run: python3 scripts/test_servant_restart_collision.py
+      - name: Re-run durable WAL regression
+        run: python3 scripts/test_active_memory_wal.py
+      - name: Re-run full cost-accounting regression
+        run: python3 scripts/test_active_memory_cost_accounting.py
