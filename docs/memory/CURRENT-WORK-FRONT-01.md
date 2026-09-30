@@ -3,8 +3,9 @@
 **Status:** EXPERIMENTAL / NON-CANONICAL / CURRENT POINTER  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30  
-**Reviewed code:** `3169cec52ab8aee1686e88ef96431c30d8d5894f`  
+**Reviewed code:** `1f79a752c9f4c87f2e870fcc1fecdbe0c1e35f2f`  
 **R1 result:** `docs/memory/PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`  
+**R2 result:** `docs/memory/PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md`  
 **Scope:** current work selection for an explicitly selected memory task.
 Supersedes older NEXT prose in AGENTS, memory README and WORK-FRONT.
 The general project default remains in `docs/control-state.json`.  
@@ -12,27 +13,29 @@ The general project default remains in `docs/control-state.json`.
 
 ## Current decision
 
-**NEXT: R2 — reconcile committed outcomes across memory, Servant and ACCESS_STEWARD journals after crash boundaries.**
-R1 is closed `PASS_WITH_BOUNDARY`. F4.4 remains deferred behind R2–R5.
-F0–F4.3 keep their recorded PASS/CONTRACT_PASS scopes; F3's earlier functional
-closure refers to those reference cases, not complete cross-journal recovery.
+**NEXT: R3 — verify visual digests and duplicated bindings at every PSI-VIZ consumer boundary.**
+R1 and R2 are closed `PASS_WITH_BOUNDARY`. The mandated three-unit re-evaluation
+(R0–R2) found no new evidence that changes the ordered front, so R3 remains the
+highest unresolved blocker of F4.4. F0–F4.3 keep their recorded
+PASS/CONTRACT_PASS scopes; those scopes do not certify stale-hash resistance.
 
 R1 evidence is recorded in
-[`PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`](PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md):
-shared `JSONLWAL` tail repair, interrupted-repair preservation, short-write
-handling, wrapper witnesses, the shared writer, two later commits and a second
-restart all passed in workflow run `36769885146`.
+[`PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`](PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md).
+R2 evidence is recorded in
+[`PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md`](PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md):
+the original crash witness was reproduced as a failure in run `36770611699`,
+and the corrected cross-journal witness plus Servant, ACCESS_STEWARD and WAL
+regressions passed in run `36771111707`.
 
 Audit discipline inherited from **Semantica Rozmowy — 03** remains binding:
 a local projection is not the project state (`P_i(S) !=> S`), and a successful
-local transition does not certify the global transition. Therefore R2 is a
-cross-journal invariant, not four independent journal checks. The authoritative
-question is whether the recovered projections commute with the one durable
-operation and its request/command identity.
+local transition does not certify the global transition. R2 applied this to
+journal projections; R3 applies the same rule to representation bindings: a
+stored digest field is not evidence that the payload currently consumed by the
+renderer still has that digest.
 
 Read the [latest audit](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30)
-for source locations, separating witnesses and acceptance conditions for the
-remaining R2–R8 findings. R2 is now the highest unresolved durability fault.
+for source locations, separating witnesses and acceptance conditions for R3–R8.
 
 ## Ordered repair plan
 
@@ -40,8 +43,8 @@ remaining R2–R8 findings. R2 is now the highest unresolved durability fault.
 |---|---|---|
 | R0: current instructions | DONE | Entry points select this front; old F0 failures are no longer presented as current; Curator's implemented proposal engine is distinguished from unimplemented restructuring |
 | R1: journal continuation | DONE / PASS_WITH_BOUNDARY | Shared JSONLWAL repairs only incomplete final tails at the verified byte boundary; complete corruption fails closed; interrupted repair and short writes are tested; wrapper and shared-runtime restart witnesses pass |
-| R2: result reconciliation | P0 / NEXT | Memory COMMIT, SERVANT_RESULT, ACCESS_MOVEMENT and ACCESS_RESULT reconcile after each interruption boundary; same request has one committed outcome, no duplicate mutation/charge; ID collision still rejected |
-| R3: visual digest verification | P1 / after R2 | Nested changes to frame/keyframe/timeline/plan cannot render or classify under old hashes; verify binding consistency at each consumer |
+| R2: result reconciliation | DONE / PASS_WITH_BOUNDARY | Memory COMMIT, SERVANT_RESULT, ACCESS_MOVEMENT and ACCESS_RESULT reconcile after interruption boundaries; exact replay does not duplicate mutation or metering; later independent movement does not corrupt historical outcome; ID collision remains rejected |
+| R3: visual digest verification | P1 / NEXT | Nested changes to frame/keyframe/timeline/plan cannot render or classify under old hashes; verify binding consistency at each consumer |
 | R4: complete status redaction | P1 / after R3 | Hidden node and edge status is absent from emitted payloads and visual channels; allowed metadata remains usable |
 | R5: directed visual relations | P1 / after R4 | Reversing a directed edge is visibly distinguishable in SVG and rendered animation; task-required metadata has a declared output channel or checked accompanying packet |
 | R6: cost semantics | P1 / before cost-benefit claims | Over-budget meter evidence is retained; quote/actual/unknown are separate; units and scalarization are explicit; per-request check is not called a cumulative budget |
@@ -51,34 +54,38 @@ remaining R2–R8 findings. R2 is now the highest unresolved durability fault.
 R7/R8 do not block unrelated visualization repair; they block their respective
 stronger claims. Do not convert this table into an automatic instruction to run
 all units indefinitely. Select one primary unit per authorized work scope.
-For R2, begin from the existing committed-state recovery paths and add one
-cross-journal reconciliation rule rather than independent replay policies in
-Servant and ACCESS_STEWARD.
+For R3, test the actual payload against its declared digest at every consumer;
+do not repair only the producer or trust frozen dataclass wrappers around
+mutable nested objects.
 
 ## Handoff and proportional verification
 
-1. Freeze the selected unit's input HEAD, object, invariant and separating case.
-   First execute the case against that revision; record reproduced/not reproduced.
-2. Implement the smallest correction that satisfies the invariant. Keep four
-   constitutional roles; ACCESS_STEWARD remains Guardian machinery, Curator
-   remains proposal-only.
-3. Run the separating case and affected regressions. For R2 this includes the
-   shared WAL, Servant and ACCESS_STEWARD crash boundaries and collision tests;
-   broaden only when a concrete dependency is identified.
-4. Where unavailable tools prevent execution, record NOT_RUN and the exact
-   next command/case. Source inspection must not become a claimed runtime PASS.
-5. Update code, necessary tests, result and this pointer as one coherent unit.
+1. Freeze R3 input HEAD, payload type, digest invariant and separating cases.
+   First execute stale-hash cases against that revision; record reproduced/not
+   reproduced.
+2. Mutate nested frame/keyframe/timeline/plan payloads while retaining old
+   stored digests. Rendering or semantic transition classification must reject
+   the inconsistent object before output is produced.
+3. Implement the smallest shared verifier or boundary checks that recompute the
+   relevant digest from the payload actually consumed. Verify duplicated
+   bindings (frame/keyframe/timeline/plan) agree rather than checking fields in
+   isolation.
+4. Run the separating witness and affected F4.0–F4.3 source/render regressions.
+   Broaden only for an identified dependency.
+5. A valid hash proves binding/integrity only. Do not describe it as semantic
+   truth, authorization, admission or provenance authority.
+6. Update code, necessary tests, result and this pointer as one coherent unit.
    Recheck remote HEAD; preserve concurrent changes; never force-push routinely.
-6. Stop when the acceptance case and affected gates pass. After three completed
-   units or a material external delta, re-evaluate the frontier. Reuse unchanged
-   sources and CI artifacts; no repeated full audit without new evidence.
+7. Stop when stale payloads fail closed and unchanged valid F4 witnesses still
+   pass. Re-evaluate the frontier after R3 if a material new dependency appears.
 
-For F4.4, R1 is satisfied; require R2–R5 and the affected integration regressions
-first. R6 must precede an end-to-end cost claim or F5 cost comparison. Keep F4.4
-restricted to one typed SPLIT with an admitted source transition and verified
-before/after diff. A richer event without an adapter still fails closed. After
-that, F5 tests a fixed task set and simple retrieval baseline; model benefit
-remains NOT_RUN. GPU and live FORUM work remain outside this selected front.
+For F4.4, R1 and R2 are satisfied; require R3–R5 and the affected integration
+regressions first. R6 must precede an end-to-end cost claim or F5 cost
+comparison. Keep F4.4 restricted to one typed SPLIT with an admitted source
+transition and verified before/after diff. A richer event without an adapter
+still fails closed. After that, F5 tests a fixed task set and simple retrieval
+baseline; model benefit remains NOT_RUN. GPU and live FORUM work remain outside
+this selected front.
 
 ## Recorded implementation state
 
@@ -87,24 +94,24 @@ F0   PASS_WITH_BOUNDARY
 F1   PASS_WITH_BOUNDARY
 F2.0 CONTRACT_PASS
 R1   PASS_WITH_BOUNDARY
-F2.1 PASS_WITH_BOUNDARY; R2/R6 OPEN
+R2   PASS_WITH_BOUNDARY
+F2.1 PASS_WITH_BOUNDARY; R6 OPEN
 F3.0 CONTRACT_PASS
 F3.1 PASS_WITH_BOUNDARY
-F3.2 PASS_WITH_BOUNDARY; R2/R7 OPEN
+F3.2 PASS_WITH_BOUNDARY; R7 OPEN
 F3.3 PASS_WITH_BOUNDARY; R8 OPEN
 F3   REFERENCE_CASES_PASS; HARDENING_OPEN
 F4.0 CONTRACT_PASS; R3/R4 OPEN
 F4.1 PASS_WITH_BOUNDARY; R3/R4 OPEN
 F4.2 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
 F4.3 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
-F4.4 DEFERRED_AFTER_R2_R3_R4_R5
+F4.4 DEFERRED_AFTER_R3_R4_R5
 F5   NOT_RUN
 ```
 
 ## F4.3 — recorded witness before this review
 
 Poniższy zapis zachowuje wynik wcześniejszego wykonania; otwarte warunki R3–R5 są opisane wyżej.
-
 
 Pierwszy rzeczywisty film PSI-VIZ został wyrenderowany w Manimie z wcześniej sprawdzonego łańcucha:
 
