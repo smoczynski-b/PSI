@@ -185,7 +185,8 @@ Zabronione bez zewnętrznego zatwierdzenia i legalnej ścieżki wykonawczej:
 
 ## 10. Relacja z frontem robót
 
-Ten dokument **nie zmienia kolejności** `WORK-FRONT-GPT5-01`.
+Bieżącą kolejność określa [CURRENT-WORK-FRONT-01](CURRENT-WORK-FRONT-01.md).
+Poniżej zachowano pierwotną zależność faz; nie jest to aktualne wskazanie NEXT.
 
 - F0/F1: najpierw integralność i pełny przebieg pamięci;
 - F2: kontrakt `ACCESS_STEWARD`;
@@ -202,4 +203,8 @@ Dla sztucznej dzielnicy o kontrolowanym wzroście Kustosz powinien:
 4. po zaakceptowanej przebudowie zachować pełną genealogię starego i nowego układu;
 5. wykazać, że wskazane zadanie daje tę samą odpowiedź przed i po przebudowie wykonawczej.
 
-Status pozostaje `CONTRACT ONLY / NOT IMPLEMENTED`.
+Current implementation: the proposal-only planner is implemented in
+[F3.3](PSI-MEMORY-CURATOR-F3.3-01.md) with PASS_WITH_BOUNDARY for its reference
+cases. Execution of restructuring and its post-change equivalence test remain
+NOT IMPLEMENTED. Journal continuation and no-proposal observation identity
+are open R1/R8 findings in the [current audit](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30).

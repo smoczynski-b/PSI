@@ -1,8 +1,10 @@
 # Semantica Rozmowy — 04: audyt i korekta wykonania
 
-Current selection: [shared-memory entry](README.md). The later
-[active-memory review](#active-memory-review-2026-09-30) supplements the
-historical audit below; its findings are not repaired runtime behavior.
+Current work selection: [CURRENT-WORK-FRONT-01](CURRENT-WORK-FRONT-01.md).
+Latest assessment: [memory and agent review](#memory-and-agent-review-2026-09-30).
+The older sections below describe their own frozen commits. Their three F0
+runtime defects have since been repaired; they are not the current repair queue.
+The new review distinguishes source-derived findings from executed CI evidence.
 
 Data: 2026-09-30, Europe/Warsaw.
 Podstawa: gałąź `psi-memory-map-01`, stan
@@ -256,3 +258,254 @@ Cel użytkownika obejmuje wizualizację wzorów, przekształceń i zależności 
 możliwość filmu. Zapis formalny dla wykonania, geometria procesu i plansza
 dla człowieka mają odrębne zadania. Zasady ich zgodności są w
 [kontrakcie reprezentacji](representation-check.md).
+
+## Memory and agent review 2026-09-30
+
+**Reviewed HEAD:** `53bdc36c44c0b2d6d2621339ec65dc0f00de9b80`.
+**Delta:** 88 commits / 67 changed files after
+`5937291ce4bf85c729fca1269c2c400f202a4250`.
+**Decision:** retain the implemented F0–F4.3 reference results; repair durability
+and projection boundaries before F4.4. This review changes instructions and
+work selection, not runtime behavior or canonical mathematics.
+
+The delta and selected unchanged dependencies were retrieved. Inspection focused
+on contracts, persistence and replay paths, movement/usage integration, Curator
+decisions, visual transformations, corresponding tests and workflow records.
+The local execution environment was unavailable. New witnesses below are
+**SOURCE_DERIVED / RUNTIME_NOT_RUN in this review**. Their first implementation
+step is an executable regression that fails on the reviewed revision. Existing
+CI successes are evidence for their recorded cases, not fresh execution here.
+No full conversation-04 transcript was recovered; available conversation
+summaries cannot establish the complete instruction/approval history.
+
+### Value demonstrated and remaining measurement
+
+| Layer | Demonstrated progress | Remaining boundary |
+|---|---|---|
+| F0 | First SERVANT result survives ID collision/restart; IMMUNE rejects invalid numeric domains; recovered shared/view handles retain identity | These fixes do not settle other crash windows |
+| F0 cost accounting | Index scans and event-history work are explicitly counted | Operation counts are not total latency, token or infrastructure cost |
+| F1 | Source read once; derived result survives clean restart; changed premise produces persistent NEEDS_RECHECK | A/B are deterministic fixtures, not live model agents |
+| F2.1 | ACCESS_STEWARD executes Guardian policy, tracks session location, separates capabilities and telemetry classes | New cross-journal recovery gap R2 |
+| F3.1–F3.3 | Snapshot/delta reconstruction, version manifests, CURRENT, usage references and proposal-only Curator | R1/R7/R8 limit durability, observed-use attribution and observation identity |
+| F4.0–F4.3 | Source-bound scene pipeline, SVG and a real Manim MP4; parallel motion and moving edges were corrected | R3–R5 limit integrity, redaction and visible relation direction |
+
+ACCESS_STEWARD is subordinate Guardian machinery, not a fifth constitutional
+role. Curator observes explicit administrative metrics and proposes changes;
+the reference planner does not execute restructuring or allocate its own budget.
+Recursive archive references are implemented within this bounded model.
+
+This is useful engineering progress: later work can reuse a derived result and
+its declared dependency status. Improvement in a lower model's answers, total
+cost, generality and novelty remains unmeasured. A drawing's successful render
+does not establish a benefit from communicating through that drawing.
+
+### Object, invariant and measurement
+
+Object: the existing single-process memory/role journals and their derived
+visual packets, with an explicit seed, contract, version and request identity.
+No distributed-execution guarantee is added.
+
+For each committed movement request `r`, after recovery completes, require
+one state transition, one canonical movement and one canonical outcome.
+Repeated audit attempts are allowed; repeated mutation or charging is not.
+Measure lost acknowledged records, duplicate effects and outcome mismatches;
+the acceptance target for each declared interruption case is zero.
+
+For every consumed visual packet `p`, verify
+`H(canonical_payload(p)) == declared_payload_digest(p)` and its source
+bindings before use. Test a changed payload with the old digest. Hash equality
+does not replace task-relative adequacy: directedness, visibility and required
+metadata need their own separating cases.
+
+### Retrieved execution evidence
+
+| Evidence | Commit / run | Verified scope |
+|---|---|---|
+| F1 | `a1606ca9e358b9064bbad48ae98b0c56b2864213`; [run 36742791245](https://github.com/smoczynski-b/PSI/actions/runs/36742791245) | Job steps succeeded for reuse, SERVANT/collision, WAL and cost accounting |
+| F3.3 integration | [run 36756411723](https://github.com/smoczynski-b/PSI/actions/runs/36756411723) | Logs report archive contract/runtime/usage, Curator, ACCESS_STEWARD, SERVANT and institution PASS at their stated scope |
+| F4.3 real render | `d32f6b547715be28638b125e3570a172a1b35cc2`; [run 36764149914](https://github.com/smoczynski-b/PSI/actions/runs/36764149914) | Logs verify h264 MP4, 1.666667 s, 44273 bytes, artifact 11119624136; F4.0–F4.3 and affected regressions passed |
+| Reviewed HEAD | [control 36764211193](https://github.com/smoczynski-b/PSI/actions/runs/36764211193), [memory-map 36764211280](https://github.com/smoczynski-b/PSI/actions/runs/36764211280) | Both jobs succeeded at reviewed HEAD; path-filtered component runs above have their own commits |
+
+The later render run supplements the original F4.3 witness; do not mix their
+artifact IDs or ZIP digests. This reviewer inspected code, job steps and logs,
+not the downloaded video frames. A nonempty MP4 and unequal endpoint PNG files
+are technical checks, not a general semantic or legibility test.
+
+### Source-derived findings and bounded acceptance cases
+
+**R1 / P0 — safe journal continuation and tail repair.**
+In [JSONLWAL](../../scripts/durable_shared_memory.py), initialization reads a
+valid prefix but does not resolve `tail_truncated`; `append`
+writes to the existing bytes. Main DurableSharedMemoryRuntime explicitly repairs
+the tail; AccessChronicle, ArchiveChronicle, UsageChronicle, Curator's WAL,
+ServantChronicle and ImmuneMemory do not.
+
+Separating witness: valid record → append an incomplete `{"seq":`
+tail → restart a journal → append a new record. The new JSON is concatenated
+to the old fragment; append returns, but the reader discards that invalid final
+line. Another append moves it into the interior and raises corruption.
+Additionally, `repair_truncated_tail` opens the entire file with `wb`;
+interruption while rewriting can destroy previously valid history.
+
+Acceptance: every journal either repairs an explicitly uncommitted tail safely
+before writing or blocks writes with a recovery reason. Preserve the verified
+prefix through an interruption during repair; never treat interior/hash-chain
+corruption as a disposable tail. Exercise interrupted append, restart, repair,
+two subsequent appends and another restart. Check representative journal wrappers
+and the shared writer; include short-write handling before claiming durable ACK.
+A validated byte-boundary truncation or an atomic replacement is a candidate
+implementation, subject to the declared filesystem durability contract.
+
+**R2 / P0 — reconcile committed state with institutional results.**
+In [SERVANT](../../scripts/servant_runtime.py), durable commit precedes
+`SERVANT_RESULT`. If the process stops between them, restart restores the
+transaction but not a completed command. Repeating the exact command reaches
+`DurableSharedMemoryRuntime.commit`, which rejects the already known txid,
+and SERVANT records BLOCK despite the committed mutation.
+
+[ACCESS_STEWARD](../../scripts/access_steward_runtime.py) adds another boundary:
+SERVANT commit → ACCESS_MOVEMENT → ACCESS_RESULT. Restart between these writes
+can recover location M1 without the completed ENTER result. Repeating the same
+OUTSIDE→M1 request then returns SESSION_ALREADY_PRESENT. Telemetry can be absent,
+or report MOVED beside a later DENY result.
+
+Acceptance: persist/bind request and command fingerprints to transaction
+identity, then reconcile unfinished outcomes from verified durable evidence.
+Crash after memory COMMIT, before SERVANT_RESULT, before ACCESS_MOVEMENT and
+before ACCESS_RESULT. On restart, exact replay preserves the committed outcome,
+records one canonical movement/result, performs no second mutation or charge,
+and still rejects a different payload with the same ID. Include a later
+independent movement so reconciliation cannot rely only on current location.
+Do not reconstruct an original proposal using a newer base revision.
+Audit attempts may remain multiple; the committed operation is unique.
+
+**R3 / P1 — verify visual payloads at every consumption boundary.**
+[VisualFrame](../../scripts/psi_viz_projection.py) and subsequent packets use
+frozen dataclasses containing mutable dictionaries. `compile_print_keyframe`
+reads their contents without recomputing frame digests; transition classification
+compares stored digest fields. `render_svg`, `compile_manim_plan` and
+`compile_executable_manim_scene` do not verify the actual input payload hash.
+
+Witness: compile a valid keyframe, change a nested label/relation/coordinate,
+keep its old digest, then render it. The image follows the modified payload
+while binding metadata still carries the old digest. Similarly, mutate a frame's
+semantic payload without changing its stored digest and classify a transition.
+
+Acceptance: reject stale hashes and inconsistent duplicated bindings before
+rendering/classification; test nested mutation at frame, keyframe, timeline and
+plan boundaries. Deep immutability or defensive copies reduce accidental edits
+but do not replace verification when deserializing a packet. A matching hash
+checks payload identity, not authorization or truth.
+
+**R4 / P1 — apply status redaction to nodes as well as edges.**
+`compile_visual_frame` gates edge status on `visible_metadata` but always
+copies `workspace.node_status`. `compile_print_keyframe` copies it into node
+status and SVG renders it. Existing redaction fixtures principally exercise
+edge provenance.
+
+Witness: node X has NEEDS_RECHECK, contract uses `visible_metadata=()`.
+Acceptance: no forbidden node/edge status in frame, output packets, SVG,
+executable scene or a visual channel derived from that hidden value; explicitly
+allowed status remains available. This is a projection-contract defect; the
+current renderer does not itself implement Guardian admission.
+
+**R5 / P1 — retain task-required direction in visible relations.**
+[SVG](../../scripts/psi_viz_renderer.py) emits undirected `<line>` primitives
+and [Manim](../../scripts/psi_viz_manim_exec.py) emits `Line`, with no declared
+visible direction encoding. For fixed node positions, SVG depictions of
+A DEPENDS_ON B and B DEPENDS_ON A have the same visible line and relation label;
+different opaque asset IDs do not supply the missing distinction to a viewer.
+
+Acceptance: declare direction encoding for directed relation types and test
+the reversed-edge pair in SVG and an actual rendered animation frame.
+Symmetric relations may use undirected marks only under their relation contract.
+Separately declare which status/provenance fields an animation exposes:
+ManimPlan currently drops those fields when constructing node/edge assets.
+Retain a checked accompanying packet when a task requires them.
+
+**R6 / P1 — distinguish tariff, measured work and budget accounting.**
+ACCESS_STEWARD calls `cost_meter` before the durable movement. If its returned
+cost exceeds budget, the DENY path discards that value and `_finish` records
+a zero vector. The fixtures use supplied costs; they do not measure the whole
+commit/fsync/telemetry path. `CostVector.l1` sums seven components whose units
+or normalization are not defined in that type.
+
+Witness: estimated compute=1, budget=2, meter returns compute=3. Acceptance:
+DENY leaves location unchanged and preserves the returned cost evidence with its
+meaning. Define whether this is a quote or already incurred cost; measure actual
+work after execution where applicable. Keep unknown separate from zero.
+Declare units and, before scalar totals, a normalization/weighting contract.
+Current per-request budget checks do not establish a cumulative allocation/debit
+system; add one only when a selected task needs it.
+
+**R7 / P2 — movement association is not proof of version consumption.**
+[Usage validation](../../scripts/memory_archive_usage_runtime.py) checks that an
+archive manifest names the movement's destination map. Movement has no consumed
+archive-version/revision field. A caller can associate that movement with either
+of two historical versions of the same map. Existing checks establish the
+reference association, not which version the agent actually read.
+
+Acceptance: either label the record as an association only, or require a
+verified read/use receipt containing version/revision and content digest.
+Test two versions of the same map: reject attribution to the unconsumed version;
+restart preserves the binding and telemetry access restrictions.
+
+**R8 / P2 — define identity for observations that produce no proposal.**
+[Curator.evaluate](../../scripts/curator_planner_runtime.py) remembers an
+observation fingerprint only when a proposal is written. A below-threshold
+observation leaves no identity record; the same ID with changed metrics is later
+accepted if it now crosses a threshold. The general collision claim therefore
+exceeds the tested observation-with-proposal case.
+
+Acceptance: define ID scope explicitly. If IDs identify all observations, persist
+a bounded no-proposal outcome and reject changed-payload reuse before/after
+restart. Otherwise narrow the contract and name the input accordingly.
+The test must include below-threshold → same ID/different metrics → restart,
+not only two conflicting observations that both produce proposals.
+
+### Agent workflow assessment and proportional correction
+
+The agent repaired the earlier F0 findings, built executable reference modules,
+and corrected edge motion and label problems exposed by real rendering.
+It generally labels deterministic/reference results and unrun model evaluation.
+Those are useful habits worth preserving.
+
+The main weakness is extending local PASS results across untested boundaries.
+Clean restart is not interruption between journals; a stored hash is not a
+verification at its next consumer; an emitted edge is not necessarily a readable
+directed relation. New tests should target these distinctions.
+
+Entry instructions also drifted: AGENTS and memory README still selected the
+already repaired SERVANT collision; WORK-FRONT selected an earlier phase;
+CURRENT selected F4.4; Curator's planning amendment still said NOT IMPLEMENTED.
+This review synchronizes those pointers. The general project default P9-I is
+unchanged; an explicit memory task selects the memory front under the existing
+user-task precedence rule.
+
+The 88 commits include repeated runtime → test → workflow → report → pointer
+sequences. Commit count is not quality or a measure of active work time.
+Prefer one coherent unit containing implementation, its necessary tests and
+the current-pointer update. Keep published history. No inference about ignored
+STOP messages or unapproved work is justified by the incomplete chat record.
+
+Use the existing 75/15/10 execution/verification/coordination target as a working
+budget, not a measured result. On entry inspect the delta once; after three
+units or a material external change review priorities; at each durable side
+effect inspect interruption boundaries; before publication check fresh HEAD
+and affected gates. Stop a unit when its acceptance case and affected
+regressions pass. Do not add a parallel audit registry or a timer-driven
+stream of reports. The detailed order and stop conditions live in
+[CURRENT-WORK-FRONT-01](CURRENT-WORK-FRONT-01.md).
+
+### Decision after stabilization
+
+Resume the bounded F4.4 SPLIT adapter only after its listed prerequisites.
+Then choose one small F5 comparison with fixed tasks, source revision, model
+settings and evaluator. Compare ordinary context, a simple retrieval baseline
+and PSI memory; separate calibration from held-out cases. Measure correct reuse,
+correct refusal of stale results, incorrect accepted answers, source rereads,
+tokens/tool calls and end-to-end latency. Include interruption and changed-premise
+cases. A cheaper incorrect answer is not a successful memory optimization.
+M4b remains a separate text-context preparation experiment with model efficacy
+NOT_RUN. No model run, paid evaluation, deployment or main-branch merge is part
+of this review.

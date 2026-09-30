@@ -1,10 +1,14 @@
 # WORK-FRONT-GPT5-01 — front robót pamięci współdzielonej
 
-**Status:** EXPERIMENTAL / NON-CANONICAL / WORK SELECTION  
+**Status:** EXPERIMENTAL / NON-CANONICAL / HISTORICAL FRONT  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.  
 **Primary rule:** integrity and replay before new roles; source state before visualization; semantics before GPU.
+
+> Current selection: [CURRENT-WORK-FRONT-01](CURRENT-WORK-FRONT-01.md).
+> This document preserves the earlier phase plan. Its NEXT paragraphs do not
+> override the current repair queue or later implementation results.
 
 ## 0. Cel
 

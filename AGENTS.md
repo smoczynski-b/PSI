@@ -27,13 +27,19 @@ historical mathematical sources keep their provenance and contract limits.
 
 ## Experimental memory — conversation 04 correction
 
-- Start with `docs/memory/README.md` for the current objective and evaluation
-  boundary. Active-memory integration repairs now precede the prepared M4b
-  model comparison. Read the current audit supplement before continuing a role;
-  historical "next phase" paragraphs are not the current work selection.
-  For the GPT-5 handoff, the first bounded repair is SERVANT verdict recovery
-  after command-ID collision and restart. Its acceptance case is in the audit.
-  Do not automatically expand the M-series or add another institutional role.
+- For an explicitly selected memory task, read `docs/memory/README.md` and
+  select the unit in `docs/memory/CURRENT-WORK-FRONT-01.md`. This is the
+  memory-specific application of user-task precedence; the general project
+  default in `docs/control-state.json` remains unchanged. Read the latest
+  `Memory and agent review 2026-09-30` section of the audit for acceptance cases.
+  Current next unit: R1 journal-tail recovery. Earlier F0 collision/domain/view
+  repairs are complete at their stated scope; do not select them again from
+  historical NEXT paragraphs. F4.4 waits for the front's listed prerequisites.
+- Keep the four-role constitution. ACCESS_STEWARD executes Guardian policy;
+  Curator may propose infrastructure changes but cannot self-authorize them.
+  For persistent side effects, test interruptions between journals as well as
+  clean restart. For derived visual packets, verify the actual payload binding
+  at each consumer; check redaction and task-required relation direction.
 - Keep same-data representation tests separate from acquiring or classifying
   different photographs. Preserve chemistry's intended role: physically
   constrained processes represented through formulas, quantities, conditions

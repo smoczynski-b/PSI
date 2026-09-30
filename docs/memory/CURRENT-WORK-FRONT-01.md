@@ -3,29 +3,94 @@
 **Status:** EXPERIMENTAL / NON-CANONICAL / CURRENT POINTER  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30  
-**Supersedes only:** historical `NEXT` prose in `WORK-FRONT-GPT5-01.md`.  
+**Reviewed code:** `53bdc36c44c0b2d6d2621339ec65dc0f00de9b80`  
+**Scope:** current work selection for an explicitly selected memory task.
+Supersedes older NEXT prose in AGENTS, memory README and WORK-FRONT.
+The general project default remains in `docs/control-state.json`.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
-## Stan
+## Current decision
+
+**NEXT: R1 — safe continuation of all JSONL journals after an interrupted write.**
+F4.4 is deferred behind durability and visual-integrity repairs. F0–F4.3 keep
+their recorded PASS/CONTRACT_PASS scopes; F3's earlier functional closure refers
+to those reference cases, not complete crash recovery.
+
+Read the [latest audit](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30)
+for source locations, separating witnesses and acceptance conditions. Findings
+R1–R8 are source-derived; their new Python witnesses were NOT_RUN in this
+review because local execution was unavailable. Existing CI evidence is linked
+in the audit. This documentation change does not repair those runtimes.
+
+## Ordered repair plan
+
+| Unit | Priority / dependency | Deliverable and stop condition |
+|---|---|---|
+| R0: current instructions | DONE by this documentation change | Entry points select this front; old F0 failures are no longer presented as current; Curator's implemented proposal engine is distinguished from unimplemented restructuring |
+| R1: journal continuation | P0 / NEXT | Reproduce torn-tail loss; safe repair or explicit write block in every journal; interrupted repair preserves verified history; two later appends and restart preserve all acknowledged records |
+| R2: result reconciliation | P0 / after R1 | Memory COMMIT, SERVANT_RESULT, ACCESS_MOVEMENT and ACCESS_RESULT reconcile after each interruption boundary; same request has one committed outcome, no duplicate mutation/charge; ID collision still rejected |
+| R3: visual digest verification | P1 / after R2 | Nested changes to frame/keyframe/timeline/plan cannot render or classify under old hashes; verify binding consistency at each consumer |
+| R4: complete status redaction | P1 / after R3 | Hidden node and edge status is absent from emitted payloads and visual channels; allowed metadata remains usable |
+| R5: directed visual relations | P1 / after R4 | Reversing a directed edge is visibly distinguishable in SVG and rendered animation; task-required metadata has a declared output channel or checked accompanying packet |
+| R6: cost semantics | P1 / before cost-benefit claims | Over-budget meter evidence is retained; quote/actual/unknown are separate; units and scalarization are explicit; per-request check is not called a cumulative budget |
+| R7: consumed version receipt | P2 / before claiming observed version use | Distinguish a movement association from verified consumption; two versions of one map cannot silently substitute for each other |
+| R8: no-proposal observation identity | P2 / before general collision guarantee | Define ID scope and test below-threshold observations with changed-payload replay, including restart |
+
+R7/R8 do not block unrelated visualization repair; they block their respective
+stronger claims. Do not convert this table into an automatic instruction to run
+all units indefinitely. Select one primary unit per authorized work scope.
+For R1, begin with the shared writer plus wrapper coverage; avoid separate
+incompatible recovery policies in each institutional role.
+
+## Handoff and proportional verification
+
+1. Freeze the selected unit's input HEAD, object, invariant and separating case.
+   First execute the case against that revision; record reproduced/not reproduced.
+2. Implement the smallest correction that satisfies the invariant. Keep four
+   constitutional roles; ACCESS_STEWARD remains Guardian machinery, Curator
+   remains proposal-only.
+3. Run the separating case and affected regressions. For R1 this includes WAL,
+   SERVANT, IMMUNE, ACCESS_STEWARD, archive, usage and planner paths because all
+   share JSONLWAL. Broaden tests only for an identified dependency.
+4. Where unavailable tools prevent execution, record NOT_RUN and the exact
+   next command/case. Source inspection must not become a claimed runtime PASS.
+5. Update code, necessary tests, result and this pointer as one coherent unit.
+   Recheck remote HEAD; preserve concurrent changes; never force-push routinely.
+6. Stop when the acceptance case and affected gates pass. After three completed
+   units or a material external delta, re-evaluate the frontier. Reuse unchanged
+   sources and CI artifacts; no repeated full audit without new evidence.
+
+For F4.4, require R1–R5 and the affected integration regressions first. R6 must
+precede an end-to-end cost claim or F5 cost comparison. Keep F4.4 restricted to
+one typed SPLIT with an admitted source transition and verified before/after
+diff. A richer event without an adapter still fails closed. After that, F5 tests
+a fixed task set and simple retrieval baseline; model benefit remains NOT_RUN.
+GPU and live FORUM work remain outside this selected front.
+
+## Recorded implementation state
 
 ```text
 F0   PASS_WITH_BOUNDARY
 F1   PASS_WITH_BOUNDARY
 F2.0 CONTRACT_PASS
-F2.1 PASS_WITH_BOUNDARY
+F2.1 PASS_WITH_BOUNDARY; R1/R2/R6 OPEN
 F3.0 CONTRACT_PASS
-F3.1 PASS_WITH_BOUNDARY
-F3.2 PASS_WITH_BOUNDARY
-F3.3 PASS_WITH_BOUNDARY
-F3   FUNCTIONALLY_CLOSED_REFERENCE_LEVEL
-F4.0 CONTRACT_PASS
-F4.1 PASS_WITH_BOUNDARY
-F4.2 PASS_WITH_BOUNDARY
-F4.3 PASS_WITH_BOUNDARY
-F4.4 NEXT
+F3.1 PASS_WITH_BOUNDARY; R1 OPEN
+F3.2 PASS_WITH_BOUNDARY; R1/R2/R7 OPEN
+F3.3 PASS_WITH_BOUNDARY; R1/R8 OPEN
+F3   REFERENCE_CASES_PASS; HARDENING_OPEN
+F4.0 CONTRACT_PASS; R3/R4 OPEN
+F4.1 PASS_WITH_BOUNDARY; R3/R4 OPEN
+F4.2 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
+F4.3 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
+F4.4 DEFERRED_AFTER_R1_R2_R3_R4_R5
+F5   NOT_RUN
 ```
 
-## F4.3 — wynik
+## F4.3 — recorded witness before this review
+
+Poniższy zapis zachowuje wynik wcześniejszego wykonania; otwarte warunki R3–R5 są opisane wyżej.
+
 
 Pierwszy rzeczywisty film PSI-VIZ został wyrenderowany w Manimie z wcześniej sprawdzonego łańcucha:
 
@@ -106,7 +171,7 @@ Granice pozostające po PASS:
 
 Szczegóły: `docs/memory/PSI-VIZ-F4.3-01.md`.
 
-## F4.4 — następna jednostka
+## F4.4 — zachowana specyfikacja odroczonej jednostki
 
 **FIRST TYPED SEMANTIC ADAPTER — SPLIT.**
 
@@ -128,4 +193,4 @@ Minimalny świadek:
 8. wyrenderować krótki realny film i sprawdzić, że `semantic_digest` rzeczywiście zmienia się zgodnie ze źródłem;
 9. nie uogólniać jeszcze adaptera na arbitralne `SEMANTIC_EVENT`.
 
-Po F4.4 można zamknąć pierwszy pionowy przekrój PSI-VIZ: stan -> widok -> druk -> ruch reprezentacyjny -> ruch semantyczny, a następnie przejść do F5 — pomiaru skuteczności reprezentacji.
+Po spełnieniu powyższych bramek i F4.4 można zamknąć pierwszy pionowy przekrój PSI-VIZ: stan -> widok -> druk -> ruch reprezentacyjny -> ruch semantyczny, a następnie przejść do F5 — pomiaru skuteczności reprezentacji.

@@ -1,6 +1,8 @@
 # Shared PSI memory / Pamięć współdzielona PSI
 
-> Current ordered work selection: [WORK-FRONT-GPT5-01](WORK-FRONT-GPT5-01.md). It supersedes historical "next step" prose as an execution order, without changing the status of earlier results.
+> Current work selection: [CURRENT-WORK-FRONT-01](CURRENT-WORK-FRONT-01.md).
+> Latest evidence and acceptance cases: [memory and agent review](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30).
+> Older phase plans retain their historical scope; they do not select the next unit.
 
 ## English
 
@@ -11,42 +13,35 @@ model; no particular database, embedding or drawing follows from it.
 
 ### Current implementation and GPT-5 handoff — 2026-09-30
 
-Reviewed baseline: `fce89bde2d8bb6e95292d435bed84e1702c6b26c`.
-The complete new active-memory section, its runtime code, registries, experiments
-and regression programs were inspected: 46 changed files in 51 commits after
-`cf9d91a`. All 12 new regression programs passed locally. The targeted witnesses
-in the [audit supplement](AUDIT-ROZMOWY-04.md#active-memory-review-2026-09-30)
-expose additional failures; the earlier PASS results retain their tested scope.
+Reviewed code: `53bdc36c44c0b2d6d2621339ec65dc0f00de9b80`.
+The latest review covers the 88-commit / 67-file delta with targeted inspection
+of contracts, runtime boundaries, tests and CI evidence. The earlier three F0
+defects are repaired. New source-derived findings have executable acceptance
+cases planned; this review did not run Python locally.
 
-| Layer | Implemented/recorded state | Scope |
+| Layer | Implemented state | Evidence boundary |
 |---|---|---|
-| [Typed memory](PSI-MEMORY-MAP-01.md) | M1–M19, source binding, bounded retrieval | Finite task contracts; model-quality benefit unmeasured |
-| [Active memory](PSI-ACTIVE-MEMORY-01.md) | Task workspace, typed deltas, relation-specific COO planes | CPU reference; plane data alone omits provenance/status |
-| [Routing](../../experiments/PSI-ACTIVE-MEMORY-MULTIWORKSPACE-01.md) and [invalidation](../../experiments/PSI-ACTIVE-MEMORY-INVALIDATION-01.md) | Reverse indices and declared dependency closure | Affected-view refresh still scans that view's edges |
-| [MVCC](../../experiments/PSI-ACTIVE-MEMORY-MVCC-01.md) and [shared state](../../experiments/PSI-ACTIVE-MEMORY-SHARED-01.md) | Versioned proposal checks and selective propagation | Explicit read sets; single process, no distributed concurrency claim |
-| [WAL](../../experiments/PSI-ACTIVE-MEMORY-WAL-01.md) | Commit/replay from a caller-supplied baseline | Selected injected crash points; no full-stack recovery guarantee |
-| [Institution](PSI-MEMORY-INSTITUTION-01.md) | Four role contracts; separate admission/health/lifecycle/epistemic axes | Guardian and Curator remain role contracts |
-| [Servant](../../experiments/PSI-MEMORY-SERVANT-01.md) / [Immune](../../experiments/PSI-MEMORY-IMMUNE-01.md) | Deterministic runtimes and licensed reactions | Open restart, numeric-domain and recovered-view-binding defects |
-| [Map genealogy](PSI-MAP-GENEALOGY-01.md) | Sources and typed role correspondences | Registry consistency checked; novelty remains unresolved |
+| Typed/active memory, MVCC, WAL | Typed records, task views, bounded retrieval, selective invalidation and replay | Explicit read sets/dependencies; reference implementation |
+| SERVANT / IMMUNE | Original verdict recovery, numeric-domain validation and live recovered-view binding repaired | Further journal and cross-layer interruption cases remain open |
+| F1 reuse | Derived answer survives clean restart; changed premise blocks reuse with NEEDS_RECHECK | Deterministic A/B fixtures, no live model-quality result |
+| ACCESS_STEWARD | Guardian policy execution, session movement, capability and telemetry separation | Subordinate apparatus within four roles; R1/R2/R6 open |
+| Archive and Curator | Snapshot/delta versions, CURRENT, usage references, proposal-only planning | R1/R7/R8 open; no autonomous restructuring |
+| PSI-VIZ | Contract-bound frames, SVG and an actual Manim MP4 | R3–R5 open: consumed hashes, node-status redaction, visible direction |
+| Evaluation | Existing M4b preparation; F5 remains planned | Model-quality benefit and total cost reduction remain unmeasured |
 
-Current direction for GPT-5: stabilize one task-scoped shared-memory execution
-path before expanding the architecture. The next bounded unit is preservation
-of the original SERVANT verdict across a colliding command and restart. Then
-address IMMUNE numeric-domain validation and its binding to recovered views,
-as separate reviewable repairs. Exact witnesses and acceptance conditions are
-in the audit; naming a model grants no additional epistemic authority.
+**Next for GPT-5: R1 — safe journal continuation after interrupted writes.**
+Then follow the bounded repair queue in the current front. F4.4 SPLIT is deferred
+until its durability and projection prerequisites pass. Each unit starts with a
+separating regression and ends after its acceptance case and affected gates.
+The [audit](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30) distinguishes
+source-derived defects, existing CI results and unmeasured claims.
 
-After those repairs, test one complete source-bound task through retrieval,
-workspace compilation, admitted update, dependency invalidation, restart and
-rechecked reuse. Keep its visual projection tied to the same contract, data
-and revision. A changed layout alone must not change the semantic state.
-Measure full end-to-end cost, including view-index refresh and event history,
-before claiming delta-local cost for the entire stack.
-
-M4b remains the prepared model-quality comparison below. It is not evidence for
-the new transaction stack or for visual/formal communication. The zero-cost
-execution constraint remains; no model run was added by this inspection.
-GPU, live FORUM integration and new roles require a separately selected task.
+Logical work counters now include index refresh and event history. They do not
+establish full end-to-end latency, normalized transition cost or model savings.
+M4b below remains a separate text-context comparison; no model run was added.
+The zero-cost model-execution constraint remains. GPU and live FORUM require
+separately selected work. Names of models or institutional roles grant no
+additional epistemic authority.
 
 Chemistry motivates an additional design aim clarified by the user on
 2026-09-30: preserve physically constrained process knowledge through formulas,
@@ -100,41 +95,35 @@ konkretnej bazy danych, zanurzenia ani rysunku.
 
 ### Bieżące wykonanie i przekazanie GPT-5 — 2026-09-30
 
-Zbadany stan: `fce89bde2d8bb6e95292d435bed84e1702c6b26c`.
-Przeczytano cały nowy dział aktywnej pamięci: specyfikacje, kod wykonawczy,
-rejestry, protokoły i testy — 46 zmienionych plików, 51 commitów po `cf9d91a`.
-Wykonano z powodzeniem 12 nowych programów regresyjnych. Dodatkowe świadki
-z [uzupełnienia audytu](AUDIT-ROZMOWY-04.md#active-memory-review-2026-09-30)
-wykazują luki poza zakresem tych testów.
+Zbadany kod: `53bdc36c44c0b2d6d2621339ec65dc0f00de9b80`.
+Przyrost obejmuje 88 commitów i 67 plików. Inspekcja skupiła się na kontraktach,
+granicach wykonania, testach i zapisach CI. Trzy wcześniejsze usterki F0 zostały
+naprawione. Nowe ustalenia wynikają z analizy kodu; ich kontrprzykładów nie
+uruchomiono lokalnie podczas tej inspekcji.
 
-| Warstwa | Stan wykonania | Granica |
-|---|---|---|
-| M1–M19 | Typowane relacje, źródła, ograniczony odczyt | Skończone kontrakty; korzyść dla modeli niezmierzona |
-| Aktywna pamięć | Widok zadaniowy, delty, osobne macierze rzadkie relacji | Sam zapis COO nie zawiera pochodzenia i statusu |
-| Rozsyłanie i unieważnianie | Indeksy odwrotne i domknięcie jawnych zależności | Odświeżenie dotkniętego widoku nadal skanuje jego krawędzie |
-| Wspólny stan i MVCC | Kontrola wersji odczytów/zapisów, selektywna propagacja | Jeden proces; zależności odczytu muszą być zadeklarowane |
-| Dziennik WAL | Odtwarzanie zatwierdzonych zmian z podanej bazy | Sprawdzone wybrane punkty awarii; pełny cykl ról ma luki |
-| Instytucja pamięci | Rozdzielone kompetencje i cztery osie stanu | Strażnik i Kustosz pozostają kontraktami ról |
-| Sługa i Immunologia | Działające automaty deterministyczne | Otwarte usterki restartu, dziedziny liczbowej i powiązania widoków |
-| Genealogia map | Rejestr źródeł i typowanych odpowiedniości | Kontrola spójności rejestru; oryginalność nierozstrzygnięta |
+Działają już referencyjne wykonania: ponowne użycie wyniku po czystym restarcie
+i zatrzymanie po zmianie przesłanki, Nadzorca ruchu, archiwum wersji, planista
+Kustosza oraz SVG i rzeczywisty film Manima. Nadzorca jest aparatem Strażnika
+w obrębie czterech ról. Kustosz wnosi propozycje, nie wykonuje sam przebudów.
 
-Kierunek dla GPT-5: ustabilizować jeden zadaniowy przebieg pamięci współdzielonej.
-Pierwsza jednostka: zachować pierwotną decyzję Sługi po kolizji identyfikatora
-polecenia i restarcie. Następnie, w osobnych naprawach, ustalić legalną dziedzinę
-liczbową Immunologii i jej powiązanie z odtworzonymi widokami. Audyt podaje
-odtworzone błędy i warunki odbioru. Nazwa modelu nie zmienia rygoru weryfikacji.
+**Następna jednostka dla GPT-5: R1 — bezpieczny zapis po przerwaniu dziennika.**
+Dalszą kolejność i warunki zakończenia podaje
+[bieżący front](CURRENT-WORK-FRONT-01.md), a świadki i granice dowodów —
+[najnowszy audyt](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30).
+F4.4 SPLIT czeka na wskazane naprawy trwałości i projekcji. Nie należy ponownie
+wybierać zakończonych napraw F0 z dawnych instrukcji.
 
-Po naprawach sprawdzić jeden pełny przebieg: źródło i kontrakt → odczyt → widok
-roboczy → dopuszczona zmiana → unieważnienie zależnych wyników → restart →
-ponownie sprawdzone użycie. Wizualizacja ma pokazywać ten sam stan, kontrakt
-i rewizję; przemieszczenie punktów nie zmienia zapisanych zależności.
-Koszt całego przebiegu obejmuje również odświeżanie indeksów widoku i historię
-zdarzeń. Liczba wybranych widoków nie mierzy całej wykonanej pracy.
+Pozostałe luki dotyczą zgodności zatwierdzonego stanu z decyzją po przerwaniu,
+sprawdzania skrótów danych wizualnych, ukrywania statusu węzłów, kierunku relacji,
+znaczenia kosztów oraz przypisania użycia do konkretnej wersji. Rejestrowanie
+obserwacji Kustosza bez propozycji wymaga doprecyzowania tożsamości.
+Dotychczasowe PASS zachowują zakres swoich testów.
 
-M4b pozostaje przygotowaną próbą jakości modeli, opisaną niżej. Nie sprawdza
-całego wykonania transakcyjnego ani komunikacji obrazowej/formalnej. Obowiązuje
-ograniczenie zerowego kosztu uruchomień; ta inspekcja nie uruchamiała modeli.
-GPU, żywe FORUM i kolejne role wymagają osobno wybranego zadania.
+Przebieg F1 używa deterministycznych zastępników agentów A/B. Liczniki pracy
+obejmują teraz indeksy i historię, lecz nie mierzą pełnego kosztu wykonania.
+Korzyść dla jakości odpowiedzi modeli pozostaje niezmierzona; M4b i przyszłe F5
+nie są zakończonymi badaniami. Ta inspekcja nie uruchamiała modeli ani płatnych
+prób. GPU i żywe FORUM wymagają osobno wybranego zadania.
 
 Chemia uzasadnia dodatkowy cel doprecyzowany przez użytkownika 2026-09-30:
 zachowanie wiedzy o procesach ograniczonych fizyką przez wzory, wielkości,
