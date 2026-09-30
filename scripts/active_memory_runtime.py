@@ -45,6 +45,8 @@ class RuntimeDelta:
     sparse_patches: tuple[SparsePatch, ...]
     examined_events: int
     mutations: int
+    history_items_copied: int
+    history_items_appended: int
 
 
 class ActiveRuntime:
@@ -54,6 +56,11 @@ class ActiveRuntime:
     membership and stable append-only node indices so one delta does not require
     scanning/copying the whole memory view. Concurrency/rollback are deliberately
     outside this reference implementation.
+
+    Cost accounting is explicit. `history_items_copied` reports the number of
+    already-recorded event identifiers recopied by the current tuple-backed
+    `processed_events` implementation. It is intentionally observational: this
+    class does not hide or optimize that cost in F0.4.
     """
 
     def __init__(self, workspace: Workspace):
@@ -113,6 +120,7 @@ class ActiveRuntime:
         accepted: list[str] = []
         patches: list[SparsePatch] = []
         examined = 0
+        history_items_copied = 0
 
         for event in events:
             examined += 1
@@ -184,6 +192,7 @@ class ActiveRuntime:
 
         if accepted:
             ws.revision += 1
+            history_items_copied = len(ws.processed_events)
             ws.processed_events = tuple((*ws.processed_events, *accepted))
             self._processed_ids.update(accepted)
 
@@ -195,6 +204,8 @@ class ActiveRuntime:
             sparse_patches=tuple(patches),
             examined_events=examined,
             mutations=len(accepted),
+            history_items_copied=history_items_copied,
+            history_items_appended=len(accepted),
         )
 
     def sparse_planes(self) -> dict[str, Any]:
