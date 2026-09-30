@@ -1,0 +1,38 @@
+name: PSI memory archive contract
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/PSI-MEMORY-ARCHIVE-F3.0-01.md'
+      - 'docs/memory/psi-memory-archive-contract-01.tsv'
+      - 'docs/memory/psi-memory-archive-conflicts-01.tsv'
+      - 'docs/memory/PSI-MEMORY-CURATOR-PLANNING-01.md'
+      - 'docs/memory/PSI-MEMORY-ACCESS-STEWARD-01.md'
+      - 'docs/memory/psi-memory-access-steward-contract-01.tsv'
+      - 'docs/memory/psi-memory-institution-roles-01.tsv'
+      - 'docs/memory/psi-memory-institution-authorities-01.tsv'
+      - 'scripts/test_memory_archive_contract.py'
+      - 'scripts/test_access_steward_contract.py'
+      - 'scripts/test_memory_institution.py'
+      - 'scripts/test_servant_runtime.py'
+      - '.github/workflows/memory-archive-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-archive-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify F3.0 archive contract
+        run: python3 scripts/test_memory_archive_contract.py
+      - name: Re-verify F2.0 access steward contract
+        run: python3 scripts/test_access_steward_contract.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py
+      - name: Re-run Servant regression
+        run: python3 scripts/test_servant_runtime.py
