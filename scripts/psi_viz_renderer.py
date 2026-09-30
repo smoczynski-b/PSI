@@ -9,11 +9,20 @@ import math
 import re
 from typing import Mapping
 
-from psi_viz_outputs import AnimationTimeline, PrintKeyframe
+from psi_viz_outputs import (
+    AnimationTimeline,
+    PrintKeyframe,
+    verify_animation_timeline,
+    verify_print_keyframe,
+)
 
 
 def _canon(value) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def _digest_payload(value) -> str:
+    return hashlib.sha256(_canon(value).encode("utf-8")).hexdigest()
 
 
 def _digest_text(value: str) -> str:
@@ -58,6 +67,24 @@ class UnsupportedSemanticEvent(RuntimeError):
     pass
 
 
+def verify_manim_plan(plan: ManimPlan) -> None:
+    """Recompute plan payload and verify duplicated source bindings."""
+    if not isinstance(plan, ManimPlan):
+        raise TypeError("verify_manim_plan requires ManimPlan")
+    if _digest_payload(plan.payload) != plan.payload_digest:
+        raise ValueError("ManimPlan payload/digest mismatch")
+    try:
+        if plan.payload["format"] != "PSI-VIZ-MANIM-PLAN-1":
+            raise ValueError("unsupported Manim plan format")
+        source = plan.payload["source"]
+        if str(source["print_payload_digest"]) != plan.source_keyframe_digest:
+            raise ValueError("ManimPlan duplicated keyframe digest mismatch")
+        if str(source["timeline_payload_digest"]) != plan.source_timeline_digest:
+            raise ValueError("ManimPlan duplicated timeline digest mismatch")
+    except KeyError as exc:
+        raise ValueError("ManimPlan missing source binding") from exc
+
+
 def render_svg(keyframe: PrintKeyframe) -> SVGRender:
     """Render the checked F4.1 print scene to deterministic, vector-only SVG.
 
@@ -66,6 +93,7 @@ def render_svg(keyframe: PrintKeyframe) -> SVGRender:
     """
     if not isinstance(keyframe, PrintKeyframe):
         raise TypeError("render_svg requires PrintKeyframe")
+    verify_print_keyframe(keyframe)
     payload = keyframe.payload
     if payload.get("format") != "PSI-VIZ-PRINT-SCENE-1":
         raise ValueError("unsupported print scene format")
@@ -89,8 +117,6 @@ def render_svg(keyframe: PrintKeyframe) -> SVGRender:
         "source_revision": source["source_revision"],
         "source_state_digest": source["source_state_digest"],
     }
-    # Binding metadata only. Relations/provenance/status stay in visible SVG
-    # primitives if and only if they were already present in PrintKeyframe.
     meta_text = escape(_canon(metadata))
 
     lines = [
@@ -150,19 +176,15 @@ def compile_manim_plan(
     *,
     semantic_event_adapters: Mapping[str, str] | None = None,
 ) -> ManimPlan:
-    """Compile F4.1 outputs into a deterministic executable scene plan.
-
-    MOVE_NODE is translated mechanically. SEMANTIC_EVENT requires an explicit
-    typed adapter supplied by the caller; F4.2 ships with none by default.
-    """
+    """Compile F4.1 outputs into a deterministic executable scene plan."""
     if not isinstance(keyframe, PrintKeyframe) or not isinstance(timeline, AnimationTimeline):
         raise TypeError("compile_manim_plan requires PrintKeyframe and AnimationTimeline")
+    verify_print_keyframe(keyframe)
+    verify_animation_timeline(timeline)
     if keyframe.source_semantic_digest != timeline.source_semantic_digest:
         raise ValueError("keyframe/timeline semantic source mismatch")
     if keyframe.source_layout_digest != timeline.from_layout_digest:
         raise ValueError("keyframe/timeline layout source mismatch")
-    if timeline.payload.get("format") != "PSI-VIZ-TIMELINE-1":
-        raise ValueError("unsupported animation timeline format")
 
     explicit = dict(semantic_event_adapters or {})
     assets = {}
@@ -232,17 +254,21 @@ def compile_manim_plan(
         "assets": {k: assets[k] for k in sorted(assets)},
         "actions": actions,
     }
-    return ManimPlan(keyframe.payload_digest, timeline.payload_digest, payload, hashlib.sha256(_canon(payload).encode("utf-8")).hexdigest())
+    plan = ManimPlan(
+        keyframe.payload_digest,
+        timeline.payload_digest,
+        payload,
+        _digest_payload(payload),
+    )
+    verify_manim_plan(plan)
+    return plan
 
 
 def render_manim_python(plan: ManimPlan, class_name: str = "PSIVizScene") -> str:
-    """Emit a deterministic Manim Python scene from a checked ManimPlan.
-
-    F4.2 supports MOVE_NODE plans only. Explicit semantic adapters are recorded
-    in plans but intentionally not executed by this generic renderer.
-    """
+    """Emit a deterministic Manim Python scene from a checked ManimPlan."""
     if not isinstance(plan, ManimPlan):
         raise TypeError("render_manim_python requires ManimPlan")
+    verify_manim_plan(plan)
     if any(action["op"] != "ANIMATE_MOVE_TO" for action in plan.payload["actions"]):
         raise UnsupportedSemanticEvent("generic F4.2 Manim renderer supports MOVE_NODE only")
     cname = re.sub(r"[^A-Za-z0-9_]", "", str(class_name))
@@ -251,8 +277,6 @@ def render_manim_python(plan: ManimPlan, class_name: str = "PSIVizScene") -> str
 
     moved = {a["asset_id"]: a for a in plan.payload["actions"]}
     nodes = [(aid, row) for aid, row in plan.payload["assets"].items() if row["kind"] == "NODE"]
-    # The F4.2 executable witness requires every visible node to have an
-    # explicit starting position in the movement timeline. We do not guess.
     missing = sorted(aid for aid, _ in nodes if aid not in moved)
     if missing:
         raise ValueError(f"Manim witness lacks explicit start position for assets: {missing}")
