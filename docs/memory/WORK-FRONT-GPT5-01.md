@@ -35,8 +35,6 @@ Wykonano:
 3. **IMMUNE recovered-view binding — PASS.** `RECOVER` zachowuje tożsamość publicznych uchwytów `shared` i `shared.views`.
 4. **Full cost accounting — PASS_WITH_BOUNDARY.** Globalny routing jest selektywny, lecz pełna lokalna aktualizacja ma nadal składniki `O(|E_workspace|)` i `O(|history|)`.
 
-Zamrożona korekta:
-
 \[
 \boxed{
 \text{selective routing across workspaces}
@@ -45,11 +43,9 @@ Zamrożona korekta:
 }
 \]
 
-Szczegóły: `experiments/PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01.md`.
-
 ## F1 — source-bound end-to-end reuse/restart — PASS_WITH_BOUNDARY
 
-Wykonano:
+Wykonano pełny przebieg:
 
 ```text
 source + contract
@@ -65,76 +61,41 @@ source + contract
 → Agent B NEEDS_RECHECK
 ```
 
-Wynik `PSI-MEMORY-F1-END-TO-END-01`:
-
-- źródło odczytane dokładnie raz;
-- Agent B po czystym restarcie: `REUSE_ALLOWED` i `agent_b_source_reconstruction=0`;
-- zmiana przesłanki unieważnia dokładnie zależny wynik;
-- stary wynik pozostaje zapisany, lecz otrzymuje `NEEDS_RECHECK`;
-- drugi restart zachowuje jednocześnie treść wyniku i jego status zależnościowy;
-- telemetria kosztu F0.4 jest dostępna przez decyzję Sługi, ale nie wpływa na legalność.
+Wynik: źródło odczytane raz; po czystym restarcie Agent B ma `REUSE_ALLOWED` bez rekonstrukcji źródła; po zmianie przesłanki stary wynik pozostaje zapisany, ale przechodzi do `NEEDS_RECHECK`, także po kolejnym restarcie.
 
 \[
-\boxed{
-\text{stored result}\neq\text{permission to reuse result}
-}
+\boxed{\text{stored result}\neq\text{permission to reuse result}}
 \]
-
-Szczegóły: `experiments/PSI-MEMORY-F1-END-TO-END-01.md`.
 
 ## F2 — Nadzorca Ruchu / `ACCESS_STEWARD`
 
 ### F2.0 — kontrakt + rejestr konfliktów — CONTRACT_PASS
 
-`ACCESS_STEWARD` został zamrożony jako **podporządkowany wykonawca Strażnika**, nie jako piąty równorzędny urząd konstytucyjny:
+`ACCESS_STEWARD` jest podporządkowanym wykonawcą Strażnika, nie piątą rolą konstytucyjną:
 
 \[
 \boxed{GUARDIAN\triangleright ACCESS\_STEWARD}
 \]
 
-oraz:
-
 \[
 \boxed{policy\_owner=GUARDIAN,\qquad executor=ACCESS\_STEWARD}
 \]
 
-Kontrakt: `docs/memory/PSI-MEMORY-ACCESS-STEWARD-01.md`.  
-Rejestry maszynowe:
-
-- `docs/memory/psi-memory-access-steward-contract-01.tsv`;
-- `docs/memory/psi-memory-access-steward-conflicts-01.tsv`.
-
-Regresja: `scripts/test_access_steward_contract.py`.
-
-Dedykowany workflow `PSI memory access steward contract`, run `36745045308`, zakończył się `success` i ponownie przepuścił czterorólną konstytucję pamięci.
-
-Zamrożone rozdziały:
+Zamrożono:
 
 \[
-\boxed{
-ENTER\neq ACT\neq EXPORT\neq VIEW\_TELEMETRY
-}
-\]
-
-\[
-\boxed{
-MOVE(agent,M_i\to M_j)\neq EXPORT(data,M_i\to M_j)
-}
+\boxed{ENTER\neq ACT\neq EXPORT\neq VIEW\_TELEMETRY}
 \]
 
 oraz dla różnych map:
 
 \[
-\boxed{
-M_i\neq M_j\Rightarrow\|\kappa(\tau)\|_1>0
-}
+\boxed{M_i\neq M_j\Rightarrow\|\kappa(\tau)\|_1>0}.
 \]
 
-Nadzorca wykonuje ruch tylko wobec jawnej wersji polityki, celu, zdolności, zgodnej lokalizacji sesji, legalnego stanu celu i budżetu. Telemetria ma osobne klasy widoczności; prawo do przejścia nie daje prawa do oglądania obecności innych sesji.
+### F2.1 — referencyjny runtime — PASS_WITH_BOUNDARY
 
-### F2.1 — referencyjny runtime Nadzorcy Ruchu — PASS_WITH_BOUNDARY
-
-Wykonano deterministyczny runtime:
+Zaimplementowano deterministyczny przebieg:
 
 ```text
 Guardian policy snapshot
@@ -142,69 +103,108 @@ Guardian policy snapshot
 → purpose/capability/location/target/budget
 → cost meter
 → SERVANT TRANSACT
-→ MVCC + durable WAL
+→ MVCC + WAL
 → authoritative session presence
 → append-only movement telemetry
 ```
 
-Najważniejsze rozstrzygnięcie implementacyjne:
+Autorytatywna obecność sesji nie jest zapisywana bocznym kanałem:
 
 \[
-\boxed{
-\text{ACCESS_STEWARD nie utrwala obecności bezpośrednio}
-}
+\boxed{ACCESS\_STEWARD\to SERVANT\to MVCC\to WAL}
 \]
 
-Autorytatywna obecność sesji jest zapisywana w administracyjnym workspace jako relacja `SESSION_AT::<session_id>` wyłącznie przez:
+Regresje obejmują wejście/tranzyt/wyjście, pojedynczą lokalizację sesji, koszt, rozdział capability, policy-version, health gate, replay, collision, telemetrię i recovery.
 
-\[
-\boxed{
-ACCESS\_STEWARD\to SERVANT\to MVCC\to WAL.
-}
-\]
+**Boundary:** pojedynczy proces, jawny snapshot polityki Strażnika, brak live FORUM i rozproszonej współbieżności.
 
-`AccessChronicle` jest osobnym append-only audytem ruchu i nie jest źródłem prawdy o bieżącej lokalizacji.
+## F3 — Kustosz + Nadzorca: archiwum „pamięci w pamięci”
 
-Regresja `scripts/test_access_steward_runtime.py` potwierdziła:
+### F3.0 — kontrakt L0/L1/L2 + rekonstrukcja — CONTRACT_PASS
 
-1. legalne `ENTER`, `TRANSIT`, `EXIT` i najwyżej jedną lokalizację sesji;
-2. rozdział `ENTER / ACT / EXPORT / VIEW_TELEMETRY`;
-3. brak cichej reinterpretacji starej `policy_version`;
-4. fail-closed przy braku polityki, nieznanym celu, złej lokalizacji i zamkniętym health gate;
-5. dodatni koszt szacowany i rzeczywisty dla ruchu oraz twardy budżet składowy;
-6. brak eksportu wynikającego z samego tranzytu;
-7. klasy telemetrii oraz agregację `T3` bez identyfikatorów sesji/aktorów;
-8. trwałe `COMMIT` ruchu przez Sługę;
-9. restart z rekonstrukcją obecności z autorytatywnego stanu;
-10. idempotentny replay bez drugiego ruchu;
-11. `REQUEST_ID_COLLISION -> STOP_ESCALATE`;
-12. `EXIT` bez fantomowej obecności po kolejnym restarcie;
-13. brak bezpośredniego `durable.commit` w Nadzorcy;
-14. brak semantycznej władzy Nadzorcy.
-
-Dedykowany workflow `PSI memory access steward runtime`, run `36746498419`, zakończył się `success`. W tym samym jobie przeszły ponownie: F2.0 contract, F2.1 runtime, regresja Sługi i czterorólna konstytucja instytucji.
-
-Szczegóły: `experiments/PSI-MEMORY-ACCESS-STEWARD-F2.1-01.md`.
-
-**Boundary F2.1:** pojedynczy proces i deterministyczny snapshot polityki Strażnika; brak runtime'u tworzącego politykę Strażnika, brak rozproszonej współbieżności, live FORUM i autonomicznej diagnostyki patologii. Koszt pozostaje administracyjnym wektorem kontraktowym, nie globalnym optimum.
-
-## F3 — Kustosz + Nadzorca: archiwum „pamięci w pamięci” — NEXT
-
-Minimalny model:
+Zamrożono trzy warstwy administracyjne:
 
 ```text
-L0 — źródła, obiekty, relacje
-L1 — wersjonowane mapy/workspace'y + lineage
-L2 — historia tworzenia, używania, przejść i kosztów L1
+L0 — źródła, obiekty, relacje i zdarzenia autorytatywne
+L1 — wersjonowane mapy/workspace'y + manifest + lineage
+L2 — historia tworzenia, używania, przejść, kosztów i operacji na L1
 ```
 
-Realizacja ma używać snapshotów, odwołań, hashy i delt, a nie pełnych kopii świata.
+Archiwum używa:
 
-`CURATOR` odpowiada za tożsamość, wersję, rodowód i `CURRENT_POINTER`; może wnosić do Agenta PSI propozycje `EXPAND / SPLIT / MERGE / REINDEX / MIGRATE / ARCHIVE / COMPACT / REBALANCE`, lecz nie wykonuje sam przebudowy. `ACCESS_STEWARD` odpowiada za historię obecności, przejść i kosztów.
+\[
+\boxed{\text{stable refs}+\text{snapshot}+\text{ordered deltas}+\text{digests}+\text{lineage}}
+\]
 
-Pierwsza jednostka F3 ma zamrozić format archiwalnego rekordu L2 i odtworzenie wskazanego stanu przez snapshot + deltę + referencje, bez kopiowania całej pamięci przy każdym kroku.
+z warunkiem rekonstrukcji:
 
-**Gate F3:** wskazany stan pamięci daje się odtworzyć z właściwym kontraktem, provenance, wersją, uprawnieniami i historią użycia.
+\[
+\boxed{R(S_k,\Delta_{k+1:n})=S_n}
+\]
+
+i sprawdzeniem `content_digest`.
+
+„Pamięć w pamięci pamięci” nie oznacza rekurencyjnego pełnego kopiowania archiwum:
+
+\[
+\boxed{\text{record about record}=\text{reference}+\text{digest}+\text{typed relation}}
+\]
+
+Zamrożono także:
+
+\[
+\boxed{CURRENT\neq TRUE\neq REUSABLE}
+\]
+
+\[
+\boxed{ARCHIVE(x)\not\Rightarrow status(x)\uparrow}
+\]
+
+\[
+\boxed{RESTORE(x)\not\Rightarrow ADMIT(x)}.
+\]
+
+Archiwizacja nie rozszerza uprawnień; L2 nie może ujawniać ograniczonej telemetrii bez `VIEW_TELEMETRY`; trwałe mutacje pozostają w ścieżce `SERVANT/MVCC/WAL`. Kustosz może projektować i wnosić potrzebę przebudowy, lecz nie wykonuje jej sam i nie przydziela sobie zasobów.
+
+Artefakty:
+
+- `docs/memory/PSI-MEMORY-ARCHIVE-F3.0-01.md`;
+- `docs/memory/psi-memory-archive-contract-01.tsv`;
+- `docs/memory/psi-memory-archive-conflicts-01.tsv`;
+- `scripts/test_memory_archive_contract.py`;
+- `.github/workflows/memory-archive-contract.yml`.
+
+Workflow `PSI memory archive contract`, run `36747572272`, zakończył się `success`. W tym samym jobie przeszły: F3.0, F2.0, czterorólna konstytucja i regresja Sługi.
+
+### F3.1 — referencyjny runtime archiwum — NEXT
+
+Następna jednostka ma zrealizować deterministyczny runtime bez garbage collection i bez autonomicznej przebudowy:
+
+```text
+Workspace/version state
+→ immutable archive manifest
+→ base snapshot or prior snapshot reference
+→ ordered deltas
+→ content digest
+→ CURRENT_POINTER update by Curator path
+→ reconstruct(version_id)
+→ verify digest / contract / lineage
+```
+
+Minimalne regresje F3.1:
+
+1. wersja bazowa + dwie delty rekonstruują dokładnie stan docelowy;
+2. brak delty/snapshotu blokuje rekonstrukcję fail-closed;
+3. digest mismatch blokuje reuse;
+4. `version_id` collision daje STOP;
+5. `CURRENT_POINTER` nie usuwa starej wersji i przeżywa restart;
+6. archiwizacja zachowuje `NEEDS_RECHECK` lub inny status zamiast go podnosić;
+7. restore nie daje automatycznie admission/access;
+8. ograniczona telemetria pozostaje tylko referencją bez capability do treści;
+9. lineage rodziców nie jest inferowany z czasu;
+10. koszt snapshot/delta/reconstruction jest jawnie mierzony;
+11. trwałe zapisy runtime przechodzą przez Sługę/WAL albo osobny jawnie zatwierdzony kontrakt trwałości — brak bocznego zapisu;
+12. rekurencyjny zapis L2 używa referencji, a nie pełnych kopii całego archiwum.
 
 ## F4 — wizualizacja jako sprawdzalny widok
 
@@ -213,36 +213,20 @@ Rodowód ruchomej notacji PSI-VIZ pochodzi z rozmowy `Konstruowanie litery a`.
 Każdy obraz/animacja musi wskazywać rewizję pamięci, kontrakt, identyfikatory obiektów, typ/kierunek relacji i dostęp do wymaganych provenance/status/version.
 
 \[
-\boxed{
-\text{structural relation}
-\neq
-\text{embedding geometry}
-\neq
-\text{display layout}
-}
+\boxed{\text{structural relation}\neq\text{embedding geometry}\neq\text{display layout}}
 \]
 
 Pierwsze animacje: zawężanie włókna, rozszczepienie po obserwacji, invalidacja, przejście `M_i→M_j` z kosztem/uprawnieniem, genealogy/replay, ten sam stan w dwóch layoutach.
 
 ## F5 — zmierzyć korzyść dla modelu
 
-Porównać przy stałym zadaniu/modelu/źródłach:
-
-- szeroki kontekst źródłowy;
-- pamięć kierowaną M4b;
-- comparator leksykalny;
-- formalny/relacyjny pakiet pamięci;
-- ten sam stan z wizualnym widokiem operacyjnym.
-
-Niższy koszt wejścia nie jest sam w sobie lepszym rozumowaniem.
+Porównać przy stałym zadaniu/modelu/źródłach: szeroki kontekst, pamięć kierowaną, comparator leksykalny, formalny pakiet relacyjny i ten sam stan z wizualnym widokiem operacyjnym.
 
 ## F6 — tensor/GPU jako kompilacja sprawdzonego stanu
 
 \[
 \mathcal M_t\xrightarrow{C_c}\Theta_{t,c}
 \]
-
-GPU może służyć propagacji, przecięciom, transportowi, wyszukiwaniu motywów i lokalnym aktualizacjom. Nie jest warstwą prawdy.
 
 \[
 \boxed{\text{tensor geometry proposes; PSI licenses inference}}
@@ -262,14 +246,10 @@ active task maps/workspaces
 controlled map transitions
 ```
 
-Agent konsumuje istotne delty, nie odczytuje ponownie całej historii.
-
 ## Priorytet wykonawczy
 
 \[
-\boxed{
-F0\to F1\to F2.0\to F2.1\to F3\to F4\to F5\to F6\to F7
-}
+\boxed{F0\to F1\to F2.0\to F2.1\to F3.0\to F3.1\to F4\to F5\to F6\to F7}
 \]
 
 Aktualnie:
@@ -279,25 +259,26 @@ F0   PASS_WITH_BOUNDARY
 F1   PASS_WITH_BOUNDARY
 F2.0 CONTRACT_PASS
 F2.1 PASS_WITH_BOUNDARY
-F3   NEXT
+F3.0 CONTRACT_PASS
+F3.1 NEXT
 ```
 
 ## Czego teraz nie robić
 
 - nie tworzyć CORE6 ani R4;
 - nie scalać `psi-memory-map-01` z `main`;
-- nie przeciążać istniejącego `SERVANT` funkcją ochrony budynku;
-- nie robić z `ACCESS_STEWARD` piątej równorzędnej roli konstytucyjnej;
-- nie pozwalać Nadzorcy tworzyć polityki dostępu ani własnych uprawnień;
-- nie utożsamiać ruchu z eksportem ani wejścia z działaniem;
-- nie ukrywać kosztu przejść między mapami;
-- nie robić z grafiki lub COO stanu autorytatywnego;
-- nie implementować archiwum przez pełne kopiowanie wszystkich map;
-- nie przechodzić do GPU przed zachowaniem semantyki i pełnej telemetrii kosztu;
-- nie używać telemetrii, popularności ani obecności jako dowodu prawdziwości.
+- nie robić z `ACCESS_STEWARD` piątej roli konstytucyjnej;
+- nie pozwalać Kustoszowi samodzielnie wykonywać przebudowy lub zwiększać własnego budżetu;
+- nie utożsamiać `CURRENT_POINTER` z prawdą lub prawem do reuse;
+- nie traktować restore jako admission;
+- nie rozszerzać access przez archiwizację;
+- nie kopiować całego archiwum rekurencyjnie;
+- nie usuwać historii pod nazwą archiwizacji;
+- nie robić z grafiki/COO stanu autorytatywnego;
+- nie przechodzić do GPU przed zachowaniem semantyki i provenance.
 
 ## Najbliższa jednostka
 
-**F3.0 — kontrakt archiwum L0/L1/L2 oraz rekonstrukcji snapshot + delta + referencje.**
+**F3.1 — referencyjny runtime archiwum: snapshot + delta + manifest + deterministic reconstruct + CURRENT_POINTER persistence.**
 
-Najpierw zamrozić typy rekordów, tożsamość wersji, zależności, regułę rekonstrukcji i konflikt-registry między Kustoszem, Nadzorcą, Sługą i PSI gate. Dopiero po PASS tego kontraktu implementować archiwum.
+Nie rozszerzać zakresu o garbage collection, autonomiczne `COMPACT/MIGRATE`, semantyczną kompresję ani FORUM przed przejściem tej regresji.
