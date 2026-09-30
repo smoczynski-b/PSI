@@ -2,6 +2,7 @@
   "id": "F5-HOLDOUT-V1",
   "status": "FROZEN_BEFORE_MODEL_RUN",
   "source_ref": "f3cee544d7642be1b74d53e233b7149a0e2c7dcd",
+  "psi_pack_builder_blob_sha": "6c6b5a3a5e2e3b76302bcbdf8205e1abf900d8c0",
   "prompt_char_limit": 80000,
   "answer_word_limit": 600,
   "chunk_lines": 60,
