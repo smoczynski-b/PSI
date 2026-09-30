@@ -186,7 +186,7 @@ def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout:
         "source_state_digest": workspace.state_digest,
         "task_id": contract.task_id,
         "nodes": nodes,
-        "node_status": dict(sorted(workspace.node_status.items())),
+        "node_status": dict(sorted(workspace.node_status.items())) if "status" in contract.visible_metadata else {},
         "edges": edges,
         "visible_metadata": list(contract.visible_metadata),
         "channel_meanings": [list(x) for x in contract.channel_meanings],
