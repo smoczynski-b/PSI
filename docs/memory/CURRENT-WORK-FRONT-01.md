@@ -6,118 +6,130 @@
 **Validated implementation:** `98dab44c1af3238c4f342413afc99d1d421f3e90`  
 **Full bounded acceptance run:** `36781418888`  
 **Acceptance job:** `110112332931`  
-**Scope:** current work selection for an explicitly selected PSI memory / visualization task.  
+**Scope:** current work selection for PSI memory / model efficacy / visualization.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
 ## Current decision
 
-**FULL BOUNDED PSI MEMORY RUN: DONE / `PASS_WITH_BOUNDARY`.**
+**F5 — MODEL EFFICACY: SELECTED.**
 
-No new separating system defect was found. Therefore:
+The user explicitly selected F5 after the bounded full memory run. R5 remains open and is still required before F4.4, but visualization is deferred while F5 is active.
+
+Current state:
 
 ```text
+FULL_BOUNDED_RUN = PASS_WITH_BOUNDARY
 R9 = NOT_CREATED
+F5 = SELECTED / PREPARED / MODEL_RUN_PENDING
+R5 = OPEN / DEFERRED
+F4.4 = DEFERRED_AFTER_R5
 ```
 
-The next front is **not selected automatically**. The next explicit choice is between:
+Primary F5 contract:
+
+- [`PSI-MEMORY-F5-MODEL-EFFICACY-01.md`](PSI-MEMORY-F5-MODEL-EFFICACY-01.md)
+
+## F5 question
+
+F5 must test the stronger claim not established by infrastructure tests:
 
 ```text
-F5 — model-efficacy comparison
-R5 — directed visual relations -> F4.4 SPLIT
+does PSI memory improve model answers compared with
+A ordinary bounded context
+B simple lexical retrieval
+C PSI memory retrieval
 ```
 
-Do not begin either front as a continuation of the completed integration unit without an explicit selection. R5 remains required before F4.4.
+under fixed source revision, fixed tasks, fixed model/settings, fixed evaluator and equal input-budget rules.
 
-## Closed correctness / integration sequence
+A cheaper incorrect answer is not a successful memory optimization.
 
-| Unit | Status |
-|---|---|
-| R1 journal continuation | `PASS_WITH_BOUNDARY` |
-| R2 cross-journal reconciliation | `PASS_WITH_BOUNDARY` |
-| R3 visual digest verification | `PASS_WITH_BOUNDARY` |
-| R4 status redaction | `PASS_WITH_BOUNDARY` |
-| R6 cost semantics | `PASS_WITH_BOUNDARY` |
-| R7 consumed-version receipt | `PASS_WITH_BOUNDARY` |
-| R8 no-proposal observation identity | `PASS_WITH_BOUNDARY` |
-| full bounded PSI memory run | `PASS_WITH_BOUNDARY` |
+## Calibration vs held-out
 
-Primary evidence:
+Existing `M4b-ABC-CALIBRATION` remains calibration only. Its Go G4 task was used during memory construction and therefore cannot establish generalization.
 
-- [`PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`](PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md)
-- [`PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md`](PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md)
-- [`PSI-VIZ-R3-DIGEST-INTEGRITY-01.md`](PSI-VIZ-R3-DIGEST-INTEGRITY-01.md)
-- [`PSI-VIZ-R4-STATUS-REDACTION-01.md`](PSI-VIZ-R4-STATUS-REDACTION-01.md)
-- [`PSI-MEMORY-R6-COST-SEMANTICS-01.md`](PSI-MEMORY-R6-COST-SEMANTICS-01.md)
-- [`PSI-MEMORY-R7-CONSUMED-VERSION-01.md`](PSI-MEMORY-R7-CONSUMED-VERSION-01.md)
-- [`PSI-MEMORY-R8-NO-PROPOSAL-IDENTITY-01.md`](PSI-MEMORY-R8-NO-PROPOSAL-IDENTITY-01.md)
-- [`PSI-MEMORY-FULL-BOUNDED-RUN-01.md`](PSI-MEMORY-FULL-BOUNDED-RUN-01.md)
-
-## Full-run witness
-
-The accepted episode is pinned to actual project records from:
+The held-out F5 set is built from later R6/R7/R8/full-run problems:
 
 ```text
-docs/memory/psi-memory-nodes-01.tsv
-docs/memory/psi-memory-edges-01.tsv
+H1 cost semantics: PREEXECUTION_QUOTE / incurred UNKNOWN / zero
+H2 archive semantics: MAP_ASSOCIATION vs VERIFIED_CONSUMPTION
+H3 Curator identity: NO_PROPOSAL / same-ID changed-payload collision after restart
+H4 stale premise: historical availability vs current authority / NEEDS_RECHECK
 ```
 
-with the real source state:
+## F5 arms
+
+All three arms must be generated before model execution from one frozen corpus and common hard prompt-size limit.
 
 ```text
-P9-I   status = OPEN
-P9-I   GATE_FOR   III.13
-III.13 status = UNAUTHORIZED
-source = docs/control-state.json
+A ORDINARY_BOUNDED_CONTEXT
+  deterministic naive manifest-order context; no PSI graph; no BM25
+
+B BM25_BASELINE
+  same corpus; task-text-only lexical ranking; no graph/gold/manual boosts
+
+C PSI_MEMORY
+  existing task compiler + typed PSI retrieval + attestation + exact sources
 ```
 
-The episode then exercised, in one composed run:
+No manual source repair after seeing an answer is allowed.
+
+The external runner currently exposes a 100000-character prompt ceiling. The F5 working cap is therefore <=80000 characters per complete prompt so truncation is detectable and avoidable. The historical M4b A input (~206 kB) must not be silently truncated and relabelled as the same experiment.
+
+## Measurements
+
+Record separately:
 
 ```text
-real V1
--> ACCESS_STEWARD
--> VERIFIED_CONSUMPTION(V1)
--> derived result
--> Curator NO_PROPOSAL identity
--> isolated hypothetical premise change
--> result NEEDS_RECHECK
--> V2 current
--> interruption/restart
--> historical V1 receipt preserved
--> old result remains NEEDS_RECHECK
--> no duplicate movement/COMMIT
--> telemetry still gated
--> Curator replay idempotent / changed payload rejected
+correct core claims
+correct boundary statements
+correct stale refusal
+unsupported claims
+wrongly accepted stale claims
+source-locator accuracy
+input/output tokens (UNKNOWN if unavailable)
+end-to-end latency (UNKNOWN if unavailable)
+external tool calls
+source rereads
 ```
 
-Acceptance workflow `36781418888`, job `110112332931`, passed the full episode and the R1/R2/R6/R7/R8/F3.3 regressions in the same job.
+Do not synthesize one quality/cost score by choosing weights after results are visible.
 
-Two earlier failures during construction of the witness were classified as harness defects, not system counterexamples:
+## Execution gate
 
-1. an invalid assertion against `ServantDecision` fields belonging to another layer;
-2. mutable workspace seeds reused across restart instead of fresh `deepcopy` seeds.
+Next legal work inside F5:
 
-After correcting witness instrumentation/isolation, no system failure remained. Details are frozen in `PSI-MEMORY-FULL-BOUNDED-RUN-01.md`.
+1. freeze held-out manifest and file/content hashes;
+2. implement reproducible A/B/C input builder;
+3. verify common prompt budget and no silent truncation;
+4. freeze blind scoring rubric and answer-ID randomization;
+5. then execute 12 independent model runs: `4 tasks x 3 arms`;
+6. score blind; only then unblind A/B/C.
+
+Independent model executions may consume Brainbase credits. Preparation is not evidence of model efficacy. Until actual runs are executed:
+
+```text
+F5 != PASS
+F5 = MODEL_RUN_PENDING
+```
 
 ## Auditor rule — Semantica Rozmowy 03
 
-The audit layer remains binding:
+The binding rule remains:
 
 \[
 P_i(S)\not\Rightarrow S.
 \]
 
-Operationally:
+For F5 in particular:
 
 ```text
-component PASS != system PASS
-stored digest != verified consumed payload
-archive association != verified version consumption
-historical availability != current authority
-stored stale result != permission to reuse it
-returned payload != semantic understanding
-no proposal != not observed
-unknown cost != zero cost
-visible relation != necessarily visible direction
+retrieved source != model understood source
+verified consumption != causal use in reasoning
+smaller context != better answer
+lower latency != epistemic success
+calibration success != held-out generalization
+one successful answer != system-level efficacy
 ```
 
 ## Recorded implementation state
@@ -146,33 +158,9 @@ F4.1 PASS_WITH_BOUNDARY
 F4.2 PASS_WITH_BOUNDARY; R5 OPEN
 F4.3 PASS_WITH_BOUNDARY; R5 OPEN
 F4.4 DEFERRED_AFTER_R5
-F5   NOT_RUN
+F5   SELECTED / PREPARED / MODEL_RUN_PENDING
 ```
 
-## Full-run boundary retained
+## Stop
 
-The integration result is one deterministic single-process episode seeded from real PSI records. The `P9-I -> PASSED_INTEGRATION_TEST` transition exists only inside the test runtime and is not a mathematical or canonical status change. Historical versions intentionally remain explicitly retrievable. The guarantee is that stale/current status and dependent invalidation prevent silent reuse, not that history is erased.
-
-The run does not establish live-model understanding, causal use of returned memory, comparative answer quality, total economic advantage, distributed exactly-once semantics or correctness for every possible PSI record. Those stronger efficacy questions belong to F5 or later dedicated tests.
-
-## Selection gate
-
-After this completed unit, choose explicitly:
-
-### F5 — model efficacy
-
-Compare fixed tasks under:
-
-```text
-ordinary context
-simple retrieval baseline
-PSI memory
-```
-
-with fixed source revision/model settings/evaluator and separate calibration/held-out sets. Measure correct reuse, correct stale refusal, incorrect accepted answers, source rereads, calls/tokens and end-to-end latency. A cheaper incorrect answer is not a success.
-
-### R5 — visual relation direction
-
-Return to PSI-VIZ. Require explicit typed direction/symmetry so `A -> B` and `B -> A` are visibly distinguishable in SVG and real animation, while symmetric relations remain invariant. R5 remains the gate before F4.4 SPLIT.
-
-No default selection is implied by this pointer.
+Do not return to R5 or start F4.4 inside this unit. Do not claim F5 efficacy from prompt preparation. If live execution is blocked by cost/model access, freeze the reproducible benchmark and report `MODEL_RUN_BLOCKED`, not `PASS`.
