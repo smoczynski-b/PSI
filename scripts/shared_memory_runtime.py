@@ -46,6 +46,20 @@ class SharedMemoryRuntime:
         self.memory = MVCCWorkspace(authoritative_workspace)
         self.views = MultiWorkspaceRuntime()
 
+    def reset_from(self, other: "SharedMemoryRuntime") -> None:
+        """Install recovered state without invalidating long-lived handles.
+
+        `self` and `self.views` keep object identity; their contents are replaced
+        by the freshly replayed runtime. This is the recovery boundary used by
+        institutional components that retain the shared/view handles.
+        """
+        if not isinstance(other, SharedMemoryRuntime):
+            raise TypeError("reset_from requires SharedMemoryRuntime")
+        if other is self:
+            return
+        self.memory = other.memory
+        self.views.reset_from(other.views)
+
     @property
     def revision(self) -> int:
         return self.memory.revision
