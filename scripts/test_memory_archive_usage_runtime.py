@@ -21,7 +21,12 @@ from access_steward_runtime import (
 )
 from durable_shared_memory import DurableSharedMemoryRuntime
 from memory_archive_runtime import ArchiveManifest, MemoryArchiveRuntime
-from memory_archive_usage_runtime import MemoryArchiveUsageRuntime, UsageArchiveError
+from memory_archive_usage_runtime import (
+    EVIDENCE_MAP_ASSOCIATION,
+    EVIDENCE_VERIFIED_CONSUMPTION,
+    MemoryArchiveUsageRuntime,
+    UsageArchiveError,
+)
 from servant_runtime import ServantRuntime
 
 ROOT = "ACCESS_PRESENCE_ROOT"
@@ -128,7 +133,7 @@ def main():
             cost_meter=lambda req: req.estimated_cost,
         )
         archive = MemoryArchiveRuntime(servant, root / "archive.wal")
-        publish_map_version(archive)
+        published = publish_map_version(archive)
         usage = MemoryArchiveUsageRuntime(archive, steward, root / "archive-usage.wal")
 
         # Session enters M1, then legally moves to M2 under Guardian policy.
@@ -137,32 +142,80 @@ def main():
         assert transit.disposition == "ALLOW_MOVEMENT"
         assert transit.actual_cost.l1 == 1.0
 
-        # L2 binds the exact archived map version to the exact committed movement.
+        # R7: exact archive read first emits a durable version/revision/digest receipt.
+        consumed = usage.consume_version(
+            "receipt-1", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:02Z"
+        )
+        assert consumed.receipt.version_id == "version:M2:1"
+        assert consumed.receipt.content_digest == published.content_digest
+        assert consumed.workspace.state_digest == published.content_digest
+        assert consumed.receipt.source_revision == consumed.workspace.revision
+
+        # F3.2 strong usage binding now requires that exact receipt.
         ref = usage.link_movement(
-            "usage-1", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:02Z"
+            "usage-1",
+            "version:M2:1",
+            "transit-1",
+            created_at="2026-09-30T17:10:03Z",
+            consumption_receipt_id="receipt-1",
         )
         assert ref.version_id == "version:M2:1"
         assert ref.session_id == "session-1"
         assert ref.map_from == "M1" and ref.map_to == "M2"
         assert ref.actual_cost.l1 == 1.0
         assert ref.telemetry_class == "T2_AUDIT_DURABLE"
-        assert usage.counts() == {"usage_refs": 1, "records": 1}
+        assert ref.evidence_kind == EVIDENCE_VERIFIED_CONSUMPTION
+        assert ref.consumption_receipt_id == "receipt-1"
+        assert ref.content_digest == published.content_digest
+        assert ref.source_revision == consumed.workspace.revision
+        assert usage.counts() == {"consumption_receipts": 1, "usage_refs": 1, "records": 2}
 
-        # Replay of the same L2 binding is idempotent.
+        # Replay of both receipt and usage is idempotent.
         before = usage.counts()
+        consumed_replay = usage.consume_version(
+            "receipt-1", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:02Z"
+        )
+        assert consumed_replay.receipt == consumed.receipt
         replay = usage.link_movement(
-            "usage-1", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:02Z"
+            "usage-1",
+            "version:M2:1",
+            "transit-1",
+            created_at="2026-09-30T17:10:03Z",
+            consumption_receipt_id="receipt-1",
         )
         assert replay == ref
         assert usage.counts() == before
 
+        # Association-only references remain legal but explicitly weaker.
+        association = usage.link_movement(
+            "association-1",
+            "version:M2:1",
+            "transit-1",
+            created_at="2026-09-30T17:10:04Z",
+        )
+        assert association.evidence_kind == EVIDENCE_MAP_ASSOCIATION
+        assert association.consumption_receipt_id == ""
+        assert association.content_digest == ""
+        assert association.source_revision is None
+
         # L2 is reference-oriented: it does not copy actor/purpose/transaction internals.
-        raw = usage.chronicle.records()[0]["payload"]
-        raw_text = json.dumps(raw, sort_keys=True)
-        for forbidden in ("actor_id", "declared_purpose", "estimated_cost", "servant_command_id", "txid"):
-            assert forbidden not in raw_text
-        assert "movement_digest" in raw_text
-        assert "actual_cost" in raw_text
+        raw_usage = next(
+            row["payload"] for row in usage.chronicle.records()
+            if row.get("kind") == "ARCHIVE_USAGE"
+            and row.get("payload", {}).get("usage", {}).get("usage_id") == "usage-1"
+        )
+        raw_receipt = next(
+            row["payload"] for row in usage.chronicle.records()
+            if row.get("kind") == "ARCHIVE_CONSUMPTION"
+        )
+        for raw in (raw_usage, raw_receipt):
+            raw_text = json.dumps(raw, sort_keys=True)
+            for forbidden in ("actor_id", "declared_purpose", "estimated_cost", "servant_command_id", "txid"):
+                assert forbidden not in raw_text
+        assert "movement_digest" in json.dumps(raw_usage, sort_keys=True)
+        assert "actual_cost" in json.dumps(raw_usage, sort_keys=True)
+        assert "content_digest" in json.dumps(raw_receipt, sort_keys=True)
+        assert "source_revision" in json.dumps(raw_receipt, sort_keys=True)
 
         # No telemetry capability => archive read remains denied and leaks no usage body.
         denied = usage.view_usage(
@@ -172,7 +225,7 @@ def main():
         assert denied["status"] == "DENIED"
         assert "usage" not in denied and "session_id" not in denied
 
-        # Exact T2 authorization exposes only the bounded archive usage view.
+        # Exact T2 authorization exposes only the bounded verified usage view.
         allowed = usage.view_usage(
             "usage-1",
             TelemetryQuery("agent-A", "session-1", "T2_AUDIT_DURABLE", "audit", "G-1"),
@@ -181,6 +234,10 @@ def main():
         assert allowed["usage"]["version_id"] == "version:M2:1"
         assert allowed["usage"]["movement_request_id"] == "transit-1"
         assert allowed["usage"]["actual_cost"]["compute"] == 1.0
+        assert allowed["usage"]["evidence_kind"] == EVIDENCE_VERIFIED_CONSUMPTION
+        assert allowed["usage"]["consumption_receipt_id"] == "receipt-1"
+        assert allowed["usage"]["content_digest"] == published.content_digest
+        assert allowed["usage"]["source_revision"] == consumed.workspace.revision
         assert "actor_id" not in allowed["usage"] and "declared_purpose" not in allowed["usage"]
 
         # T3 authorization returns aggregate only; no session or movement identifiers.
@@ -192,9 +249,11 @@ def main():
             "status": "ALLOWED",
             "class": "T3_AGGREGATED",
             "version_id": "version:M2:1",
-            "usage_count": 1,
-            "total_cost_l1": 1.0,
+            "usage_count": 2,
+            "verified_consumption_count": 1,
+            "total_cost_l1": 2.0,
         }
+        assert "session_id" not in aggregate and "movement_request_id" not in aggregate
 
         # A movement into M2 cannot be attached to a version whose object is M1.
         foreign = ArchiveManifest(
@@ -210,22 +269,22 @@ def main():
             epistemic_status_ref="VALID",
             access_policy_ref="policy:G-1",
             lifecycle_state="ACTIVE",
-            created_at="2026-09-30T17:10:03Z",
+            created_at="2026-09-30T17:10:05Z",
         )
         archive.publish_version(foreign)
         try:
-            usage.link_movement("usage-wrong-map", "version:M1:1", "transit-1", created_at="2026-09-30T17:10:04Z")
+            usage.link_movement("usage-wrong-map", "version:M1:1", "transit-1", created_at="2026-09-30T17:10:06Z")
             raise AssertionError("cross-map usage linkage was accepted")
         except UsageArchiveError as exc:
             assert "version/map mismatch" in str(exc)
 
         try:
-            usage.link_movement("usage-missing", "version:M2:1", "movement-not-there", created_at="2026-09-30T17:10:05Z")
+            usage.link_movement("usage-missing", "version:M2:1", "movement-not-there", created_at="2026-09-30T17:10:07Z")
             raise AssertionError("missing movement was accepted")
         except UsageArchiveError as exc:
             assert "resolve exactly once" in str(exc)
 
-        # Process-style restart recovers presence, map version and L2 binding.
+        # Process-style restart recovers presence, exact receipt and verified usage binding.
         durable2 = DurableSharedMemoryRuntime(seed, root / "shared.wal", no_views)
         servant2 = ServantRuntime(
             durable2,
@@ -244,39 +303,51 @@ def main():
         archive2 = MemoryArchiveRuntime(servant2, root / "archive.wal")
         usage2 = MemoryArchiveUsageRuntime(archive2, steward2, root / "archive-usage.wal")
         assert steward2.location("session-1") == "M2"
+        recovered_receipt = usage2.consumption_receipt("receipt-1")
+        assert recovered_receipt.version_id == "version:M2:1"
+        assert recovered_receipt.content_digest == published.content_digest
         recovered = usage2.usage("usage-1")
         assert recovered.version_id == "version:M2:1"
+        assert recovered.evidence_kind == EVIDENCE_VERIFIED_CONSUMPTION
+        assert recovered.consumption_receipt_id == "receipt-1"
         assert recovered.actual_cost.l1 == 1.0
+        denied2 = usage2.view_usage(
+            "usage-1",
+            TelemetryQuery("agent-A", "session-1", "T2_AUDIT_DURABLE", "wrong-purpose", "G-1"),
+        )
+        assert denied2["status"] == "DENIED"
         allowed2 = usage2.view_usage(
             "usage-1",
             TelemetryQuery("agent-A", "session-1", "T2_AUDIT_DURABLE", "audit", "G-1"),
         )
         assert allowed2["status"] == "ALLOWED"
+        assert allowed2["usage"]["evidence_kind"] == EVIDENCE_VERIFIED_CONSUMPTION
 
-        # L2 writes cannot bypass the Curator archive runbook gate.
+        # Consumption receipt writes cannot bypass the Curator archive runbook gate.
         blocked_servant = ServantRuntime(durable2, root / "servant-blocked.wal", authorized_runbooks=())
         blocked_archive = MemoryArchiveRuntime(blocked_servant, root / "archive.wal")
         blocked_usage = MemoryArchiveUsageRuntime(blocked_archive, steward2, root / "archive-usage-blocked.wal")
         try:
-            blocked_usage.link_movement(
-                "usage-blocked", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:06Z"
+            blocked_usage.consume_version(
+                "receipt-blocked", "version:M2:1", "transit-1", created_at="2026-09-30T17:10:08Z"
             )
-            raise AssertionError("L2 usage write bypassed SERVANT runbook gate")
+            raise AssertionError("consumption receipt write bypassed SERVANT runbook gate")
         except UsageArchiveError as exc:
             assert "SERVANT gate rejected" in str(exc)
-        assert blocked_usage.counts() == {"usage_refs": 0, "records": 0}
+        assert blocked_usage.counts() == {"consumption_receipts": 0, "usage_refs": 0, "records": 0}
 
     print("PSI-MEMORY-ARCHIVE-F3.2-01 PASS_WITH_BOUNDARY")
-    print("version_movement_cost_binding=PASS")
+    print("verified_version_consumption_binding=PASS")
+    print("map_association_not_consumption=PASS")
     print("restricted_telemetry_reference_not_copy=PASS")
     print("view_telemetry_gate_reused=PASS")
     print("unauthorized_archive_read_leak=ABSENT")
     print("t3_aggregate_no_session_identity=PASS")
-    print("restart_recovers_usage_binding=PASS")
+    print("restart_recovers_consumption_receipt=PASS")
     print("cross_map_binding=BLOCKED")
     print("servant_runbook_gate=PASS")
     print("semantic_truth_authority=ABSENT")
-    print("BOUNDARY: single-process L2 reference bridge; movement telemetry remains authoritative in ACCESS_STEWARD; no distributed telemetry store, retention policy engine, or autonomous Curator planning runtime")
+    print("BOUNDARY: single-process L2 reference bridge; verified consumption means exact payload returned by the typed read path, not semantic understanding; movement telemetry remains authoritative in ACCESS_STEWARD")
 
 
 if __name__ == "__main__":
