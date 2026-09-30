@@ -6,7 +6,7 @@ import hashlib
 import json
 import math
 
-from psi_viz_projection import VisualFrame, classify_transition
+from psi_viz_projection import VisualFrame, classify_transition, verify_visual_frame
 
 
 def _canon(value) -> str:
@@ -98,6 +98,70 @@ class AnimationTimeline:
         }
 
 
+def verify_print_keyframe(keyframe: PrintKeyframe) -> None:
+    """Recompute the consumed print payload and verify duplicated bindings."""
+    if not isinstance(keyframe, PrintKeyframe):
+        raise TypeError("verify_print_keyframe requires PrintKeyframe")
+    if _digest(keyframe.payload) != keyframe.payload_digest:
+        raise ValueError("PrintKeyframe payload/digest mismatch")
+    try:
+        source = keyframe.payload["source"]
+        if str(source["semantic_digest"]) != keyframe.source_semantic_digest:
+            raise ValueError("PrintKeyframe duplicated semantic digest mismatch")
+        if str(source["layout_digest"]) != keyframe.source_layout_digest:
+            raise ValueError("PrintKeyframe duplicated layout digest mismatch")
+    except KeyError as exc:
+        raise ValueError("PrintKeyframe missing source binding") from exc
+
+
+def verify_animation_timeline(timeline: AnimationTimeline) -> None:
+    """Recompute timeline payload and verify its duplicated transition claims."""
+    if not isinstance(timeline, AnimationTimeline):
+        raise TypeError("verify_animation_timeline requires AnimationTimeline")
+    if _digest(timeline.payload) != timeline.payload_digest:
+        raise ValueError("AnimationTimeline payload/digest mismatch")
+    try:
+        if timeline.payload["format"] != "PSI-VIZ-TIMELINE-1":
+            raise ValueError("unsupported animation timeline format")
+        duration = float(timeline.payload["duration_seconds"])
+        transition = timeline.payload["transition"]
+        motion = str(transition["declared_motion"]).upper()
+        semantic_changed = timeline.source_semantic_digest != timeline.target_semantic_digest
+        layout_changed = timeline.from_layout_digest != timeline.to_layout_digest
+    except (KeyError, TypeError, ValueError) as exc:
+        if isinstance(exc, ValueError) and str(exc) == "unsupported animation timeline format":
+            raise
+        raise ValueError("AnimationTimeline malformed binding payload") from exc
+    if duration != float(timeline.duration_seconds):
+        raise ValueError("AnimationTimeline duplicated duration mismatch")
+    if motion != timeline.declared_motion:
+        raise ValueError("AnimationTimeline duplicated declared_motion mismatch")
+    if bool(transition.get("semantic_changed")) != semantic_changed:
+        raise ValueError("AnimationTimeline duplicated semantic-change binding mismatch")
+    if bool(transition.get("layout_changed")) != layout_changed:
+        raise ValueError("AnimationTimeline duplicated layout-change binding mismatch")
+    if transition.get("legal") is not True:
+        raise ValueError("AnimationTimeline carries non-legal transition")
+
+    if motion == "REPOSITION":
+        if semantic_changed or not layout_changed or transition.get("reason") != "LAYOUT_ONLY":
+            raise ValueError("AnimationTimeline REPOSITION binding mismatch")
+        if any(str(row.get("kind", "")) != "MOVE_NODE" for row in timeline.payload.get("commands", [])):
+            raise ValueError("AnimationTimeline REPOSITION contains non-move command")
+    else:
+        if not semantic_changed or transition.get("reason") != "SEMANTIC_EVENT_VISIBLE":
+            raise ValueError("AnimationTimeline semantic-event binding mismatch")
+        for row in timeline.payload.get("commands", []):
+            if str(row.get("kind", "")) != "SEMANTIC_EVENT":
+                raise ValueError("AnimationTimeline semantic transition contains non-semantic command")
+            if str(row.get("declared_motion", "")).upper() != motion:
+                raise ValueError("AnimationTimeline semantic command motion mismatch")
+            if str(row.get("from_semantic_digest", "")) != timeline.source_semantic_digest:
+                raise ValueError("AnimationTimeline semantic command source mismatch")
+            if str(row.get("to_semantic_digest", "")) != timeline.target_semantic_digest:
+                raise ValueError("AnimationTimeline semantic command target mismatch")
+
+
 def _asset_id(prefix: str, *parts: str) -> str:
     seed = "|".join(parts)
     return f"{prefix}:{hashlib.sha256(seed.encode('utf-8')).hexdigest()[:16]}"
@@ -140,6 +204,7 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
         raise TypeError("compile_print_keyframe requires VisualFrame")
     if not isinstance(profile, OutputProfile):
         raise TypeError("compile_print_keyframe requires OutputProfile")
+    verify_visual_frame(frame)
 
     positions = _scale_positions(frame, profile)
     semantic = frame.semantic_payload
@@ -180,7 +245,6 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
             "stroke": profile.foreground,
             "label": row["relation"],
         }
-        # Only metadata already present in the redacted VisualFrame can survive.
         if "provenance" in row:
             out["provenance"] = row["provenance"]
         if "status" in row:
@@ -208,13 +272,15 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
         "nodes": nodes,
         "edges": edges,
     }
-    return PrintKeyframe(
+    keyframe = PrintKeyframe(
         source_semantic_digest=frame.semantic_digest,
         source_layout_digest=frame.layout_digest,
         profile_id=profile.profile_id,
         payload=payload,
         payload_digest=_digest(payload),
     )
+    verify_print_keyframe(keyframe)
+    return keyframe
 
 
 def _assert_animation_contract_invariant(before: VisualFrame, after: VisualFrame) -> None:
@@ -240,6 +306,8 @@ def compile_animation_timeline(
     if not math.isfinite(duration) or duration <= 0:
         raise ValueError("duration_seconds must be a finite positive number")
 
+    verify_visual_frame(before)
+    verify_visual_frame(after)
     _assert_animation_contract_invariant(before, after)
     verdict = classify_transition(before, after, declared_motion)
     if not verdict["legal"]:
@@ -269,9 +337,6 @@ def compile_animation_timeline(
                     "t1": duration,
                 })
     else:
-        # Semantic transitions are not inferred from screen geometry. F4.1 only
-        # emits the validated declared event and frame references; a later
-        # adapter may animate it but may not invent additional semantics.
         commands.append({
             "kind": "SEMANTIC_EVENT",
             "declared_motion": motion,
@@ -296,7 +361,7 @@ def compile_animation_timeline(
         "duration_seconds": duration,
         "commands": commands,
     }
-    return AnimationTimeline(
+    timeline = AnimationTimeline(
         source_semantic_digest=before.semantic_digest,
         target_semantic_digest=after.semantic_digest,
         from_layout_digest=before.layout_digest,
@@ -306,3 +371,5 @@ def compile_animation_timeline(
         payload=payload,
         payload_digest=_digest(payload),
     )
+    verify_animation_timeline(timeline)
+    return timeline
