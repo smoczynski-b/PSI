@@ -1,0 +1,49 @@
+name: PSI memory journal recovery R1
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/test_jsonl_journal_recovery.py'
+      - 'scripts/test_active_memory_wal.py'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/test_servant_runtime.py'
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/test_access_steward_runtime.py'
+      - 'scripts/immune_runtime.py'
+      - 'scripts/test_immune_runtime.py'
+      - 'scripts/memory_archive_runtime.py'
+      - 'scripts/test_memory_archive_runtime.py'
+      - 'scripts/memory_archive_usage_runtime.py'
+      - 'scripts/test_memory_archive_usage_runtime.py'
+      - 'scripts/curator_planner_runtime.py'
+      - 'scripts/test_curator_planner_runtime.py'
+      - '.github/workflows/memory-journal-recovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  journal-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: R1 separating cases
+        run: python3 scripts/test_jsonl_journal_recovery.py
+      - name: Shared WAL regression
+        run: python3 scripts/test_active_memory_wal.py
+      - name: Servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Access steward regression
+        run: python3 scripts/test_access_steward_runtime.py
+      - name: Immune regression
+        run: python3 scripts/test_immune_runtime.py
+      - name: Archive regression
+        run: python3 scripts/test_memory_archive_runtime.py
+      - name: Archive usage regression
+        run: python3 scripts/test_memory_archive_usage_runtime.py
+      - name: Curator regression
+        run: python3 scripts/test_curator_planner_runtime.py
