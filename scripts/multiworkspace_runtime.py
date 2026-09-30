@@ -54,6 +54,26 @@ class MultiWorkspaceRuntime:
         self._dependency_to_workspaces: dict[str, set[str]] = defaultdict(set)
         self._status: dict[str, str] = {}
 
+    def reset_from(self, other: "MultiWorkspaceRuntime") -> None:
+        """Replace recovered contents while preserving this public handle.
+
+        Long-lived institutional components may keep a reference to the view
+        coordinator. Recovery must therefore replace the coordinator's state,
+        not the coordinator object itself. Runtime/workspace identities inside
+        the coordinator are not promised to survive recovery.
+        """
+        if not isinstance(other, MultiWorkspaceRuntime):
+            raise TypeError("reset_from requires MultiWorkspaceRuntime")
+        if other is self:
+            return
+        self._runtimes = other._runtimes
+        self._extra_dependencies = other._extra_dependencies
+        self._workspace_nodes = other._workspace_nodes
+        self._workspace_dependencies = other._workspace_dependencies
+        self._node_to_workspaces = other._node_to_workspaces
+        self._dependency_to_workspaces = other._dependency_to_workspaces
+        self._status = other._status
+
     @property
     def workspace_count(self) -> int:
         return len(self._runtimes)
