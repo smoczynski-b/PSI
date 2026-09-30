@@ -42,6 +42,8 @@ on:
       - 'experiments/m18-observation-contracts.tsv'
       - 'scripts/test_memory_map.py'
       - 'scripts/memory_retrieval.py'
+      - 'scripts/active_memory.py'
+      - 'scripts/test_active_memory.py'
       - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/prepare_memory_evaluation.py'
@@ -150,6 +152,8 @@ jobs:
         run: python3 scripts/test_chem_vision_real_images.py
       - name: Check fixed data under changed representations
         run: python3 scripts/test_memory_representation.py
+      - name: Run active-memory incremental-state regression
+        run: python3 scripts/test_active_memory.py
       - name: Verify frozen evaluation preparation and lexical comparator
         run: python3 scripts/test_memory_evaluation.py
       - name: Measure A-B-C input preparation only (no model execution)
