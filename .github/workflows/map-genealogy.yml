@@ -1,0 +1,23 @@
+name: PSI map genealogy regression
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/PSI-MAP-GENEALOGY-01.md'
+      - 'docs/memory/psi-map-genealogy-*.tsv'
+      - 'scripts/test_map_genealogy.py'
+      - '.github/workflows/map-genealogy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  genealogy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify architectural genealogy registry
+        run: python3 scripts/test_map_genealogy.py
