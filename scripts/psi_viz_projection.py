@@ -19,7 +19,7 @@ def _digest(value) -> str:
 
 
 VISUAL_CHANNELS = {"color", "symbol", "position", "motion", "line_style", "opacity"}
-MOTION_KINDS = {"REPOSITION", "EDGE_ADD", "EDGE_REMOVE", "STATUS_CHANGE", "COLLAPSE", "SPLIT"}
+MOTION_KINDS = {"REPOSITION", "EDGE_ADD", "EDGE_REMOVE", "STATUS_CHANGE", "COLLAPSE"}
 RELATION_SEMANTICS = {"DIRECTED", "SYMMETRIC"}
 
 
