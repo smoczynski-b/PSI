@@ -22,5 +22,106 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Verify F4.4 typed SPLIT witness
+      - name: Verify F4.4 typed SPLIT source witness
         run: python3 scripts/test_psi_viz_semantic_split_f4_4.py
+
+      - name: Install Manim runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev
+          python3 -m pip install --upgrade pip
+          python3 -m pip install 'manim==0.19.0'
+
+      - name: Render real typed SPLIT with Manim
+        run: |
+          manim -ql --disable_caching \
+            --media_dir build/psi-viz-f4.4/media \
+            build/psi-viz-f4.4/split-scene.py \
+            PSIVizSplit
+          VIDEO="$(find build/psi-viz-f4.4/media -type f -name 'PSIVizSplit.mp4' -print -quit)"
+          test -n "$VIDEO"
+          test -s "$VIDEO"
+          cp "$VIDEO" build/psi-viz-f4.4/psi-viz-split.mp4
+
+      - name: Verify rendered semantic change
+        run: |
+          VIDEO=build/psi-viz-f4.4/psi-viz-split.mp4
+          ffprobe -v error -select_streams v:0 \
+            -show_entries stream=codec_name,width,height,r_frame_rate,nb_frames \
+            -show_entries format=duration,size \
+            -of json "$VIDEO" > build/psi-viz-f4.4/video-probe.json
+          ffmpeg -loglevel error -y -i "$VIDEO" -vf 'select=eq(n\,0)' -frames:v 1 build/psi-viz-f4.4/first-frame.png
+          ffmpeg -loglevel error -y -sseof -0.1 -i "$VIDEO" -frames:v 1 build/psi-viz-f4.4/last-frame.png
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageChops
+
+          root = Path('build/psi-viz-f4.4')
+          probe = json.loads((root / 'video-probe.json').read_text())
+          duration = float(probe['format']['duration'])
+          size = int(probe['format']['size'])
+          stream = probe['streams'][0]
+          assert duration > 1.0, duration
+          assert size > 1000, size
+          assert int(stream['width']) > 0 and int(stream['height']) > 0
+
+          first = Image.open(root / 'first-frame.png').convert('RGBA')
+          last = Image.open(root / 'last-frame.png').convert('RGBA')
+          assert first.size == last.size
+          diff = ImageChops.difference(first, last)
+          assert diff.getbbox() is not None, 'first and last decoded frames are pixel-identical'
+          changed = sum(1 for px in diff.getdata() if px != (0, 0, 0, 0))
+          assert changed > 1000, changed
+
+          manifest = json.loads((root / 'manifest.json').read_text())
+          assert manifest['from_state_digest'] != manifest['to_state_digest']
+          assert manifest['from_semantic_digest'] != manifest['to_semantic_digest']
+          manifest['real_render'] = {
+              'codec': stream.get('codec_name'),
+              'width': int(stream['width']),
+              'height': int(stream['height']),
+              'duration_seconds': duration,
+              'size_bytes': size,
+              'changed_rgba_pixels_first_vs_last': changed,
+          }
+          (root / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
+          print('real_typed_split_mp4=PASS')
+          print(f'changed_rgba_pixels={changed}')
+          PY
+          sha256sum \
+            build/psi-viz-f4.4/psi-viz-split.mp4 \
+            build/psi-viz-f4.4/first-frame.png \
+            build/psi-viz-f4.4/last-frame.png \
+            > build/psi-viz-f4.4/render-digests.txt
+
+      - name: Re-verify R3 digest integrity
+        run: python3 scripts/test_psi_viz_digest_integrity_r3.py
+
+      - name: Re-verify R4 status redaction
+        run: python3 scripts/test_psi_viz_status_redaction_r4.py
+
+      - name: Re-verify F4.0 projection
+        run: python3 scripts/test_psi_viz_projection.py
+
+      - name: Re-verify F4.1 outputs
+        run: python3 scripts/test_psi_viz_outputs.py
+
+      - name: Re-verify F4.2 renderer
+        run: python3 scripts/test_psi_viz_renderer.py
+
+      - name: Re-verify F4.3 executable scene
+        run: python3 scripts/test_psi_viz_manim_exec.py
+
+      - name: Re-verify R5 relation direction source
+        run: python3 scripts/test_psi_viz_relation_direction_r5.py
+
+      - name: Re-verify R5 actual rendered pixels
+        run: python3 scripts/test_psi_viz_relation_direction_r5_real.py
+
+      - name: Upload F4.4 real-render evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-viz-f4.4-typed-split
+          path: build/psi-viz-f4.4/
+          if-no-files-found: error
