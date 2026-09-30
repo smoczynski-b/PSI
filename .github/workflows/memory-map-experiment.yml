@@ -24,6 +24,7 @@ on:
       - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
       - 'experiments/PSI-ACTIVE-MEMORY-SCALE-01.md'
       - 'experiments/PSI-ACTIVE-MEMORY-INVALIDATION-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-MULTIWORKSPACE-01.md'
       - 'experiments/PSI-CHEM-VISION-LAB-01.md'
       - 'experiments/PSI-CHEM-VISION-REAL-01.md'
       - 'experiments/chem-vision-worlds-01.tsv'
@@ -47,9 +48,11 @@ on:
       - 'scripts/active_memory.py'
       - 'scripts/active_memory_runtime.py'
       - 'scripts/dependency_invalidation.py'
+      - 'scripts/multiworkspace_runtime.py'
       - 'scripts/test_active_memory.py'
       - 'scripts/test_active_memory_scaling.py'
       - 'scripts/test_active_memory_invalidation.py'
+      - 'scripts/test_active_memory_multiworkspace.py'
       - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/prepare_memory_evaluation.py'
@@ -164,6 +167,8 @@ jobs:
         run: python3 scripts/test_active_memory_scaling.py
       - name: Run active-memory selective invalidation regression
         run: python3 scripts/test_active_memory_invalidation.py
+      - name: Run active-memory multi-workspace routing regression
+        run: python3 scripts/test_active_memory_multiworkspace.py
       - name: Verify frozen evaluation preparation and lexical comparator
         run: python3 scripts/test_memory_evaluation.py
       - name: Measure A-B-C input preparation only (no model execution)
