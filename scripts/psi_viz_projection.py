@@ -20,6 +20,7 @@ def _digest(value) -> str:
 
 VISUAL_CHANNELS = {"color", "symbol", "position", "motion", "line_style", "opacity"}
 MOTION_KINDS = {"REPOSITION", "EDGE_ADD", "EDGE_REMOVE", "STATUS_CHANGE", "COLLAPSE", "SPLIT"}
+RELATION_SEMANTICS = {"DIRECTED", "SYMMETRIC"}
 
 
 @dataclass(frozen=True)
@@ -32,6 +33,7 @@ class VisualContract:
     task_id: str
     visible_metadata: tuple[str, ...]
     channel_meanings: tuple[tuple[str, str], ...]
+    relation_semantics: tuple[tuple[str, str], ...] = ()
 
     def __post_init__(self):
         for field in (
@@ -63,6 +65,24 @@ class VisualContract:
         if illegal_channels:
             raise ValueError(f"unsupported visual channels: {sorted(illegal_channels)}")
         object.__setattr__(self, "channel_meanings", tuple(sorted(meanings)))
+
+        typed = tuple((str(name).strip(), str(kind).strip().upper()) for name, kind in self.relation_semantics)
+        if any(not name or kind not in RELATION_SEMANTICS for name, kind in typed):
+            raise ValueError("relation_semantics entries require relation -> DIRECTED|SYMMETRIC")
+        names = [name for name, _ in typed]
+        if len(set(names)) != len(names):
+            raise ValueError("duplicate relation_semantics declaration")
+        object.__setattr__(self, "relation_semantics", tuple(sorted(typed)))
+
+    def relation_kind(self, relation: str) -> str:
+        mapping = dict(self.relation_semantics)
+        if not mapping:
+            # Backward-compatible legacy mode. It carries no direction claim.
+            return "UNSPECIFIED"
+        key = str(relation)
+        if key not in mapping:
+            raise ValueError(f"relation semantics missing for visible relation: {key}")
+        return mapping[key]
 
     def verify_source(self, workspace: Workspace) -> None:
         if workspace.contract_id != self.source_contract_id:
@@ -147,8 +167,28 @@ def verify_visual_frame(frame: VisualFrame) -> None:
             raise ValueError("VisualFrame duplicated source_state_digest mismatch")
         nodes = {str(x) for x in semantic["nodes"]}
         positions = {str(x) for x in frame.layout_payload["positions"]}
+        declarations = [(str(k), str(v).upper()) for k, v in semantic.get("relation_semantics", [])]
+        if any(v not in RELATION_SEMANTICS for _, v in declarations):
+            raise ValueError("VisualFrame invalid relation semantics declaration")
+        if len({k for k, _ in declarations}) != len(declarations):
+            raise ValueError("VisualFrame duplicate relation semantics declaration")
+        relation_map = dict(declarations)
+        for row in semantic["edges"]:
+            relation = str(row["relation"])
+            carried = str(row.get("relation_semantics", ""))
+            expected = relation_map.get(relation) if relation_map else "UNSPECIFIED"
+            if expected is None:
+                raise ValueError("VisualFrame visible relation lacks typed semantics")
+            if carried != expected:
+                raise ValueError("VisualFrame edge relation semantics mismatch")
     except (KeyError, TypeError, ValueError) as exc:
-        if isinstance(exc, ValueError) and str(exc).startswith("VisualFrame duplicated"):
+        if isinstance(exc, ValueError) and (
+            str(exc).startswith("VisualFrame duplicated")
+            or str(exc).startswith("VisualFrame invalid")
+            or str(exc).startswith("VisualFrame duplicate")
+            or str(exc).startswith("VisualFrame visible")
+            or str(exc).startswith("VisualFrame edge")
+        ):
             raise
         raise ValueError("VisualFrame malformed binding payload") from exc
     if nodes != positions:
@@ -172,6 +212,7 @@ def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout:
             "from": edge.source,
             "relation": edge.relation,
             "to": edge.target,
+            "relation_semantics": contract.relation_kind(edge.relation),
         }
         if "provenance" in contract.visible_metadata:
             row["provenance"] = edge.provenance
@@ -190,6 +231,7 @@ def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout:
         "edges": edges,
         "visible_metadata": list(contract.visible_metadata),
         "channel_meanings": [list(x) for x in contract.channel_meanings],
+        "relation_semantics": [list(x) for x in contract.relation_semantics],
     }
     layout_payload = {
         "layout_id": layout.layout_id,
