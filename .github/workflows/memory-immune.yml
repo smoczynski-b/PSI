@@ -6,8 +6,11 @@ on:
     paths:
       - 'scripts/immune_runtime.py'
       - 'scripts/test_immune_runtime.py'
+      - 'scripts/test_immune_recovery_binding.py'
       - 'scripts/servant_runtime.py'
       - 'scripts/multiworkspace_runtime.py'
+      - 'scripts/shared_memory_runtime.py'
+      - 'scripts/durable_shared_memory.py'
       - 'docs/memory/psi-memory-immune-signatures-01.tsv'
       - 'experiments/PSI-MEMORY-IMMUNE-01.md'
       - '.github/workflows/memory-immune.yml'
@@ -28,3 +31,5 @@ jobs:
         run: python3 scripts/test_servant_runtime.py
       - name: Verify bounded immune runtime
         run: python3 scripts/test_immune_runtime.py
+      - name: Verify immune recovery binding
+        run: python3 scripts/test_immune_recovery_binding.py
