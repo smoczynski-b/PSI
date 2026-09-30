@@ -124,6 +124,37 @@ class VisualFrame:
         }
 
 
+def verify_visual_frame(frame: VisualFrame) -> None:
+    """Verify hashes and duplicated source bindings immediately before use.
+
+    This is an integrity/binding check only. A matching digest does not establish
+    truth, admission, authorization or provenance authority.
+    """
+    if not isinstance(frame, VisualFrame):
+        raise TypeError("verify_visual_frame requires VisualFrame")
+    if _digest(frame.semantic_payload) != frame.semantic_digest:
+        raise ValueError("VisualFrame semantic payload/digest mismatch")
+    if _digest(frame.layout_payload) != frame.layout_digest:
+        raise ValueError("VisualFrame layout payload/digest mismatch")
+
+    semantic = frame.semantic_payload
+    try:
+        if str(semantic["task_id"]) != frame.task_id:
+            raise ValueError("VisualFrame duplicated task_id mismatch")
+        if int(semantic["source_revision"]) != frame.source_revision:
+            raise ValueError("VisualFrame duplicated source_revision mismatch")
+        if str(semantic["source_state_digest"]) != frame.source_state_digest:
+            raise ValueError("VisualFrame duplicated source_state_digest mismatch")
+        nodes = {str(x) for x in semantic["nodes"]}
+        positions = {str(x) for x in frame.layout_payload["positions"]}
+    except (KeyError, TypeError, ValueError) as exc:
+        if isinstance(exc, ValueError) and str(exc).startswith("VisualFrame duplicated"):
+            raise
+        raise ValueError("VisualFrame malformed binding payload") from exc
+    if nodes != positions:
+        raise ValueError("VisualFrame semantic/layout node binding mismatch")
+
+
 def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout: LayoutSpec) -> VisualFrame:
     if not isinstance(workspace, Workspace):
         raise TypeError("compile_visual_frame requires Workspace")
@@ -164,7 +195,7 @@ def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout:
         "layout_id": layout.layout_id,
         "positions": {node: list(layout.positions[node]) for node in nodes},
     }
-    return VisualFrame(
+    frame = VisualFrame(
         visual_contract_id=contract.visual_contract_id,
         task_id=contract.task_id,
         source_state_digest=workspace.state_digest,
@@ -174,9 +205,13 @@ def compile_visual_frame(workspace: Workspace, contract: VisualContract, layout:
         layout_payload=layout_payload,
         layout_digest=_digest(layout_payload),
     )
+    verify_visual_frame(frame)
+    return frame
 
 
 def classify_transition(before: VisualFrame, after: VisualFrame, declared_motion: str) -> dict:
+    verify_visual_frame(before)
+    verify_visual_frame(after)
     motion = str(declared_motion).strip().upper()
     if motion not in MOTION_KINDS:
         raise ValueError("unknown declared_motion")
