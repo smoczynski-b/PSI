@@ -178,7 +178,10 @@ class ServantRuntime:
             fp = str(payload.get("command_fingerprint", ""))
             disposition = str(payload.get("disposition", ""))
             reason = str(payload.get("reason_code", ""))
-            if cid and fp and disposition:
+            # The first completed verdict for a command_id is authoritative.
+            # Later RESULT records are idempotent replays or collision outcomes
+            # and remain part of the chronicle, but must not rewrite recovery.
+            if cid and fp and disposition and cid not in completed:
                 completed[cid] = CompletedCommand(
                     fingerprint=fp,
                     disposition=disposition,
