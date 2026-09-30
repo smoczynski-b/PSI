@@ -88,6 +88,15 @@ class ServantDecision:
     durable_state: str = ""
 
 
+@dataclass(frozen=True)
+class CompletedCommand:
+    fingerprint: str
+    disposition: str
+    reason_code: str
+    txid: str
+    durable_state: str
+
+
 class ServantChronicle:
     """Append-only, fsync-backed procedural chronicle with hash-chain integrity."""
 
@@ -145,16 +154,24 @@ class ServantRuntime:
             if r.get("kind") == "COMMIT"
         }
 
-    def _load_completed_commands(self) -> dict[str, str]:
-        completed: dict[str, str] = {}
+    def _load_completed_commands(self) -> dict[str, CompletedCommand]:
+        completed: dict[str, CompletedCommand] = {}
         for record in self.chronicle.records():
             if record.get("kind") != "SERVANT_RESULT":
                 continue
             payload = record.get("payload", {})
             cid = str(payload.get("command_id", ""))
             fp = str(payload.get("command_fingerprint", ""))
-            if cid:
-                completed[cid] = fp
+            disposition = str(payload.get("disposition", ""))
+            reason = str(payload.get("reason_code", ""))
+            if cid and fp and disposition:
+                completed[cid] = CompletedCommand(
+                    fingerprint=fp,
+                    disposition=disposition,
+                    reason_code=reason,
+                    txid=str(payload.get("txid", "")),
+                    durable_state=str(payload.get("durable_state", "")),
+                )
         return completed
 
     def _chronicle_observed(self, command: ServantCommand, revision: int) -> None:
@@ -168,6 +185,7 @@ class ServantRuntime:
         reason_code: str,
         revision_before: int,
         durable_state: str = "",
+        remember: bool = True,
     ) -> ServantDecision:
         decision = ServantDecision(
             command_id=command.command_id,
@@ -186,10 +204,24 @@ class ServantRuntime:
             "txid": command.txid,
             "durable_state": durable_state,
         })
-        self._completed_commands[command.command_id] = command.fingerprint()
+        if remember:
+            self._completed_commands[command.command_id] = CompletedCommand(
+                fingerprint=command.fingerprint(),
+                disposition=disposition,
+                reason_code=reason_code,
+                txid=command.txid,
+                durable_state=durable_state,
+            )
         return decision
 
-    def _stop(self, command: ServantCommand, revision: int, reason: str) -> ServantDecision:
+    def _stop(
+        self,
+        command: ServantCommand,
+        revision: int,
+        reason: str,
+        *,
+        remember: bool = True,
+    ) -> ServantDecision:
         self.chronicle.append("ESCALATE", command, {
             "reason_code": reason,
             "revision": revision,
@@ -199,6 +231,7 @@ class ServantRuntime:
             disposition="STOP_ESCALATE_CHRONICLE",
             reason_code=reason,
             revision_before=revision,
+            remember=remember,
         )
 
     def _validate_typed_command(self, command: ServantCommand) -> str | None:
@@ -217,18 +250,24 @@ class ServantRuntime:
 
         before = self.durable.revision
         fp = command.fingerprint()
-        prior_fp = self._completed_commands.get(command.command_id)
-        if prior_fp is not None:
-            if prior_fp == fp:
-                self._chronicle_observed(command, before)
+        prior = self._completed_commands.get(command.command_id)
+        if prior is not None:
+            self._chronicle_observed(command, before)
+            if prior.fingerprint == fp:
                 return self._finish(
                     command,
-                    disposition="ACK_TRANSITION",
-                    reason_code="IDEMPOTENT_COMMAND_REPLAY",
+                    disposition=prior.disposition,
+                    reason_code=f"IDEMPOTENT_REPLAY:{prior.reason_code}",
                     revision_before=before,
+                    durable_state=prior.durable_state,
+                    remember=False,
                 )
-            self._chronicle_observed(command, before)
-            return self._stop(command, before, "COMMAND_ID_COLLISION")
+            return self._stop(
+                command,
+                before,
+                "COMMAND_ID_COLLISION",
+                remember=False,
+            )
 
         self._chronicle_observed(command, before)
 
