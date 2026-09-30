@@ -1,5 +1,9 @@
 # Semantica Rozmowy — 04: audyt i korekta wykonania
 
+Current selection: [shared-memory entry](README.md). The later
+[active-memory review](#active-memory-review-2026-09-30) supplements the
+historical audit below; its findings are not repaired runtime behavior.
+
 Data: 2026-09-30, Europe/Warsaw.
 Podstawa: gałąź `psi-memory-map-01`, stan
 `db230e498c7f2808164ab4e0ac462b5b7da24751`; dokumenty i wykonania M1–M19,
@@ -123,3 +127,132 @@ Pozostają otwarte: niezależny pomiar jakości modeli (M4b), ogólna semantyka
 języka i wyłączeń, kompozycja wielu węzłów, certyfikacja historycznych
 fragmentów rozmów oraz zastosowanie poza zadanymi skończonymi dziedzinami.
 Nie uruchomiono płatnych badań ani nie scalono laboratorium z `main`.
+
+## Active memory review 2026-09-30
+
+Reviewed commit: `fce89bde2d8bb6e95292d435bed84e1702c6b26c`.
+Scope: all 46 changed files in the 51 commits after `cf9d91a`, including three
+memory specifications, nine experiment protocols, seven TSV registries, ten
+runtime modules, twelve regression programs and five workflows. The twelve
+new regression programs passed locally. This is a source/code/test inspection,
+not a complete transcript review, model-quality trial or fresh literature audit.
+Additional boundary witnesses below remain OPEN in the inspected runtime.
+
+### Obiekt → warunki → wielkość → test
+
+Obiekt: lokalna pamięć współdzielona z widokami zadaniowymi, MVCC, dziennikiem
+WAL, Sługą i Immunologią. Warunki: jeden proces, jawne zbiory odczytów i
+zależności, dostarczona baza odtworzenia oraz jawnie dopuszczone zdarzenia.
+Mierzone: równość decyzji po restarcie, legalność reakcji na dane liczbowe,
+kompletność wskazania zależnych widoków i rzeczywista liczba odwiedzonych
+krawędzi. Źródłem oceny są wykonane kontrprzykłady, nie nazwy ról.
+
+Przejście 12 programów dotyczy ich zapisanych przypadków. Grupy:
+aktywna pamięć, skalowanie, unieważnianie, wiele widoków, współbieżne propozycje,
+MVCC, integracja współdzielona, WAL, Sługa, Immunologia, instytucja i genealogia.
+Test genealogii kontroluje rejestr; etykiet `SOURCE_VERIFIED` nie zweryfikowano
+ponownie przez lekturę wszystkich publikacji. Oryginalność pozostaje OPEN.
+
+### Potwierdzone świadki i kierunek napraw
+
+| Jednostka | Odtworzone zachowanie | Warunek odbioru naprawy przez GPT-5 |
+|---|---|---|
+| Sługa: decyzja po kolizji i restarcie | `C/SEMANTIC_VERDICT` daje BLOCK. `C/RECOVER` daje kolizję. Po ponownym utworzeniu `ServantRuntime` oryginalne `C/SEMANTIC_VERDICT` daje kolizję zamiast powtórzenia BLOCK. | Pierwszy ukończony zapis identyfikatora pozostaje rozstrzygający przed i po restarcie; kolizja jest kronikowana oddzielnie. Powtórzenie nie wykonuje drugiej transakcji. |
+| Immunologia: dziedzina liczbowa | `value=NaN` dla `IMM-CONFLICT-BURST` zmienia `NORMAL` na `POST_QUARANTINED` i emituje NOTICE oraz POST_QUARANTINE. | Niepoprawna wartość nie może uruchomić reakcji. Jawnie ustalić dziedzinę progów, obserwacji i całkowitych budżetów; sprawdzić NaN, nieskończoności, wartości logiczne i granice. |
+| Immunologia po `RECOVER` | `durable.shared.views` zostaje zastąpione, lecz istniejące `immune.views` wskazuje poprzedni obiekt. Nowy zależny widok `late` nie trafia do REQUEST_RECHECK. | Po odtworzeniu używany jest bieżący indeks albo stara instancja zostaje jawnie wyłączona do ponownego związania. Brak cichego odczytu dawnego indeksu. |
+| Koszt rozsyłania | Przy jednej delcie licznik wskazuje jeden widok, lecz `_refresh_indices` odwiedza 18 krawędzi dla początkowego N=8 i 2050 dla N=1024. | Rozdzielić liczbę wybranych widoków od pracy w nich; uwzględnić przebudowę indeksów i narastającą historię zdarzeń. To granica obecnego pomiaru, nie utrata poprawności wyniku. |
+| Rzadkie macierze relacji | Zmiana tylko pochodzenia krawędzi z `doc:one` na `doc:two` daje identyczne COO, lecz inny skrót semantycznego stanu. | Przy zadaniu wymagającym pochodzenia zachować metadane obok macierzy. Samo COO sprawdza strukturę relacji, nie cały zapis pamięci. |
+
+Przyczyna pierwszej luki: `_load_completed_commands` bierze ostatni
+`SERVANT_RESULT`, również wynik kolizji zapisany przez `_stop(..., remember=False)`.
+Wyłączenie zapamiętania działa w żywym słowniku, ale nie w odtwarzaniu kroniki.
+Przyczyna drugiej: warunek `value < min_value` nie odrzuca NaN.
+Trzecia powstaje na styku poprawnie działających osobno warstw; sam test
+odtworzenia dziennika nie obejmuje związania istniejącej Immunologii.
+
+Odtworzenie trzech usterek na wskazanym commicie, bez usług zewnętrznych:
+
+```bash
+PYTHONPATH=scripts python - <<'PY'
+from pathlib import Path
+from tempfile import TemporaryDirectory
+from test_servant_runtime import make_durable
+from servant_runtime import ServantRuntime, ServantCommand
+from test_immune_runtime import make_stack, workspace, obs
+from immune_runtime import ReactionBudget
+
+with TemporaryDirectory() as td:
+    root = Path(td)
+    durable = make_durable(root / 'memory.wal')
+    servant = ServantRuntime(durable, root / 'servant.wal')
+    original = ServantCommand('C', 'SEMANTIC_VERDICT')
+    print(servant.handle(original).disposition)
+    servant.handle(ServantCommand('C', 'RECOVER'))
+    restarted = ServantRuntime(durable, root / 'servant.wal')
+    print(restarted.handle(original).disposition)
+
+with TemporaryDirectory() as td:
+    durable, servant, immune = make_stack(td, budget=ReactionBudget())
+    result = immune.observe(obs('NAN', 'IMM-CONFLICT-BURST',
+        'PROTOCOL_CONFLICT_COUNT', 'proof', float('nan')))
+    print(result.status)
+
+with TemporaryDirectory() as td:
+    durable, servant, immune = make_stack(td, budget=ReactionBudget())
+    servant.handle(ServantCommand('R', 'RECOVER'))
+    durable.shared.register('late', workspace('L', 'LROOT', 'L'),
+        extra_dependencies=('workspace:proof',))
+    result = immune.observe(obs('RECOVERED', 'IMM-INVALIDATION-FANOUT',
+        'INVALIDATION_FANOUT', 'proof', 8))
+    print(durable.shared.views.direct_dependents('workspace:proof'))
+    print(result.requested_rechecks)
+PY
+```
+
+Zaobserwowane wyniki: `BLOCK_ILLEGAL_TRANSITION`, następnie
+`STOP_ESCALATE_CHRONICLE`; `POST_QUARANTINED` dla NaN; bieżący indeks ma
+bezpośrednich zależnych `down1, late`, natomiast żądania obejmują `down1, down2`
+i pomijają `late`. Program jest historycznym odtworzeniem błędów, nie wzorcem
+oczekiwanych poprawnych wyników.
+
+### Co wynika dla projektu
+
+Nowy dział realizuje większą część infrastruktury, niż obejmowała wcześniejsza
+ocena M4b. Utrzymywanie widoków przez delty jest już implementacją referencyjną,
+a nie samą metaforą. Mierzone przyspieszenia dotyczą skończonych prób
+syntetycznych; 12 PASS nie ustanawia jeszcze niezawodności całej integracji
+ani poprawy wyników modeli.
+
+Pierwsza jednostka dla GPT-5: naprawa odtwarzania decyzji Sługi i regresja
+`oryginał → kolizja → restart → oryginał`. STOP po zachowaniu pierwotnej decyzji,
+braku dodatkowego COMMIT i przejściu testów Sługi oraz dotkniętych wywołań
+Immunologii. Pozostałe naprawy są kolejnymi, odrębnymi jednostkami.
+Nie potrzeba nowego prymitywu, kolejnej roli ani nowej numeracji architektury.
+
+Po naprawach: jeden pełny przebieg z rzeczywistymi rekordami PSI, a następnie
+oddzielne badanie jakości modeli i pełnego kosztu. M4b pozostaje NOT_RUN.
+Wskazana kolejność jest decyzją wykonawczą tego przeglądu, nie twierdzeniem
+o optymalności ani odzyskanym dosłownym poleceniem z rozmowy 04.
+
+### Zakres odzyskania rozmowy i grafiki
+
+Ponowne wyszukiwanie nie dostarczyło pełnego eksportu rozmowy 04. Streszczenia
+odtworzyły chmurę punktów z odległymi istotnymi połączeniami, różne obrazy tych
+samych danych oraz wymóg ustalania intencji przed zamrożeniem kontraktu.
+Zwrócone parafrazy nie są tu traktowane jako dosłowne cytaty, nawet gdy opis
+wyniku wyszukiwania nazywał je pełnym cytatem.
+
+W osobnym wątku wizualnym istnieje `PSI-VIZ-TEST-01_factorization.mp4`
+(14 s, 1080×1920) i `PSI-VIZ-TEST-01_final-frame.png`. Obejrzano klatki filmu
+w 3 s i 8 s oraz planszę końcową; nie deklaruje się obejrzenia każdej klatki.
+Świadek rozróżnia `rho(u,v)=u, R(u,v)=u²` od `rho(u,v)=u, R(u,v)=v`.
+To prezentacja faktoryzacji i jej niepowodzenia, nie pomiar pamięci modelu.
+Pliki nie są częścią tego commitu; ich skróty wiążą oglądane artefakty:
+
+- film: `118b86f5b1e07f6ace014d7dd174ae3d80b0a2a8503cbe0eb93def951b8681bf`;
+- plansza: `b3121ba24e6483cba75ccd12ed107af79cc951e5daa20845018a7a81c12791ba`.
+
+Cel użytkownika obejmuje wizualizację wzorów, przekształceń i zależności oraz
+możliwość filmu. Zapis formalny dla wykonania, geometria procesu i plansza
+dla człowieka mają odrębne zadania. Zasady ich zgodności są w
+[kontrakcie reprezentacji](representation-check.md).

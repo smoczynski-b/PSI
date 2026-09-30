@@ -6,6 +6,11 @@
 **Depends on:** `PSI-MAP-GENEALOGY-01`, `PSI-ACTIVE-MEMORY-01`, shared-memory/MVCC/WAL experiments.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
+Current implementation and repair order: [memory entry](README.md).
+The role constitution remains binding. Its original implementation sequence
+in section 12 has since produced the SERVANT and IMMUNE reference runtimes;
+current open boundary defects are recorded in the linked audit.
+
 ## 1. Cel
 
 Po wprowadzeniu wspólnej pamięci, lokalnych workspace'ów, selektywnego routingu, invalidacji, MVCC i WAL pojawia się osobny problem instytucjonalny:

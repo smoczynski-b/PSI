@@ -102,3 +102,35 @@ danego modelu AI w operowaniu takim zapisem.
 [Feinberg 1987, §§3 i 5.2](https://www.mit.edu/~jadbabai/ESE680/Fei87a.pdf),
 [Helton, Klep, Katsnelson 2009](https://arxiv.org/abs/0904.2960).
 Jest to uściślenie kierunku i zakresu, nie nowy eksperyment ani twierdzenie PSI.
+
+## Aktywna pamięć, macierze i obraz
+
+Aktualizacja 2026-09-30 po inspekcji `fce89bd`: pamięć robocza, jej rzadki zapis
+relacji i obraz są różnymi odwzorowaniami. Dla ustalonego zadania q i dziedziny X
+każde uproszczenie rho:X→Z podlega temu samemu warunkowi
+`ker_eq rho ⊆ ker_eq q`; rozstrzyga zadanie, nie kształt reprezentacji.
+
+`compile_sparse_planes` zachowuje typ, kierunek i końce relacji, ale nie zapisuje
+pochodzenia ani statusu krawędzi. Dwa widoki różniące się tylko `doc:one` /
+`doc:two` mają identyczne COO i różne semantyczne skróty stanu. Dlatego do
+zadania pytającego o źródło potrzebne są także metadane; nie można odtworzyć
+ich z samych wartości 0/1 w macierzy. Jest to dokładny skończony świadek
+nieadekwatności tego uproszczenia względem zadania źródłowego.
+
+Dla wizualizacji aktywnego widoku należy wiązać planszę z identyfikatorem
+kontraktu, rewizją i źródłowym stanem. Położenie, barwa i animacja mają jawnie
+określoną rolę; odległa krawędź pozostaje dopuszczalną relacją. Przeskalowanie
+rysunku może zachować odpowiedź na zadanie o połączeniach. Gdy odległość koduje
+wielkość fizyczną, koszt lub tolerancję, jej przeliczenie wymaga zachowania
+jednostek i kontraktu. Brak absolutnej skali rysunku nie usuwa tych warunków.
+
+Plansza statyczna i animowane przejście mogą przedstawiać kolejne stany tego
+samego modelu. Zmianę danych/dynamiki trzeba odróżnić od zmiany układu graficznego,
+a zmianę zadania q oznaczyć. Istniejący film o faktoryzacji pokazuje dwa zadania:
+dla rho(u,v)=u, funkcja R(u,v)=u² schodzi przez rho, natomiast R(u,v)=v nie schodzi.
+Źródła i zakres obejrzenia filmu odnotowano w
+[audycie](AUDIT-ROZMOWY-04.md#active-memory-review-2026-09-30).
+
+Najbliższa rola grafiki w pamięci: sprawdzalny widok tego samego stanu i jego
+zmian. Pomiar korzyści dla rozumowania modelu wymaga oddzielnej próby z równym
+zadaniem i treścią wejścia; sam film ani eksport COO tego nie mierzą.

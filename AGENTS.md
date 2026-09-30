@@ -28,8 +28,12 @@ historical mathematical sources keep their provenance and contract limits.
 ## Experimental memory — conversation 04 correction
 
 - Start with `docs/memory/README.md` for the current objective and evaluation
-  boundary. The selected memory frontier is M4b A/B/C, not automatic expansion
-  of the M-series. Source repairs and explicitly selected tasks remain allowed.
+  boundary. Active-memory integration repairs now precede the prepared M4b
+  model comparison. Read the current audit supplement before continuing a role;
+  historical "next phase" paragraphs are not the current work selection.
+  For the GPT-5 handoff, the first bounded repair is SERVANT verdict recovery
+  after command-ID collision and restart. Its acceptance case is in the audit.
+  Do not automatically expand the M-series or add another institutional role.
 - Keep same-data representation tests separate from acquiring or classifying
   different photographs. Preserve chemistry's intended role: physically
   constrained processes represented through formulas, quantities, conditions
@@ -41,6 +45,11 @@ historical mathematical sources keep their provenance and contract limits.
   elemental vocabulary does not make molecular or dynamical state space finite.
   Report source binding separately from mathematical validity. M4b A/B/C tests
   text-context selection, not the benefit of formal inter-agent communication.
+- Read active memory as authoritative records plus derived task workspaces.
+  COO relation planes and drawings omit some record metadata; preserve source,
+  contract, version and status alongside them whenever the task needs these.
+  A procedural ACK or a health label is not an epistemic verdict. Existing
+  single-process regression success is not complete recovery/integration proof.
 - Reproduce M4 inputs with `scripts/prepare_memory_evaluation.py`. Do not use
   the evaluator rubric to select lexical results, tune on observed answers,
   substitute one context for independent model runs, or call preparation/model

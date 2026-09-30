@@ -2,6 +2,10 @@
 
 Status: **EXPERIMENTAL / NON-CANONICAL / CPU REFERENCE**. Data: 2026-09-30.
 
+Current implementation and repair order: [memory entry](README.md).
+Section 9 records the original phase-01 frontier; later CPU/MVCC/WAL work is
+already implemented and must not be restarted from that historical list.
+
 Nie tworzy nowego prymitywu PSI, nie zmienia CORE5 i nie zmienia CANON-03. To warstwa wykonawcza nad istniejącą eksperymentalną pamięcią relacyjną.
 
 ## 1. Pytanie
