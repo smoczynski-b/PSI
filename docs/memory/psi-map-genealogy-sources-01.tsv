@@ -1,0 +1,16 @@
+source_id	year	kind	locator	claim_scope
+SRC-HII-1977	1977	PRIMARY	https://www.ijcai.org/Proceedings/77-2/Papers/055.pdf	HEARSAY-II blackboard architecture; data-directed activation and blackboard handler maintaining/updating shared state
+SRC-BB1-1985	1985	PRIMARY	https://doi.org/10.1016/0004-3702(85)90063-3	Blackboard control architecture separating domain and control problems; system can reason about own knowledge/behavior
+SRC-KM-2003	2003	PRIMARY	https://doi.org/10.1007/3-540-45023-8_17	Agent-mediated knowledge market for organizational knowledge sharing
+SRC-AMELI-2004	2004	PRIMARY	https://doi.org/10.1109/AAMAS.2004.56	Electronic institution middleware mediating agent interactions and enforcing institutional rules through governors/managers
+SRC-MAPEK-2005	2005	PRIMARY_GUIDE	https://www.redbooks.ibm.com/redbooks/pdfs/sg246665.pdf	Autonomic MAPE-K loop: Monitor Analyze Plan Execute sharing Knowledge; corrective actions through effectors
+SRC-NANOPUB-2010	2010	PRIMARY	https://doi.org/10.3233/ISU-2010-0613	Nanopublication as referencable scientific assertion with context/provenance/publication information
+SRC-DDNA-2012	2012	PRIMARY	https://doi.org/10.1016/j.neucom.2011.08.029	Shareable Decisional DNA/SOEKS representation; future-work proposal for knowledge market using these structures
+SRC-AIS-FDDR-2015	2015	REVIEW	https://doi.org/10.1016/j.engappai.2015.08.006	Artificial immune systems for fault detection diagnosis and recovery; anomaly/disease analogy and response architectures
+SRC-PROVK-2025	2025	PRIMARY	https://doi.org/10.1007/s00799-025-00431-x	Extended nanopublications with source lineage, supporting/conflicting evidence and trust relationships among agents/facts
+SRC-LLM-BB-2025	2025	PREPRINT	https://arxiv.org/abs/2507.01701	LLM multi-agent system using shared blackboard and repeated action selection from current blackboard content
+SRC-WMAS-2026	2026	PREPRINT	https://arxiv.org/abs/2604.01359	World-centered MAS with shared explicit world representation for semantic consistency and long-term stability
+SRC-PSI-II4	2026	REPO	docs/principia-v2-04-representation-adequacy.md	PSI task-relative representation adequacy: ker_eq rho subset E_T,c iff q_T,c factors through rho
+SRC-PSI-MEMORY	2026	REPO	docs/memory/PSI-ACTIVE-MEMORY-01.md	Authoritative relational memory plus task-local active workspaces and typed deltas
+SRC-PSI-SHARED	2026	REPO	experiments/PSI-ACTIVE-MEMORY-SHARED-01.md	MVCC shared memory plus selective routing and downstream invalidation
+SRC-PSI-WAL	2026	REPO	experiments/PSI-ACTIVE-MEMORY-WAL-01.md	Durable WAL/recovery boundary for authoritative shared memory and derived workspaces
