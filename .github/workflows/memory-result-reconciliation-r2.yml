@@ -1,0 +1,32 @@
+name: PSI memory result reconciliation R2
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/servant_runtime.py'
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/test_result_reconciliation_r2.py'
+      - 'scripts/test_servant_runtime.py'
+      - 'scripts/test_access_steward_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - '.github/workflows/memory-result-reconciliation-r2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  result-reconciliation-r2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: R2 separating witness
+        run: python3 scripts/test_result_reconciliation_r2.py
+      - name: Servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Access steward regression
+        run: python3 scripts/test_access_steward_runtime.py
+      - name: Shared WAL regression
+        run: python3 scripts/test_active_memory_wal.py
