@@ -1,0 +1,19 @@
+case	roles	resolution	invariant
+guardian_policy_absent	GUARDIAN|ACCESS_STEWARD	ACCESS_STEWARD fails closed and escalates; it does not invent access	no_policy_no_access
+physically_reachable_but_not_authorized	GUARDIAN|ACCESS_STEWARD	deny transition despite technical reachability	reachability_is_not_authorization
+enter_without_act	GUARDIAN|ACCESS_STEWARD	entry may be allowed while ACT_IN_MAP remains denied	enter_does_not_imply_action
+enter_without_telemetry_view	GUARDIAN|ACCESS_STEWARD	entry may be allowed while peer/security telemetry remains hidden	enter_does_not_imply_telemetry
+move_without_export	GUARDIAN|ACCESS_STEWARD	movement may be allowed while EXPORT_FROM_MAP remains denied	movement_does_not_imply_export
+insufficient_budget	ACCESS_STEWARD	deny/stop transition; no hidden overdraft	budget_is_hard_boundary
+unknown_target_map	ACCESS_STEWARD	fail closed and escalate target-state fault	unknown_target_no_transition
+session_location_mismatch	ACCESS_STEWARD	deny transition when map_from differs from recorded session location	no_logical_teleport
+same_session_simultaneous_maps	ACCESS_STEWARD	conflict; one session has at most one current map	single_session_single_location
+policy_version_changed	GUARDIAN|ACCESS_STEWARD	old decision remains bound to old policy version; re-evaluate under new version	no_silent_policy_reinterpretation
+curator_migration_proposal	CURATOR|GUARDIAN|ACCESS_STEWARD|SERVANT	steward may estimate/execute approved movement only; it does not approve restructure	execution_is_not_governance
+repeated_legal_but_pathological_movement	ACCESS_STEWARD|IMMUNE	steward logs individually legal moves; IMMUNE owns post-admission pattern pathology	movement_legality_is_not_system_health
+semantic_truth_dispute	ACCESS_STEWARD|GUARDIAN	ACCESS_STEWARD abstains; route to PSI/evidence process	procedure_is_not_truth
+telemetry_requested_without_capability	ACCESS_STEWARD	deny disclosure while retaining audit record	telemetry_access_is_separate
+transition_record_after_restart	ACCESS_STEWARD|SERVANT|CURATOR	future runtime must rebuild session location from durable movement history without phantom presence	restart_preserves_presence_history
+cross_map_zero_cost	ACCESS_STEWARD	contract violation; deny/stop because distinct-map transition must have positive cost	cross_map_transition_has_cost
+persistent_movement_write_without_servant	ACCESS_STEWARD|SERVANT	block direct durable mutation; route through SERVANT/MVCC/WAL	movement_control_does_not_bypass_state_legality
+immune_quarantine_and_move_request	ACCESS_STEWARD|IMMUNE|GUARDIAN	steward obeys current policy/health gate and cannot clear quarantine to enable movement	movement_does_not_release_quarantine
