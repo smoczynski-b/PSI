@@ -1,0 +1,23 @@
+case	roles	resolution	invariant
+missing_base_snapshot	CURATOR|SERVANT	block reconstruction and escalate missing base; do not synthesize state	missing_base_no_reconstruction
+missing_delta_in_chain	CURATOR|SERVANT	block target-version reconstruction until exact delta is restored	missing_delta_no_partial_truth
+digest_mismatch_after_reconstruction	CURATOR|SERVANT|IMMUNE	mark reconstruction failure and stop reuse; preserve evidence	digest_mismatch_blocks_reuse
+version_id_collision	CURATOR|SERVANT	STOP/ESCALATE; same version_id cannot name distinct contents	stable_version_identity
+newer_version_without_lineage	CURATOR	keep both addressable; do not infer parentage or supersession from time	newer_is_not_parent
+current_pointer_to_unknown_version	CURATOR	block pointer publication; repair lineage/manifest first	current_pointer_requires_declared_version
+current_pointer_taken_as_truth	CURATOR|PSI_GATE	abstain; pointer is lifecycle metadata only	current_is_not_truth
+current_pointer_taken_as_reuse_right	CURATOR|GUARDIAN|PSI_GATE	perform normal adequacy/status/access checks	current_is_not_reuse_right
+archive_of_needs_recheck_result	CURATOR|IMMUNE	archive content and status together; do not clear NEEDS_RECHECK	archive_preserves_epistemic_status
+restore_archived_object_to_active	CURATOR|GUARDIAN|ACCESS_STEWARD	curator exposes candidate version; guardian policy and steward movement gate active restore	restore_crosses_active_boundary
+archive_policy_reference_missing	CURATOR|GUARDIAN	fail closed for active restore; do not assume archived access rights	missing_policy_no_access
+restricted_telemetry_link_in_l2	CURATOR|ACCESS_STEWARD	keep typed reference; disclose content only with VIEW_TELEMETRY	l2_is_not_telemetry_bypass
+curator_proposes_compaction	CURATOR|PSI_GATE|SERVANT	proposal is evaluated for retained distinctions; execution only through legal state transition	proposal_is_not_execution
+curator_proposes_migration	CURATOR|ACCESS_STEWARD|SERVANT	steward estimates/executes authorized movement; servant preserves durable legality	migration_requires_separate_authority
+curator_requests_more_capacity	CURATOR|PSI_AGENT	request is advisory and metric-backed; curator cannot enlarge own budget	no_self_resource_allocation
+archive_recursion_explosion	CURATOR	store reference+digest+typed relation instead of recursively copying full prior archive	reference_not_recursive_full_copy
+snapshot_every_revision	CURATOR|PSI_AGENT	allowed only by explicit storage policy; not required by archive semantics	snapshot_frequency_is_execution_policy
+archive_delete_old_versions	CURATOR|SERVANT	block destructive rewrite; lifecycle archival keeps prior lineage addressable	archive_is_not_delete_history
+restore_changes_epistemic_status	CURATOR|GUARDIAN|IMMUNE	block implicit status promotion; proper authority must change status separately	restore_is_not_status_promotion
+reconstruction_cost_hidden	CURATOR|ACCESS_STEWARD	record reconstruction and transition cost before planning conclusions	archive_cost_is_observable
+semantic_restructure_drops_distinction	CURATOR|PSI_GATE	block until task-relative adequacy proves lost distinction irrelevant	compression_must_respect_task_equivalence
+movement_history_used_as_truth	ACCESS_STEWARD|CURATOR|PSI_GATE	telemetry remains descriptive; do not infer domain truth from access frequency	traffic_is_not_truth
