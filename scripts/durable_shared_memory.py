@@ -37,13 +37,22 @@ class WALReadResult:
 
 
 class JSONLWAL:
-    """Append-only fsync-backed JSONL WAL with a per-record hash chain."""
+    """Append-only fsync-backed JSONL WAL with a per-record hash chain.
+
+    A final incomplete line is an uncommitted crash tail. Construction repairs
+    only that tail by truncating after the last verified byte; complete invalid
+    records and hash-chain failures remain corruption and fail closed.
+    """
 
     def __init__(self, path: str | Path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.path.touch(exist_ok=True)
+        self._write_blocked = False
         read = self.read_valid_prefix()
+        if read.tail_truncated:
+            self.repair_truncated_tail()
+            read = self.read_valid_prefix()
         self._seq = len(read.records)
         self._last_hash = read.records[-1]["record_hash"] if read.records else "GENESIS"
 
@@ -61,7 +70,22 @@ class JSONLWAL:
             raise WALCorruption(f"WAL record hash mismatch at {expected_seq}")
         return recorded
 
+    @staticmethod
+    def _write_all(fd: int, data: bytes) -> None:
+        view = memoryview(data)
+        offset = 0
+        while offset < len(view):
+            try:
+                written = os.write(fd, view[offset:])
+            except InterruptedError:
+                continue
+            if written <= 0:
+                raise OSError("short WAL write made no progress")
+            offset += written
+
     def append(self, kind: str, txid: str, payload: dict[str, Any]) -> dict[str, Any]:
+        if self._write_blocked:
+            raise WALCorruption("WAL append blocked after failed write; restart required")
         record = {
             "seq": self._seq,
             "prev_hash": self._last_hash,
@@ -71,10 +95,18 @@ class JSONLWAL:
         }
         record["record_hash"] = _hash(record)
         line = (_canon(record) + "\n").encode("utf-8")
-        with self.path.open("ab", buffering=0) as fh:
-            fh.write(line)
-            fh.flush()
-            os.fsync(fh.fileno())
+        fd = os.open(self.path, os.O_WRONLY | os.O_APPEND)
+        try:
+            self._write_all(fd, line)
+            os.fsync(fd)
+        except BaseException:
+            # A failed write/fsync has an unknown durable outcome. Do not allow
+            # another append in the same process to turn a torn tail into an
+            # interior record. Restart re-verifies and repairs only a crash tail.
+            self._write_blocked = True
+            raise
+        finally:
+            os.close(fd)
         self._seq += 1
         self._last_hash = record["record_hash"]
         return record
@@ -97,9 +129,8 @@ class JSONLWAL:
             try:
                 record = json.loads(raw_line.decode("utf-8"))
             except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-                if i == len(lines) - 1:
-                    tail_truncated = True
-                    break
+                # A newline-terminated record was fully framed. Invalid JSON at
+                # that boundary is corruption, not a disposable crash tail.
                 raise WALCorruption(f"invalid WAL JSON at record {i}") from exc
             expected_prev = self._verify_record(record, i, expected_prev)
             records.append(record)
@@ -109,13 +140,20 @@ class JSONLWAL:
         read = self.read_valid_prefix()
         if not read.tail_truncated:
             return False
-        data = b"".join((_canon(record) + "\n").encode("utf-8") for record in read.records)
-        with self.path.open("wb", buffering=0) as fh:
-            fh.write(data)
-            fh.flush()
-            os.fsync(fh.fileno())
+        raw = self.path.read_bytes()
+        lines = raw.splitlines(keepends=True)
+        valid_bytes = sum(len(line) for line in lines[:len(read.records)])
+        fd = os.open(self.path, os.O_RDWR)
+        try:
+            # Truncate only bytes after the verified prefix. Unlike rewriting
+            # with wb, an interruption cannot erase already verified records.
+            os.ftruncate(fd, valid_bytes)
+            os.fsync(fd)
+        finally:
+            os.close(fd)
         self._seq = len(read.records)
         self._last_hash = read.records[-1]["record_hash"] if read.records else "GENESIS"
+        self._write_blocked = False
         return True
 
 
