@@ -20,78 +20,71 @@ F3.3 PASS_WITH_BOUNDARY
 F3   FUNCTIONALLY_CLOSED_REFERENCE_LEVEL
 F4.0 CONTRACT_PASS
 F4.1 PASS_WITH_BOUNDARY
-F4.2 NEXT
+F4.2 PASS_WITH_BOUNDARY
+F4.3 NEXT
 ```
 
-## F4.1 — wynik
+## F4.2 — wynik
 
-Jeden zweryfikowany `VisualFrame` jest teraz źródłem dwóch reprezentacji wykonawczych bez dostępu renderera do autorytatywnego `Workspace`:
+Pierwszy rzeczywisty renderer PSI-VIZ działa wyłącznie nad formatami pośrednimi F4.1:
 
 ```text
-VisualFrame
-├─> PrintKeyframe
-└─> AnimationTimeline
+PrintKeyframe -> deterministic SVG
+PrintKeyframe + AnimationTimeline -> ManimPlan -> executable Python (REPOSITION)
 ```
 
 Zamrożone:
 
 \[
-\boxed{renderer\ input=checked\ VisualFrame,\ not\ authoritative\ memory}
+\boxed{renderer\not\to Workspace}
 \]
 
 \[
-\boxed{graphic\ identity\neq screen\ position}
+\boxed{same\ PrintKeyframe\Rightarrow same\ SVG\ bytes\ and\ digest}
 \]
 
 \[
-\boxed{PROJECTION\ REDACTION\ survives\ rendering}
+\boxed{unknown\ semantic\ event\Rightarrow FAIL\ CLOSED}
 \]
 
-`PrintKeyframe` jest neutralnym, wektorowo-bezpiecznym opisem sceny (`circle+text`, `line+text`, brak gradientów) z przypiętymi digestami źródła. Stabilny `asset_id` zależy od tożsamości obiektu/relacji, a nie od współrzędnych; dwa layouty tej samej sceny zachowują te same identyfikatory graficzne.
+SVG używa wyłącznie prymitywów wektorowych `rect/line/circle/text/g/metadata`; bez rastrów, filtrów i gradientów. Binding metadata zawiera wyłącznie identyfikatory kontrolne (`semantic_digest`, `layout_digest`, `profile_id`, `print_payload_digest`, kontrakt/zadanie/rewizję/digest źródła), a nie ukrytą kopię relacji, provenance ani statusu.
 
-`AnimationTimeline` używa rygla F4.0. Dla `REPOSITION` emituje tylko `MOVE_NODE` przy identycznym `semantic_digest`. Dla rzeczywistego zdarzenia semantycznego emituje jedynie zadeklarowane `SEMANTIC_EVENT` wskazujące digest stanu przed/po; renderer nie rekonstruuje sam matematyki z geometrii.
+W regresji kontrakt F4.0 celowo ukrywa `provenance`; ciągi `source:fibre` i `source:quotient` nie pojawiają się ani w SVG, ani w skrypcie Manim. Jawny `status` pozostaje widoczny, bo był dopuszczony w `VisualFrame`.
 
-W jednej animacji muszą pozostać stałe:
+Adapter Manim mapuje wyłącznie `MOVE_NODE -> ANIMATE_MOVE_TO`. `SEMANTIC_EVENT` bez jawnego adaptera jest odrzucany. Nawet po podaniu identyfikatora adaptera generyczny renderer F4.2 nie wykonuje zdarzenia semantycznego: jego implementacja wymaga osobnej regresji.
 
-```text
-task_id
-visible_metadata
-channel_meanings
-```
-
-Zmiana zadania albo widoczności metadanych nie może udawać zmiany pamięci. Renderer nie może odzyskać `provenance`, jeśli zostało ono usunięte na granicy F4.0.
-
-Workflow `PSI-VIZ F4.1 outputs`, run `36759122579`, zakończył się `success`. W jednym jobie przeszły:
+Workflow `PSI-VIZ F4.2 renderer`, run `36760676294`, zakończył się `success`; w jednym jobie przeszły:
 
 ```text
-F4.0 PSI-VIZ projection contract
-F4.1 print/animation output contract
+F4.0 projection contract
+F4.1 output contract
+F4.2 SVG + Manim renderer
 finite representation control
 active memory regression
 institutional constitution
 ```
 
-Szczegóły: `docs/memory/PSI-VIZ-F4.1-01.md`.
-
-## F4.2 — następna jednostka
-
-**REAL VECTOR RENDERER + MINIMAL ANIMATION ADAPTER.**
-
-Pierwszy rzeczywisty rendering ma zużywać wyłącznie formaty pośrednie F4.1:
+Workflow opublikował realny artefakt `psi-viz-f4.2-render` zawierający:
 
 ```text
-PrintKeyframe      -> deterministic SVG
-AnimationTimeline -> minimal Manim adapter / executable scene description
+fibre-keyframe.svg
+reposition-plan.json
+reposition-scene.py
+manifest.json
 ```
 
-Minimalny świadek F4.2:
+Szczegóły: `docs/memory/PSI-VIZ-F4.2-01.md`.
 
-1. wyrenderować scenę `Y,x1,x2,m` do prawdziwego SVG bez ponownego dostępu do `Workspace`;
-2. SVG ma zawierać źródłowy `semantic_digest`, `layout_digest` i `profile_id` jako metadane;
-3. wszystkie `asset_id` z `PrintKeyframe` muszą pojawić się w SVG i pozostać stabilne;
-4. brak gradientów, filtrów, rastrów i ukrytych metadanych semantycznych;
-5. sprawdzić deterministyczność: ten sam `PrintKeyframe` -> identyczny digest SVG;
-6. przygotować minimalny adapter timeline, który mapuje `MOVE_NODE` na instrukcje Manim bez dopisywania relacji;
-7. `SEMANTIC_EVENT` bez jawnego adaptera danego typu ma działać fail-closed, a nie być zgadywane;
-8. klatka SVG ma być bezpiecznym źródłem dla późniejszego PDF/druku;
-9. po F4.2 można wykonać rzeczywisty krótki film i dopiero potem wejść w F5 — pomiar skuteczności reprezentacji.
+## F4.3 — następna jednostka
+
+**EXECUTE THE FIRST MANIM REPOSITION FILM.**
+
+Minimalny świadek:
+
+1. użyć dokładnie `reposition-scene.py` wygenerowanego przez F4.2;
+2. zainstalować/uruchomić Manim w izolowanym jobie CI i wyrenderować krótki MP4 dla `FIBRE_LAYOUT -> QUOTIENT_LAYOUT`;
+3. film nie może czytać `Workspace` ani modyfikować planu;
+4. zachować manifest z digestem planu i pliku źródłowego;
+5. klatka początkowa/końcowa ma zachować te same `asset_id`/etykiety/kolory;
+6. F4.3 nadal dotyczy wyłącznie `REPOSITION` — bez zdarzenia semantycznego;
+7. dopiero po PASS filmu przygotować pierwszy jawny adapter semantyczny (`SPLIT` albo `EDGE_ADD`), a później wejść w F5 — pomiar skuteczności reprezentacji.
