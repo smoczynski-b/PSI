@@ -133,12 +133,22 @@ def access_fixture(root: Path):
 
 
 def simulate_access_committed_before_movement(steward: AccessStewardRuntime, request: MovementRequest) -> None:
-    # Exact crash boundary from R2: ACCESS observed the request and measured it,
-    # SERVANT committed durable presence, but ACCESS_MOVEMENT/RESULT were not yet written.
+    # Exact post-PREPARED boundary from R2: ACCESS observed and measured the
+    # request, persisted the historical binding, SERVANT committed durable
+    # presence, but ACCESS_MOVEMENT/RESULT were not yet written.
     steward._observed(request)
     actual = steward.cost_meter(request)
     assert actual.l1 > 0
     command = steward._servant_command(request)
+    before = steward.location(request.session_id)
+    expected_after = request.map_to if request.operation != "EXIT" else OUTSIDE
+    steward._prepared(
+        request,
+        command,
+        before=before,
+        after=expected_after,
+        actual=actual,
+    )
     out = steward.servant.handle(command)
     assert out.disposition == "ACK_TRANSITION"
     assert command.txid in committed_txids(steward.servant.durable)
@@ -148,6 +158,7 @@ def append_movement_without_result(steward: AccessStewardRuntime, request: Movem
     command = steward._servant_command(request)
     steward.chronicle.append("MOVEMENT", request.request_id, {
         "request_id": request.request_id,
+        "request_fingerprint": request.fingerprint(),
         "session_id": request.session_id,
         "actor_id": request.actor_id,
         "map_from": request.map_from,
