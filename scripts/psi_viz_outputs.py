@@ -110,6 +110,15 @@ def verify_print_keyframe(keyframe: PrintKeyframe) -> None:
             raise ValueError("PrintKeyframe duplicated semantic digest mismatch")
         if str(source["layout_digest"]) != keyframe.source_layout_digest:
             raise ValueError("PrintKeyframe duplicated layout digest mismatch")
+        for row in keyframe.payload["edges"]:
+            semantics = str(row.get("relation_semantics", "UNSPECIFIED"))
+            primitive = str(row.get("primitive", ""))
+            if semantics == "DIRECTED" and primitive != "arrow+text":
+                raise ValueError("PrintKeyframe directed relation primitive mismatch")
+            if semantics in {"SYMMETRIC", "UNSPECIFIED"} and primitive != "line+text":
+                raise ValueError("PrintKeyframe non-directed relation primitive mismatch")
+            if semantics not in {"DIRECTED", "SYMMETRIC", "UNSPECIFIED"}:
+                raise ValueError("PrintKeyframe invalid relation semantics")
     except KeyError as exc:
         raise ValueError("PrintKeyframe missing source binding") from exc
 
@@ -172,8 +181,17 @@ def _identity_color(node_id: str, profile: OutputProfile) -> str:
     return profile.identity_palette[idx]
 
 
+def _canonical_edge_endpoints(row: dict) -> tuple[str, str]:
+    source = str(row["from"])
+    target = str(row["to"])
+    if str(row.get("relation_semantics", "UNSPECIFIED")) == "SYMMETRIC" and target < source:
+        return target, source
+    return source, target
+
+
 def _edge_id(row: dict) -> str:
-    return _asset_id("edge", str(row["from"]), str(row["relation"]), str(row["to"]))
+    source, target = _canonical_edge_endpoints(row)
+    return _asset_id("edge", source, str(row["relation"]), target)
 
 
 def _node_id(node: str) -> str:
@@ -228,13 +246,13 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
     edges = []
     pos = positions
     for row in semantic["edges"]:
-        source = str(row["from"])
-        target = str(row["to"])
+        source, target = _canonical_edge_endpoints(row)
         sx, sy = pos[source]
         tx, ty = pos[target]
+        semantics = str(row.get("relation_semantics", "UNSPECIFIED"))
         out = {
             "asset_id": _edge_id(row),
-            "primitive": "line+text",
+            "primitive": "arrow+text" if semantics == "DIRECTED" else "line+text",
             "from_object_id": source,
             "to_object_id": target,
             "x1": sx,
@@ -242,6 +260,7 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
             "x2": tx,
             "y2": ty,
             "relation": row["relation"],
+            "relation_semantics": semantics,
             "stroke": profile.foreground,
             "label": row["relation"],
         }
@@ -286,7 +305,7 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
 def _assert_animation_contract_invariant(before: VisualFrame, after: VisualFrame) -> None:
     if before.task_id != after.task_id:
         raise ValueError("animation cannot change task_id")
-    for field in ("visible_metadata", "channel_meanings"):
+    for field in ("visible_metadata", "channel_meanings", "relation_semantics"):
         if before.semantic_payload.get(field) != after.semantic_payload.get(field):
             raise ValueError(f"animation cannot change visual contract field: {field}")
 
