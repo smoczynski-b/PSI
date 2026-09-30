@@ -7,6 +7,7 @@ historical mathematical sources keep their provenance and contract limits.
 
 - User instructions take precedence. Keep CORE5 and CANON-03 frozen.
 - Select one primary unit; check all sector blockers before continuing a branch.
+- Before freezing a substantial contract, apply the [contract interview gate](docs/contract-interview.md). Treat punctuation, spelling, shorthand and sentence fragments as surface noise unless they change working meaning. If two materially plausible interpretations would change the object, data/source type, action, inferential target or success criterion, ask one short discriminating question before execution. Do not ask the user to decide routine implementation details. Do not silently normalize semantic uncertainty away.
 - A WAIT needs a reason, source, release condition, next check and allowed work.
 - Distinguish experimental observation from intervention. Do not manufacture traffic.
 - Use the Bronsztejn gate for substantive mathematics: object, type/domain,
