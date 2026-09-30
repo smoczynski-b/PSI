@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, Iterable
 import copy
@@ -10,8 +10,7 @@ import json
 import os
 
 from active_memory import MemoryEvent, Workspace
-from active_memory_runtime import semantic_digest
-from mvcc_workspace import MVCCProposal
+from mvcc_workspace import MVCCCommitResult, MVCCProposal
 from shared_memory_runtime import SharedCommitResult, SharedMemoryRuntime
 
 
@@ -218,16 +217,16 @@ class DurableSharedMemoryRuntime:
         _, by_tx = self._records_by_tx()
         return txid in by_tx
 
-    def _propagate_committed(self, proposals: tuple[MVCCProposal, ...], applied: tuple[str, ...]) -> SharedCommitResult:
-        selected = tuple(p for p in proposals if p.proposal_id in set(applied))
-        # Replaying through SharedMemoryRuntime.commit would commit authoritative
-        # memory twice. Instead recovery replays full transactions from baseline;
-        # this helper is used only during the live post-COMMIT propagation path.
-        by_id = {p.proposal_id: p for p in selected}
+    def _propagate_committed(
+        self,
+        proposals: tuple[MVCCProposal, ...],
+        mvcc: MVCCCommitResult,
+    ) -> SharedCommitResult:
+        by_id = {p.proposal_id: p for p in proposals}
         delivered: set[str] = set()
         routed_patches = []
         examined_workspaces = 0
-        for pid in applied:
+        for pid in mvcc.applied_proposals:
             routed = self.shared.views.dispatch(by_id[pid].event)
             examined_workspaces += routed.examined_workspaces
             delivered.update(routed.delivered_workspaces)
@@ -235,25 +234,36 @@ class DurableSharedMemoryRuntime:
         invalidation = self.shared.views.invalidate(
             f"workspace:{wid}" for wid in sorted(delivered)
         ) if delivered else None
-        memory = self.shared.memory
         return SharedCommitResult(
-            status="COMMITTED",
-            base_revision=memory.revision - 1,
-            new_revision=memory.revision,
-            applied_proposals=applied,
-            duplicate_proposals=(),
-            conflict_tokens=(),
-            stale_tokens=(),
+            status=mvcc.status,
+            base_revision=mvcc.snapshot_revision,
+            new_revision=mvcc.new_revision,
+            applied_proposals=mvcc.applied_proposals,
+            duplicate_proposals=mvcc.duplicate_proposals,
+            conflict_tokens=mvcc.conflict_tokens,
+            stale_tokens=mvcc.stale_tokens,
             delivered_workspaces=tuple(sorted(delivered)),
             invalidated_workspaces=(invalidation.stale_workspaces if invalidation else ()),
             routed_patches=tuple(routed_patches),
-            examined_versions=0,
+            examined_versions=mvcc.examined_versions,
             examined_workspaces=examined_workspaces,
             examined_dependency_links=(invalidation.examined_dependency_links if invalidation else 0),
-            commit_chain_before="",
-            commit_chain_after=memory.commit_chain_digest,
-            reason="",
+            commit_chain_before=mvcc.commit_chain_before,
+            commit_chain_after=mvcc.commit_chain_after,
+            reason=mvcc.reason,
         )
+
+    def _inject_partial_propagation(
+        self,
+        proposals: tuple[MVCCProposal, ...],
+        applied: tuple[str, ...],
+    ) -> None:
+        by_id = {p.proposal_id: p for p in proposals}
+        if applied:
+            # Deliberately deliver exactly one committed event and stop before
+            # the remaining events and before downstream invalidation.
+            self.shared.views.dispatch(by_id[applied[0]].event)
+        raise SimulatedCrash("MID_PROPAGATE")
 
     def commit(
         self,
@@ -288,12 +298,10 @@ class DurableSharedMemoryRuntime:
         })
         if crash_at == "AFTER_COMMIT":
             raise SimulatedCrash("AFTER_COMMIT")
-
-        result = self._propagate_committed(batch, mvcc.applied_proposals)
         if crash_at == "MID_PROPAGATE":
-            # The test injects this only when at least one direct view changed.
-            raise SimulatedCrash("MID_PROPAGATE")
+            self._inject_partial_propagation(batch, mvcc.applied_proposals)
 
+        result = self._propagate_committed(batch, mvcc)
         self.wal.append("ACK", txid, {
             "delivered_workspaces": list(result.delivered_workspaces),
             "invalidated_workspaces": list(result.invalidated_workspaces),
@@ -316,6 +324,8 @@ class DurableSharedMemoryRuntime:
             expected = tuple(commit["payload"]["applied_proposals"])
             if result.applied_proposals != expected:
                 raise WALCorruption(f"WAL applied proposal mismatch during replay: {txid}")
+            if result.commit_chain_after != commit["payload"]["commit_chain_after"]:
+                raise WALCorruption(f"WAL commit-chain mismatch during replay: {txid}")
             if not any(r["kind"] == "ACK" for r in records):
                 self.wal.append("ACK", txid, {
                     "recovered": True,
