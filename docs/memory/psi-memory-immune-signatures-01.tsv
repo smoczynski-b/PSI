@@ -1,0 +1,5 @@
+signature_id	observation_kind	min_value	quarantine	request_recheck	clear	runbook_id	rationale
+IMM-CONFLICT-BURST	PROTOCOL_CONFLICT_COUNT	3	true	false	false	IMMUNE-01	repeated procedural conflict after admission
+IMM-INVALIDATION-FANOUT	INVALIDATION_FANOUT	8	true	true	false	IMMUNE-01	licensed propagation hazard requiring bounded downstream recheck requests
+IMM-WAL-CORRUPTION	WAL_CORRUPTION	1	true	false	false	IMMUNE-01	durable-log corruption is a system-health anomaly, not a domain truth verdict
+IMM-CLEAR-RECOVERY	ANOMALY_CLEARED	1	false	false	true	IMMUNE-01	typed evidence that a registered anomaly condition no longer holds; does not release active exchange
