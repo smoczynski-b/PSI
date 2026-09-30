@@ -2,6 +2,18 @@
 
 Status: EXPERIMENTAL / NON-CANONICAL. Data: 2026-09-30.
 
+## Korekta F0.4
+
+Późniejszy `PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01` wykazał, że wynik tego testu należy interpretować wężej. `ActiveRuntime` rzeczywiście przetwarza jedną deltę bez `deepcopy` całego grafu i bada jedno zdarzenie, ale zintegrowana ścieżka `MultiWorkspaceRuntime.dispatch()` po udanej mutacji wykonuje pełne odświeżenie lokalnych indeksów przez `Workspace.nodes` i `Workspace.dependencies`, a tuple-backed `processed_events` kopiuje wcześniejszą historię.
+
+Dlatego ten eksperyment pozostaje ważnym świadkiem **przyrostowej mutacji ActiveRuntime**, lecz nie ustanawia twierdzenia
+
+\[
+C_{t\to t+1}=O(|\Delta_t|)
+\]
+
+dla całej zintegrowanej ścieżki aktualizacji. Pełna korekta kosztu jest zapisana w `PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01.md`.
+
 ## Cel
 
 Sprawdzić pierwszą realizacyjną hipotezę aktywnej pamięci:
@@ -78,13 +90,14 @@ Test raportuje medianę czasu pięciu powtórzeń dla obu dróg, ale **czas nie 
 bramą CI**. Na współdzielonym runnerze czas ścienny jest zmienny i nie stanowi
 samodzielnego dowodu złożoności.
 
-Twarda kontrola pracy jest prostsza:
+Twarda kontrola tego eksperymentu jest lokalna względem `ActiveRuntime`:
 
 - FULL musi odczytać `N+1` rekordów krawędzi;
-- DELTA po zbudowaniu indeksu bada dokładnie 1 zdarzenie i emituje 1 patch.
+- `ActiveRuntime.apply()` dla DELTA bada dokładnie 1 zdarzenie i emituje 1 patch.
 
-To jest świadek konstrukcyjny implementacji przyrostowej, nie dowód asymptotyczny
-całego przyszłego systemu.
+Nie obejmuje to późniejszego kosztu odświeżania indeksów w `MultiWorkspaceRuntime` ani kosztu kopiowania tuple `processed_events`. Te składniki są jawnie liczone od F0.4.
+
+To jest świadek konstrukcyjny implementacji przyrostowej jednego poziomu, nie dowód asymptotyczny całego systemu.
 
 ## Granice
 
@@ -96,16 +109,16 @@ całego przyszłego systemu.
 - Adapter FORUM nie jest podłączony do żywego gatewayu. Zdarzenia FORUM mogą
   mutować runtime dopiero po zewnętrznym, jawnym `admitted=True`.
 - Syntetyczne skalowanie nie zastępuje benchmarku na rzeczywistej historii FORUM.
+- Zintegrowana aktualizacja nadal zawiera obecnie składniki zależne od rozmiaru lokalnego workspace i historii; patrz `PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01.md`.
 
 ## Kryterium przejścia
 
 PASS wymaga równocześnie:
 
 1. semantycznej zgodności FULL i DELTA dla wszystkich `N`;
-2. jednego badanego zdarzenia i jednej mutacji po stronie DELTA;
+2. jednego badanego zdarzenia i jednej mutacji po stronie `ActiveRuntime`;
 3. stabilności indeksów istniejących węzłów;
 4. braku wpływu niezwiązanej delty;
 5. przejścia wcześniejszych regresji pamięci.
 
-Po PASS następnym legalnym krokiem jest indeks odwrotnych zależności i test
-selektywnej invalidacji, a dopiero potem wieloagentowa współbieżność i backend GPU.
+Po PASS historycznym następnym krokiem był indeks odwrotnych zależności i test selektywnej invalidacji. Późniejsza korekta F0.4 ogranicza wniosek o koszcie do warstwy, którą ten test faktycznie mierzy.
