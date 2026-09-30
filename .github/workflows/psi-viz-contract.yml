@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Verify F4.0 PSI-VIZ projection contract
         run: python3 scripts/test_psi_viz_projection.py
       - name: Re-verify finite representation control
