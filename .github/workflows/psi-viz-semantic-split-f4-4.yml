@@ -50,8 +50,15 @@ jobs:
             -show_entries stream=codec_name,width,height,r_frame_rate,nb_frames \
             -show_entries format=duration,size \
             -of json "$VIDEO" > build/psi-viz-f4.4/video-probe.json
-          ffmpeg -loglevel error -y -i "$VIDEO" -vf 'select=eq(n\,0)' -frames:v 1 build/psi-viz-f4.4/first-frame.png
-          ffmpeg -loglevel error -y -sseof -0.1 -i "$VIDEO" -frames:v 1 build/psi-viz-f4.4/last-frame.png
+          mkdir -p build/psi-viz-f4.4/decoded
+          ffmpeg -loglevel error -y -i "$VIDEO" build/psi-viz-f4.4/decoded/frame-%04d.png
+          FIRST="$(find build/psi-viz-f4.4/decoded -type f -name 'frame-*.png' | sort | head -n 1)"
+          LAST="$(find build/psi-viz-f4.4/decoded -type f -name 'frame-*.png' | sort | tail -n 1)"
+          test -n "$FIRST"
+          test -n "$LAST"
+          test "$FIRST" != "$LAST"
+          cp "$FIRST" build/psi-viz-f4.4/first-frame.png
+          cp "$LAST" build/psi-viz-f4.4/last-frame.png
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -66,8 +73,10 @@ jobs:
           assert size > 1000, size
           assert int(stream['width']) > 0 and int(stream['height']) > 0
 
-          first = Image.open(root / 'first-frame.png').convert('RGBA')
-          last = Image.open(root / 'last-frame.png').convert('RGBA')
+          decoded = sorted((root / 'decoded').glob('frame-*.png'))
+          assert len(decoded) >= 3, len(decoded)
+          first = Image.open(decoded[0]).convert('RGBA')
+          last = Image.open(decoded[-1]).convert('RGBA')
           assert first.size == last.size
           diff = ImageChops.difference(first, last)
           assert diff.getbbox() is not None, 'first and last decoded frames are pixel-identical'
@@ -83,10 +92,12 @@ jobs:
               'height': int(stream['height']),
               'duration_seconds': duration,
               'size_bytes': size,
+              'decoded_frame_count': len(decoded),
               'changed_rgba_pixels_first_vs_last': changed,
           }
           (root / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
           print('real_typed_split_mp4=PASS')
+          print(f'decoded_frame_count={len(decoded)}')
           print(f'changed_rgba_pixels={changed}')
           PY
           sha256sum \
