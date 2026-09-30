@@ -1,0 +1,25 @@
+name: PSI-VIZ F4.0 contract
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/test_psi_viz_projection.py'
+      - 'docs/memory/PSI-VIZ-F4.0-01.md'
+      - '.github/workflows/psi-viz-contract.yml'
+  workflow_dispatch:
+
+jobs:
+  psi-viz-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify F4.0 PSI-VIZ projection contract
+        run: python3 scripts/test_psi_viz_projection.py
+      - name: Re-verify finite representation control
+        run: python3 scripts/test_memory_representation.py
+      - name: Re-run active memory regression
+        run: python3 scripts/test_active_memory.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py
