@@ -1,0 +1,27 @@
+from	relation	to	source_id	note
+HII-1977	PRECURSOR_OF	PSI-SHARED-MEMORY	SRC-HII-1977	Shared blackboard state is a genuine ancestor of shared task state; not equivalent to PSI typing or task-relative legality
+BB1-1985	CONTRIBUTES_ROLE_TO	PSI-SERVANT	SRC-BB1-1985	Meta-control and reasoning about system behavior anticipate a procedural observer/control role
+BB1-1985	NOT_EQUIVALENT_TO	PSI-SERVANT	SRC-BB1-1985	BB1 performs intelligent control; PSI-SERVANT is intentionally narrower and lacks domain epistemic authority
+AMELI-2004	CONTRIBUTES_ROLE_TO	PSI-GUARDIAN	SRC-AMELI-2004	Governors/managers mediate participation and enforce institutional rules at interaction boundaries
+AMELI-2004	NOT_EQUIVALENT_TO	PSI-GUARDIAN	SRC-AMELI-2004	Electronic-institution governor represents/mediates an agent; PSI guardian is a candidate memory-admission role
+MAPEK-2005	CONTRIBUTES_ROLE_TO	PSI-SERVANT	SRC-MAPEK-2005	Monitoring and corrective execution around shared knowledge anticipate procedural state supervision
+MAPEK-2005	CONTRIBUTES_ROLE_TO	PSI-IMMUNE	SRC-MAPEK-2005	Self-healing/self-protection control loops contribute the homeostatic management pattern
+AIS-FDDR-2015	ANALOGOUS_ROLE	PSI-IMMUNE	SRC-AIS-FDDR-2015	Fault/anomaly detection diagnosis isolation and recovery supply the closest explicit immune-system analogy
+AIS-FDDR-2015	NOT_EQUIVALENT_TO	PSI-IMMUNE	SRC-AIS-FDDR-2015	PSI immune candidate concerns epistemic/execution integrity of memory and agents, not a specific AIS algorithm
+NANOPUB-2010	CONTRIBUTES_ROLE_TO	PSI-CURATOR	SRC-NANOPUB-2010	Assertion provenance and publication metadata anticipate curation of reusable knowledge objects
+PROVK-2025	CONTRIBUTES_ROLE_TO	PSI-CURATOR	SRC-PROVK-2025	Multi-source support/refutation provenance and trust networks sharpen genealogy/provenance handling
+KM-2003	PRECURSOR_OF	PSI-MAP-EXCHANGE	SRC-KM-2003	Knowledge exchange as an agent-mediated market precedes FORUM-as-exchange; traded object semantics differ
+DDNA-2012	PRECURSOR_OF	PSI-MAP-OBJECT	SRC-DDNA-2012	A structured shareable experience object is closer to a reusable map than free prose is
+DDNA-2012	PRECURSOR_OF	PSI-MAP-EXCHANGE	SRC-DDNA-2012	Authors explicitly proposed a future knowledge market using SOEKS/Decisional DNA
+NANOPUB-2010	PRECURSOR_OF	PSI-MAP-OBJECT	SRC-NANOPUB-2010	Referencable provenance-bearing knowledge objects anticipate maps stored as memory objects
+LLM-BB-2025	CONTEMPORARY_PARALLEL_TO	PSI-SHARED-MEMORY	SRC-LLM-BB-2025	Both coordinate multiple LLM agents through shared state; PSI additionally separates authority, task-local views and selective invalidation
+WMAS-2026	CONTEMPORARY_PARALLEL_TO	PSI-SHARED-MEMORY	SRC-WMAS-2026	Both place shared explicit world/state representation above isolated agent-local representations
+PSI-SHARED-MEMORY	REALIZES_PART_OF	PSI-MAP-EXCHANGE	SRC-PSI-SHARED	Existing runtime provides the shared-state substrate required before maps can be exchanged as durable objects
+PSI-DURABLE-MEMORY	SUPPORTS	PSI-MAP-EXCHANGE	SRC-PSI-WAL	Durable commit/recovery is required if exchanged maps are to outlive agent processes
+PSI-CURATOR	CURATES	PSI-MAP-OBJECT	SRC-PSI-MEMORY	Candidate curator owns genealogy/provenance/version/reuse lifecycle, not truth adjudication
+PSI-GUARDIAN	GATES	PSI-MAP-OBJECT	SRC-PSI-MEMORY	Candidate guardian controls admission of typed objects/actions at the memory boundary
+PSI-SERVANT	MONITORS_TRANSITIONS_OF	PSI-SHARED-MEMORY	SRC-PSI-WAL	Candidate servant watches legal state evolution and records/handles local procedural faults
+PSI-IMMUNE	MONITORS_PATHOLOGY_OF	PSI-SHARED-MEMORY	SRC-PSI-WAL	Candidate immune layer detects pathological patterns and isolates/revalidates affected state
+PSI-TASK-GATE	CONSTRAINS	PSI-MAP-OBJECT	SRC-PSI-II4	A reusable map must preserve all distinctions required by the declared task
+PSI-TASK-GATE	CONSTRAINS	PSI-MAP-EXCHANGE	SRC-PSI-II4	Exchange popularity or reuse count cannot license a map whose representation collapses task-relevant distinctions
+PSI-MAP-OBJECT	EXCHANGED_ON	PSI-MAP-EXCHANGE	SRC-PSI-SHARED	Candidate protocol object of exchange: contract-scoped map with provenance/status/dependencies rather than prose alone
