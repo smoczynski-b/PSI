@@ -23,6 +23,7 @@ on:
       - 'experiments/PSI-MEMORY-M18-UNCERTAIN-OBSERVATION-01.md'
       - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
       - 'experiments/PSI-ACTIVE-MEMORY-SCALE-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-INVALIDATION-01.md'
       - 'experiments/PSI-CHEM-VISION-LAB-01.md'
       - 'experiments/PSI-CHEM-VISION-REAL-01.md'
       - 'experiments/chem-vision-worlds-01.tsv'
@@ -45,8 +46,10 @@ on:
       - 'scripts/memory_retrieval.py'
       - 'scripts/active_memory.py'
       - 'scripts/active_memory_runtime.py'
+      - 'scripts/dependency_invalidation.py'
       - 'scripts/test_active_memory.py'
       - 'scripts/test_active_memory_scaling.py'
+      - 'scripts/test_active_memory_invalidation.py'
       - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/prepare_memory_evaluation.py'
@@ -159,6 +162,8 @@ jobs:
         run: python3 scripts/test_active_memory.py
       - name: Run active-memory reconstruction-vs-delta scaling regression
         run: python3 scripts/test_active_memory_scaling.py
+      - name: Run active-memory selective invalidation regression
+        run: python3 scripts/test_active_memory_invalidation.py
       - name: Verify frozen evaluation preparation and lexical comparator
         run: python3 scripts/test_memory_evaluation.py
       - name: Measure A-B-C input preparation only (no model execution)
