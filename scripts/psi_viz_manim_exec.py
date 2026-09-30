@@ -6,7 +6,7 @@ import hashlib
 import math
 import re
 
-from psi_viz_renderer import ManimPlan
+from psi_viz_renderer import ManimPlan, verify_manim_plan
 
 
 COLOR_MAP = {
@@ -85,19 +85,12 @@ def compile_executable_manim_scene(
     class_name: str = "PSIVizReposition",
     background: str = "ivory",
 ) -> ExecutableManimScene:
-    """Compile an F4.2 MOVE_NODE plan into an actually renderable Manim scene.
-
-    F4.3 preserves the checked plan. It renders nodes plus typed relation edges,
-    makes edges follow moving nodes, and respects the shared timeline interval by
-    executing all MOVE_NODE animations in one parallel ``self.play`` call.
-    No semantic event adapter is accepted here.
-    """
+    """Compile an F4.2 MOVE_NODE plan into an actually renderable Manim scene."""
     if not isinstance(plan, ManimPlan):
         raise TypeError("compile_executable_manim_scene requires ManimPlan")
+    verify_manim_plan(plan)
     cname = _class_name(class_name)
     payload = plan.payload
-    if payload.get("format") != "PSI-VIZ-MANIM-PLAN-1":
-        raise ValueError("unsupported Manim plan format")
 
     actions = list(payload.get("actions", []))
     if any(str(a.get("op", "")) != "ANIMATE_MOVE_TO" for a in actions):
@@ -166,7 +159,6 @@ def compile_executable_manim_scene(
         "        edges = {}",
     ]
 
-    # Nodes: stable visual identity, explicit initial positions from the checked timeline.
     node_vars: dict[str, str] = {}
     for aid, row in sorted(nodes.items()):
         action = moved[aid]
@@ -184,8 +176,6 @@ def compile_executable_manim_scene(
         lines.append(f"        {var}.move_to([{x!r}, {y!r}, 0])")
         lines.append(f"        nodes[{aid!r}] = {var}")
 
-    # Typed relation edges are display objects only. They follow node positions;
-    # they do not create or modify any relation in memory.
     for aid, row in sorted(edges.items()):
         src_aid = object_to_asset[str(row["from_object_id"])]
         dst_aid = object_to_asset[str(row["to_object_id"])]
