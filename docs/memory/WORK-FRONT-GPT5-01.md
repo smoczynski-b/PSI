@@ -32,10 +32,10 @@ Każda warstwa jest projekcją lub wykonaniem warstwy wcześniejszej; żadna nie
 
 Kolejność jest zamrożona:
 
-1. **SERVANT restart/collision** — pierwotny ukończony werdykt pozostaje rozstrzygający po kolizji identyfikatora i restarcie; kolizja ma osobny zapis kronikarski.
-2. **IMMUNE numeric domain** — NaN, ±∞, wartości logiczne i wartości poza zadeklarowaną dziedziną nie mogą uruchamiać reakcji progowej.
-3. **IMMUNE recovered-view binding** — po `RECOVER` Immunologia musi używać aktualnego indeksu/widoków albo jawnie zatrzymać się do ponownego związania.
-4. **Cost accounting** — oddzielić liczbę wybranych widoków od rzeczywistej pracy: odświeżenie indeksów, odwiedzone krawędzie i historia zdarzeń.
+1. **SERVANT restart/collision — PASS.** Pierwotny ukończony werdykt pozostaje rozstrzygający po kolizji identyfikatora i restarcie; kolizja ma osobny zapis kronikarski.
+2. **IMMUNE numeric domain — PASS.** NaN, ±∞, wartości logiczne i tekst są odrzucane przed oceną sygnatury; skończone wartości muszą należeć do jawnej dziedziny sygnatury (`NONNEGATIVE_INTEGER` / `BINARY_FLAG`). Wartość spoza dziedziny nie może uruchomić reakcji ani zwiększyć licznika sygnatury.
+3. **IMMUNE recovered-view binding — NEXT.** Po `RECOVER` Immunologia musi używać aktualnego indeksu/widoków albo jawnie zatrzymać się do ponownego związania.
+4. **Cost accounting.** Oddzielić liczbę wybranych widoków od rzeczywistej pracy: odświeżenie indeksów, odwiedzone krawędzie i historia zdarzeń.
 
 **Gate F0:** wszystkie istniejące regresje + osobne regresje kontrprzykładów przechodzą; żadna naprawa nie zmienia kompetencji ról.
 
@@ -123,7 +123,7 @@ L2 — historia tworzenia, używania, przejść i kosztów L1
 
 Realizacja ma używać snapshotów, odwołań, hashy i delt.
 
-`CURATOR` odpowiada za tożsamość, wersję, rodowód i `CURRENT_POINTER`.  
+`CURATOR` odpowiada za tożsamość, wersję, rodowód i `CURRENT_POINTER`; ponadto może projektować i wnosić do Agenta PSI zapotrzebowanie na `EXPAND / SPLIT / MERGE / REINDEX / MIGRATE / ARCHIVE / COMPACT / REBALANCE`, ale nie może samodzielnie wykonywać przebudowy ani przydzielać sobie zasobów.  
 `ACCESS_STEWARD` odpowiada za historię dostępu, obecności, przejść i kosztów.
 
 Archiwizacja nie zmienia statusu epistemicznego i nie rozszerza uprawnień odwołanego obiektu.
@@ -132,7 +132,7 @@ Archiwizacja nie zmienia statusu epistemicznego i nie rozszerza uprawnień odwo�
 
 ## F4 — wizualizacja jako sprawdzalny widok, nie dekoracja
 
-Dopiero po F1–F3 ustalić wspólną gramatykę wizualną dla WWW, analizy i animacji.
+Dopiero po F1–F3 ustalić wspólną gramatykę wizualną dla WWW, analizy i animacji. Rodowód ruchomej notacji PSI-VIZ pochodzi z rozmowy `Konstruowanie litery a`; późniejsze rygory pamięci aktywnej ograniczają sposób jej użycia.
 
 Każdy obraz/animacja musi wskazywać:
 
@@ -244,6 +244,6 @@ Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle z F0, ale ni
 
 ## Najbliższa jednostka kodowa
 
-**F0.1 — SERVANT durable original verdict after collision/restart.**
+**F0.3 — IMMUNE recovered-view binding after `RECOVER`.**
 
 Po jej PASS następny ruch jest wyznaczony przez powyższą kolejność, bez ponownego wyboru architektury.
