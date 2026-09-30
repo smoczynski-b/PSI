@@ -19,7 +19,7 @@ def _fingerprint(value) -> str:
     return hashlib.sha256(_canon(value).encode("utf-8")).hexdigest()
 
 
-LEGAL_KINDS = {"TRANSACT", "COMPENSATE", "RECOVER"}
+LEGAL_KINDS = {"TRANSACT", "COMPENSATE", "RECOVER", "INSTITUTION_ACTION"}
 BLOCKED_KINDS = {
     "REWRITE_DURABLE_HISTORY",
     "DELETE_COMMITTED_HISTORY",
@@ -27,6 +27,12 @@ BLOCKED_KINDS = {
     "SEMANTIC_VERDICT",
 }
 STOP_KINDS = {"CHANGE_CONSTITUTION", "CONSTITUTION_CONFLICT"}
+INSTITUTION_ACTIONS = {
+    "NOTICE",
+    "POST_QUARANTINE",
+    "REQUEST_RECHECK",
+    "CLEAR_ANOMALY",
+}
 
 
 @dataclass(frozen=True)
@@ -37,6 +43,8 @@ class ServantCommand:
     proposals: tuple[MVCCProposal, ...] = ()
     runbook_id: str = ""
     compensates_txid: str = ""
+    institution_action: str = ""
+    subject_id: str = ""
 
     def __post_init__(self):
         command_id = str(self.command_id).strip()
@@ -44,6 +52,8 @@ class ServantCommand:
         txid = str(self.txid).strip()
         runbook_id = str(self.runbook_id).strip()
         compensates = str(self.compensates_txid).strip()
+        institution_action = str(self.institution_action).strip().upper()
+        subject_id = str(self.subject_id).strip()
         if not command_id:
             raise ValueError("command_id is required")
         if not kind:
@@ -53,6 +63,8 @@ class ServantCommand:
         object.__setattr__(self, "txid", txid)
         object.__setattr__(self, "runbook_id", runbook_id)
         object.__setattr__(self, "compensates_txid", compensates)
+        object.__setattr__(self, "institution_action", institution_action)
+        object.__setattr__(self, "subject_id", subject_id)
         object.__setattr__(self, "proposals", tuple(self.proposals))
 
     def fingerprint(self) -> str:
@@ -74,6 +86,8 @@ class ServantCommand:
             "proposals": proposals,
             "runbook_id": self.runbook_id,
             "compensates_txid": self.compensates_txid,
+            "institution_action": self.institution_action,
+            "subject_id": self.subject_id,
         })
 
 
@@ -240,8 +254,19 @@ class ServantRuntime:
                 return "MISSING_TXID"
             if not command.proposals:
                 return "EMPTY_PROPOSAL_BATCH"
-        if command.kind == "RECOVER" and (command.txid or command.proposals):
+        if command.kind == "RECOVER" and (
+            command.txid or command.proposals or command.institution_action or command.subject_id
+        ):
             return "RECOVER_HAS_WRITE_PAYLOAD"
+        if command.kind == "INSTITUTION_ACTION":
+            if command.txid or command.proposals or command.compensates_txid:
+                return "INSTITUTION_ACTION_HAS_MEMORY_WRITE_PAYLOAD"
+            if not command.runbook_id:
+                return "MISSING_RUNBOOK"
+            if not command.institution_action:
+                return "MISSING_INSTITUTION_ACTION"
+            if not command.subject_id:
+                return "MISSING_SUBJECT_ID"
         return None
 
     def handle(self, command: ServantCommand) -> ServantDecision:
@@ -291,6 +316,28 @@ class ServantRuntime:
                 command,
                 disposition="BLOCK_ILLEGAL_TRANSITION",
                 reason_code=shape_fault,
+                revision_before=before,
+            )
+
+        if command.kind == "INSTITUTION_ACTION":
+            if command.runbook_id not in self.authorized_runbooks:
+                return self._finish(
+                    command,
+                    disposition="BLOCK_ILLEGAL_TRANSITION",
+                    reason_code="RUNBOOK_NOT_AUTHORIZED",
+                    revision_before=before,
+                )
+            if command.institution_action not in INSTITUTION_ACTIONS:
+                return self._finish(
+                    command,
+                    disposition="BLOCK_ILLEGAL_TRANSITION",
+                    reason_code="INSTITUTION_ACTION_NOT_AUTHORIZED",
+                    revision_before=before,
+                )
+            return self._finish(
+                command,
+                disposition="ACK_TRANSITION",
+                reason_code=f"INSTITUTION_ACTION_ACCEPTED:{command.institution_action}",
                 revision_before=before,
             )
 
