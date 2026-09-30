@@ -3,11 +3,13 @@ from __future__ import annotations
 
 from collections import deque
 from dataclasses import dataclass
+from numbers import Real
 from pathlib import Path
 from typing import Iterable
 import csv
 import hashlib
 import json
+import math
 
 from durable_shared_memory import JSONLWAL
 from multiworkspace_runtime import MultiWorkspaceRuntime
@@ -26,6 +28,35 @@ def _as_bool(value: str) -> bool:
     return str(value).strip().lower() in {"1", "true", "yes", "y"}
 
 
+VALUE_DOMAINS = {
+    "NONNEGATIVE_REAL",
+    "NONNEGATIVE_INTEGER",
+    "BINARY_FLAG",
+}
+
+
+def _finite_real(value) -> float:
+    """Return a finite real value; reject bools, strings, NaN and infinities."""
+    if isinstance(value, bool) or not isinstance(value, Real):
+        raise ValueError("immune observation value must be a real number, not bool/text")
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError("immune observation value must be finite")
+    return number
+
+
+def _value_in_domain(value: float, domain: str) -> bool:
+    if not math.isfinite(value):
+        return False
+    if domain == "NONNEGATIVE_REAL":
+        return value >= 0.0
+    if domain == "NONNEGATIVE_INTEGER":
+        return value >= 0.0 and value.is_integer()
+    if domain == "BINARY_FLAG":
+        return value in {0.0, 1.0}
+    raise ValueError(f"unknown immune value domain: {domain}")
+
+
 @dataclass(frozen=True)
 class LicensedSignature:
     signature_id: str
@@ -35,14 +66,27 @@ class LicensedSignature:
     request_recheck: bool
     clear: bool
     runbook_id: str
+    value_domain: str = "NONNEGATIVE_REAL"
 
     def __post_init__(self):
-        if not self.signature_id or not self.observation_kind or not self.runbook_id:
+        signature_id = str(self.signature_id).strip()
+        observation_kind = str(self.observation_kind).strip()
+        runbook_id = str(self.runbook_id).strip()
+        value_domain = str(self.value_domain).strip().upper()
+        if not signature_id or not observation_kind or not runbook_id:
             raise ValueError("licensed signature requires id, observation kind and runbook")
-        if self.min_value < 0:
-            raise ValueError("min_value must be non-negative")
+        if value_domain not in VALUE_DOMAINS:
+            raise ValueError(f"unknown immune value domain: {value_domain}")
+        min_value = _finite_real(self.min_value)
+        if not _value_in_domain(min_value, value_domain):
+            raise ValueError("min_value must belong to the declared value domain")
         if self.quarantine and self.clear:
             raise ValueError("signature cannot quarantine and clear in one step")
+        object.__setattr__(self, "signature_id", signature_id)
+        object.__setattr__(self, "observation_kind", observation_kind)
+        object.__setattr__(self, "runbook_id", runbook_id)
+        object.__setattr__(self, "value_domain", value_domain)
+        object.__setattr__(self, "min_value", min_value)
 
 
 def load_signatures(path: str | Path) -> tuple[LicensedSignature, ...]:
@@ -57,6 +101,7 @@ def load_signatures(path: str | Path) -> tuple[LicensedSignature, ...]:
                 request_recheck=_as_bool(row["request_recheck"]),
                 clear=_as_bool(row["clear"]),
                 runbook_id=str(row["runbook_id"]).strip(),
+                value_domain=str(row.get("value_domain", "NONNEGATIVE_REAL")).strip(),
             ))
     ids = [row.signature_id for row in rows]
     if len(ids) != len(set(ids)):
@@ -82,12 +127,13 @@ class ImmuneObservation:
             raise ValueError("observation_kind is required")
         if not str(self.subject_workspace).strip():
             raise ValueError("subject_workspace is required")
+        number = _finite_real(self.value)
         object.__setattr__(self, "observation_id", str(self.observation_id).strip())
         object.__setattr__(self, "signature_id", str(self.signature_id).strip())
         object.__setattr__(self, "observation_kind", str(self.observation_kind).strip())
         object.__setattr__(self, "subject_workspace", str(self.subject_workspace).strip())
         object.__setattr__(self, "admission_state", str(self.admission_state).strip().upper())
-        object.__setattr__(self, "value", float(self.value))
+        object.__setattr__(self, "value", number)
 
     def fingerprint(self) -> str:
         return _fingerprint({
@@ -240,12 +286,17 @@ class ImmuneRuntime:
             )
             self._completed[obs_id] = (fp, decision)
             if decision.health_after:
-                # The subject is recoverable from action records when health changed.
-                subject = next((a.subject_id for a in actions if a.action in {"POST_QUARANTINE", "CLEAR_ANOMALY"}), "")
+                subject = next(
+                    (a.subject_id for a in actions if a.action in {"POST_QUARANTINE", "CLEAR_ANOMALY"}),
+                    "",
+                )
                 if subject:
                     self._health[subject] = decision.health_after
             if decision.signature_id and decision.signature_count:
-                subject = next((a.subject_id for a in actions if a.action in {"NOTICE", "POST_QUARANTINE", "CLEAR_ANOMALY"}), "")
+                subject = next(
+                    (a.subject_id for a in actions if a.action in {"NOTICE", "POST_QUARANTINE", "CLEAR_ANOMALY"}),
+                    "",
+                )
                 if subject:
                     self._signature_counts[(decision.signature_id, subject)] = max(
                         decision.signature_count,
@@ -309,6 +360,30 @@ class ImmuneRuntime:
         self._completed[observation.observation_id] = (observation.fingerprint(), decision)
         return decision
 
+    def _decision_without_action(
+        self,
+        observation: ImmuneObservation,
+        *,
+        status: str,
+        health: str,
+        reason_code: str,
+        signature_count: int,
+        signature_id: str | None = None,
+    ) -> ImmuneDecision:
+        return ImmuneDecision(
+            observation_id=observation.observation_id,
+            status=status,
+            signature_id=signature_id or observation.signature_id,
+            health_before=health,
+            health_after=health,
+            actions=(),
+            requested_rechecks=(),
+            budget_exhausted=False,
+            examined_dependency_links=0,
+            signature_count=signature_count,
+            reason_code=reason_code,
+        )
+
     def observe(self, observation: ImmuneObservation) -> ImmuneDecision:
         if not isinstance(observation, ImmuneObservation):
             raise TypeError("IMMUNE accepts ImmuneObservation only")
@@ -317,82 +392,66 @@ class ImmuneRuntime:
         if prior is not None:
             if prior[0] == observation.fingerprint():
                 return prior[1]
-            return ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._decision_without_action(
+                observation,
                 status="STOP_ESCALATE_OBSERVATION_ID_COLLISION",
-                signature_id=observation.signature_id,
-                health_before=self.health(observation.subject_workspace),
-                health_after=self.health(observation.subject_workspace),
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=self.signature_count(observation.signature_id, observation.subject_workspace),
+                health=self.health(observation.subject_workspace),
                 reason_code="OBSERVATION_ID_COLLISION",
+                signature_count=self.signature_count(observation.signature_id, observation.subject_workspace),
             )
 
         self.memory.append_observation(observation)
         health_before = self.health(observation.subject_workspace)
 
         if observation.admission_state != "ADMITTED":
-            return self._record(observation, ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._record(observation, self._decision_without_action(
+                observation,
                 status="OUTSIDE_IMMUNE_SCOPE",
-                signature_id=observation.signature_id,
-                health_before=health_before,
-                health_after=health_before,
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=self.signature_count(observation.signature_id, observation.subject_workspace),
+                health=health_before,
                 reason_code="BOUNDARY_BEFORE_IMMUNE",
+                signature_count=self.signature_count(observation.signature_id, observation.subject_workspace),
             ))
 
         if not self.views.has_workspace(observation.subject_workspace):
-            return self._record(observation, ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._record(observation, self._decision_without_action(
+                observation,
                 status="STOP_ESCALATE_UNKNOWN_SUBJECT",
-                signature_id=observation.signature_id,
-                health_before=health_before,
-                health_after=health_before,
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=0,
+                health=health_before,
                 reason_code="UNKNOWN_WORKSPACE",
+                signature_count=0,
             ))
 
         signature = self.signatures.get(observation.signature_id)
         if signature is None or signature.observation_kind != observation.observation_kind:
-            return self._record(observation, ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._record(observation, self._decision_without_action(
+                observation,
                 status="NO_LICENSED_SIGNATURE",
-                signature_id=observation.signature_id,
-                health_before=health_before,
-                health_after=health_before,
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=0,
+                health=health_before,
                 reason_code="SIGNATURE_NOT_LICENSED_FOR_OBSERVATION",
+                signature_count=0,
+            ))
+
+        # Domain validation is separate from threshold evaluation. A finite value
+        # outside the declared signature domain cannot become an anomaly merely
+        # because a comparison happens to return False/True.
+        if not _value_in_domain(observation.value, signature.value_domain):
+            return self._record(observation, self._decision_without_action(
+                observation,
+                status="INVALID_OBSERVATION_DOMAIN",
+                health=health_before,
+                reason_code=f"VALUE_OUTSIDE_DOMAIN:{signature.value_domain}",
+                signature_count=self.signature_count(signature.signature_id, observation.subject_workspace),
+                signature_id=signature.signature_id,
             ))
 
         if observation.value < signature.min_value:
-            return self._record(observation, ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._record(observation, self._decision_without_action(
+                observation,
                 status="NO_ANOMALY",
-                signature_id=signature.signature_id,
-                health_before=health_before,
-                health_after=health_before,
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=self.signature_count(signature.signature_id, observation.subject_workspace),
+                health=health_before,
                 reason_code="SIGNATURE_THRESHOLD_NOT_MET",
+                signature_count=self.signature_count(signature.signature_id, observation.subject_workspace),
+                signature_id=signature.signature_id,
             ))
 
         key = (signature.signature_id, observation.subject_workspace)
@@ -400,18 +459,13 @@ class ImmuneRuntime:
         self._signature_counts[key] = count
 
         if signature.clear and health_before != "POST_QUARANTINED":
-            return self._record(observation, ImmuneDecision(
-                observation_id=observation.observation_id,
+            return self._record(observation, self._decision_without_action(
+                observation,
                 status="NO_ACTIVE_ANOMALY_TO_CLEAR",
-                signature_id=signature.signature_id,
-                health_before=health_before,
-                health_after=health_before,
-                actions=(),
-                requested_rechecks=(),
-                budget_exhausted=False,
-                examined_dependency_links=0,
-                signature_count=count,
+                health=health_before,
                 reason_code="CLEAR_REQUIRES_POST_QUARANTINED",
+                signature_count=count,
+                signature_id=signature.signature_id,
             ))
 
         planned_rechecks: tuple[str, ...] = ()
@@ -443,8 +497,6 @@ class ImmuneRuntime:
                 reason_code="MINIMUM_RESPONSE_EXCEEDS_BUDGET",
             ))
 
-        # All-or-none recheck fanout: if closure exceeds the budget, quarantine
-        # the source and escalate, but do not mark an arbitrary prefix for recheck.
         if budget_exhausted:
             planned_rechecks = ()
 
