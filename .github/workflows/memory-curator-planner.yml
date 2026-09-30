@@ -1,0 +1,36 @@
+name: PSI memory curator planner
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/curator_planner_runtime.py'
+      - 'scripts/test_curator_planner_runtime.py'
+      - 'docs/memory/PSI-MEMORY-CURATOR-PLANNING-01.md'
+      - 'docs/memory/PSI-MEMORY-CURATOR-F3.3-01.md'
+      - 'scripts/memory_archive_runtime.py'
+      - 'scripts/memory_archive_usage_runtime.py'
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/servant_runtime.py'
+      - '.github/workflows/memory-curator-planner.yml'
+  workflow_dispatch:
+
+jobs:
+  memory-curator-planner:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-verify F3.0 archive contract
+        run: python3 scripts/test_memory_archive_contract.py
+      - name: Re-verify F3.1 archive runtime
+        run: python3 scripts/test_memory_archive_runtime.py
+      - name: Re-verify F3.2 archive usage integration
+        run: python3 scripts/test_memory_archive_usage_runtime.py
+      - name: Verify F3.3 Curator planner runtime
+        run: python3 scripts/test_curator_planner_runtime.py
+      - name: Re-run ACCESS_STEWARD runtime
+        run: python3 scripts/test_access_steward_runtime.py
+      - name: Re-run Servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py
