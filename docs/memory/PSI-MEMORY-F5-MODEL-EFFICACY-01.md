@@ -1,97 +1,169 @@
 # PSI-MEMORY-F5-MODEL-EFFICACY-01
 
-**Status:** `SELECTED / PREPARED / MODEL_RUN_PENDING`  
-**Date:** 2026-09-30  
+**Status:** `PREPARED / INPUTS_READY / MODEL_RUN_BLOCKED`  
+**Date:** 2026-10-01  
 **Branch:** `psi-memory-map-01`  
-**Source revision:** `f3cee544d7642be1b74d53e233b7149a0e2c7dcd`  
+**Frozen source revision:** `f3cee544d7642be1b74d53e233b7149a0e2c7dcd`  
+**Preparation workflow:** `36784242295`  
+**Preparation job:** `110121688788`  
 **Does not modify:** CORE5, CANON-03, theorem status, R5/F4.4.
 
 ## 1. Pytanie F5
 
-F5 ma sprawdzić nie poprawność infrastruktury, lecz skuteczność epistemiczną:
+F5 ma sprawdzić skuteczność epistemiczną, nie poprawność infrastruktury:
 
 ```text
 czy pamięć PSI poprawia odpowiedź modelu względem
-(1) zwykłego ograniczonego kontekstu i
-(2) prostego wyszukiwania leksykalnego,
-bez wzrostu liczby nieuprawnionych twierdzeń?
+A zwykłego zamrożonego kontekstu
+B prostego wyszukiwania BM25
+C istniejącego pakietu pamięci PSI
 ```
 
-Poprzedni pełny przebieg wykazał jedynie, że komponenty R1/R2/R6/R7/R8 mogą działać razem. Nie wykazał, że model rozumie zwrócone dane ani że odpowiada dzięki nim lepiej.
+przy stałym źródle, modelu, limicie odpowiedzi i ślepej rubryce. Tańsza, ale błędna odpowiedź nie jest sukcesem.
 
-## 2. M4b pozostaje kalibracją
+## 2. Korekta preflight przed pierwszym płatnym wynikiem
 
-Istniejący `M4b-ABC-CALIBRATION` nie jest F5. Zadanie Go G4 było używane przy budowie pamięci, więc jego wynik może służyć do kalibracji i regresji, ale nie do twierdzenia o generalizacji.
+Pierwotnie rozważano zadania R6/R7/R8/full-run. Preflight wykazał jednak, że te obiekty nie są węzłami obsługiwanymi przez istniejący automatyczny tor `build_memory_pack.py` / bieżący graf routingu. Ręczne dopisanie im źródeł uczyniłoby ramię C ręcznie skonstruowanym adapterem, a nie testem istniejącej pamięci PSI.
 
-Dodatkowo wariant A M4b ma około 206 kB pełnego wejścia, podczas gdy aktualnie dostępny zewnętrzny runner agenta przyjmuje najwyżej 100 000 znaków promptu. Nie wolno po cichu obciąć A i zachować tej samej etykiety eksperymentu.
+Korekta została wykonana **przed uzyskaniem jakiejkolwiek odpowiedzi modelowej**, więc nie jest dostrojeniem do wyniku.
 
-## 3. Held-out F5
-
-Zestaw właściwy F5 powstaje po M4 i obejmuje cztery późniejsze problemy, które nie służyły do strojenia pierwotnego testu G4:
+Właściwy `F5-HOLDOUT-V1` używa trzech istniejących, automatycznie routowalnych jednostek późniejszych niż kalibracja G4/M4:
 
 ```text
-H1 COST
-R6: PREEXECUTION_QUOTE vs incurred_cost=None; unknown != zero.
-
-H2 ARCHIVE
-R7: MAP_ASSOCIATION vs VERIFIED_CONSUMPTION; receipt v1 nie może dowodzić v2.
-
-H3 CURATOR
-R8: NO_PROPOSAL musi zachować identity; ten sam observation_id + inny payload ma zostać odrzucony także po restarcie.
-
-H4 STALE PREMISE
-FULL RUN: historyczna V1 pozostaje dostępna, ale po zmianie przesłanki wynik zależny ma NEEDS_RECHECK; historical availability != current authority.
+H10 = II.10 silna lumpowalność / granica task quotient -> Markov autonomy
+H11 = II.11 Myhill-Nerode / kontrakt przyszłych testów i granice minimalności
+H12 = II.12 Paige-Tarjan / PT1-PT4 i granica algorytmicznej uniwersalizacji
 ```
 
-Każde zadanie wymaga: odpowiedzi rzeczowej, jawnego wskazania granicy wniosku oraz lokalizatorów źródeł. Brak przesłanki ma zostać nazwany jako brak/UNKNOWN, nie uzupełniony z domysłu.
+M4b/G4 pozostaje kalibracją i nie jest dowodem generalizacji.
 
-## 4. Trzy ramiona
+## 3. Zamrożony kontrakt
 
-Wszystkie ramiona używają tego samego zamrożonego korpusu źródłowego, tego samego zadania, modelu, ustawień, limitu odpowiedzi i maksymalnego budżetu serializowanego kontekstu.
+Maszynowy kontrakt:
 
-### A — ORDINARY_BOUNDED_CONTEXT
+`experiments/f5-evaluation-contract.json`
 
-Deterministyczny naiwny pakiet źródeł z manifestu, bez grafu PSI i bez rankingu BM25. Fragmenty są dokładane w ustalonej kolejności do wspólnego limitu. To kontrola zwykłego podania kontekstu, nie nieograniczony dump repozytorium.
+wiąże:
 
-### B — BM25_BASELINE
+- `source_ref = f3cee544d7642be1b74d53e233b7149a0e2c7dcd`;
+- dokładne blob SHA trzech dokumentów II.10-II.12;
+- blob SHA zamrożonego `scripts/build_memory_pack.py`;
+- trzy zadania i ich rubryki;
+- `prompt_char_limit = 80000`;
+- `answer_word_limit = 600`;
+- BM25 `k1=1.2`, `b=0.75`, fragmenty 60 linii;
+- promień pakietu PSI = 3;
+- pilot = `H10`;
+- maksymalnie 3 płatne przebiegi w pilocie.
 
-Ten sam korpus dzielony na stałe fragmenty; ranking wyłącznie tekstem zadania, bez grafu, gold answer, ręcznych boostów ani informacji o wynikach pozostałych ramion.
+Generator:
 
-### C — PSI_MEMORY
+`scripts/prepare_f5_evaluation.py`
 
-Zadanie jest kompilowane do istniejącego kontraktu pamięci; retrieval używa zadeklarowanych anchorów, relacji, finite budget i istniejących reguł attestation. Wybrane rekordy prowadzą do dokładnych źródeł. Nie wolno ręcznie dopisywać brakującego dokumentu po obejrzeniu wyniku.
+nie wykonuje modelu. Buduje A/B/C, manifest, skróty promptów, ślepą rubrykę i osobną mapę unblind.
 
-Wspólny budżet wejścia F5 powinien zostać ustawiony poniżej technicznego limitu runnera; cel roboczy: `<= 80 000` znaków pełnego promptu na ramię, z twardą kontrolą braku obcięcia.
+## 4. Ramiona
 
-## 5. Zamrożone źródła held-out
+### A — `ORDINARY_FULL_FROZEN_CORPUS`
 
-Pierwszy korpus F5 obejmuje co najmniej:
+Pełny zamrożony korpus II.10-II.12. Brak grafu i rankingu.
+
+### B — `BM25_TASK_TEXT_ONLY_MATCHED_TO_PSI_CONTEXT_BYTES`
+
+Ten sam korpus, ranking wyłącznie tekstem zadania. Budżet źródłowy jest dopasowany do rozmiaru ramienia C dla danego zadania.
+
+### C — `EXISTING_BUILD_MEMORY_PACK_AT_FROZEN_SOURCE_REF`
+
+Semantyka istniejącego `build_memory_pack.py` odtwarzana dokładnie na zamrożonym `source_ref`; brak ręcznego dopisywania dokumentów po wyniku.
+
+## 5. Wynik przygotowania
+
+Workflow `36784242295`, job `110121688788`: **success**.
+
+Sprawdzono:
+
+- wszystkie 9 promptów istnieją;
+- żaden nie przekracza 80 000 znaków;
+- B nie przekracza budżetu kontekstu C;
+- C ma dokładnie zadeklarowany budżet źródłowy;
+- wszystkie źródła są przypięte do zamrożonej rewizji;
+- `model_status = NOT_RUN` podczas przygotowania;
+- ślepa rubryka i mapa unblind są oddzielone.
+
+Artefakt `f5-prepared-inputs`, ID `11128514047`, ma SHA-256:
+
+`1a8a10cbb4aa32ac90a563d29911ac5aad61b142e551d2565146ffac9bfc289c`.
+
+### Rozmiary promptów
 
 ```text
-docs/memory/PSI-MEMORY-R6-COST-SEMANTICS-01.md
-docs/memory/PSI-MEMORY-R7-CONSUMED-VERSION-01.md
-docs/memory/PSI-MEMORY-R8-NO-PROPOSAL-IDENTITY-01.md
-docs/memory/PSI-MEMORY-FULL-BOUNDED-RUN-01.md
-docs/memory/PSI-MEMORY-ACCESS-STEWARD-01.md
-docs/memory/PSI-MEMORY-ARCHIVE-F3.2-01.md
-docs/memory/PSI-MEMORY-CURATOR-F3.3-01.md
-scripts/access_steward_runtime.py
-scripts/memory_archive_usage_runtime.py
-scripts/curator_planner_runtime.py
+H10 A 27710 chars   B 10172   C 10544
+H11 A 27669 chars   B  9505   C  9861
+H12 A 27656 chars   B  8541   C  8940
 ```
 
-Dokładny manifest i skróty treści muszą zostać zapisane przed pierwszym przebiegiem modelu. Po rozpoczęciu ewaluacji nie wolno zmieniać korpusu ani parametrów retrievalu na podstawie wyników.
+Dla pilota H10:
 
-## 6. Pomiar
+```text
+B context = 9616 bytes
+C context = 9999 bytes
+```
 
-Dla każdego zadania i ramienia zapisujemy osobno:
+czyli porównanie B/C nie korzysta z przewagi dużego budżetu C.
+
+## 6. Czysty runner
+
+Do F5 utworzono odrębnego agenta wykonawczego `PSI F5 Clean Runner`:
+
+- runtime `kafka_cloud`;
+- model `claude-sonnet-4-6`;
+- brak MCP;
+- brak skills;
+- brak pamięci projektu;
+- instrukcja: korzystać wyłącznie ze źródeł w bieżącym promptcie.
+
+Nie użyto agenta PSI-FORUM, ponieważ jego instrukcje i MCP skażałyby izolację.
+
+Pierwsza próba na profilu `kafka` zakończyła się technicznym `422` przed wykonaniem modelu; nie jest wynikiem F5.
+
+## 7. Pilot i blokada kredytowa
+
+Po przygotowaniu uruchomiono tylko pierwszy planowany przebieg pilota:
+
+```text
+H10-C
+blind id = ANS-25E4942F7A3F
+model = claude-sonnet-4-6
+```
+
+Runner zakończył zadanie przed inferencją komunikatem:
+
+```text
+CREDITS_EXHAUSTED
+used = 0
+allocated = 0
+HTTP 402
+```
+
+Zatem:
+
+```text
+MODEL ANSWERS OBTAINED = 0
+BRAINBASE CREDITS USED BY F5 PILOT = 0
+F5 EFFICACY RESULT = NOT_RUN
+```
+
+Nie uruchomiono H10-A ani H10-B i nie rozpoczęto H11/H12. Zachowano całą możliwą pulę na później.
+
+## 8. Pomiar po odblokowaniu
+
+Dla każdego zadania/ramienia należy zapisać osobno:
 
 ```text
 correct_core_claims
 correct_boundary_statements
-correct_stale_refusal
 unsupported_claims
-wrongly_accepted_stale_claims
+wrongly_accepted_claims
 source_locator_accuracy
 input_tokens      = UNKNOWN jeśli runner nie zwraca
 output_tokens     = UNKNOWN jeśli runner nie zwraca
@@ -100,44 +172,30 @@ external_tool_calls
 source_rereads
 ```
 
-Nie agregujemy jakości i kosztu do jednej liczby przez dobór wag po pomiarze.
+Ocena pozostaje ślepa wobec A/B/C do zapisania wyników rubryki.
 
-Warunek minimalny przewagi PSI nad B:
+## 9. Następny legalny krok
 
-```text
-quality_C >= quality_B
-unsupported_C <= unsupported_B
-stale_errors_C <= stale_errors_B
-oraz
-co najmniej jedna jawnie mierzona wielkość kosztowa_C < kosztowa_B
-```
+Po pojawieniu się kredytów nie wolno przebudowywać benchmarku na podstawie przyszłych wyników.
 
-Jeśli jakość C jest gorsza, niższy koszt nie stanowi sukcesu.
-
-## 7. Ślepa ocena
-
-Odpowiedzi są kodowane losowymi identyfikatorami bez A/B/C. Ewaluator dostaje zamrożoną rubrykę i odpowiedzi, ale nie zna ramienia podczas punktowania. Mapowanie identyfikator -> ramię ujawnia się dopiero po zapisaniu ocen.
-
-Pierwszy przebieg powinien zawierać wszystkie `4 x 3 = 12` odpowiedzi. Powtórzenia stochasticzne są osobną fazą; nie zastępujemy brakującego wykonania trzema odpowiedziami wygenerowanymi w jednym kontekście rozmowy.
-
-## 8. Ograniczenie wykonawcze
-
-Dostępny zewnętrzny runner Brainbase potrafi uruchamiać niezależne zadania modelowe, ale takie wykonania mogą być płatne. Sam wybór F5 nie jest zgodą na nieograniczone zużycie kredytów. Do czasu jawnego uruchomienia modelu status pozostaje:
+Wznowienie:
 
 ```text
-F5 = PREPARED / MODEL_RUN_PENDING
+1. H10-C — ten sam zamrożony prompt / blind id;
+2. jeśli wykonanie techniczne poprawne: H10-A i H10-B;
+3. ślepa ocena pilota 3-arm;
+4. dopiero po pilocie decyzja, czy wydać kredyty na H11/H12.
 ```
 
-Przygotowanie promptów, manifestów, hashy i automatycznych kontroli jest niepłatne i może być wykonane wcześniej.
+To zachowuje zapas kredytów i daje koszt jednostkowy przed pełnym przebiegiem.
 
-## 9. Stop
+## 10. Werdykt bieżący
 
-F5 nie otrzymuje `PASS` na podstawie samego przygotowania wejść. Następny legalny krok:
+```text
+F5 PREPARATION = PASS
+F5 MODEL EFFICACY = NOT_RUN
+F5 EXECUTION = BLOCKED_BY_ZERO_ALLOCATED_CREDITS
+R5 = OPEN / DEFERRED
+```
 
-1. zbudować i zamrozić manifest held-out oraz generator A/B/C;
-2. wykazać identyczny budżet i brak silent truncation;
-3. wykonać 12 niezależnych przebiegów modelu;
-4. przeprowadzić ślepą ocenę;
-5. opublikować wynik wielokryterialny wraz z pełną granicą wniosku.
-
-R5 pozostaje otwarte, lecz odroczone do zakończenia lub jawnego zatrzymania F5.
+Nie wolno interpretować przygotowania benchmarku jako dowodu przewagi pamięci PSI.
