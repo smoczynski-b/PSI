@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import Callable, Iterable, Mapping
 import hashlib
 import json
 import math
@@ -46,6 +46,56 @@ def _finite_nonnegative(value: float, field: str) -> float:
     return out
 
 
+COST_COMPONENTS = (
+    "compute", "transfer", "context", "latency", "disclosure",
+    "synchronization", "risk",
+)
+COST_COMPONENT_UNITS = {
+    "compute": "normalized_compute_unit",
+    "transfer": "normalized_transfer_unit",
+    "context": "normalized_context_unit",
+    "latency": "normalized_latency_unit",
+    "disclosure": "normalized_disclosure_unit",
+    "synchronization": "normalized_synchronization_unit",
+    "risk": "normalized_risk_unit",
+}
+COST_EVIDENCE_UNMEASURED = "UNMEASURED"
+COST_EVIDENCE_PREEXECUTION_QUOTE = "PREEXECUTION_QUOTE"
+
+
+@dataclass(frozen=True)
+class CostScalarization:
+    """Explicit normalization/weighting contract for heterogeneous cost axes."""
+
+    contract_id: str
+    normalization: Mapping[str, float]
+    weights: Mapping[str, float]
+
+    def __post_init__(self):
+        cid = str(self.contract_id).strip()
+        if not cid:
+            raise ValueError("cost scalarization contract_id is required")
+        object.__setattr__(self, "contract_id", cid)
+        normalization = {str(k): float(v) for k, v in self.normalization.items()}
+        weights = {str(k): float(v) for k, v in self.weights.items()}
+        if set(normalization) != set(COST_COMPONENTS) or set(weights) != set(COST_COMPONENTS):
+            raise ValueError("cost scalarization must cover every cost component exactly once")
+        for key in COST_COMPONENTS:
+            if not math.isfinite(normalization[key]) or normalization[key] <= 0:
+                raise ValueError(f"normalization[{key}] must be finite and positive")
+            if not math.isfinite(weights[key]) or weights[key] < 0:
+                raise ValueError(f"weights[{key}] must be finite and non-negative")
+        object.__setattr__(self, "normalization", dict(normalization))
+        object.__setattr__(self, "weights", dict(weights))
+
+
+DEFAULT_COST_SCALARIZATION = CostScalarization(
+    contract_id="ACCESS-COST-NORM-01",
+    normalization={key: 1.0 for key in COST_COMPONENTS},
+    weights={key: 1.0 for key in COST_COMPONENTS},
+)
+
+
 @dataclass(frozen=True)
 class CostVector:
     compute: float = 0.0
@@ -63,9 +113,27 @@ class CostVector:
         ):
             object.__setattr__(self, name, _finite_nonnegative(getattr(self, name), name))
 
+    def is_zero(self) -> bool:
+        return all(value == 0.0 for value in self.as_dict().values())
+
+    def scalar_total(self, contract: CostScalarization) -> float:
+        if not isinstance(contract, CostScalarization):
+            raise TypeError("scalar_total requires CostScalarization")
+        values = self.as_dict()
+        return sum(
+            contract.weights[key] * values[key] / contract.normalization[key]
+            for key in COST_COMPONENTS
+        )
+
     @property
     def l1(self) -> float:
-        return sum(self.as_dict().values())
+        # Compatibility shorthand under an explicit normalization/weighting
+        # contract. It is not a claim about physical total cost.
+        return self.scalar_total(DEFAULT_COST_SCALARIZATION)
+
+    @staticmethod
+    def units() -> dict[str, str]:
+        return dict(COST_COMPONENT_UNITS)
 
     def as_dict(self) -> dict[str, float]:
         return {
@@ -227,6 +295,14 @@ class MovementDecision:
     servant_disposition: str = ""
     servant_reason: str = ""
     txid: str = ""
+    cost_evidence_kind: str = COST_EVIDENCE_UNMEASURED
+    incurred_cost: CostVector | None = None
+
+    @property
+    def quoted_cost(self) -> CostVector | None:
+        if self.cost_evidence_kind == COST_EVIDENCE_PREEXECUTION_QUOTE:
+            return self.actual_cost
+        return None
 
 
 @dataclass(frozen=True)
@@ -242,6 +318,8 @@ class CompletedRequest:
     servant_disposition: str
     servant_reason: str
     txid: str
+    cost_evidence_kind: str = COST_EVIDENCE_UNMEASURED
+    incurred_cost: CostVector | None = None
 
 
 @dataclass(frozen=True)
@@ -363,6 +441,12 @@ class AccessStewardRuntime:
                     servant_disposition=str(payload.get("servant_disposition", "")),
                     servant_reason=str(payload.get("servant_reason", "")),
                     txid=str(payload.get("txid", "")),
+                    cost_evidence_kind=str(payload.get("cost_evidence_kind", COST_EVIDENCE_UNMEASURED)),
+                    incurred_cost=(
+                        CostVector(**payload["incurred_cost"])
+                        if isinstance(payload.get("incurred_cost"), dict)
+                        else None
+                    ),
                 )
             except (KeyError, TypeError, ValueError) as exc:
                 raise RuntimeError(f"invalid ACCESS_RESULT in chronicle: {rid}") from exc
@@ -431,6 +515,10 @@ class AccessStewardRuntime:
                     "event_time": str(payload["event_time"]),
                     "estimated_cost": dict(payload["estimated_cost"]),
                     "actual_cost": dict(payload["actual_cost"]),
+                    "cost_evidence_kind": str(payload.get("cost_evidence_kind", COST_EVIDENCE_PREEXECUTION_QUOTE)),
+                    "incurred_cost": payload.get("incurred_cost"),
+                    "cost_units": dict(COST_COMPONENT_UNITS),
+                    "scalarization_contract_id": DEFAULT_COST_SCALARIZATION.contract_id,
                     "result": "MOVED",
                     "telemetry_class": "T2_AUDIT_DURABLE",
                     "servant_command_id": command_id,
@@ -453,6 +541,10 @@ class AccessStewardRuntime:
                 "location_after": after,
                 "estimated_cost": estimated.as_dict(),
                 "actual_cost": actual.as_dict(),
+                "cost_evidence_kind": str(payload.get("cost_evidence_kind", COST_EVIDENCE_PREEXECUTION_QUOTE)),
+                "incurred_cost": payload.get("incurred_cost"),
+                "cost_units": dict(COST_COMPONENT_UNITS),
+                "scalarization_contract_id": DEFAULT_COST_SCALARIZATION.contract_id,
                 "servant_disposition": servant_result.disposition,
                 "servant_reason": servant_result.reason_code,
                 "txid": txid,
@@ -470,6 +562,12 @@ class AccessStewardRuntime:
                 servant_disposition=servant_result.disposition,
                 servant_reason=servant_result.reason_code,
                 txid=txid,
+                cost_evidence_kind=str(payload.get("cost_evidence_kind", COST_EVIDENCE_PREEXECUTION_QUOTE)),
+                incurred_cost=(
+                    CostVector(**payload["incurred_cost"])
+                    if isinstance(payload.get("incurred_cost"), dict)
+                    else None
+                ),
             )
 
     def _observed(self, request: MovementRequest) -> None:
@@ -511,6 +609,10 @@ class AccessStewardRuntime:
             "event_time": request.event_time,
             "estimated_cost": request.estimated_cost.as_dict(),
             "actual_cost": actual.as_dict(),
+            "cost_evidence_kind": COST_EVIDENCE_PREEXECUTION_QUOTE,
+            "incurred_cost": None,
+            "cost_units": dict(COST_COMPONENT_UNITS),
+            "scalarization_contract_id": DEFAULT_COST_SCALARIZATION.contract_id,
             "location_before": before,
             "location_after": after,
             "servant_command_id": command.command_id,
@@ -527,6 +629,8 @@ class AccessStewardRuntime:
         before: str,
         after: str,
         actual_cost: CostVector | None = None,
+        cost_evidence_kind: str = COST_EVIDENCE_UNMEASURED,
+        incurred_cost: CostVector | None = None,
         servant_disposition: str = "",
         servant_reason: str = "",
         txid: str = "",
@@ -542,6 +646,8 @@ class AccessStewardRuntime:
             location_after=after,
             estimated_cost=request.estimated_cost,
             actual_cost=actual,
+            cost_evidence_kind=cost_evidence_kind,
+            incurred_cost=incurred_cost,
             servant_disposition=servant_disposition,
             servant_reason=servant_reason,
             txid=txid,
@@ -556,6 +662,10 @@ class AccessStewardRuntime:
             "location_after": after,
             "estimated_cost": request.estimated_cost.as_dict(),
             "actual_cost": actual.as_dict(),
+            "cost_evidence_kind": cost_evidence_kind,
+            "incurred_cost": incurred_cost.as_dict() if incurred_cost is not None else None,
+            "cost_units": dict(COST_COMPONENT_UNITS),
+            "scalarization_contract_id": DEFAULT_COST_SCALARIZATION.contract_id,
             "servant_disposition": servant_disposition,
             "servant_reason": servant_reason,
             "txid": txid,
@@ -570,6 +680,8 @@ class AccessStewardRuntime:
                 location_after=after,
                 estimated_cost=request.estimated_cost,
                 actual_cost=actual,
+                cost_evidence_kind=cost_evidence_kind,
+                incurred_cost=incurred_cost,
                 servant_disposition=servant_disposition,
                 servant_reason=servant_reason,
                 txid=txid,
@@ -584,22 +696,43 @@ class AccessStewardRuntime:
             before=prior.location_before,
             after=prior.location_after,
             actual_cost=prior.actual_cost,
+            cost_evidence_kind=prior.cost_evidence_kind,
+            incurred_cost=prior.incurred_cost,
             servant_disposition=prior.servant_disposition,
             servant_reason=prior.servant_reason,
             txid=prior.txid,
             remember=False,
         )
 
-    def _deny(self, request: MovementRequest, before: str, reason: str) -> MovementDecision:
+    def _deny(
+        self,
+        request: MovementRequest,
+        before: str,
+        reason: str,
+        *,
+        cost_evidence: CostVector | None = None,
+        cost_evidence_kind: str = COST_EVIDENCE_UNMEASURED,
+    ) -> MovementDecision:
         return self._finish(
             request,
             disposition="DENY_ACCESS",
             reason_code=reason,
             before=before,
             after=before,
+            actual_cost=cost_evidence,
+            cost_evidence_kind=cost_evidence_kind,
         )
 
-    def _stop(self, request: MovementRequest, before: str, reason: str, *, remember: bool = True) -> MovementDecision:
+    def _stop(
+        self,
+        request: MovementRequest,
+        before: str,
+        reason: str,
+        *,
+        remember: bool = True,
+        cost_evidence: CostVector | None = None,
+        cost_evidence_kind: str = COST_EVIDENCE_UNMEASURED,
+    ) -> MovementDecision:
         self.chronicle.append("ESCALATE", request.request_id, {
             "request_id": request.request_id,
             "reason_code": reason,
@@ -611,6 +744,8 @@ class AccessStewardRuntime:
             reason_code=reason,
             before=before,
             after=before,
+            actual_cost=cost_evidence,
+            cost_evidence_kind=cost_evidence_kind,
             remember=remember,
         )
 
@@ -745,7 +880,7 @@ class AccessStewardRuntime:
             return self._deny(request, before, "NO_MATCHING_GUARDIAN_RULE")
 
         changed_location = request.map_from != request.map_to
-        if changed_location and request.estimated_cost.l1 <= 0:
+        if changed_location and request.estimated_cost.is_zero():
             return self._stop(request, before, "CROSS_MAP_ZERO_ESTIMATED_COST")
         if not request.estimated_cost.within(request.budget):
             return self._deny(request, before, "ESTIMATED_COST_EXCEEDS_BUDGET")
@@ -756,10 +891,18 @@ class AccessStewardRuntime:
             return self._stop(request, before, f"COST_METER_FAILURE:{type(exc).__name__}")
         if not isinstance(actual, CostVector):
             return self._stop(request, before, "COST_METER_INVALID_TYPE")
-        if changed_location and actual.l1 <= 0:
-            return self._stop(request, before, "CROSS_MAP_ZERO_ACTUAL_COST")
+        if changed_location and actual.is_zero():
+            return self._stop(
+                request, before, "CROSS_MAP_ZERO_QUOTED_COST",
+                cost_evidence=actual,
+                cost_evidence_kind=COST_EVIDENCE_PREEXECUTION_QUOTE,
+            )
         if not actual.within(request.budget):
-            return self._deny(request, before, "ACTUAL_COST_EXCEEDS_BUDGET")
+            return self._deny(
+                request, before, "QUOTED_COST_EXCEEDS_BUDGET",
+                cost_evidence=actual,
+                cost_evidence_kind=COST_EVIDENCE_PREEXECUTION_QUOTE,
+            )
 
         command = self._servant_command(request)
         expected_after = request.map_to if request.operation != "EXIT" else OUTSIDE
@@ -779,6 +922,7 @@ class AccessStewardRuntime:
                 before=before,
                 after=before,
                 actual_cost=actual,
+                cost_evidence_kind=COST_EVIDENCE_PREEXECUTION_QUOTE,
                 servant_disposition=servant_decision.disposition,
                 servant_reason=servant_decision.reason_code,
                 txid=command.txid,
@@ -786,7 +930,11 @@ class AccessStewardRuntime:
 
         after = self.location(request.session_id)
         if after != expected_after:
-            return self._stop(request, before, "DURABLE_PRESENCE_DIVERGENCE")
+            return self._stop(
+                request, before, "DURABLE_PRESENCE_DIVERGENCE",
+                cost_evidence=actual,
+                cost_evidence_kind=COST_EVIDENCE_PREEXECUTION_QUOTE,
+            )
 
         self.chronicle.append("MOVEMENT", request.request_id, {
             "request_id": request.request_id,
@@ -801,6 +949,10 @@ class AccessStewardRuntime:
             "event_time": request.event_time,
             "estimated_cost": request.estimated_cost.as_dict(),
             "actual_cost": actual.as_dict(),
+            "cost_evidence_kind": COST_EVIDENCE_PREEXECUTION_QUOTE,
+            "incurred_cost": None,
+            "cost_units": dict(COST_COMPONENT_UNITS),
+            "scalarization_contract_id": DEFAULT_COST_SCALARIZATION.contract_id,
             "result": "MOVED",
             "telemetry_class": "T2_AUDIT_DURABLE",
             "servant_command_id": command.command_id,
@@ -813,6 +965,7 @@ class AccessStewardRuntime:
             before=before,
             after=after,
             actual_cost=actual,
+            cost_evidence_kind=COST_EVIDENCE_PREEXECUTION_QUOTE,
             servant_disposition=servant_decision.disposition,
             servant_reason=servant_decision.reason_code,
             txid=command.txid,

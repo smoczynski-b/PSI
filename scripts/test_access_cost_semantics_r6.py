@@ -16,6 +16,9 @@ from access_steward_runtime import (
     OUTSIDE,
     PolicyRule,
     CAP_ENTER,
+    COST_COMPONENT_UNITS,
+    COST_EVIDENCE_PREEXECUTION_QUOTE,
+    DEFAULT_COST_SCALARIZATION,
 )
 
 ROOT_ANCHOR = "ACCESS_PRESENCE_ROOT"
@@ -70,12 +73,18 @@ def main() -> None:
         decision = steward.handle(req)
 
         assert decision.disposition == "DENY_ACCESS", decision
-        assert decision.reason_code == "ACTUAL_COST_EXCEEDS_BUDGET", decision
+        assert decision.reason_code == "QUOTED_COST_EXCEEDS_BUDGET", decision
         assert steward.location("session-1") == OUTSIDE
 
         # R6 separating witness: cost_meter returned 3. The denial must not
         # silently replace that evidence with a zero vector.
         assert decision.actual_cost.compute == 3, decision
+        assert decision.cost_evidence_kind == COST_EVIDENCE_PREEXECUTION_QUOTE
+        assert decision.quoted_cost is not None
+        assert decision.quoted_cost.compute == 3
+        assert decision.incurred_cost is None
+        assert CostVector.units() == COST_COMPONENT_UNITS
+        assert cv(2).scalar_total(DEFAULT_COST_SCALARIZATION) == 2.0
 
         result_rows = [
             row for row in steward.chronicle.records()
@@ -83,7 +92,12 @@ def main() -> None:
             and row.get("payload", {}).get("request_id") == req.request_id
         ]
         assert len(result_rows) == 1
-        assert result_rows[0]["payload"]["actual_cost"]["compute"] == 3
+        payload = result_rows[0]["payload"]
+        assert payload["actual_cost"]["compute"] == 3
+        assert payload["cost_evidence_kind"] == COST_EVIDENCE_PREEXECUTION_QUOTE
+        assert payload["incurred_cost"] is None
+        assert payload["cost_units"] == COST_COMPONENT_UNITS
+        assert payload["scalarization_contract_id"] == DEFAULT_COST_SCALARIZATION.contract_id
 
         commits = [
             row for row in durable.wal.read_valid_prefix().records

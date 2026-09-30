@@ -231,7 +231,7 @@ def main() -> None:
         )
         d = steward.handle(actual_over)
         assert d.disposition == "DENY_ACCESS"
-        assert d.reason_code == "ACTUAL_COST_EXCEEDS_BUDGET"
+        assert d.reason_code == "QUOTED_COST_EXCEEDS_BUDGET"
 
         actual_zero = request(
             "actual-zero", operation="TRANSIT", map_from="M1", map_to="M2",
@@ -239,7 +239,7 @@ def main() -> None:
         )
         d = steward.handle(actual_zero)
         assert d.disposition == "STOP_ESCALATE"
-        assert d.reason_code == "CROSS_MAP_ZERO_ACTUAL_COST"
+        assert d.reason_code == "CROSS_MAP_ZERO_QUOTED_COST"
         assert steward.location("session-1") == "M1"
 
         # Valid transit. No export capability is inferred from movement.
@@ -250,7 +250,7 @@ def main() -> None:
         d = steward.handle(transit)
         assert d.disposition == "ALLOW_MOVEMENT", d
         assert steward.location("session-1") == "M2"
-        assert d.actual_cost.l1 > 0
+        assert d.quoted_cost is not None and not d.quoted_cost.is_zero()
         assert movement_count(steward) == 2
         ok, reason = steward.check_capability(
             actor_id="agent-A", session_id="session-1", capability=CAP_EXPORT,
