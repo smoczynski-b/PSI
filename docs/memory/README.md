@@ -1,5 +1,7 @@
 # Shared PSI memory / Pamięć współdzielona PSI
 
+> Current ordered work selection: [WORK-FRONT-GPT5-01](WORK-FRONT-GPT5-01.md). It supersedes historical "next step" prose as an execution order, without changing the status of earlier results.
+
 ## English
 
 Status: EXPERIMENTAL / NON-CANONICAL. Current objective: let a later agent reuse
