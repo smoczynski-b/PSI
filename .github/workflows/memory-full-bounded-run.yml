@@ -40,3 +40,5 @@ jobs:
         run: python3 scripts/test_curator_observation_identity_r8.py
       - name: F3.3 Curator regression
         run: python3 scripts/test_curator_planner_runtime.py
+
+# Triggered after correcting witness-only instrumentation; no runtime semantics changed.
