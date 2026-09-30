@@ -304,6 +304,7 @@ class AccessStewardRuntime:
         self.map_state_lookup = map_state_lookup
         self.cost_meter = cost_meter
         self._completed = self._load_completed()
+        self._reconcile_committed_requests()
         self._assert_presence_integrity()
 
     @property
@@ -367,6 +368,110 @@ class AccessStewardRuntime:
                 raise RuntimeError(f"invalid ACCESS_RESULT in chronicle: {rid}") from exc
         return completed
 
+    def _reconcile_committed_requests(self) -> None:
+        records = self.chronicle.records()
+        prepared: dict[str, dict] = {}
+        movements: dict[str, list[dict]] = {}
+        for record in records:
+            payload = record.get("payload", {})
+            rid = str(payload.get("request_id", ""))
+            if not rid:
+                continue
+            if record.get("kind") == "ACCESS_PREPARED" and rid not in prepared:
+                prepared[rid] = payload
+            elif record.get("kind") == "ACCESS_MOVEMENT":
+                movements.setdefault(rid, []).append(payload)
+
+        committed_txids = {
+            str(r["txid"])
+            for r in self.servant.durable.wal.read_valid_prefix().records
+            if r.get("kind") == "COMMIT"
+        }
+
+        for rid, payload in prepared.items():
+            if rid in self._completed:
+                continue
+            txid = str(payload.get("txid", ""))
+            if not txid or txid not in committed_txids:
+                continue
+            fp = str(payload.get("request_fingerprint", ""))
+            command_id = str(payload.get("servant_command_id", ""))
+            command_fp = str(payload.get("servant_command_fingerprint", ""))
+            if not fp or not command_id or not command_fp:
+                raise RuntimeError(f"incomplete ACCESS_PREPARED binding: {rid}")
+            servant_result = self.servant.completed_command(command_id)
+            if servant_result is None:
+                raise RuntimeError(f"committed access tx lacks SERVANT_RESULT: {rid}")
+            if servant_result.txid != txid or servant_result.fingerprint != command_fp:
+                raise RuntimeError(f"ACCESS/SERVANT reconciliation mismatch: {rid}")
+            if servant_result.disposition != "ACK_TRANSITION":
+                raise RuntimeError(f"committed access tx has non-ACK SERVANT result: {rid}")
+
+            existing = movements.get(rid, [])
+            if len(existing) > 1:
+                raise RuntimeError(f"duplicate canonical ACCESS_MOVEMENT: {rid}")
+            if existing:
+                row = existing[0]
+                row_fp = str(row.get("request_fingerprint", ""))
+                if row_fp and row_fp != fp:
+                    raise RuntimeError(f"ACCESS_MOVEMENT fingerprint mismatch: {rid}")
+                if str(row.get("txid", "")) != txid:
+                    raise RuntimeError(f"ACCESS_MOVEMENT txid mismatch: {rid}")
+            else:
+                self.chronicle.append("MOVEMENT", rid, {
+                    "request_id": rid,
+                    "request_fingerprint": fp,
+                    "session_id": str(payload["session_id"]),
+                    "actor_id": str(payload["actor_id"]),
+                    "map_from": str(payload["map_from"]),
+                    "map_to": str(payload["map_to"]),
+                    "declared_purpose": str(payload["declared_purpose"]),
+                    "policy_version": str(payload["policy_version"]),
+                    "capabilities_used": [str(payload["requested_capability"])],
+                    "event_time": str(payload["event_time"]),
+                    "estimated_cost": dict(payload["estimated_cost"]),
+                    "actual_cost": dict(payload["actual_cost"]),
+                    "result": "MOVED",
+                    "telemetry_class": "T2_AUDIT_DURABLE",
+                    "servant_command_id": command_id,
+                    "txid": txid,
+                    "recovered": True,
+                })
+
+            estimated = CostVector(**payload["estimated_cost"])
+            actual = CostVector(**payload["actual_cost"])
+            before = str(payload["location_before"])
+            after = str(payload["location_after"])
+            policy_version = str(payload["policy_version"])
+            self.chronicle.append("RESULT", rid, {
+                "request_id": rid,
+                "request_fingerprint": fp,
+                "disposition": "ALLOW_MOVEMENT",
+                "reason_code": "MOVEMENT_COMMITTED_VIA_SERVANT",
+                "policy_version": policy_version,
+                "location_before": before,
+                "location_after": after,
+                "estimated_cost": estimated.as_dict(),
+                "actual_cost": actual.as_dict(),
+                "servant_disposition": servant_result.disposition,
+                "servant_reason": servant_result.reason_code,
+                "txid": txid,
+                "recovered": True,
+            })
+            self._completed[rid] = CompletedRequest(
+                fingerprint=fp,
+                disposition="ALLOW_MOVEMENT",
+                reason_code="MOVEMENT_COMMITTED_VIA_SERVANT",
+                policy_version=policy_version,
+                location_before=before,
+                location_after=after,
+                estimated_cost=estimated,
+                actual_cost=actual,
+                servant_disposition=servant_result.disposition,
+                servant_reason=servant_result.reason_code,
+                txid=txid,
+            )
+
     def _observed(self, request: MovementRequest) -> None:
         self.chronicle.append("OBSERVED", request.request_id, {
             "request_id": request.request_id,
@@ -380,6 +485,37 @@ class AccessStewardRuntime:
             "requested_capability": request.requested_capability,
             "policy_version": request.policy_version,
             "event_time": request.event_time,
+            "txid": f"access:{request.request_id}",
+        })
+
+    def _prepared(
+        self,
+        request: MovementRequest,
+        command: ServantCommand,
+        *,
+        before: str,
+        after: str,
+        actual: CostVector,
+    ) -> None:
+        self.chronicle.append("PREPARED", request.request_id, {
+            "request_id": request.request_id,
+            "request_fingerprint": request.fingerprint(),
+            "session_id": request.session_id,
+            "actor_id": request.actor_id,
+            "operation": request.operation,
+            "map_from": request.map_from,
+            "map_to": request.map_to,
+            "declared_purpose": request.declared_purpose,
+            "requested_capability": request.requested_capability,
+            "policy_version": request.policy_version,
+            "event_time": request.event_time,
+            "estimated_cost": request.estimated_cost.as_dict(),
+            "actual_cost": actual.as_dict(),
+            "location_before": before,
+            "location_after": after,
+            "servant_command_id": command.command_id,
+            "servant_command_fingerprint": command.fingerprint(),
+            "txid": command.txid,
         })
 
     def _finish(
@@ -626,6 +762,14 @@ class AccessStewardRuntime:
             return self._deny(request, before, "ACTUAL_COST_EXCEEDS_BUDGET")
 
         command = self._servant_command(request)
+        expected_after = request.map_to if request.operation != "EXIT" else OUTSIDE
+        self._prepared(
+            request,
+            command,
+            before=before,
+            after=expected_after,
+            actual=actual,
+        )
         servant_decision = self.servant.handle(command)
         if servant_decision.disposition != "ACK_TRANSITION":
             return self._finish(
@@ -641,12 +785,12 @@ class AccessStewardRuntime:
             )
 
         after = self.location(request.session_id)
-        expected_after = request.map_to if request.operation != "EXIT" else OUTSIDE
         if after != expected_after:
             return self._stop(request, before, "DURABLE_PRESENCE_DIVERGENCE")
 
         self.chronicle.append("MOVEMENT", request.request_id, {
             "request_id": request.request_id,
+            "request_fingerprint": request.fingerprint(),
             "session_id": request.session_id,
             "actor_id": request.actor_id,
             "map_from": request.map_from,
