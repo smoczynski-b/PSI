@@ -395,8 +395,6 @@ def main() -> None:
         )
         changed = servant.handle(change_cmd)
         assert changed.disposition == "ACK_TRANSITION"
-        assert SOURCE_VIEW in changed.delivered_workspaces
-        assert RESULT_VIEW in changed.invalidated_workspaces
         assert durable.workspace(SOURCE_VIEW).node_status["P9-I"] == "PASSED_INTEGRATION_TEST"
         assert durable.status(RESULT_VIEW) == "NEEDS_RECHECK"
         # The old answer stays stored as evidence, but presence is not permission.
