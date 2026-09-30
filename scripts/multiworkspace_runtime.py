@@ -16,6 +16,17 @@ class RoutedPatch:
 
 
 @dataclass(frozen=True)
+class IndexRefreshCost:
+    edge_visits: int
+    node_membership_updates: int
+    dependency_membership_updates: int
+
+    @property
+    def membership_updates(self) -> int:
+        return self.node_membership_updates + self.dependency_membership_updates
+
+
+@dataclass(frozen=True)
 class DispatchResult:
     event_id: str
     candidate_workspaces: tuple[str, ...]
@@ -24,6 +35,16 @@ class DispatchResult:
     routed_patches: tuple[RoutedPatch, ...]
     examined_workspaces: int
     mutations: int
+    examined_events: int
+    history_items_copied: int
+    history_items_appended: int
+    index_refresh_edge_visits: int
+    index_node_membership_updates: int
+    index_dependency_membership_updates: int
+
+    @property
+    def index_membership_updates(self) -> int:
+        return self.index_node_membership_updates + self.index_dependency_membership_updates
 
 
 @dataclass(frozen=True)
@@ -41,6 +62,12 @@ class MultiWorkspaceRuntime:
     - events are routed by active node membership and are then interpreted by
       each workspace's ActiveRuntime;
     - invalidation is routed only through declared dependency tokens.
+
+    Cost counters deliberately expose hidden local work. In the current
+    reference implementation `_refresh_indices` materializes both
+    `workspace.nodes` and `workspace.dependencies`; each property scans all
+    workspace edges. Therefore one refresh reports two edge visits per current
+    edge. F0.4 measures this behaviour; it does not optimize it away.
 
     This reference layer does not implement concurrent writers or transactions.
     """
@@ -122,34 +149,50 @@ class MultiWorkspaceRuntime:
             raise KeyError(workspace_id)
         self._status[workspace_id] = "VALID"
 
-    def _refresh_indices(self, workspace_id: str) -> None:
+    def _refresh_indices(self, workspace_id: str) -> IndexRefreshCost:
         runtime = self._runtimes[workspace_id]
+        edge_count = len(runtime.workspace.edges)
+
+        # Current implementation scans every edge once for nodes and once for
+        # dependencies. Count those visits explicitly rather than treating this
+        # refresh as free work behind a one-workspace routing result.
         new_nodes = frozenset(runtime.workspace.nodes)
         new_dependencies = frozenset(
             set(runtime.workspace.dependencies) | set(self._extra_dependencies[workspace_id])
         )
+        edge_visits = 2 * edge_count
 
         old_nodes = self._workspace_nodes.get(workspace_id, frozenset())
-        for node in old_nodes - new_nodes:
+        removed_nodes = old_nodes - new_nodes
+        added_nodes = new_nodes - old_nodes
+        for node in removed_nodes:
             bucket = self._node_to_workspaces.get(node)
             if bucket is not None:
                 bucket.discard(workspace_id)
                 if not bucket:
                     self._node_to_workspaces.pop(node, None)
-        for node in new_nodes - old_nodes:
+        for node in added_nodes:
             self._node_to_workspaces[node].add(workspace_id)
         self._workspace_nodes[workspace_id] = new_nodes
 
         old_dependencies = self._workspace_dependencies.get(workspace_id, frozenset())
-        for dep in old_dependencies - new_dependencies:
+        removed_dependencies = old_dependencies - new_dependencies
+        added_dependencies = new_dependencies - old_dependencies
+        for dep in removed_dependencies:
             bucket = self._dependency_to_workspaces.get(dep)
             if bucket is not None:
                 bucket.discard(workspace_id)
                 if not bucket:
                     self._dependency_to_workspaces.pop(dep, None)
-        for dep in new_dependencies - old_dependencies:
+        for dep in added_dependencies:
             self._dependency_to_workspaces[dep].add(workspace_id)
         self._workspace_dependencies[workspace_id] = new_dependencies
+
+        return IndexRefreshCost(
+            edge_visits=edge_visits,
+            node_membership_updates=len(removed_nodes) + len(added_nodes),
+            dependency_membership_updates=len(removed_dependencies) + len(added_dependencies),
+        )
 
     def _event_candidates(self, event: MemoryEvent) -> set[str]:
         if event.kind == "FORUM_OBJECT_SEEN":
@@ -172,14 +215,26 @@ class MultiWorkspaceRuntime:
         ignored: list[str] = []
         patches: list[RoutedPatch] = []
         mutations = 0
+        examined_events = 0
+        history_items_copied = 0
+        history_items_appended = 0
+        index_refresh_edge_visits = 0
+        index_node_membership_updates = 0
+        index_dependency_membership_updates = 0
 
         for wid in candidates:
             result = self._runtimes[wid].apply((event,))
+            examined_events += result.examined_events
+            history_items_copied += result.history_items_copied
+            history_items_appended += result.history_items_appended
             if result.mutations:
                 delivered.append(wid)
                 mutations += result.mutations
                 patches.extend(RoutedPatch(wid, patch) for patch in result.sparse_patches)
-                self._refresh_indices(wid)
+                refresh = self._refresh_indices(wid)
+                index_refresh_edge_visits += refresh.edge_visits
+                index_node_membership_updates += refresh.node_membership_updates
+                index_dependency_membership_updates += refresh.dependency_membership_updates
             else:
                 ignored.append(wid)
 
@@ -191,6 +246,12 @@ class MultiWorkspaceRuntime:
             routed_patches=tuple(patches),
             examined_workspaces=len(candidates),
             mutations=mutations,
+            examined_events=examined_events,
+            history_items_copied=history_items_copied,
+            history_items_appended=history_items_appended,
+            index_refresh_edge_visits=index_refresh_edge_visits,
+            index_node_membership_updates=index_node_membership_updates,
+            index_dependency_membership_updates=index_dependency_membership_updates,
         )
 
     def invalidate(self, changed_dependencies: Iterable[str]) -> WorkspaceInvalidationResult:
