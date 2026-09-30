@@ -204,6 +204,8 @@ class CuratorPlannerRuntime:
     It may persist auditable STRUCTURE_PROPOSAL records through an authorized
     SERVANT institution gate. It has no method that mutates memory structure,
     access policy, epistemic status, resource budgets, or the constitution.
+    R8 also persists bounded identity/outcome records for observations that
+    produce no proposal, so observation IDs cannot be reused with new payloads.
     """
 
     def __init__(
@@ -224,13 +226,29 @@ class CuratorPlannerRuntime:
             raise ValueError("runbook_id is required")
         self._proposals: dict[str, StructureProposal] = {}
         self._observations: dict[str, str] = {}
+        self._no_proposal_observations: set[str] = set()
         self._load()
 
     def _load(self) -> None:
         for record in self.wal.read_valid_prefix().records:
-            if record.get("kind") != "CURATOR_PROPOSAL":
-                raise CuratorPlanningError(f"unknown curator record kind: {record.get('kind')}")
+            kind = record.get("kind")
             payload = dict(record.get("payload", {}))
+            if kind == "CURATOR_OBSERVATION":
+                observation_id = str(payload.get("observation_id", "")).strip()
+                fingerprint = str(payload.get("observation_fingerprint", "")).strip()
+                outcome = str(payload.get("outcome", "")).strip().upper()
+                if not observation_id or not fingerprint:
+                    raise CuratorPlanningError("invalid persisted observation identity")
+                if outcome != "NO_PROPOSAL":
+                    raise CuratorPlanningError(f"unsupported persisted observation outcome: {outcome}")
+                observed = self._observations.get(observation_id)
+                if observed is not None and observed != fingerprint:
+                    raise CuratorPlanningError(f"observation id collision: {observation_id}")
+                self._observations.setdefault(observation_id, fingerprint)
+                self._no_proposal_observations.add(observation_id)
+                continue
+            if kind != "CURATOR_PROPOSAL":
+                raise CuratorPlanningError(f"unknown curator record kind: {kind}")
             proposal = StructureProposal.from_dict(payload.get("proposal", {}))
             fingerprint = str(payload.get("observation_fingerprint", ""))
             if not fingerprint:
@@ -241,6 +259,10 @@ class CuratorPlannerRuntime:
             observed = self._observations.get(proposal.observation_id)
             if observed is not None and observed != fingerprint:
                 raise CuratorPlanningError(f"observation id collision: {proposal.observation_id}")
+            if proposal.observation_id in self._no_proposal_observations:
+                raise CuratorPlanningError(
+                    f"observation has contradictory persisted outcomes: {proposal.observation_id}"
+                )
             self._proposals.setdefault(proposal.proposal_id, proposal)
             self._observations.setdefault(proposal.observation_id, fingerprint)
 
@@ -255,6 +277,21 @@ class CuratorPlannerRuntime:
         ))
         if decision.disposition != "ACK_TRANSITION":
             raise CuratorPlanningError(f"SERVANT gate rejected proposal: {decision.reason_code}")
+
+    def _gate_no_proposal(self, observation: DistrictObservation, fingerprint: str) -> None:
+        decision = self.servant.handle(ServantCommand(
+            command_id=f"CURATOR-OBS:{observation.observation_id}:{fingerprint[:20]}",
+            kind="INSTITUTION_ACTION",
+            runbook_id=self.runbook_id,
+            institution_action="NOTICE",
+            subject_id=(
+                f"CURATOR_OBSERVATION_NO_PROPOSAL:{observation.observation_id}:{fingerprint}"
+            ),
+        ))
+        if decision.disposition != "ACK_TRANSITION":
+            raise CuratorPlanningError(
+                f"SERVANT gate rejected observation record: {decision.reason_code}"
+            )
 
     def evaluate(self, observation: DistrictObservation) -> tuple[StructureProposal, ...]:
         if not isinstance(observation, DistrictObservation):
@@ -272,6 +309,8 @@ class CuratorPlannerRuntime:
         prior_fp = self._observations.get(observation.observation_id)
         if prior_fp is not None and prior_fp != fingerprint:
             raise CuratorPlanningError("OBSERVATION_ID_COLLISION")
+        if observation.observation_id in self._no_proposal_observations:
+            return ()
 
         out: list[StructureProposal] = []
         for rule in policy.rules:
@@ -312,6 +351,19 @@ class CuratorPlannerRuntime:
             self._proposals[proposal_id] = proposal
             self._observations.setdefault(observation.observation_id, fingerprint)
             out.append(proposal)
+
+        if not out and observation.observation_id not in self._observations:
+            self._gate_no_proposal(observation, fingerprint)
+            self.wal.append("CURATOR_OBSERVATION", observation.observation_id, {
+                "observation_id": observation.observation_id,
+                "observation_fingerprint": fingerprint,
+                "district_id": observation.district_id,
+                "policy_version": observation.policy_version,
+                "observed_at": observation.observed_at,
+                "outcome": "NO_PROPOSAL",
+            })
+            self._observations[observation.observation_id] = fingerprint
+            self._no_proposal_observations.add(observation.observation_id)
         return tuple(out)
 
     def proposal(self, proposal_id: str) -> StructureProposal:
@@ -324,8 +376,13 @@ class CuratorPlannerRuntime:
         return tuple(self._proposals[k] for k in sorted(self._proposals))
 
     def counts(self) -> dict[str, int]:
+        observations_with_proposals = {
+            proposal.observation_id for proposal in self._proposals.values()
+        }
         return {
             "proposals": len(self._proposals),
-            "observations_with_proposals": len(self._observations),
+            "observations": len(self._observations),
+            "observations_with_proposals": len(observations_with_proposals),
+            "no_proposal_observations": len(self._no_proposal_observations),
             "records": len(self.wal.read_valid_prefix().records),
         }
