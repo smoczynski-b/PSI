@@ -34,8 +34,8 @@ Kolejność jest zamrożona:
 
 1. **SERVANT restart/collision — PASS.** Pierwotny ukończony werdykt pozostaje rozstrzygający po kolizji identyfikatora i restarcie; kolizja ma osobny zapis kronikarski.
 2. **IMMUNE numeric domain — PASS.** NaN, ±∞, wartości logiczne i tekst są odrzucane przed oceną sygnatury; skończone wartości muszą należeć do jawnej dziedziny sygnatury (`NONNEGATIVE_INTEGER` / `BINARY_FLAG`). Wartość spoza dziedziny nie może uruchomić reakcji ani zwiększyć licznika sygnatury.
-3. **IMMUNE recovered-view binding — NEXT.** Po `RECOVER` Immunologia musi używać aktualnego indeksu/widoków albo jawnie zatrzymać się do ponownego związania.
-4. **Cost accounting.** Oddzielić liczbę wybranych widoków od rzeczywistej pracy: odświeżenie indeksów, odwiedzone krawędzie i historia zdarzeń.
+3. **IMMUNE recovered-view binding — PASS.** `RECOVER` zachowuje tożsamość publicznych uchwytów `shared` i `shared.views`, podmieniając ich odzyskany stan in-place. Długowieczne role instytucjonalne nie pozostają więc przy martwym indeksie; regresja wymusza, by stary uchwyt IMMUNE widział nowo zarejestrowany widok i jego zależności po recovery.
+4. **Cost accounting — NEXT.** Oddzielić liczbę wybranych widoków od rzeczywistej pracy: odświeżenie indeksów, odwiedzone krawędzie i historia zdarzeń.
 
 **Gate F0:** wszystkie istniejące regresje + osobne regresje kontrprzykładów przechodzą; żadna naprawa nie zmienia kompetencji ról.
 
@@ -244,6 +244,6 @@ Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle z F0, ale ni
 
 ## Najbliższa jednostka kodowa
 
-**F0.3 — IMMUNE recovered-view binding after `RECOVER`.**
+**F0.4 — full cost accounting for local update/index refresh.**
 
 Po jej PASS następny ruch jest wyznaczony przez powyższą kolejność, bez ponownego wyboru architektury.
