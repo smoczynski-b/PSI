@@ -1,0 +1,229 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from active_memory import compile_workspace
+from durable_shared_memory import DurableSharedMemoryRuntime
+from immune_runtime import ImmuneObservation, ImmuneRuntime, ReactionBudget, load_signatures
+from servant_runtime import ServantRuntime
+
+ROOT = Path(__file__).resolve().parents[1]
+SIGNATURES = ROOT / "docs/memory/psi-memory-immune-signatures-01.tsv"
+
+BASE_CONTRACT = {
+    "status": "COMPILED",
+    "contract_id": "IMMUNE-01-AUTH",
+    "anchor": "ROOT",
+    "task": "test bounded immune response",
+}
+BASE_RETRIEVAL = {
+    "status": "RETRIEVED",
+    "anchor": "ROOT",
+    "edges": [
+        {"from": "ROOT", "relation": "BASE", "to": "A", "source": "seed:A", "status": "ADMITTED"},
+    ],
+}
+
+
+def workspace(contract_id: str, anchor: str, node: str):
+    return compile_workspace(
+        {"status": "COMPILED", "contract_id": contract_id, "anchor": anchor, "task": contract_id},
+        {
+            "status": "RETRIEVED",
+            "anchor": anchor,
+            "edges": [
+                {"from": anchor, "relation": "BASE", "to": node, "source": f"seed:{node}", "status": "ADMITTED"}
+            ],
+        },
+    )
+
+
+def authoritative_seed():
+    return compile_workspace(BASE_CONTRACT, BASE_RETRIEVAL)
+
+
+def register_views(shared):
+    shared.register("proof", workspace("VIEW-PROOF", "ROOT", "A"))
+    shared.register("down1", workspace("VIEW-D1", "D1ROOT", "D1"), extra_dependencies=("workspace:proof",))
+    shared.register("down2", workspace("VIEW-D2", "D2ROOT", "D2"), extra_dependencies=("workspace:down1",))
+    shared.register("unrelated", workspace("VIEW-U", "UROOT", "U"))
+
+
+def make_stack(td: str, *, budget: ReactionBudget):
+    base = Path(td)
+    durable = DurableSharedMemoryRuntime(
+        authoritative_seed(),
+        base / "memory.wal",
+        register_views,
+    )
+    servant = ServantRuntime(
+        durable,
+        base / "servant.wal",
+        authorized_runbooks=("IMMUNE-01",),
+    )
+    immune = ImmuneRuntime(
+        durable.shared.views,
+        servant,
+        base / "immune.wal",
+        load_signatures(SIGNATURES),
+        budget=budget,
+    )
+    return durable, servant, immune
+
+
+def obs(oid: str, signature_id: str, kind: str, subject: str, value: float, admission: str = "ADMITTED"):
+    return ImmuneObservation(
+        observation_id=oid,
+        signature_id=signature_id,
+        observation_kind=kind,
+        subject_workspace=subject,
+        admission_state=admission,
+        value=value,
+    )
+
+
+def main():
+    signatures = load_signatures(SIGNATURES)
+    ids = {s.signature_id for s in signatures}
+    assert {
+        "IMM-CONFLICT-BURST",
+        "IMM-INVALIDATION-FANOUT",
+        "IMM-WAL-CORRUPTION",
+        "IMM-CLEAR-RECOVERY",
+    } <= ids
+
+    # Licensed post-admission anomaly -> NOTICE + POST_QUARANTINE + bounded
+    # REQUEST_RECHECK along declared dependencies. Requests do not directly
+    # mutate epistemic status.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget(max_actions=8, max_rechecks=4))
+        before = {wid: durable.shared.views.status(wid) for wid in ("proof", "down1", "down2", "unrelated")}
+        decision = immune.observe(obs(
+            "OBS-1", "IMM-INVALIDATION-FANOUT", "INVALIDATION_FANOUT", "proof", 8
+        ))
+        assert decision.status == "POST_QUARANTINED"
+        assert decision.health_before == "NORMAL"
+        assert decision.health_after == "POST_QUARANTINED"
+        assert decision.requested_rechecks == ("down1", "down2")
+        assert decision.examined_dependency_links == 2
+        assert {a.action for a in decision.actions} == {"NOTICE", "POST_QUARANTINE", "REQUEST_RECHECK"}
+        assert all(a.servant_disposition == "ACK_TRANSITION" for a in decision.actions)
+        after = {wid: durable.shared.views.status(wid) for wid in before}
+        assert after == before, "immune requests must not directly mutate epistemic workspace status"
+        assert immune.health("proof") == "POST_QUARANTINED"
+        assert immune.health("down1") == "NORMAL"
+        assert immune.health("unrelated") == "NORMAL"
+
+        # Idempotent replay preserves immune decision and does not duplicate response.
+        records_before = len(immune.memory.records())
+        replay = immune.observe(obs(
+            "OBS-1", "IMM-INVALIDATION-FANOUT", "INVALIDATION_FANOUT", "proof", 8
+        ))
+        assert replay == decision
+        assert len(immune.memory.records()) == records_before
+
+        # Same observation id with different content stops locally.
+        collision = immune.observe(obs(
+            "OBS-1", "IMM-INVALIDATION-FANOUT", "INVALIDATION_FANOUT", "proof", 99
+        ))
+        assert collision.status == "STOP_ESCALATE_OBSERVATION_ID_COLLISION"
+        assert immune.health("proof") == "POST_QUARANTINED"
+
+        # Clear anomaly changes health only to RECOVERED. It does not release to
+        # active exchange; Guardian revalidation remains required by constitution.
+        clear = immune.observe(obs(
+            "OBS-2", "IMM-CLEAR-RECOVERY", "ANOMALY_CLEARED", "proof", 1
+        ))
+        assert clear.status == "ANOMALY_CLEARED_NEEDS_GUARDIAN_RELEASE"
+        assert clear.health_after == "RECOVERED"
+        assert clear.requested_rechecks == ()
+        assert immune.health("proof") == "RECOVERED"
+
+        # Durable immune memory reconstructs health/signature state on restart.
+        restarted = ImmuneRuntime(
+            durable.shared.views,
+            servant,
+            Path(td) / "immune.wal",
+            signatures,
+            budget=ReactionBudget(max_actions=8, max_rechecks=4),
+        )
+        assert restarted.health("proof") == "RECOVERED"
+        assert restarted.signature_count("IMM-INVALIDATION-FANOUT", "proof") == 1
+
+    # Before-admission faults are outside immune jurisdiction.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget())
+        outside = immune.observe(obs(
+            "OBS-B", "IMM-WAL-CORRUPTION", "WAL_CORRUPTION", "proof", 1, admission="OBSERVED"
+        ))
+        assert outside.status == "OUTSIDE_IMMUNE_SCOPE"
+        assert outside.actions == ()
+        assert immune.health("proof") == "NORMAL"
+
+    # Unknown signature or non-matching type causes no autonomous inference/action.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget())
+        unknown = immune.observe(obs("OBS-U", "NOT-LICENSED", "MYSTERY", "proof", 999))
+        assert unknown.status == "NO_LICENSED_SIGNATURE"
+        assert unknown.actions == ()
+        mismatch = immune.observe(obs(
+            "OBS-M", "IMM-WAL-CORRUPTION", "PROTOCOL_CONFLICT_COUNT", "proof", 99
+        ))
+        assert mismatch.status == "NO_LICENSED_SIGNATURE"
+        assert mismatch.actions == ()
+
+    # Reaction budget anti-autoimmunity: the dependency closure has two targets
+    # but only one recheck slot. No arbitrary prefix is selected. The source may
+    # be quarantined, then the incomplete fanout is escalated.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget(max_actions=3, max_rechecks=1))
+        budgeted = immune.observe(obs(
+            "OBS-BUDGET", "IMM-INVALIDATION-FANOUT", "INVALIDATION_FANOUT", "proof", 8
+        ))
+        assert budgeted.status == "BUDGET_EXHAUSTED_ESCALATE"
+        assert budgeted.budget_exhausted is True
+        assert budgeted.requested_rechecks == ()
+        assert immune.health("proof") == "POST_QUARANTINED"
+        assert durable.shared.views.status("down1") == "VALID"
+        assert durable.shared.views.status("down2") == "VALID"
+        assert all(a.action != "REQUEST_RECHECK" for a in budgeted.actions)
+
+    # A clear signal without active quarantine cannot manufacture recovery.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget())
+        clear = immune.observe(obs(
+            "OBS-CLEAR-NONE", "IMM-CLEAR-RECOVERY", "ANOMALY_CLEARED", "proof", 1
+        ))
+        assert clear.status == "NO_ACTIVE_ANOMALY_TO_CLEAR"
+        assert clear.actions == ()
+        assert immune.health("proof") == "NORMAL"
+
+    # Immune memory is append-only/hash-chained and therefore self-auditable.
+    with TemporaryDirectory() as td:
+        durable, servant, immune = make_stack(td, budget=ReactionBudget())
+        immune.observe(obs("OBS-I", "IMM-CONFLICT-BURST", "PROTOCOL_CONFLICT_COUNT", "proof", 3))
+        records = immune.memory.records()
+        assert records
+        assert records[0]["kind"] == "IMMUNE_OBSERVATION"
+        assert records[-1]["kind"] == "IMMUNE_DECISION"
+
+    print("PSI-MEMORY-IMMUNE-01 PASS_WITH_BOUNDARY")
+    print("licensed_signatures_only=PASS")
+    print("post_admission_scope_only=PASS")
+    print("notice_quarantine_recheck_request=PASS")
+    print("dependency_scoped_recheck_targets=PASS")
+    print("immune_does_not_mutate_epistemic_status=PASS")
+    print("reaction_budget_anti_autoimmunity=PASS")
+    print("no_arbitrary_partial_fanout=PASS")
+    print("clear_requires_active_anomaly=PASS")
+    print("clear_does_not_release_active_exchange=PASS")
+    print("servant_gates_institution_actions=PASS")
+    print("immune_memory_recovery=PASS")
+    print("semantic_truth_authority=ABSENT")
+    print("BOUNDARY: deterministic licensed signatures over declared observations; no learned anomaly model, no natural-language diagnosis, no autonomous threshold changes, no direct epistemic invalidation, no Guardian release, no distributed coordination")
+
+
+if __name__ == "__main__":
+    main()
