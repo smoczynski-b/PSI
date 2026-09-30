@@ -24,9 +24,19 @@ class SharedCommitResult:
     examined_versions: int
     examined_workspaces: int
     examined_dependency_links: int
+    examined_events: int
+    history_items_copied: int
+    history_items_appended: int
+    index_refresh_edge_visits: int
+    index_node_membership_updates: int
+    index_dependency_membership_updates: int
     commit_chain_before: str
     commit_chain_after: str
     reason: str = ""
+
+    @property
+    def index_membership_updates(self) -> int:
+        return self.index_node_membership_updates + self.index_dependency_membership_updates
 
 
 class SharedMemoryRuntime:
@@ -35,6 +45,11 @@ class SharedMemoryRuntime:
     The authoritative workspace accepts transactions. Only events that actually
     commit are routed into local active workspaces. A local workspace that
     changes emits workspace:<id> as an invalidation token for downstream views.
+
+    Work accounting distinguishes MVCC version checks, selected workspaces,
+    event processing, local index refresh scans, dependency invalidation and
+    processed-event history copying. `examined_workspaces` therefore must not be
+    read as the total cost of a commit.
 
     This layer deliberately does not make FORUM observations authoritative and
     does not scan all workspaces after a commit. It is a deterministic,
@@ -99,6 +114,12 @@ class SharedMemoryRuntime:
             examined_versions=result.examined_versions,
             examined_workspaces=0,
             examined_dependency_links=0,
+            examined_events=0,
+            history_items_copied=0,
+            history_items_appended=0,
+            index_refresh_edge_visits=0,
+            index_node_membership_updates=0,
+            index_dependency_membership_updates=0,
             commit_chain_before=result.commit_chain_before,
             commit_chain_after=result.commit_chain_after,
             reason=result.reason,
@@ -115,6 +136,12 @@ class SharedMemoryRuntime:
         delivered: set[str] = set()
         routed_patches: list[RoutedPatch] = []
         examined_workspaces = 0
+        examined_events = 0
+        history_items_copied = 0
+        history_items_appended = 0
+        index_refresh_edge_visits = 0
+        index_node_membership_updates = 0
+        index_dependency_membership_updates = 0
 
         # The MVCC result is the admission boundary. No rejected/no-op proposal
         # is allowed to reach a local workspace.
@@ -122,6 +149,12 @@ class SharedMemoryRuntime:
             proposal = by_id[proposal_id]
             routed = self.views.dispatch(proposal.event)
             examined_workspaces += routed.examined_workspaces
+            examined_events += routed.examined_events
+            history_items_copied += routed.history_items_copied
+            history_items_appended += routed.history_items_appended
+            index_refresh_edge_visits += routed.index_refresh_edge_visits
+            index_node_membership_updates += routed.index_node_membership_updates
+            index_dependency_membership_updates += routed.index_dependency_membership_updates
             delivered.update(routed.delivered_workspaces)
             routed_patches.extend(routed.routed_patches)
 
@@ -150,6 +183,12 @@ class SharedMemoryRuntime:
             examined_dependency_links=(
                 invalidation.examined_dependency_links if invalidation is not None else 0
             ),
+            examined_events=examined_events,
+            history_items_copied=history_items_copied,
+            history_items_appended=history_items_appended,
+            index_refresh_edge_visits=index_refresh_edge_visits,
+            index_node_membership_updates=index_node_membership_updates,
+            index_dependency_membership_updates=index_dependency_membership_updates,
             commit_chain_before=mvcc.commit_chain_before,
             commit_chain_after=mvcc.commit_chain_after,
             reason=mvcc.reason,
