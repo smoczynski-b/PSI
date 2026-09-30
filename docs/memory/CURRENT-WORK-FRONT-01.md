@@ -3,7 +3,8 @@
 **Status:** EXPERIMENTAL / NON-CANONICAL / CURRENT POINTER  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30  
-**Reviewed code:** `53bdc36c44c0b2d6d2621339ec65dc0f00de9b80`  
+**Reviewed code:** `3169cec52ab8aee1686e88ef96431c30d8d5894f`  
+**R1 result:** `docs/memory/PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`  
 **Scope:** current work selection for an explicitly selected memory task.
 Supersedes older NEXT prose in AGENTS, memory README and WORK-FRONT.
 The general project default remains in `docs/control-state.json`.  
@@ -11,24 +12,35 @@ The general project default remains in `docs/control-state.json`.
 
 ## Current decision
 
-**NEXT: R1 — safe continuation of all JSONL journals after an interrupted write.**
-F4.4 is deferred behind durability and visual-integrity repairs. F0–F4.3 keep
-their recorded PASS/CONTRACT_PASS scopes; F3's earlier functional closure refers
-to those reference cases, not complete crash recovery.
+**NEXT: R2 — reconcile committed outcomes across memory, Servant and ACCESS_STEWARD journals after crash boundaries.**
+R1 is closed `PASS_WITH_BOUNDARY`. F4.4 remains deferred behind R2–R5.
+F0–F4.3 keep their recorded PASS/CONTRACT_PASS scopes; F3's earlier functional
+closure refers to those reference cases, not complete cross-journal recovery.
+
+R1 evidence is recorded in
+[`PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md`](PSI-MEMORY-R1-JOURNAL-RECOVERY-01.md):
+shared `JSONLWAL` tail repair, interrupted-repair preservation, short-write
+handling, wrapper witnesses, the shared writer, two later commits and a second
+restart all passed in workflow run `36769885146`.
+
+Audit discipline inherited from **Semantica Rozmowy — 03** remains binding:
+a local projection is not the project state (`P_i(S) !=> S`), and a successful
+local transition does not certify the global transition. Therefore R2 is a
+cross-journal invariant, not four independent journal checks. The authoritative
+question is whether the recovered projections commute with the one durable
+operation and its request/command identity.
 
 Read the [latest audit](AUDIT-ROZMOWY-04.md#memory-and-agent-review-2026-09-30)
-for source locations, separating witnesses and acceptance conditions. Findings
-R1–R8 are source-derived; their new Python witnesses were NOT_RUN in this
-review because local execution was unavailable. Existing CI evidence is linked
-in the audit. This documentation change does not repair those runtimes.
+for source locations, separating witnesses and acceptance conditions for the
+remaining R2–R8 findings. R2 is now the highest unresolved durability fault.
 
 ## Ordered repair plan
 
 | Unit | Priority / dependency | Deliverable and stop condition |
 |---|---|---|
-| R0: current instructions | DONE by this documentation change | Entry points select this front; old F0 failures are no longer presented as current; Curator's implemented proposal engine is distinguished from unimplemented restructuring |
-| R1: journal continuation | P0 / NEXT | Reproduce torn-tail loss; safe repair or explicit write block in every journal; interrupted repair preserves verified history; two later appends and restart preserve all acknowledged records |
-| R2: result reconciliation | P0 / after R1 | Memory COMMIT, SERVANT_RESULT, ACCESS_MOVEMENT and ACCESS_RESULT reconcile after each interruption boundary; same request has one committed outcome, no duplicate mutation/charge; ID collision still rejected |
+| R0: current instructions | DONE | Entry points select this front; old F0 failures are no longer presented as current; Curator's implemented proposal engine is distinguished from unimplemented restructuring |
+| R1: journal continuation | DONE / PASS_WITH_BOUNDARY | Shared JSONLWAL repairs only incomplete final tails at the verified byte boundary; complete corruption fails closed; interrupted repair and short writes are tested; wrapper and shared-runtime restart witnesses pass |
+| R2: result reconciliation | P0 / NEXT | Memory COMMIT, SERVANT_RESULT, ACCESS_MOVEMENT and ACCESS_RESULT reconcile after each interruption boundary; same request has one committed outcome, no duplicate mutation/charge; ID collision still rejected |
 | R3: visual digest verification | P1 / after R2 | Nested changes to frame/keyframe/timeline/plan cannot render or classify under old hashes; verify binding consistency at each consumer |
 | R4: complete status redaction | P1 / after R3 | Hidden node and edge status is absent from emitted payloads and visual channels; allowed metadata remains usable |
 | R5: directed visual relations | P1 / after R4 | Reversing a directed edge is visibly distinguishable in SVG and rendered animation; task-required metadata has a declared output channel or checked accompanying packet |
@@ -39,8 +51,9 @@ in the audit. This documentation change does not repair those runtimes.
 R7/R8 do not block unrelated visualization repair; they block their respective
 stronger claims. Do not convert this table into an automatic instruction to run
 all units indefinitely. Select one primary unit per authorized work scope.
-For R1, begin with the shared writer plus wrapper coverage; avoid separate
-incompatible recovery policies in each institutional role.
+For R2, begin from the existing committed-state recovery paths and add one
+cross-journal reconciliation rule rather than independent replay policies in
+Servant and ACCESS_STEWARD.
 
 ## Handoff and proportional verification
 
@@ -49,9 +62,9 @@ incompatible recovery policies in each institutional role.
 2. Implement the smallest correction that satisfies the invariant. Keep four
    constitutional roles; ACCESS_STEWARD remains Guardian machinery, Curator
    remains proposal-only.
-3. Run the separating case and affected regressions. For R1 this includes WAL,
-   SERVANT, IMMUNE, ACCESS_STEWARD, archive, usage and planner paths because all
-   share JSONLWAL. Broaden tests only for an identified dependency.
+3. Run the separating case and affected regressions. For R2 this includes the
+   shared WAL, Servant and ACCESS_STEWARD crash boundaries and collision tests;
+   broaden only when a concrete dependency is identified.
 4. Where unavailable tools prevent execution, record NOT_RUN and the exact
    next command/case. Source inspection must not become a claimed runtime PASS.
 5. Update code, necessary tests, result and this pointer as one coherent unit.
@@ -60,12 +73,12 @@ incompatible recovery policies in each institutional role.
    units or a material external delta, re-evaluate the frontier. Reuse unchanged
    sources and CI artifacts; no repeated full audit without new evidence.
 
-For F4.4, require R1–R5 and the affected integration regressions first. R6 must
-precede an end-to-end cost claim or F5 cost comparison. Keep F4.4 restricted to
-one typed SPLIT with an admitted source transition and verified before/after
-diff. A richer event without an adapter still fails closed. After that, F5 tests
-a fixed task set and simple retrieval baseline; model benefit remains NOT_RUN.
-GPU and live FORUM work remain outside this selected front.
+For F4.4, R1 is satisfied; require R2–R5 and the affected integration regressions
+first. R6 must precede an end-to-end cost claim or F5 cost comparison. Keep F4.4
+restricted to one typed SPLIT with an admitted source transition and verified
+before/after diff. A richer event without an adapter still fails closed. After
+that, F5 tests a fixed task set and simple retrieval baseline; model benefit
+remains NOT_RUN. GPU and live FORUM work remain outside this selected front.
 
 ## Recorded implementation state
 
@@ -73,17 +86,18 @@ GPU and live FORUM work remain outside this selected front.
 F0   PASS_WITH_BOUNDARY
 F1   PASS_WITH_BOUNDARY
 F2.0 CONTRACT_PASS
-F2.1 PASS_WITH_BOUNDARY; R1/R2/R6 OPEN
+R1   PASS_WITH_BOUNDARY
+F2.1 PASS_WITH_BOUNDARY; R2/R6 OPEN
 F3.0 CONTRACT_PASS
-F3.1 PASS_WITH_BOUNDARY; R1 OPEN
-F3.2 PASS_WITH_BOUNDARY; R1/R2/R7 OPEN
-F3.3 PASS_WITH_BOUNDARY; R1/R8 OPEN
+F3.1 PASS_WITH_BOUNDARY
+F3.2 PASS_WITH_BOUNDARY; R2/R7 OPEN
+F3.3 PASS_WITH_BOUNDARY; R8 OPEN
 F3   REFERENCE_CASES_PASS; HARDENING_OPEN
 F4.0 CONTRACT_PASS; R3/R4 OPEN
 F4.1 PASS_WITH_BOUNDARY; R3/R4 OPEN
 F4.2 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
 F4.3 PASS_WITH_BOUNDARY; R3/R4/R5 OPEN
-F4.4 DEFERRED_AFTER_R1_R2_R3_R4_R5
+F4.4 DEFERRED_AFTER_R2_R3_R4_R5
 F5   NOT_RUN
 ```
 
