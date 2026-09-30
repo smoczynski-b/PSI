@@ -18,80 +18,73 @@ F3.1 PASS_WITH_BOUNDARY
 F3.2 PASS_WITH_BOUNDARY
 F3.3 PASS_WITH_BOUNDARY
 F3   FUNCTIONALLY_CLOSED_REFERENCE_LEVEL
-F4   NEXT
+F4.0 CONTRACT_PASS
+F4.1 NEXT
 ```
 
-## F3.3 — wynik
+## F4.0 — wynik
 
-Minimalny Kustosz-planista działa jako deterministyczny automat propozycji nad jawnymi metrykami administracyjnymi i zewnętrzną, wersjonowaną polityką `authority=PSI_AGENT`.
+Powstał minimalny kompilator `Workspace + VisualContract + LayoutSpec -> VisualFrame`, który jawnie rozdziela:
 
 ```text
-administrative metrics
-+ licensed planning rule
-+ explicit threshold
-→ STRUCTURE_PROPOSAL(PROPOSED)
-→ SERVANT procedural gate
-→ append-only Curator planning chronicle
+semantic_layer / semantic_digest
+layout_layer   / layout_digest
 ```
-
-Dopuszczone typy propozycji:
-
-```text
-EXPAND | SPLIT | MERGE | REINDEX | MIGRATE | ARCHIVE | COMPACT | REBALANCE
-```
-
-Świadek: `district:alpha` ma `capacity_utilization=0.95`; przy regule `GTE 0.90` Kustosz emituje audytowalne `EXPAND` z kosztem, ryzykiem, zależnościami, rollbackiem i testem odbioru.
 
 Zamrożone:
 
 \[
-\boxed{PROPOSAL\neq AUTHORIZATION\neq EXECUTION}
+\boxed{visual\ projection\neq authoritative\ memory}
 \]
 
 \[
-\boxed{planning\ metric\neq epistemic\ status}
+\boxed{semantic\ layer\neq layout\ layer}
 \]
 
 \[
-\boxed{CURATOR\ does\ not\ self-author\ thresholds}
+\boxed{screen\ distance\ has\ no\ metric\ meaning\ in\ F4.0}
 \]
 
-Sama propozycja nie zmienia autorytatywnej pamięci (`durable.revision=0`, digest workspace bez zmian), nie zwiększa budżetu, nie zmienia polityki Strażnika ani statusu epistemicznego. Replay jest idempotentny; kolizje obserwacji/propozycji działają fail-closed; restart odtwarza status `PROPOSED`; brak autoryzowanego runbooku blokuje trwały wpis.
+Świadek wykorzystuje strukturę odpowiadającą intuicji `|F(Y)|>1` przy `|q_T(F(Y))|=1`: dwa kompatybilne obiekty `x1,x2` schodzą do tego samego obiektu zadaniowego `m`. Dwa różne layouty (`FIBRE_LAYOUT`, `QUOTIENT_LAYOUT`) zachowują identyczny `semantic_digest`, a mają różne `layout_digest`.
 
-Workflow `PSI memory curator planner`, run `36756411723`, zakończył się `success`; w jednym jobie ponownie przeszły F3.0, F3.1, F3.2, F3.3, runtime Nadzorcy, regresja Sługi i konstytucja instytucji.
+`REPOSITION` jest legalne tylko wtedy, gdy zmienia się layout bez zmiany semantycznej. Zdarzenie takie jak `EDGE_ADD` wymaga rzeczywistej zmiany `semantic_digest`. Stary kontrakt wizualny nie może po cichu renderować nowej rewizji pamięci.
 
-Szczegóły: `docs/memory/PSI-MEMORY-CURATOR-F3.3-01.md`.
+`visible_metadata` jest częścią kontraktu: ograniczony widok usuwa `provenance` z payloadu zamiast ukrywać je jedynie graficznie. Layout musi zawierać dokładnie zbiór widocznych węzłów — ciche zniknięcie obiektu jest błędem.
 
-## F3 — domknięcie referencyjne
-
-Na poziomie referencyjnym działają łącznie:
+Workflow `PSI-VIZ F4.0 contract`, run `36758342287`, zakończył się `success`. W tym samym jobie przeszły:
 
 ```text
-F3.0 archive contract
-F3.1 snapshot + delta + manifest + CURRENT_POINTER + restart
-F3.2 version ↔ movement ↔ cost with restricted telemetry
-F3.3 Curator proposal-only planner
+F4.0 PSI-VIZ projection contract
+finite representation control
+active memory regression
+institutional constitution
 ```
 
-To nie jest wdrożenie produkcyjne ani system rozproszony. Nie oznacza też, że przebudowy Kustosza są automatycznie wykonywane.
+Pierwszy run F4.0 ujawnił wyłącznie błąd konfiguracji CI (`fetch-depth: 1`) dla historycznie przypiętego testu reprezentacji; po ustawieniu `fetch-depth: 0` ten sam test przeszedł bez zmiany kodu F4.0.
 
-## F4 — następna jednostka
+Szczegóły: `docs/memory/PSI-VIZ-F4.0-01.md`.
 
-**PSI-VIZ — sprawdzalny widok konkretnej rewizji pamięci.**
+## F4.1 — następna jednostka
 
-Pierwszy eksperyment F4 powinien wykorzystać już istniejący język z `Konstruowanie litery a` i aktualny stan pamięci, bez tworzenia nowej ontologii.
+**PRINT KEYFRAME + ANIMATION TIMELINE FROM THE SAME VISUALFRAME.**
 
-Minimalny świadek:
+Nie wolno ponownie definiować semantyki w rendererze. Jeden `VisualFrame` ma kompilować się do dwóch reprezentacji wykonawczych:
 
-1. jedna zamrożona wersja/mapa pamięci i jeden kontrakt zadaniowy;
-2. dwa lub więcej layoutów tej samej relacyjnej struktury;
-3. identyczne typed relations/provenance/status/version we wszystkich widokach;
-4. ruch punktu bez zmiany relacji nie może zmieniać stanu semantycznego;
-5. zmiana relacji ma być widoczna jako jawne zdarzenie, nie jako arbitralne przesunięcie grafiki;
-6. kolor/symbol/ruch mają jawny kontrakt wizualny;
-7. jedna klatka kluczowa ma nadawać się do druku, a sekwencja do animacji;
-8. pierwsza demonstracja: faktoryzacja / włókno i rozróżnienie `|F(Y)|>1` przy `|q_T(F(Y))|=1` albo równoważny świadek już obecny w PSI-VIZ;
-9. widok nie może ujawniać telemetrii lub metadanych, do których odbiorca nie ma prawa;
-10. `visual projection != authoritative memory` pozostaje rygielkiem nadrzędnym.
+```text
+VisualFrame
+├─> print scene description (SVG/PDF-safe geometry + labels)
+└─> animation timeline (Manim-ready declarative events)
+```
 
-Dopiero po F4.0/F4.1 należy przejść do porównania efektywności reprezentacji i później do tensor/GPU.
+Minimalny świadek F4.1:
+
+1. wykorzystać dokładnie scenę F4.0 `Y,x1,x2,m`;
+2. wygenerować statyczną klatkę kluczową w stylu PSI/Byrne bez gradientów i poświaty;
+3. wygenerować deklaratywną sekwencję `REPOSITION`, a następnie rzeczywiste zdarzenie semantyczne;
+4. ten sam `semantic_digest` ma być zapisany w klatce drukowej i osi animacji;
+5. identyfikatory obiektów, kolory/symbole i typy relacji mają być stabilne między klatkami;
+6. renderer nie może dodawać relacji ani metadanych nieobecnych w `VisualFrame`;
+7. klatka statyczna ma być wektorowo eksportowalna, a timeline możliwy do podania do Manima bez ręcznego przepisywania matematyki;
+8. kontrola ujemna: zmiana współrzędnych nie może stworzyć semantycznego eventu, a ukryte `provenance` nie może pojawić się w eksporcie.
+
+Po F4.1 można przejść do rzeczywistego renderera/filmu i następnie do F5 — pomiaru skuteczności reprezentacji.
