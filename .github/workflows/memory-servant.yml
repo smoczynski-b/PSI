@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/servant_runtime.py'
       - 'scripts/test_servant_runtime.py'
+      - 'scripts/test_servant_restart_collision.py'
       - 'scripts/test_memory_institution.py'
       - 'scripts/test_active_memory_wal.py'
       - 'experiments/PSI-MEMORY-SERVANT-01.md'
@@ -29,3 +30,5 @@ jobs:
         run: python3 scripts/test_active_memory_wal.py
       - name: Verify deterministic servant runtime
         run: python3 scripts/test_servant_runtime.py
+      - name: Verify first servant verdict survives collision and restart
+        run: python3 scripts/test_servant_restart_collision.py
