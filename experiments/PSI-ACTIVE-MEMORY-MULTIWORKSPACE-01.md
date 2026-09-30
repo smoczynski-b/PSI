@@ -84,13 +84,31 @@ A seen-but-not-admitted FORUM relation must mutate no workspace.
 
 The experiment adds 128, 1024, 4096, and 16384 unrelated workspaces while keeping one target workspace fixed.
 
-For a local admitted event touching only the target, the indexed work-accounting requirement is:
+For a local admitted event touching only the target, the indexed **candidate-selection** requirement is:
 
 `candidate_workspaces = examined_workspaces = 1`
 
 independent of the number of unrelated workspaces.
 
 Wall-clock timings are reported only as observations and are not CI proof obligations.
+
+### F0.4 interpretation correction
+
+`examined_workspaces=1` measures only routing across workspaces. It does **not** imply that the full mutation cost is constant or `O(|delta|)`.
+
+`PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01` later established that the present `_refresh_indices` scans every edge of the selected workspace twice (through `nodes` and `dependencies`) and that tuple-backed processed-event history append recopies the existing history.
+
+Thus the preserved result is:
+
+\[
+\boxed{\text{workspace selection is selective across unrelated workspaces}}
+\]
+
+not:
+
+\[
+\boxed{\text{the entire selected-workspace update has constant cost}.}
+\]
 
 ## Success / STOP
 
@@ -106,4 +124,4 @@ PASS_WITH_BOUNDARY requires:
 
 ## Boundary
 
-The reference coordinator is single-process and single-writer. It does not yet implement concurrent writers, transaction isolation, rollback, distributed event clocks, network transport, live FORUM mutation, GPU execution, or cross-process persistence. The experiment establishes indexed routing semantics and selective workspace invalidation only.
+The reference coordinator is single-process and single-writer. It does not yet implement concurrent writers, transaction isolation, rollback, distributed event clocks, network transport, live FORUM mutation, GPU execution, or cross-process persistence. The experiment establishes indexed routing semantics and selective workspace invalidation only. Local index-refresh and history-maintenance costs are measured separately by `PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01`.
