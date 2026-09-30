@@ -227,11 +227,25 @@ class DurableSharedMemoryRuntime:
         delivered: set[str] = set()
         routed_patches = []
         examined_workspaces = 0
+        examined_events = 0
+        history_items_copied = 0
+        history_items_appended = 0
+        index_refresh_edge_visits = 0
+        index_node_membership_updates = 0
+        index_dependency_membership_updates = 0
+
         for pid in mvcc.applied_proposals:
             routed = self.shared.views.dispatch(by_id[pid].event)
             examined_workspaces += routed.examined_workspaces
+            examined_events += routed.examined_events
+            history_items_copied += routed.history_items_copied
+            history_items_appended += routed.history_items_appended
+            index_refresh_edge_visits += routed.index_refresh_edge_visits
+            index_node_membership_updates += routed.index_node_membership_updates
+            index_dependency_membership_updates += routed.index_dependency_membership_updates
             delivered.update(routed.delivered_workspaces)
             routed_patches.extend(routed.routed_patches)
+
         invalidation = self.shared.views.invalidate(
             f"workspace:{wid}" for wid in sorted(delivered)
         ) if delivered else None
@@ -249,6 +263,12 @@ class DurableSharedMemoryRuntime:
             examined_versions=mvcc.examined_versions,
             examined_workspaces=examined_workspaces,
             examined_dependency_links=(invalidation.examined_dependency_links if invalidation else 0),
+            examined_events=examined_events,
+            history_items_copied=history_items_copied,
+            history_items_appended=history_items_appended,
+            index_refresh_edge_visits=index_refresh_edge_visits,
+            index_node_membership_updates=index_node_membership_updates,
+            index_dependency_membership_updates=index_dependency_membership_updates,
             commit_chain_before=mvcc.commit_chain_before,
             commit_chain_after=mvcc.commit_chain_after,
             reason=mvcc.reason,
