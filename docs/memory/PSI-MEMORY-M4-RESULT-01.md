@@ -4,6 +4,9 @@
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-29
 
+Current execution plan: [M4b A/B/C](../../experiments/PSI-MEMORY-M4-EVALUATION.md).
+The byte counts below are the historical measurement, not remeasured model costs.
+
 ## 1. Frozen criterion
 
 `PSI-MEMORY-M4-01` froze M4a before measurement:

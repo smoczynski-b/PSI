@@ -5,6 +5,9 @@
 **Baseline:** `7f4aecdccb353994bf09df96847fe9ca9a4ab17e`  
 **Date:** 2026-09-29
 
+Current experimental objective and next evaluation:
+[shared-memory entry](README.md). This seed remains historical evidence.
+
 ## 0. Purpose
 
 This experiment does **not** define the final PSI memory architecture. It reconstructs a first typed dependency map from current PSI control records and theorem maps, then uses the reconstruction itself to discover the architecture that a shared agent memory actually needs.
@@ -105,9 +108,9 @@ III.11 is explicitly a special case of III.12 under `Q=G`; III.12 remains norm-c
 
 ## 3. Architectural findings from the seed
 
-### A1. A tree cannot be the storage model
+### A1. Logical relations form a graph; trees are task views
 
-The same node participates simultaneously in proof, scope, provenance, genealogy and scheduling relations. Storage must therefore be a graph; trees are generated views.
+The same node participates simultaneously in proof, scope, provenance, genealogy and scheduling relations. The logical relation model is therefore a graph; trees are generated views. This does not prescribe physical storage: typed tables or files can preserve the same graph. Neither a graph database nor a coordinate embedding follows from this observation.
 
 ### A2. Edge typing is mandatory
 

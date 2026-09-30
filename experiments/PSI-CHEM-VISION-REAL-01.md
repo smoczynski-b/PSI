@@ -1,5 +1,19 @@
 # PSI-CHEM-VISION-REAL-01
 
+**Scope correction — 2026-09-30:** auxiliary reviewed-label witness over
+different photographs. Its regression checks the table's declared labels;
+it does not measure model memory, visual recognition, or the effect of
+representing the same data differently. The concluding crop/colour suggestion
+does not define the user's same-data representation task. Follow the
+[current memory objective](../docs/memory/README.md) and
+[representation contract](../docs/memory/representation-check.md).
+
+**Korekta zakresu — 2026-09-30:** pomocniczy przykład etykiet różnych fotografii.
+Regresja sprawdza przypisane etykiety tabeli; nie mierzy pamięci modelu,
+rozpoznawania obrazu ani wpływu różnych przedstawień tych samych danych.
+Końcowa propozycja zmiany kadru/barwy nie definiuje zadania użytkownika.
+Obowiązują wskazany bieżący cel pamięci i kontrakt reprezentacji.
+
 **Status:** EXPERIMENTAL / REAL-IMAGE WITNESS  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30

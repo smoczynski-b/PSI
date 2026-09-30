@@ -4,6 +4,11 @@
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-29
 
+Execution correction, 2026-09-30: the current [A/B/C protocol](PSI-MEMORY-M4-EVALUATION.md)
+preserves this task and rubric, pins all sources, and adds a plain lexical
+comparator. The two-arm design below remains historical. The task is calibration,
+not held-out evaluation; actual model comparison is still NOT_RUN.
+
 ## 0. Purpose
 
 M3 showed that one source-attested distant bridge can make the Go G4 regression reach the abstract history-memory cluster through a seven-node local view. M4 asks the next question:

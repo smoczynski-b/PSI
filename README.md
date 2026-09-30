@@ -34,6 +34,7 @@ F(Y)^2\subseteq E_{\mathcal T}.
 - [Proportional working routine](docs/work-routine.md)
 - [Agent PSI Architecture v02](docs/agent-psi-architecture-02.md)
 - [Machine-readable control state](docs/control-state.json)
+- [Experimental shared memory — current objective and evaluation / Pamięć współdzielona — bieżący cel i ocena](docs/memory/README.md)
 
 Stable current files are updated in place. Numbered maps and registries remain
 historical provenance; their old CURRENT labels do not confer current authority.

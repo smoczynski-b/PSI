@@ -62,7 +62,7 @@ def main() -> None:
     print(f"broad:  files={broad_files} bytes={broad_bytes} lines={broad_lines}")
     print(f"guided: files={guided_files} bytes={guided_bytes} lines={guided_lines}")
     print(f"guided/broad bytes={ratio:.4f}; reduction={reduction:.2%}")
-    print("M4b NOT RUN: requires two independent model executions")
+    print("M4b NOT RUN: current A/B/C calibration requires three independent model executions")
 
 
 if __name__ == "__main__":

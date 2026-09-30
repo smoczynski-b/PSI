@@ -26,6 +26,17 @@ historical mathematical sources keep their provenance and contract limits.
 
 ## Experimental memory — conversation 04 correction
 
+- Start with `docs/memory/README.md` for the current objective and evaluation
+  boundary. The selected memory frontier is M4b A/B/C, not automatic expansion
+  of the M-series. Source repairs and explicitly selected tasks remain allowed.
+- Keep same-data representation tests separate from acquiring or classifying
+  different photographs. Geometry is a view; a nearness relation is not a proof
+  dependency. Report a source binding separately from mathematical validity.
+- Reproduce M4 inputs with `scripts/prepare_memory_evaluation.py`. Do not use
+  the evaluator rubric to select lexical results, tune on observed answers,
+  substitute one context for independent model runs, or call preparation/model
+  regression success a measured quality gain. A known calibration task is not
+  held-out evidence. Unknown costs remain unknown.
 - Read `docs/memory/AUDIT-ROZMOWY-04.md` before using the experimental memory.
   Execute compiled M13–M15 contracts through `scripts/memory_retrieval.py`;
   the declared anchor, evidence mode and budget are binding.

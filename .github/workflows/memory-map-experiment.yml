@@ -6,6 +6,8 @@ on:
     paths:
       - 'docs/memory/**'
       - 'experiments/PSI-MEMORY-M4-01.md'
+      - 'experiments/PSI-MEMORY-M4-EVALUATION.md'
+      - 'experiments/m4-evaluation-contract.json'
       - 'experiments/PSI-MEMORY-M6-REL-01.md'
       - 'experiments/PSI-MEMORY-M7-EDGE-CERT-01.md'
       - 'experiments/PSI-MEMORY-M8-01.md'
@@ -42,6 +44,9 @@ on:
       - 'scripts/memory_retrieval.py'
       - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
+      - 'scripts/prepare_memory_evaluation.py'
+      - 'scripts/test_memory_evaluation.py'
+      - 'scripts/test_memory_representation.py'
       - 'scripts/build_memory_pack.py'
       - 'scripts/test_memory_pack.py'
       - 'scripts/test_relation_description.py'
@@ -84,6 +89,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Run M1-M3 dependency and bridge regressions
         run: python3 scripts/test_memory_map.py
       - name: Run M4a context economy measurement
@@ -141,3 +148,9 @@ jobs:
         run: python3 scripts/test_chem_vision_lab.py
       - name: Run real-image chemistry geometry regression
         run: python3 scripts/test_chem_vision_real_images.py
+      - name: Check fixed data under changed representations
+        run: python3 scripts/test_memory_representation.py
+      - name: Verify frozen evaluation preparation and lexical comparator
+        run: python3 scripts/test_memory_evaluation.py
+      - name: Measure A-B-C input preparation only (no model execution)
+        run: python3 scripts/prepare_memory_evaluation.py
