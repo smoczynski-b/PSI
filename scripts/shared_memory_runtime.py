@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Iterable
+
+from active_memory import Workspace
+from mvcc_workspace import MVCCCommitResult, MVCCProposal, MVCCWorkspace
+from multiworkspace_runtime import MultiWorkspaceRuntime, RoutedPatch
+
+
+@dataclass(frozen=True)
+class SharedCommitResult:
+    status: str
+    base_revision: int
+    new_revision: int
+    applied_proposals: tuple[str, ...]
+    duplicate_proposals: tuple[str, ...]
+    conflict_tokens: tuple[str, ...]
+    stale_tokens: tuple[str, ...]
+    delivered_workspaces: tuple[str, ...]
+    invalidated_workspaces: tuple[str, ...]
+    routed_patches: tuple[RoutedPatch, ...]
+    examined_versions: int
+    examined_workspaces: int
+    examined_dependency_links: int
+    commit_chain_before: str
+    commit_chain_after: str
+    reason: str = ""
+
+
+class SharedMemoryRuntime:
+    """One authoritative MVCC memory plus indexed task-local workspaces.
+
+    The authoritative workspace accepts transactions. Only events that actually
+    commit are routed into local active workspaces. A local workspace that
+    changes emits workspace:<id> as an invalidation token for downstream views.
+
+    This layer deliberately does not make FORUM observations authoritative and
+    does not scan all workspaces after a commit. It is a deterministic,
+    crash-free, single-process integration reference; durable recovery and
+    distributed execution are outside this implementation.
+    """
+
+    def __init__(self, authoritative_workspace: Workspace):
+        self.memory = MVCCWorkspace(authoritative_workspace)
+        self.views = MultiWorkspaceRuntime()
+
+    @property
+    def revision(self) -> int:
+        return self.memory.revision
+
+    def register(
+        self,
+        workspace_id: str,
+        workspace: Workspace,
+        *,
+        extra_dependencies: Iterable[str] = (),
+    ) -> None:
+        self.views.register(
+            workspace_id,
+            workspace,
+            extra_dependencies=extra_dependencies,
+        )
+
+    def workspace(self, workspace_id: str) -> Workspace:
+        return self.views.workspace(workspace_id)
+
+    def status(self, workspace_id: str) -> str:
+        return self.views.status(workspace_id)
+
+    @staticmethod
+    def _empty_from_mvcc(result: MVCCCommitResult) -> SharedCommitResult:
+        return SharedCommitResult(
+            status=result.status,
+            base_revision=result.snapshot_revision,
+            new_revision=result.new_revision,
+            applied_proposals=result.applied_proposals,
+            duplicate_proposals=result.duplicate_proposals,
+            conflict_tokens=result.conflict_tokens,
+            stale_tokens=result.stale_tokens,
+            delivered_workspaces=(),
+            invalidated_workspaces=(),
+            routed_patches=(),
+            examined_versions=result.examined_versions,
+            examined_workspaces=0,
+            examined_dependency_links=0,
+            commit_chain_before=result.commit_chain_before,
+            commit_chain_after=result.commit_chain_after,
+            reason=result.reason,
+        )
+
+    def commit(self, proposals: Iterable[MVCCProposal]) -> SharedCommitResult:
+        batch = tuple(proposals)
+        by_id = {proposal.proposal_id: proposal for proposal in batch}
+
+        mvcc = self.memory.commit(batch)
+        if mvcc.status != "COMMITTED":
+            return self._empty_from_mvcc(mvcc)
+
+        delivered: set[str] = set()
+        routed_patches: list[RoutedPatch] = []
+        examined_workspaces = 0
+
+        # The MVCC result is the admission boundary. No rejected/no-op proposal
+        # is allowed to reach a local workspace.
+        for proposal_id in mvcc.applied_proposals:
+            proposal = by_id[proposal_id]
+            routed = self.views.dispatch(proposal.event)
+            examined_workspaces += routed.examined_workspaces
+            delivered.update(routed.delivered_workspaces)
+            routed_patches.extend(routed.routed_patches)
+
+        # Directly updated workspaces are current with respect to the committed
+        # delta. Their *dependants* must re-check derived state. The workspace
+        # token therefore forms the bridge between routing and invalidation.
+        invalidation = self.views.invalidate(
+            f"workspace:{workspace_id}" for workspace_id in sorted(delivered)
+        ) if delivered else None
+
+        return SharedCommitResult(
+            status=mvcc.status,
+            base_revision=mvcc.snapshot_revision,
+            new_revision=mvcc.new_revision,
+            applied_proposals=mvcc.applied_proposals,
+            duplicate_proposals=mvcc.duplicate_proposals,
+            conflict_tokens=mvcc.conflict_tokens,
+            stale_tokens=mvcc.stale_tokens,
+            delivered_workspaces=tuple(sorted(delivered)),
+            invalidated_workspaces=(
+                invalidation.stale_workspaces if invalidation is not None else ()
+            ),
+            routed_patches=tuple(routed_patches),
+            examined_versions=mvcc.examined_versions,
+            examined_workspaces=examined_workspaces,
+            examined_dependency_links=(
+                invalidation.examined_dependency_links if invalidation is not None else 0
+            ),
+            commit_chain_before=mvcc.commit_chain_before,
+            commit_chain_after=mvcc.commit_chain_after,
+            reason=mvcc.reason,
+        )
