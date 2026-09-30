@@ -4,10 +4,16 @@
 This does not test the same data under different representations or memory
 quality. Its proposed next image-collection stage is superseded by the
 [current memory objective](../docs/memory/README.md).
+Chemistry's intended motivation is formal, physically constrained process
+knowledge and its possible geometry; the visual fixture below tests only an
+auxiliary ambiguity question.
 
 **Korekta zakresu — 2026-09-30:** pomocniczy skończony świadek niejednoznaczności.
 Nie jest to test tych samych danych w różnych reprezentacjach ani jakości pamięci.
 Propozycję dalszego zbierania obrazów zastępuje wskazany bieżący cel pamięci.
+Motywacją chemiczną jest formalna wiedza o fizycznie ograniczonych procesach
+i ich możliwej geometrii; poniższy przykład wizualny sprawdza jedynie pomocniczą
+kwestię niejednoznaczności.
 
 **Status:** EXPERIMENTAL / SYNTHETIC FIRST PASS  
 **Branch:** `psi-memory-map-01`  

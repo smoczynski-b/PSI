@@ -3,6 +3,12 @@
 Status: PREPARED / MODEL_RUN_NOT_EXECUTED. Data: 2026-09-30.
 Korekta kierunku rozmowy 04; bez zmiany CORE5 i bez nowego numeru M.
 
+Zakres po doprecyzowaniu użytkownika: A/B/C porównuje dobór kontekstu
+tekstowego. Nie bada jeszcze zasadniczej hipotezy o pracy i wymianie agentów
+przez formalne zapisy procesów ani o geometrii opartej na ograniczeniach
+fizycznych. Korzystny wynik M4b nie uprawnia do uznania tych hipotez za sprawdzone.
+Chemiczną motywację opisuje [bieżący cel pamięci](../docs/memory/README.md).
+
 ## Obiekt → warunki → pomiar
 
 Obiekt: wykonanie jednego zadania Go G4 przez ten sam model w trzech świeżych,

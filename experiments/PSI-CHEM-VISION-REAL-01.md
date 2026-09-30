@@ -7,12 +7,16 @@ representing the same data differently. The concluding crop/colour suggestion
 does not define the user's same-data representation task. Follow the
 [current memory objective](../docs/memory/README.md) and
 [representation contract](../docs/memory/representation-check.md).
+The user's chemical motivation concerns formulas, reaction physics and
+process-derived geometry; it must not be reduced to photograph interpretation.
 
 **Korekta zakresu — 2026-09-30:** pomocniczy przykład etykiet różnych fotografii.
 Regresja sprawdza przypisane etykiety tabeli; nie mierzy pamięci modelu,
 rozpoznawania obrazu ani wpływu różnych przedstawień tych samych danych.
 Końcowa propozycja zmiany kadru/barwy nie definiuje zadania użytkownika.
 Obowiązują wskazany bieżący cel pamięci i kontrakt reprezentacji.
+Motywacja użytkownika dotyczy wzorów, fizyki reakcji i geometrii procesów;
+nie należy sprowadzać jej do interpretacji fotografii.
 
 **Status:** EXPERIMENTAL / REAL-IMAGE WITNESS  
 **Branch:** `psi-memory-map-01`  

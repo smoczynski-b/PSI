@@ -64,3 +64,41 @@ polepsza pamięć modelu, że model poprawnie go odczyta, ani że graf przewyżs
 tekst. Ten wpływ wymaga osobnego pomiaru wykonania tego samego zadania przy
 tych samych danych. Zmiana reprezentacji może pomagać dostrzec relację, lecz
 sama zgodność odległości lub klastrów nie poświadcza jej prawdziwości.
+
+## Uściślenie użytkownika: geometria wynikająca z procesu
+
+Chemia była przykładem wiedzy o fizycznych ograniczeniach, możliwej do
+przekazywania przez wzory i relacje przy niewielkim udziale języka naturalnego.
+Pozwala to badać geometryczne przedstawienie procesów i połączeń. Powyższa
+kontrola ujemna dotyczy wyłącznie arbitralnej bliskości rysunku; nie jest
+kontrprzykładem do geometrii wynikającej z zadeklarowanego modelu fizycznego.
+
+Przykład klasyczny, poza nowymi prymitywami PSI: ustalamy skończony katalog
+n substancji i m skierowanych reakcji oraz model zamkniętego, jednorodnego
+układu o stałej objętości i temperaturze. Niech \(x\in\mathbb R^n_{\ge0}\)
+oznacza ilości substancji [mol], \(S\in\mathbb Z^{n\times m}\) bezwymiarową
+macierz stechiometryczną, a v(x;c) szybkości postępu reakcji [mol/s]. Kontrakt
+c określa warunki i kinetykę zachowującą nieujemność; rozpatrujemy przedział,
+na którym istnieje rozwiązanie. Dla ustalonego x₀:
+
+\[
+\dot x=S\,v(x;c),\qquad
+x(t)\in\mathcal C(x_0):=(x_0+\operatorname{im}S)\cap\mathbb R^n_{\ge0}.
+\]
+
+Uzasadnienie ograniczenia: x(t)−x₀=S∫₀ᵗv(x(s);c)ds należy do im S.
+Kolumny S wyznaczają kierunki zmian składu, a C(x₀) zawiera trajektorię.
+Nie wynika z tego osiągalność każdego punktu C(x₀). Kinetyka i warunki c
+ograniczają ruch dodatkowo; sama stechiometria nie określa progów energetycznych.
+
+Macierz składu pierwiastkowego \(A\in\mathbb N_0^{p\times n}\), dla p wybranych pierwiastków, daje
+kontrolę bilansu AS=0, skąd Ax(t)=Ax₀. Bilans jest warunkiem koniecznym,
+nie wystarcza do stwierdzenia fizycznej wykonalności reakcji.
+To przykład ograniczenia, które można sprawdzać algebraicznie. Zapis formalny
+nie wymaga parafrazy słownej przy każdym użyciu. Nie dowodzi to jeszcze przewagi
+danego modelu AI w operowaniu takim zapisem.
+
+Źródła klasycznej realizacji:
+[Feinberg 1987, §§3 i 5.2](https://www.mit.edu/~jadbabai/ESE680/Fei87a.pdf),
+[Helton, Klep, Katsnelson 2009](https://arxiv.org/abs/0904.2960).
+Jest to uściślenie kierunku i zakresu, nie nowy eksperyment ani twierdzenie PSI.

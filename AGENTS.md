@@ -30,8 +30,16 @@ historical mathematical sources keep their provenance and contract limits.
   boundary. The selected memory frontier is M4b A/B/C, not automatic expansion
   of the M-series. Source repairs and explicitly selected tasks remain allowed.
 - Keep same-data representation tests separate from acquiring or classifying
-  different photographs. Geometry is a view; a nearness relation is not a proof
-  dependency. Report a source binding separately from mathematical validity.
+  different photographs. Preserve chemistry's intended role: physically
+  constrained processes represented through formulas, quantities, conditions
+  and typed relations, with natural language as an interface rather than a
+  mandatory internal record. Keep this design aim separate from measured LLM ability.
+- Distinguish arbitrary drawing coordinates from process-derived geometry
+  (states, reaction directions, conservation constraints and trajectories).
+  The nearness-only negative control does not refute such geometry. A finite
+  elemental vocabulary does not make molecular or dynamical state space finite.
+  Report source binding separately from mathematical validity. M4b A/B/C tests
+  text-context selection, not the benefit of formal inter-agent communication.
 - Reproduce M4 inputs with `scripts/prepare_memory_evaluation.py`. Do not use
   the evaluator rubric to select lexical results, tune on observed answers,
   substitute one context for independent model runs, or call preparation/model
