@@ -142,6 +142,44 @@ class ServantChronicle:
             },
         )
 
+    def append_reconciled_result(
+        self,
+        *,
+        command_id: str,
+        command_kind: str,
+        command_fingerprint: str,
+        txid: str,
+        disposition: str,
+        reason_code: str,
+        revision_before: int,
+        revision_after: int,
+        durable_state: str,
+    ) -> None:
+        self.wal.append(
+            "SERVANT_RESULT",
+            f"{command_id}:RESULT:RECOVERED",
+            {
+                "command_id": command_id,
+                "command_kind": command_kind,
+                "command_fingerprint": command_fingerprint,
+                "disposition": disposition,
+                "reason_code": reason_code,
+                "revision_before": revision_before,
+                "revision_after": revision_after,
+                "txid": txid,
+                "durable_state": durable_state,
+                "recovered": True,
+                "examined_versions": 0,
+                "examined_workspaces": 0,
+                "examined_dependency_links": 0,
+                "examined_events": 0,
+                "history_items_copied": 0,
+                "history_items_appended": 0,
+                "index_refresh_edge_visits": 0,
+                "index_membership_updates": 0,
+            },
+        )
+
     def records(self):
         return self.wal.read_valid_prefix().records
 
@@ -173,6 +211,7 @@ class ServantRuntime:
         )
         self._committed_txids = self._load_committed_txids()
         self._completed_commands = self._load_completed_commands()
+        self._reconcile_committed_commands()
 
     def _load_committed_txids(self) -> set[str]:
         return {
@@ -204,8 +243,72 @@ class ServantRuntime:
                 )
         return completed
 
+    def _reconcile_committed_commands(self) -> None:
+        durable_records = self.durable.wal.read_valid_prefix().records
+        commits = {
+            str(r["txid"]): r
+            for r in durable_records
+            if r.get("kind") == "COMMIT"
+        }
+        acked = {
+            str(r["txid"])
+            for r in durable_records
+            if r.get("kind") == "ACK"
+        }
+        observed: dict[str, dict] = {}
+        for record in self.chronicle.records():
+            if record.get("kind") != "SERVANT_OBSERVED":
+                continue
+            payload = record.get("payload", {})
+            cid = str(payload.get("command_id", ""))
+            if cid and cid not in observed:
+                observed[cid] = payload
+
+        for cid, payload in observed.items():
+            if cid in self._completed_commands:
+                continue
+            txid = str(payload.get("txid", ""))
+            if not txid or txid not in commits:
+                continue
+            kind = str(payload.get("command_kind", ""))
+            if kind not in {"TRANSACT", "COMPENSATE"}:
+                continue
+            fp = str(payload.get("command_fingerprint", ""))
+            if not fp:
+                continue
+            disposition = "ACK_TRANSITION"
+            reason = "COMPENSATING_COMMIT_ACCEPTED" if kind == "COMPENSATE" else "COMMIT_ACCEPTED"
+            commit_payload = commits[txid].get("payload", {})
+            revision_before = int(payload.get("revision", 0))
+            revision_after = int(commit_payload.get("new_revision", self.durable.revision))
+            durable_state = "ACK" if txid in acked else "COMMIT"
+            self.chronicle.append_reconciled_result(
+                command_id=cid,
+                command_kind=kind,
+                command_fingerprint=fp,
+                txid=txid,
+                disposition=disposition,
+                reason_code=reason,
+                revision_before=revision_before,
+                revision_after=revision_after,
+                durable_state=durable_state,
+            )
+            self._completed_commands[cid] = CompletedCommand(
+                fingerprint=fp,
+                disposition=disposition,
+                reason_code=reason,
+                txid=txid,
+                durable_state=durable_state,
+            )
+
+    def completed_command(self, command_id: str) -> CompletedCommand | None:
+        return self._completed_commands.get(str(command_id).strip())
+
     def _chronicle_observed(self, command: ServantCommand, revision: int) -> None:
-        self.chronicle.append("OBSERVED", command, {"revision": revision})
+        self.chronicle.append("OBSERVED", command, {
+            "revision": revision,
+            "txid": command.txid,
+        })
 
     @staticmethod
     def _work_payload(work: SharedCommitResult | None) -> dict[str, int]:
