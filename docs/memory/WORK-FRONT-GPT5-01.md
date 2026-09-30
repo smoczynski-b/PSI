@@ -51,35 +51,61 @@ Dla jednego wybranego workspace test F0.4 daje m.in. 18 odwiedzin krawędzi przy
 
 **Gate F0:** PASS_WITH_BOUNDARY. Wszystkie naprawy integralności mają regresje; pomiar kosztu nie ukrywa pozostających liniowych składników. Nie są one naprawiane przed F1, lecz muszą być raportowane w pełnym przebiegu.
 
-## F1 — jeden pełny przebieg zadaniowy — NEXT
+## F1 — jeden pełny przebieg zadaniowy — PASS_WITH_BOUNDARY
 
-Wykonać jeden source-bound scenariusz end-to-end:
+Wykonano source-bound scenariusz end-to-end:
 
 ```text
 source + contract
 → bounded retrieval
-→ workspace/map compile
-→ admitted update
-→ selective invalidation
-→ institutional handling
+→ source workspace
+→ Agent A result
+→ SERVANT
+→ MVCC
 → durable commit/WAL
-→ restart
-→ replay/rebind
-→ rechecked reuse by later agent
+→ result workspace
+→ process-style restart/replay
+→ Agent B reuse
+→ source premise change
+→ selective invalidation
+→ second restart/replay
+→ Agent B NEEDS_RECHECK
 ```
 
-Sprawdzić równocześnie:
+Wynik `PSI-MEMORY-F1-END-TO-END-01`:
 
-- semantyczną równoważność przed i po restarcie;
-- zachowanie provenance/status/version;
-- właściwe unieważnienie tylko licencjonowanych zależności;
-- pełny koszt przebiegu, nie tylko liczbę dotkniętych widoków;
-- ponowne użycie przez drugiego agenta bez rekonstrukcji źródła;
-- jawne rozróżnienie `VALID reuse` od `NEEDS_RECHECK`.
+- źródło zostało odczytane dokładnie raz;
+- Agent A zadeklarował w MVCC read-set dokładny slot źródłowy użyty przy tworzeniu wyniku;
+- wynik A zachował contract/provenance/status/version przez WAL i restart;
+- po czystym restarcie Agent B użył wyniku z `REUSE_ALLOWED` bez ponownego odczytu źródła (`agent_b_source_reconstruction=0`);
+- replay polecenia A po restarcie był idempotentny;
+- zmiana `SOURCE:A STATE VALUE:V1 → VALUE:V2` unieważniła dokładnie zadeklarowany wynik zależny przez `workspace:sourceA`;
+- stary wynik pozostał fizycznie zapisany, ale jego workspace otrzymał `NEEDS_RECHECK`;
+- drugi restart zachował jednocześnie stary wynik i `NEEDS_RECHECK`;
+- sama obecność danych nie została potraktowana jako prawo do reuse;
+- liczniki F0.4 zostały przeniesione przez decyzję Sługi jako telemetria obserwacyjna, bez wpływu na legalność.
 
-**Gate F1:** drugi agent może użyć wyniku bez ponownej rekonstrukcji źródła i potrafi wykazać, dlaczego użycie jest legalne lub dlaczego wymaga ponownego sprawdzenia. Raport musi zawierać również liczniki F0.4.
+Zamrożone rozróżnienie:
 
-## F2 — rozdzielić istniejącego Sługę od Nadzorcy Ruchu
+\[
+\boxed{
+\text{stored result}\neq\text{permission to reuse result}
+}
+\]
+
+oraz
+
+\[
+\boxed{
+\text{restart}\not\Rightarrow\text{loss of dependency status}
+}
+\]
+
+Dedykowany workflow `PSI memory F1 end-to-end reuse` run `36742791245` zakończył się `success` i ponownie przepuścił regresje Sługi, collision/restart, WAL oraz full cost accounting. Szczegóły: `experiments/PSI-MEMORY-F1-END-TO-END-01.md`.
+
+**Gate F1:** PASS_WITH_BOUNDARY. Mechanizm source-bound reuse/restart działa w deterministycznym runtime. Nie jest to jeszcze pomiar jakości LLM ani żywy system wieloagentowy.
+
+## F2 — rozdzielić istniejącego Sługę od Nadzorcy Ruchu — NEXT
 
 Nie rozszerzać obecnego `SERVANT`, którego obiektem jest legalność przejść stanu pamięci.
 
@@ -243,7 +269,7 @@ F0 \rightarrow F1 \rightarrow F2 \rightarrow F3 \rightarrow F4 \rightarrow F5 \r
 }
 \]
 
-Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle, ale nie wolno rozszerzać runtime nowymi rolami przed PASS F1.
+F0 i F1 są zamknięte jako `PASS_WITH_BOUNDARY`. Następny ruch to F2, ale zgodnie z gate'em najpierw kontrakt roli i konflikt-registry, bez runtime'u.
 
 ## Czego teraz nie robić
 
@@ -257,8 +283,8 @@ Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle, ale nie wol
 - nie używać popularności, roli instytucjonalnej ani telemetrii jako dowodu prawdziwości;
 - nie nazywać obecnej pełnej aktualizacji `O(|Δ|)` dopóki liniowe koszty lokalnego indeksu i historii nie zostaną osobno usunięte i przetestowane.
 
-## Najbliższa jednostka kodowa
+## Najbliższa jednostka
 
-**F1 — source-bound end-to-end reuse/restart scenario.**
+**F2.0 — `ACCESS_STEWARD` contract + conflict registry.**
 
-Nie wybierać nowej architektury przed tym testem. F1 ma użyć istniejących warstw i ujawnić, czy drugi agent rzeczywiście może legalnie odziedziczyć wynik, zależności i status po zmianie oraz restarcie.
+Najpierw należy zamrozić typy wejścia/wyjścia, stan obecności, uprawnienia przejścia, osobne uprawnienia telemetrii, model kosztu oraz konflikty kompetencyjne ze Strażnikiem, Sługą, Immunologią i Kustoszem. Dopiero po PASS tego kontraktu wolno pisać runtime Nadzorcy Ruchu.
