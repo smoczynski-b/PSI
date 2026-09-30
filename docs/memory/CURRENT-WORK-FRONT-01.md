@@ -3,14 +3,14 @@
 **Status:** EXPERIMENTAL / NON-CANONICAL / CURRENT POINTER  
 **Branch:** `psi-memory-map-01`  
 **Date:** 2026-09-30  
-**Reviewed implementation:** `de68f872362979ae3d4aaf825eb377772727ac8c`  
-**Independent R6 gate:** `36776058130`  
+**Reviewed implementation:** `1b1d3ed636f7839af6088b6e54374adc962df458`  
+**Independent R7 gate:** `36777234075`  
 **Scope:** current work selection for an explicitly selected memory / PSI task.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
 ## Current decision
 
-**NEXT: R7 — distinguish archive association from verified consumption of a specific version.**
+**NEXT: R8 — define durable identity for observations that produce no proposal.**
 
 The user explicitly reprioritized correctness tests and repairs over the visual
 front. R5 remains open and is required before F4.4, but it is not the current
@@ -22,7 +22,8 @@ Closed repair units:
 - R2 cross-journal result reconciliation — `PASS_WITH_BOUNDARY`;
 - R3 visual digest verification — `PASS_WITH_BOUNDARY`;
 - R4 complete status redaction — `PASS_WITH_BOUNDARY`;
-- R6 cost semantics — `PASS_WITH_BOUNDARY`.
+- R6 cost semantics — `PASS_WITH_BOUNDARY`;
+- R7 consumed-version receipt — `PASS_WITH_BOUNDARY`.
 
 Evidence:
 
@@ -30,16 +31,19 @@ Evidence:
 - [`PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md`](PSI-MEMORY-R2-RESULT-RECONCILIATION-01.md);
 - [`PSI-VIZ-R3-DIGEST-INTEGRITY-01.md`](PSI-VIZ-R3-DIGEST-INTEGRITY-01.md);
 - [`PSI-VIZ-R4-STATUS-REDACTION-01.md`](PSI-VIZ-R4-STATUS-REDACTION-01.md);
-- [`PSI-MEMORY-R6-COST-SEMANTICS-01.md`](PSI-MEMORY-R6-COST-SEMANTICS-01.md).
+- [`PSI-MEMORY-R6-COST-SEMANTICS-01.md`](PSI-MEMORY-R6-COST-SEMANTICS-01.md);
+- [`PSI-MEMORY-R7-CONSUMED-VERSION-01.md`](PSI-MEMORY-R7-CONSUMED-VERSION-01.md).
 
-R6 was first reproduced by workflow run `36775291249`, job `110091543666`:
-`cost_meter` returned `compute=3` for a request with estimated `compute=1` and
-budget `compute=2`, but the denial result recorded zero cost evidence. The
-correction at `de68f872362979ae3d4aaf825eb377772727ac8c` preserves that vector
-as a typed `PREEXECUTION_QUOTE`, keeps unmeasured incurred cost as `None`,
-declares normalized reference units and requires an explicit scalarization
-contract. Independent permanent gate `36776058130` passed the R6 witness, F2.1
-ACCESS_STEWARD regression and R2 reconciliation regression.
+R7 was reproduced before correction by run `36776680607`, job `110096241121`:
+a read of `version:M2:1` could still be attributed as usage of `version:M2:2`
+merely because both versions named map `M2`. The implementation at
+`77d67e3fa3c433f99a9db01ded271ef96d3d2fa8` introduced typed
+`MAP_ASSOCIATION` versus `VERIFIED_CONSUMPTION` evidence and durable consumption
+receipts carrying version, content digest and source revision. Acceptance
+revision `1b1d3ed636f7839af6088b6e54374adc962df458` passed the R7 witness, F3.2
+and archive runtime in `36777234075`; independent F3.0–F3.2/access/Servant/
+institution regressions passed in `36777234008`, and R1/WAL regressions in
+`36777234023`.
 
 ## Auditor rule — Semantica Rozmowy 03
 
@@ -55,6 +59,7 @@ Operationally:
 component PASS != system PASS
 stored digest != verified consumed payload
 archive association != verified version consumption
+returned payload != semantic understanding
 unknown cost != zero cost
 visible relation != necessarily visible direction
 ```
@@ -71,66 +76,78 @@ Each repair is tested at the downstream consumer where its claim is used.
 | R3 visual digest verification | DONE / PASS_WITH_BOUNDARY | stale hashes and contradictory duplicated bindings fail closed at consumers; real render passes |
 | R4 complete status redaction | DONE / PASS_WITH_BOUNDARY | hidden node/edge status absent downstream; explicitly allowed status preserved in declared channels |
 | R6 cost semantics | DONE / PASS_WITH_BOUNDARY | over-budget quote retained; quote/incurred/unknown distinguished; units and scalarization explicit |
-| **R7 consumed-version receipt** | **P2 / NEXT** | association distinguished from verified version consumption; two-version witness rejects attribution to the unconsumed version and survives restart |
-| R8 no-proposal observation identity | P2 / after R7 | ID scope defined and below-threshold changed-payload replay tested across restart |
-| full PSI memory run | after R7/R8 | one bounded run on real PSI records passes stale-premise, interruption and restart checks |
+| R7 consumed-version receipt | DONE / PASS_WITH_BOUNDARY | association and exact returned version are distinct; wrong same-map version rejected for verified claim; restart preserves receipt |
+| **R8 no-proposal observation identity** | **P2 / NEXT** | ID scope defined and below-threshold changed-payload replay tested before/after restart |
+| full PSI memory run | after R8 | one bounded run on real PSI records passes stale-premise, interruption and restart checks |
 | F5 model comparison | after hardening/full run | fixed-task comparison: ordinary context vs simple retrieval vs PSI memory; measure correctness, stale refusal, rereads, calls/tokens and end-to-end latency |
 | R5 directed visual relations | DEFERRED / before F4.4 | reversing a directed edge is visibly distinguishable in SVG and actual animation; symmetry explicit |
 | F4.4 typed SPLIT adapter | DEFERRED_AFTER_R5 | typed semantic before/after diff and real render pass |
 
-R7/R8 block only their stronger claims. Do not create a parallel audit registry.
+R8 blocks only the stronger observation-identity claim. Do not create a parallel
+audit registry.
 
-## R7 handoff
+## R8 handoff
 
 ### Object
 
-Current usage validation can establish that an archive manifest names the map
-associated with a movement. The movement record does not prove which historical
-archive version/revision the consumer actually read.
+The Curator currently has a stronger collision guarantee for observations that
+produce a proposal than for observations that remain below threshold. The audit
+found that a below-threshold observation can leave no durable identity record;
+therefore reuse of the same observation identifier with changed metrics may be
+accepted later if the changed payload crosses a proposal threshold.
 
-Therefore the current legal claim is only:
-
-```text
-movement associated with archive map M
-```
-
-and not yet:
+The unresolved question is the scope of the identifier:
 
 ```text
-consumer used archive version V of M
+Does observation_id identify every evaluated observation,
+or only observations that produce proposals?
 ```
+
+The runtime contract must choose one interpretation explicitly. It must not claim
+the stronger first interpretation while persisting identity only for the second.
 
 ### Separating witness
 
-Construct two historical versions of the same map:
+Use one observation identifier `O`:
 
 ```text
-M@v1  digest = H1
-M@v2  digest = H2
+1. O + payload A -> below threshold -> no proposal
+2. same O + payload B, B != A -> evaluate again
+3. restart
+4. replay same-id cases
 ```
 
-with one verified read/use action consuming exactly one of them.
+Required tests if `observation_id` identifies **all** observations:
 
-Required tests:
+1. the first below-threshold evaluation leaves a bounded durable outcome;
+2. same ID + same payload is idempotent;
+3. same ID + changed payload is rejected before restart;
+4. restart preserves the fingerprint/outcome;
+5. same ID + changed payload is still rejected after restart;
+6. no-proposal persistence does not create a proposal, execute restructuring or
+   enlarge Curator authority.
 
-1. the use receipt binds map id, version/revision and content digest;
-2. attribution to the actually consumed version is accepted;
-3. attribution to the other historical version is rejected;
-4. restart preserves the binding;
-5. telemetry/access restrictions still apply after restart;
-6. association-only records remain labelled as association-only rather than
-   silently upgraded to verified consumption.
+If instead the identifier is intentionally proposal-only, narrow and rename the
+contract so that no stronger collision guarantee is stated for all observations.
 
 ### Correction constraint
 
-Do not infer version consumption from current map identity, CURRENT pointers or
-movement destination alone. Stronger attribution requires a verified receipt at
-the read/use boundary.
+Do not turn a below-threshold observation into a proposal merely to obtain
+identity. Preserve the distinction:
+
+```text
+observed + no proposal
+!=
+not observed
+!=
+proposal emitted
+```
 
 ### Stop
 
-Stop R7 when the two-version witness and affected archive/access/restart
-regressions pass. Do not begin R8 in the same repair unit.
+Stop R8 when the selected ID semantics, separating witness, restart case and
+affected Curator/WAL regressions pass. Do not begin the full PSI memory run in
+the same repair unit.
 
 ## Recorded implementation state
 
@@ -143,10 +160,11 @@ R2   PASS_WITH_BOUNDARY
 R3   PASS_WITH_BOUNDARY
 R4   PASS_WITH_BOUNDARY
 R6   PASS_WITH_BOUNDARY
+R7   PASS_WITH_BOUNDARY
 F2.1 PASS_WITH_BOUNDARY; R6 CLOSED
 F3.0 CONTRACT_PASS
 F3.1 PASS_WITH_BOUNDARY
-F3.2 PASS_WITH_BOUNDARY; R7 OPEN
+F3.2 PASS_WITH_BOUNDARY; R7 CLOSED
 F3.3 PASS_WITH_BOUNDARY; R8 OPEN
 F3   REFERENCE_CASES_PASS; HARDENING_OPEN
 F4.0 CONTRACT_PASS
@@ -157,16 +175,20 @@ F4.4 DEFERRED_AFTER_R5
 F5   NOT_RUN
 ```
 
+## R7 boundary retained
+
+`VERIFIED_CONSUMPTION` proves that the typed archive read path returned the
+specified version/revision/content digest and that its durable receipt is bound
+to the same movement. It does **not** prove that a downstream model inspected
+every field, understood the payload, relied on it in reasoning or improved an
+answer because of it. Those are later efficacy claims.
+
 ## R6 boundary retained
 
 The current meter runs before durable movement. Its returned vector is therefore
 a `PREEXECUTION_QUOTE`, not a measurement of work already incurred by commit,
-fsync and telemetry. `incurred_cost=None` means unmeasured, not zero.
-
-The declared cost units are normalized reference units. Scalar comparison uses
-a named `CostScalarization` contract. No cumulative allocation/debit ledger is
-claimed. R6 is sufficient to prevent the earlier semantic collapse, not to
-establish a full economic evaluation of PSI.
+fsync and telemetry. `incurred_cost=None` means unmeasured, not zero. No
+cumulative allocation/debit ledger is claimed.
 
 ## Visual front retained but deferred
 
@@ -174,8 +196,7 @@ R5 remains necessary because current visible relations do not yet guarantee that
 `A -> B` and `B -> A` are distinguishable to the viewer in every claimed visual
 consumer. R4 guarantees status redaction but does not close directionality.
 
-When the correction front R7/R8 and bounded full memory run are complete, the
-visual sequence can resume:
+After R8 and the bounded full memory run, the visual sequence may resume:
 
 ```text
 R5 -> F4.4 SPLIT
