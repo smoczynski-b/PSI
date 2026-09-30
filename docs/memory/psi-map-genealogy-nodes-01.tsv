@@ -1,0 +1,21 @@
+id	date	kind	status	source_id	label	role
+HII-1977	1977	HISTORICAL_ARCHITECTURE	SOURCE_VERIFIED	SRC-HII-1977	HEARSAY-II blackboard	Shared mutable problem state with data-directed knowledge-source activation
+BB1-1985	1985	HISTORICAL_ARCHITECTURE	SOURCE_VERIFIED	SRC-BB1-1985	Blackboard control architecture	Explicit meta-control over problem solving and system behavior
+KM-2003	2003	HISTORICAL_MARKET	SOURCE_VERIFIED	SRC-KM-2003	Knowledge Market	Agent-mediated exchange of organizational knowledge
+AMELI-2004	2004	HISTORICAL_INSTITUTION	SOURCE_VERIFIED	SRC-AMELI-2004	AMELI electronic institution	Institutional mediation and rule enforcement through governors/managers
+MAPEK-2005	2005	HISTORICAL_CONTROL	SOURCE_VERIFIED	SRC-MAPEK-2005	MAPE-K autonomic manager	Monitor-analyze-plan-execute loop around shared knowledge and effectors
+NANOPUB-2010	2010	HISTORICAL_KNOWLEDGE_OBJECT	SOURCE_VERIFIED	SRC-NANOPUB-2010	Nanopublication	Referencable small knowledge object with provenance and publication metadata
+DDNA-2012	2012	HISTORICAL_KNOWLEDGE_OBJECT	SOURCE_VERIFIED	SRC-DDNA-2012	Decisional DNA / SOEKS	Shareable representation of decisional experience; proposed basis for knowledge market
+AIS-FDDR-2015	2015	HISTORICAL_IMMUNE	SOURCE_VERIFIED	SRC-AIS-FDDR-2015	Artificial immune systems for FDDR	Detection diagnosis isolation and recovery of anomalous/fault states
+PROVK-2025	2025	CONTEMPORARY_PROVENANCE	SOURCE_VERIFIED	SRC-PROVK-2025	Provenance-driven nanopublications	Multi-source support/refutation provenance and trust relations among agents/facts
+LLM-BB-2025	2025	CONTEMPORARY_MAS	SOURCE_VERIFIED	SRC-LLM-BB-2025	LLM blackboard multi-agent system	Agents coordinate through shared blackboard state rather than fixed message workflow
+WMAS-2026	2026	CONTEMPORARY_MAS	SOURCE_VERIFIED	SRC-WMAS-2026	World-centered multi-agent systems	Shared explicit world representation above isolated agent-local representations
+PSI-TASK-GATE	2026	CURRENT_PSI	REPO_VERIFIED	SRC-PSI-II4	PSI task-relative representation gate	Representation may collapse only distinctions irrelevant to task: ker_eq rho subset E_T,c
+PSI-SHARED-MEMORY	2026	CURRENT_EXECUTION	PASS_WITH_BOUNDARY	SRC-PSI-SHARED	PSI shared active memory	Authoritative MVCC memory with local workspaces selective routing and invalidation
+PSI-DURABLE-MEMORY	2026	CURRENT_EXECUTION	PASS_WITH_BOUNDARY	SRC-PSI-WAL	PSI durable shared memory	WAL-backed recovery of authoritative commits and derived local workspaces
+PSI-MAP-OBJECT	2026	CURRENT_CONCEPT	CANDIDATE	SRC-PSI-MEMORY	Map as derived memory object	Contract-scoped relational/representational object with provenance dependencies status and genealogy
+PSI-GUARDIAN	2026	CURRENT_ROLE	CANDIDATE	SRC-PSI-MEMORY	Guardian	Admission/boundary role deciding whether a typed object/action may enter execution
+PSI-SERVANT	2026	CURRENT_ROLE	CANDIDATE	SRC-PSI-WAL	Servant	Procedural observer/chronicler of legal state transitions with only local corrective agency
+PSI-IMMUNE	2026	CURRENT_ROLE	CANDIDATE	SRC-PSI-WAL	Immune layer	Detect isolate remember and recover from pathological system behavior without deciding domain truth
+PSI-CURATOR	2026	CURRENT_ROLE	CANDIDATE	SRC-PSI-MEMORY	Curator	Maintains map genealogy provenance versioning supersession archival and legal reuse scope
+PSI-MAP-EXCHANGE	2026	CURRENT_SYNTHESIS	UNRESOLVED_NOVELTY	SRC-PSI-SHARED	FORUM as map exchange	Agents exchange/fork/refine/compose contract-scoped maps rather than only prose claims
