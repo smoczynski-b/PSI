@@ -81,6 +81,17 @@ def verify_manim_plan(plan: ManimPlan) -> None:
             raise ValueError("ManimPlan duplicated keyframe digest mismatch")
         if str(source["timeline_payload_digest"]) != plan.source_timeline_digest:
             raise ValueError("ManimPlan duplicated timeline digest mismatch")
+        for row in plan.payload["assets"].values():
+            if row.get("kind") != "EDGE":
+                continue
+            semantics = str(row.get("relation_semantics", "UNSPECIFIED"))
+            primitive = str(row.get("primitive", "line+text"))
+            if semantics == "DIRECTED" and primitive != "arrow+text":
+                raise ValueError("ManimPlan directed edge primitive mismatch")
+            if semantics in {"SYMMETRIC", "UNSPECIFIED"} and primitive != "line+text":
+                raise ValueError("ManimPlan non-directed edge primitive mismatch")
+            if semantics not in {"DIRECTED", "SYMMETRIC", "UNSPECIFIED"}:
+                raise ValueError("ManimPlan invalid relation semantics")
     except KeyError as exc:
         raise ValueError("ManimPlan missing source binding") from exc
 
@@ -123,22 +134,36 @@ def render_svg(keyframe: PrintKeyframe) -> SVGRender:
         '<?xml version="1.0" encoding="UTF-8"?>',
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         f'  <metadata id="psi-viz-binding">{meta_text}</metadata>',
+    ]
+    if any(str(row.get("relation_semantics", "UNSPECIFIED")) == "DIRECTED" for row in payload["edges"]):
+        lines.extend([
+            '  <defs>',
+            '    <marker id="psi-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">',
+            '      <path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/>',
+            '    </marker>',
+            '  </defs>',
+        ])
+    lines.extend([
         f'  <rect id="psi-background" x="0" y="0" width="{width}" height="{height}" fill="{background}"/>',
         '  <g id="psi-edges">',
-    ]
+    ])
 
     for row in sorted(payload["edges"], key=lambda r: str(r["asset_id"])):
         asset = str(row["asset_id"])
         stroke = _attr(row["stroke"])
         relation = _attr(row["relation"])
+        semantics = str(row.get("relation_semantics", "UNSPECIFIED"))
+        if semantics not in {"DIRECTED", "SYMMETRIC", "UNSPECIFIED"}:
+            raise ValueError("unsupported SVG relation semantics")
         label = escape(str(row["label"]))
         x1, y1, x2, y2 = (_num(row[k]) for k in ("x1", "y1", "x2", "y2"))
         mx = _num((float(row["x1"]) + float(row["x2"])) / 2.0)
         my = _num((float(row["y1"]) + float(row["y2"])) / 2.0)
         lines.append(
-            f'    <g id="{_xml_id(asset)}" data-asset-id="{_attr(asset)}" data-relation="{relation}">'
+            f'    <g id="{_xml_id(asset)}" data-asset-id="{_attr(asset)}" data-relation="{relation}" data-relation-semantics="{_attr(semantics)}">'
         )
-        lines.append(f'      <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke}"/>')
+        marker = ' marker-end="url(#psi-arrowhead)"' if semantics == "DIRECTED" else ""
+        lines.append(f'      <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke}"{marker}/>')
         lines.append(f'      <text x="{mx}" y="{my}" text-anchor="middle">{label}</text>')
         if "status" in row and str(row["status"]):
             lines.append(f'      <text class="psi-visible-status" x="{mx}" y="{_num(float(my) + 16)}" text-anchor="middle">{escape(str(row["status"]))}</text>')
@@ -203,6 +228,8 @@ def compile_manim_plan(
             "from_object_id": row["from_object_id"],
             "to_object_id": row["to_object_id"],
             "relation": row["relation"],
+            "relation_semantics": row.get("relation_semantics", "UNSPECIFIED"),
+            "primitive": row.get("primitive", "line+text"),
             "stroke": row["stroke"],
         }
 
