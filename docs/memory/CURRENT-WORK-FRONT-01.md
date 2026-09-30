@@ -19,72 +19,79 @@ F3.2 PASS_WITH_BOUNDARY
 F3.3 PASS_WITH_BOUNDARY
 F3   FUNCTIONALLY_CLOSED_REFERENCE_LEVEL
 F4.0 CONTRACT_PASS
-F4.1 NEXT
+F4.1 PASS_WITH_BOUNDARY
+F4.2 NEXT
 ```
 
-## F4.0 — wynik
+## F4.1 — wynik
 
-Powstał minimalny kompilator `Workspace + VisualContract + LayoutSpec -> VisualFrame`, który jawnie rozdziela:
+Jeden zweryfikowany `VisualFrame` jest teraz źródłem dwóch reprezentacji wykonawczych bez dostępu renderera do autorytatywnego `Workspace`:
 
 ```text
-semantic_layer / semantic_digest
-layout_layer   / layout_digest
+VisualFrame
+├─> PrintKeyframe
+└─> AnimationTimeline
 ```
 
 Zamrożone:
 
 \[
-\boxed{visual\ projection\neq authoritative\ memory}
+\boxed{renderer\ input=checked\ VisualFrame,\ not\ authoritative\ memory}
 \]
 
 \[
-\boxed{semantic\ layer\neq layout\ layer}
+\boxed{graphic\ identity\neq screen\ position}
 \]
 
 \[
-\boxed{screen\ distance\ has\ no\ metric\ meaning\ in\ F4.0}
+\boxed{PROJECTION\ REDACTION\ survives\ rendering}
 \]
 
-Świadek wykorzystuje strukturę odpowiadającą intuicji `|F(Y)|>1` przy `|q_T(F(Y))|=1`: dwa kompatybilne obiekty `x1,x2` schodzą do tego samego obiektu zadaniowego `m`. Dwa różne layouty (`FIBRE_LAYOUT`, `QUOTIENT_LAYOUT`) zachowują identyczny `semantic_digest`, a mają różne `layout_digest`.
+`PrintKeyframe` jest neutralnym, wektorowo-bezpiecznym opisem sceny (`circle+text`, `line+text`, brak gradientów) z przypiętymi digestami źródła. Stabilny `asset_id` zależy od tożsamości obiektu/relacji, a nie od współrzędnych; dwa layouty tej samej sceny zachowują te same identyfikatory graficzne.
 
-`REPOSITION` jest legalne tylko wtedy, gdy zmienia się layout bez zmiany semantycznej. Zdarzenie takie jak `EDGE_ADD` wymaga rzeczywistej zmiany `semantic_digest`. Stary kontrakt wizualny nie może po cichu renderować nowej rewizji pamięci.
+`AnimationTimeline` używa rygla F4.0. Dla `REPOSITION` emituje tylko `MOVE_NODE` przy identycznym `semantic_digest`. Dla rzeczywistego zdarzenia semantycznego emituje jedynie zadeklarowane `SEMANTIC_EVENT` wskazujące digest stanu przed/po; renderer nie rekonstruuje sam matematyki z geometrii.
 
-`visible_metadata` jest częścią kontraktu: ograniczony widok usuwa `provenance` z payloadu zamiast ukrywać je jedynie graficznie. Layout musi zawierać dokładnie zbiór widocznych węzłów — ciche zniknięcie obiektu jest błędem.
+W jednej animacji muszą pozostać stałe:
 
-Workflow `PSI-VIZ F4.0 contract`, run `36758342287`, zakończył się `success`. W tym samym jobie przeszły:
+```text
+task_id
+visible_metadata
+channel_meanings
+```
+
+Zmiana zadania albo widoczności metadanych nie może udawać zmiany pamięci. Renderer nie może odzyskać `provenance`, jeśli zostało ono usunięte na granicy F4.0.
+
+Workflow `PSI-VIZ F4.1 outputs`, run `36759122579`, zakończył się `success`. W jednym jobie przeszły:
 
 ```text
 F4.0 PSI-VIZ projection contract
+F4.1 print/animation output contract
 finite representation control
 active memory regression
 institutional constitution
 ```
 
-Pierwszy run F4.0 ujawnił wyłącznie błąd konfiguracji CI (`fetch-depth: 1`) dla historycznie przypiętego testu reprezentacji; po ustawieniu `fetch-depth: 0` ten sam test przeszedł bez zmiany kodu F4.0.
+Szczegóły: `docs/memory/PSI-VIZ-F4.1-01.md`.
 
-Szczegóły: `docs/memory/PSI-VIZ-F4.0-01.md`.
+## F4.2 — następna jednostka
 
-## F4.1 — następna jednostka
+**REAL VECTOR RENDERER + MINIMAL ANIMATION ADAPTER.**
 
-**PRINT KEYFRAME + ANIMATION TIMELINE FROM THE SAME VISUALFRAME.**
-
-Nie wolno ponownie definiować semantyki w rendererze. Jeden `VisualFrame` ma kompilować się do dwóch reprezentacji wykonawczych:
+Pierwszy rzeczywisty rendering ma zużywać wyłącznie formaty pośrednie F4.1:
 
 ```text
-VisualFrame
-├─> print scene description (SVG/PDF-safe geometry + labels)
-└─> animation timeline (Manim-ready declarative events)
+PrintKeyframe      -> deterministic SVG
+AnimationTimeline -> minimal Manim adapter / executable scene description
 ```
 
-Minimalny świadek F4.1:
+Minimalny świadek F4.2:
 
-1. wykorzystać dokładnie scenę F4.0 `Y,x1,x2,m`;
-2. wygenerować statyczną klatkę kluczową w stylu PSI/Byrne bez gradientów i poświaty;
-3. wygenerować deklaratywną sekwencję `REPOSITION`, a następnie rzeczywiste zdarzenie semantyczne;
-4. ten sam `semantic_digest` ma być zapisany w klatce drukowej i osi animacji;
-5. identyfikatory obiektów, kolory/symbole i typy relacji mają być stabilne między klatkami;
-6. renderer nie może dodawać relacji ani metadanych nieobecnych w `VisualFrame`;
-7. klatka statyczna ma być wektorowo eksportowalna, a timeline możliwy do podania do Manima bez ręcznego przepisywania matematyki;
-8. kontrola ujemna: zmiana współrzędnych nie może stworzyć semantycznego eventu, a ukryte `provenance` nie może pojawić się w eksporcie.
-
-Po F4.1 można przejść do rzeczywistego renderera/filmu i następnie do F5 — pomiaru skuteczności reprezentacji.
+1. wyrenderować scenę `Y,x1,x2,m` do prawdziwego SVG bez ponownego dostępu do `Workspace`;
+2. SVG ma zawierać źródłowy `semantic_digest`, `layout_digest` i `profile_id` jako metadane;
+3. wszystkie `asset_id` z `PrintKeyframe` muszą pojawić się w SVG i pozostać stabilne;
+4. brak gradientów, filtrów, rastrów i ukrytych metadanych semantycznych;
+5. sprawdzić deterministyczność: ten sam `PrintKeyframe` -> identyczny digest SVG;
+6. przygotować minimalny adapter timeline, który mapuje `MOVE_NODE` na instrukcje Manim bez dopisywania relacji;
+7. `SEMANTIC_EVENT` bez jawnego adaptera danego typu ma działać fail-closed, a nie być zgadywane;
+8. klatka SVG ma być bezpiecznym źródłem dla późniejszego PDF/druku;
+9. po F4.2 można wykonać rzeczywisty krótki film i dopiero potem wejść w F5 — pomiar skuteczności reprezentacji.
