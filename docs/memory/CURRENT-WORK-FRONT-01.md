@@ -6,14 +6,15 @@
 **Full bounded acceptance run:** `36781418888`  
 **F5 preparation run:** `36784242295`  
 **R5 real-render run:** `36788563749`  
+**F4.4 typed-SPLIT run:** `36791415147`  
 **Scope:** current work selection for PSI memory / model efficacy / visualization.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
 ## Current decision
 
-**R5 — CLOSED `PASS_WITH_BOUNDARY`. NEXT: F4.4 — bounded graphical / animation trial.**
+**F4.4 — CLOSED `PASS_WITH_BOUNDARY`. No automatic visual successor is defined.**
 
-F5 remains frozen at `PREPARATION_PASS / MODEL_RUN_BLOCKED`. No F5 prompt, source selection, model answer or evaluator state was rebuilt while R5 was resumed.
+F5 remains frozen at `PREPARATION_PASS / MODEL_RUN_BLOCKED`. No F5 prompt, source selection, model answer or evaluator state was rebuilt while R5/F4.4 were executed.
 
 Current state:
 
@@ -21,22 +22,109 @@ Current state:
 FULL_BOUNDED_RUN = PASS_WITH_BOUNDARY
 R9 = NOT_CREATED
 R5 = PASS_WITH_BOUNDARY
-F4.4 = NEXT / NOT_RUN
+F4.4 = PASS_WITH_BOUNDARY
 F5_PREPARATION = PASS
 F5_MODEL_EFFICACY = NOT_RUN
 F5_EXECUTION = BLOCKED_BY_ZERO_ALLOCATED_CREDITS
+NEXT_AUTOMATIC = NONE
+NEXT = EXPLICIT_SELECTION_REQUIRED; OR RESUME_F5_WHEN_CREDITS_EXIST
 ```
 
 Primary evidence:
 
+- [`PSI-VIZ-F4.4-01.md`](PSI-VIZ-F4.4-01.md)
 - [`PSI-VIZ-R5-RELATION-DIRECTION-01.md`](PSI-VIZ-R5-RELATION-DIRECTION-01.md)
 - [`PSI-MEMORY-F5-MODEL-EFFICACY-01.md`](PSI-MEMORY-F5-MODEL-EFFICACY-01.md)
 - `experiments/f5-evaluation-contract.json`
 - `scripts/prepare_f5_evaluation.py`
 
+## F4.4 closure
+
+F4.4 implements the first bounded typed semantic adapter:
+
+```text
+SPLIT
+```
+
+The defect exposed by the separating witness was:
+
+```text
+semantic_digest changed
+!=
+typed SPLIT
+```
+
+FAIL-before:
+
+```text
+run: 36790115371
+job: 110140769727
+failure: generic semantic change was incorrectly accepted as SPLIT
+```
+
+Correction:
+
+```text
+generic transition path no longer owns SPLIT
++
+dedicated SplitEventSpec / SplitTimeline adapter
++
+exact before/after digest and revision binding
++
+one surviving source object
++
+exactly one new object
++
+exactly one new DIRECTED separating relation
++
+no removal/rewrite of old semantics
++
+no repositioning of pre-existing objects
+```
+
+Positive source-only gate:
+
+```text
+run: 36790864284
+```
+
+Final real-Manim acceptance:
+
+```text
+run: 36791415147
+job: 110144932999
+conclusion: success
+codec: h264
+resolution: 854 x 480
+duration: 1.733333 s
+decoded frames: 26
+changed RGB pixels first -> last: 11592
+```
+
+Artifact:
+
+```text
+id: 11131048847
+name: psi-viz-f4.4-typed-split
+size: 1072417 bytes
+sha256:66e3c5d735bbf18ac30ed9b211e74c17693d2cf81043c893db2c2455514f43fc
+```
+
+The final job re-passed R3, R4, F4.0-F4.3 and both source and real-render R5 gates.
+
+Legal scope:
+
+```text
+TYPED_SPLIT_VISIBLE
+```
+
+only for the bounded one-source/one-new-object/one-separating-relation shape. It does not establish relation truth, universal semantic-event coverage, human/model comprehension, improved reasoning, or aesthetic optimality.
+
+Legibility and hierarchy remain covered only by existing renderer/F4.3 technical guards and this concrete static/animation witness; no human-subject design-quality result is claimed.
+
 ## R5 closure
 
-The visual contract now types relation semantics explicitly:
+The visual contract types relation semantics explicitly:
 
 ```text
 UNSPECIFIED | DIRECTED | SYMMETRIC
@@ -60,21 +148,7 @@ DIRECTED reversal  -> different pixels
 SYMMETRIC reversal -> identical pixels
 ```
 
-The same job re-passed R3, R4 and F4.0-F4.3. R5 therefore closes only the typed visible-direction boundary; it does not establish aesthetic quality, semantic truth or universal human/model comprehension.
-
-## F4.4 next-step boundary
-
-F4.4 may now exercise the validated PSI-VIZ path as an actual graphical / animation sample. It must not reinterpret R5 as proof of design quality.
-
-The next unit should remain bounded:
-
-```text
-1. select one existing PSI structure / transformation as the visual subject;
-2. produce one coherent print/static composition and one short animation from the same typed semantics;
-3. preserve R3/R4/R5 integrity and redaction guarantees;
-4. evaluate legibility, hierarchy, relation direction and transformation continuity;
-5. stop before turning aesthetic preferences into PSI canon.
-```
+R5 closes only the typed visible-direction boundary; it does not establish aesthetic quality, semantic truth or universal human/model comprehension.
 
 ## Frozen F5-HOLDOUT-V1
 
@@ -153,9 +227,11 @@ P_i(S)\not\Rightarrow S.
 In particular:
 
 ```text
+semantic change != typed SPLIT
+typed SPLIT visible != relation truth
+rendered transition != semantic understanding
+F4.4 PASS != design-quality theorem
 visible direction != relation truth
-rendered relation != semantic understanding
-R5 PASS != F4.4 design PASS
 prepared prompts != model efficacy
 retrieved source != semantic understanding
 smaller context != better answer
@@ -190,10 +266,12 @@ F4.0 CONTRACT_PASS
 F4.1 PASS_WITH_BOUNDARY
 F4.2 PASS_WITH_BOUNDARY; R5 CLOSED
 F4.3 PASS_WITH_BOUNDARY; R5 CLOSED
-F4.4 NEXT / NOT_RUN
+F4.4 PASS_WITH_BOUNDARY
 F5   PREPARATION_PASS / MODEL_RUN_BLOCKED
 ```
 
 ## Stop
 
-R5 is closed. Do not claim F4.4 `PASS` before an actual graphical / animation trial. Do not claim F5 `PASS`, and do not substitute answers produced in this conversation for independent runner executions.
+F4.4 is closed. No F4.5 or other automatic visual successor is defined in the current work contract. Do not create one merely because F4.4 passed.
+
+Do not claim F5 `PASS`, and do not substitute answers produced in this conversation for independent runner executions. Resume frozen F5 only when model credits are actually available, or wait for an explicit user selection of another project front.
