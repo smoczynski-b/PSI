@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import hashlib
 import json
 
 from active_memory import compile_workspace
@@ -49,6 +50,11 @@ def visual_contract(ws):
     )
 
 
+def payload_digest(payload: dict) -> str:
+    canonical = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
 def main() -> None:
     ws = compile_workspace(CONTRACT, RETRIEVAL)
     layout_a = LayoutSpec(
@@ -93,19 +99,19 @@ def main() -> None:
     assert "Workspace" not in scene.source
     assert "source:fibre" not in scene.source
     assert "source:quotient" not in scene.source
-    assert scene.source.count("always_redraw") == 8  # line + label for 4 typed edges
-    assert scene.source.count("self.play(") == 1  # four same-interval moves are parallel
+    assert scene.source.count("always_redraw") == 8
+    assert scene.source.count("self.play(") == 1
     assert scene.source.count(".animate.move_to(") == 4
     assert "COMPATIBLE_WITH" in scene.source
     assert "TASK_EQUIV" in scene.source
     assert "run_time=1.25" in scene.source
-    # Legibility regression after inspecting the first real render.
     assert "def _relation_label" in scene.source
     assert "BackgroundRectangle" in scene.source
     assert "font_size=12" in scene.source
-    assert "#FFFFFF" in scene.source  # dark node fills get contrasting light labels
+    assert "#FFFFFF" in scene.source
 
-    # F4.3 refuses a richer schedule rather than serializing/guessing it.
+    # Scheduler test is independent of R3 integrity. Recompute the digest after
+    # intentionally constructing a hash-consistent but unsupported schedule.
     bad_payload = json.loads(json.dumps(plan.payload))
     bad_payload["actions"][0]["t0"] = 0.1
     from psi_viz_renderer import ManimPlan
@@ -113,7 +119,7 @@ def main() -> None:
         plan.source_keyframe_digest,
         plan.source_timeline_digest,
         bad_payload,
-        "deliberately-modified-test-plan",
+        payload_digest(bad_payload),
     )
     try:
         compile_executable_manim_scene(bad_plan)
