@@ -185,8 +185,8 @@ def main() -> None:
     before_svg = render_svg(before_keyframe)
     after_svg = render_svg(after_keyframe)
     assert before_svg.svg_digest != after_svg.svg_digest
-    assert "x2'" not in before_svg.svg
-    assert "x2'" in after_svg.svg
+    assert "x2&#x27;" not in before_svg.svg
+    assert "x2&#x27;" in after_svg.svg
     assert 'data-relation="SEPARATED_BY_OBSERVATION"' in after_svg.svg
     assert 'data-relation-semantics="DIRECTED"' in after_svg.svg
 
