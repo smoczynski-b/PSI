@@ -75,7 +75,7 @@ Obsługiwane zdarzenia fazy 01:
 - `NODE_STATUS_SET`;
 - `FORUM_OBJECT_SEEN`.
 
-Delta niezwiązana z aktywnymi węzłami nie zmienia lokalnego `Workspace`. Delta dotykająca aktywnego komponentu może dołączyć nowy węzeł i relację. Identyfikator zdarzenia zapewnia idempotencję ponownego dostarczenia.
+Delta niezwiązana z aktywnymi węzłami nie zmienia lokalnego `Workspace`. Delta dotykająca aktywnego komponentu może dołączyć nowy węzeł i relację. Identyfikator zdarzenia zapewnia idempotencję ponownego dostarczenia. Czasy zdarzeń muszą być jawnie strefowe; faza 01 rozróżnia `event_time` i `ingest_time`.
 
 Nie dowodzi to jeszcze asymptotycznej przewagi. Faza 01 ustanawia semantykę, którą później trzeba zmierzyć względem pełnej rekonstrukcji.
 
@@ -103,7 +103,13 @@ Faza 01 **nie zmienia PSI-FORUM**. Dostarcza wyłącznie funkcję tłumaczącą 
 
 Zwykłe `CLAIM`, `PROOF`, `COUNTEREX`, `UNRESOLVED` lub `TEST` są na tym poziomie tylko `FORUM_OBJECT_SEEN`; samo zobaczenie obiektu nie mutuje semantycznego grafu.
 
-Tylko jawny obiekt `RELATION` z typowanym payloadem `from/relation/to` może stać się propozycją `EDGE_UPSERT`. Nadal nie jest to automatyczny dowód prawdziwości relacji. Adapter zachowuje `forum:<OID>` jako pochodzenie.
+Również samo istnienie jawnego obiektu `RELATION` z payloadem `from/relation/to` **nie wystarcza do dopuszczenia relacji**. Domyślnie adapter zwraca tylko `FORUM_OBJECT_SEEN`. Dopiero wywołujący, który wcześniej przeszedł odpowiednią bramę źródło/kontrakt/FORUM, może jawnie ustawić `admitted=True`; wtedy powstaje `EDGE_UPSERT` z pochodzeniem `forum:<OID>` i statusem `ADMITTED_FORUM_RELATION`.
+
+Zatem:
+
+\[
+\boxed{\text{FORUM object observed}\neq\text{relation admitted}.}
+\]
 
 Docelowy kierunek po przejściu fazy 01:
 
@@ -123,15 +129,17 @@ z selektywną propagacją do tych agentów, których aktywne światy zależą od
 4. ponowne dostarczenie tego samego eventu jest idempotentne;
 5. snapshot odtwarza identyczny skrót stanu;
 6. invalidacja reaguje tylko na zależności snapshota;
-7. zwykły `CLAIM` FORUM nie mutuje grafu;
-8. jawny `RELATION` może zostać włączony do aktywnego widoku, z zachowaniem pochodzenia.
+7. `CLAIM` FORUM nie mutuje grafu;
+8. nieadmitowany `RELATION` FORUM nie mutuje grafu;
+9. jawnie dopuszczony `RELATION` może wejść do aktywnego widoku z zachowaniem pochodzenia;
+10. czas bez strefy jest odrzucany.
 
 ## 9. Następne fazy — nie wykonane w tym kroku
 
 - pomiar `full reconstruction` vs `delta update`;
 - indeks odwrotnych zależności i propagacja invalidacji;
 - równoległe workspaces wielu agentów;
-- event-time / ingest-time / process-time z reorder window;
+- `processing_time` oraz polityka reorder window;
 - adapter PyTorch sparse i test zgodności CPU/GPU;
 - subskrypcje FORUM i routing delty;
 - test, czy koszt kroku zależy od `|Delta|` bardziej niż od `|M|`.

@@ -25,7 +25,10 @@ def _iso_now() -> str:
 def _parse_time(value: str) -> datetime:
     if not isinstance(value, str) or not value:
         raise ValueError("time must be a non-empty ISO-8601 string")
-    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if dt.tzinfo is None:
+        raise ValueError("time must include a timezone offset")
+    return dt
 
 
 @dataclass(frozen=True, order=True)
@@ -288,16 +291,18 @@ def forum_object_to_event(
     *,
     event_time: str,
     ingest_time: str | None = None,
+    admitted: bool = False,
 ) -> MemoryEvent:
     """Translate a FORUM object conservatively.
 
-    Only an explicit RELATION with typed from/relation/to payload becomes an edge
-    proposal. Other objects are observations and do not mutate semantic state.
+    Seeing a typed RELATION is not enough for semantic admission. Only a caller
+    that has already passed the appropriate FORUM/source/contract gate may set
+    admitted=True and obtain an EDGE_UPSERT event.
     """
     ingest = ingest_time or event_time
     kind = str(obj.get("kind", "")).strip()
     payload = obj.get("payload", {})
-    if kind == "RELATION" and isinstance(payload, Mapping):
+    if admitted and kind == "RELATION" and isinstance(payload, Mapping):
         if all(str(payload.get(k, "")).strip() for k in ("from", "relation", "to")):
             return MemoryEvent(
                 event_id=f"forum:{oid}",
@@ -309,7 +314,7 @@ def forum_object_to_event(
                     "relation": payload["relation"],
                     "to": payload["to"],
                     "source": f"forum:{oid}",
-                    "status": "FORUM_RELATION",
+                    "status": "ADMITTED_FORUM_RELATION",
                 },
             )
     return MemoryEvent(

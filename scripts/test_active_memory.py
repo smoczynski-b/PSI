@@ -80,10 +80,21 @@ def main():
     c = apply_delta(r1.workspace, [claim])
     assert c.workspace.state_digest == r1.workspace.state_digest
 
+    relation_obj = {
+        "kind": "RELATION",
+        "payload": {"from": "II.5", "relation": "SUPPORT", "to": "II.4"},
+    }
+    relation_seen = forum_object_to_event(
+        "OID-REL", relation_obj, event_time="2026-09-30T10:02:00Z"
+    )
+    seen = apply_delta(r1.workspace, [relation_seen])
+    assert seen.workspace.state_digest == r1.workspace.state_digest
+
     relation = forum_object_to_event(
         "OID-REL",
-        {"kind": "RELATION", "payload": {"from": "II.5", "relation": "SUPPORT", "to": "II.4"}},
+        relation_obj,
         event_time="2026-09-30T10:02:00Z",
+        admitted=True,
     )
     f = apply_delta(r1.workspace, [relation])
     assert ("II.5", "SUPPORT", "II.4") in f.workspace.edges
@@ -93,6 +104,12 @@ def main():
     assert "SUPPORT" in fp["relations"]
     assert "REFINES" in fp["relations"]
     assert len(fp["nodes"]) == 6
+
+    try:
+        MemoryEvent("bad-time", "FORUM_OBJECT_SEEN", "2026-09-30T10:00:00", "2026-09-30T10:00:01Z", {})
+        raise AssertionError("naive event time accepted")
+    except ValueError:
+        pass
 
     print("PSI-ACTIVE-MEMORY-01 PASS")
     print(f"baseline_edges={len(ws0.edges)}")
