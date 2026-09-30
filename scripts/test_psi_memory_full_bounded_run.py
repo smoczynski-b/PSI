@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import copy
 import csv
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -111,8 +112,8 @@ def build_seeds():
 
 def register_factory(source: Workspace, result: Workspace):
     def register(shared):
-        shared.register(SOURCE_VIEW, source)
-        shared.register(RESULT_VIEW, result, extra_dependencies=(f"workspace:{SOURCE_VIEW}",))
+        shared.register(SOURCE_VIEW, copy.deepcopy(source))
+        shared.register(RESULT_VIEW, copy.deepcopy(result), extra_dependencies=(f"workspace:{SOURCE_VIEW}",))
     return register
 
 
