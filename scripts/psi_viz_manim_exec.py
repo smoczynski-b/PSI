@@ -119,6 +119,8 @@ def compile_executable_manim_scene(
         dst = str(row["to_object_id"])
         if src not in object_to_asset or dst not in object_to_asset:
             raise ValueError(f"edge {aid} references a node absent from the checked plan")
+        if str(row.get("relation_semantics", "UNSPECIFIED")) not in {"DIRECTED", "SYMMETRIC", "UNSPECIFIED"}:
+            raise ValueError(f"edge {aid} has unsupported relation semantics")
 
     initial_by_object = {
         str(nodes[aid]["object_id"]): tuple(float(v) for v in moved[aid]["from"])
@@ -183,12 +185,20 @@ def compile_executable_manim_scene(
         dst_var = node_vars[dst_aid]
         group_var = _var("edge", aid)
         relation = repr(str(row["relation"]))
+        semantics = str(row.get("relation_semantics", "UNSPECIFIED"))
         stroke = repr(_color(str(row["stroke"])))
         side = edge_side(row, aid)
         line_var = _var("line", aid)
         label_var = _var("label", aid)
+        if semantics == "DIRECTED":
+            connector = (
+                f"Arrow({src_var}.get_center(), {dst_var}.get_center(), buff=0.30, color={stroke}, "
+                "stroke_width=2.0, max_tip_length_to_length_ratio=0.14)"
+            )
+        else:
+            connector = f"Line({src_var}.get_center(), {dst_var}.get_center(), color={stroke}, stroke_width=2.0)"
         lines.append(
-            f"        {line_var} = always_redraw(lambda: Line({src_var}.get_center(), {dst_var}.get_center(), color={stroke}, stroke_width=2.0).set_z_index(-2))"
+            f"        {line_var} = always_redraw(lambda: {connector}.set_z_index(-2))"
         )
         lines.append(
             f"        {label_var} = always_redraw(lambda: _relation_label({relation}, {src_var}, {dst_var}, {side!r}, {stroke}, {bg_hex!r}))"
