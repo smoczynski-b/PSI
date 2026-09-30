@@ -1,0 +1,23 @@
+name: PSI memory institution regression
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/PSI-MEMORY-INSTITUTION-01.md'
+      - 'docs/memory/psi-memory-institution-*.tsv'
+      - 'scripts/test_memory_institution.py'
+      - '.github/workflows/memory-institution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  institution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify memory institution contract
+        run: python3 scripts/test_memory_institution.py
