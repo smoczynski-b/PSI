@@ -28,18 +28,30 @@ VISUAL / TENSOR EXECUTION VIEWS
 
 Każda warstwa jest projekcją lub wykonaniem warstwy wcześniejszej; żadna nie podnosi samodzielnie statusu epistemicznego treści.
 
-## F0 — naprawić integralność istniejącego runtime
+## F0 — integralność istniejącego runtime — PASS_WITH_BOUNDARY
 
-Kolejność jest zamrożona:
+Kolejność została wykonana:
 
 1. **SERVANT restart/collision — PASS.** Pierwotny ukończony werdykt pozostaje rozstrzygający po kolizji identyfikatora i restarcie; kolizja ma osobny zapis kronikarski.
 2. **IMMUNE numeric domain — PASS.** NaN, ±∞, wartości logiczne i tekst są odrzucane przed oceną sygnatury; skończone wartości muszą należeć do jawnej dziedziny sygnatury (`NONNEGATIVE_INTEGER` / `BINARY_FLAG`). Wartość spoza dziedziny nie może uruchomić reakcji ani zwiększyć licznika sygnatury.
 3. **IMMUNE recovered-view binding — PASS.** `RECOVER` zachowuje tożsamość publicznych uchwytów `shared` i `shared.views`, podmieniając ich odzyskany stan in-place. Długowieczne role instytucjonalne nie pozostają więc przy martwym indeksie; regresja wymusza, by stary uchwyt IMMUNE widział nowo zarejestrowany widok i jego zależności po recovery.
-4. **Cost accounting — NEXT.** Oddzielić liczbę wybranych widoków od rzeczywistej pracy: odświeżenie indeksów, odwiedzone krawędzie i historia zdarzeń.
+4. **Cost accounting — PASS_WITH_BOUNDARY.** `examined_workspaces` zostało oddzielone od rzeczywistej pracy lokalnej. Liczniki obejmują przetworzone zdarzenia, kopiowanie historii `processed_events`, pełne przebiegi krawędzi przy `_refresh_indices`, aktualizacje indeksów i krawędzie invalidacji. Świadek F0.4 potwierdza: globalny routing jest selektywny, ale obecna pełna lokalna aktualizacja zawiera składniki `O(|E_workspace|)` i `O(|history|)`.
 
-**Gate F0:** wszystkie istniejące regresje + osobne regresje kontrprzykładów przechodzą; żadna naprawa nie zmienia kompetencji ról.
+**Korekta twierdzenia o koszcie:**
 
-## F1 — jeden pełny przebieg zadaniowy
+\[
+\boxed{
+\text{selective routing across workspaces}
+\not\Rightarrow
+\text{full local update }O(|\Delta|)
+}
+\]
+
+Dla jednego wybranego workspace test F0.4 daje m.in. 18 odwiedzin krawędzi przy 8 krawędziach początkowych i 2050 przy 1024; kopiowanie historii rośnie odpowiednio do jej długości. Patrz `experiments/PSI-ACTIVE-MEMORY-COST-ACCOUNTING-01.md`.
+
+**Gate F0:** PASS_WITH_BOUNDARY. Wszystkie naprawy integralności mają regresje; pomiar kosztu nie ukrywa pozostających liniowych składników. Nie są one naprawiane przed F1, lecz muszą być raportowane w pełnym przebiegu.
+
+## F1 — jeden pełny przebieg zadaniowy — NEXT
 
 Wykonać jeden source-bound scenariusz end-to-end:
 
@@ -61,9 +73,11 @@ Sprawdzić równocześnie:
 - semantyczną równoważność przed i po restarcie;
 - zachowanie provenance/status/version;
 - właściwe unieważnienie tylko licencjonowanych zależności;
-- pełny koszt przebiegu, nie tylko liczbę dotkniętych widoków.
+- pełny koszt przebiegu, nie tylko liczbę dotkniętych widoków;
+- ponowne użycie przez drugiego agenta bez rekonstrukcji źródła;
+- jawne rozróżnienie `VALID reuse` od `NEEDS_RECHECK`.
 
-**Gate F1:** drugi agent może użyć wyniku bez ponownej rekonstrukcji źródła i potrafi wykazać, dlaczego użycie jest legalne lub dlaczego wymaga ponownego sprawdzenia.
+**Gate F1:** drugi agent może użyć wyniku bez ponownej rekonstrukcji źródła i potrafi wykazać, dlaczego użycie jest legalne lub dlaczego wymaga ponownego sprawdzenia. Raport musi zawierać również liczniki F0.4.
 
 ## F2 — rozdzielić istniejącego Sługę od Nadzorcy Ruchu
 
@@ -229,7 +243,7 @@ F0 \rightarrow F1 \rightarrow F2 \rightarrow F3 \rightarrow F4 \rightarrow F5 \r
 }
 \]
 
-Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle z F0, ale nie wolno rozszerzać runtime przed PASS F0/F1.
+Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle, ale nie wolno rozszerzać runtime nowymi rolami przed PASS F1.
 
 ## Czego teraz nie robić
 
@@ -240,10 +254,11 @@ Wyjątek: dokumentacja kontraktu F2/F3 może powstawać równolegle z F0, ale ni
 - nie implementować rekursywnego archiwum przez pełne kopiowanie wszystkich map;
 - nie twierdzić, że „wszystkie połączenia są realizowalne”; każda krawędź musi mieć typ, warunki, uprawnienia i koszt;
 - nie przechodzić do GPU przed wykazaniem równoważności semantycznej i pełnego kosztu lokalnego przebiegu;
-- nie używać popularności, roli instytucjonalnej ani telemetrii jako dowodu prawdziwości.
+- nie używać popularności, roli instytucjonalnej ani telemetrii jako dowodu prawdziwości;
+- nie nazywać obecnej pełnej aktualizacji `O(|Δ|)` dopóki liniowe koszty lokalnego indeksu i historii nie zostaną osobno usunięte i przetestowane.
 
 ## Najbliższa jednostka kodowa
 
-**F0.4 — full cost accounting for local update/index refresh.**
+**F1 — source-bound end-to-end reuse/restart scenario.**
 
-Po jej PASS następny ruch jest wyznaczony przez powyższą kolejność, bez ponownego wyboru architektury.
+Nie wybierać nowej architektury przed tym testem. F1 ma użyć istniejących warstw i ujawnić, czy drugi agent rzeczywiście może legalnie odziedziczyć wynik, zależności i status po zmianie oraz restarcie.
