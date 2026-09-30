@@ -1,0 +1,26 @@
+name: PSI-VIZ F4.4 semantic SPLIT
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/psi_viz_outputs.py'
+      - 'scripts/psi_viz_renderer.py'
+      - 'scripts/psi_viz_manim_exec.py'
+      - 'scripts/psi_viz_split_adapter.py'
+      - 'scripts/test_psi_viz_semantic_split_f4_4.py'
+      - 'docs/memory/PSI-VIZ-F4.4-01.md'
+      - '.github/workflows/psi-viz-semantic-split-f4-4.yml'
+  workflow_dispatch:
+
+jobs:
+  semantic-split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify F4.4 typed SPLIT witness
+        run: python3 scripts/test_psi_viz_semantic_split_f4_4.py
