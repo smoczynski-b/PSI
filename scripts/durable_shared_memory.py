@@ -182,6 +182,8 @@ class DurableSharedMemoryRuntime:
         self.wal = JSONLWAL(wal_path)
         if self.wal.read_valid_prefix().tail_truncated:
             self.wal.repair_truncated_tail()
+        initial_records = self.wal.read_valid_prefix().records
+        self._known_txids = {record["txid"] for record in initial_records}
         self.shared = self._fresh_shared()
         if recover:
             self.recover()
@@ -212,10 +214,6 @@ class DurableSharedMemoryRuntime:
                 order.append(txid)
             by_tx[txid].append(record)
         return order, by_tx
-
-    def _known_tx(self, txid: str) -> bool:
-        _, by_tx = self._records_by_tx()
-        return txid in by_tx
 
     def _propagate_committed(
         self,
@@ -260,8 +258,6 @@ class DurableSharedMemoryRuntime:
     ) -> None:
         by_id = {p.proposal_id: p for p in proposals}
         if applied:
-            # Deliberately deliver exactly one committed event and stop before
-            # the remaining events and before downstream invalidation.
             self.shared.views.dispatch(by_id[applied[0]].event)
         raise SimulatedCrash("MID_PROPAGATE")
 
@@ -275,10 +271,11 @@ class DurableSharedMemoryRuntime:
         txid = str(txid).strip()
         if not txid:
             raise ValueError("txid is required")
-        if self._known_tx(txid):
+        if txid in self._known_txids:
             raise ValueError(f"txid already exists in WAL: {txid}")
         batch = tuple(proposals)
         self.wal.append("PREPARE", txid, {"proposals": [_proposal_to_dict(p) for p in batch]})
+        self._known_txids.add(txid)
         if crash_at == "AFTER_PREPARE":
             raise SimulatedCrash("AFTER_PREPARE")
 
@@ -311,6 +308,7 @@ class DurableSharedMemoryRuntime:
     def recover(self) -> None:
         self.shared = self._fresh_shared()
         order, by_tx = self._records_by_tx()
+        self._known_txids = set(by_tx)
         for txid in order:
             records = by_tx[txid]
             prepare = next((r for r in records if r["kind"] == "PREPARE"), None)
