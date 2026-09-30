@@ -16,65 +16,82 @@ F2.1 PASS_WITH_BOUNDARY
 F3.0 CONTRACT_PASS
 F3.1 PASS_WITH_BOUNDARY
 F3.2 PASS_WITH_BOUNDARY
-F3.3 NEXT
+F3.3 PASS_WITH_BOUNDARY
+F3   FUNCTIONALLY_CLOSED_REFERENCE_LEVEL
+F4   NEXT
 ```
 
-## F3.2 — wynik
+## F3.3 — wynik
 
-Warstwa L2 łączy wersję mapy z legalnym ruchem i jego rzeczywistym kosztem bez kopiowania pełnego rekordu Nadzorcy:
+Minimalny Kustosz-planista działa jako deterministyczny automat propozycji nad jawnymi metrykami administracyjnymi i zewnętrzną, wersjonowaną polityką `authority=PSI_AGENT`.
 
 ```text
-archive version
-+ ACCESS_MOVEMENT request_id
-+ session / route
-+ actual CostVector
-+ telemetry_class
-+ movement_digest
-→ restricted L2 usage reference
+administrative metrics
++ licensed planning rule
++ explicit threshold
+→ STRUCTURE_PROPOSAL(PROPOSED)
+→ SERVANT procedural gate
+→ append-only Curator planning chronicle
 ```
 
-Zamrożone rozróżnienia:
-
-\[
-\boxed{archive\ storage\neq permission\ to\ read}
-\]
-
-\[
-\boxed{usage\ reference\neq copy(ACCESS\ telemetry)}
-\]
-
-\[
-\boxed{cost\ of\ access\neq epistemic\ strength}
-\]
-
-Szczegółowy odczyt L2 ponownie przechodzi przez `ACCESS_STEWARD.view_telemetry(...)` i aktualną politykę Strażnika. Brak `VIEW_TELEMETRY` nie usuwa audytowego odwołania, ale blokuje materializację treści ograniczonej. `T3_AGGREGATED` zwraca wyłącznie agregat wersji (`usage_count`, `total_cost_l1`) bez sesji i identyfikatora ruchu.
-
-Ruch do `M2` nie może zostać podpięty pod wersję obiektu `M1`. Restart odtwarza jednocześnie obecność sesji, wersję archiwalną i L2 usage ref oraz ponownie weryfikuje digest źródłowego `ACCESS_MOVEMENT`.
-
-Workflow `PSI memory archive usage`, run `36752648832`, zakończył się `success`; w jednym jobie przeszły F3.0, F3.1, F3.2, runtime Nadzorcy, regresja Sługi i konstytucja instytucji.
-
-Szczegóły: `docs/memory/PSI-MEMORY-ARCHIVE-F3.2-01.md`.
-
-## F3.3 — następna jednostka
-
-**MINIMAL CURATOR PLANNER RUNTIME — propozycja bez prawa wykonawczego.**
-
-Zrealizować najmniejszy automat Kustosza, który na jawnych metrykach administracyjnych potrafi zgłosić audytowalną propozycję:
+Dopuszczone typy propozycji:
 
 ```text
 EXPAND | SPLIT | MERGE | REINDEX | MIGRATE | ARCHIVE | COMPACT | REBALANCE
 ```
 
-ale nie może sam wykonać przebudowy, zwiększyć własnego budżetu, zmienić polityki dostępu ani statusu epistemicznego.
+Świadek: `district:alpha` ma `capacity_utilization=0.95`; przy regule `GTE 0.90` Kustosz emituje audytowalne `EXPAND` z kosztem, ryzykiem, zależnościami, rollbackiem i testem odbioru.
 
-Minimalny świadek F3.3:
+Zamrożone:
 
-1. sztuczna dzielnica przekracza jawny próg pojemności/obciążenia;
-2. Kustosz tworzy `EXPAND` lub `SPLIT` proposal z metrykami, kosztem, ryzykiem i wymaganym testem;
-3. pamięć nie zmienia się od samej propozycji;
-4. replay jest idempotentny, a kolizja `proposal_id` fail-closed;
-5. restart odtwarza propozycję i jej status;
-6. propozycja nie jest autoryzacją wykonania;
-7. nie ma semantycznej władzy ani samonadawania zasobów.
+\[
+\boxed{PROPOSAL\neq AUTHORIZATION\neq EXECUTION}
+\]
 
-Po PASS F3.3 można uznać F3 za funkcjonalnie domknięty na poziomie referencyjnym i przejść do F4/PSI-VIZ.
+\[
+\boxed{planning\ metric\neq epistemic\ status}
+\]
+
+\[
+\boxed{CURATOR\ does\ not\ self-author\ thresholds}
+\]
+
+Sama propozycja nie zmienia autorytatywnej pamięci (`durable.revision=0`, digest workspace bez zmian), nie zwiększa budżetu, nie zmienia polityki Strażnika ani statusu epistemicznego. Replay jest idempotentny; kolizje obserwacji/propozycji działają fail-closed; restart odtwarza status `PROPOSED`; brak autoryzowanego runbooku blokuje trwały wpis.
+
+Workflow `PSI memory curator planner`, run `36756411723`, zakończył się `success`; w jednym jobie ponownie przeszły F3.0, F3.1, F3.2, F3.3, runtime Nadzorcy, regresja Sługi i konstytucja instytucji.
+
+Szczegóły: `docs/memory/PSI-MEMORY-CURATOR-F3.3-01.md`.
+
+## F3 — domknięcie referencyjne
+
+Na poziomie referencyjnym działają łącznie:
+
+```text
+F3.0 archive contract
+F3.1 snapshot + delta + manifest + CURRENT_POINTER + restart
+F3.2 version ↔ movement ↔ cost with restricted telemetry
+F3.3 Curator proposal-only planner
+```
+
+To nie jest wdrożenie produkcyjne ani system rozproszony. Nie oznacza też, że przebudowy Kustosza są automatycznie wykonywane.
+
+## F4 — następna jednostka
+
+**PSI-VIZ — sprawdzalny widok konkretnej rewizji pamięci.**
+
+Pierwszy eksperyment F4 powinien wykorzystać już istniejący język z `Konstruowanie litery a` i aktualny stan pamięci, bez tworzenia nowej ontologii.
+
+Minimalny świadek:
+
+1. jedna zamrożona wersja/mapa pamięci i jeden kontrakt zadaniowy;
+2. dwa lub więcej layoutów tej samej relacyjnej struktury;
+3. identyczne typed relations/provenance/status/version we wszystkich widokach;
+4. ruch punktu bez zmiany relacji nie może zmieniać stanu semantycznego;
+5. zmiana relacji ma być widoczna jako jawne zdarzenie, nie jako arbitralne przesunięcie grafiki;
+6. kolor/symbol/ruch mają jawny kontrakt wizualny;
+7. jedna klatka kluczowa ma nadawać się do druku, a sekwencja do animacji;
+8. pierwsza demonstracja: faktoryzacja / włókno i rozróżnienie `|F(Y)|>1` przy `|q_T(F(Y))|=1` albo równoważny świadek już obecny w PSI-VIZ;
+9. widok nie może ujawniać telemetrii lub metadanych, do których odbiorca nie ma prawa;
+10. `visual projection != authoritative memory` pozostaje rygielkiem nadrzędnym.
+
+Dopiero po F4.0/F4.1 należy przejść do porównania efektywności reprezentacji i później do tensor/GPU.
