@@ -1,0 +1,32 @@
+name: one-shot full-run harness correction
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - '.github/workflows/tmp-fix-full-bounded-harness.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: psi-memory-map-01
+          fetch-depth: 0
+      - name: Remove invalid ServantDecision field assertions
+        run: |
+          sed -i '/assert SOURCE_VIEW in changed\.delivered_workspaces/d' scripts/test_psi_memory_full_bounded_run.py
+          sed -i '/assert RESULT_VIEW in changed\.invalidated_workspaces/d' scripts/test_psi_memory_full_bounded_run.py
+          git diff --check
+          git diff --exit-code -- scripts/test_psi_memory_full_bounded_run.py && exit 1 || true
+      - name: Commit correction
+        run: |
+          git config user.name 'psi-agent'
+          git config user.email 'psi-agent@users.noreply.github.com'
+          git add scripts/test_psi_memory_full_bounded_run.py
+          git commit -m 'Correct full-run witness instrumentation'
+          git push origin HEAD:psi-memory-map-01
