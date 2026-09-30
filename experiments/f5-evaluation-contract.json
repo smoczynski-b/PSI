@@ -1,0 +1,111 @@
+{
+  "id": "F5-HOLDOUT-V1",
+  "status": "FROZEN_BEFORE_MODEL_RUN",
+  "source_ref": "f3cee544d7642be1b74d53e233b7149a0e2c7dcd",
+  "prompt_char_limit": 80000,
+  "answer_word_limit": 600,
+  "chunk_lines": 60,
+  "bm25_k1": 1.2,
+  "bm25_b": 0.75,
+  "psi_pack_radius": 3,
+  "pilot_task": "H10",
+  "pilot_max_billable_runs": 3,
+  "model_status": "NOT_RUN",
+  "corpus": [
+    {
+      "path": "docs/principia-v2-10-strong-lumpability-bridge.md",
+      "git_blob_sha": "7ddb80f27d15d7337b59a49b8a8fa65d75aa3e81"
+    },
+    {
+      "path": "docs/principia-v2-11-myhill-nerode-bridge.md",
+      "git_blob_sha": "27e3d93eae0300c8a49f680f1856e2b5372314bd"
+    },
+    {
+      "path": "docs/principia-v2-12-paige-tarjan-benchmark.md",
+      "git_blob_sha": "770e3ba9c3e80e6ccf1ad1a195c7824bfd8710c3"
+    }
+  ],
+  "arms": {
+    "A": "ORDINARY_FULL_FROZEN_CORPUS",
+    "B": "BM25_TASK_TEXT_ONLY_MATCHED_TO_PSI_CONTEXT_BYTES",
+    "C": "EXISTING_BUILD_MEMORY_PACK_AT_FROZEN_SOURCE_REF"
+  },
+  "tasks": [
+    {
+      "id": "H10",
+      "anchor": "II.10",
+      "task_pl": "Dla II.10 wyjaśnij dokładnie, dlaczego poprawny statyczny iloraz zadaniowy nie implikuje silnej lumpowalności Markowa. Podaj warunek stabilności mas blokowych i jego rolę w zdefiniowaniu dynamiki na ilorazie, porównaj go typowo z deterministycznym zejściem dynamiki z II.6 oraz wypisz najważniejsze granice twierdzenia. Oddziel twierdzenie klasyczne od wkładu warstwy PSI i wskaż lokalizatory źródłowe.",
+      "rubric": {
+        "required_core": [
+          "task quotient does not by itself imply Markov lumpability",
+          "for equivalent states the transition mass to every quotient block must agree",
+          "under block stability the quotient transition matrix is well-defined and unique",
+          "deterministic congruence from II.6 is not the Markov block-mass condition",
+          "Kemeny-Snell criterion is classical; PSI contribution is typed placement relative to task equivalence"
+        ],
+        "required_boundaries": [
+          "does not establish weak lumpability",
+          "does not establish approximate lumpability",
+          "does not automatically cover continuous time or infinite state spaces",
+          "does not make every PSI task quotient dynamically autonomous"
+        ],
+        "forbidden_overclaims": [
+          "II.5 alone proves lumpability",
+          "replace delta by P in II.6 and the stochastic result follows mechanically",
+          "PSI claims novelty for the classical Kemeny-Snell theorem"
+        ]
+      }
+    },
+    {
+      "id": "H11",
+      "anchor": "II.11",
+      "task_pl": "Dla II.11 wyjaśnij, pod jakim dokładnie kontraktem relacja zadaniowa PSI jest identyczna z równoważnością Myhilla-Nerode'a. Pokaż rolę wszystkich prawostronnych kontynuacji, związek z II.7-II.9, status prawa kongruencji i aktualizacji po symbolu oraz granice minimalności. Oddziel klasyczne twierdzenie od dokładnej realizacji PSI i wskaż lokalizatory źródłowe.",
+      "rubric": {
+        "required_core": [
+          "histories are Sigma-star and all right continuations are future tests",
+          "under that contract E_T,L equals Nerode equivalence",
+          "right congruence makes class update by a symbol well-defined and exemplifies II.9",
+          "finite-index/minimal-DFA theorem is classical",
+          "PSI contribution is the exact contract-relative realization"
+        ],
+        "required_boundaries": [
+          "a restricted future-test family need not yield Nerode equivalence",
+          "minimal DFA state count is not universal bit, compute or representation minimality",
+          "not every PSI task equivalence is a Nerode relation",
+          "finite index is not automatic for every PSI quotient"
+        ],
+        "forbidden_overclaims": [
+          "PSI proves the classical Myhill-Nerode theorem as a new result",
+          "current acceptance alone is enough to obtain Nerode equivalence",
+          "DFA minimality implies universal computational minimality"
+        ]
+      }
+    },
+    {
+      "id": "H12",
+      "anchor": "II.12",
+      "task_pl": "Dla II.12 podaj warunki PT1-PT4, pod którymi Paige-Tarjan jest legalnym wykonawcą zadaniowego ilorazu PSI. Rozdziel semantykę zadania, docelową relację równoważności i algorytm jej obliczania; wyjaśnij granicę wobec silnej lumpowalności z II.10 i Myhilla-Nerode'a z II.11; podaj właściwy zakres twierdzeń o złożoności i wskaż lokalizatory źródłowe.",
+      "rubric": {
+        "required_core": [
+          "PT1 finite state space",
+          "PT2 initial partition exactly encodes base task distinctions",
+          "PT3 explicit binary relation encodes the relevant future stability",
+          "PT4 task equivalence equals the equivalence induced by the coarsest R-stable refinement",
+          "only after PT1-PT4 does Paige-Tarjan compute the PSI quotient blocks",
+          "task semantics, quotient target and quotient algorithm are distinct layers"
+        ],
+        "required_boundaries": [
+          "finite PSI instance alone does not imply Paige-Tarjan applicability",
+          "existential relational stability is not the numeric Markov lumpability condition",
+          "Paige-Tarjan is not the Myhill-Nerode theorem or every DFA minimizer",
+          "O(m log n) is the classical refinement bound, while explicit full accounting may include linear initialization and is not general PSI complexity"
+        ],
+        "forbidden_overclaims": [
+          "Paige-Tarjan universally computes every PSI quotient",
+          "relational stability automatically preserves transition probabilities",
+          "O(m log n) is the complexity of PSI in general"
+        ]
+      }
+    }
+  ]
+}
