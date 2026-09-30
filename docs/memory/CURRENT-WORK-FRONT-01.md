@@ -15,56 +15,66 @@ F2.0 CONTRACT_PASS
 F2.1 PASS_WITH_BOUNDARY
 F3.0 CONTRACT_PASS
 F3.1 PASS_WITH_BOUNDARY
-F3.2 NEXT
+F3.2 PASS_WITH_BOUNDARY
+F3.3 NEXT
 ```
 
-## F3.1 — wynik
+## F3.2 — wynik
 
-Referencyjny runtime archiwum potwierdza:
+Warstwa L2 łączy wersję mapy z legalnym ruchem i jego rzeczywistym kosztem bez kopiowania pełnego rekordu Nadzorcy:
 
 ```text
-base snapshot
-+ ordered deltas
-+ version manifest
-+ content digest
-+ append-only CURRENT_POINTER
-→ deterministic reconstruction
-→ restart/replay
+archive version
++ ACCESS_MOVEMENT request_id
++ session / route
++ actual CostVector
++ telemetry_class
++ movement_digest
+→ restricted L2 usage reference
 ```
 
 Zamrożone rozróżnienia:
 
 \[
-\boxed{CURRENT\neq TRUE\neq REUSABLE}
+\boxed{archive\ storage\neq permission\ to\ read}
 \]
 
 \[
-\boxed{RESTORE\_CANDIDATE\neq ADMIT}
+\boxed{usage\ reference\neq copy(ACCESS\ telemetry)}
 \]
 
 \[
-\boxed{manifest\neq reconstructed\ state}
+\boxed{cost\ of\ access\neq epistemic\ strength}
 \]
 
-Jedna baza może obsługiwać wiele wersji bez pełnej kopii snapshotu na każdą wersję. `NEEDS_RECHECK` przeżywa archiwizację i restart. Brak delty, mismatch digestu, kolizja `version_id`, błędny pointer i brak autoryzowanego runbooku działają fail-closed.
+Szczegółowy odczyt L2 ponownie przechodzi przez `ACCESS_STEWARD.view_telemetry(...)` i aktualną politykę Strażnika. Brak `VIEW_TELEMETRY` nie usuwa audytowego odwołania, ale blokuje materializację treści ograniczonej. `T3_AGGREGATED` zwraca wyłącznie agregat wersji (`usage_count`, `total_cost_l1`) bez sesji i identyfikatora ruchu.
 
-Workflow `PSI memory archive runtime`, run `36748602618`, zakończył się `success`; ponownie przeszedł także F3.0, regresja Sługi i konstytucja instytucji.
+Ruch do `M2` nie może zostać podpięty pod wersję obiektu `M1`. Restart odtwarza jednocześnie obecność sesji, wersję archiwalną i L2 usage ref oraz ponownie weryfikuje digest źródłowego `ACCESS_MOVEMENT`.
 
-## F3.2 — następna jednostka
+Workflow `PSI memory archive usage`, run `36752648832`, zakończył się `success`; w jednym jobie przeszły F3.0, F3.1, F3.2, runtime Nadzorcy, regresja Sługi i konstytucja instytucji.
 
-**L2 USAGE / MOVEMENT ARCHIVE INTEGRATION.**
+Szczegóły: `docs/memory/PSI-MEMORY-ARCHIVE-F3.2-01.md`.
 
-Połączyć archiwum z istniejącym `ACCESS_STEWARD` tak, aby L2 przechowywało referencje do historii użycia bez omijania ograniczeń telemetrii.
+## F3.3 — następna jednostka
 
-Minimalny świadek:
+**MINIMAL CURATOR PLANNER RUNTIME — propozycja bez prawa wykonawczego.**
 
-1. sesja legalnie wchodzi do `map:alpha`, przechodzi do `map:beta` i wychodzi;
-2. Nadzorca zapisuje koszt i typed movement telemetry;
-3. Kustosz archiwizuje wersje obu map;
-4. L2 zapisuje tylko identyfikatory/referencje do właściwych rekordów ruchu i kosztów;
-5. `T1_SECURITY_RESTRICTED` / `T2_AUDIT_DURABLE` nie stają się publiczne przez L2;
-6. po restarcie można wykazać: jaka wersja mapy była używana, przez jakie legalne przejście, przy jakim koszcie, bez kopiowania pełnej telemetrii;
-7. brak `VIEW_TELEMETRY` blokuje materializację treści ograniczonej, ale nie niszczy audytowego odwołania;
-8. L2 nie zmienia statusu epistemicznego mapy i nie stanowi dowodu prawdy.
+Zrealizować najmniejszy automat Kustosza, który na jawnych metrykach administracyjnych potrafi zgłosić audytowalną propozycję:
 
-Dopiero po F3.2 należy rozstrzygnąć, czy F3 wymaga jeszcze runtime planistycznego Kustosza przed przejściem do F4/PSI-VIZ.
+```text
+EXPAND | SPLIT | MERGE | REINDEX | MIGRATE | ARCHIVE | COMPACT | REBALANCE
+```
+
+ale nie może sam wykonać przebudowy, zwiększyć własnego budżetu, zmienić polityki dostępu ani statusu epistemicznego.
+
+Minimalny świadek F3.3:
+
+1. sztuczna dzielnica przekracza jawny próg pojemności/obciążenia;
+2. Kustosz tworzy `EXPAND` lub `SPLIT` proposal z metrykami, kosztem, ryzykiem i wymaganym testem;
+3. pamięć nie zmienia się od samej propozycji;
+4. replay jest idempotentny, a kolizja `proposal_id` fail-closed;
+5. restart odtwarza propozycję i jej status;
+6. propozycja nie jest autoryzacją wykonania;
+7. nie ma semantycznej władzy ani samonadawania zasobów.
+
+Po PASS F3.3 można uznać F3 za funkcjonalnie domknięty na poziomie referencyjnym i przejść do F4/PSI-VIZ.
