@@ -132,37 +132,63 @@ M_i\neq M_j\Rightarrow\|\kappa(\tau)\|_1>0
 
 Nadzorca wykonuje ruch tylko wobec jawnej wersji polityki, celu, zdolności, zgodnej lokalizacji sesji, legalnego stanu celu i budżetu. Telemetria ma osobne klasy widoczności; prawo do przejścia nie daje prawa do oglądania obecności innych sesji.
 
-**Boundary F2.0:** kontrakt only. Brak runtime, trwałego rejestru obecności i wykonania ruchu.
+### F2.1 — referencyjny runtime Nadzorcy Ruchu — PASS_WITH_BOUNDARY
 
-### F2.1 — runtime Nadzorcy Ruchu — NEXT
-
-Najbliższa jednostka wykonawcza ma zrealizować deterministyczny, typowany runtime bez natural-language deliberation:
+Wykonano deterministyczny runtime:
 
 ```text
-TransitionRequest
-→ resolve explicit Guardian policy version
-→ check purpose/capability/location/target/budget
-→ ALLOW | DENY | STOP_ESCALATE
-→ meter transition cost
-→ update session presence only on legal movement
-→ append typed telemetry
-→ durable mutation only through SERVANT/MVCC/WAL
+Guardian policy snapshot
+→ ACCESS_STEWARD
+→ purpose/capability/location/target/budget
+→ cost meter
+→ SERVANT TRANSACT
+→ MVCC + durable WAL
+→ authoritative session presence
+→ append-only movement telemetry
 ```
 
-Minimalne regresje F2.1:
+Najważniejsze rozstrzygnięcie implementacyjne:
 
-1. legalne wejście i przejście aktualizuje dokładnie jedną lokalizację sesji;
-2. brak polityki/uprawnienia/budżetu/lokalizacji działa fail-closed;
-3. `ENTER_MAP` nie umożliwia `ACT_IN_MAP`;
-4. ruch nie umożliwia eksportu danych;
-5. brak `VIEW_TELEMETRY` ukrywa telemetrię ograniczoną;
-6. cross-map zero-cost jest odrzucane;
-7. restart odtwarza obecność z trwałego dziennika bez „duchów” sesji;
-8. powtarzalny legalny ruch może zostać obserwowany przez IMMUNE, ale Nadzorca nie diagnozuje patologii;
-9. propozycja migracji Kustosza nie staje się autoryzacją bez właściwych bramek;
-10. brak semantycznej władzy i brak samonadawania praw.
+\[
+\boxed{
+\text{ACCESS_STEWARD nie utrwala obecności bezpośrednio}
+}
+\]
 
-## F3 — Kustosz + Nadzorca: archiwum „pamięci w pamięci”
+Autorytatywna obecność sesji jest zapisywana w administracyjnym workspace jako relacja `SESSION_AT::<session_id>` wyłącznie przez:
+
+\[
+\boxed{
+ACCESS\_STEWARD\to SERVANT\to MVCC\to WAL.
+}
+\]
+
+`AccessChronicle` jest osobnym append-only audytem ruchu i nie jest źródłem prawdy o bieżącej lokalizacji.
+
+Regresja `scripts/test_access_steward_runtime.py` potwierdziła:
+
+1. legalne `ENTER`, `TRANSIT`, `EXIT` i najwyżej jedną lokalizację sesji;
+2. rozdział `ENTER / ACT / EXPORT / VIEW_TELEMETRY`;
+3. brak cichej reinterpretacji starej `policy_version`;
+4. fail-closed przy braku polityki, nieznanym celu, złej lokalizacji i zamkniętym health gate;
+5. dodatni koszt szacowany i rzeczywisty dla ruchu oraz twardy budżet składowy;
+6. brak eksportu wynikającego z samego tranzytu;
+7. klasy telemetrii oraz agregację `T3` bez identyfikatorów sesji/aktorów;
+8. trwałe `COMMIT` ruchu przez Sługę;
+9. restart z rekonstrukcją obecności z autorytatywnego stanu;
+10. idempotentny replay bez drugiego ruchu;
+11. `REQUEST_ID_COLLISION -> STOP_ESCALATE`;
+12. `EXIT` bez fantomowej obecności po kolejnym restarcie;
+13. brak bezpośredniego `durable.commit` w Nadzorcy;
+14. brak semantycznej władzy Nadzorcy.
+
+Dedykowany workflow `PSI memory access steward runtime`, run `36746498419`, zakończył się `success`. W tym samym jobie przeszły ponownie: F2.0 contract, F2.1 runtime, regresja Sługi i czterorólna konstytucja instytucji.
+
+Szczegóły: `experiments/PSI-MEMORY-ACCESS-STEWARD-F2.1-01.md`.
+
+**Boundary F2.1:** pojedynczy proces i deterministyczny snapshot polityki Strażnika; brak runtime'u tworzącego politykę Strażnika, brak rozproszonej współbieżności, live FORUM i autonomicznej diagnostyki patologii. Koszt pozostaje administracyjnym wektorem kontraktowym, nie globalnym optimum.
+
+## F3 — Kustosz + Nadzorca: archiwum „pamięci w pamięci” — NEXT
 
 Minimalny model:
 
@@ -175,6 +201,8 @@ L2 — historia tworzenia, używania, przejść i kosztów L1
 Realizacja ma używać snapshotów, odwołań, hashy i delt, a nie pełnych kopii świata.
 
 `CURATOR` odpowiada za tożsamość, wersję, rodowód i `CURRENT_POINTER`; może wnosić do Agenta PSI propozycje `EXPAND / SPLIT / MERGE / REINDEX / MIGRATE / ARCHIVE / COMPACT / REBALANCE`, lecz nie wykonuje sam przebudowy. `ACCESS_STEWARD` odpowiada za historię obecności, przejść i kosztów.
+
+Pierwsza jednostka F3 ma zamrozić format archiwalnego rekordu L2 i odtworzenie wskazanego stanu przez snapshot + deltę + referencje, bez kopiowania całej pamięci przy każdym kroku.
 
 **Gate F3:** wskazany stan pamięci daje się odtworzyć z właściwym kontraktem, provenance, wersją, uprawnieniami i historią użycia.
 
@@ -250,7 +278,8 @@ Aktualnie:
 F0   PASS_WITH_BOUNDARY
 F1   PASS_WITH_BOUNDARY
 F2.0 CONTRACT_PASS
-F2.1 NEXT
+F2.1 PASS_WITH_BOUNDARY
+F3   NEXT
 ```
 
 ## Czego teraz nie robić
@@ -269,6 +298,6 @@ F2.1 NEXT
 
 ## Najbliższa jednostka
 
-**F2.1 — referencyjny runtime `ACCESS_STEWARD`.**
+**F3.0 — kontrakt archiwum L0/L1/L2 oraz rekonstrukcji snapshot + delta + referencje.**
 
-Nie rozszerzać zakresu przed przejściem regresji ruchu, kosztu, obecności, widoczności telemetrii i recovery.
+Najpierw zamrozić typy rekordów, tożsamość wersji, zależności, regułę rekonstrukcji i konflikt-registry między Kustoszem, Nadzorcą, Sługą i PSI gate. Dopiero po PASS tego kontraktu implementować archiwum.
