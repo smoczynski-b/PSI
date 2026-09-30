@@ -75,12 +75,12 @@ jobs:
 
           decoded = sorted((root / 'decoded').glob('frame-*.png'))
           assert len(decoded) >= 3, len(decoded)
-          first = Image.open(decoded[0]).convert('RGBA')
-          last = Image.open(decoded[-1]).convert('RGBA')
+          first = Image.open(decoded[0]).convert('RGB')
+          last = Image.open(decoded[-1]).convert('RGB')
           assert first.size == last.size
           diff = ImageChops.difference(first, last)
-          assert diff.getbbox() is not None, 'first and last decoded frames are pixel-identical'
-          changed = sum(1 for px in diff.getdata() if px != (0, 0, 0, 0))
+          assert diff.getbbox() is not None, 'first and last decoded RGB frames are pixel-identical'
+          changed = sum(1 for px in diff.getdata() if px != (0, 0, 0))
           assert changed > 1000, changed
 
           manifest = json.loads((root / 'manifest.json').read_text())
@@ -93,12 +93,12 @@ jobs:
               'duration_seconds': duration,
               'size_bytes': size,
               'decoded_frame_count': len(decoded),
-              'changed_rgba_pixels_first_vs_last': changed,
+              'changed_rgb_pixels_first_vs_last': changed,
           }
           (root / 'manifest.json').write_text(json.dumps(manifest, indent=2, sort_keys=True) + '\n')
           print('real_typed_split_mp4=PASS')
           print(f'decoded_frame_count={len(decoded)}')
-          print(f'changed_rgba_pixels={changed}')
+          print(f'changed_rgb_pixels={changed}')
           PY
           sha256sum \
             build/psi-viz-f4.4/psi-viz-split.mp4 \
