@@ -99,6 +99,11 @@ def main() -> None:
     assert "COMPATIBLE_WITH" in scene.source
     assert "TASK_EQUIV" in scene.source
     assert "run_time=1.25" in scene.source
+    # Legibility regression after inspecting the first real render.
+    assert "def _relation_label" in scene.source
+    assert "BackgroundRectangle" in scene.source
+    assert "font_size=12" in scene.source
+    assert "#FFFFFF" in scene.source  # dark node fills get contrasting light labels
 
     # F4.3 refuses a richer schedule rather than serializing/guessing it.
     bad_payload = json.loads(json.dumps(plan.payload))
@@ -141,6 +146,7 @@ def main() -> None:
                 "motion": "REPOSITION",
                 "visible_edges": 4,
                 "visible_nodes": 4,
+                "legibility_guard": "contrast+edge-label-background+perpendicular-offset",
             },
             ensure_ascii=False,
             indent=2,
@@ -156,6 +162,7 @@ def main() -> None:
     print("renderer_has_no_workspace_access=PASS")
     print("projection_redaction_survives_scene_source=PASS")
     print("unsupported_schedule_fail_closed=PASS")
+    print("legibility_guards=PASS")
     print(f"scene_source_digest={scene.source_digest}")
     print(f"semantic_digest={frame_a.semantic_digest}")
 
