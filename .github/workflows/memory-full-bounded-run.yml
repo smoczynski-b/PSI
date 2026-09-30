@@ -41,4 +41,4 @@ jobs:
       - name: F3.3 Curator regression
         run: python3 scripts/test_curator_planner_runtime.py
 
-# Triggered after correcting witness-only instrumentation; no runtime semantics changed.
+# Triggered after isolating mutable workspace seeds across restart; runtime semantics unchanged.
