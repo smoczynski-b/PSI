@@ -217,6 +217,14 @@ def compile_print_keyframe(frame: VisualFrame, profile: OutputProfile) -> PrintK
     )
 
 
+def _assert_animation_contract_invariant(before: VisualFrame, after: VisualFrame) -> None:
+    if before.task_id != after.task_id:
+        raise ValueError("animation cannot change task_id")
+    for field in ("visible_metadata", "channel_meanings"):
+        if before.semantic_payload.get(field) != after.semantic_payload.get(field):
+            raise ValueError(f"animation cannot change visual contract field: {field}")
+
+
 def compile_animation_timeline(
     before: VisualFrame,
     after: VisualFrame,
@@ -232,6 +240,7 @@ def compile_animation_timeline(
     if not math.isfinite(duration) or duration <= 0:
         raise ValueError("duration_seconds must be a finite positive number")
 
+    _assert_animation_contract_invariant(before, after)
     verdict = classify_transition(before, after, declared_motion)
     if not verdict["legal"]:
         raise ValueError(f"illegal visual transition: {verdict['reason']}")
