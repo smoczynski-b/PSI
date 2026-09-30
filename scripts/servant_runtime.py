@@ -9,6 +9,7 @@ import json
 
 from durable_shared_memory import DurableSharedMemoryRuntime, JSONLWAL
 from mvcc_workspace import MVCCProposal
+from shared_memory_runtime import SharedCommitResult
 
 
 def _canon(value) -> str:
@@ -100,6 +101,14 @@ class ServantDecision:
     revision_after: int
     txid: str = ""
     durable_state: str = ""
+    examined_versions: int = 0
+    examined_workspaces: int = 0
+    examined_dependency_links: int = 0
+    examined_events: int = 0
+    history_items_copied: int = 0
+    history_items_appended: int = 0
+    index_refresh_edge_visits: int = 0
+    index_membership_updates: int = 0
 
 
 @dataclass(frozen=True)
@@ -144,6 +153,10 @@ class ServantRuntime:
     truth, mutate the constitution, rewrite durable history or bypass MVCC/WAL.
     It only classifies typed transition commands and executes pre-authorized
     local protocol operations.
+
+    Work counters in `ServantDecision` are observational telemetry copied from
+    the executed `SharedCommitResult`. They do not participate in authorization,
+    disposition, or epistemic status.
     """
 
     def __init__(
@@ -194,6 +207,30 @@ class ServantRuntime:
     def _chronicle_observed(self, command: ServantCommand, revision: int) -> None:
         self.chronicle.append("OBSERVED", command, {"revision": revision})
 
+    @staticmethod
+    def _work_payload(work: SharedCommitResult | None) -> dict[str, int]:
+        if work is None:
+            return {
+                "examined_versions": 0,
+                "examined_workspaces": 0,
+                "examined_dependency_links": 0,
+                "examined_events": 0,
+                "history_items_copied": 0,
+                "history_items_appended": 0,
+                "index_refresh_edge_visits": 0,
+                "index_membership_updates": 0,
+            }
+        return {
+            "examined_versions": work.examined_versions,
+            "examined_workspaces": work.examined_workspaces,
+            "examined_dependency_links": work.examined_dependency_links,
+            "examined_events": work.examined_events,
+            "history_items_copied": work.history_items_copied,
+            "history_items_appended": work.history_items_appended,
+            "index_refresh_edge_visits": work.index_refresh_edge_visits,
+            "index_membership_updates": work.index_membership_updates,
+        }
+
     def _finish(
         self,
         command: ServantCommand,
@@ -203,7 +240,9 @@ class ServantRuntime:
         revision_before: int,
         durable_state: str = "",
         remember: bool = True,
+        work: SharedCommitResult | None = None,
     ) -> ServantDecision:
+        counters = self._work_payload(work)
         decision = ServantDecision(
             command_id=command.command_id,
             disposition=disposition,
@@ -212,6 +251,7 @@ class ServantRuntime:
             revision_after=self.durable.revision,
             txid=command.txid,
             durable_state=durable_state,
+            **counters,
         )
         self.chronicle.append("RESULT", command, {
             "disposition": disposition,
@@ -220,6 +260,7 @@ class ServantRuntime:
             "revision_after": decision.revision_after,
             "txid": command.txid,
             "durable_state": durable_state,
+            **counters,
         })
         if remember:
             self._completed_commands[command.command_id] = CompletedCommand(
@@ -406,6 +447,7 @@ class ServantRuntime:
                 ),
                 revision_before=before,
                 durable_state=durable_result.wal_state,
+                work=durable_result.result,
             )
 
         return self._finish(
@@ -414,4 +456,5 @@ class ServantRuntime:
             reason_code=f"MVCC:{durable_result.result.status}",
             revision_before=before,
             durable_state=durable_result.wal_state,
+            work=durable_result.result,
         )
