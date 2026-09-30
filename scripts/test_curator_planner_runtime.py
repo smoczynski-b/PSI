@@ -117,13 +117,27 @@ def main():
         assert not hasattr(planner, "apply")
         assert not hasattr(planner, "allocate")
 
-        # Below threshold produces no proposal and no durable record.
+        # R8: below threshold produces no proposal but reserves observation
+        # identity durably through the same procedural gate.
         counts_before_low = planner.counts()
+        servant_records_before_low = len(servant.chronicle.records())
         low = planner.evaluate(observation("OBS-LOW", 0.50))
         assert low == ()
-        assert planner.counts() == counts_before_low
+        counts_after_low = planner.counts()
+        assert counts_after_low["proposals"] == counts_before_low["proposals"]
+        assert counts_after_low["observations"] == counts_before_low["observations"] + 1
+        assert counts_after_low["no_proposal_observations"] == counts_before_low["no_proposal_observations"] + 1
+        assert counts_after_low["records"] == counts_before_low["records"] + 1
+        assert len(servant.chronicle.records()) > servant_records_before_low
 
-        # Exact replay is idempotent: no second proposal/gate record.
+        # Exact low observation replay is idempotent: no second gate or WAL row.
+        counts_before_low_replay = planner.counts()
+        servant_before_low_replay = len(servant.chronicle.records())
+        assert planner.evaluate(observation("OBS-LOW", 0.50)) == ()
+        assert planner.counts() == counts_before_low_replay
+        assert len(servant.chronicle.records()) == servant_before_low_replay
+
+        # Exact proposal replay is idempotent: no second proposal/gate record.
         counts_before_replay = planner.counts()
         servant_records_before = len(servant.chronicle.records())
         replay = planner.evaluate(observation())
@@ -132,10 +146,16 @@ def main():
         assert planner.counts() == counts_before_replay
         assert len(servant.chronicle.records()) == servant_records_before
 
-        # Same observation id with changed metrics fails closed.
+        # Same observation id with changed metrics fails closed, including an
+        # observation that originally produced no proposal.
         try:
             planner.evaluate(observation("OBS-1", 0.99))
             raise AssertionError("observation id collision was accepted")
+        except CuratorPlanningError as exc:
+            assert "OBSERVATION_ID_COLLISION" in str(exc)
+        try:
+            planner.evaluate(observation("OBS-LOW", 0.95))
+            raise AssertionError("no-proposal observation id collision was accepted")
         except CuratorPlanningError as exc:
             assert "OBSERVATION_ID_COLLISION" in str(exc)
 
@@ -159,23 +179,32 @@ def main():
             assert "PLANNING_POLICY_NOT_CURRENT" in str(exc)
         store.current = "PLAN-1"
 
-        # Restart recovers proposal identity and PROPOSED status without touching memory.
+        # Restart recovers proposal identity and no-proposal identity without
+        # touching authoritative memory.
         durable2, servant2, planner2 = make_stack(root, store)
         assert durable2.revision == 0
         recovered = planner2.proposal(proposal.proposal_id)
         assert recovered == proposal
         assert recovered.status == "PROPOSED"
         assert planner2.counts()["proposals"] == 1
+        assert planner2.counts()["no_proposal_observations"] == 1
         replay2 = planner2.evaluate(observation())
         assert replay2 == (proposal,)
+        assert planner2.evaluate(observation("OBS-LOW", 0.50)) == ()
+        try:
+            planner2.evaluate(observation("OBS-LOW", 0.95))
+            raise AssertionError("restart lost no-proposal observation identity")
+        except CuratorPlanningError as exc:
+            assert "OBSERVATION_ID_COLLISION" in str(exc)
 
-        # Planner persistence went through the authorized procedural gate.
+        # Planner persistence went through the authorized procedural gate: one
+        # notice for the proposal and one bounded no-proposal observation notice.
         accepted = [
             r for r in servant2.chronicle.records()
             if r.get("kind") == "SERVANT_RESULT"
             and str(r.get("payload", {}).get("reason_code", "")).startswith("INSTITUTION_ACTION_ACCEPTED:NOTICE")
         ]
-        assert len(accepted) == 1
+        assert len(accepted) == 2
 
     # Without the Curator planning runbook there is no proposal persistence.
     with TemporaryDirectory() as td:
@@ -190,16 +219,27 @@ def main():
         assert durable.revision == 0
         assert planner.counts()["records"] == 0
 
+        # R8 no-proposal identity also cannot bypass the runbook gate.
+        try:
+            planner.evaluate(observation("OBS-BLOCKED-LOW", 0.50))
+            raise AssertionError("no-proposal observation bypassed SERVANT runbook gate")
+        except CuratorPlanningError as exc:
+            assert "RUNBOOK_NOT_AUTHORIZED" in str(exc)
+        assert planner.counts()["records"] == 0
+
     print("PSI-MEMORY-CURATOR-PLANNER-F3.3-01 PASS_WITH_BOUNDARY")
     print("explicit_threshold_policy=PASS")
     print("proposal_only_no_execution_authority=PASS")
     print("authoritative_memory_unchanged=PASS")
     print("below_threshold_no_proposal=PASS")
+    print("no_proposal_identity_durable=PASS")
+    print("no_proposal_replay_idempotent=PASS")
     print("replay_idempotent=PASS")
     print("observation_collision_fail_closed=PASS")
     print("proposal_collision_fail_closed=PASS")
     print("non_current_policy_fail_closed=PASS")
     print("restart_recovers_proposed_state=PASS")
+    print("restart_recovers_no_proposal_identity=PASS")
     print("servant_runbook_gate=PASS")
     print("semantic_truth_authority=ABSENT")
     print("resource_allocation_authority=ABSENT")
