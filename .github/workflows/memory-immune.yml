@@ -1,0 +1,30 @@
+name: PSI memory immune regression
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/immune_runtime.py'
+      - 'scripts/test_immune_runtime.py'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/multiworkspace_runtime.py'
+      - 'docs/memory/psi-memory-immune-signatures-01.tsv'
+      - 'experiments/PSI-MEMORY-IMMUNE-01.md'
+      - '.github/workflows/memory-immune.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  immune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify memory institution contract
+        run: python3 scripts/test_memory_institution.py
+      - name: Verify deterministic servant runtime
+        run: python3 scripts/test_servant_runtime.py
+      - name: Verify bounded immune runtime
+        run: python3 scripts/test_immune_runtime.py
