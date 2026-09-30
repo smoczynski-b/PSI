@@ -2,134 +2,132 @@
 
 **Status:** EXPERIMENTAL / NON-CANONICAL / CURRENT POINTER  
 **Branch:** `psi-memory-map-01`  
-**Date:** 2026-09-30  
-**Validated implementation:** `98dab44c1af3238c4f342413afc99d1d421f3e90`  
+**Date:** 2026-10-01  
 **Full bounded acceptance run:** `36781418888`  
-**Acceptance job:** `110112332931`  
+**F5 preparation run:** `36784242295`  
 **Scope:** current work selection for PSI memory / model efficacy / visualization.  
 **Does not modify:** CORE5, CANON-03, theorem status, live FORUM gateway.
 
 ## Current decision
 
-**F5 — MODEL EFFICACY: SELECTED.**
+**F5 — MODEL EFFICACY: PREPARED / MODEL_RUN_BLOCKED.**
 
-The user explicitly selected F5 after the bounded full memory run. R5 remains open and is still required before F4.4, but visualization is deferred while F5 is active.
+The user selected F5 and authorized cautious credit use with an explicit reserve. Preparation is complete; no model-efficacy result exists yet.
 
 Current state:
 
 ```text
 FULL_BOUNDED_RUN = PASS_WITH_BOUNDARY
 R9 = NOT_CREATED
-F5 = SELECTED / PREPARED / MODEL_RUN_PENDING
+F5_PREPARATION = PASS
+F5_MODEL_EFFICACY = NOT_RUN
+F5_EXECUTION = BLOCKED_BY_ZERO_ALLOCATED_CREDITS
 R5 = OPEN / DEFERRED
 F4.4 = DEFERRED_AFTER_R5
 ```
 
-Primary F5 contract:
+Primary evidence:
 
 - [`PSI-MEMORY-F5-MODEL-EFFICACY-01.md`](PSI-MEMORY-F5-MODEL-EFFICACY-01.md)
+- `experiments/f5-evaluation-contract.json`
+- `scripts/prepare_f5_evaluation.py`
 
-## F5 question
+## Frozen F5-HOLDOUT-V1
 
-F5 must test the stronger claim not established by infrastructure tests:
+Preflight rejected the initial R6/R7/R8/full-run task set for the comparative arm C because those objects are not covered by the existing automatic `build_memory_pack.py` routing path. They were not manually adapted.
 
-```text
-does PSI memory improve model answers compared with
-A ordinary bounded context
-B simple lexical retrieval
-C PSI memory retrieval
-```
-
-under fixed source revision, fixed tasks, fixed model/settings, fixed evaluator and equal input-budget rules.
-
-A cheaper incorrect answer is not a successful memory optimization.
-
-## Calibration vs held-out
-
-Existing `M4b-ABC-CALIBRATION` remains calibration only. Its Go G4 task was used during memory construction and therefore cannot establish generalization.
-
-The held-out F5 set is built from later R6/R7/R8/full-run problems:
+The frozen held-out set was corrected **before any model answer was obtained** to three existing automatically routable units:
 
 ```text
-H1 cost semantics: PREEXECUTION_QUOTE / incurred UNKNOWN / zero
-H2 archive semantics: MAP_ASSOCIATION vs VERIFIED_CONSUMPTION
-H3 Curator identity: NO_PROPOSAL / same-ID changed-payload collision after restart
-H4 stale premise: historical availability vs current authority / NEEDS_RECHECK
+H10 = II.10 strong lumpability bridge
+H11 = II.11 Myhill-Nerode bridge
+H12 = II.12 Paige-Tarjan benchmark
 ```
 
-## F5 arms
+M4b/G4 remains calibration only.
 
-All three arms must be generated before model execution from one frozen corpus and common hard prompt-size limit.
+### Arms
 
 ```text
-A ORDINARY_BOUNDED_CONTEXT
-  deterministic naive manifest-order context; no PSI graph; no BM25
-
-B BM25_BASELINE
-  same corpus; task-text-only lexical ranking; no graph/gold/manual boosts
-
-C PSI_MEMORY
-  existing task compiler + typed PSI retrieval + attestation + exact sources
+A = full frozen II.10-II.12 corpus
+B = BM25 task-text-only, source budget matched to C
+C = frozen existing build_memory_pack.py semantics
 ```
 
-No manual source repair after seeing an answer is allowed.
+No source may be manually added after seeing an answer.
 
-The external runner currently exposes a 100000-character prompt ceiling. The F5 working cap is therefore <=80000 characters per complete prompt so truncation is detectable and avoidable. The historical M4b A input (~206 kB) must not be silently truncated and relabelled as the same experiment.
+## Preparation evidence
 
-## Measurements
+Workflow `36784242295`, job `110121688788`: `success`.
 
-Record separately:
+The generated artifact `f5-prepared-inputs` is frozen as artifact ID `11128514047`, digest:
 
 ```text
-correct core claims
-correct boundary statements
-correct stale refusal
-unsupported claims
-wrongly accepted stale claims
-source-locator accuracy
-input/output tokens (UNKNOWN if unavailable)
-end-to-end latency (UNKNOWN if unavailable)
-external tool calls
-source rereads
+sha256:1a8a10cbb4aa32ac90a563d29911ac5aad61b142e551d2565146ffac9bfc289c
 ```
 
-Do not synthesize one quality/cost score by choosing weights after results are visible.
-
-## Execution gate
-
-Next legal work inside F5:
-
-1. freeze held-out manifest and file/content hashes;
-2. implement reproducible A/B/C input builder;
-3. verify common prompt budget and no silent truncation;
-4. freeze blind scoring rubric and answer-ID randomization;
-5. then execute 12 independent model runs: `4 tasks x 3 arms`;
-6. score blind; only then unblind A/B/C.
-
-Independent model executions may consume Brainbase credits. Preparation is not evidence of model efficacy. Until actual runs are executed:
+Prompt sizes:
 
 ```text
-F5 != PASS
-F5 = MODEL_RUN_PENDING
+H10 A 27710 chars   B 10172   C 10544
+H11 A 27669 chars   B  9505   C  9861
+H12 A 27656 chars   B  8541   C  8940
 ```
+
+All are below the 80000-character F5 cap. For each task B stays at or below C's source-context byte budget.
+
+## Credit-conserving execution plan
+
+The first planned paid stage is only:
+
+```text
+pilot H10: C first
+if technically valid -> A + B
+blind score the 3-arm pilot
+only then decide whether H11/H12 justify more credits
+```
+
+A dedicated clean runner was created with `kafka_cloud`, fixed model `claude-sonnet-4-6`, no MCP, no skills and no project memory.
+
+The first real H10-C attempt reached the billing gate before inference and returned:
+
+```text
+CREDITS_EXHAUSTED
+allocated = 0
+used = 0
+HTTP 402
+```
+
+Therefore no F5 model answer exists and no Brainbase credits were consumed by the pilot.
+
+## Resume point
+
+When model credits become available, resume **without rebuilding or retuning**:
+
+```text
+1. rerun frozen H10-C (blind id ANS-25E4942F7A3F)
+2. if technical run succeeds, run frozen H10-A and H10-B
+3. blind-score H10
+4. decide whether to spend further credits on H11/H12
+```
+
+Do not run all nine responses automatically. Preserve a reserve.
 
 ## Auditor rule — Semantica Rozmowy 03
-
-The binding rule remains:
 
 \[
 P_i(S)\not\Rightarrow S.
 \]
 
-For F5 in particular:
+For F5:
 
 ```text
-retrieved source != model understood source
-verified consumption != causal use in reasoning
+prepared prompts != model efficacy
+retrieved source != semantic understanding
 smaller context != better answer
-lower latency != epistemic success
-calibration success != held-out generalization
-one successful answer != system-level efficacy
+one pilot answer != comparative result
+calibration != held-out generalization
+billing failure != model failure
 ```
 
 ## Recorded implementation state
@@ -158,9 +156,9 @@ F4.1 PASS_WITH_BOUNDARY
 F4.2 PASS_WITH_BOUNDARY; R5 OPEN
 F4.3 PASS_WITH_BOUNDARY; R5 OPEN
 F4.4 DEFERRED_AFTER_R5
-F5   SELECTED / PREPARED / MODEL_RUN_PENDING
+F5   PREPARATION_PASS / MODEL_RUN_BLOCKED
 ```
 
 ## Stop
 
-Do not return to R5 or start F4.4 inside this unit. Do not claim F5 efficacy from prompt preparation. If live execution is blocked by cost/model access, freeze the reproducible benchmark and report `MODEL_RUN_BLOCKED`, not `PASS`.
+Do not claim F5 `PASS`. Do not substitute answers produced in this conversation for independent runner executions. R5 remains deferred while F5 is the selected front; if F5 remains blocked, a later explicit selection may return to R5 without invalidating the frozen F5 benchmark.
