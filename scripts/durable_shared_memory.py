@@ -189,9 +189,12 @@ class DurableSharedMemoryRuntime:
             self.recover()
 
     def _fresh_shared(self) -> SharedMemoryRuntime:
-        shared = SharedMemoryRuntime(copy.deepcopy(self._authoritative_seed))
-        self._register_views(shared)
-        return shared
+        fresh = SharedMemoryRuntime(copy.deepcopy(self._authoritative_seed))
+        self._register_views(fresh)
+        if hasattr(self, "shared"):
+            self.shared.reset_from(fresh)
+            return self.shared
+        return fresh
 
     @property
     def revision(self) -> int:
