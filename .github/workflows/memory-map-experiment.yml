@@ -26,6 +26,7 @@ on:
       - 'experiments/PSI-ACTIVE-MEMORY-INVALIDATION-01.md'
       - 'experiments/PSI-ACTIVE-MEMORY-MULTIWORKSPACE-01.md'
       - 'experiments/PSI-ACTIVE-MEMORY-CONCURRENCY-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-MVCC-01.md'
       - 'experiments/PSI-CHEM-VISION-LAB-01.md'
       - 'experiments/PSI-CHEM-VISION-REAL-01.md'
       - 'experiments/chem-vision-worlds-01.tsv'
@@ -51,11 +52,13 @@ on:
       - 'scripts/dependency_invalidation.py'
       - 'scripts/multiworkspace_runtime.py'
       - 'scripts/concurrent_workspace.py'
+      - 'scripts/mvcc_workspace.py'
       - 'scripts/test_active_memory.py'
       - 'scripts/test_active_memory_scaling.py'
       - 'scripts/test_active_memory_invalidation.py'
       - 'scripts/test_active_memory_multiworkspace.py'
       - 'scripts/test_active_memory_concurrency.py'
+      - 'scripts/test_active_memory_mvcc.py'
       - 'scripts/test_memory_audit.py'
       - 'scripts/test_memory_economy.py'
       - 'scripts/prepare_memory_evaluation.py'
@@ -174,6 +177,8 @@ jobs:
         run: python3 scripts/test_active_memory_multiworkspace.py
       - name: Run active-memory concurrency transaction regression
         run: python3 scripts/test_active_memory_concurrency.py
+      - name: Run active-memory MVCC regression
+        run: python3 scripts/test_active_memory_mvcc.py
       - name: Verify frozen evaluation preparation and lexical comparator
         run: python3 scripts/test_memory_evaluation.py
       - name: Measure A-B-C input preparation only (no model execution)
