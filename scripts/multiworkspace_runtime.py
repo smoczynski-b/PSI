@@ -58,6 +58,9 @@ class MultiWorkspaceRuntime:
     def workspace_count(self) -> int:
         return len(self._runtimes)
 
+    def has_workspace(self, workspace_id: str) -> bool:
+        return str(workspace_id).strip() in self._runtimes
+
     def workspace(self, workspace_id: str) -> Workspace:
         return self._runtimes[workspace_id].workspace
 
@@ -66,6 +69,13 @@ class MultiWorkspaceRuntime:
 
     def dependency_tokens(self, workspace_id: str) -> frozenset[str]:
         return self._workspace_dependencies[workspace_id]
+
+    def direct_dependents(self, dependency_token: str) -> tuple[str, ...]:
+        """Return indexed direct dependents without mutating epistemic status."""
+        token = str(dependency_token).strip()
+        if not token:
+            raise ValueError("dependency_token is required")
+        return tuple(sorted(self._dependency_to_workspaces.get(token, ())))
 
     def register(
         self,
