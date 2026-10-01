@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "kind": "SOURCE_CONTRACT_REVIEW",
+  "unit_id": "III.14",
+  "task_id": "P9-POLY",
+  "unit_sha256": "75b657656f27faa5221e860e2272ecb372f0a76ea097033acaaeed764b5c5852",
+  "contract_sha256": "2984c85ac188e7c9af44e245d7b5bcf682a94fe9636bd31a4f5018593d982f9f",
+  "sources_sha256": "e3203d0a2ec9a3cff393fed742a5cf47d944ed0b185fc38a894702a3a67f0794",
+  "verdict": "PASS",
+  "reviewer": "PSI theorem-promotion review 2026-10-01",
+  "checks": {
+    "type_domain": true,
+    "claim": true,
+    "conditions": true,
+    "object": true,
+    "quantity": true,
+    "limits": true
+  },
+  "scope": "Review binds III.14 only to the bounded Hilbert linear C0-semigroup Borichev–Tomilov polynomial resolvent/regularized-decay contract. It does not certify raw-semigroup polynomial decay, arbitrary Banach export, transient reconstruction, or unrestricted P9."
+}
