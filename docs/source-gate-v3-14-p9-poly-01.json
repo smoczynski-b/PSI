@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "kind": "SOURCE_CONTRACT_GATE",
+  "unit_id": "III.14",
+  "task_id": "P9-POLY",
+  "unit": {
+    "path": "docs/principia-v3-14-p9-poly-resolvent-regularized-decay.md",
+    "sha256": "75b657656f27faa5221e860e2272ecb372f0a76ea097033acaaeed764b5c5852"
+  },
+  "evidence": {
+    "path": "docs/source-review-v3-14-p9-poly-01.json",
+    "sha256": "8c237b3151b19a5abae333774ec677270734164e5c9b7c94e18f66efc5322ec2"
+  },
+  "contract": {
+    "object": "Generator A:D(A)⊂H→H of a bounded strongly continuous linear semigroup T(t) on a complex Hilbert space H.",
+    "type_domain": "Complex Hilbert space; bounded linear C0-semigroup; iR⊂rho(A), so 0∈rho(A) and A^{-1} is bounded; alpha>0.",
+    "conditions": "High-frequency resolvent growth is compared with regularized orbit decay under the Borichev–Tomilov Theorem 2.4 contract; the source asymptotic is recorded as s→+∞.",
+    "quantity": "The norms ||R(is,A)||, ||T(t)(-A)^(-alpha)|| and ||T(t)A^(-1)||, including operator-norm O-rates and pointwise little-o rates.",
+    "claim": "Polynomial growth ||R(is,A)||=O(|s|^alpha) is equivalent to ||T(t)(-A)^(-alpha)||=O(t^-1) and ||T(t)A^(-1)||=O(t^(-1/alpha)), with the corresponding pointwise little-o formulations.",
+    "limits": "No claim about polynomial decay of raw ||T(t)||, no removal of bounded-semigroup or iR⊂rho(A) hypotheses, no arbitrary Banach-space export, no transient-peak reconstruction, no CORE5 extension."
+  },
+  "sources": [
+    {
+      "url": "https://doi.org/10.1007/s00208-009-0439-0",
+      "locator": "Borichev–Tomilov, Math. Ann. 347 (2010), Theorem 2.4 and its proof; polynomial resolvent growth versus regularized orbit decay on Hilbert space.",
+      "supports": [
+        "object",
+        "type_domain",
+        "conditions",
+        "quantity",
+        "claim",
+        "limits"
+      ]
+    }
+  ]
+}
