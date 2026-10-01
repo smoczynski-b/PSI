@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "kind": "SOURCE_CONTRACT_REVIEW",
+  "unit_id": "III.13",
+  "task_id": "P9-I",
+  "unit_sha256": "aede30516e76adba3eab4b1d312707db0b427560676edb997ae865dd9be9afd8",
+  "contract_sha256": "c1536dc32d57d97bb62e61a51fbc4c91406cd1134dd0e5797f9cadef6c29226b",
+  "sources_sha256": "f4aaf8d156a7655ab029e8d6919ad26874d90cbd99b9e1a40b02c3dab05f7ae6",
+  "verdict": "PASS",
+  "reviewer": "PSI theorem-promotion review 2026-10-01",
+  "checks": {
+    "type_domain": true,
+    "claim": true,
+    "conditions": true,
+    "object": true,
+    "quantity": true,
+    "limits": true
+  },
+  "scope": "Review binds the promoted III.13 unit to the Hilbert linear C0-semigroup resolvent/growth contract only; it does not certify Banach, Kreiss, nonlinear, nonautonomous, or unrestricted P9 extensions."
+}
