@@ -1,7 +1,7 @@
 # PSI — current work map
 
 **Control role:** `work-map`
-**Record date:** 2026-09-29
+**Record date:** 2026-10-01
 
 Generated from [control-state.json](control-state.json); edit that source,
 then run `python scripts/check_control.py --write`.
@@ -11,7 +11,7 @@ Mathematical statuses are inherited records, not fresh proof audits.
 
 First check external deltas and blockers. A repair or newly available separating observation preempts continuation. User instructions take precedence.
 
-Default substantive unit: **P9-I**, after the external delta/STOP check.
+Default substantive unit: **TRAFFIC-OBSERVATION**, after the external delta/STOP check.
 One active primary unit. [Regular checks and effort budget](work-routine.md).
 
 ## Operational tasks
@@ -44,13 +44,13 @@ One active primary unit. [Regular checks and effort budget](work-routine.md).
 
 **Source:** [docs/work-map-09.md](../docs/work-map-09.md).
 
-### P9-I — READY
+### P9-I — DONE
 
-**Action:** Run the source/contract gate for infinite-dimensional resolvent/growth. No III.13 theorem or numbering before a passed gate.
+**Action:** III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. No automatic III.14 is licensed.
 
-**Evidence:** Next mathematical gate inherited; selected only after the bounded external delta/STOP check.
+**Evidence:** Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed. P9 general remains OPEN/CENTRAL.
 
-**Source:** [docs/theorem-map-v3.md](../docs/theorem-map-v3.md).
+**Source:** [docs/principia-v3-theorem-map-11.md](../docs/principia-v3-theorem-map-11.md).
 
 ### MODEL-ADAPTER — BLOCKED
 
@@ -112,6 +112,7 @@ One active primary unit. [Regular checks and effort budget](work-routine.md).
 | III.10 | SECTOR_PASS | [unit](principia-v3-10-sop11e-wellposedness-sectors.md) / [audit](principia-v3-sop11e-dom-logos-crosscheck-01.md) |
 | III.11 | PASS | [unit](principia-v3-11-p9-metric-gradient-bridge.md) / [audit](principia-v3-p9-composition-crosscheck-01.md) |
 | III.12 | CONDITIONAL_PASS | [unit](principia-v3-12-hypocoercive-modified-energy-bridge.md) / [audit](principia-v3-p9h-composition-crosscheck-01.md) |
+| III.13 | PASS | [unit](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md) / [audit](source-review-v3-13-p9i-01.json) |
 
 CORE5 remains FROZEN. P2 general remains PARTIAL; P9 general remains OPEN/CENTRAL.
 III.13 requires a completed P9-I source/contract gate.
