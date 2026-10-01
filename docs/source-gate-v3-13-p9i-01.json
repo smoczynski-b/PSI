@@ -5,11 +5,11 @@
   "task_id": "P9-I",
   "unit": {
     "path": "docs/principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md",
-    "sha256": "aede30516e76adba3eab4b1d312707db0b427560676edb997ae865dd9be9afd8"
+    "sha256": "aeb6734c3d0e72a5e27435bdb761344c0b403222c0e032b62ed11ef2ef757c67"
   },
   "evidence": {
     "path": "docs/source-review-v3-13-p9i-01.json",
-    "sha256": "8a25941da67eb56e7c010710072be8438d5cda60012eafade2e4e66249a79d94"
+    "sha256": "170e55fde22ecbb575a70ecfde0e922e1acae8e6bde213cef1745018eb9d836c"
   },
   "contract": {
     "object": "Densely defined closed generator A:D(A)⊂H→H of a strongly continuous linear semigroup T(t) on a complex Hilbert space H.",
