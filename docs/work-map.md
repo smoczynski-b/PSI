@@ -46,11 +46,19 @@ One active primary unit. [Regular checks and effort budget](work-routine.md).
 
 ### P9-I — DONE
 
-**Action:** III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. No automatic III.14 is licensed.
+**Action:** III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. The later III.14 front was selected and gated separately.
 
-**Evidence:** Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed. P9 general remains OPEN/CENTRAL.
+**Evidence:** Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed.
 
 **Source:** [docs/principia-v3-theorem-map-11.md](../docs/principia-v3-theorem-map-11.md).
+
+### P9-POLY — DONE
+
+**Action:** III.14 is promoted under the bounded Hilbert C0-semigroup Borichev–Tomilov contract; no automatic III.15 is licensed.
+
+**Evidence:** Typed source gate/review, adapted proof spine, composition check and promotion gate passed. P9 general remains OPEN/CENTRAL.
+
+**Source:** [docs/principia-v3-theorem-map-12.md](../docs/principia-v3-theorem-map-12.md).
 
 ### MODEL-ADAPTER — BLOCKED
 
@@ -113,6 +121,7 @@ One active primary unit. [Regular checks and effort budget](work-routine.md).
 | III.11 | PASS | [unit](principia-v3-11-p9-metric-gradient-bridge.md) / [audit](principia-v3-p9-composition-crosscheck-01.md) |
 | III.12 | CONDITIONAL_PASS | [unit](principia-v3-12-hypocoercive-modified-energy-bridge.md) / [audit](principia-v3-p9h-composition-crosscheck-01.md) |
 | III.13 | PASS | [unit](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md) / [audit](source-review-v3-13-p9i-01.json) |
+| III.14 | PASS | [unit](principia-v3-14-p9-poly-resolvent-regularized-decay.md) / [audit](source-review-v3-14-p9-poly-01.json) |
 
 CORE5 remains FROZEN. P2 general remains PARTIAL; P9 general remains OPEN/CENTRAL.
 III.13 requires a completed P9-I source/contract gate.
