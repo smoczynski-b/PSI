@@ -77,18 +77,28 @@ so
 
 for arbitrary infinite-dimensional \(C_0\)-semigroups.
 
-**FALSIFIER:** infinite-dimensional Hilbert-space Kreiss-bounded semigroups need not be uniformly bounded. The cited infinite-dimensional theory permits positive growth; Arnold (2022) proves a general upper estimate
+**FALSIFIER:** infinite-dimensional Hilbert-space Kreiss-bounded semigroups need not be uniformly bounded. Arnold (2022) proved the general estimate
 
 \[
-\|T(t)\|=O\!\left(\frac{t}{\sqrt{\log t}}\right)
+\|T(t)\|=O\!\left(\frac{t}{\sqrt{\log t}}\right).
 \]
 
-for Kreiss-bounded Hilbert-space semigroups and records examples with positive polynomial lower growth.
+A 2026 Arnold preprint strengthens the upper side to a genuine polynomial gap below linear growth,
+
+\[
+\boxed{
+\|T(t)\|\le C(1+t)^{1-\varepsilon_K}
+}
+\]
+
+with \(\varepsilon_K>0\) depending on the Kreiss constant. The same work notes examples of Eisner and Zwart with growth arbitrarily close to linear, so no universal positive gap exponent exists for the whole class. In particular, the stronger 2026 result still does **not** imply uniform boundedness.
 
 **ORACLE:** keep the catalogue explicit.
 
 - finite-dimensional Hurwitz matrices: continuous-time Kreiss matrix theorem gives a dimension-dependent comparison, with upper factor \(en\);
-- infinite-dimensional generators: no dimension-free passage from finite Kreiss constant to uniform semigroup boundedness is licensed.
+- infinite-dimensional Hilbert generators: current resolvent theory gives sublinear-growth restrictions depending on the Kreiss constant, not a dimension-free uniform boundedness theorem.
+
+**SOURCE STATUS:** Arnold 2022 is peer-reviewed; the 2026 polynomial-gap strengthening is a current preprint and is not used as the sole basis of F64.
 
 **FIXED APPLICATION:** `p9i-infinite-dimensional-resolvent-growth-source-gate-01.md`, §§6–7.
 
