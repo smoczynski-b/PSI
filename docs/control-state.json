@@ -1,7 +1,7 @@
 {
   "schema": 2,
   "as_of": "2026-10-01",
-  "source_commit": "5aa66f1b886cb7c835ad3f353d35a538f8cafc49",
+  "source_commit": "82d8aa7606b21e3421a1dc83464b78247df1f0fa",
   "current": {
     "claim-registry": "docs/claim-registry.md",
     "falsifier-registry": "docs/falsifier-registry.md",
@@ -46,9 +46,16 @@
     {
       "id": "P9-I",
       "state": "DONE",
-      "action": "III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. No automatic III.14 is licensed.",
+      "action": "III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. The later III.14 front was selected and gated separately.",
       "source": "docs/principia-v3-theorem-map-11.md",
-      "evidence": "Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed. P9 general remains OPEN/CENTRAL."
+      "evidence": "Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed."
+    },
+    {
+      "id": "P9-POLY",
+      "state": "DONE",
+      "action": "III.14 is promoted under the bounded Hilbert C0-semigroup Borichev–Tomilov contract; no automatic III.15 is licensed.",
+      "source": "docs/principia-v3-theorem-map-12.md",
+      "evidence": "Typed source gate/review, adapted proof spine, composition check and promotion gate passed. P9 general remains OPEN/CENTRAL."
     },
     {
       "id": "MODEL-ADAPTER",
@@ -248,6 +255,12 @@
       "state": "PASS",
       "path": "docs/principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md",
       "evidence": "docs/source-review-v3-13-p9i-01.json"
+    },
+    {
+      "id": "III.14",
+      "state": "PASS",
+      "path": "docs/principia-v3-14-p9-poly-resolvent-regularized-decay.md",
+      "evidence": "docs/source-review-v3-14-p9-poly-01.json"
     }
   ],
   "gates": {
@@ -255,6 +268,11 @@
       "state": "PASS",
       "task_id": "P9-I",
       "path": "docs/source-gate-v3-13-p9i-01.json"
+    },
+    "III.14": {
+      "state": "PASS",
+      "task_id": "P9-POLY",
+      "path": "docs/source-gate-v3-14-p9-poly-01.json"
     }
   },
   "supersedes": {
@@ -268,7 +286,7 @@
       "docs/principia-v2-theorem-map-04.md"
     ],
     "docs/theorem-map-v3.md": [
-      "docs/principia-v3-theorem-map-11.md"
+      "docs/principia-v3-theorem-map-12.md"
     ],
     "docs/work-map.md": [
       "docs/work-map-12.md"
