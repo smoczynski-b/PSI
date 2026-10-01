@@ -1,76 +1,40 @@
-# PSI — proportional work routine
+# PSI — public repository routine
 
 **Control role:** `work-routine`  
-**Status:** ACTIVE / AGENT POLICY  
-**Effective:** 2026-09-29; applies during active work.  
-**Basis:** [Agent Architecture 02](agent-psi-architecture-02.md),
-[source governance](source-governance-01.md), [current work map](work-map.md).
+**Status:** PUBLIC RELEASE / GOVERNANCE ROUTINE
 
-## Selection and limits
+This file governs changes that are intended to appear on the public PSI repository. Internal research selection is maintained separately in a protected workspace.
 
-At entry: read current state, check STOP/WAIT and select one executable unit.
-An observed failure or a newly available separating observation takes priority
-over automatically continuing the previous branch. An explicit user task takes
-precedence over this default queue.
+## Public change sequence
 
-`WAIT` blocks only its declared intervention. It does not block read-only
-observation or other independent work. An unavailable observation is `UNVERIFIED`
-or `BLOCKED`, never zero, FAIL, or proof that nobody used PSI.
+```text
+SOURCE / CHANGE
+    -> VALIDATE
+    -> DISCLOSURE GATE
+    -> PUBLISH
+    -> VERIFY PUBLIC PROJECTION
+```
 
-The current traffic protocol already stops instrumentation at G0A/G0D.
-Its unobserved G0B/G0C/G0E do not invalidate the narrower measurement contract.
-No global G0 PASS or global G0 FAIL may replace these component statuses.
+`VALIDATE` checks the declared technical or mathematical contract. `DISCLOSURE GATE` assigns `PUBLIC | REVIEW | WITHHOLD` to an explicit file/fragment scope. `PUBLISH` is a separate action; no PASS automatically authorizes it.
 
-## Regular actions during activity
+## Mathematical discipline
 
-| Trigger | Action | Limit / recorded result |
-|---|---|---|
-| Session start or context handoff | Read current pointers, delta since previous handoff, blockers and priorities | One bounded inspection; reuse unchanged verified context |
-| Before a substantial unit | State object, task, contract, source, success/stop condition | One short record in the working unit, not a new control document |
-| On changed hypothesis/domain/gauge/metric | Relabel contract; check affected claims and regressions | Immediate, before using the changed result |
-| At unit completion | Verify result at its actual scope; update affected current records together | One coherent commit normally; 2–3 only if independently reviewable |
-| After 3 completed units, or immediately after significant external delta | Review all sectors; check whether the next selected unit still has priority | One short frontier review; no full source reread without cause |
-| First active session of a Warsaw calendar day | One bounded traffic summary read for the completed window, if an authorized endpoint is available; reuse latest FORUM monitor result | Record window, source, counts/unknowns and censoring; no synthetic visit/click; do not repeat an unchanged read |
-| Before repository publication | Check control consistency, affected regressions, diff and current remote HEAD | No force-push; no unrelated full regression suite |
-| Session end | Record result, evidence, open blocker and next admissible action | Brief delta; use commit plus current work record, avoid parallel chronicles |
+Use:
 
-Existing hourly FORUM monitoring remains the background watcher. Do not create
-another hourly/daily automation merely to enforce this active-session routine.
-An inactive session does not execute these checks. The first-day read is an
-agent procedure, not a claim that a new scheduler has been installed.
+\[
+\text{object}\to\text{type/domain}\to\text{conditions}\to\text{quantity}\to\text{proof/test}.
+\]
 
-## Effort allocation
+For unbounded operators, domain precedes formal algebra. Classical results must remain labeled classical/adapted when used as PSI bridges.
 
-Working target over several substantive units: **75% execution, 15% targeted
-verification, 10% coordination and recording**. These are operating budgets,
-not measured performance and not a reason to truncate a necessary proof.
-If coordination repeatedly exceeds 10%, consolidate pointers and reports before
-adding more process. A broken invariant may temporarily exceed the budget;
-state the defect and stop the repair when its check passes.
+## Repository discipline
 
-## Git and evidence
+- Recheck remote HEAD before a write.
+- Preserve concurrent changes; no routine force-push.
+- Keep stable public pointers coherent.
+- Run `python scripts/check_control.py` and `python scripts/check_public_projection.py` for affected public-control changes.
+- Run only affected mathematical/runtime regressions.
+- Public release prose and metadata are English; symbols, quotations and identifiers retain source form.
+- Historical internal files, if still present for provenance, do not select current private work.
 
-Use stable current filenames. Do not append numbered registry/work-map versions.
-Historical snapshots remain immutable provenance; `control-state.json` and the
-README identify the current roles. A ledger records changed reasoning or a
-high-impact decision, not every file save. A commit count alone is not a quality
-metric; review coherence, recoverability and test coverage instead.
-
-No recurring commit is required. No notification is required without a meaningful
-delta. Test failure blocks only the dependent operation; preserve independent work.
-
-## Repair record — 2026-09-29
-
-- `work-map-09` lost the reason for traffic WAIT; the reason exists in
-  [PSI-TRAFFIC-EST-01, section 12](../experiments/PSI-TRAFFIC-EST-01.md).
-  Restored it in the stable work map. Prior blanket G0 FAIL and the resulting
-  obligatory instrumentation restart are withdrawn.
-- Materialized C01–C67 and F01–F62 into complete current registries; applied the
-  already adopted C19-v3/F62 correction to the stale F12 wording and the C22/C23 resolution to the stale C21 OPEN label.
-- Stable maps separate mathematical readiness from global work selection.
-  P9-I remains an admissible source gate during observational WAIT, conditional
-  on the routine sector check. III.13 remains unauthorized without its gate.
-- Added executable pointer, registry and status consistency checks plus negative
-  controls. Their PASS is organizational verification, not a mathematical reaudit
-  or live telemetry test. Operational effectiveness over later sessions remains
-  to be observed.
+A component PASS, publication PASS and system PASS are distinct claims.

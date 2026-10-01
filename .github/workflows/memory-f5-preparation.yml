@@ -1,0 +1,54 @@
+name: PSI memory F5 preparation
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'experiments/f5-evaluation-contract.json'
+      - 'scripts/prepare_f5_evaluation.py'
+      - '.github/workflows/memory-f5-preparation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Build frozen F5 inputs
+        run: python3 scripts/prepare_f5_evaluation.py --out /tmp/f5-prepared
+      - name: Verify preparation invariants
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('/tmp/f5-prepared')
+          m = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+          assert m['status'] == 'INPUTS_READY'
+          assert m['model_status'] == 'NOT_RUN'
+          assert m['pilot_max_billable_runs'] == 3
+          assert set(m['tasks']) == {'H10', 'H11', 'H12'}
+          for task_id, task in m['tasks'].items():
+              assert task['psi_paths']
+              b = task['arms']['B']
+              c = task['arms']['C']
+              assert b['context_bytes'] <= task['matched_bc_context_budget_bytes']
+              assert c['context_bytes'] == task['matched_bc_context_budget_bytes']
+              for arm in ('A', 'B', 'C'):
+                  assert task['arms'][arm]['prompt_chars'] <= m['prompt_char_limit']
+                  p = root / 'prompts' / f'{task_id}_{arm}.txt'
+                  assert p.is_file() and p.read_text(encoding='utf-8')
+          print('PSI-MEMORY-F5-PREPARATION PASS')
+          PY
+      - name: Upload frozen F5 prepared inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: f5-prepared-inputs
+          path: /tmp/f5-prepared
+          if-no-files-found: error
+          retention-days: 30

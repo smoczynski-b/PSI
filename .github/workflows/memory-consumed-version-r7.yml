@@ -1,0 +1,23 @@
+name: PSI memory R7 consumed version
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/memory_archive_usage_runtime.py'
+      - 'scripts/test_archive_consumed_version_r7.py'
+      - 'scripts/test_memory_archive_usage_runtime.py'
+      - '.github/workflows/memory-consumed-version-r7.yml'
+
+jobs:
+  consumed-version-r7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: R7 separating witness
+        run: python3 scripts/test_archive_consumed_version_r7.py
+      - name: F3.2 archive usage regression
+        run: python3 scripts/test_memory_archive_usage_runtime.py
+      - name: Archive runtime regression
+        run: python3 scripts/test_memory_archive_runtime.py

@@ -1,0 +1,7 @@
+submission_id	agent_id	outcome	reason
+A-N1	AGENT-A	COALESCED_VERIFIED	same candidate node; one canonical identity
+B-N1	AGENT-B	COALESCED_VERIFIED	same candidate node; one canonical identity
+A-E1	AGENT-A	VERIFIED	direct bounded source support; competing candidate retained
+B-E1	AGENT-B	CONFLICT_UNVERIFIED	opposed by competing candidate and source does not license this direction
+A-E2	AGENT-A	DUPLICATE_VERIFIED	relation already present in verified memory
+B-E2	AGENT-B	DUPLICATE_VERIFIED	relation already present in verified memory

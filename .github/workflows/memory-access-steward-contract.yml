@@ -1,0 +1,30 @@
+name: PSI memory access steward contract
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/PSI-MEMORY-ACCESS-STEWARD-01.md'
+      - 'docs/memory/psi-memory-access-steward-contract-01.tsv'
+      - 'docs/memory/psi-memory-access-steward-conflicts-01.tsv'
+      - 'scripts/test_access_steward_contract.py'
+      - 'docs/memory/psi-memory-institution-roles-01.tsv'
+      - 'docs/memory/psi-memory-institution-authorities-01.tsv'
+      - 'docs/memory/psi-memory-institution-conflicts-01.tsv'
+      - 'scripts/test_memory_institution.py'
+      - '.github/workflows/memory-access-steward-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  access-steward-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify F2.0 Access Steward contract
+        run: python3 scripts/test_access_steward_contract.py
+      - name: Re-run four-role institutional constitution
+        run: python3 scripts/test_memory_institution.py

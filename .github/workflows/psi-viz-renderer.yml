@@ -1,0 +1,41 @@
+name: PSI-VIZ F4.2 renderer
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_renderer.py'
+      - 'scripts/test_psi_viz_renderer.py'
+      - 'scripts/psi_viz_outputs.py'
+      - 'scripts/test_psi_viz_outputs.py'
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/test_psi_viz_projection.py'
+      - 'docs/memory/PSI-VIZ-F4.2-01.md'
+      - '.github/workflows/psi-viz-renderer.yml'
+  workflow_dispatch:
+
+jobs:
+  psi-viz-renderer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Re-verify F4.0 projection contract
+        run: python3 scripts/test_psi_viz_projection.py
+      - name: Re-verify F4.1 output contract
+        run: python3 scripts/test_psi_viz_outputs.py
+      - name: Verify F4.2 SVG and Manim renderer
+        run: python3 scripts/test_psi_viz_renderer.py
+      - name: Re-verify finite representation control
+        run: python3 scripts/test_memory_representation.py
+      - name: Re-run active memory regression
+        run: python3 scripts/test_active_memory.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py
+      - name: Upload F4.2 render products
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-viz-f4.2-render
+          path: build/psi-viz-f4.2/
+          if-no-files-found: error

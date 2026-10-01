@@ -1,0 +1,3 @@
+object_kind	id_or_from	relation_or_kind	to_or_label	status	path	selector_type	selector	verified_git_blob_sha	fragment_sha256	fragment_bytes
+NODE	BIT-MINIMALITY	PROPERTY	Bit minimality	VERIFIED	docs/principia-v2-09-recursive-history-quotient-update.md	heading	## 12. Granice II.9	bfcd6833c69e541447bad7a2b71cb3167acd947f	910b450abde13f721fd5429494a873b116f3ca0e959a416aac3583bf028497ca	399
+EDGE	II.9	DOES_NOT_IMPLY	BIT-MINIMALITY	VERIFIED	docs/principia-v2-09-recursive-history-quotient-update.md	heading	## 12. Granice II.9	bfcd6833c69e541447bad7a2b71cb3167acd947f	910b450abde13f721fd5429494a873b116f3ca0e959a416aac3583bf028497ca	399

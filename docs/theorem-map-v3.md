@@ -2,13 +2,15 @@
 
 **Control role:** `theorem-map-v3`
 
-**Status:** `CURRENT / PHISICA GLOBAL PASS / MOST-HCUBE GLOBAL PASS / III.9 DOM-LOGOS PASS / III.10 SOP-11E PASS / III.11 P9-G PASS / III.12 P9-H PASS / P9-INFINITE-DIMENSIONAL GATE NEXT`  
-**Date:** 2026-09-29  
-**Historical source:** [principia-v3-theorem-map-08.md](principia-v3-theorem-map-08.md)
+**Status:** `CURRENT / III.1:III.13 RECORDED / III.7:III.13 COMPOSITION PASS / P9 GENERAL OPEN`  
+**Date:** 2026-10-01  
+**Current historical snapshot:** [principia-v3-theorem-map-11.md](principia-v3-theorem-map-11.md)
 
 ---
 
-# 1. Closed blocks
+# 1. Current closure
+
+The recorded Volume III stack now includes:
 
 \[
 \boxed{\mathrm{III.1:III.6\ PHISICA}=GLOBAL\ PASS}
@@ -19,23 +21,23 @@
 \]
 
 \[
-\boxed{\mathrm{III.9\ DOM\!-
-LOGOS}=PASS/COMPOSITION\ PASS}
+\boxed{\mathrm{III.9\ DOM\!-\!LOGOS}=PASS}
 \]
 
 \[
-\boxed{\mathrm{III.10\ SOP\!-
-11E}=SECTOR\ PASS}
+\boxed{\mathrm{III.10\ SOP\!-\!11E}=SECTOR\ PASS}
 \]
 
 \[
-\boxed{\mathrm{III.11\ P9\!-
-G}=PASS}
+\boxed{\mathrm{III.11\ P9\!-\!G}=PASS}
 \]
 
 \[
-\boxed{\mathrm{III.12\ P9\!-
-H}=PASS}
+\boxed{\mathrm{III.12\ P9\!-\!H}=CONDITIONAL\ PASS}
+\]
+
+\[
+\boxed{\mathrm{III.13\ P9\!-\!I}=PASS}
 \]
 
 with
@@ -48,165 +50,80 @@ with
 
 ---
 
-# 2. III.12 — modified-energy / hypocoercive bridge
+# 2. III.13 — Hilbert resolvent / exponential-growth bridge
 
-Contract:
+For a complex Hilbert space \(\mathcal H\), let
 
 \[
 A:D(A)\subset\mathcal H\to\mathcal H
 \]
 
-generates a \(C_0\)-semigroup, and there exists bounded coercive
+be the generator of a strongly continuous linear semigroup \(T(t)\). With the growth bound \(\omega_0(T)\) and uniform-resolvent abscissa \(s_0(A)\) defined in the theorem unit,
 
 \[
-Q=Q^*,
-\qquad
-mI\le Q\le MI,
+\boxed{\omega_0(T)=s_0(A).}
 \]
 
-such that
+The theorem is `CLASSICAL / ADAPTED` via Gearhart–Prüss–Huang. It is not a `PSI-NEW` theorem.
 
-\[
-A^*Q+QA\le-2\lambda Q.
-\]
-
-Then
-
-\[
-\boxed{\|e^{tA}\|_Q\le e^{-\lambda t}},
-\]
-
-\[
-\boxed{\|e^{tA}\|\le\sqrt{\kappa(Q)}e^{-\lambda t}},
-\]
-
-\[
-\boxed{
-\|(zI-A)^{-1}\|_Q
-\le
-(\Re z+\lambda)^{-1}
-\quad(\Re z>-\lambda),
-}
-\]
-
-\[
-\boxed{
-\|(zI-A)^{-1}\|
-\le
-\frac{\sqrt{\kappa(Q)}}{\Re z+\lambda},
-}
-\]
-
-and
-
-\[
-\boxed{
-\mathcal K_Q(A)=1,
-\qquad
-1\le\mathcal K(A)\le\sqrt{\kappa(Q)}.
-}
-\]
-
-The ambient pseudospectral right edge satisfies
-
-\[
-\boxed{
-\sup\Re\sigma_\varepsilon(A)
-\le
--\lambda+\sqrt{\kappa(Q)}\,\varepsilon.
-}
-\]
+Primary unit: [III.13](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md).  
+Typed source review: [P9-I review](source-review-v3-13-p9i-01.json).  
+Typed source gate: [P9-I gate](source-gate-v3-13-p9i-01.json).  
+Composition audit: [III.7–III.13 cross-check](principia-v3-p9i-composition-crosscheck-01.md).
 
 ---
 
-# 3. Hypocoercivity correction
+# 3. Composition status
 
-For
-
-\[
-A=S+N,
-\quad S=S^*\le0,
-\quad N^*=-N,
-\]
-
-the ambient norm is non-increasing. Thus hypocoercivity is not a theorem of unavoidable transient amplification.
-
-Its role is to recover strict exponential decay from degenerate direct dissipation by constructing an adapted equivalent metric.
-
-DMS provides such a construction only under typed kinetic hypotheses H1–H4.
-
----
-
-# 4. III.11–III.12 relation
-
-III.11 is a special case of III.12:
-
-\[
-Q=G,
-\qquad
-A=-G^{-1}H,
-\qquad
-A^*G+GA=-2H\le-2\mu_GG.
-\]
-
-III.11 is stronger within its subclass because the metric transport yields a self-adjoint normal form. III.12 requires only strict dissipativity in an equivalent metric.
-
----
-
-# 5. Composition status
-
-`principia-v3-p9h-composition-crosscheck-01.md` establishes
+The composition audit establishes
 
 \[
 \boxed{
-\mathrm{III.7:III.12}=\mathrm{COMPOSITION\ PASS}.
+\mathrm{III.7:III.13}=\mathrm{COMPOSITION\ PASS}.
 }
 \]
 
-Permanent distinctions now include:
+The frozen HCube pair supplies an exact separator: both members have the same scalar exponential data
 
 \[
-\boxed{
-\text{hypocoercive decay}\neq\text{transient growth}},
+\omega_0=s_0=2,
 \]
 
-\[
-\boxed{
-\text{Kreiss amplification index}\neq\text{decay/growth margin}},
-\]
+while their full resolvent-norm profiles differ. Thus III.13 does not collapse the richer MOST/HCube information hierarchy.
+
+Permanent distinctions include:
 
 \[
 \boxed{
-\text{modified metric}\Rightarrow\text{new norm-sensitive operator representation}.
+\text{exponential abscissa}\neq\text{transient peak},
 }
 \]
+
+\[
+\boxed{
+\text{well-posedness/generation}\neq\text{III.13 resolvent-growth equality},
+}
+\]
+
+\[
+\boxed{
+\omega_0=s_0=0
+\not\Rightarrow
+\sup_t\|T(t)\|<\infty.
+}
+\]
+
+F63 and F64 remain active boundaries.
 
 ---
 
-# 6. Current open front
+# 4. Current front
 
-The next unresolved P9 class is genuinely infinite-dimensional:
+III.13 is closed under its typed Hilbert linear \(C_0\)-semigroup contract. This does not close unrestricted P9 and does not create an automatic III.14 candidate.
 
-- unbounded generators;
-- continuous spectrum;
-- resolvent-to-growth equivalence beyond finite-dimensional Kreiss;
-- Gearhart–Prüss type conditions;
-- failure modes outside Hilbert or outside uniform resolvent control.
-
-No III.13 theorem is authorized yet.
-
-The next admissible mathematical gate, subject to [global work selection](work-map.md), is
-
-\[
-\boxed{
-\mathrm{P9\!-
-I\ INFINITE\!-
-DIMENSIONAL\ RESOLVENT/GROWTH\ SOURCE\ GATE\ NEXT}.
-}
-\]
+Scheduling is governed by [work-map.md](work-map.md), not by theorem adjacency alone.
 
 No CORE5 change and no Agent v03 witness.
-Scheduling is governed by [work-map.md](work-map.md), not by mathematical adjacency alone.
 
 
 ## Recorded unit status (control view)
@@ -226,4 +143,5 @@ Scheduling is governed by [work-map.md](work-map.md), not by mathematical adjace
 | III.10 | SECTOR_PASS | [unit](principia-v3-10-sop11e-wellposedness-sectors.md) / [audit](principia-v3-sop11e-dom-logos-crosscheck-01.md) |
 | III.11 | PASS | [unit](principia-v3-11-p9-metric-gradient-bridge.md) / [audit](principia-v3-p9-composition-crosscheck-01.md) |
 | III.12 | CONDITIONAL_PASS | [unit](principia-v3-12-hypocoercive-modified-energy-bridge.md) / [audit](principia-v3-p9h-composition-crosscheck-01.md) |
+| III.13 | PASS | [unit](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md) / [audit](source-review-v3-13-p9i-01.json) |
 <!-- END CONTROL STATUS -->

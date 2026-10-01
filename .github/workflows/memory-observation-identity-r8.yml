@@ -1,0 +1,27 @@
+name: PSI memory R8 observation identity
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/curator_planner_runtime.py'
+      - 'scripts/test_curator_observation_identity_r8.py'
+      - 'scripts/test_curator_planner_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/servant_runtime.py'
+      - '.github/workflows/memory-observation-identity-r8.yml'
+  workflow_dispatch:
+
+jobs:
+  observation-identity-r8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: R8 separating witness
+        run: python3 scripts/test_curator_observation_identity_r8.py
+      - name: F3.3 Curator regression
+        run: python3 scripts/test_curator_planner_runtime.py
+      - name: R1 WAL regression
+        run: python3 scripts/test_jsonl_journal_recovery.py
+      - name: Servant regression
+        run: python3 scripts/test_servant_runtime.py

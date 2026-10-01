@@ -1,0 +1,189 @@
+name: PSI memory map experiment
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/**'
+      - 'experiments/PSI-MEMORY-M4-01.md'
+      - 'experiments/PSI-MEMORY-M4-EVALUATION.md'
+      - 'experiments/m4-evaluation-contract.json'
+      - 'experiments/PSI-MEMORY-M6-REL-01.md'
+      - 'experiments/PSI-MEMORY-M7-EDGE-CERT-01.md'
+      - 'experiments/PSI-MEMORY-M8-01.md'
+      - 'experiments/PSI-MEMORY-M9-WRITE-01.md'
+      - 'experiments/PSI-MEMORY-M10-CYCLE-01.md'
+      - 'experiments/PSI-MEMORY-M11-GROWTH-01.md'
+      - 'experiments/PSI-MEMORY-M12-LOCAL-COMPETITION-01.md'
+      - 'experiments/PSI-MEMORY-M13-TASK-CONTRACT-01.md'
+      - 'experiments/PSI-MEMORY-M14-COMPOSITION-01.md'
+      - 'experiments/PSI-MEMORY-M15-LANG-01.md'
+      - 'experiments/PSI-MEMORY-M16-LANGUAGE-FIBRE-01.md'
+      - 'experiments/PSI-MEMORY-M17-CROSS-PARTITION-01.md'
+      - 'experiments/PSI-MEMORY-M18-UNCERTAIN-OBSERVATION-01.md'
+      - 'experiments/PSI-MEMORY-M19-CROSSVIEW-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-SCALE-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-INVALIDATION-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-MULTIWORKSPACE-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-CONCURRENCY-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-MVCC-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-SHARED-01.md'
+      - 'experiments/PSI-ACTIVE-MEMORY-WAL-01.md'
+      - 'experiments/PSI-CHEM-VISION-LAB-01.md'
+      - 'experiments/PSI-CHEM-VISION-REAL-01.md'
+      - 'experiments/chem-vision-worlds-01.tsv'
+      - 'experiments/chem-vision-real-images-01.tsv'
+      - 'experiments/m4-*-manifest.txt'
+      - 'experiments/m5-generated-manifest.txt'
+      - 'experiments/m8-generated-context.json'
+      - 'experiments/m9-agent-*-delta.tsv'
+      - 'experiments/m11-record-sequence.tsv'
+      - 'experiments/m12-task-contract.tsv'
+      - 'experiments/m13-natural-tasks.tsv'
+      - 'experiments/m14-composition-tasks.tsv'
+      - 'experiments/m15-language-tasks.tsv'
+      - 'experiments/m15-denotation-lexicon.tsv'
+      - 'experiments/m15-world-relations.tsv'
+      - 'experiments/m17-world-objects.tsv'
+      - 'experiments/m17-lexical-partitions.tsv'
+      - 'experiments/m18-observation-contracts.tsv'
+      - 'scripts/test_memory_map.py'
+      - 'scripts/memory_retrieval.py'
+      - 'scripts/active_memory.py'
+      - 'scripts/active_memory_runtime.py'
+      - 'scripts/dependency_invalidation.py'
+      - 'scripts/multiworkspace_runtime.py'
+      - 'scripts/concurrent_workspace.py'
+      - 'scripts/mvcc_workspace.py'
+      - 'scripts/shared_memory_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/test_active_memory.py'
+      - 'scripts/test_active_memory_scaling.py'
+      - 'scripts/test_active_memory_invalidation.py'
+      - 'scripts/test_active_memory_multiworkspace.py'
+      - 'scripts/test_active_memory_concurrency.py'
+      - 'scripts/test_active_memory_mvcc.py'
+      - 'scripts/test_active_memory_shared.py'
+      - 'scripts/test_active_memory_wal.py'
+      - 'scripts/test_memory_audit.py'
+      - 'scripts/test_memory_economy.py'
+      - 'scripts/prepare_memory_evaluation.py'
+      - 'scripts/test_memory_evaluation.py'
+      - 'scripts/test_memory_representation.py'
+      - 'scripts/build_memory_pack.py'
+      - 'scripts/test_memory_pack.py'
+      - 'scripts/test_relation_description.py'
+      - 'scripts/build_edge_provenance.py'
+      - 'scripts/test_edge_provenance.py'
+      - 'scripts/build_m8_context.py'
+      - 'scripts/test_m8_context.py'
+      - 'scripts/test_m9_write_admission.py'
+      - 'scripts/test_m10_read_write_cycle.py'
+      - 'scripts/test_m11_growth_supersession.py'
+      - 'scripts/test_m12_local_competition.py'
+      - 'scripts/compile_task_contract.py'
+      - 'scripts/test_m13_task_to_contract.py'
+      - 'scripts/compose_task_contract.py'
+      - 'scripts/test_m14_contract_composition.py'
+      - 'scripts/compile_multilingual_contract.py'
+      - 'scripts/test_m15_language_invariance.py'
+      - 'scripts/resolve_language_fibre.py'
+      - 'scripts/test_m16_language_fibre.py'
+      - 'scripts/test_m17_cross_partition_domain.py'
+      - 'scripts/resolve_uncertain_fibre.py'
+      - 'scripts/test_m18_uncertain_observation.py'
+      - 'scripts/relation_crossview.py'
+      - 'scripts/test_m19_relation_crossview.py'
+      - 'scripts/multi_anchor_retrieval.py'
+      - 'scripts/test_multi_anchor_retrieval.py'
+      - 'scripts/test_chem_vision_lab.py'
+      - 'scripts/test_chem_vision_real_images.py'
+      - '.github/workflows/memory-map-experiment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run M1-M3 dependency and bridge regressions
+        run: python3 scripts/test_memory_map.py
+      - name: Run M4a context economy measurement
+        run: python3 scripts/test_memory_economy.py
+      - name: Verify M5 generated pack snapshot
+        run: python3 scripts/build_memory_pack.py --start GO-G4 --radius 3 --check experiments/m5-generated-manifest.txt
+      - name: Run M5 automatic pack regression
+        run: python3 scripts/test_memory_pack.py
+      - name: Run M6 relational-description regression
+        run: python3 scripts/test_relation_description.py
+      - name: Emit M7 certified edge-evidence hashes
+        run: python3 scripts/build_edge_provenance.py --emit
+      - name: Run M7 certified-edge regression
+        run: python3 scripts/test_edge_provenance.py
+      - name: Emit M8 bridge candidate hashes
+        run: python3 scripts/build_m8_context.py --emit-bridge-hashes
+      - name: Run M8 end-to-end context regression if frozen
+        run: |
+          if [ -f docs/memory/psi-memory-edge-evidence-m8-bridge-01.tsv ]; then
+            python3 scripts/test_m8_context.py
+          else
+            echo 'M8 context regression pending bridge certificate freeze'
+          fi
+      - name: Run M9 multi-agent write admission regression
+        run: python3 scripts/test_m9_write_admission.py
+      - name: Run M10 read-write-read cycle regression
+        run: python3 scripts/test_m10_read_write_cycle.py
+      - name: Run M11 growth and supersession regression
+        run: python3 scripts/test_m11_growth_supersession.py
+      - name: Run M12 local competition regression
+        run: python3 scripts/test_m12_local_competition.py
+      - name: Run M13 task-to-contract regression
+        run: python3 scripts/test_m13_task_to_contract.py
+      - name: Run M14 contract composition regression
+        run: python3 scripts/test_m14_contract_composition.py
+      - name: Run M15 language invariance regression
+        run: python3 scripts/test_m15_language_invariance.py
+      - name: Run M16 language-fibre regression
+        run: python3 scripts/test_m16_language_fibre.py
+      - name: Run M17 cross-partition fibre regression
+        run: python3 scripts/test_m17_cross_partition_domain.py
+      - name: Run M18 uncertain-observation regression
+        run: python3 scripts/test_m18_uncertain_observation.py
+      - name: Run M19 cross-object relation distribution regression
+        run: python3 scripts/test_m19_relation_crossview.py
+      - name: Run adversarial conversation-04 implementation regressions
+        run: python3 scripts/test_memory_audit.py
+      - name: Run explicit multi-anchor retrieval regressions
+        run: python3 scripts/test_multi_anchor_retrieval.py
+      - name: Run chemistry vision reaction-language regression
+        run: python3 scripts/test_chem_vision_lab.py
+      - name: Run real-image chemistry geometry regression
+        run: python3 scripts/test_chem_vision_real_images.py
+      - name: Check fixed data under changed representations
+        run: python3 scripts/test_memory_representation.py
+      - name: Run active-memory incremental-state regression
+        run: python3 scripts/test_active_memory.py
+      - name: Run active-memory reconstruction-vs-delta scaling regression
+        run: python3 scripts/test_active_memory_scaling.py
+      - name: Run active-memory selective invalidation regression
+        run: python3 scripts/test_active_memory_invalidation.py
+      - name: Run active-memory multi-workspace routing regression
+        run: python3 scripts/test_active_memory_multiworkspace.py
+      - name: Run active-memory concurrency transaction regression
+        run: python3 scripts/test_active_memory_concurrency.py
+      - name: Run active-memory MVCC regression
+        run: python3 scripts/test_active_memory_mvcc.py
+      - name: Run shared active-memory integration regression
+        run: python3 scripts/test_active_memory_shared.py
+      - name: Run durable active-memory WAL recovery regression
+        run: python3 scripts/test_active_memory_wal.py
+      - name: Verify frozen evaluation preparation and lexical comparator
+        run: python3 scripts/test_memory_evaluation.py
+      - name: Measure A-B-C input preparation only (no model execution)
+        run: python3 scripts/prepare_memory_evaluation.py

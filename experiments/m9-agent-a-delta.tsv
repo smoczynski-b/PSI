@@ -1,0 +1,4 @@
+submission_id	agent_id	kind	subject	relation	object	object_kind	label	path	selector_type	selector
+A-N1	AGENT-A	NODE	BIT-MINIMALITY			PROPERTY	Bit minimality	docs/principia-v2-09-recursive-history-quotient-update.md	heading	## 12. Granice II.9
+A-E1	AGENT-A	EDGE	II.9	DOES_NOT_IMPLY	BIT-MINIMALITY			docs/principia-v2-09-recursive-history-quotient-update.md	heading	## 12. Granice II.9
+A-E2	AGENT-A	EDGE	GO-G4	SUPPORTS	SSK-MEMORY			docs/go-memory-regression-01.md	heading	### G4 — situational superko

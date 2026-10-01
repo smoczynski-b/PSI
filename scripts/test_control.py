@@ -43,29 +43,32 @@ class ControlRegression(unittest.TestCase):
 
     def gate_fixture(self):
         """Synthetic record-format fixture, explicitly not mathematical evidence."""
-        unit_path = 'docs/principia-v3-13-fixture.md'
+        # III.13 is now a real registered theorem. Use the next unassigned number
+        # only inside the temporary test tree so the fixture cannot collide with
+        # the production control state or create a real III.14 candidate.
+        unit_path = 'docs/principia-v3-14-fixture.md'
         review_path = 'docs/source-review-fixture.json'
         gate_path = 'docs/source-gate-fixture.json'
-        (self.root / unit_path).write_text('# Synthetic III.13 fixture\n', encoding='utf-8')
+        (self.root / unit_path).write_text('# Synthetic III.14 fixture\n', encoding='utf-8')
         sha = lambda path: hashlib.sha256((self.root / path).read_bytes()).hexdigest()
         contract = {key: 'Test-only ' + key for key in CONTRACT_FIELDS}
         sources = [{'url': 'https://example.org/test-only', 'locator': 'fixture §1', 'supports': ['claim']}]
-        review = {'schema': 1, 'kind': 'SOURCE_CONTRACT_REVIEW', 'unit_id': 'III.13',
+        review = {'schema': 1, 'kind': 'SOURCE_CONTRACT_REVIEW', 'unit_id': 'III.14',
                   'task_id': 'P9-I', 'unit_sha256': sha(unit_path),
                   'contract_sha256': digest_json(contract), 'sources_sha256': digest_json(sources),
                   'verdict': 'PASS', 'reviewer': 'synthetic test',
                   'checks': {key: True for key in CONTRACT_FIELDS}, 'scope': 'Format test only; no theorem review.'}
         (self.root / review_path).write_text(json.dumps(review), encoding='utf-8')
-        gate = {'schema': 1, 'kind': 'SOURCE_CONTRACT_GATE', 'unit_id': 'III.13', 'task_id': 'P9-I',
+        gate = {'schema': 1, 'kind': 'SOURCE_CONTRACT_GATE', 'unit_id': 'III.14', 'task_id': 'P9-I',
                 'unit': {'path': unit_path, 'sha256': sha(unit_path)},
                 'evidence': {'path': review_path, 'sha256': sha(review_path)},
                 'contract': contract, 'sources': sources}
         (self.root / gate_path).write_text(json.dumps(gate), encoding='utf-8')
 
         def edit(state):
-            state['units'].append({'id': 'III.13', 'state': 'CONDITIONAL_PASS',
+            state['units'].append({'id': 'III.14', 'state': 'CONDITIONAL_PASS',
                                    'path': unit_path, 'evidence': review_path})
-            state['gates']['III.13'] = {'state': 'PASS', 'task_id': 'P9-I', 'path': gate_path}
+            state['gates']['III.14'] = {'state': 'PASS', 'task_id': 'P9-I', 'path': gate_path}
         self.state_edit(edit, regenerate=True)
         return gate_path, gate
 
@@ -99,7 +102,7 @@ class ControlRegression(unittest.TestCase):
 
     def test_readme_cannot_pass_as_source_gate(self):
         self.gate_fixture()
-        self.state_edit(lambda s: s['gates']['III.13'].update(path='README.md'))
+        self.state_edit(lambda s: s['gates']['III.14'].update(path='README.md'))
         self.detects('invalid typed gate')
 
     def test_gate_of_another_task(self):
@@ -162,6 +165,11 @@ class ControlRegression(unittest.TestCase):
             f.write('\n## F62 — duplicate\n')
         self.detects('F registry missing or duplicate')
 
+    def test_latest_falsifier_snapshot_must_be_materialized(self):
+        (self.root / 'docs/falsifier-registry-99.md').write_text(
+            '# PSI — future falsifier snapshot\n\n## F99 — synthetic\n', encoding='utf-8')
+        self.detects('falsifier-registry latest version not materialized')
+
     def test_recursive_registry(self):
         with (self.root / 'docs/claim-registry.md').open('a', encoding='utf-8') as f:
             f.write('\nRetain C01–C18 from the previous registry.\n')
@@ -197,13 +205,13 @@ class ControlRegression(unittest.TestCase):
         self.detects('supersedes cycle')
 
     def test_undeclared_unit(self):
-        (self.root / 'docs/principia-v3-13-unlicensed.md').write_text('# III.13\n', encoding='utf-8')
+        (self.root / 'docs/principia-v3-14-unlicensed.md').write_text('# III.14\n', encoding='utf-8')
         self.detects('unregistered theorem unit')
 
     def test_declared_unit_without_passed_gate(self):
-        path = 'docs/principia-v3-13-unlicensed.md'
-        (self.root / path).write_text('# III.13\n', encoding='utf-8')
-        self.state_edit(lambda s: s['units'].append({'id': 'III.13', 'state': 'PASS', 'path': path,
+        path = 'docs/principia-v3-14-unlicensed.md'
+        (self.root / path).write_text('# III.14\n', encoding='utf-8')
+        self.state_edit(lambda s: s['units'].append({'id': 'III.14', 'state': 'PASS', 'path': path,
                         'evidence': 'docs/principia-v3-p9h-composition-crosscheck-01.md'}), regenerate=True)
         self.detects('unpassed source gate')
 

@@ -1,0 +1,68 @@
+name: PSI-VIZ R5 real relation direction
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/psi_viz_outputs.py'
+      - 'scripts/psi_viz_renderer.py'
+      - 'scripts/psi_viz_manim_exec.py'
+      - 'scripts/test_psi_viz_projection.py'
+      - 'scripts/test_psi_viz_outputs.py'
+      - 'scripts/test_psi_viz_renderer.py'
+      - 'scripts/test_psi_viz_manim_exec.py'
+      - 'scripts/test_psi_viz_digest_integrity_r3.py'
+      - 'scripts/test_psi_viz_status_redaction_r4.py'
+      - 'scripts/test_psi_viz_relation_direction_r5.py'
+      - 'scripts/test_psi_viz_relation_direction_r5_real.py'
+      - '.github/workflows/psi-viz-relation-direction-r5-real.yml'
+  workflow_dispatch:
+
+jobs:
+  real-relation-direction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify R5 source witness
+        run: python3 scripts/test_psi_viz_relation_direction_r5.py
+
+      - name: Install Manim runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev
+          python3 -m pip install --upgrade pip
+          python3 -m pip install 'manim==0.19.0'
+
+      - name: Verify R5 actual rendered pixels
+        run: python3 scripts/test_psi_viz_relation_direction_r5_real.py
+
+      - name: Re-verify R3 digest integrity
+        run: python3 scripts/test_psi_viz_digest_integrity_r3.py
+
+      - name: Re-verify R4 status redaction
+        run: python3 scripts/test_psi_viz_status_redaction_r4.py
+
+      - name: Re-verify F4.0 projection
+        run: python3 scripts/test_psi_viz_projection.py
+
+      - name: Re-verify F4.1 outputs
+        run: python3 scripts/test_psi_viz_outputs.py
+
+      - name: Re-verify F4.2 renderer
+        run: python3 scripts/test_psi_viz_renderer.py
+
+      - name: Re-verify F4.3 executable scene source
+        run: python3 scripts/test_psi_viz_manim_exec.py
+
+      - name: Upload R5 real-render evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-viz-r5-real-relation-direction
+          path: |
+            build/psi-viz-r5/
+            build/psi-viz-r5-real/
+          if-no-files-found: error

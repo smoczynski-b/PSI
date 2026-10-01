@@ -1,0 +1,107 @@
+name: PSI-VIZ F4.3 real Manim execution
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_manim_exec.py'
+      - 'scripts/test_psi_viz_manim_exec.py'
+      - 'scripts/psi_viz_renderer.py'
+      - 'scripts/test_psi_viz_renderer.py'
+      - 'scripts/psi_viz_outputs.py'
+      - 'scripts/test_psi_viz_outputs.py'
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/test_psi_viz_projection.py'
+      - 'docs/memory/PSI-VIZ-F4.3-01.md'
+      - '.github/workflows/psi-viz-manim-exec.yml'
+  workflow_dispatch:
+
+jobs:
+  psi-viz-manim-exec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Re-verify F4.0 projection contract
+        run: python3 scripts/test_psi_viz_projection.py
+
+      - name: Re-verify F4.1 output contract
+        run: python3 scripts/test_psi_viz_outputs.py
+
+      - name: Re-verify F4.2 renderer contract
+        run: python3 scripts/test_psi_viz_renderer.py
+
+      - name: Verify F4.3 executable scene source
+        run: python3 scripts/test_psi_viz_manim_exec.py
+
+      - name: Install Manim runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config python3-dev
+          python3 -m pip install --upgrade pip
+          python3 -m pip install 'manim==0.19.0'
+
+      - name: Render real MP4 with Manim
+        run: |
+          manim -ql --disable_caching \
+            --media_dir build/psi-viz-f4.3/media \
+            build/psi-viz-f4.3/reposition-scene.py \
+            PSIVizReposition
+          VIDEO="$(find build/psi-viz-f4.3/media -type f -name 'PSIVizReposition.mp4' -print -quit)"
+          test -n "$VIDEO"
+          test -s "$VIDEO"
+          cp "$VIDEO" build/psi-viz-f4.3/psi-viz-reposition.mp4
+
+      - name: Verify rendered video
+        run: |
+          VIDEO=build/psi-viz-f4.3/psi-viz-reposition.mp4
+          ffprobe -v error -select_streams v:0 \
+            -show_entries stream=codec_name,width,height,r_frame_rate,nb_frames \
+            -show_entries format=duration,size \
+            -of json "$VIDEO" > build/psi-viz-f4.3/video-probe.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          probe=json.loads(Path('build/psi-viz-f4.3/video-probe.json').read_text())
+          duration=float(probe['format']['duration'])
+          size=int(probe['format']['size'])
+          assert duration > 1.0, duration
+          assert size > 1000, size
+          stream=probe['streams'][0]
+          assert int(stream['width']) > 0 and int(stream['height']) > 0
+          print('real_mp4=PASS')
+          print(f'duration_seconds={duration}')
+          print(f'video_size_bytes={size}')
+          print(f"codec={stream.get('codec_name')}")
+          PY
+          ffmpeg -loglevel error -y -i "$VIDEO" -vf 'select=eq(n\,0)' -frames:v 1 build/psi-viz-f4.3/first-frame.png
+          ffmpeg -loglevel error -y -sseof -0.1 -i "$VIDEO" -frames:v 1 build/psi-viz-f4.3/last-frame.png
+          test -s build/psi-viz-f4.3/first-frame.png
+          test -s build/psi-viz-f4.3/last-frame.png
+          if cmp -s build/psi-viz-f4.3/first-frame.png build/psi-viz-f4.3/last-frame.png; then
+            echo 'first and last frame are identical' >&2
+            exit 1
+          fi
+          sha256sum \
+            build/psi-viz-f4.3/psi-viz-reposition.mp4 \
+            build/psi-viz-f4.3/first-frame.png \
+            build/psi-viz-f4.3/last-frame.png \
+            > build/psi-viz-f4.3/render-digests.txt
+
+      - name: Re-verify finite representation control
+        run: python3 scripts/test_memory_representation.py
+
+      - name: Re-run active memory regression
+        run: python3 scripts/test_active_memory.py
+
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py
+
+      - name: Upload F4.3 real render products
+        uses: actions/upload-artifact@v4
+        with:
+          name: psi-viz-f4.3-real-manim
+          path: build/psi-viz-f4.3/
+          if-no-files-found: error

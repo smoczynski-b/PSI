@@ -1,0 +1,44 @@
+name: PSI memory full bounded run
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'docs/memory/psi-memory-nodes-01.tsv'
+      - 'docs/memory/psi-memory-edges-01.tsv'
+      - 'scripts/test_psi_memory_full_bounded_run.py'
+      - 'scripts/active_memory.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/memory_archive_runtime.py'
+      - 'scripts/memory_archive_usage_runtime.py'
+      - 'scripts/curator_planner_runtime.py'
+      - '.github/workflows/memory-full-bounded-run.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-bounded-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Full bounded PSI memory episode on real PSI records
+        run: python3 scripts/test_psi_memory_full_bounded_run.py
+      - name: R1 WAL regression
+        run: python3 scripts/test_jsonl_journal_recovery.py
+      - name: R2 reconciliation regression
+        run: python3 scripts/test_result_reconciliation_r2.py
+      - name: R6 cost semantics regression
+        run: python3 scripts/test_access_cost_semantics_r6.py
+      - name: R7 consumed-version regression
+        run: python3 scripts/test_archive_consumed_version_r7.py
+      - name: R8 observation-identity regression
+        run: python3 scripts/test_curator_observation_identity_r8.py
+      - name: F3.3 Curator regression
+        run: python3 scripts/test_curator_planner_runtime.py
+
+# Triggered after isolating mutable workspace seeds across restart; runtime semantics unchanged.

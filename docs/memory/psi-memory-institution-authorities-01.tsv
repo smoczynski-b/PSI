@@ -1,0 +1,17 @@
+action	authority	precondition	secondary_check	forbidden_shortcut
+ADMIT_NEW_OBJECT	GUARDIAN	typed schema + contract + provenance boundary checks pass	PSI/source gate when task claims are involved	popularity_or_agent_identity
+REJECT_BOUNDARY	GUARDIAN	explicit boundary violation	append reason code	truth_disagreement
+PRE_QUARANTINE	GUARDIAN	material boundary ambiguity or repairable admission defect	recheck after missing field/evidence arrives	permanent_rejection_without_contract_basis
+ACK_TRANSITION	SERVANT	transition conforms to current constitution and transaction protocol	append audit event	semantic_reinterpretation
+BLOCK_ILLEGAL_TRANSITION	SERVANT	explicit procedural invariant violated	STOP/ESCALATE with machine reason	invent_repair_outside_runbook
+LOCAL_RUNBOOK_REMEDIATION	SERVANT	pre-authorized bounded remediation exists	must preserve WAL/provenance	delete_committed_history
+POST_QUARANTINE	IMMUNE	admitted object/workspace exhibits licensed anomaly signature or propagation hazard	record evidence + scope + review trigger	declare_false
+REQUEST_RECHECK	IMMUNE	anomaly can affect dependent reuse	dependency-scoped request only	global_invalidation_without_path
+CLEAR_ANOMALY	IMMUNE	registered anomaly condition no longer holds	GUARDIAN must revalidate boundary before release if object re-enters active exchange	self_release_to_active
+MATERIALIZE_LINEAGE	CURATOR	admitted lineage relation exists	preserve source/version identifiers	invent_derivation
+ARCHIVE	CURATOR	retention/lifecycle contract allows archival	never erase provenance	delete_history
+MARK_SUPERSEDED	CURATOR	admitted SUPERSEDES relation exists	old object remains addressable	infer_supersession_from_recency
+PUBLISH_CURRENT_POINTER	CURATOR	one current object selected by admitted lifecycle relation	pointer update must be reversible/auditable	content_edit
+RELEASE_POST_QUARANTINE	GUARDIAN+IMMUNE	IMMUNE CLEAR_ANOMALY + GUARDIAN boundary revalidation	CURATOR records lifecycle transition when persistent	one_role_release
+PROMOTE_REUSABLE_MAP	GUARDIAN+CURATOR+PSI_GATE	boundary admitted + lineage/provenance materialized + task-relative adequacy/source checks pass	SERVANT records legal transition	usage_count_or_reputation
+CHANGE_CONSTITUTION	NONE_RUNTIME	explicit human/project governance change outside runtime roles	full contract interview + review	self_modification_by_role

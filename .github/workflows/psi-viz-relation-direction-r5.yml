@@ -1,0 +1,43 @@
+name: PSI-VIZ relation direction R5
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/psi_viz_projection.py'
+      - 'scripts/psi_viz_outputs.py'
+      - 'scripts/psi_viz_renderer.py'
+      - 'scripts/psi_viz_manim_exec.py'
+      - 'scripts/test_psi_viz_relation_direction_r5.py'
+      - 'scripts/test_psi_viz_status_redaction_r4.py'
+      - 'scripts/test_psi_viz_digest_integrity_r3.py'
+      - 'scripts/test_psi_viz_projection.py'
+      - 'scripts/test_psi_viz_outputs.py'
+      - 'scripts/test_psi_viz_renderer.py'
+      - 'scripts/test_psi_viz_manim_exec.py'
+      - '.github/workflows/psi-viz-relation-direction-r5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  relation-direction-r5:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: R5 separating witness
+        run: python3 scripts/test_psi_viz_relation_direction_r5.py
+      - name: R4 status-redaction regression
+        run: python3 scripts/test_psi_viz_status_redaction_r4.py
+      - name: R3 integrity regression
+        run: python3 scripts/test_psi_viz_digest_integrity_r3.py
+      - name: F4.0 projection regression
+        run: python3 scripts/test_psi_viz_projection.py
+      - name: F4.1 output regression
+        run: python3 scripts/test_psi_viz_outputs.py
+      - name: F4.2 renderer regression
+        run: python3 scripts/test_psi_viz_renderer.py
+      - name: F4.3 executable-source regression
+        run: python3 scripts/test_psi_viz_manim_exec.py

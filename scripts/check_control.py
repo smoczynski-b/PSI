@@ -207,6 +207,18 @@ def validate(root):
             f12 = text.split('## F12 —', 1)[-1].split('\n## ', 1)[0]
             require('C19-v3' in f12 and 'F62' in f12, 'F12 lacks adopted scope correction')
 
+    # Stable materialized registries must include the latest numbered snapshot.
+    for role, stem in [('claim-registry', 'claim-registry'), ('falsifier-registry', 'falsifier-registry')]:
+        versions = []
+        for p in (root / 'docs').glob(stem + '-*.md'):
+            m = re.fullmatch(re.escape(stem) + r'-(\d+)\.md', p.name)
+            if m:
+                versions.append((int(m.group(1)), str(p.relative_to(root))))
+        if versions:
+            latest_path = max(versions)[1]
+            require(latest_path in state.get('supersedes', {}).get(current[role], []),
+                    f'{role} latest version not materialized: {latest_path}')
+
     task_ids = [t['id'] for t in state['tasks']]
     require(len(task_ids) == len(set(task_ids)), 'duplicate task ID')
     task_map = {t['id']: t for t in state['tasks']}

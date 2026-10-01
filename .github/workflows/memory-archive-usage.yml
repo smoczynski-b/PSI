@@ -1,0 +1,32 @@
+name: PSI memory archive usage
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/memory_archive_usage_runtime.py'
+      - 'scripts/test_memory_archive_usage_runtime.py'
+      - 'scripts/memory_archive_runtime.py'
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/servant_runtime.py'
+      - 'docs/memory/PSI-MEMORY-ARCHIVE-F3.2-01.md'
+      - '.github/workflows/memory-archive-usage.yml'
+  workflow_dispatch:
+
+jobs:
+  memory-archive-usage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-verify F3.0 archive contract
+        run: PYTHONPATH=scripts python3 scripts/test_memory_archive_contract.py
+      - name: Re-verify F3.1 archive runtime
+        run: PYTHONPATH=scripts python3 scripts/test_memory_archive_runtime.py
+      - name: Verify F3.2 archive usage integration
+        run: PYTHONPATH=scripts python3 scripts/test_memory_archive_usage_runtime.py
+      - name: Re-run ACCESS_STEWARD runtime
+        run: PYTHONPATH=scripts python3 scripts/test_access_steward_runtime.py
+      - name: Re-run Servant regression
+        run: PYTHONPATH=scripts python3 scripts/test_servant_runtime.py
+      - name: Re-run institutional constitution
+        run: PYTHONPATH=scripts python3 scripts/test_memory_institution.py

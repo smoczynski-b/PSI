@@ -1,0 +1,5 @@
+case_id	task	expected_status	expected_anchor	expected_intents	expected_attestation
+C1	dla II.9 pokaż przesłanki dowodu, granice i analogie	COMPILED	II.9	PROOF_PREREQUISITE,BOUNDARY,ANALOGY	VALID_FRAGMENT_CERT_OR_ROUTING_ATTESTED
+C2	dla II.9 pokaż przesłanki dowodu i analogie, tylko pełne certyfikaty	CONTRACT_CONFLICT	II.9	PROOF_PREREQUISITE,ANALOGY	VALID_FRAGMENT_CERT_ONLY
+C3	sprawdź przesłanki dowodu II.9 i II.11.PSI-BRIDGE	NEEDS_ANCHOR_POLICY		PROOF_PREREQUISITE	
+C4	dla II.9 pokaż granice, tylko pełne certyfikaty	COMPILED	II.9	BOUNDARY	VALID_FRAGMENT_CERT_ONLY

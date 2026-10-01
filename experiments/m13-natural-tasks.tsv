@@ -1,0 +1,6 @@
+case_id	task	expected_status	expected_anchor	expected_intents
+T1	sprawdź przesłanki dowodu II.9 i jego granice	COMPILED	II.9	PROOF_PREREQUISITE,BOUNDARY
+T2	dla II.9 pokaż zależności dowodowe oraz czego twierdzenie nie implikuje	COMPILED	II.9	PROOF_PREREQUISITE,BOUNDARY
+T3	pokaż tylko przesłanki dowodowe II.9	COMPILED	II.9	PROOF_PREREQUISITE
+T4	opisz II.9	NEEDS_CONTRACT	II.9	
+T5	sprawdź przesłanki dowodu	NEEDS_ANCHOR		PROOF_PREREQUISITE

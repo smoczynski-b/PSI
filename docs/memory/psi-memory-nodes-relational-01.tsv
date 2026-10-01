@@ -1,0 +1,9 @@
+id	kind	status	source	label
+FINITE-MEMORY	PROPERTY	CURRENT	docs/principia-v2-09-recursive-history-quotient-update.md	Finite memory
+COMPUTABILITY	PROPERTY	CURRENT	docs/principia-v2-09-recursive-history-quotient-update.md	Computability
+EFFICIENCY	PROPERTY	CURRENT	docs/principia-v2-09-recursive-history-quotient-update.md	Efficiency
+SSK-CONTRACT	CONTRACT	FROZEN	docs/go-memory-regression-01.md	Situational-superko task contract
+PSK-MEMORY	REPRESENTATION	FROZEN	docs/go-memory-regression-01.md	Positional-superko memory rho_PSK=(B_t,sigma_t,V_t)
+SSK-MEMORY	REPRESENTATION	FROZEN	docs/go-memory-regression-01.md	Situational-superko memory rho_SSK=(B_t,sigma_t,U_t)
+NERODE-LANGUAGE-CONTRACT	CONTRACT	CLASSICAL	docs/principia-v2-11-myhill-nerode-bridge.md	Finite alphabet, language, all right continuations, deterministic acceptance
+NERODE-EQUIVALENCE	CLASSICAL_OBJECT	CLASSICAL	docs/principia-v2-11-myhill-nerode-bridge.md	Classical Myhill-Nerode right equivalence

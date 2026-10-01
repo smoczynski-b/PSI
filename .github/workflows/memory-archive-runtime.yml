@@ -1,0 +1,33 @@
+name: PSI memory archive runtime
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/memory_archive_runtime.py'
+      - 'scripts/test_memory_archive_runtime.py'
+      - 'experiments/PSI-MEMORY-ARCHIVE-F3.1-01.md'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/test_servant_runtime.py'
+      - 'scripts/test_memory_archive_contract.py'
+      - 'docs/memory/PSI-MEMORY-ARCHIVE-F3.0-01.md'
+      - '.github/workflows/memory-archive-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-archive-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-verify F3.0 archive contract
+        run: python3 scripts/test_memory_archive_contract.py
+      - name: Verify F3.1 archive runtime
+        run: python3 scripts/test_memory_archive_runtime.py
+      - name: Re-run Servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py

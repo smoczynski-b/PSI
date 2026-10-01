@@ -1,0 +1,36 @@
+name: PSI memory access steward runtime
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/access_steward_runtime.py'
+      - 'scripts/test_access_steward_runtime.py'
+      - 'scripts/servant_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/mvcc_workspace.py'
+      - 'scripts/active_memory.py'
+      - 'docs/memory/PSI-MEMORY-ACCESS-STEWARD-01.md'
+      - 'docs/memory/psi-memory-access-steward-contract-01.tsv'
+      - 'docs/memory/psi-memory-access-steward-conflicts-01.tsv'
+      - 'experiments/PSI-MEMORY-ACCESS-STEWARD-F2.1-01.md'
+      - '.github/workflows/memory-access-steward-runtime.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  access-steward-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Re-verify F2.0 contract
+        run: python3 scripts/test_access_steward_contract.py
+      - name: Verify F2.1 runtime
+        run: python3 scripts/test_access_steward_runtime.py
+      - name: Re-run Servant regression
+        run: python3 scripts/test_servant_runtime.py
+      - name: Re-run institutional constitution
+        run: python3 scripts/test_memory_institution.py

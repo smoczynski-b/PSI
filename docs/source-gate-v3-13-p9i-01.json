@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "kind": "SOURCE_CONTRACT_GATE",
+  "unit_id": "III.13",
+  "task_id": "P9-I",
+  "unit": {
+    "path": "docs/principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md",
+    "sha256": "aeb6734c3d0e72a5e27435bdb761344c0b403222c0e032b62ed11ef2ef757c67"
+  },
+  "evidence": {
+    "path": "docs/source-review-v3-13-p9i-01.json",
+    "sha256": "170e55fde22ecbb575a70ecfde0e922e1acae8e6bde213cef1745018eb9d836c"
+  },
+  "contract": {
+    "object": "Densely defined closed generator A:D(A)⊂H→H of a strongly continuous linear semigroup T(t) on a complex Hilbert space H.",
+    "type_domain": "Complex Hilbert space; linear C0-semigroup; generator domain D(A) is retained under the shift A-aI.",
+    "conditions": "A generates T(t); s0(A) uses uniform resolvent boundedness on closed half-planes strictly to the right of the spectral bound; the reverse inequality imports right-half-plane Gearhart–Prüss–Huang.",
+    "quantity": "Semigroup growth bound omega_0(T) and uniform-resolvent abscissa s_0(A).",
+    "claim": "omega_0(T)=s_0(A), hence exponential stability iff s_0(A)<0.",
+    "limits": "No Banach export, no equality with spectral bound in general, no peak/Kreiss control, no nonlinear or nonautonomous export, no Lyapunov-metric construction, no closure of general P9."
+  },
+  "sources": [
+    {
+      "url": "https://doi.org/10.1090/S0002-9947-1978-0461206-1",
+      "locator": "Gearhart (1978), spectral criterion for contraction semigroups on Hilbert space; source component of the Hilbert resolvent/stability bridge.",
+      "supports": [
+        "type_domain",
+        "conditions",
+        "claim"
+      ]
+    },
+    {
+      "url": "https://doi.org/10.1090/S0002-9947-1984-0743749-9",
+      "locator": "Prüss (1984), On the spectrum of C0-semigroups; Hilbert-space resolvent/growth-bound theorem used for the right-half-plane formulation.",
+      "supports": [
+        "object",
+        "conditions",
+        "quantity",
+        "claim",
+        "limits"
+      ]
+    }
+  ]
+}

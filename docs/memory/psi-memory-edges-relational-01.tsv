@@ -1,0 +1,9 @@
+from	relation	to	effect	source	note
+II.9	DOES_NOT_IMPLY	FINITE-MEMORY	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	Well-defined recursive quotient update does not imply finite memory
+II.9	DOES_NOT_IMPLY	COMPUTABILITY	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	Well-defined recursive quotient update does not imply computability
+II.9	DOES_NOT_IMPLY	EFFICIENCY	NONE	docs/principia-v2-09-recursive-history-quotient-update.md	Well-defined recursive quotient update does not imply efficiency
+GO-G4	REQUIRES_CONTRACT	SSK-CONTRACT	NONE	docs/go-memory-regression-01.md	G4 is interpreted under situational superko
+GO-G4	FALSIFIES	PSK-MEMORY	NONE	docs/go-memory-regression-01.md	Positional-superko memory merges histories with different next-move legality under SSK
+GO-G4	SUPPORTS	SSK-MEMORY	NONE	docs/go-memory-regression-01.md	Frozen G4 result records rho_SSK as sufficient for the task
+II.11.PSI-BRIDGE	REQUIRES_CONTRACT	NERODE-LANGUAGE-CONTRACT	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Exact PSI/Nerode identification is contract-relative
+II.11.PSI-BRIDGE	IDENTIFIES_WITH	NERODE-EQUIVALENCE	NONE	docs/principia-v2-11-myhill-nerode-bridge.md	Under the language contract the PSI task equivalence is exactly Nerode equivalence

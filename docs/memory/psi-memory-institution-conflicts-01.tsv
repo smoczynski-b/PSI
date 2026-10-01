@@ -1,0 +1,13 @@
+case	roles	resolution	invariant
+malformed_or_untyped_input	GUARDIAN|IMMUNE	GUARDIAN acts before admission; IMMUNE is not invoked	boundary_fault_is_not_pathology
+explicitly_illegal_transition	SERVANT|IMMUNE	SERVANT blocks before commit; IMMUNE does not reinterpret the violation	known_illegality_is_not_anomaly_detection
+schema_valid_but_anomalous_after_admission	GUARDIAN|IMMUNE	IMMUNE may quarantine post-admission; GUARDIAN does not retroactively declare original admission false	admission_legality_is_not_health
+quarantine_release	GUARDIAN|IMMUNE	IMMUNE clears anomaly condition; GUARDIAN revalidates boundary; neither can release alone	two_key_release
+supersession_of_quarantined_object	CURATOR|IMMUNE	CURATOR may record admitted supersession but cannot clear quarantine	lifecycle_is_not_health
+archive_of_stale_or_quarantined_object	CURATOR|IMMUNE	CURATOR may archive while preserving health history and provenance	archive_is_not_acquittal
+rollback_after_durable_commit	SERVANT|CURATOR	SERVANT may execute only an authorized compensating transition; CURATOR records resulting lineage; durable history is not rewritten	append_only_history
+restore_archived_object	CURATOR|GUARDIAN	CURATOR exposes candidate version; GUARDIAN performs fresh admission if object returns to active exchange	archive_exit_crosses_boundary
+newer_version_without_supersedes_relation	CURATOR|GUARDIAN	CURATOR must not infer supersession from time/order; wait for admitted relation	newer_is_not_authoritative
+role_detects_own_constitution_problem	SERVANT|GUARDIAN|IMMUNE|CURATOR	role emits STOP/ESCALATE evidence only; constitution change occurs outside runtime roles	no_self_constitution
+semantic_truth_dispute	GUARDIAN|SERVANT|IMMUNE|CURATOR	all institutional roles abstain; route to domain evidence/PSI process	procedure_is_not_truth
+forum_popularity_or_import_count	GUARDIAN|CURATOR	may be stored as descriptive metadata only; never substitutes for adequacy or source gate	frequency_is_not_epistemic_strength

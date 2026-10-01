@@ -1,0 +1,34 @@
+name: PSI memory servant regression
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/servant_runtime.py'
+      - 'scripts/test_servant_runtime.py'
+      - 'scripts/test_servant_restart_collision.py'
+      - 'scripts/test_memory_institution.py'
+      - 'scripts/test_active_memory_wal.py'
+      - 'experiments/PSI-MEMORY-SERVANT-01.md'
+      - 'docs/memory/PSI-MEMORY-INSTITUTION-01.md'
+      - 'docs/memory/psi-memory-institution-*.tsv'
+      - '.github/workflows/memory-servant.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  servant:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify memory institution contract
+        run: python3 scripts/test_memory_institution.py
+      - name: Verify durable memory WAL recovery
+        run: python3 scripts/test_active_memory_wal.py
+      - name: Verify deterministic servant runtime
+        run: python3 scripts/test_servant_runtime.py
+      - name: Verify first servant verdict survives collision and restart
+        run: python3 scripts/test_servant_restart_collision.py

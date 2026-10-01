@@ -1,0 +1,31 @@
+name: PSI memory cost accounting regression
+
+on:
+  push:
+    branches: [psi-memory-map-01]
+    paths:
+      - 'scripts/active_memory_runtime.py'
+      - 'scripts/multiworkspace_runtime.py'
+      - 'scripts/shared_memory_runtime.py'
+      - 'scripts/durable_shared_memory.py'
+      - 'scripts/test_active_memory_cost_accounting.py'
+      - '.github/workflows/memory-cost-accounting.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cost-accounting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify local/global active-memory work accounting
+        run: python3 scripts/test_active_memory_cost_accounting.py
+      - name: Verify multi-workspace routing regression
+        run: python3 scripts/test_active_memory_multiworkspace.py
+      - name: Verify shared-memory integration regression
+        run: python3 scripts/test_active_memory_shared.py
+      - name: Verify durable WAL recovery regression
+        run: python3 scripts/test_active_memory_wal.py

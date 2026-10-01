@@ -1,0 +1,18 @@
+{
+  "id": "M4b-ABC-CALIBRATION",
+  "status": "INPUT_PREPARATION_ONLY",
+  "source_ref": "772bd92eb67f314bf99402462e9ec69392abcb5f",
+  "broad_manifest": "experiments/m4-broad-manifest.txt",
+  "guided_manifest": "experiments/m4-guided-manifest.txt",
+  "task_en": "Starting from the frozen Go G4 situational-superko regression, state the exact PSI memory-adequacy criterion; explain why visited-board memory V_t fails and what repairs it; identify the relation of the regression to II.7 and II.9 without turning a regression witness into a proof premise; preserve the G1 provenance gap; state what the canonical history quotient is minimal with respect to; and state what recursive update does not imply.",
+  "task_pl": "Wychodząc od zamrożonego testu Go G4 dla sytuacyjnego superko, podaj dokładne kryterium adekwatności pamięci PSI; wyjaśnij, dlaczego pamięć odwiedzonych plansz V_t zawodzi i co ją naprawia; określ związek testu z II.7 i II.9 bez zamiany świadka regresji w przesłankę dowodu; zachowaj lukę źródłową G1; podaj, względem czego kanoniczny iloraz historii jest minimalny, oraz czego nie implikuje rekurencyjna aktualizacja.",
+  "answer_word_limit": 650,
+  "chunk_lines": 80,
+  "bm25_k1": 1.2,
+  "bm25_b": 0.75,
+  "lexical_budget": "SERIALIZED_GUIDED_CONTEXT_UTF8_BYTES",
+  "query_policy": "TASK_PL_PLUS_TASK_EN_ONLY",
+  "gold_access": false,
+  "model_status": "NOT_RUN",
+  "held_out_status": "NOT_HELD_OUT_CALIBRATION_TASK"
+}
