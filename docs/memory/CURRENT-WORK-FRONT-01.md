@@ -12,18 +12,19 @@
 
 ## Current decision
 
-**P9-I — SOURCE/CONTRACT GATE `PASS`. NEXT: theorem-selection / proof gate.**
+**P9-I — THEOREM-SELECTION / PROOF GATE `PASS`. NEXT: III.13 promotion / composition gate.**
 
-The user explicitly selected return to the mathematical front on 2026-10-01. F4.4 remains closed and F5 remains frozen; neither is automatically resumed.
+The user selected the mathematical front. F4.4 remains closed and F5 remains frozen; neither is automatically resumed.
 
 Current state:
 
 ```text
 P9_GENERAL = OPEN / CENTRAL
 P9_I_SOURCE_GATE = PASS
-P9_I_THEOREM = NOT_YET_AUTHORIZED
+P9_I_THEOREM_SELECTION_PROOF = PASS
+P9_I_SELECTED_STATEMENT = omega_0(T) = s_0(A) on complex Hilbert C0-semigroups
 III.13 = NOT_YET_ASSIGNED
-NEXT = P9-I THEOREM-SELECTION / PROOF GATE
+NEXT = III.13 PROMOTION / COMPOSITION GATE
 
 FULL_BOUNDED_RUN = PASS_WITH_BOUNDARY
 R9 = NOT_CREATED
@@ -37,75 +38,64 @@ F5_EXECUTION = BLOCKED_BY_ZERO_ALLOCATED_CREDITS
 Primary mathematical evidence:
 
 - `docs/p9i-infinite-dimensional-resolvent-growth-source-gate-01.md`
-- `docs/principia-v3-theorem-map-09.md`
-- `docs/work-map-10.md`
+- `docs/principia-v3-p9i-theorem-selection-proof-gate-01.md`
+- `docs/principia-v3-theorem-map-10.md`
+- `docs/work-map-11.md`
 - `docs/falsifier-registry-13.md`
 
 ---
 
-## P9-I source-gate result
+## P9-I proved candidate
 
-The gate starts from the typed generator
-
-\[
-A:D(A)\subset X\to X
-\]
-
-of a \(C_0\)-semigroup \(T(t)\), with Hilbert-specific statements explicitly restricted to \(X=\mathcal H\).
-
-It separates:
+The selected typed statement is
 
 \[
 \boxed{
- s(A)
- \mid
- \omega_0(T)
- \mid
- s_0(A)
- \mid
- \mathcal K(A)
- \mid
- \sup_t\|T(t)\|
- \mid
- \|T(t)A^{-1}\|
+\mathcal H\text{ complex Hilbert},
+\quad
+A:D(A)\subset\mathcal H\to\mathcal H
+\text{ generator of a }C_0\text{-semigroup }T(t)
+\Longrightarrow
+\omega_0(T)=s_0(A).
 }
 \]
 
-instead of treating them as one generic spectral/resolvent observable.
+Here
 
-The legal classical ladder identified by the source gate is:
+\[
+\omega_0(T)
+=
+\inf\{\gamma:\exists M\ge1,\ \|T(t)\|\le Me^{\gamma t}\},
+\]
+
+while
+
+\[
+s_0(A)
+=
+\inf\left\{a>s(A):
+\sup_{\Re z\ge a}\|R(z,A)\|<\infty
+\right\}.
+\]
+
+The two proof directions are separated:
 
 ```text
-Hilbert / exponential growth:
-    omega_0(T) = s_0(A)
+s_0 <= omega_0
+    Laplace resolvent representation + exponential semigroup bound
 
-bounded Hilbert / imaginary-axis exponential stability:
-    Gearhart-Pruss-Huang under the bounded-semigroup / equivalent side contract
-
-bounded Hilbert / polynomial rates:
-    polynomial resolvent growth <-> decay of T(t)A^{-1}
-
-m-accretive Hilbert subclass:
-    quantitative Wei-type decay estimate
-
-finite-dimensional transient amplification:
-    dimension-dependent continuous-time Kreiss theorem
-
-infinite-dimensional Kreiss:
-    finite Kreiss constant does not imply uniform semigroup boundedness in general
+omega_0 <= s_0
+    shift B = A - aI, D(B)=D(A)
+    + right-half-plane Gearhart-Pruss-Huang stability theorem
 ```
 
-The source gate does not create a PSI-new theorem. The imported results are classical/adapted.
+The Gearhart–Prüss–Huang theorem is imported as classical source material; the P9-I unit does not claim a new proof of that theorem or PSI novelty.
 
 ---
 
-## P9-I permanent locks
+## F63 exact regression
 
-`falsifier-registry-13.md` adds:
-
-### F63 — missing boundedness in imaginary-axis Gearhart export
-
-The exact witness is
+For
 
 \[
 A=I,
@@ -113,65 +103,165 @@ A=I,
 T(t)=e^tI,
 \]
 
-while
+one has
+
+\[
+\omega_0(T)=1.
+\]
+
+Also, for every \(a>1\),
+
+\[
+\sup_{\Re z\ge a}\|(zI-I)^{-1}\|
+=
+\frac1{a-1},
+\]
+
+so
+
+\[
+\boxed{s_0(A)=1=\omega_0(T)}.
+\]
+
+Yet
 
 \[
 \sup_{\beta\in\mathbb R}\|(i\beta I-I)^{-1}\|=1.
 \]
 
-Therefore uniform imaginary-axis resolvent boundedness by itself does not imply exponential stability of an arbitrary Hilbert-space \(C_0\)-semigroup.
+Therefore the passed theorem preserves the permanent distinction
 
-### F64 — finite/infinite Kreiss export
+\[
+\boxed{
+\text{imaginary-axis boundedness}
+\neq
+s_0(A)<0.
+}
+\]
 
-Finite-dimensional dimension-dependent Kreiss control does not license
+F63 passes.
+
+---
+
+## F64 boundary
+
+The theorem compares exponential abscissae. It does not assert
 
 \[
 \mathcal K(A)<\infty
 \Rightarrow
-\sup_{t\ge0}\|T(t)\|<\infty
+\sup_t\|T(t)\|<\infty.
 \]
 
-for arbitrary infinite-dimensional semigroups.
+Subexponential but unbounded growth is compatible with
 
-These are regression locks, not new CORE5 primitives.
+\[
+\omega_0(T)=s_0(A)=0.
+\]
+
+Therefore
+
+\[
+\boxed{
+\omega_0=s_0
+\not\Rightarrow
+\text{uniform boundedness or peak-amplification control}.
+}
+\]
+
+F64 passes.
+
+---
+
+## Composition with III.9 / III.11 / III.12
+
+### III.9 DOM-LOGOS
+
+The proof uses only
+
+\[
+A\mapsto A-aI,
+\qquad
+D(A-aI)=D(A),
+\]
+
+so no unbounded-generator domain is erased.
+
+### III.11 P9-G
+
+For the finite-dimensional metric-gradient subclass, III.11 is stronger: it gives exact adapted-metric semigroup and resolvent laws, not only the exponential abscissa. P9-I does not replace it.
+
+### III.12 P9-H
+
+A coercive Lyapunov metric yields
+
+\[
+\omega_0(T)\le-\lambda,
+\qquad
+s_0(A)\le-\lambda,
+\]
+
+and P9-I identifies the two exponential-level quantities:
+
+\[
+\omega_0(T)=s_0(A)\le-\lambda.
+\]
+
+P9-I does not construct \(Q\), \(\lambda\), a condition number, a pseudospectral edge or a transient prefactor.
+
+---
+
+## Permanent boundary
+
+The proof gate does not establish:
+
+```text
+Hilbert equality -> Banach equality
+omega_0 = s_0 -> omega_0 = s(A)
+omega_0 = 0 -> uniform semigroup boundedness
+s_0 -> peak transient amplification
+s_0 -> Kreiss theorem
+s_0 -> coercive Lyapunov metric
+polynomial resolvent growth -> polynomial norm decay of T(t)
+P9-I proof PASS -> P9 general closure
+classical theorem -> PSI novelty
+```
+
+Thus
+
+\[
+\boxed{P9_{\rm general}=OPEN/CENTRAL}
+\]
+
+is unchanged.
 
 ---
 
 ## Next mathematical unit
 
-The theorem map deliberately stops before III.13.
+The candidate is now eligible for a separate numbering/promotion step.
 
-The next unit must select **one** typed theorem statement, prove/import it under exact hypotheses, and crosscheck it against F63–F64 and the existing P9-G/P9-H boundaries.
-
-The conservative candidate is
+The next unit must decide whether to materialize
 
 \[
-\boxed{
-X=\mathcal H,
-\qquad
-\omega_0(T)=s_0(A).
-}
+\boxed{\omega_0(T)=s_0(A)}
 \]
 
-Selection of this candidate is not yet theorem authorization.
+as **III.13**, and if it does, it must preserve exactly the Hilbert-space generator contract and cross-link III.9, III.11, III.12, F63 and F64 without widening the conclusion.
+
+The current automatic next step is therefore only:
+
+```text
+III.13 PROMOTION / COMPOSITION GATE
+```
+
+No III.13 file has yet been created.
 
 ---
 
 ## F4.4 / R5 frozen visual state
 
 F4.4 remains `PASS_WITH_BOUNDARY`; R5 remains `PASS_WITH_BOUNDARY`. No F4.5 or other automatic visual successor is defined.
-
-Key R5 semantic contract remains:
-
-```text
-UNSPECIFIED | DIRECTED | SYMMETRIC
-```
-
-Key F4.4 boundary remains:
-
-```text
-semantic_digest changed != typed SPLIT
-```
 
 No visual work is resumed while P9-I is the selected front.
 
@@ -185,14 +275,6 @@ F5 remains unchanged. The held-out set is still:
 H10 = II.10 strong lumpability bridge
 H11 = II.11 Myhill-Nerode bridge
 H12 = II.12 Paige-Tarjan benchmark
-```
-
-Arms remain:
-
-```text
-A = full frozen II.10-II.12 corpus
-B = BM25 task-text-only, source budget matched to C
-C = frozen existing build_memory_pack.py semantics
 ```
 
 Resume plan, only when model credits exist:
@@ -217,12 +299,12 @@ P_i(S)\not\Rightarrow S.
 Current applications:
 
 ```text
-P9-I source PASS != III.13 theorem PASS
+P9-I source PASS != theorem proof PASS
+P9-I proof PASS != III.13 promotion PASS
 Hilbert theorem != Banach theorem
-imaginary-axis bound != stability without side contract
+imaginary-axis bound != stability without the correct side contract
 finite-dimensional Kreiss != infinite-dimensional boundedness
-resolvent growth != one universal dynamical observable
-polynomial resolvent growth != polynomial operator-norm decay of T(t)
+exponential abscissa != transient peak
 classical bridge != PSI novelty
 F4.4 PASS != general visual semantics
 prepared F5 != model efficacy
@@ -230,4 +312,4 @@ prepared F5 != model efficacy
 
 ## Stop
 
-The current automatic next step is only the **P9-I theorem-selection / proof gate**. Do not create III.13 merely from the source gate. Do not resume F4.x or F5 without an explicit front change or the F5 credit condition being met.
+The current automatic next step is only the **III.13 promotion / composition gate**. Do not resume F4.x or F5 without an explicit front change or the F5 credit condition being met.
