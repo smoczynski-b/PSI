@@ -13,7 +13,7 @@
   },
   "registry_counts": {
     "C": 67,
-    "F": 62
+    "F": 64
   },
   "selection": {
     "primary": "TRAFFIC-OBSERVATION",
@@ -262,7 +262,7 @@
       "docs/claim-registry-13.md"
     ],
     "docs/falsifier-registry.md": [
-      "docs/falsifier-registry-12.md"
+      "docs/falsifier-registry-13.md"
     ],
     "docs/theorem-map-v2.md": [
       "docs/principia-v2-theorem-map-04.md"

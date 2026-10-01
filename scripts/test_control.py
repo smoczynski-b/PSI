@@ -165,6 +165,11 @@ class ControlRegression(unittest.TestCase):
             f.write('\n## F62 — duplicate\n')
         self.detects('F registry missing or duplicate')
 
+    def test_latest_falsifier_snapshot_must_be_materialized(self):
+        (self.root / 'docs/falsifier-registry-99.md').write_text(
+            '# PSI — future falsifier snapshot\n\n## F99 — synthetic\n', encoding='utf-8')
+        self.detects('falsifier-registry latest version not materialized')
+
     def test_recursive_registry(self):
         with (self.root / 'docs/claim-registry.md').open('a', encoding='utf-8') as f:
             f.write('\nRetain C01–C18 from the previous registry.\n')
