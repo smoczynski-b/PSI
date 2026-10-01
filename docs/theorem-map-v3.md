@@ -2,9 +2,9 @@
 
 **Control role:** `theorem-map-v3`
 
-**Status:** `CURRENT / III.1:III.13 RECORDED / III.7:III.13 COMPOSITION PASS / P9 GENERAL OPEN`  
+**Status:** `CURRENT / III.1:III.14 RECORDED / III.7:III.14 COMPOSITION PASS / P9 GENERAL OPEN`  
 **Date:** 2026-10-01  
-**Current historical snapshot:** [principia-v3-theorem-map-11.md](principia-v3-theorem-map-11.md)
+**Current historical snapshot:** [principia-v3-theorem-map-12.md](principia-v3-theorem-map-12.md)
 
 ---
 
@@ -40,6 +40,10 @@ The recorded Volume III stack now includes:
 \boxed{\mathrm{III.13\ P9\!-\!I}=PASS}
 \]
 
+\[
+\boxed{\mathrm{III.14\ P9\!-\!POLY}=PASS}
+\]
+
 with
 
 \[
@@ -50,76 +54,71 @@ with
 
 ---
 
-# 2. III.13 — Hilbert resolvent / exponential-growth bridge
+# 2. III.14 — polynomial resolvent / regularized-decay bridge
 
-For a complex Hilbert space \(\mathcal H\), let
-
-\[
-A:D(A)\subset\mathcal H\to\mathcal H
-\]
-
-be the generator of a strongly continuous linear semigroup \(T(t)\). With the growth bound \(\omega_0(T)\) and uniform-resolvent abscissa \(s_0(A)\) defined in the theorem unit,
+For a bounded linear \(C_0\)-semigroup \(T(t)\) on a complex Hilbert space, with generator \(A\),
 
 \[
-\boxed{\omega_0(T)=s_0(A).}
+i\mathbb R\subset\rho(A),
+\qquad
+\alpha>0,
 \]
 
-The theorem is `CLASSICAL / ADAPTED` via Gearhart–Prüss–Huang. It is not a `PSI-NEW` theorem.
+III.14 records the Borichev–Tomilov equivalence, in particular
 
-Primary unit: [III.13](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md).  
-Typed source review: [P9-I review](source-review-v3-13-p9i-01.json).  
-Typed source gate: [P9-I gate](source-gate-v3-13-p9i-01.json).  
-Composition audit: [III.7–III.13 cross-check](principia-v3-p9i-composition-crosscheck-01.md).
+\[
+\boxed{
+\|R(is,A)\|=O(|s|^\alpha)
+\Longleftrightarrow
+\|T(t)A^{-1}\|=O(t^{-1/\alpha})
+}
+\]
+
+under the precise asymptotic convention and equivalent formulations in the theorem unit.
+
+The target quantity is regularized dynamics, not the raw semigroup norm. The theorem is `CLASSICAL / ADAPTED`, not `PSI-NEW`.
+
+Primary unit: [III.14](principia-v3-14-p9-poly-resolvent-regularized-decay.md).  
+Typed source review: [P9-POLY review](source-review-v3-14-p9-poly-01.json).  
+Typed source gate: [P9-POLY gate](source-gate-v3-14-p9-poly-01.json).
 
 ---
 
 # 3. Composition status
 
-The composition audit establishes
+The typed composition record is now
+
+\[
+\boxed{\mathrm{III.7:III.14}=\mathrm{COMPOSITION\ PASS}.}
+\]
+
+Permanent distinctions include
 
 \[
 \boxed{
-\mathrm{III.7:III.13}=\mathrm{COMPOSITION\ PASS}.
-}
-\]
-
-The frozen HCube pair supplies an exact separator: both members have the same scalar exponential data
-
-\[
-\omega_0=s_0=2,
-\]
-
-while their full resolvent-norm profiles differ. Thus III.13 does not collapse the richer MOST/HCube information hierarchy.
-
-Permanent distinctions include:
-
-\[
-\boxed{
-\text{exponential abscissa}\neq\text{transient peak},
+\text{full resolvent profile}\neq\text{full semigroup profile},
 }
 \]
 
 \[
 \boxed{
-\text{well-posedness/generation}\neq\text{III.13 resolvent-growth equality},
+\omega_0=s_0\neq\text{polynomial regularized-decay data},
 }
 \]
+
+and
 
 \[
-\boxed{
-\omega_0=s_0=0
-\not\Rightarrow
-\sup_t\|T(t)\|<\infty.
-}
+\boxed{T(t)A^{-1}\neq T(t).}
 \]
 
-F63 and F64 remain active boundaries.
+F63 and F64 remain active boundaries. III.14 also retains boundedness of the semigroup, \(i\mathbb R\subset\rho(A)\), the Hilbert/Banach boundary and the distinction between operator-norm \(O\) and pointwise \(o\).
 
 ---
 
 # 4. Current front
 
-III.13 is closed under its typed Hilbert linear \(C_0\)-semigroup contract. This does not close unrestricted P9 and does not create an automatic III.14 candidate.
+III.14 is closed under its typed bounded Hilbert linear \(C_0\)-semigroup contract. The unrestricted P9 problem remains `OPEN/CENTRAL`; no automatic III.15 is licensed.
 
 Scheduling is governed by [work-map.md](work-map.md), not by theorem adjacency alone.
 
@@ -144,4 +143,5 @@ No CORE5 change and no Agent v03 witness.
 | III.11 | PASS | [unit](principia-v3-11-p9-metric-gradient-bridge.md) / [audit](principia-v3-p9-composition-crosscheck-01.md) |
 | III.12 | CONDITIONAL_PASS | [unit](principia-v3-12-hypocoercive-modified-energy-bridge.md) / [audit](principia-v3-p9h-composition-crosscheck-01.md) |
 | III.13 | PASS | [unit](principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md) / [audit](source-review-v3-13-p9i-01.json) |
+| III.14 | PASS | [unit](principia-v3-14-p9-poly-resolvent-regularized-decay.md) / [audit](source-review-v3-14-p9-poly-01.json) |
 <!-- END CONTROL STATUS -->
