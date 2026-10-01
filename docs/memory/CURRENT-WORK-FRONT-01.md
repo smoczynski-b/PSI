@@ -12,9 +12,9 @@
 
 ## Current decision
 
-**P9-I — THEOREM-SELECTION / PROOF GATE `PASS`. NEXT: III.13 promotion / composition gate.**
+**III.13 P9-I — CLOSED `THEOREM PROSE PASS / PROOF PASS / COMPOSITION PASS`. No automatic III.14 is defined.**
 
-The user selected the mathematical front. F4.4 remains closed and F5 remains frozen; neither is automatically resumed.
+F4.4 remains closed and F5 remains frozen; neither is automatically resumed.
 
 Current state:
 
@@ -22,9 +22,10 @@ Current state:
 P9_GENERAL = OPEN / CENTRAL
 P9_I_SOURCE_GATE = PASS
 P9_I_THEOREM_SELECTION_PROOF = PASS
-P9_I_SELECTED_STATEMENT = omega_0(T) = s_0(A) on complex Hilbert C0-semigroups
-III.13 = NOT_YET_ASSIGNED
-NEXT = III.13 PROMOTION / COMPOSITION GATE
+III.13 = PASS / COMPOSITION_PASS
+III.7:III.13 = COMPOSITION_PASS
+NEXT_AUTOMATIC = NONE
+NEXT = EXPLICIT_SELECTION_REQUIRED
 
 FULL_BOUNDED_RUN = PASS_WITH_BOUNDARY
 R9 = NOT_CREATED
@@ -39,23 +40,26 @@ Primary mathematical evidence:
 
 - `docs/p9i-infinite-dimensional-resolvent-growth-source-gate-01.md`
 - `docs/principia-v3-p9i-theorem-selection-proof-gate-01.md`
-- `docs/principia-v3-theorem-map-10.md`
-- `docs/work-map-11.md`
+- `docs/principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md`
+- `docs/principia-v3-p9i-composition-crosscheck-01.md`
+- `docs/principia-v3-theorem-map-11.md`
+- `docs/work-map-12.md`
 - `docs/falsifier-registry-13.md`
 
 ---
 
-## P9-I proved candidate
+## III.13 theorem
 
-The selected typed statement is
+For a complex Hilbert space \(\mathcal H\) and a densely defined closed generator
+
+\[
+A:D(A)\subset\mathcal H\to\mathcal H
+\]
+
+of a linear strongly continuous semigroup \(T(t)\),
 
 \[
 \boxed{
-\mathcal H\text{ complex Hilbert},
-\quad
-A:D(A)\subset\mathcal H\to\mathcal H
-\text{ generator of a }C_0\text{-semigroup }T(t)
-\Longrightarrow
 \omega_0(T)=s_0(A).
 }
 \]
@@ -68,7 +72,7 @@ Here
 \inf\{\gamma:\exists M\ge1,\ \|T(t)\|\le Me^{\gamma t}\},
 \]
 
-while
+and
 
 \[
 s_0(A)
@@ -78,22 +82,68 @@ s_0(A)
 \right\}.
 \]
 
-The two proof directions are separated:
+Classification:
+
+```text
+CLASSICAL / ADAPTED
+Gearhart-Pruss-Huang bridge
+NOT PSI-NEW
+```
+
+Proof structure:
 
 ```text
 s_0 <= omega_0
-    Laplace resolvent representation + exponential semigroup bound
+    Laplace resolvent representation
 
 omega_0 <= s_0
-    shift B = A - aI, D(B)=D(A)
-    + right-half-plane Gearhart-Pruss-Huang stability theorem
+    B = A - aI, D(B)=D(A)
+    + classical right-half-plane Gearhart-Pruss-Huang theorem
 ```
-
-The Gearhart–Prüss–Huang theorem is imported as classical source material; the P9-I unit does not claim a new proof of that theorem or PSI novelty.
 
 ---
 
-## F63 exact regression
+## Composition closure
+
+The cross-check establishes
+
+\[
+\boxed{
+\mathrm{III.7:III.13}=\mathrm{COMPOSITION\ PASS}.
+}
+\]
+
+Key boundaries:
+
+```text
+MOST full representation != scalar exponential abscissa
+HCube resolvent profile != omega_0/s_0 scalar pair
+projectability != stability
+well-posedness/generation != III.13
+nonlinear semigroup != linear C0-semigroup generator calculus
+P9-G exact metric geometry != III.13 coarse exponential bridge
+P9-H Lyapunov certificate != III.13 construction of Q
+```
+
+The frozen HCube pair provides an exact composition witness:
+
+\[
+\omega_0(A)=s_0(A)=\omega_0(B)=s_0(B)=2,
+\]
+
+while
+
+\[
+\rho_r(A)\ne\rho_r(B).
+\]
+
+Thus III.13 does not collapse the MOST/HCube information hierarchy.
+
+---
+
+## F63 / F64 locks
+
+### F63
 
 For
 
@@ -106,46 +156,20 @@ T(t)=e^tI,
 one has
 
 \[
-\omega_0(T)=1.
+\omega_0(T)=s_0(A)=1
 \]
 
-Also, for every \(a>1\),
-
-\[
-\sup_{\Re z\ge a}\|(zI-I)^{-1}\|
-=
-\frac1{a-1},
-\]
-
-so
-
-\[
-\boxed{s_0(A)=1=\omega_0(T)}.
-\]
-
-Yet
+while
 
 \[
 \sup_{\beta\in\mathbb R}\|(i\beta I-I)^{-1}\|=1.
 \]
 
-Therefore the passed theorem preserves the permanent distinction
+Therefore imaginary-axis boundedness alone is not general exponential stability.
 
-\[
-\boxed{
-\text{imaginary-axis boundedness}
-\neq
-s_0(A)<0.
-}
-\]
+### F64
 
-F63 passes.
-
----
-
-## F64 boundary
-
-The theorem compares exponential abscissae. It does not assert
+III.13 does not imply
 
 \[
 \mathcal K(A)<\infty
@@ -153,131 +177,67 @@ The theorem compares exponential abscissae. It does not assert
 \sup_t\|T(t)\|<\infty.
 \]
 
-Subexponential but unbounded growth is compatible with
+In particular,
 
 \[
-\omega_0(T)=s_0(A)=0.
-\]
-
-Therefore
-
-\[
-\boxed{
-\omega_0=s_0
+\omega_0(T)=s_0(A)=0
 \not\Rightarrow
-\text{uniform boundedness or peak-amplification control}.
-}
+\sup_t\|T(t)\|<\infty.
 \]
-
-F64 passes.
 
 ---
 
-## Composition with III.9 / III.11 / III.12
+## Permanent mathematical boundary
 
-### III.9 DOM-LOGOS
-
-The proof uses only
-
-\[
-A\mapsto A-aI,
-\qquad
-D(A-aI)=D(A),
-\]
-
-so no unbounded-generator domain is erased.
-
-### III.11 P9-G
-
-For the finite-dimensional metric-gradient subclass, III.11 is stronger: it gives exact adapted-metric semigroup and resolvent laws, not only the exponential abscissa. P9-I does not replace it.
-
-### III.12 P9-H
-
-A coercive Lyapunov metric yields
-
-\[
-\omega_0(T)\le-\lambda,
-\qquad
-s_0(A)\le-\lambda,
-\]
-
-and P9-I identifies the two exponential-level quantities:
-
-\[
-\omega_0(T)=s_0(A)\le-\lambda.
-\]
-
-P9-I does not construct \(Q\), \(\lambda\), a condition number, a pseudospectral edge or a transient prefactor.
-
----
-
-## Permanent boundary
-
-The proof gate does not establish:
+III.13 does not establish:
 
 ```text
 Hilbert equality -> Banach equality
 omega_0 = s_0 -> omega_0 = s(A)
 omega_0 = 0 -> uniform semigroup boundedness
-s_0 -> peak transient amplification
-s_0 -> Kreiss theorem
+s_0 -> transient peak
+s_0 -> Kreiss boundedness theorem
 s_0 -> coercive Lyapunov metric
-polynomial resolvent growth -> polynomial norm decay of T(t)
-P9-I proof PASS -> P9 general closure
+linear C0 theorem -> nonlinear/nonautonomous theorem
+III.13 PASS -> P9 general closure
 classical theorem -> PSI novelty
 ```
 
-Thus
+Therefore
 
 \[
 \boxed{P9_{\rm general}=OPEN/CENTRAL}
 \]
 
-is unchanged.
+remains unchanged.
+
+No CORE5 change. No Agent v03 witness.
 
 ---
 
-## Next mathematical unit
+## Frozen visual state
 
-The candidate is now eligible for a separate numbering/promotion step.
+R5 remains `PASS_WITH_BOUNDARY`. F4.4 remains `PASS_WITH_BOUNDARY`. No F4.5 or other automatic visual successor exists.
 
-The next unit must decide whether to materialize
-
-\[
-\boxed{\omega_0(T)=s_0(A)}
-\]
-
-as **III.13**, and if it does, it must preserve exactly the Hilbert-space generator contract and cross-link III.9, III.11, III.12, F63 and F64 without widening the conclusion.
-
-The current automatic next step is therefore only:
-
-```text
-III.13 PROMOTION / COMPOSITION GATE
-```
-
-No III.13 file has yet been created.
-
----
-
-## F4.4 / R5 frozen visual state
-
-F4.4 remains `PASS_WITH_BOUNDARY`; R5 remains `PASS_WITH_BOUNDARY`. No F4.5 or other automatic visual successor is defined.
-
-No visual work is resumed while P9-I is the selected front.
+The visual design note from the current conversation is not a new F4.x theorem: future PSI publication design should avoid a uniform dark-background regime; biographical material should default to white/light backgrounds, with Sanzo Wada's *A Dictionary of Color Combinations* used as a color-combination grammar. This is a design contract, not a mathematical claim.
 
 ---
 
 ## Frozen F5-HOLDOUT-V1
 
-F5 remains unchanged. The held-out set is still:
+F5 remains unchanged:
 
 ```text
 H10 = II.10 strong lumpability bridge
 H11 = II.11 Myhill-Nerode bridge
 H12 = II.12 Paige-Tarjan benchmark
+
+A = full frozen II.10-II.12 corpus
+B = BM25 task-text-only, source budget matched to C
+C = frozen existing build_memory_pack.py semantics
 ```
 
-Resume plan, only when model credits exist:
+Resume only when model credits exist:
 
 ```text
 1. H10-C, blind id ANS-25E4942F7A3F
@@ -286,7 +246,7 @@ Resume plan, only when model credits exist:
 4. only then decide on H11/H12
 ```
 
-No F5 prompt, corpus, source selection or evaluator state is to be rebuilt because of the P9-I work.
+No F5 prompt, corpus, source selection or evaluator state was changed by III.13 work.
 
 ---
 
@@ -299,11 +259,11 @@ P_i(S)\not\Rightarrow S.
 Current applications:
 
 ```text
-P9-I source PASS != theorem proof PASS
-P9-I proof PASS != III.13 promotion PASS
+source PASS != theorem proof PASS
+proof PASS != promotion PASS
+promotion PASS != composition PASS
+III.13 PASS != P9 general closure
 Hilbert theorem != Banach theorem
-imaginary-axis bound != stability without the correct side contract
-finite-dimensional Kreiss != infinite-dimensional boundedness
 exponential abscissa != transient peak
 classical bridge != PSI novelty
 F4.4 PASS != general visual semantics
@@ -312,4 +272,6 @@ prepared F5 != model efficacy
 
 ## Stop
 
-The current automatic next step is only the **III.13 promotion / composition gate**. Do not resume F4.x or F5 without an explicit front change or the F5 credit condition being met.
+III.13 is closed. No automatic III.14, F4.5, or F5 execution is licensed by this closure.
+
+The next project move requires explicit front selection, except that frozen F5 may resume unchanged if its external credit condition becomes true.
