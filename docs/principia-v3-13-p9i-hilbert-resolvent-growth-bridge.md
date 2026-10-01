@@ -2,9 +2,10 @@
 
 ## P9-I — Hilbert resolvent / exponential-growth bridge
 
-**Status:** `THEOREM PROMOTION PASS / PROOF PASS RELATIVE TO CLASSICAL GPH / COMPOSITION GATE PENDING`  
+**Status:** `THEOREM PROSE PASS / PROOF PASS RELATIVE TO CLASSICAL GPH / COMPOSITION PASS`  
 **Date:** 2026-10-01  
 **Proof source:** `principia-v3-p9i-theorem-selection-proof-gate-01.md`  
+**Composition:** `principia-v3-p9i-composition-crosscheck-01.md`  
 **Source gate:** `p9i-infinite-dimensional-resolvent-growth-source-gate-01.md`  
 **Classification:** `CLASSICAL / ADAPTED`  
 **General P9 status:** `OPEN / CENTRAL`  
@@ -259,16 +260,37 @@ III.13 does **not** prove:
 
 ---
 
-# 9. Promotion verdict
+# 9. Composition witness and verdict
 
-The statement has an explicit typed contract, passed its proof gate, survives F63–F64, and occupies a distinct realization role from III.11–III.12. It is therefore eligible as the numbered bridge
+The full cross-check `principia-v3-p9i-composition-crosscheck-01.md` establishes
+
+\[
+\boxed{
+\mathrm{III.7:III.13}=\mathrm{COMPOSITION\ PASS}.
+}
+\]
+
+In particular, the frozen HCube pair supplies an exact separator: both members have
+
+\[
+\omega_0=s_0=2,
+\]
+
+while their full resolvent-norm profiles differ. Therefore the scalar equality of III.13 does not collapse the richer MOST/HCube information hierarchy.
+
+The final status is
 
 \[
 \boxed{
 \mathrm{III.13\ P9\!-\!I}
-=\mathrm{HILBERT\ RESOLVENT/EXPONENTIAL\!-
-GROWTH\ BRIDGE}.
+=\mathrm{THEOREM\ PROSE\ PASS / PROOF\ PASS / COMPOSITION\ PASS}.
 }
 \]
 
-This promotion alone does not close the composition gate. A separate Volume III cross-check must still verify III.7–III.13 as one stack before the status becomes `COMPOSITION PASS`.
+with
+
+\[
+\boxed{P9_{\rm general}=OPEN/CENTRAL}.
+\]
+
+No automatic III.14 theorem candidate is created by this closure.
