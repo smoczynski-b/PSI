@@ -94,8 +94,6 @@ on:
       - 'scripts/test_m18_uncertain_observation.py'
       - 'scripts/relation_crossview.py'
       - 'scripts/test_m19_relation_crossview.py'
-      - 'scripts/test_arch_lang_lineage.py'
-      - 'scripts/verify_arch_lang_cert.py'
       - 'scripts/multi_anchor_retrieval.py'
       - 'scripts/test_multi_anchor_retrieval.py'
       - 'scripts/test_chem_vision_lab.py'
@@ -159,11 +157,7 @@ jobs:
         run: python3 scripts/test_m18_uncertain_observation.py
       - name: Run M19 cross-object relation distribution regression
         run: python3 scripts/test_m19_relation_crossview.py
-      - name: Run archived language lineage regression
-        run: python3 scripts/test_arch_lang_lineage.py
-      - name: Verify archived language fragment certificate registry
-        run: python3 scripts/verify_arch_lang_cert.py
-      - name: Run adversarial conversation-04 regressions
+      - name: Run adversarial conversation-04 implementation regressions
         run: python3 scripts/test_memory_audit.py
       - name: Run explicit multi-anchor retrieval regressions
         run: python3 scripts/test_multi_anchor_retrieval.py

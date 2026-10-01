@@ -1,15 +1,2 @@
-from	relation	to	source_status	note
-ARCH-2025-11-25-DENOTATION-LAYERS	PRECURSOR_OF	M15-LANG	CONVERSATION_RECOVERED	One denotatum with language/file manifestations anticipates keeping language surface outside memory identity
-ARCH-2026-04-27-LANGUAGE-STRUCTURE	PRECURSOR_OF	M15-LANG	ARCHIVE_ATTESTED	Language surface separated from underlying structure before current executable language-invariance test
-ARCH-2026-04-27-LANGUAGE-STRUCTURE	SURVIVES_AS	M16	ARCHIVE_ATTESTED	Old language-to-structure intuition survives as explicit lexical-fibre-to-world refinement
-ARCH-2026-05-16-REPRESENTATION-LINEARIZATION	PRECURSOR_OF	M15-LANG	ARCHIVE_ATTESTED	Response representation treated as secondary to underlying reconstructed structure
-ARCH-2026-05-20-LOCAL-ATLASES	PRECURSOR_OF	M17	ARCHIVE_ATTESTED	Plural local semantic sectors anticipate non-nested crossing language partitions
-ARCH-2026-05-20-LOCAL-ATLASES	SUPERSEDED_AS_FORMALISM	M17	ARCHIVE_ATTESTED	Atlas/pseudospectral language is replaced here by exact finite candidate fibres and intersections
-ARCH-2026-06-01-OBJECT-RELATIONAL-IDENTITY	PRECURSOR_OF	M19-CROSSVIEW	CONVERSATION_RECOVERED	Watch witness made relations/history part of object description; M19 later makes relation profiles and cross-object distributions executable
-ARCH-2026-07-12-EDGE-TRANSPORT	PRECURSOR_OF	M19-CROSSVIEW	ARCHIVE_ATTESTED	Edges/relations already carried structural information; M19 adds explicit relation-first projection across objects
-ARCH-2026-07-12-EDGE-TRANSPORT	SURVIVES_AS	M19-CROSSVIEW	ARCHIVE_ATTESTED	Typed relation remains first-class; CrossView changes orientation of readout rather than fact storage
-ARCH-2026-09-06-PSI-LANG	PRECURSOR_OF	M15-LANG	CONVERSATION_RECOVERED	PSI-LANG explicitly placed natural language before a formal representation layer rather than making natural language the inference space
-ARCH-2026-09-06-PSI-LANG	SURVIVES_AS	M16	CONVERSATION_RECOVERED	Explicit multiplicity of formalizations is sharpened in M16 into a candidate lexical fibre refined by relations
-M15-LANG	REFINED_BY	M16	REPO_VERIFIED	M16 turns lexical mismatch from fixture into explicit working fibre
-M16	SCALED_BY	M17	REPO_VERIFIED	M17 replaces two-object witness with crossing partitions over 24 objects
-M17	ORTHOGONAL_VIEW_EXTENDED_BY	M19-CROSSVIEW	REPO_VERIFIED	M19 adds cross-object distribution view without altering M17 world facts
+status	note
+WITHHELD	Archived-language genealogy edges moved to protected PSI workshop; not a public proof-dependency graph.
