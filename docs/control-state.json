@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "as_of": "2026-09-29",
-  "source_commit": "f9026cbc7d3f475058747082230fb504439db91f",
+  "as_of": "2026-10-01",
+  "source_commit": "5aa66f1b886cb7c835ad3f353d35a538f8cafc49",
   "current": {
     "claim-registry": "docs/claim-registry.md",
     "falsifier-registry": "docs/falsifier-registry.md",
@@ -16,7 +16,7 @@
     "F": 62
   },
   "selection": {
-    "primary": "P9-I",
+    "primary": "TRAFFIC-OBSERVATION",
     "rule": "First check external deltas and blockers. A repair or newly available separating observation preempts continuation. User instructions take precedence."
   },
   "tasks": [
@@ -45,10 +45,10 @@
     },
     {
       "id": "P9-I",
-      "state": "READY",
-      "action": "Run the source/contract gate for infinite-dimensional resolvent/growth. No III.13 theorem or numbering before a passed gate.",
-      "source": "docs/theorem-map-v3.md",
-      "evidence": "Next mathematical gate inherited; selected only after the bounded external delta/STOP check."
+      "state": "DONE",
+      "action": "III.13 is promoted and composition-checked under the frozen Hilbert linear C0-semigroup contract. No automatic III.14 is licensed.",
+      "source": "docs/principia-v3-theorem-map-11.md",
+      "evidence": "Source gate, theorem-selection/proof gate, typed source-contract review, F63/F64 locks, and III.7–III.13 composition crosscheck passed. P9 general remains OPEN/CENTRAL."
     },
     {
       "id": "MODEL-ADAPTER",
@@ -242,14 +242,19 @@
       "state": "CONDITIONAL_PASS",
       "path": "docs/principia-v3-12-hypocoercive-modified-energy-bridge.md",
       "evidence": "docs/principia-v3-p9h-composition-crosscheck-01.md"
+    },
+    {
+      "id": "III.13",
+      "state": "PASS",
+      "path": "docs/principia-v3-13-p9i-hilbert-resolvent-growth-bridge.md",
+      "evidence": "docs/source-review-v3-13-p9i-01.json"
     }
   ],
   "gates": {
     "III.13": {
-      "state": "OPEN",
+      "state": "PASS",
       "task_id": "P9-I",
-      "path": null,
-      "reason": "P9-I source/contract gate has not been completed."
+      "path": "docs/source-gate-v3-13-p9i-01.json"
     }
   },
   "supersedes": {
@@ -263,10 +268,10 @@
       "docs/principia-v2-theorem-map-04.md"
     ],
     "docs/theorem-map-v3.md": [
-      "docs/principia-v3-theorem-map-08.md"
+      "docs/principia-v3-theorem-map-11.md"
     ],
     "docs/work-map.md": [
-      "docs/work-map-09.md"
+      "docs/work-map-12.md"
     ]
   }
 }
