@@ -5,6 +5,7 @@ This file governs work intended for the **public repository surface**. It does n
 - Preserve CORE5 and CANON-03 unless an accepted typed counterexample requires otherwise.
 - Use the Bronsztejn gate for mathematical changes: object → type/domain → conditions → claimed quantity → proof/test.
 - Preserve provenance and epistemic status. Received or historical text is not automatically a verified current claim.
+- Apply the [conversation reconstruction gate](docs/agent-reconstruction-gate-01.md) before claiming that a prior thread was read or before allowing reconstructed memory to select a resumed thread's object, frontier or `NEXT`.
 - Do not infer a private NEXT from historical audit files, experiment notes or old handoffs.
 - Do not hard-code current private work selection in this file.
 - Before any public transmission, apply [Publication Policy](docs/publication-policy.md) and [source governance](docs/source-governance-01.md).
