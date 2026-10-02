@@ -52,7 +52,7 @@ class ReconstructionGateRegression(unittest.TestCase):
     def test_required_invariants_are_documented(self):
         text = GATE.read_text(encoding='utf-8')
         for marker in (
-            'MEMORY\\neq\\mathrm{DIRECT}',
+            r'\mathrm{MEMORY}\neq\mathrm{DIRECT}',
             'RECONSTRUCTION-PROVENANCE-LOSS',
             'CROSS-THREAD-CONTAMINATION',
             'FRONTIER SELECT` is illegal before `BIND THREAD` passes',
