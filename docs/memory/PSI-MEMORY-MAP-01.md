@@ -644,3 +644,67 @@ Jest to kongruencja jądra η. Wtedy pamięć obsługuje wszystkie przyszłości
 **D. Ograniczenia.** Jeżeli system jest niedeterministyczny z wieloma następcami dla identycznej etykiety, probabilistyczny, historycznie nie-Markowowski albo ma nieprzeliczalne zbiory stanów, nie wolno bez dodatkowego kontraktu przenosić powyższej rafinacji i ograniczenia N. W takim przypadku punktem odniesienia jest nadal przyszłe drzewo II.7 lub odpowiedni jawnie zadany typ bisymulacji i obserwacji. Formalna spójność równań nie dowodzi empirycznej prawdziwości certyfikatów.
 
 **Koszty:** Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET; Luna nie otrzymuje nowych zadań, nie zamawiamy testów ani recenzji. CORE5/IFX FREEZE, C1 HOLD.
+
+### 6.18. Niedeterministyczne przejścia — ślady, bisymulacja i izomorfizm rozwinięcia (24.10.2026)
+
+**Status własnej analizy:** DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED, NON-CORE, bez nowego numeru MATH. Punkty odniesienia: [II.7 — dokładna adekwatność pamięci](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8 — najgrubszy dokładny iloraz](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9 — częściowa aktualizacja ilorazu](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md), wersja @b4c21748, oraz poprzedni §6.17 (deterministyczna aktualizacja). Rozróżnienia śladów i bisymulacji należą do znanej teorii systemów przejść; nie zgłaszamy nowości matematycznej.
+
+**1. Jawny kontrakt.** Niech S będzie niepustym skończonym zbiorem stanów, E skończonym alfabetem literalnych etykiet przejść, o:S→O etykietą obserwacji węzła, a Γ:S×E→𝒫(S) relacją możliwych następników. Brak następnika oznacza brak legalnego przejścia z daną etykietą. Jeżeli model wymaga rozdzielenia czynności i jej raportu, etykietę e należy jawnie traktować jako parę (czynność, raport). Dopuszczamy różne następniki s1≠s2 po tej samej etykiecie e. Nie modelujemy tutaj prawdopodobieństw, kosztów, ukrytych decyzji podmiotów ani wielokrotności identycznego przejścia do tego samego stanu. Drzewo pełnego rozwinięcia U(s) zachowuje oddzielne **realizacje ścieżek stanowych**, nawet gdy mają identyczny ciąg etykiet e.
+
+Trzy relacje:
+- równoważność śladów s≈tr t: zbiór wszystkich skończonych ciągów przejść i etykiet obserwacji wzdłuż możliwych przebiegów jest ten sam. Przebieg niezrealizowany nie jest dodawany;
+- bisymulacja s≈bi t: istnieje relacja B obejmująca parę (s,t), zachowująca o oraz warunki „tam i z powrotem”: dla każdego e i każdego s'∈Γ(s,e) istnieje t'∈Γ(t,e) z s' B t', a dla każdego t'∈Γ(t,e) istnieje s'∈Γ(s,e) z s' B t';
+- izomorfizm s≈iso t: pełne ukorzenione drzewa rozwinięcia U(s), U(t) są izomorficzne z zachowaniem etykiet węzłów i krawędzi, a także **odrębności gałęzi** (nie scala się dwóch fizycznie odrębnych następników z jednym).
+
+**T1 — ścisła hierarchia semantyk.**
+
+\[
+\boxed{\approx_{\mathrm{iso}}\ \subsetneq\ \approx_{\mathrm{bi}}\ \subsetneq\ \approx_{\mathrm{tr}}}
+\]
+
+Znaki ścisłości znaczą istnienie skończonych kontrprzykładów; nie oznaczają, że w każdym systemie te relacje muszą być różne. Izomorfizm pełnych drzew indukuje bisymulację węzłów odpowiadających sobie. Bisymulacja pozwala indukcyjnie dopasować wszystkie możliwe skończone obserwowane ścieżki, więc gwarantuje równość śladów.
+
+**Falsyfikat trace⇒bisim.** Stan p ma dwa przejścia z etykietą a, do p_b i p_c. Z p_b istnieje wyłącznie przejście b do stanu terminalnego, z p_c wyłącznie przejście c do stanu terminalnego. Stan q ma jedno przejście a do q_bc, z którego wychodzą b i c do stanów terminalnych. Wszystkie etykiety obserwacji węzłów są takie same. W obu przypadkach ślady to {ε,a,ab,ac}; natomiast następnik q_bc nie może być bisymilarny ani z p_b (brak c), ani z p_c (brak b). Zatem p≈tr q, lecz p nie≈bi q.
+
+**Falsyfikat bisim⇒tree-iso.** Stan u ma dwa różne terminalne następniki t1,t2 osiągane etykietą a; stan v ma jeden terminalny następnik t3 osiągany tą samą etykietą. Obserwacje odpowiadających sobie korzeni i terminalnych liści są jednakowe. Relacja łącząca u z v oraz t1 i t2 z t3 jest bisymulacją. Jednak drzewo U(u) ma dwa dzieci korzenia, a U(v) jedno; nie są izomorficzne. Wyraźnie widać, że bisymulacja ignoruje liczność nierozróżnialnych duplikatów możliwych następników, natomiast przyjęty tu izomorfizm pełnego rozwinięcia je zachowuje.
+
+**2. Dokładny skończony iloraz bisymulacyjny.** Dla relacji R⊆S×S wprowadzamy monotoniczną operację Φ(R): para (s,t)∈Φ(R) wtedy i tylko wtedy, gdy o(s)=o(t) oraz dla każdej etykiety e zachodzą dwie implikacje: każdy następnik s po e ma jakiś następnik t po e w relacji R i każdy następnik t po e ma jakiś następnik s po e w relacji R. W szczególności zgodność pustych i niepustych zbiorów przejść jest wymuszona. Definiujemy
+
+\[
+R_0=\{(s,t):o(s)=o(t)\},\qquad
+R_{n+1}=\Phi(R_n).
+\]
+
+**T2 — stabilizacja i najgrubsza bisymulacja.** Każde R_n jest relacją równoważności, R_{n+1}⊆R_n. Ponieważ S jest skończone, po co najwyżej |S|−1 ścisłych podziałach klas otrzymujemy R_N=R_{N+1} i
+
+\[
+\boxed{R_N=\approx_{\mathrm{bi}}.}
+\]
+
+Dowód: z równoważności R_n i wzajemnego dopasowywania następników wynika zwrotność, symetria i przechodniość Φ(R_n). Monotoniczność Φ zapewnia schodzenie ciągu. Każde ścisłe uszczegółowienie relacji równoważności podnosi liczbę klas o co najmniej 1; maksymalnie |S| klas, więc stabilizacja następuje w podanym ograniczeniu. Stabilne R_N spełnia oba warunki bisymulacji, więc zawiera się w największej bisymulacji. W przeciwnym kierunku każda bisymulacja jest zawarta w R_0, a indukcyjnie w każdym R_n, zatem także w R_N. Liczba iteracji dotyczy **jawnie skończonego S** i nie jest twierdzeniem o niskim koszcie obliczeń.
+
+**T3 — dobrze określona relacja przejść na ilorazie.** Dla klasy [s]∈S/R_N i etykiety e definiujemy
+
+\[
+\boxed{\overline\Gamma([s],e)=
+\{[s']_{R_N}:s'\in\Gamma(s,e)\}.}
+\]
+
+Warunek bisymulacji „tam i z powrotem” dokładnie zapewnia niezależność tej rodziny klas od reprezentanta s. Obserwacja \(\overline o([s])=o(s)\) jest również dobrze określona. Jest to **niedeterministyczna relacja aktualizacji** na ilorazie, a nie jednoznaczny następnik z deterministycznego §6.17. Przejście do takiego ilorazu jest zadaniowo adekwatne dla semantyki bisymulacyjnej, ale może być **za grube** dla semantyki pełnego izomorfizmu rozwinięcia z T1.
+
+**T4 — pamięć pośrednia i warunek kongruencji.** Dla dowolnego kodu η:S→Z jego własny niedeterministyczny operator na kodach jest dobrze określony wtedy, gdy każda para stanów z równym kodem ma (i) takie samo o oraz (ii) dla każdego e równe zbiory kodów następników:
+
+\[
+\boxed{
+\eta(s)=\eta(t)\Longrightarrow
+o(s)=o(t)\ \land\
+\{\eta(u):u\in\Gamma(s,e)\}
+=\{\eta(v):v\in\Gamma(t,e)\},\quad\forall e.
+}
+\]
+
+Na obrazie η można wówczas legalnie zdefiniować \(\overline\Gamma_\eta(\eta(s),e)\). Dla samej wystarczalności zadaniowej względem bisymulacji warunek jest **słabszy**: ker_eq η⊆≈bi (II.7 w kontrakcie bisymulacyjnym). Nie wolno automatycznie wnioskować, że własny kod η podlega zgodnej z nim rekurencji bez warunku kongruencji. W szczególności sama równoważność śladów nie gwarantuje takiej aktualizacji ani zgodności możliwości rozgałęzienia.
+
+**5. Jawna granica II.7.** W źródłowym II.7 przyszłe drzewo jest określone przez kontrakt. Jeśli w naszym modelu jest nim pełne drzewo **realizacji stanowych** z zachowaną wielokrotnością gałęzi, dokładna równoważność jest ≈iso, nie ≈bi. Jeżeli obserwator widzi jedynie możliwe ciągi raportów i nie ma zadania zachowania struktury rozgałęzień, wystarczy ≈tr. Jeżeli wymagamy zachowania możliwych następców modulo kolejne rozróżnienia bez liczby duplikatów, poprawnym kontraktem jest ≈bi. To trzy RÓŻNE typy zadaniowej dokładności, a nie trzy automatycznie równoważne realizacje jednego twierdzenia. W deterministycznym względem literalnej etykiety kontrakcie z §6.17 ≈iso oraz ≈bi pokrywają się.
+
+**Zakres i koszty:** brak rozkładów prawdopodobieństwa, miar, sprzężeń stochastycznych, nieobserwowalnych strategii ani automatycznego utożsamienia modalnego bezpieczeństwa z faktyczną gwarancją działania agenta. Bez zmian CORE5, IFX i C1. Brak prób Node/LAB oraz dodatkowych zleceń Luny i Sola. Testy Mapy nadal HOLD_BY_OWNER_BUDGET.
