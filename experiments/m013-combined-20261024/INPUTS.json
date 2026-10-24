@@ -1,0 +1,432 @@
+{
+  "schema": "psi.m013.finite-input.v1",
+  "sources": [
+    {
+      "issue": 15,
+      "id": 6387437683,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6387437683"
+    },
+    {
+      "issue": 15,
+      "id": 6387634718,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6387634718"
+    },
+    {
+      "issue": 13,
+      "id": 6387176219,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6387176219"
+    },
+    {
+      "issue": 13,
+      "id": 6387296277,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6387296277"
+    },
+    {
+      "issue": 13,
+      "id": 6387364404,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6387364404"
+    },
+    {
+      "issue": 13,
+      "id": 6387601365,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6387601365"
+    },
+    {
+      "issue": 13,
+      "id": 6388079766,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6388079766"
+    },
+    {
+      "issue": 13,
+      "id": 6388165527,
+      "url": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6388165527"
+    }
+  ],
+  "packet01": [
+    {
+      "id": "B0",
+      "tables": [
+        {
+          "a": 0,
+          "b": 1
+        },
+        {
+          "a": 1,
+          "b": 0
+        },
+        {
+          "a": 0,
+          "c": 1
+        }
+      ],
+      "expected": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": "B1",
+      "tables": [
+        {
+          "a": 0,
+          "b": 1
+        },
+        {
+          "x": 0,
+          "y": 1
+        }
+      ],
+      "expected": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "B2_pre",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "z": 1,
+          "y": 0
+        }
+      ],
+      "expected": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "B2_post",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "z": 1,
+          "y": 0,
+          "x": 1
+        }
+      ],
+      "expected": [
+        4,
+        4
+      ]
+    },
+    {
+      "id": "B3_pre",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        }
+      ],
+      "expected": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "B3_post",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        }
+      ],
+      "expected": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "B4_pre",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1
+        }
+      ],
+      "expected": [
+        3,
+        3
+      ]
+    },
+    {
+      "id": "B4_post",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1,
+          "u": 2
+        },
+        {
+          "x": 0,
+          "z": 1
+        }
+      ],
+      "expected": [
+        4,
+        5
+      ]
+    }
+  ],
+  "packet02": [
+    {
+      "id": "S1_0",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [],
+      "expected": 3
+    },
+    {
+      "id": "S1_1",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [
+        "y"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "S1_2",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [
+        "y",
+        "t"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "S1_3",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [
+        "x",
+        "z",
+        "y",
+        "t",
+        "w"
+      ],
+      "expected": 5
+    },
+    {
+      "id": "S1_4",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [
+        "w"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "S1_5",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0,
+          "t": 1
+        }
+      ],
+      "J": [
+        "x"
+      ],
+      "expected": 3
+    },
+    {
+      "id": "S2_empty",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 1,
+          "z": 0,
+          "y": 0
+        }
+      ],
+      "J": [],
+      "expected": 4
+    },
+    {
+      "id": "S2_y",
+      "tables": [
+        {
+          "x": 0,
+          "z": 1
+        },
+        {
+          "x": 1,
+          "z": 0
+        },
+        {
+          "x": 0,
+          "z": 1,
+          "y": 0
+        },
+        {
+          "x": 1,
+          "z": 0,
+          "y": 0
+        }
+      ],
+      "J": [
+        "y"
+      ],
+      "expected": 6
+    }
+  ],
+  "families": {
+    "S1": [
+      {
+        "x": 0,
+        "z": 1
+      },
+      {
+        "x": 0,
+        "z": 1,
+        "y": 0
+      },
+      {
+        "x": 0,
+        "z": 1,
+        "y": 0,
+        "t": 1
+      }
+    ],
+    "S2": [
+      {
+        "x": 0,
+        "z": 1
+      },
+      {
+        "x": 1,
+        "z": 0
+      },
+      {
+        "x": 0,
+        "z": 1,
+        "y": 0
+      },
+      {
+        "x": 1,
+        "z": 0,
+        "y": 0
+      }
+    ]
+  }
+}

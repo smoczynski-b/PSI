@@ -1,0 +1,23 @@
+{
+  "status": "NOT_INDEXED",
+  "scope": "EXACT_M013_SOURCE_LOCATORS_IN_PINNED_OVERLAY_ONLY",
+  "query_sources": [
+    "6387176219",
+    "6387296277",
+    "6387364404"
+  ],
+  "found": {
+    "6387176219": [],
+    "6387296277": [],
+    "6387364404": []
+  },
+  "runtime_commit": "447b0df1c76eb9dead8266aeeda6ca6c74c295c2",
+  "source_data_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+  "blobs": {
+    "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+    "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3"
+  },
+  "cli_called": false,
+  "index_modified": false,
+  "reason": "New M013 sources absent from the pinned input; historical MATH76 index is not a locator of these originals."
+}
