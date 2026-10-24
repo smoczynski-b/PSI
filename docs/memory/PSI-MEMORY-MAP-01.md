@@ -414,3 +414,39 @@ Dwa operatory muszą pozostać rozdzielone:
 **Granice:** dodawanie nowych certyfikatów, zwiększanie praw do usuwania, odtwarzanie znaczników `Used`, pełna historia lub empiryczne dane o pochodzeniu zmieniają kontrakt; reprezentacja `(D,𝓕)` nie jest w tych zadaniach automatycznie dokładna. Jest to `PONOWNE_UŻYCIE` II.7–II.9 przy ścisłej `ADAPTACJI_KONTRAKTU` MATH-70–72; żadnych nowych prymitywów ani `DEPENDS_ON` w produkcyjnym grafie.
 
 **Zasoby:** wszystkie próby Node/LAB, sprawdziany Sol/E i dodatkowe angażowanie Luny pozostają `HOLD_BY_OWNER_BUDGET`; odroczony pakiet jest w [Issue #15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). Redakcyjny zapis nie jest uruchomieniem próby środowiskowej.
+
+### 6.12. Projekcje uprawnień i koszt naprawy — semantyka dwóch gałęzi (24.10.2026)
+
+**Wynik M, SELF_CHECKED, bez nowego MATH:** [pełny dowód, kontrprzykład i rekurencja](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383815322). Zależności źródłowe: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), wcześniejszy §6.11 i II.7–II.9. Nie przenosić statusu E-001 \`PASS_SCOPED\` dla MATH-70–74 na niniejszy wynik.
+
+Ustalono skończony oznaczony katalog L, stałe deklaracje i nieograniczoną liczbę grup spełniania. W kontrakcie zadania obserwujemy tylko \`Cons\`; legalne są nazwane usunięcia spośród \`D⊆L\`. Reprezentacja dokładna z §6.11:
+
+\[
+\mathcal F_D=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(L)\}.
+\]
+
+**Składanie utraty uprawnień:** dla \`K⊆E⊆D\` i \`P_E(\mathcal F)=Min\{F\cap E:F\in\mathcal F\}\`:
+
+\[
+\boxed{P_K(P_E(\mathcal F_D))=P_K(\mathcal F_D).}
+\]
+
+Zawężenie praw do E, a następnie do K nie wymaga pamięci o wyciętych elementach. Jest to dobrze określone zejście na iloraz przy malejącej legalnej dziedzinie przyszłości. **Rozszerzenie praw nie ma ogólnie odwrotnego operatora.** Świadek: L={λ,μ,ν}, D={ν}, V={a,b,c}; A={λ:a=b, μ:b=c, ν:a≠c}, B={λ:a=c, μ:b=c, ν:a≠c}. Obie rodziny \`F_D={{ν}}\`, ale po dopuszczeniu wycofania μ, dla \`E={μ,ν}\` zachodzi \`F_E(A)={{μ,ν}}\` i \`F_E(B)={{ν}}\`. Usunięcie μ naprawia A, lecz nie naprawia B. Samo \`F_D\` utraciło potrzebne rozróżnienie.
+
+**Koszt naprawy** wymaga osobno określonych \`w_j>0\`. Dla \`j∈D\`:
+
+\[
+\boxed{
+\beta_w(D,\mathcal F)=\min\left\{
+\beta_w(D\setminus\{j\},\operatorname{Min}\{F\setminus\{j\}:F\in\mathcal F\}),
+\quad
+w_j+\beta_w(D\setminus\{j\},\{F\in\mathcal F:j\notin F\})
+\right\}.
+}
+\]
+
+Pierwsza gałąź **zabrania wycofania** j, ale nie usuwa certyfikatu; druga **wykonuje wycofanie** za cenę \`w_j\`. Podział napraw na \`j∈R\` i \`j∉R\` dowodzi równości. Przy \`F=∅\`, \`β=0\`; przy \`F={∅}\`, \`β=+∞\`. Dla \`E⊆D\` zachodzi \`β_w(E,P_E F_D)≥β_w(D,F_D)\`, pod warunkiem identycznych kosztów i treści katalogu. Nie jest to twierdzenie o obliczeniach wielomianowych, adaptacyjnym minimaksie ani identyfikacji rzeczywistych źródeł.
+
+**Granica architektury pamięci:** dla znanej górnej granicy przyszłych praw \`H\` wystarczy zachować \`(H,F_H)\`, aby obsługiwać późniejsze zawężenia. Jeżeli prawa mogą wzrosnąć poza H lub zmieniać się wraz z fizyczną dynamiką, konieczne są dodatkowe dane lub nowa przestrzeń historii. Nie dopisywać relacji produkcyjnych \`DEPENDS_ON\`, nie promować redakcyjnego dowodu do statusu E-001.
+
+**Reżim wykonawczy:** \`DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED\`; Node/LAB, Luna i Sol nie wykonują nowych prób na podstawie tej notatki. Pakiet testów Mapy pozostaje odroczony w [Issue #15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). CORE5/IFX = FREEZE, C1 = HOLD.
