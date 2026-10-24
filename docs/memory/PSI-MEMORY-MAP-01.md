@@ -265,3 +265,17 @@ Nakładka rozróżnia teraz węzły `MATH-70-74` i `MATH-75`. Pierwszy wskazuje 
 Bieżącą orientację Tomu II zapewnia [theorem-map-v2.md](../theorem-map-v2.md), z odsyłaczami do mapy 04, audytu całego tomu i erraty. Mapa 01 pozostaje wcześniejszym planem. Dla odtwarzalnego porównania należy przypiąć commit i zakres obu źródeł.
 
 Na polecenie właściciela wyłącznie Node przeprowadza realne próby działania mapy i całego środowiska LAB. M opracowuje porównanie matematyczne, zakres odwzorowania i kryteria odbioru; odczyt Git nie jest wykonaniem w środowisku. Commander ma ograniczony budżet wywołań i służy doraźnej obsłudze; przyszłe odnowienie dostępu nie jest warunkiem pracy M ani podstawą ciągłości wykonania. Obecna nakładka pozostaje kandydacka i nie zostaje automatycznie dołączona do produkcyjnej propagacji statusów.
+
+### 6.5. Wynik porównania T26–T27 z II.7–II.12 — 24.10.2026
+
+[Pełny argument M i warunki odwzorowania w Issue #13](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383015907); status `DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_PENDING`. Źródła wcześniejszych jednostek II.7/8/9/11/12 przypięte do commita `b4c21748fc855b01d8b89dfed36ca57842bad863`; oryginał T26–T27 [#6377888676](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377888676). To **wynik samokontroli**, nie recenzja E/Node ani uruchomienie LAB.
+
+**Rozstrzygnięcie pod jawnie ograniczonym kontraktem:** Przy skończonym pełnym stanie Markowa S, globalnie legalnych akcjach, aktualizacji belief F, zachowanym celu historycznym q (T25), domknięciu na obserwacje i etykietach przyszłości ograniczonych dokładnie do `tau={v,?,BOT}`, równoważność T26 na **osiągalnych** B(H) jest realizacją przyszłościowej równoważności II.7, a jej najgrubszy iloraz — **ponownym użyciem** II.8. Nie jest nowym prymitywem/rozdziałem PSI. Kongruencja daje aktualizację klas II.9, ale nie zależy dowodowo od najgrubszości II.8.
+
+**Granice:** T26 nie odwzorowuje automatycznie kontraktu II.7 zawierającego bogatsze etykiety niż tau (np. cały zbiór q(B)), działań częściowo legalnych z II.9/T30, historii o niezapisanym celu pierwotnym, brakujących trwałych zmiennych operacyjnych, czasu wpływającego na przyszłość ani nieosiągalnych stanów wiedzy. `BOT` jest oznaczeniem obserwacji niemożliwej, nie legitymizacją nielegalnego działania.
+
+**T27:** skończona rafinacja od `ker(tau)` przez wspólne następniki stabilizuje się po ≤ `N-|im(tau)|` ostrych rozdrobnieniach (N — liczba stanów rodziny po dołączeniu `BOT`); jest to klasyczna adaptacja skończonego udoskonalania partycji, nie nowy twór matematyczny. **Nie wynika** z tego algorytm Paige’a–Tarjana, oszacowanie czasu ani pamięci; wymaga osobnego wykazania PT1–PT4 oraz kosztów konstrukcji wejścia. Dla celów historycznych T28–T34 i erraty K14 porównanie pozostaje zadaniem odrębnym.
+
+**Zmiana warstwy krawędzi:** w kandydackim pliku TSV nadano relacje `SCOPED_REUSE_SELF_CHECKED` do II.7/II.8 i `SCOPED_UPDATE_SELF_CHECKED` do II.9, nie zmieniono `DEPENDS_ON`, `NOT_DEPENDS_ON` ani historycznych węzłów PASS. Relacje `II.11` i `II.12` pozostają odpowiednio klasycznym mostem-kandydatem i analogią algorytmiczną. To status **powiązania redakcyjnego**, nie automatyczna promocja twierdzenia.
+
+**Odbiór wykonawczy:** opis przypadku odzyskania mapy dla Node w [Issue #13](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383015907); realny test należy wyłącznie do Node i musi mieć własne świadectwo. Stara historyczna mapa i zweryfikowane dowody pozostały nienaruszone.
