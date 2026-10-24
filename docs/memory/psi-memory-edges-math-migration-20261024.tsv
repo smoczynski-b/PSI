@@ -63,3 +63,54 @@ MATH-38	USES_ENUMERATION_OF	MATH-37	EDITORIAL	https://github.com/smoczynski-b/ps
 MATH-39	USES_ENUMERATION_OF	MATH-37	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350375932	Rozroznienie liczby wszystkich minimalnych wycofan i optymalnych
 MATH-39	REFINES_COST_OF	MATH-38	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350375932	Remisy i liczba optimum dla kosztow dodatnich
 MATH-40	USES_OPTIMAL_FAMILY_OF	MATH-39	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350382780	Regiony jednoznacznego optimum z porownania kosztow wszystkich kandydatow
+MATH-41-56	INDEXES	MATH-41	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350435107	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-42	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350461546	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-43	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350527585	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-44	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350564856	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-45	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350632775	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-46	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350664499	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-47	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350769130	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-48	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350961047	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-49	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351010655	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-50	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351075806	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-51	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351120228	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-52	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351278240	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-53	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351323175	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-54	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-55	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351455779	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-41-56	INDEXES	MATH-56	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu
+MATH-51	HAS_ERRATA	MATH-51-ERRATA	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351135835	Korekta przykladu swiadka zmiany semantyki przy zerowym koszcie
+MATH-41	REUSES_SCOPE_OF	MATH-34	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350435107	Redundancja podpory i koszt wycofania na Min(E)
+MATH-41	USES_OPTIMAL_FAMILY_OF	MATH-39	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350435107	Brak przyrostu gdy stare optimum trafia nowa podpore
+MATH-42	EXTENDS_TO_MULTIPLE_ADDITIONS	MATH-41	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350461546	Monotonicznosc bez sub- i supermodularnosci przyrostu
+MATH-43	REUSES_RESULT_OF	MATH-34	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350527585	Min(E) pozwala rozpoznac rozlaczne minimalne podpory
+MATH-44	SPECIALIZES	MATH-41	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350564856	Jedna podpora mostowa korzysta z kosztow wymuszen w starych skladowych
+MATH-44	REUSES_RESULT_OF	MATH-43	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350564856	Rozklad po skladowych grafu incydencji
+MATH-45	GENERALIZES_FORCED_SET	MATH-41	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350632775	Wymuszenie calego T i dwoch nowych podpor
+MATH-45	REUSES_COMPONENT_SPLIT	MATH-43	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350632775	Warunek addytywnosci dwoch niezaleznych dodatkow
+MATH-46	FALSIFIES_SUFFICIENCY_OF_SINGLETON_PROFILE	MATH-45	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350664499	Wymuszenia singletonowe nie wyznaczaja parowych
+MATH-46	REUSES_ANTICHAIN_OF	MATH-35	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350664499	Dwa katalogi maja inne minimalne wycofania mimo wspolnego profilu
+MATH-47	GENERALIZES	MATH-45	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350769130	Dokladny koszt po k nowych podporach przez rzad k wymuszen
+MATH-47	GENERALIZES_COUNTEREXAMPLE	MATH-46	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350769130	Przykladowa minimalnosc k+1 etykiet dla ostrego progu
+MATH-48	REFINES_THRESHOLD_OF	MATH-47	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350961047	h(Q) jest maksymalna liczebnoscia minimalnych transwersal Q
+MATH-48	REUSES_TRANSVERSAL	MATH-36	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350961047	tau(Q) i h(Q) sa roznymi niezmiennikami Tr(Q)
+MATH-49	FORMALIZES_OBSERVATION_FIBER_OF	MATH-47	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351010655	Wlokno F_d(p) i wartosci odpowiedzi C(E union Q)
+MATH-49	USES_BOUNDARY_CASES_OF	MATH-48	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351010655	Rozne progi profili a lokalny certyfikat wystarczalnosci
+MATH-50	LIFTS_UPDATE_TO_PROFILE	MATH-47	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351075806	Aktualizacja B_(E union Q)(T) = min_H B_E(T union H)
+MATH-50	USES_INFORMATION_BOUNDARY_OF	MATH-48	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351075806	Wystarczalnosc i ostrosc rzedu d+h(Q) w ogolnym kontrakcie
+MATH-51	REUSES_ANTICHAIN_DUALITY	MATH-36	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351120228	Dodatnie koszty pozwalaja odtworzyc rodzinie dopuszczalnych U i Min(E)
+MATH-51	SHARPENS_FULL_PROFILE_RECOVERY	MATH-47	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351120228	Profil rzedu n-1 wystarcza do semantyki, mniejszy nie ogolnie
+MATH-52	REFINES_FIBER_QUERY	MATH-49	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351278240	Zgodnosc z P_d a mozliwe i konieczne wycofania
+MATH-52	USES_FULL_SEMANTIC_THRESHOLD	MATH-51	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351278240	Dla d=n-1 kazda dopuszczalnosc jest rozstrzygalna
+MATH-53	SHARPENS_CERTIFIED_INTERVAL_OF	MATH-49	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351323175	Dokladne min i max wobec nieostrego certyfikatu MATH-49
+MATH-53	REUSES_WITNESS_FAMILIES_OF	MATH-52	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351323175	U_plus i W_R konstrukcja osiagalnych ekstremow
+MATH-54	REUSES_ANTICHAIN_RECURRENCE_OF	MATH-35	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	K_(E union Q) generowane przez sumy minimalnych wycofan
+MATH-54	REUSES_TRANSVERSAL_DUALITY_OF	MATH-36	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	K_E jako wystarczajaca reprezentacja semantyczna
+MATH-54	REUSES_FULL_PROFILE_TEST_OF	MATH-51	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	Po singletonowych przyszlych dodatkach odzyskanie calych B_E(T)
+MATH-54	SHOWS_LIMIT_OF	MATH-50	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	Sam profil P_d nie zapewnia kontynuacji bez dodatkowej pamieci
+MATH-54	FINITE_MEMORY_BRIDGE_CANDIDATE	II.7	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	Analog semantyczny, nie udowodniona tozsamosc z drzewem legalnych historii PSI
+MATH-54	COARSE_QUOTIENT_BRIDGE_CANDIDATE	II.8	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351411133	Odpowiedzi dla wszystkich przyszlych dodatkow determinuja K_E; tylko dla jawnego kontraktu
+MATH-55	SHOWS_NONINVERTIBILITY_OF	MATH-54	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351455779	K_after wystarcza do kontynuacji, ale nie dla semantycznego rollbacku
+MATH-56	REQUIRES_PROVENANCE_BEYOND	MATH-55	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Rolback semantyczny nie odtwarza oznaczonej listy wpisow
+MATH-56	REUSES_SEMANTIC_REDUNDANCY_OF	MATH-34	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Usuniecie wpisu bez zmiany semantyki gdy pozostaje podpora w nim zawarta
+MATH-56	BRIDGE_CANDIDATE	MATH-57-69	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Historia oznaczonych wpisow jako kandydacki most do proweniencji MATH-57-69
