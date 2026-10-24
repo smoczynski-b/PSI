@@ -2,7 +2,8 @@ id	kind	status	source	label
 MATH-28-40	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Wycofania; pokrycia; hipergrafy; podpory monotoniczne
 MATH-41-56	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Koszty aktualizacji katalogów; profile; pamięć kontynuacji
 MATH-57-69	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Proweniencja; zależności źródeł; odporność identyfikacji
-MATH-70-75	RESEARCH_RANGE	CANDIDATE_SECTION_COMPLETE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353612041	Oznaczone konflikty; naprawa katalogów; wynik audytu MATH-75
+MATH-70-74	RESEARCH_RANGE	E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353594375	Oznaczone konflikty i naprawy; odbiór dowodów MATH-70–74, bez powtórzenia enumeracji
+MATH-75	RESEARCH_RANGE	SELF_CHECKED_CANDIDATE_SECTION_COMPLETE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353612041	Audyt i kandydackie domknięcie podrozdziału; poza odbiorem E MATH-70–74
 MATH76-T1-T4	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377110886	Korekta historyczna i identyfikowalność przyczynowa
 MATH76-T5-T13	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377153384	Świadectwa rozróżniające; awarie skorelowane; pochodzenie
 MATH76-T14-T21	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377308839	Wybór eksperymentów i strategie minimaksowe
