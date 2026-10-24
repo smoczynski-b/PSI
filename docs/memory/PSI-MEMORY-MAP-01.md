@@ -256,3 +256,12 @@ Pełny historyczny rejestr: [psi-model Issue #13](https://github.com/smoczynski-
 Przed rozpoczęciem nowego dowodu należy odczytać związane węzły, sprawdzić \`TYP / DZIEDZINA / ZAŁOŻENIA / ZAKRES / ERRATA\`, następnie sklasyfikować: \`REUSE / ADAPT_CONTRACT / REAL_GAP / CONTRADICTION\`. Tylko ostatnie trzy przypadki mogą uzasadniać nowe rozumowanie, a nowy numer MATH nie stanowi automatycznie jednostki monografii.
 
 **Niepotwierdzone:** pełna jednostkowa migracja wszystkich T z MATH-28–75; MATH-1–27; rzeczywiste zastosowanie mapy przez wszystkie żywe role. To mapa strukturalna **kandydacka**, nie zakończona recenzja matematyczna ani wdrożenie pamięci produkcyjnej. Brak nowego CORE5, IFX, gałęzi lub kosztownej sesji E/Sol.
+
+
+### 6.4. Rozdzielenie odbiorów i wykonania — korekta 24.10.2026
+
+Nakładka rozróżnia teraz węzły `MATH-70-74` i `MATH-75`. Pierwszy wskazuje [odbiór E-001](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353594375): dowody i przykłady, bez ponownej enumeracji. Drugi wskazuje własny wynik samokontroli MATH-75 i kandydackiego domknięcia redakcyjnego. Statusów tych nie wolno scalać ani przenosić z całego zakresu na pojedyncze twierdzenie.
+
+Bieżącą orientację Tomu II zapewnia [theorem-map-v2.md](../theorem-map-v2.md), z odsyłaczami do mapy 04, audytu całego tomu i erraty. Mapa 01 pozostaje wcześniejszym planem. Dla odtwarzalnego porównania należy przypiąć commit i zakres obu źródeł.
+
+Na polecenie właściciela wyłącznie Node przeprowadza realne próby działania mapy i całego środowiska LAB. M opracowuje porównanie matematyczne, zakres odwzorowania i kryteria odbioru; odczyt Git nie jest wykonaniem w środowisku. Commander ma ograniczony budżet wywołań i służy doraźnej obsłudze; przyszłe odnowienie dostępu nie jest warunkiem pracy M ani podstawą ciągłości wykonania. Obecna nakładka pozostaje kandydacka i nie zostaje automatycznie dołączona do produkcyjnej propagacji statusów.
