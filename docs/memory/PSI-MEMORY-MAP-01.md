@@ -371,3 +371,46 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 | Brak pola, błędny typ, nieznany koniec, rozbieżny commit/blob | Odczyt ma przerwać lub jednoznacznie zgłosić `HOLD`; brak cichego `NONE`, `VALIDITY` lub ignorowania rekordu jako pozornego PASS. |
 
 **Granica implementacyjna:** istniejący `test_memory_map.py` jest skryptem kontrolnym, nie udokumentowanym produkcyjnym importerem wszystkich map. Node powinien wskazać faktyczną ścieżkę zwykłego zapytania i zakres integracji; same zmiany w testach lub lokalnej próbce nie stanowią wdrożenia. Realne wykonanie i zatwierdzenie należą do Node. M zajmuje się klasyfikacją semantyczną i redakcją, bez testu LAB. `CORE5/IFX = FREEZE`, `C1 = HOLD`.
+
+### 6.11. Ograniczone prawa wycofania — najgrubszy iloraz i dwa operatory (24.10.2026)
+
+**Wynik redakcyjny M, nieodbierany dziś przez E:** [pełny dowód i dwa kontrprzykłady](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383746530), oparty na [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-73](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353429618), a także II.7–II.9 @`b4c21748`. **Status:** `DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED`; odrębny odbiór E-001 dla MATH-70–74 pozostaje ważny wyłącznie w swoim zakresie.
+
+Niech `L` będzie ustalonym katalogiem aktywnych oznaczonych certyfikatów równości/nierówności, `D⊆L` zbiorem **jedynych legalnie wycofywalnych identyfikatorów**, a `𝓜(L)` pełną rodziną minimalnych konfliktów. Przy wyniku obserwacyjnym ograniczonym do `Cons` i przyszłych czynnościach wyłącznie nazwanych usunięć `−j` dla `j∈D`, definiujemy:
+
+[
+\boxed{\mathcal F_D(L)=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(L)\}.}
+]
+
+Dla każdego `R⊆D` mamy
+
+[
+\operatorname{Cons}(L\setminus R)\iff
+(\forall F\in\mathcal F_D(L))\quad R\cap F\ne\varnothing.
+]
+
+Oznacza to dokładny iloraz przyszłych historii:
+
+[
+\boxed{
+\operatorname{Beh}_{D_A}(A)\cong\operatorname{Beh}_{D_B}(B)
+\iff (D_A,\mathcal F_{D_A}(A))=(D_B,\mathcal F_{D_B}(B)).
+}
+]
+
+Konieczność wynika z odzyskania `D` po legalnych nazwach ruchów, a `𝓕_D` jako antyłańcucha minimalnych `S⊆D`, dla których pozostawienie dokładnie `S` spośród prawnie wycofywalnych ID daje konflikt. Dostateczność: wzór na `Cons` daje identyczne wyniki i legalne gałęzie po wszystkich sekwencjach. **Nie** jest to twierdzenie o minimalnej liczbie bitów ani o identyfikacji faktycznej proweniencji.
+
+Dwa operatory muszą pozostać rozdzielone:
+
+| Operacja | Aktualizacja reprezentacji `(D,𝓕)` | Znaczenie |
+|---|---|---|
+| Faktycznie usuń certyfikat `j∈D` | `(D\{j}, {F∈𝓕:j∉F})` | Ograniczenia konfliktowe zawierające usunięty wpis zostały trafione i znikają. |
+| Odbierz tylko uprawnienie wycofania `j∈D` | `(D\{j}, Min{F\{j}:F∈𝓕})` | Certyfikat pozostaje; nieusuwalny wpis nie może już trafić konfliktu. |
+
+**Rozstrzygający świadek:** niewycofywalna równość `λ:a=b`, wycofywalna nierówność `j:a≠b`, `D={j}`, `𝓕={{j}}`. Po fizycznym usunięciu j: `𝓕=∅` (brak konfliktów); po odebraniu prawa do `−j`: `𝓕={∅}` (konflikt nieusuwalny). **Pusta rodzina i rodzina zawierająca pustą podporę to dwa różne stany.**
+
+**Ścisłe osłabienie pamięci MATH-72:** dla `D={ν}`, katalogi `A={λ:a=b, μ:b=c, ν:a≠c}` i `B={λ:a=c, μ:b=c, ν:a≠c}` mają odpowiednio `𝓜(A)={{λ,μ,ν}}`, `𝓜(B)={{λ,ν}}`, ale to samo `𝓕_D={{ν}}` i te same wszystkie legalne przyszłe odpowiedzi. Dla `D=L` odzyskujemy całe `𝓜`. Kosztowo optymalne naprawy można wyznaczać z `𝓕_D`, o ile osobno zadano koszty i legalność (MATH-71); nie wolno wnioskować wag ani grup pochodzenia z samej rodziny konfliktów.
+
+**Granice:** dodawanie nowych certyfikatów, zwiększanie praw do usuwania, odtwarzanie znaczników `Used`, pełna historia lub empiryczne dane o pochodzeniu zmieniają kontrakt; reprezentacja `(D,𝓕)` nie jest w tych zadaniach automatycznie dokładna. Jest to `PONOWNE_UŻYCIE` II.7–II.9 przy ścisłej `ADAPTACJI_KONTRAKTU` MATH-70–72; żadnych nowych prymitywów ani `DEPENDS_ON` w produkcyjnym grafie.
+
+**Zasoby:** wszystkie próby Node/LAB, sprawdziany Sol/E i dodatkowe angażowanie Luny pozostają `HOLD_BY_OWNER_BUDGET`; odroczony pakiet jest w [Issue #15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). Redakcyjny zapis nie jest uruchomieniem próby środowiskowej.
