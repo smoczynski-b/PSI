@@ -202,3 +202,57 @@ This unit stops when:
 4. no claim is made that the schema is final.
 
 Next unit after this seed: expand one dependency sector deeply enough to run M1 and M2. The preferred sector is the exact-history/memory chain II.7–II.12 because it directly concerns memory adequacy and already contains explicit distinctions between proof dependency, analogy, quotient minimality and algorithmics.
+
+
+---
+
+## 6. Nakładka MATH-28–76 (2026-10-24) — mapa matematyki M, NIE nowy kanon
+
+**Status:** \`CANDIDATE / EDITORIAL / NON-CANONICAL / INDEPENDENT_REVIEW_PENDING\`.
+Ten aneks jest późniejszą nakładką na historyczny seed MAP-01 z 29 września. **Nie zmienia jego ówczesnego zbioru świadków ani zdania o granicy seed.** Nowe serie MATH-N powstały później i nie dziedziczą statusów \`PASS\` starych II.1–II.16.
+
+Rzeczywista, maszynowo czytelna **warstwa kandydacka**:
+- [węzły MATH](psi-memory-nodes-math-migration-20261024.tsv);
+- [typowane relacje MATH → poprzedniki Tomu II](psi-memory-edges-math-migration-20261024.tsv).
+
+Historyczne \`psi-memory-nodes-01.tsv\`, \`psi-memory-edges-01.tsv\`, certyfikaty dowodowe i wcześniejsze testy pozostają bez zmian. Nakładka nie jest częścią oryginalnego zweryfikowanego seed ani automatycznego przejścia statusów. Oba pliki mają zgodny z oryginalnym schemat tabulatorowy, lecz **ich relacje są kandydackie i nie mogą uczestniczyć w propagowaniu \`STALE/VALID\` po krawędziach \`DEPENDS_ON\`**.
+
+### 6.1. Dwa różne kierunki organizacji
+
+\`\`\`text
+MATH-N = źródło historycznego zadania/argumentu
+  | INDEXES / SOURCE_OF
+  v
+Mapa migracji Principiów -> Tom II (hipotezy i dowody), Tom III (świadki), Tom IV (genealogia)
+  ^
+  | OVERLAP_TO_AUDIT / FINITE_REALIZATION_CANDIDATE / SCOPE_EXTENSION_CANDIDATE
+  |
+Wcześniejsze jednostki II.4, II.6–II.12 (już napisane)
+\`\`\`
+
+**Zwrot i typ krawędzi są ważne:** zapis \`MATH76-T26-T27 --FINITE_REALIZATION_CANDIDATE--> II.8\` oznacza obowiązek porównania z wcześniejszym twierdzeniem, **nie** jego logiczną przesłankę ani potwierdzoną tożsamość. Nawet gdy istnieje wspólny wzór, zmiana alfabetu, dziedziny legalności lub etykiet terminalnych może zmienić twierdzenie. \`INDEXES\` nie jest \`PROVES\`.
+
+### 6.2. Mapa merytoryczna w skrócie
+
+| Strumień | Skojarzenie w starszej mapie | Ocena |
+|---|---|---|
+| MATH-28–40 | Tom II, podpory i ważone wycofanie świadectw | brak automatycznego przypisania do dawnego II.x |
+| MATH-41–56 | II.9 jako pokrewny problem aktualizacji/pamięci | \`TOPIC_BRIDGE_CANDIDATE\`; brak dowodu równoważności |
+| MATH-57–69 | II.4: adekwatność a źródłowość danych | \`TOPIC_BRIDGE_CANDIDATE\`, wymagane sprawdzenie errat |
+| MATH-70–75 | Tom II, konflikty oznaczonych katalogów | \`CANDIDATE_SECTION_COMPLETE\` według MATH-75, nie automatycznie \`CANON\` |
+| MATH-76/T1–T4 | II.7–II.8: pamięć historii | odróżnić przyczynowe przypisanie korekty od wystarczalności reprezentacji |
+| MATH-76/T5–T21 | II.4: eksperymenty, odporność, koszty | osobne kontrakty błędów, adaptacji i kosztu |
+| MATH-76/T22–T25 | II.6/II.9: dynamika/rekurencja | q historyczne nie jest bieżącym q po interwencji |
+| MATH-76/T26–T27 | II.8/II.9/II.11/II.12 | możliwa redukcja do znanej klasyki; II.12 to benchmark, nie to samo co zwykły refinament |
+| MATH-76/T28–T29 | II.8/II.9 | polityka z optymalnym kosztem zachowuje mniej operacji niż pełna kongruencja |
+| MATH-76/T30–T34 | II.6/II.9 | legalność epistemiczna i wiele celów; nie utożsamiać z dawną częściowością II.9 |
+
+**Konkretny priorytet:** MATH-76/T26–T27 [źródło](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377888676) sprawdzić kontra gotowe [II.8](../principia-v2-08-coarsest-exact-history-quotient.md), [II.9](../principia-v2-09-recursive-history-quotient-update.md), [II.11](../principia-v2-11-myhill-nerode-bridge.md) i [II.12](../principia-v2-12-paige-tarjan-benchmark.md) przed pisaniem kolejnego rozdziału. MATH-76/T28–T34 wymagają niezależnego audytu; [errata K14](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377898833) ogranicza twierdzenie o czterech kodach do jawnej rodziny punktów wznowienia.
+
+### 6.3. Źródła bieżące i zachowanie granic
+
+Pełny historyczny rejestr: [psi-model Issue #13](https://github.com/smoczynski-b/psi-model/issues/13). Wersjonowany indeks: [MATH76_SHARED_INDEX](https://github.com/smoczynski-b/psi-model/blob/5d41732861f02fd65f20e93ab7b824be14196502/psi-agent/handoff/MATH76_SHARED_INDEX_20261024.md). Zapis przeznaczenia: [PRINCIPIA_MIGRATION_01 §6](https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md).
+
+Przed rozpoczęciem nowego dowodu należy odczytać związane węzły, sprawdzić \`TYP / DZIEDZINA / ZAŁOŻENIA / ZAKRES / ERRATA\`, następnie sklasyfikować: \`REUSE / ADAPT_CONTRACT / REAL_GAP / CONTRADICTION\`. Tylko ostatnie trzy przypadki mogą uzasadniać nowe rozumowanie, a nowy numer MATH nie stanowi automatycznie jednostki monografii.
+
+**Niepotwierdzone:** pełna jednostkowa migracja wszystkich T z MATH-28–75; MATH-1–27; rzeczywiste zastosowanie mapy przez wszystkie żywe role. To mapa strukturalna **kandydacka**, nie zakończona recenzja matematyczna ani wdrożenie pamięci produkcyjnej. Brak nowego CORE5, IFX, gałęzi lub kosztownej sesji E/Sol.

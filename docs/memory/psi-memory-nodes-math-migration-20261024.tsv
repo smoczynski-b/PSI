@@ -1,0 +1,15 @@
+id	kind	status	source	label
+MATH-28-40	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Wycofania; pokrycia; hipergrafy; podpory monotoniczne
+MATH-41-56	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Koszty aktualizacji katalogów; profile; pamięć kontynuacji
+MATH-57-69	RESEARCH_RANGE	SCOPE_PENDING	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Proweniencja; zależności źródeł; odporność identyfikacji
+MATH-70-75	RESEARCH_RANGE	CANDIDATE_SECTION_COMPLETE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353612041	Oznaczone konflikty; naprawa katalogów; wynik audytu MATH-75
+MATH76-T1-T4	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377110886	Korekta historyczna i identyfikowalność przyczynowa
+MATH76-T5-T13	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377153384	Świadectwa rozróżniające; awarie skorelowane; pochodzenie
+MATH76-T14-T21	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377308839	Wybór eksperymentów i strategie minimaksowe
+MATH76-T22-T25	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377834390	Aktualizacje dynamiczne; pamięć stanów; historyczny cel
+MATH76-T26-T27	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377888676	Pełny przyszłościowy iloraz belief states; refinament
+MATH76-T28-T29	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377894286	Pamięć jednej polityki optymalnej; wspólne działania; dolny kres
+MATH76-T30-T34	RESEARCH_BLOCK	SELF_CHECKED_REVIEW_PENDING	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377949608	Częściowa legalność; wiele zadań; destrukcyjne próby
+MATH76-K14-ERRATA	ERRATA	ACTIVE_SCOPE_CORRECTION	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377898833	Minimum czterech kodów tylko na domkniętej rodzinie punktów wznowienia
+MATH76-SOURCE-INDEX	SOURCE_INDEX	VERSIONED_EDITORIAL	https://github.com/smoczynski-b/psi-model/blob/5d41732861f02fd65f20e93ab7b824be14196502/psi-agent/handoff/MATH76_SHARED_INDEX_20261024.md	Indeks wyników i źródeł T1-T34; nie dowód
+MATH-PRINCIPIA-MIGRATION	EDITORIAL_MAP	CANDIDATE_NON_CORE	https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md	Migracja MATH-28-76 do czterotomowej struktury Principiów
