@@ -372,339 +372,143 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 
 **Granica implementacyjna:** istniejący `test_memory_map.py` jest skryptem kontrolnym, nie udokumentowanym produkcyjnym importerem wszystkich map. Node powinien wskazać faktyczną ścieżkę zwykłego zapytania i zakres integracji; same zmiany w testach lub lokalnej próbce nie stanowią wdrożenia. Realne wykonanie i zatwierdzenie należą do Node. M zajmuje się klasyfikacją semantyczną i redakcją, bez testu LAB. `CORE5/IFX = FREEZE`, `C1 = HOLD`.
 
-### 6.11. Ograniczone prawa wycofania — najgrubszy iloraz i dwa operatory (24.10.2026)
+### 6.11. Redukcja M-012 — jeden schemat pamięci zadaniowej i jego granice (24.10.2026)
 
-**Wynik redakcyjny M, nieodbierany dziś przez E:** [pełny dowód i dwa kontrprzykłady](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383746530), oparty na [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-73](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353429618), a także II.7–II.9 @`b4c21748`. **Status:** `DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED`; odrębny odbiór E-001 dla MATH-70–74 pozostaje ważny wyłącznie w swoim zakresie.
+**Stan redakcyjny:** SYNTHESIS / SELF_CHECKED / NON-CORE / INDEPENDENT_REVIEW_NOT_REQUESTED. Niniejsza sekcja zastępuje w *aktywnej Mapie* osiem opisów historycznych §6.11–6.18, lecz **nie zmienia dowodów, ich statusów ani rdzenia PSI**. Pełne pierwotne rozwinięcia, kontrprzykłady i sformułowania są dostępne [w niezmiennej wersji Mapy przed redukcją](https://github.com/smoczynski-b/PSI/blob/2ce841828892ec8f6cc563e82efaa2c7f0d70c7d/docs/memory/PSI-MEMORY-MAP-01.md) oraz w historii Git. To **archiwum dowodów**, nie osobna obowiązkowa pamięć robocza.
 
-Niech `L` będzie ustalonym katalogiem aktywnych oznaczonych certyfikatów równości/nierówności, `D⊆L` zbiorem **jedynych legalnie wycofywalnych identyfikatorów**, a `𝓜(L)` pełną rodziną minimalnych konfliktów. Przy wyniku obserwacyjnym ograniczonym do `Cons` i przyszłych czynnościach wyłącznie nazwanych usunięć `−j` dla `j∈D`, definiujemy:
+#### A. Twierdzenie nadrzędne — II.7–II.9, bez nowego prymitywu
 
-\[
-\boxed{\mathcal F_D(L)=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(L)\}.}
-\]
-
-Dla każdego `R⊆D` mamy
+Dla ustalonego kontraktu `c` niech `H_c` będzie przestrzenią legalnych historii, `Beh_c(h)` ich drzewem przyszłości z literalnymi etykietami legalnych kroków i obserwacji, a `h≈_c h'` oznacza izomorfizm tych drzew **w semantyce zadeklarowanej przez c**. Wtedy:
 
 \[
-\operatorname{Cons}(L\setminus R)\iff
-(\forall F\in\mathcal F_D(L))\quad R\cap F\ne\varnothing.
+\boxed{\text{dokładność pamięci }\rho:H_c\to Z
+\iff \ker_{\rm eq}\rho\subseteq\approx_c.}
 \]
 
-Oznacza to dokładny iloraz przyszłych historii:
+Iloraz `H_c/≈_c` jest najgrubszy informacyjnie dokładny (II.7–II.8). Jeżeli chcemy aktualizować **sam kod** `ρ`, a nie wyłącznie obliczać z niego klasę zadaniową, konieczna i wystarczająca jest dodatkowo kongruencja: stany o równym kodzie muszą mieć te same legalne etykiety oraz równy kod następcy po każdej wspólnej legalnej etykiecie (w wersji deterministycznej). To jest warunek II.9 dla zejścia dynamiki na obraz kodu; **sama dokładność zadaniowa nie dowodzi aktualizowalności wybranego `ρ`**.
+
+Poniższe punkty B–F są *kontraktowymi specjalizacjami* tego schematu, a nie samodzielnymi podstawami rdzenia.
+
+#### B. Jedna konstrukcja dla usuwanych, oznaczonych certyfikatów (dawne §6.11, §6.14–6.16)
+
+Niech `K` będzie skończonym zbiorem aktywnych **oznaczonych** ograniczeń równości/nierówności, `A|_K` ich treścią, a `Cons` boolowskim wynikiem spełnialności przy **nieograniczonej** liczbie grup. Skreślenie ograniczeń może przywrócić spójność, lecz nie może jej zniszczyć. Stan sterowania `s` zawiera wszystkie dane wymagane do rozpoznania legalności (w szczególności stan automatu i aktywne nazwy `K`). Niech `𝓡_s` oznacza rodzinę zbiorów nazw możliwych do wycofania za pomocą **jakiegokolwiek** legalnego przyszłego słowa od `s`; nie zakładamy, że jest dziedziczna. Legalność i aktualizacja sterowania zależą od `s`, nie od nieujawnionej treści `A`. Jedyną obserwacją wynikową jest `Cons`.
+
+Definiujemy *minimalne osiągalne naprawy*:
 
 \[
-\boxed{
-\operatorname{Beh}_{D_A}(A)\cong\operatorname{Beh}_{D_B}(B)
-\iff (D_A,\mathcal F_{D_A}(A))=(D_B,\mathcal F_{D_B}(B)).
-}
+\boxed{\mathcal T_s(A)=\operatorname{Min}_{\subseteq}
+\{R\in\mathcal R_s:\operatorname{Cons}(A|_{K\setminus R})\}.}
 \]
 
-Konieczność wynika z odzyskania `D` po legalnych nazwach ruchów, a `𝓕_D` jako antyłańcucha minimalnych `S⊆D`, dla których pozostawienie dokładnie `S` spośród prawnie wycofywalnych ID daje konflikt. Dostateczność: wzór na `Cons` daje identyczne wyniki i legalne gałęzie po wszystkich sekwencjach. **Nie** jest to twierdzenie o minimalnej liczbie bitów ani o identyfikacji faktycznej proweniencji.
-
-Dwa operatory muszą pozostać rozdzielone:
-
-| Operacja | Aktualizacja reprezentacji `(D,𝓕)` | Znaczenie |
-|---|---|---|
-| Faktycznie usuń certyfikat `j∈D` | `(D\{j}, {F∈𝓕:j∉F})` | Ograniczenia konfliktowe zawierające usunięty wpis zostały trafione i znikają. |
-| Odbierz tylko uprawnienie wycofania `j∈D` | `(D\{j}, Min{F\{j}:F∈𝓕})` | Certyfikat pozostaje; nieusuwalny wpis nie może już trafić konfliktu. |
-
-**Rozstrzygający świadek:** niewycofywalna równość `λ:a=b`, wycofywalna nierówność `j:a≠b`, `D={j}`, `𝓕={{j}}`. Po fizycznym usunięciu j: `𝓕=∅` (brak konfliktów); po odebraniu prawa do `−j`: `𝓕={∅}` (konflikt nieusuwalny). **Pusta rodzina i rodzina zawierająca pustą podporę to dwa różne stany.**
-
-**Ścisłe osłabienie pamięci MATH-72:** dla `D={ν}`, katalogi `A={λ:a=b, μ:b=c, ν:a≠c}` i `B={λ:a=c, μ:b=c, ν:a≠c}` mają odpowiednio `𝓜(A)={{λ,μ,ν}}`, `𝓜(B)={{λ,ν}}`, ale to samo `𝓕_D={{ν}}` i te same wszystkie legalne przyszłe odpowiedzi. Dla `D=L` odzyskujemy całe `𝓜`. Kosztowo optymalne naprawy można wyznaczać z `𝓕_D`, o ile osobno zadano koszty i legalność (MATH-71); nie wolno wnioskować wag ani grup pochodzenia z samej rodziny konfliktów.
-
-**Granice:** dodawanie nowych certyfikatów, zwiększanie praw do usuwania, odtwarzanie znaczników `Used`, pełna historia lub empiryczne dane o pochodzeniu zmieniają kontrakt; reprezentacja `(D,𝓕)` nie jest w tych zadaniach automatycznie dokładna. Jest to `PONOWNE_UŻYCIE` II.7–II.9 przy ścisłej `ADAPTACJI_KONTRAKTU` MATH-70–72; żadnych nowych prymitywów ani `DEPENDS_ON` w produkcyjnym grafie.
-
-**Zasoby:** wszystkie próby Node/LAB, sprawdziany Sol/E i dodatkowe angażowanie Luny pozostają `HOLD_BY_OWNER_BUDGET`; odroczony pakiet jest w [Issue #15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). Redakcyjny zapis nie jest uruchomieniem próby środowiskowej.
-
-### 6.12. Projekcje uprawnień i koszt naprawy — semantyka dwóch gałęzi (24.10.2026)
-
-**Wynik M, SELF_CHECKED, bez nowego MATH:** [pełny dowód, kontrprzykład i rekurencja](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383815322). Zależności źródłowe: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), wcześniejszy §6.11 i II.7–II.9. Nie przenosić statusu E-001 \`PASS_SCOPED\` dla MATH-70–74 na niniejszy wynik.
-
-Ustalono skończony oznaczony katalog L, stałe deklaracje i nieograniczoną liczbę grup spełniania. W kontrakcie zadania obserwujemy tylko \`Cons\`; legalne są nazwane usunięcia spośród \`D⊆L\`. Reprezentacja dokładna z §6.11:
+Dla **każdego osiągalnego** `R∈𝓡_s`:
 
 \[
-\mathcal F_D=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(L)\}.
+\boxed{\operatorname{Cons}(A|_{K\setminus R})
+\iff \exists T\in\mathcal T_s(A):T\subseteq R.}
+\tag{B1}
 \]
 
-**Składanie utraty uprawnień:** dla \`K⊆E⊆D\` i \`P_E(\mathcal F)=Min\{F\cap E:F\in\mathcal F\}\`:
+**Dowód bez ukrytej dziedziczności:** z `T⊆R` i monotoniczności spełnialności mamy kierunek „jeśli”. Jeśli `R` jest osiągalną naprawą, to skończony niepusty zbiór osiągalnych napraw zawartych w `R` ma element minimalny; jest on minimalny również w całej rodzinie osiągalnych napraw. Nie trzeba zakładać, że *każdy* podzbiór `R` jest osiągalny.
 
-\[
-\boxed{P_K(P_E(\mathcal F_D))=P_K(\mathcal F_D).}
-\]
-
-Zawężenie praw do E, a następnie do K nie wymaga pamięci o wyciętych elementach. Jest to dobrze określone zejście na iloraz przy malejącej legalnej dziedzinie przyszłości. **Rozszerzenie praw nie ma ogólnie odwrotnego operatora.** Świadek: L={λ,μ,ν}, D={ν}, V={a,b,c}; A={λ:a=b, μ:b=c, ν:a≠c}, B={λ:a=c, μ:b=c, ν:a≠c}. Obie rodziny \`F_D={{ν}}\`, ale po dopuszczeniu wycofania μ, dla \`E={μ,ν}\` zachodzi \`F_E(A)={{μ,ν}}\` i \`F_E(B)={{ν}}\`. Usunięcie μ naprawia A, lecz nie naprawia B. Samo \`F_D\` utraciło potrzebne rozróżnienie.
-
-**Koszt naprawy** wymaga osobno określonych \`w_j>0\`. Dla \`j∈D\`:
-
-\[
-\boxed{
-\beta_w(D,\mathcal F)=\min\left\{
-\beta_w(D\setminus\{j\},\operatorname{Min}\{F\setminus\{j\}:F\in\mathcal F\}),
-\quad
-w_j+\beta_w(D\setminus\{j\},\{F\in\mathcal F:j\notin F\})
-\right\}.
-}
-\]
-
-Pierwsza gałąź **zabrania wycofania** j, ale nie usuwa certyfikatu; druga **wykonuje wycofanie** za cenę \`w_j\`. Podział napraw na \`j∈R\` i \`j∉R\` dowodzi równości. Przy \`F=∅\`, \`β=0\`; przy \`F={∅}\`, \`β=+∞\`. Dla \`E⊆D\` zachodzi \`β_w(E,P_E F_D)≥β_w(D,F_D)\`, pod warunkiem identycznych kosztów i treści katalogu. Nie jest to twierdzenie o obliczeniach wielomianowych, adaptacyjnym minimaksie ani identyfikacji rzeczywistych źródeł.
-
-**Granica architektury pamięci:** dla znanej górnej granicy przyszłych praw \`H\` wystarczy zachować \`(H,F_H)\`, aby obsługiwać późniejsze zawężenia. Jeżeli prawa mogą wzrosnąć poza H lub zmieniać się wraz z fizyczną dynamiką, konieczne są dodatkowe dane lub nowa przestrzeń historii. Nie dopisywać relacji produkcyjnych \`DEPENDS_ON\`, nie promować redakcyjnego dowodu do statusu E-001.
-
-**Reżim wykonawczy:** \`DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED\`; Node/LAB, Luna i Sol nie wykonują nowych prób na podstawie tej notatki. Pakiet testów Mapy pozostaje odroczony w [Issue #15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). CORE5/IFX = FREEZE, C1 = HOLD.
-
-### 6.13. Przełączane prawa wycofania — osobne zadania ≠ wspólna trajektoria (24.10.2026)
-
-**Nowy wynik analityczny bez recenzji zewnętrznej:** [M-012 / Issue #13 / 6383874210](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383874210). Podstawa: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-76/T31](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281) i II.7–II.9 @`b4c21748`.
-
-Ustalamy wspólny zbiór aktywnych znaczników `L`, skończony katalog równości/nierówności (nieograniczona liczba grup) i etykietę wyjścia `Cons`. Reżim `i` dopuszcza nazwane usunięcia `D_i⊆L`. Działania nie zmieniają nic poza usunięciem wpisu, a przełączanie uprawnień jest dowolne, nieodpłatne i dostępne przed każdym krokiem. Nie ma dopisywania ani historycznej legalności ponownego użycia ID.
-
-**Dwa kontrakty:** przy stałym `i` przez cały epizod wspólna dokładność obserwacyjna wielu osobnych zadań odpowiada krotce `(𝓕_{D_i})_i`; gdy wolno przełączać zadania w jednej historii, niezbędny i wystarczający jest iloraz zadany przez `𝓕_H` przy `H=⋃_i D_i`. Każdą rodzinę usunięć `R⊆H` można zrealizować, wybierając w kolejnych krokach reżimy dopuszczające poszczególne `j∈R`. Zgodność `Cons(L\\R)` dla wszystkich `R` jest równoważna równości antyłańcuchów `𝓕_H` (MATH-72 i II.7–II.8). To wymaga dokładnie opisanej swobody przełączania; nie wynika z samej unii praw w kontrakcie z ograniczeniem liczby przełączeń.
-
-**Kontrprzykład w dwuelementowej przestrzeni etykiet:** `V={x,y}, L={a,b,c}, D1={a,b}, D2={b,c}`. Katalog `A: a=(x=y), b=(x≠y), c=(x=y)`; `B: a=(x=y), b=(x≠x), c=(x=y)`. Pełne konflikty `𝓜(A)={{a,b},{b,c}}`, `𝓜(B)={{b}}`. Obie projekcje do `D1` i `D2` dają `{{b}}`, więc zadania osobne są nierozróżnialne. Jednak sekwencja `(D1,-a)`, potem `(D2,-c)` pozostawia w `A` spójne `x≠y`, a w `B` sprzeczne `x≠x`.
-
-**Bardziej wymagający warunek pamięci wspólnej:** nawet kod `ρ(A)=(𝓕_{D1}(A),𝓕_{D2}(A))`, wystarczający do odpowiedzi w każdym stałym reżimie osobno, **nie musi przyjmować jednoznacznej aktualizacji** `ρ(A\\{a})=U(ρ(A),D1,-a)`. W świadku po usunięciu `a` drugi składnik kodu wynosi `{{b,c}}` dla A i `{{b}}` dla B, mimo równego wejściowego kodu. Jest to wystawienie na próbę kongruencji aktualizacji z II.9 i MATH-76/T31-M3, **nie** nowa produkcyjna krawędź `DEPENDS_ON`.
-
-**Wniosek redakcyjny:** rozdzielić zadania zewnętrznie wybierane raz na epizod od przełączania po interwencjach. Nie utożsamiać łącznej wystarczalności informacji w punkcie początkowym z aktualizowalną pamięcią wspólnego agenta. Status niniejszego argumentu `DERIVED/SELF_CHECKED/INDEPENDENT_REVIEW_NOT_REQUESTED`; bez nowych prób Node/LAB, obciążania Luny lub zamawiania Sola. Pakiet testów mapy `HOLD_BY_OWNER_BUDGET` ([#15](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277)). CORE5/IFX FREEZE, C1 HOLD.
-
-### 6.14. Budżet przełączeń — dokładna pamięć i próg naprawy (24.10.2026)
-
-**Status:** DERIVED / SELF_CHECKED, bez nowego numeru MATH. Podstawy: MATH-70 (Issue #13/6353258865), MATH-71 (6353300614), MATH-72 (6353389796), MATH-76/T31 (6377942281), II.7–II.9 oraz wcześniejszy §6.13.
-
-**Kontrakt.** Porównujemy skończone katalogi oznaczonych równości i nierówności na wspólnym zbiorze aktywnych znaczników L. Wynikiem obserwacji jest tylko logiczna spójność Cons. Reżim i pozwala usuwać aktywne znaczniki ze zbioru D_i⊆L; żadne inne skutki ani dodawanie nie występują. Pierwszy reżim wybieramy dowolnie i bez kosztu; każda późniejsza zmiana reżimu to jedno przełączenie. W jednym reżimie wolno usunąć wiele znaczników. Niech H=unia zbiorów D_i, a κ(R) oznacza najmniejszą liczbę reżimów, których zbiory uprawnień pokrywają R⊆H; κ(∅)=0.
-
-**T1 — osiągalność.** Zbiór R⊆H można wycofać przy najwyżej r przełączeniach wtedy i tylko wtedy, gdy κ(R)≤r+1. Konieczność: taka historia odwiedza najwyżej r+1 różnych reżimów. Dostateczność: przydzielamy każdy j∈R do jednego z κ(R) reżimów pokrywających R i wykonujemy ich wycofania blokami, przy najwyżej κ(R)−1 przełączeniach. Rodzina osiągalnych zbiorów Reach_r jest dziedziczna względem inkluzji.
-
-**T2 — dokładna pamięć.** Niech T_r(A) będzie rodziną minimalnych inkluzyjnie zbiorów R∈Reach_r, dla których katalog A po usunięciu R jest spójny. Dla dowolnego R∈Reach_r:
-
-\[
-\operatorname{Cons}(A\setminus R)\iff
-\exists T\in\mathcal T_r(A)\quad T\subseteq R.
-\]
-
-Dowód: spójność jest monotoniczna względem usuwania ograniczeń, a Reach_r zamknięta na podzbiory. Przy wspólnym L i identycznych D_i dwa katalogi mają izomorficzne drzewa przyszłych nazwanych działań i wyników Cons przy budżecie r wtedy i tylko wtedy, gdy ich rodziny T_r są równe. Każde R∈Reach_r ma legalną historię, więc równość drzew wyznacza wszystkie Cons i minimalne naprawy; odwrotnie wzór wyznacza odpowiedzi po każdej historii. T_r=∅ oznacza brak osiągalnej naprawy, natomiast T_r={∅} — spójność bez działań. Jest to iloraz zadaniowy II.7–II.8, nie minimum liczby bitów.
-
-**T3 — dokładny próg przełączeń.** Z pełnej rodziny minimalnych konfliktów M(A) bierzemy F_H(A)=Min{C∩H:C∈M(A)}. Dla F∈F_H niech I(F)={i:D_i∩F≠∅}. Oznaczmy przez τ minimalną liczbę reżimów J, które łącznie trafiają każdy konflikt F, tj. dla każdego F istnieje i∈J z D_i∩F≠∅. Wówczas minimalna liczba przełączeń umożliwiająca spójność wynosi 0, jeżeli F_H=∅; τ−1, gdy 1≤τ<∞; oraz ∞, gdy F_H zawiera ∅. Dowód: każdy skuteczny zestaw wycofań wymaga odwiedzenia co najmniej τ reżimów; odwrotnie wystarczy usunąć wszystkie oznaczenia należące do unii dowolnych τ reżimów trafiających każdy konflikt. Jest to redukcja do problemu trafiania, bez twierdzenia o łatwej złożoności.
-
-**T4 — ścisła hierarchia.** Dla każdego n≥2 wybierzmy D_i={j_i}, i=1,...,n, oraz rozłączne pary etykiet x_i,y_i, i=0,...,n. Oba katalogi zawierają niewycofywalne równości e_i:(x_i=y_i) i wycofywalne nierówności j_i:(x_i≠y_i), i=1,...,n, oraz niewycofywalne e_0:(x_0=y_0). Kolejny niewycofywalny znacznik d oznacza w katalogu A równość x_0=y_0, natomiast w B nierówność x_0≠y_0. Przy najwyżej n−2 przełączeniach pozostaje co najmniej jeden konflikt (e_i,j_i) w obu katalogach, więc ich przyszłe wyniki Cons są identyczne. Przy n−1 przełączeniach można wycofać wszystkie j_i: A staje się spójny, B pozostaje sprzeczny. Każdy szczebel budżetu może więc ściśle zwiększać zdolność rozróżniania. Przykład nie wykorzystuje samosprzecznych pętli.
-
-**Granice:** przy ustalonym reżimie początkowym, ograniczonej kolejności przełączeń, zależnościach historycznych albo efektach fizycznych Reach trzeba wyznaczyć z rzeczywistego kontraktu; samo κ nie wystarcza. Bez nowych prób Node/LAB i bez dodatkowych zadań Luny/Sola; pakiet prób Mapy pozostaje HOLD_BY_OWNER_BUDGET. CORE5/IFX FREEZE; C1 HOLD.
-
-### 6.15. Automat legalnych przełączeń — osiągalność, iloraz i aktualizacja (24.10.2026)
-
-**Status:** DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED; NON-CORE. To doprecyzowanie zakresu §6.14, a nie nowy MATH. Źródła: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-76/T31](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281). Starsze twierdzenia: [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md), źródła @b4c21748.
-
-**Kontrakt.** Rozważamy skończone katalogi oznaczonych równości i nierówności na ustalonym zbiorze aktywnych identyfikatorów K i zbiorze etykiet V. Liczba grup spełniania jest nieograniczona; obserwujemy wyłącznie Cons. Wspólny obu katalogom skończony automat sterowania ma stany Q, aktualny stan q, skierowane przejścia G oraz uprawnienia wycofania D(q) w stanie q. Stan może uwzględniać licznik pozostałych przełączeń. Przełączenie q→q' nie modyfikuje treści katalogu; legalne usunięcie −j wymaga j∈K∩D(q), usuwa tylko j i nie zmienia q. Przełączenia nie zależą od treści deklaracji ani od wykonanych usunięć. Wycofanie jest dobrowolne, zatem można opuścić stan bez korzystania z jego praw. Etykiety przełączeń i usunięć są literalne.
-
-**T1 — dokładna osiągalność.** Dla skierowanego spaceru p=(q=q_0,...,q_k) w G piszemy H_K(p)=K∩(⋃ D(q_l)), z unią po wszystkich odwiedzonych stanach. Rodzina możliwych usunięć ma postać
-
-\[
-\boxed{\mathscr R_{q,K}=\{R\subseteq K:\exists p\text{ legalny spacer od }q,\ R\subseteq H_K(p)\}.}
-\]
-
-Dowód konieczności: każde skreślenie następuje w stanie uprawnionym do tej nazwy. Dowód dostateczności: każdą nazwę ze zbioru R przydzielamy do pierwszej wizyty w stanie uprawnionym i wykonujemy skreślenie podczas tej wizyty. Rodzina jest zamknięta na podzbiory. Uwaga: unia praw stanów osobno osiągalnych nie musi być realizowalna w jednej historii — mogą leżeć na wykluczających się gałęziach.
-
-**T2 — dokładny iloraz treści przy ustalonym sterowaniu.** Minimalne osiągalne naprawy dla katalogu A definiujemy jako
-
-\[
-\boxed{\mathcal T_{q,K}(A)=\operatorname{Min}_{\subseteq}
-\{R\in\mathscr R_{q,K}:\operatorname{Cons}(A|_{K\setminus R})\}.}
-\]
-
-Dla dowolnego R∈𝓡_{q,K}:
-
-\[
-\operatorname{Cons}(A|_{K\setminus R})\iff
-\exists T\in\mathcal T_{q,K}(A)\quad T\subseteq R.
-\]
-
-Dostateczność wynika z monotoniczności spójności przy usuwaniu. Konieczność wynika z wyboru minimalnej osiągalnej naprawy zawartej w R. Dla dwóch katalogów A,B o wspólnych K,Q,q,G,D drzewa wszystkich legalnych słów oznaczonych literalnymi etykietami oraz etykietami węzłów Cons są izomorficzne wtedy i tylko wtedy, gdy 𝓣_{q,K}(A)=𝓣_{q,K}(B). Istotnie każdą R∈𝓡_{q,K} osiąga legalne słowo; zgodność drzew daje wszystkie etykiety Cons i rodzinę jej minimalnych napraw. W przeciwnym kierunku wszystkie legalne słowa są wspólne, a wzór wyznacza ich etykiety. Rodzina pusta oznacza brak osiągalnej naprawy, rodzina zawierająca pusty zbiór — spójność bez działań. Jest to dokładnie najgrubszy iloraz **treści katalogów przy ustalonym q,K**, nie globalny iloraz stanów o różnych prawach lub aktywnych nazwach. Nie oznacza minimum bitowego (II.7–II.8).
-
-**T3 — jawna aktualizacja na ilorazie (II.9).** Przechowujemy (q,K,𝓣) oraz wspólny automat. Legalne działanie e prowadzi do (q',K') i usuwa w tym jednym kroku Δ_e (pusty zbiór dla przełączenia, singleton dla nazwanej operacji −j). Wtedy
-
-\[
-\boxed{\mathcal T'=\operatorname{Min}_{\subseteq}
-\{R'\in\mathscr R_{q',K'}:
-\exists T\in\mathcal T,\ T\subseteq\Delta_e\cup R'\}.}
-\]
-
-Dowód: e wraz z dowolną legalną kontynuacją usuwającą R' stanowi legalne słowo bieżącego automatu usuwające Δ_e∪R'. Według T2 wynik spójności jest dokładnie warunkiem istnienia T zawartego w tym zbiorze. Minimalizacja po osiągalnych kontynuacjach wyznacza rodzinę następnego stanu bez odwoływania się do treści A. Jest to **częściowy**, reprezentantowo niezależny operator; bez q i K sama rodzina 𝓣 może nie rozpoznawać legalności następnego ruchu. Nie wynikają z tego gwarancje tanich obliczeń.
-
-**T4 — minimalny koszt przełączeń.** Pełna rodzina minimalnych konfliktów katalogu A niech będzie 𝓜(A). Skierowany spacer p od q *pokrywa konflikty* wtedy i tylko wtedy, gdy dla każdego C∈𝓜(A) zachodzi C∩H_K(p)≠∅. Istnieje legalna naprawa po najwyżej k przełączeniach wtedy i tylko wtedy, gdy istnieje taki spacer o najwyżej k krawędziach. W stronę konieczną każde rzeczywiste skreślenie leży w H_K(p), a naprawa trafia wszystkie minimalne konflikty. W stronę dostateczną można podczas wizyt po p usunąć wszystkie nazwy z H_K(p), trafiając wszystkie konflikty. Najmniejszy koszt jest więc długością najkrótszego *skierowanego spaceru pokrywającego konflikty*, nie liczbą nieuporządkowanych wybranych reżimów. Dopuszczamy wielokrotne wizyty w tym samym stanie. Przy jawnie danej 𝓜(A) odpowiada temu skończony problem najkrótszej ścieżki w iloczynie Q × 2^{𝓜(A)}, gdzie drugi czynnik rejestruje już trafione konflikty. Nie twierdzimy, że konstrukcja jest ekonomiczna ani wielomianowa.
-
-**Kontrprzykład przeciw zastosowaniu §6.14 poza jego dziedziną.** Stan początkowy q0 ma dwie rozłączne gałęzie q0→q1 i q0→q2, bez możliwości powrotu lub przejścia między q1 i q2; D(q0)=∅, D(q1)={a}, D(q2)={b}. Można osobno wycofać a lub b, lecz nie obie nazwy w jednym epizodzie, niezależnie od budżetu. Katalog ma cztery wpisy: niewycofywalne e_a:(x1=y1), e_b:(x2=y2) oraz wycofywalne a:(x1≠y1), b:(x2≠y2), na rozłącznych parach etykiet. Ma dwa minimalne konflikty {e_a,a} i {e_b,b}. Nieuporządkowany zbiór reżimów {q1,q2} trafiałby oba konflikty; żadna legalna historia ich nie trafia. W tym automacie katalog jest nienaprawialny. Wzór pokrycia κ(R)≤r+1 z §6.14 wymagał swobodnej kolejności reżimów i tutaj nie obowiązuje.
-
-**Granice:** przełączenia zależne od wcześniejszych wycofań, zewnętrzne koszty, zmiany praw w odpowiedzi na obserwację, odtwarzanie wpisu, interwencje fizyczne lub dodatkowe zadania wymagają powiększenia kontraktu; H_K(p) nie musi wtedy wyznaczać pełnej legalności. Nie podnosimy powiązań redakcyjnych do produkcyjnych DEPENDS_ON.
-
-**Tryb kosztowy:** badanie wyłącznie matematyczne, Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET, Luna nie otrzymuje nowych zleceń. CORE5/IFX FREEZE, C1 HOLD.
-
-### 6.16. Strażniki zależne od wycofań — dokładny iloraz bez dziedziczności osiągalności (24.10.2026)
-
-**Status:** `DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED`. Matematyczne rozszerzenie §6.15, bez nowego MATH i bez zmian CORE5. Podstawa: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-76/T31](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281), [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md) i [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md).
-
-**Kontrakt.** I to skończony zbiór nazw certyfikatów, K⊆I zbiór aktualnie aktywnych nazw. Katalog A przypisuje każdej nazwie deklarację równości/nierówności na ustalonym skończonym V. Liczba grup jest nieograniczona, a jedynym wynikiem zadania jest boolowska wartość Cons(A|_K). Sterowanie ma skończony stan q i częściową deterministyczną aktualizację δ((q,K),e)=(q',K'), gdzie e jest literalnie nazwanym przełączeniem bez usunięcia albo wycofaniem −j, j∈K, po którym K'=K\{j}. Reguły dozwolenia przełączeń mogą zależeć od aktualnego K; automat i δ **nie zależą od treści deklaracji A**. Cała historia sterowania istotna dla legalności musi już być zawarta w q (np. licznik przełączeń, ostatni ruch). Bez takiego warunku q,K nie są dobrze określonym stanem Markowa.
-
-Niech s=(q,K), a ℛ_s będzie rodziną R⊆K takich, że istnieje legalne słowo sterowania od s pozostawiające aktywny zbiór K\R. Rodzina ℛ_s **nie musi być dziedziczna**. Definiujemy
-
-\[
-\boxed{\mathcal T_s(A)=\operatorname{Min}_{\subseteq}\{R\in\mathscr R_s:
-\operatorname{Cons}(A|_{K\setminus R})\}.}
-\]
-
-**T1 — dokładny test na nie-dziedzicznej rodzinie osiągalnej.** Dla każdego R∈ℛ_s:
-
-\[
-\boxed{\operatorname{Cons}(A|_{K\setminus R})\iff
-\exists T\in\mathcal T_s(A)\quad T\subseteq R.}
-\]
-
-Dowód kierunku „jeśli”: monotoniczność spełnialności przy skreślaniu ograniczeń; jeżeli K\T jest spójny i T⊆R, to K\R też jest spójny. W drugą stronę: jeśli osiągalne R przywraca spójność, rodzina osiągalnych i skutecznych S⊆R jest **niepusta** (zawiera R), skończona, więc ma element minimalny T. Element taki jest minimalny globalnie wśród wszystkich osiągalnych i skutecznych wycofań, bo każdy skuteczny właściwy podzbiór T także byłby zawarty w R; zatem T∈𝓣_s(A). Dowód **nie zakłada**, że każdy podzbiór osiągalnego R jest osiągalny. Poprzednie odwołanie do dziedziczności ℛ w §6.15 dotyczyło tamtego węższego kontraktu.
-
-**T2 — jądro najgrubszego dokładnego ilorazu.** Dla dwóch katalogów A,B o tym samym I,K,V oraz wspólnym s i tym samym automacie treściowo niezależnym:
+Dla dwóch katalogów z identycznym `s,K` i tym samym automatem niezależnym od treści:
 
 \[
 \boxed{\operatorname{Beh}_s(A)\cong\operatorname{Beh}_s(B)
 \iff \mathcal T_s(A)=\mathcal T_s(B).}
+\tag{B2}
 \]
 
-Izomorfizm drzew zachowuje korzeń, dosłowne nazwy kroków i etykiety węzłów Cons. Konieczność: każda osiągalna R ma co najmniej jedno legalne słowo; wspólna gramatyka sterowania i zgodność drzew wyznaczają odpowiedź Cons dla każdego R, a stąd jego minimalne osiągalne naprawy. Dostateczność: T1 wyznacza odpowiedź Cons po każdym legalnym słowie, zaś legalność i literalne krawędzie zależą wyłącznie od s i δ, wspólnych obu katalogom. Stąd izomorfizm drzew po identycznych słowach. Jest to specjalizacja II.7–II.8; minimalność jest **ilorazowa**, nie bitowa.
+Konieczność: każde `R∈𝓡_s` jest wynikiem pewnego literalnie legalnego słowa, więc równość drzew określa jednakowe odpowiedzi `Cons` i jednakowe minimalne osiągalne naprawy. Dostateczność: legalne słowa są wspólne, a (B1) określa wszystkie ich etykiety. **To jest jawna postać najgrubszego ilorazu treści katalogu, lecz tylko przy ustalonych `s,K` i kontrakcie.**
 
-**T3 — aktualizacja ilorazowa (II.9).** Dla legalnego e:s→s'=(q',K') niech Δ=K\K' (puste dla przełączenia, singleton dla wycofania). Przy znajomości s,s',e,δ i bieżącego 𝓣_s(A):
+Jeżeli legalny krok `e:s→s'` wycofuje `Δ_e⊆K`, mamy **jeden wzór aktualizacji**, obejmujący także strażniki zależne od wcześniejszych wycofań:
 
 \[
-\boxed{\mathcal T_{s'}(A)=\operatorname{Min}_{\subseteq}
-\{R'\in\mathscr R_{s'}:
-\exists T\in\mathcal T_s(A),\ T\subseteq\Delta\cup R'\}.}
+\boxed{\mathcal T_{s'}=
+\operatorname{Min}_{\subseteq}
+\{R'\in\mathcal R_{s'}:
+\exists T\in\mathcal T_s,\ T\subseteq\Delta_e\cup R'\}.}
+\tag{B3}
 \]
 
-Każde przyszłe R' po s' daje legalne słowo s→s'→... i łączne usunięcia Δ∪R' osiągalne z s. Z T1 mamy więc równość jego Cons z warunkiem po prawej. Minimalizacja po osiągalnych R' wyznacza dokładnie następne 𝓣. Dziedziczność ℛ_s nie jest potrzebna. Aktualizacja jest dobrze określona na klasach; legalność kroku wymaga jawnej kontroli s,e,δ. Nie przesądza to kosztu konstrukcji ℛ.
+Wywód: legalny prefiks `e` z przyszłą kontynuacją `R'` realizuje łącznie `Δ_e∪R'`, więc (B1) określa jego spójność; minimalizacja po `𝓡_{s'}` daje następną rodzinę. Wzór jest dobrze określony, jeżeli `s` rzeczywiście zawiera historię istotną dla legalności; nie dowodzi taniej implementacji.
 
-**Kontrprzykład — konieczność usunięcia logicznie zbędnego znacznika.** K={a,b,λ}. Deklaracje a:(x=x), b:(x≠y), λ:(x=y). W q0 jedynie −a jest dopuszczone. Przejście q0→q1 jest legalne dopiero gdy a∉K. W q1 dopuszczamy −b, a −λ nie jest dopuszczone nigdzie. Z q0 rodzina wycofań wynosi dokładnie
+**Świadek strażnika:** redundantne `a:(x=x)`, konflikt `b:(x≠y),λ:(x=y)`. Wolno wykonać `−a`, a dopiero potem `−b`. Rodzina `𝓡_s={∅,{a},{a,b}}` nie jest dziedziczna, choć jedyna minimalna osiągalna naprawa to `{{a,b}}`. Warunek osiągalności jest **operacyjny**, nie logiczny.
+
+#### C. Projekcja, prawa, koszty i przełączenia — przypadki B, nie nowe twierdzenia podstawowe
+
+W szczególnym kontrakcie dowolnych nazwanych usunięć z ustalonego `D⊆K` osiągalność wynosi `𝓡_s=2^D`. Niech `𝓜(A)` będzie pełną rodziną minimalnych konfliktów. Z MATH-70–72:
 
 \[
-\mathscr R=\{\varnothing,\{a\},\{a,b\}\}.
+\mathcal F_D=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(A)\},
+\qquad
+\mathcal T_D=\operatorname{Min}\{R\subseteq D:\forall F\in\mathcal F_D,\ R\cap F\ne\varnothing\}.
 \]
 
-W szczególności osiągalność nie jest dziedziczna: {a,b}∈ℛ, ale {b}∉ℛ. Minimalny konflikt samego katalogu to {λ,b}, natomiast minimalna osiągalna naprawa to {a,b}. Redundantny logicznie certyfikat a musi być wycofany, aby uruchomić reżim umożliwiający usunięcie b. Formuły §6.14 o nieuporządkowanym pokryciu reżimami i §6.15 o ścieżkach sterowania niezależnych od usunięć nie wolno tu stosować bez zmiany kontraktu.
+`𝓕_D` to *minimalne przeszkody*, a `𝓣_D` to *minimalne naprawy*. Są wzajemnie wyznaczane przez blocker (dualność rodzin minimalnych transwersali na skończonym D), **ale nie należy ich utożsamiać**. `𝓕_D=∅` oznacza brak konfliktów; `𝓕_D={∅}` oznacza konflikt nietrafialny legalnym usunięciem. Odpowiednio `𝓣_D={∅}` oraz `𝓣_D=∅`.
 
-**Dwie granice typu.** (1) Jeżeli stan q nie rejestruje historycznej przesłanki legalności, mogą istnieć dwie historie kończące z tym samym (q,K), lecz o różnych dozwolonych ruchach; wtedy δ nie jest funkcją na (q,K) i wymaga wzbogacenia q. (2) Jeśli uprawnienie zależy od **treści** deklaracji, a nie wyłącznie od q,K, dwa katalogi o tym samym 𝓣 mogą mieć inne legalne krawędzie i T2 przestaje być bezwarunkowo prawdziwe. W takim przypadku potrzebny jest bogatszy kontrakt albo pełny iloraz przyszłych literalnie etykietowanych drzew z II.7.
+**Ograniczenie praw** z D do E⊆D ma postać `P_E(𝓕_D)=Min{F∩E:F∈𝓕_D}`; projekcje składają się: `P_K P_E=P_K` przy K⊆E⊆D. Przy rzeczywistym `−j` pozostają tylko przeszkody `F` niezawierające j; przy **samym zakazie przyszłego `−j`** projektujemy przeszkody przez `F↦F\setminus{j}`. Rozróżnienie tych dwóch działań jest istotne. Rozszerzenie praw **nie** jest w ogólności odwracalne z samej `𝓕_D`: zmiana kontraktu może odtworzyć wcześniej sklejone różnice.
 
-**Granica wykonawcza:** brak prób Node, Sol/E, Luny i LAB, brak nowego modułu i nowego numeru MATH. Źródłowe wyniki MATH-70–74 zachowują swoje ograniczone statusy niezależnego odbioru; §6.16 nie dziedziczy tych statusów. CORE5/IFX FREEZE, C1 HOLD, próby mapy HOLD_BY_OWNER_BUDGET.
+Dla jawnych dodatnich wag `w_j`, minimalny koszt naprawy spełnia elementarną rekurencję ważonego trafiania:
 
-### 6.17. Legalność i obserwacje zależne od treści — poprawka zakresu oraz skończony iloraz dokładny (24.10.2026)
+\[
+\beta(D,\mathcal F)=
+\min\big\{
+\beta(D\setminus\{j\},\operatorname{Min}\{F\setminus\{j\}:F\in\mathcal F\}),
+\ \ w_j+\beta(D\setminus\{j\},\{F\in\mathcal F:j\notin F\})
+\big\}.
+\]
 
-**Źródła:** MATH-70 ([#13/6353258865](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865)), MATH-72 ([#13/6353389796](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796)), MATH-76/T31 ([#13/6377942281](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281)), oraz starsze [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md) @b4c21748. Status niniejszego wyprowadzenia: **DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED**, bez nowego MATH, NON-CORE.
+To podział na gałąź „nie usuń j” i „usuń j”; **nie** dowodzi wielomianowej złożoności.
 
-**A. Kontrprzykład do przeniesienia §6.16 poza kontrakt.** Ustalmy V={x,y}, aktywne nazwy K={λ} i dwa katalogi: A(λ)=(x=x), B(λ)=(x=y). Oba są spójne i nie dopuszczają wycofań, więc dla obu minimalna osiągalna naprawa wynosi 𝓣={∅}. Niech legalność literalnego przełączenia σ zależy od tego, czy aktywny certyfikat λ głosi nietrywialną równość różnych etykiet. Wtedy σ jest legalne w B i nielegalne w A. Zatem drzewa legalnej przyszłości się różnią mimo równego (q,K,𝓣). W §6.16 wymagano niezależności legalności od treści; przykłady **nie przeczą** tamtemu twierdzeniu. Sama wartość Cons i minimalne naprawy nie wyznaczają prawa przełączenia zależnego od treści.
+Dla kilku reżimów `D_i`: osobne sesje o stałym i identyfikuje krotka `(𝓕_{D_i})_i`, lecz przy **swobodnym przełączaniu w jednej trajektorii** potrzebna jest `𝓕_H` dla `H=⋃D_i`. Przy najwyżej r przełączeniach i dowolnym wyborze pierwszego reżimu zbiór R jest osiągalny dokładnie wtedy, gdy można go pokryć co najwyżej r+1 zbiorami `D_i`. Najmniejsza liczba przełączeń potrzebnych do naprawy katalogu to liczba wybranych reżimów trafiających wszystkie minimalne przeszkody **minus jeden** (przy wyjątkach: stan już spójny = 0, niemożliwa naprawa = ∞). Przy skierowanych, ograniczonych przełączeniach trzeba wyznaczać legalne spacery sterowania; przy strażnikach zależnych od wycofań obowiązuje ogólna `𝓡_s` z B. Żadne z tych ograniczeń nie wymaga nowej definicji dokładności pamięci.
 
-**B. Kontrakt skończonej pełnej przyszłości.** Niech S będzie skończonym, niepustym zbiorem stanów zawierających WSZYSTKIE zmienne istotne dla przyszłej legalności, danych źródłowych, aktywnych znaczników, sterowania i obserwacji. Niech E będzie zbiorem literalnie etykietowanych kroków; w razie raportów wynikowych etykietą może być para (czynność, raport). Zakładamy o:S→O jako aktualnie obserwowaną etykietę zadaniową, En(s)⊆E jako zbiór możliwych legalnych etykiet oraz **częściową deterministyczną** aktualizację δ(s,e)∈S dla e∈En(s). Przy każdym ustalonym s i e jest najwyżej JEDEN następnik. Drzewo Beh(s) rozwija wszystkie takie legalne etykiety, niosąc o(s) na każdym węźle; pętle stanu dają nieskończone rozwinięcie drzewa, mimo skończonego S. Nie orzekamy tu o rozkładach prawdopodobieństwa ani nierozróżnialnych wielu następnikach pod tą samą etykietą.
+#### D. Granica — legalność zależna od treści (dawne §6.17)
 
-**T1 — skończona rafinacja dokładnego ilorazu.** Definiujemy relacje na S:
+Gdy legalność ruchu zależy od samego `A`, założenie o wspólnym drzewie legalnych słów w (B2) przestaje obowiązywać. Przykład: katalog `A={λ:(x=x)}` i `B={λ:(x=y)}` są spójne, a bez usunięć mają to samo `𝓣={∅}`, lecz ruch dopuszczany wyłącznie dla nietrywialnej równości może być legalny tylko w B.
+
+Przy skończonej **jawnej przestrzeni stanów** S, obserwacji o(s), legalnych etykietach En(s) i deterministycznej, częściowej aktualizacji δ(s,e) pełną dokładność daje zwykła rafinacja:
 
 \[
 R_0=\{(s,t):o(s)=o(t)\},
 \]
 
 \[
-R_{n+1}=\{(s,t):o(s)=o(t),\quad
-\operatorname{En}(s)=\operatorname{En}(t),\quad
+sR_{n+1}t\iff o(s)=o(t)\land
+\operatorname{En}(s)=\operatorname{En}(t)\land
 \forall e\in\operatorname{En}(s)\ 
-(\delta(s,e),\delta(t,e))\in R_n\}.
+\delta(s,e)R_n\delta(t,e).
 \]
 
-Wówczas każda R_n jest relacją równoważności, R_{n+1}⊆R_n, a ciąg stabilizuje się w pewnym N≤|S|−1. Dla każdego s,t∈S:
+Relacje stabilizują się po co najwyżej `|S|−1` ścisłych uszczegółowieniach, a stabilna równoważność odpowiada izomorfizmowi literalnie etykietowanych drzew przyszłości. Przy wybranym kodzie η:S→Z **jego własna aktualizacja** wymaga dodatkowo zgodności kodów następników dla każdej pary z równym kodem (II.9). To jest granica B, a nie niezależny prymityw pamięci.
+
+#### E. Granica — niedeterminizm i semantyka rozgałęzień (dawne §6.18)
+
+Jeżeli po jednej etykiecie mogą istnieć liczne różne następniki, trzeba wybrać poziom informacji wymagany przez zadanie:
 
 \[
-\boxed{(s,t)\in R_N\iff\operatorname{Beh}(s)\cong\operatorname{Beh}(t)}
+\boxed{\text{izomorfizm pełnych drzew realizacji}
+\ \Longrightarrow\ \text{bisymulacja}
+\ \Longrightarrow\ \text{równość możliwych śladów}.}
 \]
 
-przy izomorfizmie zachowującym dosłowne etykiety kroków, etykiety obserwacji, korzeń i strukturę następców.
+Odwrotności nie zachodzą ogólnie. Śladami zgodne są: dwaj następnicy po `a`, dopuszczający osobno tylko `b` i tylko `c`, oraz jeden następnik po `a` dopuszczający oba `b,c`; nie są bisymilarne. Z kolei dwa terminalne następniki po `a` mogą być bisymilarne jednemu, lecz nie tworzą izomorficznych pełnych drzew zachowujących liczność gałęzi.
 
-**Dowód.** R_0 jest równością obserwacji, zatem relacją równoważności. Jeżeli R_n jest równoważnością, warunek równości zbiorów En oraz punktowa zgodność następców według R_n również tworzą relację równoważności, więc R_{n+1} nią jest. Z indukcji R_{n+1}⊆R_n (dla n=0 bezpośrednio; dla n>0 wynik z indukcyjnej inkluzji następników). Każda ścisła zmiana rozbija co najmniej jedną klasę; z co najwyżej |S| klas wynika stabilizacja w N≤|S|−1. Po stabilizacji R_N jest zgodną z legalnością i następnikiem kongruencją: korzenie w relacji mają równe obserwacje, te same etykiety legalnych ruchów oraz następników w tej samej relacji. Indukcja po długości słowa dowodzi zgodności wszystkich skończonych prefiksów przyszłości, a więc izomorfizmu pełnych rozwinięć drzew. W przeciwnym kierunku izomorfizm literalnie oznaczonych drzew daje zgodność korzeni, dostępnych krawędzi i następników na dowolnej ustalonej głębokości, więc (s,t)∈R_n dla wszystkich n, w szczególności R_N. □
-
-**T2 — najgrubszy dokładny iloraz i jego aktualizacja.** Oznaczmy ρ(s)=[s]_{R_N}. Wtedy ρ jest dokładnie adekwatną pamięcią z II.7 i najgrubszym dokładnym ilorazem w porządku relacji równoważności z II.8, względem powyższego kontraktu. Ponadto zbiór dozwolonych literalnych działań jest dobrze określony na klasie:
+Dla skończonego systemu niedeterministycznego `Γ(s,e)⊆S` największą bisymulację daje stabilizacja dwustronnego dopasowania następników (po najwyżej `|S|−1` ścisłych uszczegółowieniach); iloraz ma **relację**, a nie funkcję aktualizacji:
 
 \[
-\overline{\operatorname{En}}([s])=\operatorname{En}(s),
+\overline\Gamma([s],e)=\{[u]:u\in\Gamma(s,e)\}.
 \]
 
-a częściowa aktualizacja ma postać
+Nie jest ona automatycznie dokładna dla pełnego izomorfizmu drzew, który zachowuje odrębność gałęzi. Zachowanie śladów, zachowanie możliwości rozgałęzień i zachowanie wielokrotności fizycznych realizacji to **różne kontrakty**, którym odpowiadają różne ilorazy. Wersja probabilistyczna wymaga kolejnego jawnego wyboru znaczenia rozkładu wyników; nie została tu udowodniona.
 
-\[
-\boxed{\overline\delta([s],e)=[\delta(s,e)]_{R_N},
-\quad e\in\overline{\operatorname{En}}([s]).}
-\]
+#### F. Decyzja redukcyjna — co pozostaje aktywne, co nie
 
-Obie definicje są niezależne od reprezentanta na mocy stabilnego warunku R_N; to dokładnie przesłanki II.9. **Granica:** N≤|S|−1 jest ograniczeniem liczby iteracji rafinacji *na jawnie skończonej przestrzeni S*, a nie zapewnieniem taniego algorytmu, małego S lub skończonej pamięci dla oryginalnego systemu z nieskończoną historią.
+| Zakres dawny | Status po redukcji | Gdzie pełne uzasadnienie |
+|---|---|---|
+| §6.11–6.12: stałe prawa, projekcja, koszty | **PRZYPADEK C** | [Wyniki M-012](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383746530), [rekurencja kosztu](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383815322) |
+| §6.13–6.14: przełączanie i budżet | **PRZYPADEK C** | [Świadek przełączania](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383874210), [pełna wersja Mapy](https://github.com/smoczynski-b/PSI/blob/2ce841828892ec8f6cc563e82efaa2c7f0d70c7d/docs/memory/PSI-MEMORY-MAP-01.md) |
+| §6.15–6.16: skierowane przejścia i strażniki | **SCHEMAT B** | [Pełne pierwotne dowody](https://github.com/smoczynski-b/PSI/blob/2ce841828892ec8f6cc563e82efaa2c7f0d70c7d/docs/memory/PSI-MEMORY-MAP-01.md), [Issue #13](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6384243682) |
+| §6.17: zależność od treści | **GRANICA D** | [Pierwotny dowód](https://github.com/smoczynski-b/PSI/blob/2ce841828892ec8f6cc563e82efaa2c7f0d70c7d/docs/memory/PSI-MEMORY-MAP-01.md), [Issue #13](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6384307698) |
+| §6.18: niedeterminizm | **GRANICA E** | [Pierwotny dowód](https://github.com/smoczynski-b/PSI/blob/2ce841828892ec8f6cc563e82efaa2c7f0d70c7d/docs/memory/PSI-MEMORY-MAP-01.md), [Issue #13](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6384356729) |
 
-**T3 — warunek legalnej kompresji pośredniej.** Niech η:S→Z będzie proponowaną pamięcią (np. składowe kosztowe, projekcja konfliktów, fragment proweniencji). Aby η samodzielnie obsługiwała prawidłową aktualizację i raporty bez reprezentanta, wystarczy i — w tym deterministycznym kontrakcie — jest konieczne, by przy η(s)=η(t) zachodziły równocześnie:
-(a) o(s)=o(t);
-(b) En(s)=En(t);
-(c) η(δ(s,e))=η(δ(t,e)) dla każdego wspólnego legalnego e.
-Jest to kongruencja jądra η. Wtedy pamięć obsługuje wszystkie przyszłości oraz dobrze określony operator U:Z×E⇀Z na obrazie η. Sama dokładność obserwacyjna η bez (c) może pozwalać na wyznaczenie klasy zadaniowej jako funkcji η, ale nie musi wyznaczać **następnego kodu η**. Jeżeli wymagamy tylko dokładności zadaniowej bez aktualizacji samej η, właściwym i słabszym kryterium pozostaje ker_eq η⊆R_N (II.7).
-
-**D. Ograniczenia.** Jeżeli system jest niedeterministyczny z wieloma następcami dla identycznej etykiety, probabilistyczny, historycznie nie-Markowowski albo ma nieprzeliczalne zbiory stanów, nie wolno bez dodatkowego kontraktu przenosić powyższej rafinacji i ograniczenia N. W takim przypadku punktem odniesienia jest nadal przyszłe drzewo II.7 lub odpowiedni jawnie zadany typ bisymulacji i obserwacji. Formalna spójność równań nie dowodzi empirycznej prawdziwości certyfikatów.
-
-**Koszty:** Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET; Luna nie otrzymuje nowych zadań, nie zamawiamy testów ani recenzji. CORE5/IFX FREEZE, C1 HOLD.
-
-### 6.18. Niedeterministyczne przejścia — ślady, bisymulacja i izomorfizm rozwinięcia (24.10.2026)
-
-**Status własnej analizy:** DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED, NON-CORE, bez nowego numeru MATH. Punkty odniesienia: [II.7 — dokładna adekwatność pamięci](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8 — najgrubszy dokładny iloraz](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9 — częściowa aktualizacja ilorazu](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md), wersja @b4c21748, oraz poprzedni §6.17 (deterministyczna aktualizacja). Rozróżnienia śladów i bisymulacji należą do znanej teorii systemów przejść; nie zgłaszamy nowości matematycznej.
-
-**1. Jawny kontrakt.** Niech S będzie niepustym skończonym zbiorem stanów, E skończonym alfabetem literalnych etykiet przejść, o:S→O etykietą obserwacji węzła, a Γ:S×E→𝒫(S) relacją możliwych następników. Brak następnika oznacza brak legalnego przejścia z daną etykietą. Jeżeli model wymaga rozdzielenia czynności i jej raportu, etykietę e należy jawnie traktować jako parę (czynność, raport). Dopuszczamy różne następniki s1≠s2 po tej samej etykiecie e. Nie modelujemy tutaj prawdopodobieństw, kosztów, ukrytych decyzji podmiotów ani wielokrotności identycznego przejścia do tego samego stanu. Drzewo pełnego rozwinięcia U(s) zachowuje oddzielne **realizacje ścieżek stanowych**, nawet gdy mają identyczny ciąg etykiet e.
-
-Trzy relacje:
-- równoważność śladów s≈tr t: zbiór wszystkich skończonych ciągów przejść i etykiet obserwacji wzdłuż możliwych przebiegów jest ten sam. Przebieg niezrealizowany nie jest dodawany;
-- bisymulacja s≈bi t: istnieje relacja B obejmująca parę (s,t), zachowująca o oraz warunki „tam i z powrotem”: dla każdego e i każdego s'∈Γ(s,e) istnieje t'∈Γ(t,e) z s' B t', a dla każdego t'∈Γ(t,e) istnieje s'∈Γ(s,e) z s' B t';
-- izomorfizm s≈iso t: pełne ukorzenione drzewa rozwinięcia U(s), U(t) są izomorficzne z zachowaniem etykiet węzłów i krawędzi, a także **odrębności gałęzi** (nie scala się dwóch fizycznie odrębnych następników z jednym).
-
-**T1 — ścisła hierarchia semantyk.**
-
-\[
-\boxed{\approx_{\mathrm{iso}}\ \subsetneq\ \approx_{\mathrm{bi}}\ \subsetneq\ \approx_{\mathrm{tr}}}
-\]
-
-Znaki ścisłości znaczą istnienie skończonych kontrprzykładów; nie oznaczają, że w każdym systemie te relacje muszą być różne. Izomorfizm pełnych drzew indukuje bisymulację węzłów odpowiadających sobie. Bisymulacja pozwala indukcyjnie dopasować wszystkie możliwe skończone obserwowane ścieżki, więc gwarantuje równość śladów.
-
-**Falsyfikat trace⇒bisim.** Stan p ma dwa przejścia z etykietą a, do p_b i p_c. Z p_b istnieje wyłącznie przejście b do stanu terminalnego, z p_c wyłącznie przejście c do stanu terminalnego. Stan q ma jedno przejście a do q_bc, z którego wychodzą b i c do stanów terminalnych. Wszystkie etykiety obserwacji węzłów są takie same. W obu przypadkach ślady to {ε,a,ab,ac}; natomiast następnik q_bc nie może być bisymilarny ani z p_b (brak c), ani z p_c (brak b). Zatem p≈tr q, lecz p nie≈bi q.
-
-**Falsyfikat bisim⇒tree-iso.** Stan u ma dwa różne terminalne następniki t1,t2 osiągane etykietą a; stan v ma jeden terminalny następnik t3 osiągany tą samą etykietą. Obserwacje odpowiadających sobie korzeni i terminalnych liści są jednakowe. Relacja łącząca u z v oraz t1 i t2 z t3 jest bisymulacją. Jednak drzewo U(u) ma dwa dzieci korzenia, a U(v) jedno; nie są izomorficzne. Wyraźnie widać, że bisymulacja ignoruje liczność nierozróżnialnych duplikatów możliwych następników, natomiast przyjęty tu izomorfizm pełnego rozwinięcia je zachowuje.
-
-**2. Dokładny skończony iloraz bisymulacyjny.** Dla relacji R⊆S×S wprowadzamy monotoniczną operację Φ(R): para (s,t)∈Φ(R) wtedy i tylko wtedy, gdy o(s)=o(t) oraz dla każdej etykiety e zachodzą dwie implikacje: każdy następnik s po e ma jakiś następnik t po e w relacji R i każdy następnik t po e ma jakiś następnik s po e w relacji R. W szczególności zgodność pustych i niepustych zbiorów przejść jest wymuszona. Definiujemy
-
-\[
-R_0=\{(s,t):o(s)=o(t)\},\qquad
-R_{n+1}=\Phi(R_n).
-\]
-
-**T2 — stabilizacja i najgrubsza bisymulacja.** Każde R_n jest relacją równoważności, R_{n+1}⊆R_n. Ponieważ S jest skończone, po co najwyżej |S|−1 ścisłych podziałach klas otrzymujemy R_N=R_{N+1} i
-
-\[
-\boxed{R_N=\approx_{\mathrm{bi}}.}
-\]
-
-Dowód: z równoważności R_n i wzajemnego dopasowywania następników wynika zwrotność, symetria i przechodniość Φ(R_n). Monotoniczność Φ zapewnia schodzenie ciągu. Każde ścisłe uszczegółowienie relacji równoważności podnosi liczbę klas o co najmniej 1; maksymalnie |S| klas, więc stabilizacja następuje w podanym ograniczeniu. Stabilne R_N spełnia oba warunki bisymulacji, więc zawiera się w największej bisymulacji. W przeciwnym kierunku każda bisymulacja jest zawarta w R_0, a indukcyjnie w każdym R_n, zatem także w R_N. Liczba iteracji dotyczy **jawnie skończonego S** i nie jest twierdzeniem o niskim koszcie obliczeń.
-
-**T3 — dobrze określona relacja przejść na ilorazie.** Dla klasy [s]∈S/R_N i etykiety e definiujemy
-
-\[
-\boxed{\overline\Gamma([s],e)=
-\{[s']_{R_N}:s'\in\Gamma(s,e)\}.}
-\]
-
-Warunek bisymulacji „tam i z powrotem” dokładnie zapewnia niezależność tej rodziny klas od reprezentanta s. Obserwacja \(\overline o([s])=o(s)\) jest również dobrze określona. Jest to **niedeterministyczna relacja aktualizacji** na ilorazie, a nie jednoznaczny następnik z deterministycznego §6.17. Przejście do takiego ilorazu jest zadaniowo adekwatne dla semantyki bisymulacyjnej, ale może być **za grube** dla semantyki pełnego izomorfizmu rozwinięcia z T1.
-
-**T4 — pamięć pośrednia i warunek kongruencji.** Dla dowolnego kodu η:S→Z jego własny niedeterministyczny operator na kodach jest dobrze określony wtedy, gdy każda para stanów z równym kodem ma (i) takie samo o oraz (ii) dla każdego e równe zbiory kodów następników:
-
-\[
-\boxed{
-\eta(s)=\eta(t)\Longrightarrow
-o(s)=o(t)\ \land\
-\{\eta(u):u\in\Gamma(s,e)\}
-=\{\eta(v):v\in\Gamma(t,e)\},\quad\forall e.
-}
-\]
-
-Na obrazie η można wówczas legalnie zdefiniować \(\overline\Gamma_\eta(\eta(s),e)\). Dla samej wystarczalności zadaniowej względem bisymulacji warunek jest **słabszy**: ker_eq η⊆≈bi (II.7 w kontrakcie bisymulacyjnym). Nie wolno automatycznie wnioskować, że własny kod η podlega zgodnej z nim rekurencji bez warunku kongruencji. W szczególności sama równoważność śladów nie gwarantuje takiej aktualizacji ani zgodności możliwości rozgałęzienia.
-
-**5. Jawna granica II.7.** W źródłowym II.7 przyszłe drzewo jest określone przez kontrakt. Jeśli w naszym modelu jest nim pełne drzewo **realizacji stanowych** z zachowaną wielokrotnością gałęzi, dokładna równoważność jest ≈iso, nie ≈bi. Jeżeli obserwator widzi jedynie możliwe ciągi raportów i nie ma zadania zachowania struktury rozgałęzień, wystarczy ≈tr. Jeżeli wymagamy zachowania możliwych następców modulo kolejne rozróżnienia bez liczby duplikatów, poprawnym kontraktem jest ≈bi. To trzy RÓŻNE typy zadaniowej dokładności, a nie trzy automatycznie równoważne realizacje jednego twierdzenia. W deterministycznym względem literalnej etykiety kontrakcie z §6.17 ≈iso oraz ≈bi pokrywają się.
-
-**Zakres i koszty:** brak rozkładów prawdopodobieństwa, miar, sprzężeń stochastycznych, nieobserwowalnych strategii ani automatycznego utożsamienia modalnego bezpieczeństwa z faktyczną gwarancją działania agenta. Bez zmian CORE5, IFX i C1. Brak prób Node/LAB oraz dodatkowych zleceń Luny i Sola. Testy Mapy nadal HOLD_BY_OWNER_BUDGET.
+**Wyłączenia niezmienne:** §6.9 (źródłowa migracja i aktywna errata MATH-57), §6.10 (kontrakt importu i ograniczenia prób Node), statusy E-001, niepropagujące typowanie INDEX/EDITORIAL/SCOPE/EVIDENCE. Głosowanie nad prawdziwością dowodu przez liczbę pochodnych zapisów jest niedozwolone: przekształcenia i streszczenia **nie stanowią niezależnych świadectw**. Celem redukcji jest zmniejszenie kosztu aktywnej pamięci, nie ogłoszenie nowych twierdzeń ani rezygnacja ze źródeł. `CORE5/IFX=FREEZE`, `C1=HOLD`, `NODE/SOL/LUNA_NEW_TESTS=HOLD_BY_OWNER_BUDGET`.
