@@ -234,10 +234,19 @@ def retrieve(contract):
 if __name__ == '__main__':
     import argparse
     import json
-    from compile_multilingual_contract import compile_multilingual_task
+    from memory_map_navigation import cli_result
     parser = argparse.ArgumentParser(description='Compile one bounded task and retrieve its declared memory view.')
     parser.add_argument('--language', choices=['PL', 'EN', 'DE'], default='PL')
-    parser.add_argument('task')
+    parser.add_argument('--map-node', help='Pinned two-hop navigation by node ID')
+    parser.add_argument('--revoke', help='Read-only legacy validity revocation simulation')
+    parser.add_argument('task', nargs='?')
     args = parser.parse_args()
+    mapped = cli_result(args, ROOT)
+    if mapped is not None:
+        print(json.dumps(mapped, ensure_ascii=False, indent=2))
+        raise SystemExit(2 if mapped['status'] == 'HOLD' else 0)
+    if args.task is None:
+        parser.error('task, --map-node or --revoke is required')
+    from compile_multilingual_contract import compile_multilingual_task
     contract = compile_multilingual_task(args.task, args.language)
     print(json.dumps({'contract': contract, 'result': retrieve(contract)}, ensure_ascii=False, indent=2))

@@ -1,0 +1,1263 @@
+{
+  "status": "PASS_SCOPED",
+  "scope": "LOCAL_ORDINARY_CLI_ACCEPTANCE",
+  "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+  "enumeration_rerun": false,
+  "production_deployment_certified": false,
+  "results": {
+    "ordinary_MATH_57": {
+      "status": "SOURCE_SEEN",
+      "scope": "PINNED_NAVIGATION_METADATA_ONLY",
+      "anchor": "MATH-57",
+      "radius": 2,
+      "traversal": "INCIDENCE",
+      "edge_direction": "ORIGINAL_FROM_TO",
+      "nodes": [
+        {
+          "id": "II.4",
+          "kind": "THEOREM",
+          "status": "PASS",
+          "source": "docs/principia-v2-04-representation-adequacy.md",
+          "label": "Representation adequacy"
+        },
+        {
+          "id": "II.7",
+          "kind": "THEOREM",
+          "status": "PASS",
+          "source": "docs/principia-v2-07-exact-history-memory-adequacy.md",
+          "label": "Exact history memory adequacy"
+        },
+        {
+          "id": "II.8",
+          "kind": "THEOREM",
+          "status": "PASS",
+          "source": "docs/principia-v2-08-coarsest-exact-history-quotient.md",
+          "label": "Coarsest exact history quotient"
+        },
+        {
+          "id": "II.9",
+          "kind": "THEOREM",
+          "status": "PASS",
+          "source": "docs/principia-v2-09-recursive-history-quotient-update.md",
+          "label": "Recursive history quotient update"
+        },
+        {
+          "id": "MATH-34",
+          "kind": "RESEARCH_CLAIM",
+          "status": "LOGICAL_SCOPE_REVIEW_RECORDED",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350239727",
+          "label": "Redukcja minimalnych podpor do antylancucha zachowuje optimum i zbior dopuszczalny LP"
+        },
+        {
+          "id": "MATH-41-56",
+          "kind": "RESEARCH_RANGE",
+          "status": "SCOPE_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "label": "Koszty aktualizacji katalogów; profile; pamięć kontynuacji"
+        },
+        {
+          "id": "MATH-55",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351455779",
+          "label": "Dodanie podpory nieodwracalne; opis wlokna odwrotnego i dostatecznej pamieci rollbacku"
+        },
+        {
+          "id": "MATH-56",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "label": "Usuwanie oznaczonego wpisu wymaga proweniencji znacznik-podpora; K_E nie wystarcza"
+        },
+        {
+          "id": "MATH-57",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_SCOPE_CORRECTED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "label": "Trzy obserwacje: historia, aktywny katalog, semantyka; korekta pelnej legalnosci nazwanego dodawania w MATH-57-ERRATA"
+        },
+        {
+          "id": "MATH-57-69",
+          "kind": "RESEARCH_RANGE",
+          "status": "SCOPE_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "label": "Proweniencja; zależności źródeł; odporność identyfikacji"
+        },
+        {
+          "id": "MATH-57-ERRATA",
+          "kind": "ERRATA",
+          "status": "ACTIVE_SCOPE_CORRECTION",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "label": "Sam aktywny A nie wyznacza legalnosci ponownego +j; pelny stan przyszlych operacji to (A,Used)"
+        },
+        {
+          "id": "MATH-58",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "label": "Rzeczywista proweniencja nie wynika z samego rejestru; niezbedne wlokno swiatow i swiadectwo zgodnosci"
+        },
+        {
+          "id": "MATH-59",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "label": "Przeciecie wlokien: redundancja, scisly przyrost, sprzecznosc; przyrost o swiecie nie musi byc przyrostem o q"
+        },
+        {
+          "id": "MATH-60",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "label": "Globalna redundancja kanalow rownowazna faktoryzacji ker(m1) subset ker(m2); prawdziwosc deklaracji osobna"
+        },
+        {
+          "id": "MATH-61",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "label": "Pelna legalnosc interakcyjna wymaga (A,Used); rozdzielenie aktualizacji katalogu i filtrow proweniencji"
+        },
+        {
+          "id": "MATH-62",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "label": "Cofniecie filtra, utracona czesc wlokna; ostry prog liczby wycofanych wpisow i grup"
+        },
+        {
+          "id": "MATH-63",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "label": "Wazony prog utraty identyfikacji przy wycofaniach dozwolonych M i grupowych kosztach"
+        },
+        {
+          "id": "MATH-64",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "label": "Identyfikowalnosc po t wycofaniach rownowazna tolerancji t falszywych filtrow tylko przy jawnych warunkach trafnosci"
+        },
+        {
+          "id": "MATH-65",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "label": "Certyfikowane relacje rownych i roznych jednostek awarii; minimalny prog grupowy przez chromatycznosc H[C(J)]"
+        },
+        {
+          "id": "MATH-66",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "label": "Dokladne progi chromatyczne dla grafow dwudzielnych; granice i swiadectwa w grafach ogolnych"
+        },
+        {
+          "id": "MATH-67",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "label": "Jedna certyfikowana roznosc dodaje krawedz; wzrost progu o 0 lub 1 z warunkiem krytycznych kolorowan"
+        },
+        {
+          "id": "MATH-68",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "label": "Jedna certyfikowana rownosc scala klasy przy braku krawedzi; wzrost progu o 0 lub 1"
+        },
+        {
+          "id": "MATH-69",
+          "kind": "RESEARCH_CLAIM",
+          "status": "E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "label": "Rodzina rownosci: niesprzecznosc calego domkniecia, niezaleznosc kolejnosci i ostra granica wzrostu r"
+        },
+        {
+          "id": "MATH-PRINCIPIA-MIGRATION",
+          "kind": "EDITORIAL_MAP",
+          "status": "CANDIDATE_NON_CORE",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "label": "Migracja MATH-28-76 do czterotomowej struktury Principiów"
+        }
+      ],
+      "edges": [
+        {
+          "from": "MATH-PRINCIPIA-MIGRATION",
+          "relation": "INDEXES",
+          "to": "MATH-41-56",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Źródłowa klasyfikacja materiału; nie zależność logiczna"
+        },
+        {
+          "from": "MATH-PRINCIPIA-MIGRATION",
+          "relation": "INDEXES",
+          "to": "MATH-57-69",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Źródłowa klasyfikacja materiału; nie zależność logiczna"
+        },
+        {
+          "from": "MATH-41-56",
+          "relation": "TOPIC_BRIDGE_CANDIDATE",
+          "to": "II.9",
+          "layer": "CANDIDATE",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Zapamiętywanie aktualizacji katalogu; nie domniemana zależność dowodowa"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "TOPIC_BRIDGE_CANDIDATE",
+          "to": "II.4",
+          "layer": "CANDIDATE",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Proweniencja i adekwatność informacji; wymaga drobiazgowego porównania"
+        },
+        {
+          "from": "MATH-41-56",
+          "relation": "INDEXES",
+          "to": "MATH-55",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351455779",
+          "note": "Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu"
+        },
+        {
+          "from": "MATH-41-56",
+          "relation": "INDEXES",
+          "to": "MATH-56",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "note": "Jednostkowy wynik zrodlo-historyczne, nie automatyczny nowy wynik kanonu"
+        },
+        {
+          "from": "MATH-56",
+          "relation": "REQUIRES_PROVENANCE_BEYOND",
+          "to": "MATH-55",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "note": "Rolback semantyczny nie odtwarza oznaczonej listy wpisow"
+        },
+        {
+          "from": "MATH-56",
+          "relation": "REUSES_SEMANTIC_REDUNDANCY_OF",
+          "to": "MATH-34",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "note": "Usuniecie wpisu bez zmiany semantyki gdy pozostaje podpora w nim zawarta"
+        },
+        {
+          "from": "MATH-56",
+          "relation": "BRIDGE_CANDIDATE",
+          "to": "MATH-57-69",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "note": "Historia oznaczonych wpisow jako kandydacki most do proweniencji MATH-57-69"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-57",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "note": "Oryginalny wynik MATH-57; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-58",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "note": "Oryginalny wynik MATH-58; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-59",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "note": "Oryginalny wynik MATH-59; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-60",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "note": "Oryginalny wynik MATH-60; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-61",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Oryginalny wynik MATH-61; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-62",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "note": "Oryginalny wynik MATH-62; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-63",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "note": "Oryginalny wynik MATH-63; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-64",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Oryginalny wynik MATH-64; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-65",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Oryginalny wynik MATH-65; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-66",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "note": "Oryginalny wynik MATH-66; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-67",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "note": "Oryginalny wynik MATH-67; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-68",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Oryginalny wynik MATH-68; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-69",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "note": "Oryginalny wynik MATH-69; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57",
+          "relation": "EXTENDS_NAMED_ENTRY_SEMANTICS_OF",
+          "to": "MATH-56",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "note": "Od pojedynczego usuniecia znacznika do hierarchii obserwacji katalogu i historii"
+        },
+        {
+          "from": "MATH-57",
+          "relation": "HAS_ERRATA",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "Historyczna swiezosc identyfikatorow nie wynika z samego aktywnego katalogu"
+        },
+        {
+          "from": "MATH-57-ERRATA",
+          "relation": "QUALIFIES_SCOPE_OF",
+          "to": "MATH-57",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "T2(d) tylko dla sekwencji legalnych po obu historiach lub globalnie swiezych znacznikow"
+        },
+        {
+          "from": "MATH-58",
+          "relation": "SEPARATES_REAL_PROVENANCE_FROM",
+          "to": "MATH-57",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "note": "Formalny zapis operacji nie identyfikuje rzeczywistych obiektow zrodlowych"
+        },
+        {
+          "from": "MATH-59",
+          "relation": "REFINES_PROVENANCE_FIBER_OF",
+          "to": "MATH-58",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "note": "Warunkowy przyrost informacji po swiadectwie e przez W intersect A_e"
+        },
+        {
+          "from": "MATH-60",
+          "relation": "SPECIALIZES_FACTORISATION_TO_CHANNELS_OF",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "note": "Globalna redundancja m2 wzgledem m1: ker(m1) subset ker(m2)"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "AUDITS_SCOPE_OF",
+          "to": "MATH-57",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Pelna interakcyjna kontynuacja wymaga pary (A,Used); uwzglednia errate"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "IMPLEMENTS_CORRECTION_FROM",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Jawnie rozroznia dom A od zbioru historycznie uzytych identyfikatorow"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "DISTINGUISHES_UPDATE_TYPES_OF",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Dodawanie podpory katalogowej i filtrowanie proweniencji maja rozne dziedziny"
+        },
+        {
+          "from": "MATH-62",
+          "relation": "EXTENDS_TO_REVOCATION",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "note": "Usuniecie filtra moze przywrocic wczesniej wykluczone swiata i odpowiedzi q"
+        },
+        {
+          "from": "MATH-63",
+          "relation": "WEIGHTED_ALLOWED_WITHDRAWAL_EXTENSION_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "note": "Budzet B i dozwolone M prowadza do ostrego progu beta_M"
+        },
+        {
+          "from": "MATH-64",
+          "relation": "CONNECTS_FALSE_FILTERS_WITH_WITHDRAWAL_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Unia wlokien po <=t wycofaniach = zbior swiatow naruszajacych <=t filtrow"
+        },
+        {
+          "from": "MATH-64",
+          "relation": "REUSES_WEIGHTED_BUDGET_OF",
+          "to": "MATH-63",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Wazony budzet falszywych wpisow; prawdziwosc wymaga theta_real w odpowiednim wloknie"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "HANDLES_UNKNOWN_FAILURE_GROUPS_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Zweryfikowane E_= i E_neq wyznaczaja graf ograniczen i prog certyfikowany"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "QUALIFIES_GROUP_COST_MODEL_OF",
+          "to": "MATH-63",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Bez zweryfikowanych klas jednostek awarii nie mozna utozsamiac wpisow z grupami"
+        },
+        {
+          "from": "MATH-66",
+          "relation": "SPECIALIZES_BIPARTITE_GRAPH_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "note": "Prog chi dla podgrafow indukowanych; w przypadku dwudzielnym tylko 1 lub 2"
+        },
+        {
+          "from": "MATH-67",
+          "relation": "UPDATES_INEQUALITY_EDGE_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "note": "Nowa certyfikowana roznosc dodaje krawedz i moze zwiekszyc prog najwyzej o 1"
+        },
+        {
+          "from": "MATH-68",
+          "relation": "UPDATES_EQUALITY_QUOTIENT_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Nowa rownosc scala dwie klasy przy braku certyfikowanej roznosci"
+        },
+        {
+          "from": "MATH-68",
+          "relation": "DISTINCT_UPDATE_OPERATOR_FROM",
+          "to": "MATH-67",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Kontrakcja wierzcholkow to nie dodanie krawedzi; rozne warunki legalnosci"
+        },
+        {
+          "from": "MATH-69",
+          "relation": "ITERATES_CONTRACTIONS_OF",
+          "to": "MATH-68",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "note": "Rodzina rownosci: globalna niesprzecznosc, kolejnosc obojetna, wzrost <= r"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "HAS_ACTIVE_SCOPE_CORRECTION",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "Zakres MATH-57 musi uwzgledniac Used i wspolna legalnosc operacji"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "SCOPED_HISTORY_MEMORY_REALIZATION_CANDIDATE",
+          "to": "II.7",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Pelne legalne Beh nazwanych wpisow iff stan (A,Used), kontrakt v != empty"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "SCOPED_COARSE_QUOTIENT_REALIZATION_CANDIDATE",
+          "to": "II.8",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Wzgledem pelnych nazwanych przyszlych zapytan H/equiv jest izomorficzne z im(A,Used), nie minimalne bitowo"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "SCOPED_PARTIAL_UPDATE_REALIZATION_CANDIDATE",
+          "to": "II.9",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Legalna aktualizacja (A,Used) respektuje reprezentanta historii; nie dowodzi skonczonosci stanow"
+        },
+        {
+          "from": "MATH-58",
+          "relation": "TASK_FIBER_FACTORISATION_REUSE_CANDIDATE",
+          "to": "II.4",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Rzeczywiste theta jest wyznaczalne tylko gdy q stale na niepustym wloknie obserwacji"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "TASK_FIBER_FACTORISATION_REUSE_CANDIDATE",
+          "to": "II.4",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Prog chi wymaga osobnego zweryfikowanego kontraktu E_= i E_neq, a nie samej mapy cytowan"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "RESOLVES_HISTORY_LEGALITY_SCOPE_OF",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Pelne przyszle drzewo uwzglednia historyczna swiezosc identyfikatora"
+        }
+      ],
+      "distances": {
+        "MATH-57": 0,
+        "MATH-56": 1,
+        "MATH-57-69": 1,
+        "MATH-57-ERRATA": 1,
+        "MATH-58": 1,
+        "MATH-61": 1,
+        "MATH-34": 2,
+        "MATH-41-56": 2,
+        "MATH-55": 2,
+        "II.4": 2,
+        "MATH-59": 2,
+        "MATH-60": 2,
+        "MATH-62": 2,
+        "MATH-63": 2,
+        "MATH-64": 2,
+        "MATH-65": 2,
+        "MATH-66": 2,
+        "MATH-67": 2,
+        "MATH-68": 2,
+        "MATH-69": 2,
+        "MATH-PRINCIPIA-MIGRATION": 2,
+        "II.7": 2,
+        "II.8": 2,
+        "II.9": 2
+      },
+      "source_bodies_fetched": false,
+      "enumeration_rerun": false,
+      "validity_effects_inferred": false,
+      "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+      "input_blobs": {
+        "docs/memory/psi-memory-nodes-01.tsv": "5719f7c43800979e3ed6d52e17c3b58425bd57ff",
+        "docs/memory/psi-memory-nodes-history-01.tsv": "7bcbbea893f1b5dc087ca44771be85591e92ba7b",
+        "docs/memory/psi-memory-nodes-bridges-01.tsv": "a2a63586e5657fe0f2644cba195969287f88ab43",
+        "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+        "docs/memory/psi-memory-edges-history-01.tsv": "9db55e765c94a376b8cc5b3d0f3ebeaaef67f116",
+        "docs/memory/psi-memory-edges-bridges-01.tsv": "8c6792b18b8e80ec2381b4af9e28d472ea9cc710",
+        "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3",
+        "docs/memory/PSI-MEMORY-MAP-01.md": "d876f85b814d09b68e39f09c1b8311a0ca2d4c02"
+      }
+    },
+    "ordinary_MATH_69": {
+      "status": "SOURCE_SEEN",
+      "scope": "PINNED_NAVIGATION_METADATA_ONLY",
+      "anchor": "MATH-69",
+      "radius": 2,
+      "traversal": "INCIDENCE",
+      "edge_direction": "ORIGINAL_FROM_TO",
+      "nodes": [
+        {
+          "id": "II.4",
+          "kind": "THEOREM",
+          "status": "PASS",
+          "source": "docs/principia-v2-04-representation-adequacy.md",
+          "label": "Representation adequacy"
+        },
+        {
+          "id": "MATH-56",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "label": "Usuwanie oznaczonego wpisu wymaga proweniencji znacznik-podpora; K_E nie wystarcza"
+        },
+        {
+          "id": "MATH-57",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_SCOPE_CORRECTED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "label": "Trzy obserwacje: historia, aktywny katalog, semantyka; korekta pelnej legalnosci nazwanego dodawania w MATH-57-ERRATA"
+        },
+        {
+          "id": "MATH-57-69",
+          "kind": "RESEARCH_RANGE",
+          "status": "SCOPE_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "label": "Proweniencja; zależności źródeł; odporność identyfikacji"
+        },
+        {
+          "id": "MATH-57-ERRATA",
+          "kind": "ERRATA",
+          "status": "ACTIVE_SCOPE_CORRECTION",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "label": "Sam aktywny A nie wyznacza legalnosci ponownego +j; pelny stan przyszlych operacji to (A,Used)"
+        },
+        {
+          "id": "MATH-58",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "label": "Rzeczywista proweniencja nie wynika z samego rejestru; niezbedne wlokno swiatow i swiadectwo zgodnosci"
+        },
+        {
+          "id": "MATH-59",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "label": "Przeciecie wlokien: redundancja, scisly przyrost, sprzecznosc; przyrost o swiecie nie musi byc przyrostem o q"
+        },
+        {
+          "id": "MATH-60",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "label": "Globalna redundancja kanalow rownowazna faktoryzacji ker(m1) subset ker(m2); prawdziwosc deklaracji osobna"
+        },
+        {
+          "id": "MATH-61",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "label": "Pelna legalnosc interakcyjna wymaga (A,Used); rozdzielenie aktualizacji katalogu i filtrow proweniencji"
+        },
+        {
+          "id": "MATH-62",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "label": "Cofniecie filtra, utracona czesc wlokna; ostry prog liczby wycofanych wpisow i grup"
+        },
+        {
+          "id": "MATH-63",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "label": "Wazony prog utraty identyfikacji przy wycofaniach dozwolonych M i grupowych kosztach"
+        },
+        {
+          "id": "MATH-64",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "label": "Identyfikowalnosc po t wycofaniach rownowazna tolerancji t falszywych filtrow tylko przy jawnych warunkach trafnosci"
+        },
+        {
+          "id": "MATH-65",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "label": "Certyfikowane relacje rownych i roznych jednostek awarii; minimalny prog grupowy przez chromatycznosc H[C(J)]"
+        },
+        {
+          "id": "MATH-66",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "label": "Dokladne progi chromatyczne dla grafow dwudzielnych; granice i swiadectwa w grafach ogolnych"
+        },
+        {
+          "id": "MATH-67",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "label": "Jedna certyfikowana roznosc dodaje krawedz; wzrost progu o 0 lub 1 z warunkiem krytycznych kolorowan"
+        },
+        {
+          "id": "MATH-68",
+          "kind": "RESEARCH_CLAIM",
+          "status": "SELF_CHECKED_REVIEW_PENDING",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "label": "Jedna certyfikowana rownosc scala klasy przy braku krawedzi; wzrost progu o 0 lub 1"
+        },
+        {
+          "id": "MATH-69",
+          "kind": "RESEARCH_CLAIM",
+          "status": "E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "label": "Rodzina rownosci: niesprzecznosc calego domkniecia, niezaleznosc kolejnosci i ostra granica wzrostu r"
+        },
+        {
+          "id": "MATH-69-E001-REVIEW",
+          "kind": "INDEPENDENT_REVIEW",
+          "status": "PASS_SCOPED_ACCEPTED_PROOF_ONLY",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353231221",
+          "label": "E-001 przyjal dowody T1-T4 MATH-69; enumeracji r=1..4 nie powtorzyl, bez oceny nowosci"
+        },
+        {
+          "id": "MATH-PRINCIPIA-MIGRATION",
+          "kind": "EDITORIAL_MAP",
+          "status": "CANDIDATE_NON_CORE",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "label": "Migracja MATH-28-76 do czterotomowej struktury Principiów"
+        }
+      ],
+      "edges": [
+        {
+          "from": "MATH-PRINCIPIA-MIGRATION",
+          "relation": "INDEXES",
+          "to": "MATH-57-69",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Źródłowa klasyfikacja materiału; nie zależność logiczna"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "TOPIC_BRIDGE_CANDIDATE",
+          "to": "II.4",
+          "layer": "CANDIDATE",
+          "source": "https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md",
+          "note": "Proweniencja i adekwatność informacji; wymaga drobiazgowego porównania"
+        },
+        {
+          "from": "MATH-56",
+          "relation": "BRIDGE_CANDIDATE",
+          "to": "MATH-57-69",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118",
+          "note": "Historia oznaczonych wpisow jako kandydacki most do proweniencji MATH-57-69"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-57",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "note": "Oryginalny wynik MATH-57; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-58",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "note": "Oryginalny wynik MATH-58; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-59",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "note": "Oryginalny wynik MATH-59; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-60",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "note": "Oryginalny wynik MATH-60; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-61",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Oryginalny wynik MATH-61; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-62",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "note": "Oryginalny wynik MATH-62; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-63",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "note": "Oryginalny wynik MATH-63; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-64",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Oryginalny wynik MATH-64; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-65",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Oryginalny wynik MATH-65; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-66",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "note": "Oryginalny wynik MATH-66; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-67",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "note": "Oryginalny wynik MATH-67; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-68",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Oryginalny wynik MATH-68; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "INDEXES",
+          "to": "MATH-69",
+          "layer": "INDEX",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "note": "Oryginalny wynik MATH-69; indeks redakcyjny, nie nowy dowod"
+        },
+        {
+          "from": "MATH-57",
+          "relation": "EXTENDS_NAMED_ENTRY_SEMANTICS_OF",
+          "to": "MATH-56",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087",
+          "note": "Od pojedynczego usuniecia znacznika do hierarchii obserwacji katalogu i historii"
+        },
+        {
+          "from": "MATH-57",
+          "relation": "HAS_ERRATA",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "Historyczna swiezosc identyfikatorow nie wynika z samego aktywnego katalogu"
+        },
+        {
+          "from": "MATH-57-ERRATA",
+          "relation": "QUALIFIES_SCOPE_OF",
+          "to": "MATH-57",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "T2(d) tylko dla sekwencji legalnych po obu historiach lub globalnie swiezych znacznikow"
+        },
+        {
+          "from": "MATH-58",
+          "relation": "SEPARATES_REAL_PROVENANCE_FROM",
+          "to": "MATH-57",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970",
+          "note": "Formalny zapis operacji nie identyfikuje rzeczywistych obiektow zrodlowych"
+        },
+        {
+          "from": "MATH-59",
+          "relation": "REFINES_PROVENANCE_FIBER_OF",
+          "to": "MATH-58",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773",
+          "note": "Warunkowy przyrost informacji po swiadectwie e przez W intersect A_e"
+        },
+        {
+          "from": "MATH-60",
+          "relation": "SPECIALIZES_FACTORISATION_TO_CHANNELS_OF",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259",
+          "note": "Globalna redundancja m2 wzgledem m1: ker(m1) subset ker(m2)"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "AUDITS_SCOPE_OF",
+          "to": "MATH-57",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Pelna interakcyjna kontynuacja wymaga pary (A,Used); uwzglednia errate"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "IMPLEMENTS_CORRECTION_FROM",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Jawnie rozroznia dom A od zbioru historycznie uzytych identyfikatorow"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "DISTINGUISHES_UPDATE_TYPES_OF",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767",
+          "note": "Dodawanie podpory katalogowej i filtrowanie proweniencji maja rozne dziedziny"
+        },
+        {
+          "from": "MATH-62",
+          "relation": "EXTENDS_TO_REVOCATION",
+          "to": "MATH-59",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034",
+          "note": "Usuniecie filtra moze przywrocic wczesniej wykluczone swiata i odpowiedzi q"
+        },
+        {
+          "from": "MATH-63",
+          "relation": "WEIGHTED_ALLOWED_WITHDRAWAL_EXTENSION_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086",
+          "note": "Budzet B i dozwolone M prowadza do ostrego progu beta_M"
+        },
+        {
+          "from": "MATH-64",
+          "relation": "CONNECTS_FALSE_FILTERS_WITH_WITHDRAWAL_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Unia wlokien po <=t wycofaniach = zbior swiatow naruszajacych <=t filtrow"
+        },
+        {
+          "from": "MATH-64",
+          "relation": "REUSES_WEIGHTED_BUDGET_OF",
+          "to": "MATH-63",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866",
+          "note": "Wazony budzet falszywych wpisow; prawdziwosc wymaga theta_real w odpowiednim wloknie"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "HANDLES_UNKNOWN_FAILURE_GROUPS_OF",
+          "to": "MATH-62",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Zweryfikowane E_= i E_neq wyznaczaja graf ograniczen i prog certyfikowany"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "QUALIFIES_GROUP_COST_MODEL_OF",
+          "to": "MATH-63",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807",
+          "note": "Bez zweryfikowanych klas jednostek awarii nie mozna utozsamiac wpisow z grupami"
+        },
+        {
+          "from": "MATH-66",
+          "relation": "SPECIALIZES_BIPARTITE_GRAPH_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698",
+          "note": "Prog chi dla podgrafow indukowanych; w przypadku dwudzielnym tylko 1 lub 2"
+        },
+        {
+          "from": "MATH-67",
+          "relation": "UPDATES_INEQUALITY_EDGE_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168",
+          "note": "Nowa certyfikowana roznosc dodaje krawedz i moze zwiekszyc prog najwyzej o 1"
+        },
+        {
+          "from": "MATH-68",
+          "relation": "UPDATES_EQUALITY_QUOTIENT_OF",
+          "to": "MATH-65",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Nowa rownosc scala dwie klasy przy braku certyfikowanej roznosci"
+        },
+        {
+          "from": "MATH-68",
+          "relation": "DISTINCT_UPDATE_OPERATOR_FROM",
+          "to": "MATH-67",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343",
+          "note": "Kontrakcja wierzcholkow to nie dodanie krawedzi; rozne warunki legalnosci"
+        },
+        {
+          "from": "MATH-69",
+          "relation": "ITERATES_CONTRACTIONS_OF",
+          "to": "MATH-68",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335",
+          "note": "Rodzina rownosci: globalna niesprzecznosc, kolejnosc obojetna, wzrost <= r"
+        },
+        {
+          "from": "MATH-69",
+          "relation": "INDEPENDENTLY_REVIEWED_IN",
+          "to": "MATH-69-E001-REVIEW",
+          "layer": "EVIDENCE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353231221",
+          "note": "E-001 PASS_SCOPED; dowody i swiadectwa sprawdzone, enumeracja niepowtorzona"
+        },
+        {
+          "from": "MATH-57-69",
+          "relation": "HAS_ACTIVE_SCOPE_CORRECTION",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428",
+          "note": "Zakres MATH-57 musi uwzgledniac Used i wspolna legalnosc operacji"
+        },
+        {
+          "from": "MATH-58",
+          "relation": "TASK_FIBER_FACTORISATION_REUSE_CANDIDATE",
+          "to": "II.4",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Rzeczywiste theta jest wyznaczalne tylko gdy q stale na niepustym wloknie obserwacji"
+        },
+        {
+          "from": "MATH-65",
+          "relation": "TASK_FIBER_FACTORISATION_REUSE_CANDIDATE",
+          "to": "II.4",
+          "layer": "EDITORIAL",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Prog chi wymaga osobnego zweryfikowanego kontraktu E_= i E_neq, a nie samej mapy cytowan"
+        },
+        {
+          "from": "MATH-61",
+          "relation": "RESOLVES_HISTORY_LEGALITY_SCOPE_OF",
+          "to": "MATH-57-ERRATA",
+          "layer": "SCOPE",
+          "source": "https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383455470",
+          "note": "Pelne przyszle drzewo uwzglednia historyczna swiezosc identyfikatora"
+        }
+      ],
+      "distances": {
+        "MATH-69": 0,
+        "MATH-57-69": 1,
+        "MATH-68": 1,
+        "MATH-69-E001-REVIEW": 1,
+        "II.4": 2,
+        "MATH-56": 2,
+        "MATH-57": 2,
+        "MATH-57-ERRATA": 2,
+        "MATH-58": 2,
+        "MATH-59": 2,
+        "MATH-60": 2,
+        "MATH-61": 2,
+        "MATH-62": 2,
+        "MATH-63": 2,
+        "MATH-64": 2,
+        "MATH-65": 2,
+        "MATH-66": 2,
+        "MATH-67": 2,
+        "MATH-PRINCIPIA-MIGRATION": 2
+      },
+      "source_bodies_fetched": false,
+      "enumeration_rerun": false,
+      "validity_effects_inferred": false,
+      "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+      "input_blobs": {
+        "docs/memory/psi-memory-nodes-01.tsv": "5719f7c43800979e3ed6d52e17c3b58425bd57ff",
+        "docs/memory/psi-memory-nodes-history-01.tsv": "7bcbbea893f1b5dc087ca44771be85591e92ba7b",
+        "docs/memory/psi-memory-nodes-bridges-01.tsv": "a2a63586e5657fe0f2644cba195969287f88ab43",
+        "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+        "docs/memory/psi-memory-edges-history-01.tsv": "9db55e765c94a376b8cc5b3d0f3ebeaaef67f116",
+        "docs/memory/psi-memory-edges-bridges-01.tsv": "8c6792b18b8e80ec2381b4af9e28d472ea9cc710",
+        "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3",
+        "docs/memory/PSI-MEMORY-MAP-01.md": "d876f85b814d09b68e39f09c1b8311a0ca2d4c02"
+      }
+    },
+    "revoke_MATH-57-ERRATA": {
+      "status": "SIMULATED",
+      "scope": "LEGACY_VALIDITY_ONLY",
+      "revoked": [
+        "MATH-57-ERRATA"
+      ],
+      "stale": [],
+      "overlay_participates_in_validity": false,
+      "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+      "input_blobs": {
+        "docs/memory/psi-memory-nodes-01.tsv": "5719f7c43800979e3ed6d52e17c3b58425bd57ff",
+        "docs/memory/psi-memory-nodes-history-01.tsv": "7bcbbea893f1b5dc087ca44771be85591e92ba7b",
+        "docs/memory/psi-memory-nodes-bridges-01.tsv": "a2a63586e5657fe0f2644cba195969287f88ab43",
+        "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+        "docs/memory/psi-memory-edges-history-01.tsv": "9db55e765c94a376b8cc5b3d0f3ebeaaef67f116",
+        "docs/memory/psi-memory-edges-bridges-01.tsv": "8c6792b18b8e80ec2381b4af9e28d472ea9cc710",
+        "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3",
+        "docs/memory/PSI-MEMORY-MAP-01.md": "d876f85b814d09b68e39f09c1b8311a0ca2d4c02"
+      }
+    },
+    "revoke_MATH-61": {
+      "status": "SIMULATED",
+      "scope": "LEGACY_VALIDITY_ONLY",
+      "revoked": [
+        "MATH-61"
+      ],
+      "stale": [],
+      "overlay_participates_in_validity": false,
+      "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+      "input_blobs": {
+        "docs/memory/psi-memory-nodes-01.tsv": "5719f7c43800979e3ed6d52e17c3b58425bd57ff",
+        "docs/memory/psi-memory-nodes-history-01.tsv": "7bcbbea893f1b5dc087ca44771be85591e92ba7b",
+        "docs/memory/psi-memory-nodes-bridges-01.tsv": "a2a63586e5657fe0f2644cba195969287f88ab43",
+        "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+        "docs/memory/psi-memory-edges-history-01.tsv": "9db55e765c94a376b8cc5b3d0f3ebeaaef67f116",
+        "docs/memory/psi-memory-edges-bridges-01.tsv": "8c6792b18b8e80ec2381b4af9e28d472ea9cc710",
+        "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3",
+        "docs/memory/PSI-MEMORY-MAP-01.md": "d876f85b814d09b68e39f09c1b8311a0ca2d4c02"
+      }
+    },
+    "revoke_C57": {
+      "status": "SIMULATED",
+      "scope": "LEGACY_VALIDITY_ONLY",
+      "revoked": [
+        "C57"
+      ],
+      "stale": [
+        "C18",
+        "C42",
+        "C44",
+        "C45",
+        "C58",
+        "C59",
+        "II.11.PSI-BRIDGE",
+        "II.7",
+        "II.8",
+        "II.9"
+      ],
+      "overlay_participates_in_validity": false,
+      "source_commit": "38adb94c7f1f99374621017c33fbe4048602d922",
+      "input_blobs": {
+        "docs/memory/psi-memory-nodes-01.tsv": "5719f7c43800979e3ed6d52e17c3b58425bd57ff",
+        "docs/memory/psi-memory-nodes-history-01.tsv": "7bcbbea893f1b5dc087ca44771be85591e92ba7b",
+        "docs/memory/psi-memory-nodes-bridges-01.tsv": "a2a63586e5657fe0f2644cba195969287f88ab43",
+        "docs/memory/psi-memory-nodes-math-migration-20261024.tsv": "398a42112b2a2737df8fcb080957c78f23bc7378",
+        "docs/memory/psi-memory-edges-history-01.tsv": "9db55e765c94a376b8cc5b3d0f3ebeaaef67f116",
+        "docs/memory/psi-memory-edges-bridges-01.tsv": "8c6792b18b8e80ec2381b4af9e28d472ea9cc710",
+        "docs/memory/psi-memory-edges-math-migration-20261024.tsv": "b52f40072d52deacc5accef22c23566c9f2d46e3",
+        "docs/memory/PSI-MEMORY-MAP-01.md": "d876f85b814d09b68e39f09c1b8311a0ca2d4c02"
+      }
+    },
+    "unknown_query": {
+      "status": "HOLD",
+      "reason": "UNKNOWN_NODE",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "missing_field": {
+      "status": "HOLD",
+      "reason": "MISSING_FIELD: psi-memory-nodes-math-migration-20261024.tsv",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "invalid_node_type": {
+      "status": "HOLD",
+      "reason": "INVALID_NODE_TYPE_OR_STATUS",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "invalid_layer": {
+      "status": "HOLD",
+      "reason": "INVALID_LAYER",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "unknown_endpoint": {
+      "status": "HOLD",
+      "reason": "UNKNOWN_ENDPOINT",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "invalid_effect": {
+      "status": "HOLD",
+      "reason": "INVALID_EFFECT",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "invalid_relation": {
+      "status": "HOLD",
+      "reason": "INVALID_RELATION_TYPE",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "bad_blob": {
+      "status": "HOLD",
+      "reason": "WORKTREE_BLOB_MISMATCH: docs/memory/psi-memory-nodes-math-migration-20261024.tsv",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "missing_header": {
+      "status": "HOLD",
+      "reason": "SCHEMA: psi-memory-edges-math-migration-20261024.tsv",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "bad_commit": {
+      "status": "HOLD",
+      "reason": "COMMIT_OR_BLOB_UNAVAILABLE",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "bad_declared_blob": {
+      "status": "HOLD",
+      "reason": "DECLARED_BLOB_MISMATCH: docs/memory/psi-memory-nodes-math-migration-20261024.tsv",
+      "scope": "NO_PARTIAL_RESULT"
+    },
+    "test_memory_map.py": {
+      "exit_code": 0,
+      "stdout": "PSI-MEMORY M1 PASS\nPSI-MEMORY M2 PASS\nPSI-MEMORY M3 PASS\nII.9 validity ancestry: C57, C58, II.4, II.7\nC57 stale descendants: C18, C42, C44, C45, C58, C59, II.11.PSI-BRIDGE, II.7, II.8, II.9\nM3 GO-G4 view: 7/67 nodes; d(II.7)=2; d(II.9)=2\n"
+    },
+    "test_m13_task_to_contract.py": {
+      "exit_code": 0,
+      "stdout": "PSI-MEMORY M13 PASS_WITH_BOUNDARY\nT1/T2 paraphrase contract invariance=PASS\nnatural task reproduces manual M12 policy=PASS\ncompiled M12-equivalent selected_edges=12\nproof-only task selected_edges=7 boundary_edges=0\nambiguous task -> NEEDS_CONTRACT / NO_RETRIEVAL\nmissing anchor -> NEEDS_ANCHOR / NO_RETRIEVAL\nBOUNDARY: M13-LEXICAL-01 is a narrow deterministic compiler, not general language understanding\n"
+    }
+  }
+}
