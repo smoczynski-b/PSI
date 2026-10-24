@@ -348,3 +348,26 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 **Rozdział kontraktów.** Dla samego anonimowego **dodawania** monotonicznych podpór `K_E` z MATH-54 wystarcza do wszystkich przyszłych odpowiedzi kosztowych. Dla nazwanych usunięć i historycznie świeżych znaczników potrzebny jest dokładniejszy niezmiennik `(A,Used)`. Dla poznania rzeczywistej proweniencji nawet ten niezmiennik nie wystarcza bez dodatkowej obserwacji `θ`. Wszystkie trzy wyniki są względne wobec jawnie określonego zbioru dopuszczalnych zapytań: zmiana zapytań zmienia relację nierozróżnialności.
 
 **Statusy i program wykonawczy:** MATH-57–68 `SELF_CHECKED/REVIEW_PENDING`; MATH-69 `E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN`. Węzły i relacje w `psi-memory-{nodes,edges}-math-migration-20261024.tsv` należą do warstwy orientacyjnej `EDITORIAL/SCOPE/INDEX`, bez produkcyjnej propagacji. Według [ostatniego pokwitowania Node](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383074872) nakładka MATH **nie była wczytywana**, a `stale_closure` dla jej surowych krawędzi zwróciło `KeyError: 'effect'`. Żaden `PASS` starych programów nie certyfikuje nowej integracji; jej rzeczywistą próbę wykonuje tylko Node. Brak nowych twierdzeń CORE5 lub roszczeń pierwszeństwa w literaturze.
+
+### 6.10. Kontrakt odczytu nakładki MATH przez istniejący program — warstwa nawigacji ≠ propagacja (24.10.2026)
+
+**Pochodzenie wymagań:** rzeczywisty [odbiór Node M57/M69](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383537912) na PSI `8637e6bf` oraz lektura [`scripts/test_memory_map.py`](https://github.com/smoczynski-b/PSI/blob/8637e6bfb377042ce958eb7c4f6bbe49d1e1833c/scripts/test_memory_map.py), blob `9cb49087`. **Ten rozdział jest specyfikacją semantyczną dla Node, nie twierdzeniem o wdrożonym programie ani o wykonanej próbie.** Istniejący program-test M1–M3 czyta `psi-memory-{nodes,edges}-{history,bridges}-01.tsv`; odrębna nakładka `*-math-migration-20261024.tsv` nie jest wczytywana. Dawne krawędzie mają `effect ∈ {VALIDITY,BRIDGE_VALIDITY,NONE}`; nowa nakładka ma `layer ∈ {INDEX,EDITORIAL,SCOPE,EVIDENCE,...}` i **nie ma** `effect`.
+
+**Wymagane rozdzielenie typów:**
+
+1. Odczyt nawigacyjny: jawnie wskazane `psi-memory-nodes-math-migration-20261024.tsv` i `psi-memory-edges-math-migration-20261024.tsv`, z zachowaniem **oryginalnych** pól `(from,relation,to,layer,source,note)`; ścieżka źródłowa i status węzła nie mogą zostać zredukowane do samego `from/to`. Relacje o nieweryfikowanym zakresie nie stają się automatycznie `DEPENDS_ON`.
+2. Odczyt propagacyjny: stary graf `history + bridges` ze sprawdzonym `effect`. Jedyną podstawą w `prerequisite_closure` i `stale_closure` pozostaje jawnie zatwierdzony `effect∈{VALIDITY,BRIDGE_VALIDITY}` **z tego grafu**, nie przekształcenie `layer` w `effect`. Nakładka MATH **nie uczestniczy** w tej propagacji.
+3. Widok incydencji dla użytkownika może chodzić po relacjach z obu końców, lecz zapisuje **oryginalny kierunek** każdego `from→to`, aby wycofanie przesłanki nie było mylone z nawigacją bibliograficzną. W `MATH-57` musi odzyskać `HAS_ERRATA` i `QUALIFIES_SCOPE_OF` z MATH-57-ERRATA oraz relację do MATH-61 (skierowaną od MATH-61 do starego wyniku/erraty). Zakres dwukrokowy bez niekontrolowanego transytywnego rozszerzenia katalogu.
+4. Odrębne pola odbioru: lokalny `readback/pass` potwierdza odczyt rekordu; `E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN` dotyczy zakresu oceny dowodu MATH-69, nie automatycznego potwierdzenia enumeracji ani całego podrozdziału.
+
+**Minimalne warunki przyszłego odbioru przez Node (jedna zintegrowana próba, nie powtórzenie ręcznego świadka):**
+
+| Wejście | Wynik oczekiwany |
+|---|---|
+| Zwykłe zapytanie istniejącą ścieżką `MATH-57` | Dostępne bez ręcznie składanego pliku próby źródło 6351600087 → aktywna errata 6351774428 → MATH-61 6351811767; pełna odpowiedź musi wymagać `(A,Used)` dla nazwanych operacji. |
+| Zwykłe zapytanie `MATH-69` | Oryginał 6352758335 oraz osobno świadectwo E-001 6353231221 ze statusem `PASS_SCOPED`, wyraźnie bez ponownej enumeracji. |
+| Wycofanie `MATH-57-ERRATA` albo `MATH-61` jako korzenia nawigacyjnego | Bez uprawnienia dowodowego **nie wolno** oznaczyć `MATH-57`, `II.7`, `II.8`, `II.9` jako przestarzałych jedynie wskutek incydencji redakcyjnej. |
+| Wycofanie dawnego `C57` | Dawne potomki ważności M2 nadal zostają oznaczone zgodnie z history/bridges, ale kandydackie węzły MATH nie mogą dostać propagacji na podstawie samych relacji INDEX/EDITORIAL/SCOPE/EVIDENCE. |
+| Brak pola, błędny typ, nieznany koniec, rozbieżny commit/blob | Odczyt ma przerwać lub jednoznacznie zgłosić `HOLD`; brak cichego `NONE`, `VALIDITY` lub ignorowania rekordu jako pozornego PASS. |
+
+**Granica implementacyjna:** istniejący `test_memory_map.py` jest skryptem kontrolnym, nie udokumentowanym produkcyjnym importerem wszystkich map. Node powinien wskazać faktyczną ścieżkę zwykłego zapytania i zakres integracji; same zmiany w testach lub lokalnej próbce nie stanowią wdrożenia. Realne wykonanie i zatwierdzenie należą do Node. M zajmuje się klasyfikacją semantyczną i redakcją, bez testu LAB. `CORE5/IFX = FREEZE`, `C1 = HOLD`.
