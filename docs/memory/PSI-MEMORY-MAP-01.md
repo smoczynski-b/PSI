@@ -535,3 +535,56 @@ Dowód: e wraz z dowolną legalną kontynuacją usuwającą R' stanowi legalne s
 **Granice:** przełączenia zależne od wcześniejszych wycofań, zewnętrzne koszty, zmiany praw w odpowiedzi na obserwację, odtwarzanie wpisu, interwencje fizyczne lub dodatkowe zadania wymagają powiększenia kontraktu; H_K(p) nie musi wtedy wyznaczać pełnej legalności. Nie podnosimy powiązań redakcyjnych do produkcyjnych DEPENDS_ON.
 
 **Tryb kosztowy:** badanie wyłącznie matematyczne, Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET, Luna nie otrzymuje nowych zleceń. CORE5/IFX FREEZE, C1 HOLD.
+
+### 6.16. Strażniki zależne od wycofań — dokładny iloraz bez dziedziczności osiągalności (24.10.2026)
+
+**Status:** `DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED`. Matematyczne rozszerzenie §6.15, bez nowego MATH i bez zmian CORE5. Podstawa: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-76/T31](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281), [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md) i [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md).
+
+**Kontrakt.** I to skończony zbiór nazw certyfikatów, K⊆I zbiór aktualnie aktywnych nazw. Katalog A przypisuje każdej nazwie deklarację równości/nierówności na ustalonym skończonym V. Liczba grup jest nieograniczona, a jedynym wynikiem zadania jest boolowska wartość Cons(A|_K). Sterowanie ma skończony stan q i częściową deterministyczną aktualizację δ((q,K),e)=(q',K'), gdzie e jest literalnie nazwanym przełączeniem bez usunięcia albo wycofaniem −j, j∈K, po którym K'=K\{j}. Reguły dozwolenia przełączeń mogą zależeć od aktualnego K; automat i δ **nie zależą od treści deklaracji A**. Cała historia sterowania istotna dla legalności musi już być zawarta w q (np. licznik przełączeń, ostatni ruch). Bez takiego warunku q,K nie są dobrze określonym stanem Markowa.
+
+Niech s=(q,K), a ℛ_s będzie rodziną R⊆K takich, że istnieje legalne słowo sterowania od s pozostawiające aktywny zbiór K\R. Rodzina ℛ_s **nie musi być dziedziczna**. Definiujemy
+
+\[
+\boxed{\mathcal T_s(A)=\operatorname{Min}_{\subseteq}\{R\in\mathscr R_s:
+\operatorname{Cons}(A|_{K\setminus R})\}.}
+\]
+
+**T1 — dokładny test na nie-dziedzicznej rodzinie osiągalnej.** Dla każdego R∈ℛ_s:
+
+\[
+\boxed{\operatorname{Cons}(A|_{K\setminus R})\iff
+\exists T\in\mathcal T_s(A)\quad T\subseteq R.}
+\]
+
+Dowód kierunku „jeśli”: monotoniczność spełnialności przy skreślaniu ograniczeń; jeżeli K\T jest spójny i T⊆R, to K\R też jest spójny. W drugą stronę: jeśli osiągalne R przywraca spójność, rodzina osiągalnych i skutecznych S⊆R jest **niepusta** (zawiera R), skończona, więc ma element minimalny T. Element taki jest minimalny globalnie wśród wszystkich osiągalnych i skutecznych wycofań, bo każdy skuteczny właściwy podzbiór T także byłby zawarty w R; zatem T∈𝓣_s(A). Dowód **nie zakłada**, że każdy podzbiór osiągalnego R jest osiągalny. Poprzednie odwołanie do dziedziczności ℛ w §6.15 dotyczyło tamtego węższego kontraktu.
+
+**T2 — jądro najgrubszego dokładnego ilorazu.** Dla dwóch katalogów A,B o tym samym I,K,V oraz wspólnym s i tym samym automacie treściowo niezależnym:
+
+\[
+\boxed{\operatorname{Beh}_s(A)\cong\operatorname{Beh}_s(B)
+\iff \mathcal T_s(A)=\mathcal T_s(B).}
+\]
+
+Izomorfizm drzew zachowuje korzeń, dosłowne nazwy kroków i etykiety węzłów Cons. Konieczność: każda osiągalna R ma co najmniej jedno legalne słowo; wspólna gramatyka sterowania i zgodność drzew wyznaczają odpowiedź Cons dla każdego R, a stąd jego minimalne osiągalne naprawy. Dostateczność: T1 wyznacza odpowiedź Cons po każdym legalnym słowie, zaś legalność i literalne krawędzie zależą wyłącznie od s i δ, wspólnych obu katalogom. Stąd izomorfizm drzew po identycznych słowach. Jest to specjalizacja II.7–II.8; minimalność jest **ilorazowa**, nie bitowa.
+
+**T3 — aktualizacja ilorazowa (II.9).** Dla legalnego e:s→s'=(q',K') niech Δ=K\K' (puste dla przełączenia, singleton dla wycofania). Przy znajomości s,s',e,δ i bieżącego 𝓣_s(A):
+
+\[
+\boxed{\mathcal T_{s'}(A)=\operatorname{Min}_{\subseteq}
+\{R'\in\mathscr R_{s'}:
+\exists T\in\mathcal T_s(A),\ T\subseteq\Delta\cup R'\}.}
+\]
+
+Każde przyszłe R' po s' daje legalne słowo s→s'→... i łączne usunięcia Δ∪R' osiągalne z s. Z T1 mamy więc równość jego Cons z warunkiem po prawej. Minimalizacja po osiągalnych R' wyznacza dokładnie następne 𝓣. Dziedziczność ℛ_s nie jest potrzebna. Aktualizacja jest dobrze określona na klasach; legalność kroku wymaga jawnej kontroli s,e,δ. Nie przesądza to kosztu konstrukcji ℛ.
+
+**Kontrprzykład — konieczność usunięcia logicznie zbędnego znacznika.** K={a,b,λ}. Deklaracje a:(x=x), b:(x≠y), λ:(x=y). W q0 jedynie −a jest dopuszczone. Przejście q0→q1 jest legalne dopiero gdy a∉K. W q1 dopuszczamy −b, a −λ nie jest dopuszczone nigdzie. Z q0 rodzina wycofań wynosi dokładnie
+
+\[
+\mathscr R=\{\varnothing,\{a\},\{a,b\}\}.
+\]
+
+W szczególności osiągalność nie jest dziedziczna: {a,b}∈ℛ, ale {b}∉ℛ. Minimalny konflikt samego katalogu to {λ,b}, natomiast minimalna osiągalna naprawa to {a,b}. Redundantny logicznie certyfikat a musi być wycofany, aby uruchomić reżim umożliwiający usunięcie b. Formuły §6.14 o nieuporządkowanym pokryciu reżimami i §6.15 o ścieżkach sterowania niezależnych od usunięć nie wolno tu stosować bez zmiany kontraktu.
+
+**Dwie granice typu.** (1) Jeżeli stan q nie rejestruje historycznej przesłanki legalności, mogą istnieć dwie historie kończące z tym samym (q,K), lecz o różnych dozwolonych ruchach; wtedy δ nie jest funkcją na (q,K) i wymaga wzbogacenia q. (2) Jeśli uprawnienie zależy od **treści** deklaracji, a nie wyłącznie od q,K, dwa katalogi o tym samym 𝓣 mogą mieć inne legalne krawędzie i T2 przestaje być bezwarunkowo prawdziwe. W takim przypadku potrzebny jest bogatszy kontrakt albo pełny iloraz przyszłych literalnie etykietowanych drzew z II.7.
+
+**Granica wykonawcza:** brak prób Node, Sol/E, Luny i LAB, brak nowego modułu i nowego numeru MATH. Źródłowe wyniki MATH-70–74 zachowują swoje ograniczone statusy niezależnego odbioru; §6.16 nie dziedziczy tych statusów. CORE5/IFX FREEZE, C1 HOLD, próby mapy HOLD_BY_OWNER_BUDGET.
