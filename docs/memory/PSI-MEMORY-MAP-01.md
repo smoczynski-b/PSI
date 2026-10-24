@@ -378,25 +378,25 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 
 Niech `L` będzie ustalonym katalogiem aktywnych oznaczonych certyfikatów równości/nierówności, `D⊆L` zbiorem **jedynych legalnie wycofywalnych identyfikatorów**, a `𝓜(L)` pełną rodziną minimalnych konfliktów. Przy wyniku obserwacyjnym ograniczonym do `Cons` i przyszłych czynnościach wyłącznie nazwanych usunięć `−j` dla `j∈D`, definiujemy:
 
-[
+\[
 \boxed{\mathcal F_D(L)=\operatorname{Min}_{\subseteq}\{C\cap D:C\in\mathcal M(L)\}.}
-]
+\]
 
 Dla każdego `R⊆D` mamy
 
-[
+\[
 \operatorname{Cons}(L\setminus R)\iff
 (\forall F\in\mathcal F_D(L))\quad R\cap F\ne\varnothing.
-]
+\]
 
 Oznacza to dokładny iloraz przyszłych historii:
 
-[
+\[
 \boxed{
 \operatorname{Beh}_{D_A}(A)\cong\operatorname{Beh}_{D_B}(B)
 \iff (D_A,\mathcal F_{D_A}(A))=(D_B,\mathcal F_{D_B}(B)).
 }
-]
+\]
 
 Konieczność wynika z odzyskania `D` po legalnych nazwach ruchów, a `𝓕_D` jako antyłańcucha minimalnych `S⊆D`, dla których pozostawienie dokładnie `S` spośród prawnie wycofywalnych ID daje konflikt. Dostateczność: wzór na `Cons` daje identyczne wyniki i legalne gałęzie po wszystkich sekwencjach. **Nie** jest to twierdzenie o minimalnej liczbie bitów ani o identyfikacji faktycznej proweniencji.
 
