@@ -588,3 +588,59 @@ W szczególności osiągalność nie jest dziedziczna: {a,b}∈ℛ, ale {b}∉�
 **Dwie granice typu.** (1) Jeżeli stan q nie rejestruje historycznej przesłanki legalności, mogą istnieć dwie historie kończące z tym samym (q,K), lecz o różnych dozwolonych ruchach; wtedy δ nie jest funkcją na (q,K) i wymaga wzbogacenia q. (2) Jeśli uprawnienie zależy od **treści** deklaracji, a nie wyłącznie od q,K, dwa katalogi o tym samym 𝓣 mogą mieć inne legalne krawędzie i T2 przestaje być bezwarunkowo prawdziwe. W takim przypadku potrzebny jest bogatszy kontrakt albo pełny iloraz przyszłych literalnie etykietowanych drzew z II.7.
 
 **Granica wykonawcza:** brak prób Node, Sol/E, Luny i LAB, brak nowego modułu i nowego numeru MATH. Źródłowe wyniki MATH-70–74 zachowują swoje ograniczone statusy niezależnego odbioru; §6.16 nie dziedziczy tych statusów. CORE5/IFX FREEZE, C1 HOLD, próby mapy HOLD_BY_OWNER_BUDGET.
+
+### 6.17. Legalność i obserwacje zależne od treści — poprawka zakresu oraz skończony iloraz dokładny (24.10.2026)
+
+**Źródła:** MATH-70 ([#13/6353258865](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865)), MATH-72 ([#13/6353389796](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796)), MATH-76/T31 ([#13/6377942281](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281)), oraz starsze [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md) @b4c21748. Status niniejszego wyprowadzenia: **DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED**, bez nowego MATH, NON-CORE.
+
+**A. Kontrprzykład do przeniesienia §6.16 poza kontrakt.** Ustalmy V={x,y}, aktywne nazwy K={λ} i dwa katalogi: A(λ)=(x=x), B(λ)=(x=y). Oba są spójne i nie dopuszczają wycofań, więc dla obu minimalna osiągalna naprawa wynosi 𝓣={∅}. Niech legalność literalnego przełączenia σ zależy od tego, czy aktywny certyfikat λ głosi nietrywialną równość różnych etykiet. Wtedy σ jest legalne w B i nielegalne w A. Zatem drzewa legalnej przyszłości się różnią mimo równego (q,K,𝓣). W §6.16 wymagano niezależności legalności od treści; przykłady **nie przeczą** tamtemu twierdzeniu. Sama wartość Cons i minimalne naprawy nie wyznaczają prawa przełączenia zależnego od treści.
+
+**B. Kontrakt skończonej pełnej przyszłości.** Niech S będzie skończonym, niepustym zbiorem stanów zawierających WSZYSTKIE zmienne istotne dla przyszłej legalności, danych źródłowych, aktywnych znaczników, sterowania i obserwacji. Niech E będzie zbiorem literalnie etykietowanych kroków; w razie raportów wynikowych etykietą może być para (czynność, raport). Zakładamy o:S→O jako aktualnie obserwowaną etykietę zadaniową, En(s)⊆E jako zbiór możliwych legalnych etykiet oraz **częściową deterministyczną** aktualizację δ(s,e)∈S dla e∈En(s). Przy każdym ustalonym s i e jest najwyżej JEDEN następnik. Drzewo Beh(s) rozwija wszystkie takie legalne etykiety, niosąc o(s) na każdym węźle; pętle stanu dają nieskończone rozwinięcie drzewa, mimo skończonego S. Nie orzekamy tu o rozkładach prawdopodobieństwa ani nierozróżnialnych wielu następnikach pod tą samą etykietą.
+
+**T1 — skończona rafinacja dokładnego ilorazu.** Definiujemy relacje na S:
+
+\[
+R_0=\{(s,t):o(s)=o(t)\},
+\]
+
+\[
+R_{n+1}=\{(s,t):o(s)=o(t),\quad
+\operatorname{En}(s)=\operatorname{En}(t),\quad
+\forall e\in\operatorname{En}(s)\ 
+(\delta(s,e),\delta(t,e))\in R_n\}.
+\]
+
+Wówczas każda R_n jest relacją równoważności, R_{n+1}⊆R_n, a ciąg stabilizuje się w pewnym N≤|S|−1. Dla każdego s,t∈S:
+
+\[
+\boxed{(s,t)\in R_N\iff\operatorname{Beh}(s)\cong\operatorname{Beh}(t)}
+\]
+
+przy izomorfizmie zachowującym dosłowne etykiety kroków, etykiety obserwacji, korzeń i strukturę następców.
+
+**Dowód.** R_0 jest równością obserwacji, zatem relacją równoważności. Jeżeli R_n jest równoważnością, warunek równości zbiorów En oraz punktowa zgodność następców według R_n również tworzą relację równoważności, więc R_{n+1} nią jest. Z indukcji R_{n+1}⊆R_n (dla n=0 bezpośrednio; dla n>0 wynik z indukcyjnej inkluzji następników). Każda ścisła zmiana rozbija co najmniej jedną klasę; z co najwyżej |S| klas wynika stabilizacja w N≤|S|−1. Po stabilizacji R_N jest zgodną z legalnością i następnikiem kongruencją: korzenie w relacji mają równe obserwacje, te same etykiety legalnych ruchów oraz następników w tej samej relacji. Indukcja po długości słowa dowodzi zgodności wszystkich skończonych prefiksów przyszłości, a więc izomorfizmu pełnych rozwinięć drzew. W przeciwnym kierunku izomorfizm literalnie oznaczonych drzew daje zgodność korzeni, dostępnych krawędzi i następników na dowolnej ustalonej głębokości, więc (s,t)∈R_n dla wszystkich n, w szczególności R_N. □
+
+**T2 — najgrubszy dokładny iloraz i jego aktualizacja.** Oznaczmy ρ(s)=[s]_{R_N}. Wtedy ρ jest dokładnie adekwatną pamięcią z II.7 i najgrubszym dokładnym ilorazem w porządku relacji równoważności z II.8, względem powyższego kontraktu. Ponadto zbiór dozwolonych literalnych działań jest dobrze określony na klasie:
+
+\[
+\overline{\operatorname{En}}([s])=\operatorname{En}(s),
+\]
+
+a częściowa aktualizacja ma postać
+
+\[
+\boxed{\overline\delta([s],e)=[\delta(s,e)]_{R_N},
+\quad e\in\overline{\operatorname{En}}([s]).}
+\]
+
+Obie definicje są niezależne od reprezentanta na mocy stabilnego warunku R_N; to dokładnie przesłanki II.9. **Granica:** N≤|S|−1 jest ograniczeniem liczby iteracji rafinacji *na jawnie skończonej przestrzeni S*, a nie zapewnieniem taniego algorytmu, małego S lub skończonej pamięci dla oryginalnego systemu z nieskończoną historią.
+
+**T3 — warunek legalnej kompresji pośredniej.** Niech η:S→Z będzie proponowaną pamięcią (np. składowe kosztowe, projekcja konfliktów, fragment proweniencji). Aby η samodzielnie obsługiwała prawidłową aktualizację i raporty bez reprezentanta, wystarczy i — w tym deterministycznym kontrakcie — jest konieczne, by przy η(s)=η(t) zachodziły równocześnie:
+(a) o(s)=o(t);
+(b) En(s)=En(t);
+(c) η(δ(s,e))=η(δ(t,e)) dla każdego wspólnego legalnego e.
+Jest to kongruencja jądra η. Wtedy pamięć obsługuje wszystkie przyszłości oraz dobrze określony operator U:Z×E⇀Z na obrazie η. Sama dokładność obserwacyjna η bez (c) może pozwalać na wyznaczenie klasy zadaniowej jako funkcji η, ale nie musi wyznaczać **następnego kodu η**. Jeżeli wymagamy tylko dokładności zadaniowej bez aktualizacji samej η, właściwym i słabszym kryterium pozostaje ker_eq η⊆R_N (II.7).
+
+**D. Ograniczenia.** Jeżeli system jest niedeterministyczny z wieloma następcami dla identycznej etykiety, probabilistyczny, historycznie nie-Markowowski albo ma nieprzeliczalne zbiory stanów, nie wolno bez dodatkowego kontraktu przenosić powyższej rafinacji i ograniczenia N. W takim przypadku punktem odniesienia jest nadal przyszłe drzewo II.7 lub odpowiedni jawnie zadany typ bisymulacji i obserwacji. Formalna spójność równań nie dowodzi empirycznej prawdziwości certyfikatów.
+
+**Koszty:** Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET; Luna nie otrzymuje nowych zadań, nie zamawiamy testów ani recenzji. CORE5/IFX FREEZE, C1 HOLD.
