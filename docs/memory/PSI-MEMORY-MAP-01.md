@@ -219,52 +219,40 @@ Historyczne \`psi-memory-nodes-01.tsv\`, \`psi-memory-edges-01.tsv\`, certyfikat
 
 ### 6.1. Dwa różne kierunki organizacji
 
-\`\`\`text
-MATH-N = źródło historycznego zadania/argumentu
-  | INDEXES / SOURCE_OF
-  v
-Mapa migracji Principiów -> Tom II (hipotezy i dowody), Tom III (świadki), Tom IV (genealogia)
-  ^
-  | OVERLAP_TO_AUDIT / FINITE_REALIZATION_CANDIDATE / SCOPE_EXTENSION_CANDIDATE
-  |
-Wcześniejsze jednostki II.4, II.6–II.12 (już napisane)
-\`\`\`
-
-**Zwrot i typ krawędzi są ważne:** zapis \`MATH76-T26-T27 --FINITE_REALIZATION_CANDIDATE--> II.8\` oznacza obowiązek porównania z wcześniejszym twierdzeniem, **nie** jego logiczną przesłankę ani potwierdzoną tożsamość. Nawet gdy istnieje wspólny wzór, zmiana alfabetu, dziedziny legalności lub etykiet terminalnych może zmienić twierdzenie. \`INDEXES\` nie jest \`PROVES\`.
+Rozróżniamy **źródła badań MATH-N** i **istniejące twierdzenia Tomu II**. Krawędzie \`INDEXES / SOURCE_OF\` porządkują źródła; \`OVERLAP_TO_AUDIT / FINITE_REALIZATION_CANDIDATE / SCOPE_EXTENSION_CANDIDATE\` wskazują zadanie porównawcze. Nie stanowią przesłanek dowodu, przyjęcia twierdzenia ani produkcyjnej propagacji ważności. Nawet wspólny wzór może dotyczyć różnych alfabetów działań, legalności lub etykiet terminalnych.
 
 ### 6.2. Mapa merytoryczna w skrócie
 
-| Strumień | Skojarzenie w starszej mapie | Ocena |
+| Strumień | Odpowiednik / obszar | Ustalony zakres |
 |---|---|---|
-| MATH-28–40 | Tom II, podpory i ważone wycofanie świadectw | brak automatycznego przypisania do dawnego II.x |
-| MATH-41–56 | II.9 jako pokrewny problem aktualizacji/pamięci | \`TOPIC_BRIDGE_CANDIDATE\`; brak dowodu równoważności |
-| MATH-57–69 | II.4: adekwatność a źródłowość danych | \`TOPIC_BRIDGE_CANDIDATE\`, wymagane sprawdzenie errat |
-| MATH-70–75 | Tom II, konflikty oznaczonych katalogów | \`CANDIDATE_SECTION_COMPLETE\` według MATH-75, nie automatycznie \`CANON\` |
-| MATH-76/T1–T4 | II.7–II.8: pamięć historii | odróżnić przyczynowe przypisanie korekty od wystarczalności reprezentacji |
-| MATH-76/T5–T21 | II.4: eksperymenty, odporność, koszty | osobne kontrakty błędów, adaptacji i kosztu |
-| MATH-76/T22–T25 | II.6/II.9: dynamika/rekurencja | q historyczne nie jest bieżącym q po interwencji |
-| MATH-76/T26–T27 | II.8/II.9/II.11/II.12 | możliwa redukcja do znanej klasyki; II.12 to benchmark, nie to samo co zwykły refinament |
-| MATH-76/T28–T29 | II.8/II.9 | polityka z optymalnym kosztem zachowuje mniej operacji niż pełna kongruencja |
-| MATH-76/T30–T34 | II.6/II.9 | legalność epistemiczna i wiele celów; nie utożsamiać z dawną częściowością II.9 |
+| MATH-28–40 | Podpory i ważone wycofanie | 13 wpisów jednostkowych; kombinatoryka i ograniczenia zakresowe, §6.7. |
+| MATH-41–56 | Aktualizacja kosztu, profile informacji, pamięć dodawania | 16 wpisów jednostkowych; nie utożsamiać dodawania z nazwanym usuwaniem, §6.8. |
+| MATH-57–69 | II.4, II.7–II.9, proweniencja i certyfikaty awarii | 13 wpisów; aktywna errata MATH-57 i oddzielny odbiór E-001 MATH-69, §6.9. |
+| MATH-70–74 | Minimalne konflikty oznaczonych katalogów | 5 wpisów jednostkowych; [E-001 PASS_SCOPED](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353594375) **bez niezależnej enumeracji**; specjalizacje §6.11. |
+| MATH-75 | Audyt zakresowy MATH-70–74 | Oddzielny SELF_CHECKED, nieobjęty odbiorem E-001. |
+| MATH-76/T1–T4 | II.7–II.8: pamięć historii | Przyczynowe przypisanie korekty ≠ sama adekwatność pamięci. |
+| MATH-76/T5–T21 | II.4: obserwacja, odporność i koszt | Oddzielne kontrakty błędów, adaptacji i kosztów. |
+| MATH-76/T22–T25 | II.6/II.9: dynamika | Zachować cel historyczny mimo interwencji. |
+| MATH-76/T26–T27 | II.7–II.9, II.11; II.12 jako granica | Porównanie **wykonane**: zakresowe ponowne użycie i klasyczna rafinacja, §6.5. |
+| MATH-76/T28–T34 | II.4/II.6/II.9; polityki i cele | Audyt **wykonany**, wynik SELF_CHECKED, §6.6; aktywna errata K14. |
 
-**Konkretny priorytet:** MATH-76/T26–T27 [źródło](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377888676) sprawdzić kontra gotowe [II.8](../principia-v2-08-coarsest-exact-history-quotient.md), [II.9](../principia-v2-09-recursive-history-quotient-update.md), [II.11](../principia-v2-11-myhill-nerode-bridge.md) i [II.12](../principia-v2-12-paige-tarjan-benchmark.md) przed pisaniem kolejnego rozdziału. MATH-76/T28–T34 wymagają niezależnego audytu; [errata K14](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377898833) ogranicza twierdzenie o czterech kodach do jawnej rodziny punktów wznowienia.
+Tabela jest **spisem orientacyjnym**, nie osobnym rejestrem twierdzeń ani stwierdzeniem naukowej nowości. Rozstrzygnięcia i świadkowie znajdują się w wskazanych sekcjach oraz oryginałach Issue #13.
 
 ### 6.3. Źródła bieżące i zachowanie granic
 
-Pełny historyczny rejestr: [psi-model Issue #13](https://github.com/smoczynski-b/psi-model/issues/13). Wersjonowany indeks: [MATH76_SHARED_INDEX](https://github.com/smoczynski-b/psi-model/blob/5d41732861f02fd65f20e93ab7b824be14196502/psi-agent/handoff/MATH76_SHARED_INDEX_20261024.md). Zapis przeznaczenia: [PRINCIPIA_MIGRATION_01 §6](https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md).
+Źródłowy rejestr: [Issue #13](https://github.com/smoczynski-b/psi-model/issues/13); indeks [MATH76_SHARED_INDEX](https://github.com/smoczynski-b/psi-model/blob/5d41732861f02fd65f20e93ab7b824be14196502/psi-agent/handoff/MATH76_SHARED_INDEX_20261024.md); wcześniejsza [PRINCIPIA_MIGRATION_01 §6](https://github.com/smoczynski-b/psi-model/blob/e1de79e7ffd6a72186f4dcfee287a8beaafc09ee/psi-agent/PRINCIPIA_MIGRATION_01.md).
 
-Przed rozpoczęciem nowego dowodu należy odczytać związane węzły, sprawdzić \`TYP / DZIEDZINA / ZAŁOŻENIA / ZAKRES / ERRATA\`, następnie sklasyfikować: \`REUSE / ADAPT_CONTRACT / REAL_GAP / CONTRADICTION\`. Tylko ostatnie trzy przypadki mogą uzasadniać nowe rozumowanie, a nowy numer MATH nie stanowi automatycznie jednostki monografii.
+**Przed nowym dowodem:** odczytać źródło i erraty; sprawdzić \`TYP / DZIEDZINA / ZAŁOŻENIA / ZAKRES\`; sklasyfikować \`REUSE / ADAPT_CONTRACT / REAL_GAP / CONTRADICTION\`. Nowy numer MATH nie oznacza nowego rozdziału ani niezależnego odkrycia.
 
-**Niepotwierdzone:** pełna jednostkowa migracja wszystkich T z MATH-28–75; MATH-1–27; rzeczywiste zastosowanie mapy przez wszystkie żywe role. To mapa strukturalna **kandydacka**, nie zakończona recenzja matematyczna ani wdrożenie pamięci produkcyjnej. Brak nowego CORE5, IFX, gałęzi lub kosztownej sesji E/Sol.
+**Stan faktyczny indeksu:** w nakładce jest 66 węzłów i 156 typowanych relacji. Osobne węzły obejmują MATH-28–74, istnieje grupowanie MATH-70–74 i oddzielny MATH-75. Nie oznacza to zakończenia powiązań jednostkowych: w szczególności MATH-70–74 mają źródłowe węzły, lecz nie mają jeszcze osobnych relacji \`INDEXES\` do węzła grupującego ani osobnych krawędzi do odbioru E-001. Wciąż poza pełną migracją są MATH-1–27. **Niepotwierdzone** pozostają produkcyjny odczyt nakładki i rzeczywiste wykorzystanie całej mapy przez role agentów. Szczegóły wykonawcze i odroczony odbiór — §6.10 i Issue #15.
 
+Stan \`CANDIDATE / NON-CANONICAL\` jest niezmienny; CORE5/IFX bez zmian.
 
 ### 6.4. Rozdzielenie odbiorów i wykonania — korekta 24.10.2026
 
-Nakładka rozróżnia teraz węzły `MATH-70-74` i `MATH-75`. Pierwszy wskazuje [odbiór E-001](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353594375): dowody i przykłady, bez ponownej enumeracji. Drugi wskazuje własny wynik samokontroli MATH-75 i kandydackiego domknięcia redakcyjnego. Statusów tych nie wolno scalać ani przenosić z całego zakresu na pojedyncze twierdzenie.
+Odbiór [E-001 dla MATH-70–74](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353594375) dotyczy dowodów i kontrprzykładów **bez odtworzenia enumeracji**. Nie obejmuje MATH-75 (SELF_CHECKED). Statusu grupy nie wolno bezwarunkowo rozszerzać na inne zadania, ani traktować publikacji węzła jako odbioru testowego.
 
-Bieżącą orientację Tomu II zapewnia [theorem-map-v2.md](../theorem-map-v2.md), z odsyłaczami do mapy 04, audytu całego tomu i erraty. Mapa 01 pozostaje wcześniejszym planem. Dla odtwarzalnego porównania należy przypiąć commit i zakres obu źródeł.
-
-Na polecenie właściciela wyłącznie Node przeprowadza realne próby działania mapy i całego środowiska LAB. M opracowuje porównanie matematyczne, zakres odwzorowania i kryteria odbioru; odczyt Git nie jest wykonaniem w środowisku. Commander ma ograniczony budżet wywołań i służy doraźnej obsłudze; przyszłe odnowienie dostępu nie jest warunkiem pracy M ani podstawą ciągłości wykonania. Obecna nakładka pozostaje kandydacka i nie zostaje automatycznie dołączona do produkcyjnej propagacji statusów.
+Bieżącą orientację Tomu II zapewnia [theorem-map-v2.md](../theorem-map-v2.md); dawny plan 01 nie zastępuje aktualnej mapy twierdzeń. Wynik redakcyjny M, niezależny odbiór matematyczny E i świadectwo wykonawcze Node stanowią **odrębne zdarzenia**. Wykonawczy stan Node: [PASS_SCOPED dla ręcznej nawigacji i świadka MATH-57/MATH-69](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383537912), lecz \`DEFAULT_RUNTIME_INTEGRATION=PARTIAL/HOLD\`. Próby integracyjne pozostają [odroczone na podstawie decyzji właściciela](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383640277). Node i E korzystają z kosztownego Sola; nie należy zlecać nowych prób bez osobnego zezwolenia. Dokładny kontrakt przyszłego odbioru zawiera §6.10.
 
 ### 6.5. Wynik porównania T26–T27 z II.7–II.12 — 24.10.2026
 
@@ -294,7 +282,7 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 
 **Proponowane miejsce w Tomie II:** **jeden kandydacki podrozdział** o wystarczalności pamięci dla optymalnej polityki w skończonym układzie dynamicznym, z T28 jako rdzeniem, T29–T34 jako ograniczeniami i zastosowaniami. Unikać siedmiu nowych jednostek książkowych. Nie promować bez recenzji kontraktu.
 
-**Rozdzielenie środowiska:** [Node LAB #15 / 6383074872](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383074872) odczytał poprawnie dawne źródła, lecz w istniejącym programie nie wczytał nakładki MATH; jej kolumny nie dostarczają pola `effect` do starego algorytmu propagacji, co dało `KeyError`. **Integracja grafu źródeł = PARTIAL wykonawczo**, bez świadectwa działania nowej nawigacji i blokady propagowania kandydatów. Naprawa adaptera i próba na LAB należą do Node, nie do M.
+**Późniejszy wynik Node:** [#15 / 6383537912](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383537912) potwierdził ręcznie skonfigurowaną nawigację i świadka MATH-57/MATH-69 jako `PASS_SCOPED`, lecz nie domyślną integrację (`PARTIAL/HOLD`, brak adaptacji pola `effect` i odbioru zabezpieczeń propagacji). Dalsze próby są odroczone; §6.10.
 
 ### 6.7. Jednostkowa mapa MATH-28–40 — pierwsza konsolidacja 24.10.2026
 
@@ -331,7 +319,7 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 
 **Errata obowiązująca:** [MATH-51 / 6351135835](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351135835) poprawia lokalną ilustrację: gdy `c_b=0`, właściwym aktywnym zbiorem rozdzielającym `E_1={{b}}` i `E_2=∅` jest `B={b}`, **nie** `B={a}`. Korekta jest osobnym węzłem `MATH-51-ERRATA`, powiązanym z MATH-51 typem `HAS_ERRATA`; nie zmienia zakresu twierdzenia dla dodatnich kosztów.
 
-**Sfera źródłowa / statusy:** MATH-41–56 = `SELF_CHECKED / INDEPENDENT_REVIEW_PENDING`; nie przypisywać im odbiorów E-001 dotyczących MATH-28–30 lub MATH-69. Rezultaty są klasyfikowane jako `REUSE / ADAPT_CONTRACT / BRIDGE_CANDIDATE`; nie przedstawiać uogólnień klasycznego hipergrafowego trafiania jako już dowiedzionej nowości naukowej PSI. Dane TSV to warstwa orientacji, nie wdrożona pamięć agentów. Ostatnia znana próba Node wykazała brak adaptera i `KeyError: effect` dla nakładki; Node obsługuje próby środowiskowe, M — audyt matematyczny. CORE5/IFX bez zmian. MATH-1–27 oraz MATH-70–75 nie mają jeszcze analogicznej pełnej jednostkowej integracji (MATH-57–69: zob. §6.9).
+**Sfera źródłowa / statusy:** MATH-41–56 = `SELF_CHECKED / INDEPENDENT_REVIEW_PENDING`; nie przypisywać im odbiorów E-001 dotyczących MATH-28–30 lub MATH-69. Rezultaty są klasyfikowane jako `REUSE / ADAPT_CONTRACT / BRIDGE_CANDIDATE`; nie przedstawiać uogólnień klasycznego hipergrafowego trafiania jako już dowiedzionej nowości naukowej PSI. Dane TSV to warstwa orientacji, nie wdrożona pamięć agentów. Późniejszy wynik Node potwierdził tylko ograniczoną nawigację MATH-57/MATH-69; domyślny adapter pozostaje `HOLD` (§6.10). MATH-70–74 mają już osobne węzły źródłowe i odbiór E-001, ale jeszcze nie analogiczne osobne krawędzie relacyjne; MATH-75 zachowuje oddzielny status, MATH-1–27 pozostają poza migracją. CORE5/IFX bez zmian.
 
 ### 6.9. MATH-57–69 — pamięć oznaczonych wpisów, proweniencja i próg odporności (24.10.2026)
 
@@ -347,7 +335,7 @@ Na polecenie właściciela wyłącznie Node przeprowadza realne próby działani
 
 **Rozdział kontraktów.** Dla samego anonimowego **dodawania** monotonicznych podpór `K_E` z MATH-54 wystarcza do wszystkich przyszłych odpowiedzi kosztowych. Dla nazwanych usunięć i historycznie świeżych znaczników potrzebny jest dokładniejszy niezmiennik `(A,Used)`. Dla poznania rzeczywistej proweniencji nawet ten niezmiennik nie wystarcza bez dodatkowej obserwacji `θ`. Wszystkie trzy wyniki są względne wobec jawnie określonego zbioru dopuszczalnych zapytań: zmiana zapytań zmienia relację nierozróżnialności.
 
-**Statusy i program wykonawczy:** MATH-57–68 `SELF_CHECKED/REVIEW_PENDING`; MATH-69 `E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN`. Węzły i relacje w `psi-memory-{nodes,edges}-math-migration-20261024.tsv` należą do warstwy orientacyjnej `EDITORIAL/SCOPE/INDEX`, bez produkcyjnej propagacji. Według [ostatniego pokwitowania Node](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383074872) nakładka MATH **nie była wczytywana**, a `stale_closure` dla jej surowych krawędzi zwróciło `KeyError: 'effect'`. Żaden `PASS` starych programów nie certyfikuje nowej integracji; jej rzeczywistą próbę wykonuje tylko Node. Brak nowych twierdzeń CORE5 lub roszczeń pierwszeństwa w literaturze.
+**Statusy i program wykonawczy:** MATH-57–68 `SELF_CHECKED/REVIEW_PENDING`; MATH-69 `E001_ACCEPTED_PROOF_SCOPED_ENUM_NOT_RERUN`. Węzły i relacje w `psi-memory-{nodes,edges}-math-migration-20261024.tsv` należą do warstwy orientacyjnej `EDITORIAL/SCOPE/INDEX`, bez produkcyjnej propagacji. Późniejszy [odbiór Node](https://github.com/smoczynski-b/psi-model/issues/15#issuecomment-6383537912) wykazał **PASS_SCOPED ręcznej nawigacji** MATH-57 → errata → MATH-61 oraz odzyskania odbioru MATH-69. Nie uruchomiono domyślnego importera: `stale_closure` surowej nakładki nadal zgłasza `KeyError: 'effect'`; integracja pozostaje `PARTIAL/HOLD` (§6.10). Nie jest to certyfikat produkcyjny ani nowe twierdzenie CORE5.
 
 ### 6.10. Kontrakt odczytu nakładki MATH przez istniejący program — warstwa nawigacji ≠ propagacja (24.10.2026)
 
