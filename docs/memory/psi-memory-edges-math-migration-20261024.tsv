@@ -114,3 +114,38 @@ MATH-55	SHOWS_NONINVERTIBILITY_OF	MATH-54	EDITORIAL	https://github.com/smoczynsk
 MATH-56	REQUIRES_PROVENANCE_BEYOND	MATH-55	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Rolback semantyczny nie odtwarza oznaczonej listy wpisow
 MATH-56	REUSES_SEMANTIC_REDUNDANCY_OF	MATH-34	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Usuniecie wpisu bez zmiany semantyki gdy pozostaje podpora w nim zawarta
 MATH-56	BRIDGE_CANDIDATE	MATH-57-69	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351498118	Historia oznaczonych wpisow jako kandydacki most do proweniencji MATH-57-69
+MATH-57-69	INDEXES	MATH-57	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087	Oryginalny wynik MATH-57; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-58	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970	Oryginalny wynik MATH-58; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-59	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773	Oryginalny wynik MATH-59; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-60	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259	Oryginalny wynik MATH-60; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-61	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767	Oryginalny wynik MATH-61; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-62	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034	Oryginalny wynik MATH-62; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-63	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086	Oryginalny wynik MATH-63; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-64	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866	Oryginalny wynik MATH-64; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-65	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807	Oryginalny wynik MATH-65; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-66	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698	Oryginalny wynik MATH-66; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-67	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168	Oryginalny wynik MATH-67; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-68	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343	Oryginalny wynik MATH-68; indeks redakcyjny, nie nowy dowod
+MATH-57-69	INDEXES	MATH-69	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335	Oryginalny wynik MATH-69; indeks redakcyjny, nie nowy dowod
+MATH-57	EXTENDS_NAMED_ENTRY_SEMANTICS_OF	MATH-56	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351600087	Od pojedynczego usuniecia znacznika do hierarchii obserwacji katalogu i historii
+MATH-57	HAS_ERRATA	MATH-57-ERRATA	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428	Historyczna swiezosc identyfikatorow nie wynika z samego aktywnego katalogu
+MATH-57-ERRATA	QUALIFIES_SCOPE_OF	MATH-57	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428	T2(d) tylko dla sekwencji legalnych po obu historiach lub globalnie swiezych znacznikow
+MATH-58	SEPARATES_REAL_PROVENANCE_FROM	MATH-57	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351648970	Formalny zapis operacji nie identyfikuje rzeczywistych obiektow zrodlowych
+MATH-59	REFINES_PROVENANCE_FIBER_OF	MATH-58	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351702773	Warunkowy przyrost informacji po swiadectwie e przez W intersect A_e
+MATH-60	SPECIALIZES_FACTORISATION_TO_CHANNELS_OF	MATH-59	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351756259	Globalna redundancja m2 wzgledem m1: ker(m1) subset ker(m2)
+MATH-61	AUDITS_SCOPE_OF	MATH-57	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767	Pelna interakcyjna kontynuacja wymaga pary (A,Used); uwzglednia errate
+MATH-61	IMPLEMENTS_CORRECTION_FROM	MATH-57-ERRATA	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767	Jawnie rozroznia dom A od zbioru historycznie uzytych identyfikatorow
+MATH-61	DISTINGUISHES_UPDATE_TYPES_OF	MATH-59	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351811767	Dodawanie podpory katalogowej i filtrowanie proweniencji maja rozne dziedziny
+MATH-62	EXTENDS_TO_REVOCATION	MATH-59	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351910034	Usuniecie filtra moze przywrocic wczesniej wykluczone swiata i odpowiedzi q
+MATH-63	WEIGHTED_ALLOWED_WITHDRAWAL_EXTENSION_OF	MATH-62	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351941086	Budzet B i dozwolone M prowadza do ostrego progu beta_M
+MATH-64	CONNECTS_FALSE_FILTERS_WITH_WITHDRAWAL_OF	MATH-62	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866	Unia wlokien po <=t wycofaniach = zbior swiatow naruszajacych <=t filtrow
+MATH-64	REUSES_WEIGHTED_BUDGET_OF	MATH-63	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352140866	Wazony budzet falszywych wpisow; prawdziwosc wymaga theta_real w odpowiednim wloknie
+MATH-65	HANDLES_UNKNOWN_FAILURE_GROUPS_OF	MATH-62	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807	Zweryfikowane E_= i E_neq wyznaczaja graf ograniczen i prog certyfikowany
+MATH-65	QUALIFIES_GROUP_COST_MODEL_OF	MATH-63	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352199807	Bez zweryfikowanych klas jednostek awarii nie mozna utozsamiac wpisow z grupami
+MATH-66	SPECIALIZES_BIPARTITE_GRAPH_OF	MATH-65	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352333698	Prog chi dla podgrafow indukowanych; w przypadku dwudzielnym tylko 1 lub 2
+MATH-67	UPDATES_INEQUALITY_EDGE_OF	MATH-65	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352379168	Nowa certyfikowana roznosc dodaje krawedz i moze zwiekszyc prog najwyzej o 1
+MATH-68	UPDATES_EQUALITY_QUOTIENT_OF	MATH-65	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343	Nowa rownosc scala dwie klasy przy braku certyfikowanej roznosci
+MATH-68	DISTINCT_UPDATE_OPERATOR_FROM	MATH-67	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352701343	Kontrakcja wierzcholkow to nie dodanie krawedzi; rozne warunki legalnosci
+MATH-69	ITERATES_CONTRACTIONS_OF	MATH-68	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6352758335	Rodzina rownosci: globalna niesprzecznosc, kolejnosc obojetna, wzrost <= r
+MATH-69	INDEPENDENTLY_REVIEWED_IN	MATH-69-E001-REVIEW	EVIDENCE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353231221	E-001 PASS_SCOPED; dowody i swiadectwa sprawdzone, enumeracja niepowtorzona
+MATH-57-69	HAS_ACTIVE_SCOPE_CORRECTION	MATH-57-ERRATA	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6351774428	Zakres MATH-57 musi uwzgledniac Used i wspolna legalnosc operacji
