@@ -35,3 +35,31 @@ MATH-75	CANDIDATE_DESTINATION	THEOREM-MAP-V2	EDITORIAL	https://github.com/smoczy
 MATH76-T26-T27	SCOPED_REUSE_SELF_CHECKED	II.7	SCOPE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383015907	Beh_tau(H) zgodne z rownoscia tau(F_w(B(H))) dla kazdego slowa w; wymagane legalne historie, zachowanie celu historycznego i kompletnego stanu
 MATH76-T28-T29	TOPIC_BRIDGE_CANDIDATE	II.4	CANDIDATE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383100190	P1 adaptuje adekwatnosc stop/wyniku; P2 Bellman i P3 aktualizacja kodu wybranej akcji sa dodatkowe
 MATH76-T30-T34	CONTRACT_DISTINCTION	II.5	CANDIDATE	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6383100190	Bezpieczna legalnosc akcji A(B) nie jest informacyjna legalnoscia redukcji; brak implikacji bez kontraktu
+MATH-28-40	INDEXES	MATH-28	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6349643488	Jednostkowe zrodlo MATH-28; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-29	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6349855541	Jednostkowe zrodlo MATH-29; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-30	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6349963228	Jednostkowe zrodlo MATH-30; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-31	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350196435	Jednostkowe zrodlo MATH-31; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-32	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350231747	Jednostkowe zrodlo MATH-32; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-33	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350235307	Jednostkowe zrodlo MATH-33; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-34	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350239727	Jednostkowe zrodlo MATH-34; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-35	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350257688	Jednostkowe zrodlo MATH-35; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-36	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350263953	Jednostkowe zrodlo MATH-36; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-37	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350358291	Jednostkowe zrodlo MATH-37; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-38	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350363160	Jednostkowe zrodlo MATH-38; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-39	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350375932	Jednostkowe zrodlo MATH-39; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28-40	INDEXES	MATH-40	INDEX	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350382780	Jednostkowe zrodlo MATH-40; indeksowanie nie jest dowodem ani promocja do kanonu
+MATH-28	SPECIAL_CASE_OF	MATH-29	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6349855541	Wagi jednostkowe specjalizuja wazone pokrycie grafowe
+MATH-29	SPECIAL_CASE_OF	MATH-30	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6349963228	Pokrycie grafowe to hipergraf z wszystkimi krawedziami dwuelementowymi
+MATH-31	REDUCES_TO	MATH-30	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350196435	Aktywne minimalne podpory jako hiperkrawedzie; wycofanie jako wazony hitting set
+MATH-32	REUSES_SCOPE_OF	MATH-31	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350231747	Read-once umozliwia dokladna rekurencje kosztu; sprawdzono podpory i przypadki brzegowe
+MATH-33	CORRECTS_NAIVE_EXTENSION_OF	MATH-32	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350235307	Wspoldzielenie etykiet uniewaznia bezwarunkowa addytywnosc OR
+MATH-34	REUSES_RESULT_OF	MATH-31	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350239727	Usuwanie nadzbiorow podpor zachowuje funkcje i LP
+MATH-35	REUSES_RESULT_OF	MATH-31	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350257688	Minimalne wycofania sa minimalnymi zbiorami trafiajacymi podpory
+MATH-35	ADDRESSES_SCOPE_OF	MATH-33	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350257688	Rekurencja rodzin minimalnych wycofan uwzglednia wspolne etykiety
+MATH-36	DUALIZES	MATH-31	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350263953	Dwie reprezentacje tej samej monotonicznej funkcji: podpory i transwersale
+MATH-36	DUALIZES	MATH-35	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350263953	Podwojna transwersalizacja daje antylancuch podpory; to nie dualnosc LP
+MATH-37	ILLUSTRATES	MATH-36	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350358291	Asymetria rozmiaru jawnych antylancuchow F_m i G_m
+MATH-38	USES_ENUMERATION_OF	MATH-37	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350363160	Koszt i ograniczenie liczby wycofan z rodzin minimalnych
+MATH-39	USES_ENUMERATION_OF	MATH-37	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350375932	Rozroznienie liczby wszystkich minimalnych wycofan i optymalnych
+MATH-39	REFINES_COST_OF	MATH-38	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350375932	Remisy i liczba optimum dla kosztow dodatnich
+MATH-40	USES_OPTIMAL_FAMILY_OF	MATH-39	EDITORIAL	https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6350382780	Regiony jednoznacznego optimum z porownania kosztow wszystkich kandydatow
