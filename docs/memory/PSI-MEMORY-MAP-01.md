@@ -487,3 +487,51 @@ Dowód: spójność jest monotoniczna względem usuwania ograniczeń, a Reach_r 
 **T4 — ścisła hierarchia.** Dla każdego n≥2 wybierzmy D_i={j_i}, i=1,...,n, oraz rozłączne pary etykiet x_i,y_i, i=0,...,n. Oba katalogi zawierają niewycofywalne równości e_i:(x_i=y_i) i wycofywalne nierówności j_i:(x_i≠y_i), i=1,...,n, oraz niewycofywalne e_0:(x_0=y_0). Kolejny niewycofywalny znacznik d oznacza w katalogu A równość x_0=y_0, natomiast w B nierówność x_0≠y_0. Przy najwyżej n−2 przełączeniach pozostaje co najmniej jeden konflikt (e_i,j_i) w obu katalogach, więc ich przyszłe wyniki Cons są identyczne. Przy n−1 przełączeniach można wycofać wszystkie j_i: A staje się spójny, B pozostaje sprzeczny. Każdy szczebel budżetu może więc ściśle zwiększać zdolność rozróżniania. Przykład nie wykorzystuje samosprzecznych pętli.
 
 **Granice:** przy ustalonym reżimie początkowym, ograniczonej kolejności przełączeń, zależnościach historycznych albo efektach fizycznych Reach trzeba wyznaczyć z rzeczywistego kontraktu; samo κ nie wystarcza. Bez nowych prób Node/LAB i bez dodatkowych zadań Luny/Sola; pakiet prób Mapy pozostaje HOLD_BY_OWNER_BUDGET. CORE5/IFX FREEZE; C1 HOLD.
+
+### 6.15. Automat legalnych przełączeń — osiągalność, iloraz i aktualizacja (24.10.2026)
+
+**Status:** DERIVED / SELF_CHECKED / INDEPENDENT_REVIEW_NOT_REQUESTED; NON-CORE. To doprecyzowanie zakresu §6.14, a nie nowy MATH. Źródła: [MATH-70](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353258865), [MATH-71](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353300614), [MATH-72](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6353389796), [MATH-76/T31](https://github.com/smoczynski-b/psi-model/issues/13#issuecomment-6377942281). Starsze twierdzenia: [II.7](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-07-exact-history-memory-adequacy.md), [II.8](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-08-coarsest-exact-history-quotient.md), [II.9](https://github.com/smoczynski-b/PSI/blob/b4c21748fc855b01d8b89dfed36ca57842bad863/docs/principia-v2-09-recursive-history-quotient-update.md), źródła @b4c21748.
+
+**Kontrakt.** Rozważamy skończone katalogi oznaczonych równości i nierówności na ustalonym zbiorze aktywnych identyfikatorów K i zbiorze etykiet V. Liczba grup spełniania jest nieograniczona; obserwujemy wyłącznie Cons. Wspólny obu katalogom skończony automat sterowania ma stany Q, aktualny stan q, skierowane przejścia G oraz uprawnienia wycofania D(q) w stanie q. Stan może uwzględniać licznik pozostałych przełączeń. Przełączenie q→q' nie modyfikuje treści katalogu; legalne usunięcie −j wymaga j∈K∩D(q), usuwa tylko j i nie zmienia q. Przełączenia nie zależą od treści deklaracji ani od wykonanych usunięć. Wycofanie jest dobrowolne, zatem można opuścić stan bez korzystania z jego praw. Etykiety przełączeń i usunięć są literalne.
+
+**T1 — dokładna osiągalność.** Dla skierowanego spaceru p=(q=q_0,...,q_k) w G piszemy H_K(p)=K∩(⋃ D(q_l)), z unią po wszystkich odwiedzonych stanach. Rodzina możliwych usunięć ma postać
+
+\[
+\boxed{\mathscr R_{q,K}=\{R\subseteq K:\exists p\text{ legalny spacer od }q,\ R\subseteq H_K(p)\}.}
+\]
+
+Dowód konieczności: każde skreślenie następuje w stanie uprawnionym do tej nazwy. Dowód dostateczności: każdą nazwę ze zbioru R przydzielamy do pierwszej wizyty w stanie uprawnionym i wykonujemy skreślenie podczas tej wizyty. Rodzina jest zamknięta na podzbiory. Uwaga: unia praw stanów osobno osiągalnych nie musi być realizowalna w jednej historii — mogą leżeć na wykluczających się gałęziach.
+
+**T2 — dokładny iloraz treści przy ustalonym sterowaniu.** Minimalne osiągalne naprawy dla katalogu A definiujemy jako
+
+\[
+\boxed{\mathcal T_{q,K}(A)=\operatorname{Min}_{\subseteq}
+\{R\in\mathscr R_{q,K}:\operatorname{Cons}(A|_{K\setminus R})\}.}
+\]
+
+Dla dowolnego R∈𝓡_{q,K}:
+
+\[
+\operatorname{Cons}(A|_{K\setminus R})\iff
+\exists T\in\mathcal T_{q,K}(A)\quad T\subseteq R.
+\]
+
+Dostateczność wynika z monotoniczności spójności przy usuwaniu. Konieczność wynika z wyboru minimalnej osiągalnej naprawy zawartej w R. Dla dwóch katalogów A,B o wspólnych K,Q,q,G,D drzewa wszystkich legalnych słów oznaczonych literalnymi etykietami oraz etykietami węzłów Cons są izomorficzne wtedy i tylko wtedy, gdy 𝓣_{q,K}(A)=𝓣_{q,K}(B). Istotnie każdą R∈𝓡_{q,K} osiąga legalne słowo; zgodność drzew daje wszystkie etykiety Cons i rodzinę jej minimalnych napraw. W przeciwnym kierunku wszystkie legalne słowa są wspólne, a wzór wyznacza ich etykiety. Rodzina pusta oznacza brak osiągalnej naprawy, rodzina zawierająca pusty zbiór — spójność bez działań. Jest to dokładnie najgrubszy iloraz **treści katalogów przy ustalonym q,K**, nie globalny iloraz stanów o różnych prawach lub aktywnych nazwach. Nie oznacza minimum bitowego (II.7–II.8).
+
+**T3 — jawna aktualizacja na ilorazie (II.9).** Przechowujemy (q,K,𝓣) oraz wspólny automat. Legalne działanie e prowadzi do (q',K') i usuwa w tym jednym kroku Δ_e (pusty zbiór dla przełączenia, singleton dla nazwanej operacji −j). Wtedy
+
+\[
+\boxed{\mathcal T'=\operatorname{Min}_{\subseteq}
+\{R'\in\mathscr R_{q',K'}:
+\exists T\in\mathcal T,\ T\subseteq\Delta_e\cup R'\}.}
+\]
+
+Dowód: e wraz z dowolną legalną kontynuacją usuwającą R' stanowi legalne słowo bieżącego automatu usuwające Δ_e∪R'. Według T2 wynik spójności jest dokładnie warunkiem istnienia T zawartego w tym zbiorze. Minimalizacja po osiągalnych kontynuacjach wyznacza rodzinę następnego stanu bez odwoływania się do treści A. Jest to **częściowy**, reprezentantowo niezależny operator; bez q i K sama rodzina 𝓣 może nie rozpoznawać legalności następnego ruchu. Nie wynikają z tego gwarancje tanich obliczeń.
+
+**T4 — minimalny koszt przełączeń.** Pełna rodzina minimalnych konfliktów katalogu A niech będzie 𝓜(A). Skierowany spacer p od q *pokrywa konflikty* wtedy i tylko wtedy, gdy dla każdego C∈𝓜(A) zachodzi C∩H_K(p)≠∅. Istnieje legalna naprawa po najwyżej k przełączeniach wtedy i tylko wtedy, gdy istnieje taki spacer o najwyżej k krawędziach. W stronę konieczną każde rzeczywiste skreślenie leży w H_K(p), a naprawa trafia wszystkie minimalne konflikty. W stronę dostateczną można podczas wizyt po p usunąć wszystkie nazwy z H_K(p), trafiając wszystkie konflikty. Najmniejszy koszt jest więc długością najkrótszego *skierowanego spaceru pokrywającego konflikty*, nie liczbą nieuporządkowanych wybranych reżimów. Dopuszczamy wielokrotne wizyty w tym samym stanie. Przy jawnie danej 𝓜(A) odpowiada temu skończony problem najkrótszej ścieżki w iloczynie Q × 2^{𝓜(A)}, gdzie drugi czynnik rejestruje już trafione konflikty. Nie twierdzimy, że konstrukcja jest ekonomiczna ani wielomianowa.
+
+**Kontrprzykład przeciw zastosowaniu §6.14 poza jego dziedziną.** Stan początkowy q0 ma dwie rozłączne gałęzie q0→q1 i q0→q2, bez możliwości powrotu lub przejścia między q1 i q2; D(q0)=∅, D(q1)={a}, D(q2)={b}. Można osobno wycofać a lub b, lecz nie obie nazwy w jednym epizodzie, niezależnie od budżetu. Katalog ma cztery wpisy: niewycofywalne e_a:(x1=y1), e_b:(x2=y2) oraz wycofywalne a:(x1≠y1), b:(x2≠y2), na rozłącznych parach etykiet. Ma dwa minimalne konflikty {e_a,a} i {e_b,b}. Nieuporządkowany zbiór reżimów {q1,q2} trafiałby oba konflikty; żadna legalna historia ich nie trafia. W tym automacie katalog jest nienaprawialny. Wzór pokrycia κ(R)≤r+1 z §6.14 wymagał swobodnej kolejności reżimów i tutaj nie obowiązuje.
+
+**Granice:** przełączenia zależne od wcześniejszych wycofań, zewnętrzne koszty, zmiany praw w odpowiedzi na obserwację, odtwarzanie wpisu, interwencje fizyczne lub dodatkowe zadania wymagają powiększenia kontraktu; H_K(p) nie musi wtedy wyznaczać pełnej legalności. Nie podnosimy powiązań redakcyjnych do produkcyjnych DEPENDS_ON.
+
+**Tryb kosztowy:** badanie wyłącznie matematyczne, Node/LAB i Sol/E pozostają HOLD_BY_OWNER_BUDGET, Luna nie otrzymuje nowych zleceń. CORE5/IFX FREEZE, C1 HOLD.
